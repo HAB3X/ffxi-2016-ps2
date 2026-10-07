@@ -1,0 +1,3447 @@
+# yaml-language-server: $schema=../../schemas/mobs.schema.json
+
+templates:
+
+  Air_Elemental:
+    id:            71
+    species:       air_elemental
+    spell_list_id: 12
+    skill_list_id: 99
+    attributes:
+      combat:
+        skill: staff
+      jobs: [blm, rdm]
+      resists:
+        immune_status: [gravity, silence, slow, elegy]
+      render:
+        look:
+          type:  standard
+          model: 438
+        entity_flags:  1155
+        animation_sub:   16
+        model_size:       1
+        hitbox:           3
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+        type:    [weather]
+    loot:
+      drops:
+        - chance: always
+          item:   wind_cluster
+        - chance: common
+          item:   wind_cluster
+        - chance: common
+          item:   wind_cluster
+
+  Alastor_Antlion:
+    id:            80
+    species:       antlion
+    type:          [notorious]
+    roam:          [ambush]
+    spell_list_id: 1
+    skill_list_id: 357
+    attributes:
+      combat:
+        skill: scythe
+        delay: 200
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 1348
+        entity_flags:  1159
+        animation_sub:    4
+        model_size:       3
+        hitbox:          16
+      behaviors:
+        links: true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 20000
+        mp: 10000
+    loot:
+      drops:
+        - chance: always
+          item:   rostrum_pumps
+
+  Ambusher_Antlion:
+    id:            104
+    species:       antlion
+    type:          [notorious]
+    roam:          [ambush]
+    skill_list_id: 357
+    attributes:
+      combat:
+        skill: great_axe
+        delay: 200
+      render:
+        look:
+          type:  standard
+          model: 1348
+        entity_flags:  3
+        model_size:    2
+        hitbox:       13
+      behaviors:
+        flags:      [aggro_ambush]
+        aggressive: true
+        links:      true
+      spawn:
+        type: [lottery]
+    loot:
+      drops:
+        - chance: always
+          item:   archers_jupon
+        - chance: rare
+          item:   antlion_jaw
+
+  Arch_Corse:
+    id:            225
+    species:       corse
+    spell_list_id: 28
+    skill_list_id: 74
+    attributes:
+      combat:
+        skill: club
+        delay: 290
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 1363
+        entity_flags: 1157
+        model_size:      2
+        hitbox:         13
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+        type:    [at_night]
+    loot:
+      drops:
+        - chance: common
+          item:   iolite
+        - chance: uncommon
+          item:   corse_bracelet
+        - chance: rare
+          item:   corse_robe
+
+  Attohwa_Coeurl:
+    id:            281
+    species:       coeurl
+    skill_list_id: 161
+    attributes:
+      combat:
+        skill: dagger
+      render:
+        look:
+          type:  standard
+          model: 367
+        entity_flags: 1155
+        model_size:      1
+        hitbox:         16
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   coeurl_whisker
+        - chance: uncommon
+          item:   slice_of_coeurl_meat
+        - chance: uncommon
+          item:   coeurl_hide
+      steal: coeurl_whisker
+      despoil:
+        coeurl_hide:          0
+        slice_of_coeurl_meat: 0
+
+  Bane_Lizard:
+    id:            337
+    species:       hill_lizard
+    skill_list_id: 174
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 328
+        entity_flags: 131
+        model_size:     1
+        hitbox:        16
+      behaviors:
+        links: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   lizard_tail
+        - chance: rare
+          item:   lizard_skin
+        - chance: uncommon
+          item:   lizard_egg
+      steal: lizard_egg
+      despoil:
+        lizard_skin: 0
+        lizard_tail: 0
+        lizard_egg:  0
+
+  Bifrons_Attohwa_Chasm:
+    id:            7339
+    display_name:  Bifrons
+    species:       bomb
+    skill_list_id: 499
+    attributes:
+      combat:
+        skill: club
+      render:
+        look:
+          type:  standard
+          model: 280
+        entity_flags: 133
+        model_size:     2
+        hitbox:        13
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+        type:    [fog]
+    loot:
+      drops:
+        - chance: always
+          item:   pinch_of_bomb_ash
+        - chance: common
+          item:   bomb_arm
+      steal: bomb_arm
+      despoil:
+        pinch_of_bomb_ash: 0
+
+  Bloody_Skull:
+    id:            6815
+    species:       corpselight
+    type:          [notorious]
+    spell_list_id: 21
+    attributes:
+      combat:
+        skill: club
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 1841
+        entity_flags: 131
+        model_size:     1
+        hitbox:        12
+      behaviors:
+        aggressive:     true
+        true_detection: true
+      spawn:
+        type: [scripted]
+
+  Burrow_Antlion:
+    id:            586
+    species:       antlion
+    roam:          [ambush]
+    skill_list_id: 357
+    attributes:
+      combat:
+        skill: sword
+      render:
+        look:
+          type:  standard
+          model: 1348
+        entity_flags:  2179
+        animation_sub:    4
+        model_size:       1
+        hitbox:          12
+      behaviors:
+        flags:      [aggro_ambush]
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: rare
+          item:   antlion_jaw
+        - chance: rare
+          item:   scarlet_stone
+      steal: lizard_skin
+      despoil:
+        antlion_jaw: 0
+
+  Cave_Antlion:
+    id:            662
+    species:       pitlion
+    roam:          [ambush]
+    skill_list_id: 357
+    attributes:
+      combat:
+        skill: sword
+      render:
+        look:
+          type:  standard
+          model: 1348
+        entity_flags:  2181
+        animation_sub:    4
+        model_size:       2
+        hitbox:          13
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   scarlet_stone
+        - chance: common
+          item:   high-quality_antlion_jaw
+        - chance: uncommon
+          item:   antlion_jaw
+      steal: scorpion_claw
+      despoil:
+        antlion_jaw: 0
+
+  Chasm_Lizard:
+    id:            702
+    species:       hill_lizard
+    skill_list_id: 174
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 328
+        entity_flags: 131
+        model_size:     1
+        hitbox:        16
+      behaviors:
+        links: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   lizard_tail
+        - chance: rare
+          item:   lizard_skin
+        - chance: uncommon
+          item:   lizard_egg
+      steal: lizard_egg
+      despoil:
+        lizard_skin: 0
+        lizard_tail: 0
+        lizard_egg:  0
+
+  Citipati:
+    id:            733
+    species:       corse
+    type:          [notorious]
+    spell_list_id: 1
+    skill_list_id: 74
+    attributes:
+      combat:
+        skill: staff
+        delay: 290
+      jobs: [thf, blm]
+      resists:
+        dmg_physical:
+          blunt: 2500
+      render:
+        look:
+          type:  standard
+          model: 1363
+        entity_flags: 157
+        name_prefix:   32
+        model_size:     2
+        hitbox:        13
+      behaviors:
+        aggressive: true
+        links:      true
+      mods:
+        triple_attack: 5
+      spawn:
+        type: [lottery]
+      stats:
+        hp: 8000
+    loot:
+      drops:
+        - chance: uncommon
+          item:   druids_slops
+        - chance: uncommon
+          item:   corse_bracelet
+        - chance: rare
+          item:   harpe
+
+  Corse:
+    id:            801
+    species:       corse
+    spell_list_id: 28
+    skill_list_id: 74
+    attributes:
+      combat:
+        skill: club
+        delay: 290
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 1363
+        entity_flags: 131
+        model_size:     1
+        hitbox:        12
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+        type:    [at_night]
+    loot:
+      drops:
+        - chance: very_common
+          item:   bone_chip
+        - chance: uncommon
+          item:   iolite
+        - chance: rare
+          item:   corse_bracelet
+        - chance: very_rare
+          item:   corse_robe
+      steal: bone_chip
+      despoil:
+        bone_chip: 0
+
+  Cutlass_Scorpion_AC:
+    id:            871
+    species:       scorpion
+    skill_list_id: 217
+    attributes:
+      combat:
+        skill: scythe
+        delay: 280
+      render:
+        look:
+          type:  standard
+          model: 284
+        entity_flags: 131
+        model_size:     1
+        hitbox:        27
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: very_common
+          item:   scorpion_claw
+        - chance: uncommon
+          item:   scorpion_shell
+        - chance: rare
+          item:   high-quality_scorpion_shell
+      steal: antlion_jaw
+      despoil:
+        scorpion_shell: 0
+        scorpion_claw:  0
+
+  Doom_Scorpion:
+    id:            1084
+    species:       scorpion
+    skill_list_id: 217
+    attributes:
+      combat:
+        skill: scythe
+        delay: 280
+      render:
+        look:
+          type:  standard
+          model: 284
+        entity_flags: 131
+        model_size:     1
+        hitbox:        27
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   scorpion_claw
+        - chance: uncommon
+          item:   scorpion_shell
+      despoil:
+        scorpion_shell: 0
+        scorpion_claw:  0
+
+  Earth_Elemental:
+    id:            1160
+    species:       earth_elemental
+    spell_list_id: 13
+    skill_list_id: 101
+    attributes:
+      combat:
+        skill: staff
+      jobs: [blm, rdm]
+      resists:
+        immune_status: [stun, slow, elegy]
+      render:
+        look:
+          type:  standard
+          model: 439
+        entity_flags:  1155
+        animation_sub:   16
+        model_size:       1
+        hitbox:           3
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+        type:    [weather]
+    loot:
+      drops:
+        - chance: always
+          item:   earth_cluster
+        - chance: common
+          item:   earth_cluster
+        - chance: common
+          item:   earth_cluster
+
+  Executioner_Antlion:
+    id:            1269
+    species:       antlion
+    type:          [notorious]
+    roam:          [ambush]
+    skill_list_id: 26
+    attributes:
+      combat:
+        skill: sword
+      render:
+        look:
+          type:  standard
+          model: 1348
+        entity_flags:  1155
+        animation_sub:    4
+        model_size:       1
+        hitbox:          12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 7700
+
+  Feeler_Antlion:
+    id:            1318
+    species:       antlion
+    type:          [notorious]
+    skill_list_id: 26
+    attributes:
+      combat:
+        skill: sword
+      render:
+        look:
+          type:  standard
+          model: 1347
+        entity_flags: 129
+        hitbox:        10
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 5000
+
+  Fjalar:
+    id:            6814
+    species:       dvergr
+    type:          [notorious]
+    spell_list_id: 21
+    skill_list_id: 316
+    attributes:
+      combat:
+        skill: staff
+      jobs: [blm, blm]
+      resists:
+        rank_element:
+          fire:    4
+          ice:     6
+          wind:    4
+          earth:   6
+          thunder: 4
+          water:   6
+          light:   2
+        rank_status:
+          paralyze:    6
+          bind:        6
+          silence:     4
+          slow:        6
+          poison:      6
+          light_sleep: 2
+      render:
+        look:
+          type:  standard
+          model: 2070
+        entity_flags: 159
+        name_prefix:   32
+        model_size:     3
+        hitbox:        25
+      behaviors:
+        aggressive:     true
+        true_detection: true
+      spawn:
+        type: [scripted]
+
+  Flesh_Eater_AC:
+    id:            1369
+    species:       worm
+    roam:          [worm]
+    spell_list_id: 9
+    skill_list_id: 258
+    attributes:
+      combat:
+        skill: scythe
+      jobs: [blm, rdm]
+      render:
+        look:
+          type:  standard
+          model: 425
+        entity_flags: 131
+        model_size:     1
+        hitbox:        12
+      behaviors:
+        links: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   flint_stone
+        - chance: rare
+          item:   igneous_rock
+        - chance: uncommon
+          item:   chunk_of_copper_ore
+      steal: pebble
+      despoil:
+        chunk_of_copper_ore: 0
+        chunk_of_iron_ore:   0
+        chunk_of_silver_ore: 0
+        chunk_of_zinc_ore:   0
+
+  Gallinipper_AC:
+    id:            1454
+    species:       fly
+    skill_list_id: 1153
+    attributes:
+      combat:
+        skill: polearm
+      render:
+        look:
+          type:  standard
+          model: 448
+        entity_flags:  131
+        animation_sub:   8
+        model_size:      1
+        hitbox:         15
+      behaviors:
+        links: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   insect_wing
+        - chance: uncommon
+          item:   piece_of_attohwa_ginseng
+      despoil:
+        insect_wing: 0
+
+  Goblin_Furrier:
+    id:            1665
+    species:       goblin
+    skill_list_id: 133
+    attributes:
+      combat:
+        skill: dagger
+      jobs: [rng, rng]
+      render:
+        look:
+          type:  standard
+          model: 490
+        entity_flags: 131
+        model_size:     1
+        hitbox:        12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: rare
+          item:   goblin_mask
+        - chance: very_rare
+          item:   goblin_armor
+        - chance: very_rare
+          item:   mythril_beastcoin
+        - chance: very_rare
+          item:   square_of_sheep_leather
+        - chance: very_rare
+          item:   square_of_dhalmel_leather
+        - chance: super_rare
+          item:   square_of_black_tiger_leather
+        - chance: ultra_rare
+          item:   square_of_coeurl_leather
+      steal: crossbow_bolt
+      despoil:
+        loaf_of_goblin_bread:      0
+        chunk_of_goblin_chocolate: 0
+        bowl_of_goblin_stew:       0
+        goblin_mushpot:            0
+
+  Goblin_Pathfinder:
+    id:            1694
+    species:       goblin
+    skill_list_id: 133
+    attributes:
+      combat:
+        skill: axe
+      jobs: [bst, bst]
+      render:
+        look:
+          type:  standard
+          model: 487
+        entity_flags: 131
+        model_size:     1
+        hitbox:        12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: rare
+          item:   goblin_mask
+        - chance: very_rare
+          item:   goblin_armor
+        - chance: very_rare
+          item:   mythril_beastcoin
+      steal: silver_beastcoin
+      despoil:
+        loaf_of_goblin_bread:      0
+        chunk_of_goblin_chocolate: 0
+        bowl_of_goblin_stew:       0
+        goblin_mushpot:            0
+
+  Goblin_Poacher:
+    id:            1701
+    species:       goblin
+    skill_list_id: 133
+    attributes:
+      combat:
+        skill: dagger
+      jobs: [rng, rng]
+      render:
+        look:
+          type:  standard
+          model: 496
+        entity_flags: 131
+        model_size:     1
+        hitbox:        12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: rare
+          item:   goblin_mask
+        - chance: very_rare
+          item:   goblin_armor
+        - chance: very_rare
+          item:   mythril_beastcoin
+      steal: crossbow_bolt
+      despoil:
+        loaf_of_goblin_bread:      0
+        chunk_of_goblin_chocolate: 0
+        bowl_of_goblin_stew:       0
+        goblin_mushpot:            0
+
+  Goblin_Reaper:
+    id:            1705
+    species:       armored_goblin
+    spell_list_id: 5
+    skill_list_id: 133
+    attributes:
+      combat:
+        skill: sword
+      jobs: [drk, drk]
+      render:
+        look:
+          type:  standard
+          model: 501
+        entity_flags: 131
+        model_size:     1
+        hitbox:        12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: rare
+          item:   goblin_helm
+        - chance: very_rare
+          item:   goblin_mail
+        - chance: very_rare
+          item:   scroll_of_absorb-vit
+        - chance: very_rare
+          item:   scroll_of_absorb-agi
+        - chance: very_rare
+          item:   scroll_of_absorb-int
+        - chance: very_rare
+          item:   mythril_beastcoin
+      steal: mythril_beastcoin
+      despoil:
+        loaf_of_goblin_bread:      0
+        chunk_of_goblin_chocolate: 0
+        bowl_of_goblin_stew:       0
+        goblin_mushpot:            0
+
+  Goblin_Robber:
+    id:            1709
+    species:       goblin
+    skill_list_id: 133
+    attributes:
+      combat:
+        skill: dagger
+      jobs: [thf, thf]
+      render:
+        look:
+          type:  standard
+          model: 500
+        entity_flags: 131
+        model_size:     1
+        hitbox:        12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: rare
+          item:   goblin_mask
+        - chance: very_rare
+          item:   goblin_armor
+        - chance: very_rare
+          item:   mythril_beastcoin
+      steal: mythril_beastcoin
+      despoil:
+        loaf_of_goblin_bread:      0
+        chunk_of_goblin_chocolate: 0
+        bowl_of_goblin_stew:       0
+        goblin_mushpot:            0
+
+  Goblin_Shaman:
+    id:            1710
+    species:       goblin
+    spell_list_id: 21
+    skill_list_id: 133
+    attributes:
+      combat:
+        skill: dagger
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 507
+        entity_flags: 131
+        model_size:     1
+        hitbox:        12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: rare
+          item:   goblin_mask
+        - chance: very_rare
+          item:   goblin_armor
+        - chance: very_rare
+          item:   mythril_beastcoin
+      steal: silver_beastcoin
+      despoil:
+        loaf_of_goblin_bread:      0
+        chunk_of_goblin_chocolate: 0
+        bowl_of_goblin_stew:       0
+        goblin_mushpot:            0
+
+  Goblin_Smithy:
+    id:            1715
+    species:       armored_goblin
+    skill_list_id: 133
+    attributes:
+      combat:
+        skill: great_sword
+      render:
+        look:
+          type:  standard
+          model: 497
+        entity_flags: 131
+        model_size:     1
+        hitbox:        12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: rare
+          item:   goblin_helm
+        - chance: very_rare
+          item:   goblin_mail
+      steal: silver_beastcoin
+      despoil:
+        loaf_of_goblin_bread:      0
+        chunk_of_goblin_chocolate: 0
+        bowl_of_goblin_stew:       0
+        goblin_mushpot:            0
+
+  Goblin_Trader:
+    id:            1741
+    species:       goblin
+    skill_list_id: 133
+    attributes:
+      combat:
+        skill: axe
+      jobs: [bst, bst]
+      render:
+        look:
+          type:  standard
+          model: 498
+        entity_flags: 131
+        model_size:     1
+        hitbox:        12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: rare
+          item:   goblin_mask
+        - chance: very_rare
+          item:   goblin_armor
+        - chance: ultra_rare
+          item:   square_of_velvet_cloth
+      steal: mythril_beastcoin
+      despoil:
+        loaf_of_goblin_bread:      0
+        chunk_of_goblin_chocolate: 0
+        bowl_of_goblin_stew:       0
+        goblin_mushpot:            0
+
+  Goblins_Gallinipper:
+    id:            1726
+    species:       fly
+    skill_list_id: 1153
+    attributes:
+      combat:
+        skill: polearm
+      render:
+        look:
+          type:  standard
+          model: 448
+        entity_flags: 131
+        model_size:     1
+        hitbox:        15
+      behaviors:
+        links: true
+      spawn:
+        type: [scripted]
+
+  Goblins_Ogrefly:
+    id:            1729
+    species:       fly
+    skill_list_id: 1153
+    attributes:
+      combat:
+        skill: polearm
+      render:
+        look:
+          type:  standard
+          model: 448
+        entity_flags: 131
+        model_size:     1
+        hitbox:        15
+      behaviors:
+        links: true
+      spawn:
+        type: [scripted]
+
+  Hecteyes_AC:
+    id:            6388
+    species:       hecteye
+    spell_list_id: 10
+    skill_list_id: 2091
+    attributes:
+      combat:
+        skill: staff
+        delay: 280
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 384
+        entity_flags: 1155
+        model_size:      1
+        hitbox:         12
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   vial_of_mercury
+        - chance: uncommon
+          item:   vial_of_mercury
+        - chance: rare
+          item:   hecteyes_eye
+      despoil:
+        hecteyes_eye: 0
+
+  Hunter_Antlion:
+    id:            2010
+    species:       antlion
+    skill_list_id: 26
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 1347
+        entity_flags: 1155
+        model_size:      1
+        hitbox:         12
+      behaviors:
+        links: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: rare
+          item:   antlion_jaw
+      steal: insect_wing
+      despoil:
+        antlion_jaw: 0
+
+  Lich:
+    id:            2407
+    species:       skeleton
+    spell_list_id: 28
+    skill_list_id: 227
+    attributes:
+      combat:
+        skill: great_katana
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 564
+        entity_flags: 131
+        model_size:     1
+        hitbox:        12
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+        type:    [at_night]
+    loot:
+      drops:
+        - chance: common
+          item:   bone_chip
+        - chance: rare
+          item:   revival_tree_root
+      steal: bone_chip
+      despoil:
+        bone_chip: 0
+
+  Lioumere:
+    id:            2421
+    species:       antlion
+    type:          [notorious]
+    roam:          [ambush]
+    skill_list_id: 357
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 1348
+        entity_flags:  2205
+        animation_sub:    4
+        name_prefix:     32
+        model_size:       2
+        hitbox:          13
+      behaviors:
+        flags:      [aggro_ambush]
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 4400
+
+  Master_Coeurl:
+    id:            2585
+    species:       coeurl
+    skill_list_id: 71
+    attributes:
+      combat:
+        skill: dagger
+      render:
+        look:
+          type:  standard
+          model: 367
+        entity_flags: 131
+        model_size:     1
+        hitbox:        16
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   slice_of_coeurl_meat
+        - chance: uncommon
+          item:   coeurl_hide
+        - chance: common
+          item:   coeurl_whisker
+      steal: coeurl_whisker
+      despoil:
+        coeurl_hide:          0
+        slice_of_coeurl_meat: 0
+
+  Monarch_Ogrefly:
+    id:            2732
+    species:       fly
+    skill_list_id: 1153
+    attributes:
+      combat:
+        skill: polearm
+      render:
+        look:
+          type:  standard
+          model: 448
+        entity_flags:  643
+        animation_sub:   8
+        model_size:      1
+        hitbox:         15
+      behaviors:
+        links: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   insect_wing
+        - chance: uncommon
+          item:   piece_of_attohwa_ginseng
+      despoil:
+        insect_wing: 0
+
+  Mummy:
+    id:            2770
+    species:       skeleton
+    skill_list_id: 227
+    attributes:
+      combat:
+        skill: axe
+      render:
+        look:
+          type:  standard
+          model: 572
+        entity_flags:  643
+        animation_sub:   8
+        model_size:      1
+        hitbox:         12
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+        type:    [at_night]
+    loot:
+      drops:
+        - chance: common
+          item:   bone_chip
+        - chance: uncommon
+          item:   revival_tree_root
+      steal: bone_chip
+      despoil:
+        bone_chip: 0
+
+  Muut:
+    id:            6816
+    species:       corse
+    type:          [notorious]
+    spell_list_id: 21
+    skill_list_id: 74
+    attributes:
+      combat:
+        skill: staff
+        delay: 290
+      jobs: [blm, blm]
+      resists:
+        dmg_physical:
+          blunt: 2500
+      render:
+        look:
+          type:  standard
+          model: 1364
+        entity_flags: 135
+        name_prefix:   32
+        model_size:     3
+        hitbox:        16
+      behaviors:
+        aggressive:     true
+        links:          true
+        true_detection: true
+      spawn:
+        type: [scripted]
+
+  Muuts_Hound_Warrior:
+    id:            5724
+    species:       skeleton
+    type:          [notorious]
+    skill_list_id: 227
+    attributes:
+      combat:
+        skill: axe
+      render:
+        look:
+          type:  standard
+          model: 564
+        entity_flags: 135
+        name_prefix:   32
+        model_size:     3
+        hitbox:        16
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+
+  Muuts_Sacrifice:
+    id:            5723
+    species:       skeleton
+    type:          [notorious]
+    spell_list_id: 5
+    skill_list_id: 227
+    attributes:
+      combat:
+        skill: polearm
+      jobs: [drk, drk]
+      render:
+        look:
+          type:  standard
+          model: 572
+        entity_flags: 135
+        name_prefix:   32
+        model_size:     3
+        hitbox:        16
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+
+  Ogrefly:
+    id:            2953
+    species:       fly
+    skill_list_id: 1153
+    attributes:
+      combat:
+        skill: polearm
+      render:
+        look:
+          type:  standard
+          model: 448
+        entity_flags:  1667
+        animation_sub:    8
+        model_size:       1
+        hitbox:          15
+      behaviors:
+        links: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   insect_wing
+        - chance: uncommon
+          item:   piece_of_attohwa_ginseng
+      despoil:
+        insect_wing: 0
+
+  Pit_Antlion:
+    id:            3141
+    species:       antlion
+    roam:          [ambush]
+    skill_list_id: 357
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 1348
+        entity_flags:  2179
+        animation_sub:    4
+        model_size:       1
+        hitbox:          12
+      behaviors:
+        flags:      [aggro_ambush]
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   antlion_jaw
+        - chance: rare
+          item:   scarlet_stone
+      steal: scorpion_claw
+      despoil:
+        antlion_jaw: 0
+
+  Sand_Lizard:
+    id:            3456
+    species:       hill_lizard
+    skill_list_id: 174
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 328
+        entity_flags: 131
+        model_size:     1
+        hitbox:        16
+      behaviors:
+        links: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   lizard_tail
+        - chance: uncommon
+          item:   lizard_egg
+        - chance: rare
+          item:   lizard_skin
+      steal: lizard_egg
+      despoil:
+        lizard_skin: 0
+        lizard_tail: 0
+        lizard_egg:  0
+
+  Sargas:
+    id:            5424
+    species:       scorpion
+    type:          [notorious]
+    skill_list_id: 217
+    attributes:
+      combat:
+        skill: scythe
+        delay: 280
+      resists:
+        immune_status: [gravity, bind, stun, light_sleep, dark_sleep]
+      render:
+        look:
+          type:  standard
+          model: 284
+        entity_flags: 139
+        model_size:     1
+        hitbox:        27
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 7200
+      stats:
+        hp: 10000
+    loot:
+      drops:
+        - chance: uncommon
+          item:   aptant_of_primus
+        - chance: uncommon
+          item:   aptant_of_aecus
+    content: wotg
+
+  Sekhmet:
+    id:            5537
+    species:       coeurl
+    type:          [notorious]
+    spell_list_id: 137
+    skill_list_id: 494
+    attributes:
+      combat:
+        skill: dagger
+      jobs: [rdm, rdm]
+      resists:
+        immune_status: [gravity, bind, silence, light_sleep, dark_sleep]
+      render:
+        look:
+          type:  standard
+          model: 367
+        entity_flags:  667
+        animation_sub:   8
+        name_prefix:    32
+        model_size:      1
+        hitbox:         16
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 3600
+      stats:
+        hp: 5000
+        mp: 1000
+    loot:
+      drops:
+        - chance: uncommon
+          item:   layqa_seraweels
+    content: wotg
+
+  Tiamat:
+    id:            3916
+    species:       orange_wyrm
+    type:          [notorious]
+    spell_list_id: 78
+    skill_list_id: 393
+    attributes:
+      combat:
+        skill: scythe
+        delay: 210
+      jobs: [war, blm]
+      render:
+        look:
+          type:  standard
+          model: 608
+        entity_flags: 157
+        name_prefix:   32
+        model_size:     2
+        hitbox:        57
+      behaviors:
+        flags:          [no_turn]
+        aggressive:     true
+        true_detection: true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 100000
+        mp: 100000
+    loot:
+      drops:
+        - chance: common
+          item:   noritsune_kote
+        - chance: common
+          item:   criers_gaiters
+        - chance: very_common
+          one_of:
+            wyrm_horn:    75
+            dragon_heart: 25
+        - chance: very_common
+          one_of:
+            dragon_talon:         45
+            vial_of_dragon_blood: 45
+            slice_of_dragon_meat: 10
+        - chance: very_common
+          one_of: [adaman_ingot, damascus_ingot, divine_log, square_of_damascene_cloth, spool_of_malboro_fiber, behemoth_hide, vial_of_black_beetle_blood, piece_of_oxblood, lock_of_sirens_hair]
+
+  Tomb_Mage:
+    id:            3943
+    species:       skeleton
+    spell_list_id: 28
+    skill_list_id: 227
+    attributes:
+      combat:
+        skill: great_katana
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 564
+        entity_flags: 133
+        model_size:     2
+        hitbox:        13
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+        type:    [at_night]
+    loot:
+      drops:
+        - chance: common
+          item:   bone_chip
+        - chance: uncommon
+          item:   revival_tree_root
+        - chance: rare
+          item:   scroll_of_blizzard_iii
+      steal: bone_chip
+      despoil:
+        bone_chip: 0
+
+  Tomb_Warrior:
+    id:            3944
+    species:       skeleton
+    skill_list_id: 227
+    attributes:
+      combat:
+        skill: axe
+      render:
+        look:
+          type:  standard
+          model: 572
+        entity_flags: 133
+        model_size:     2
+        hitbox:        13
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+        type:    [at_night]
+    loot:
+      drops:
+        - chance: common
+          item:   bone_chip
+        - chance: uncommon
+          item:   revival_tree_root
+      steal: bone_chip
+      despoil:
+        bone_chip: 0
+
+  Tracer_Antlion:
+    id:            3982
+    species:       antlion
+    skill_list_id: 26
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 1347
+        entity_flags: 131
+        model_size:     1
+        hitbox:        12
+      behaviors:
+        links: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: very_rare
+          item:   antlion_jaw
+      steal: insect_wing
+      despoil:
+        antlion_jaw: 0
+
+  Tracker_Antlion:
+    id:            3983
+    species:       antlion
+    skill_list_id: 26
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 1347
+        entity_flags: 133
+        model_size:     2
+        hitbox:        13
+      behaviors:
+        links: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: rare
+          item:   antlion_jaw
+        - chance: very_rare
+          item:   scarlet_stone
+      steal: lizard_skin
+      despoil:
+        antlion_jaw: 0
+
+  Trench_Antlion:
+    id:            3996
+    species:       antlion
+    roam:          [ambush]
+    skill_list_id: 357
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 1348
+        entity_flags:  2179
+        animation_sub:    4
+        model_size:       1
+        hitbox:          12
+      behaviors:
+        flags:      [aggro_ambush]
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   scarlet_stone
+        - chance: common
+          item:   high-quality_antlion_jaw
+        - chance: uncommon
+          item:   antlion_jaw
+      steal: scorpion_claw
+      despoil:
+        antlion_jaw: 0
+
+  Tulwar_Scorpion:
+    id:            4048
+    species:       scorpion
+    skill_list_id: 217
+    attributes:
+      combat:
+        skill: scythe
+        delay: 280
+      render:
+        look:
+          type:  standard
+          model: 284
+        entity_flags: 131
+        model_size:     1
+        hitbox:        27
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   scorpion_claw
+        - chance: uncommon
+          item:   scorpion_shell
+      despoil:
+        scorpion_shell: 0
+        scorpion_claw:  0
+
+  Will-o-the-Wykes:
+    id:            4346
+    species:       bomb
+    skill_list_id: 499
+    attributes:
+      combat:
+        skill: club
+      render:
+        look:
+          type:  standard
+          model: 280
+        entity_flags: 131
+        model_size:     1
+        hitbox:        12
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+        type:    [fog]
+    loot:
+      drops:
+        - chance: always
+          item:   pinch_of_bomb_ash
+        - chance: common
+          item:   bomb_arm
+      steal: bomb_arm
+      despoil:
+        pinch_of_bomb_ash: 0
+
+  Xolotl:
+    id:            4396
+    species:       corse
+    type:          [notorious]
+    spell_list_id: 1
+    skill_list_id: 768
+    attributes:
+      combat:
+        skill: staff
+        delay: 290
+      jobs: [drk, blm]
+      resists:
+        dmg_physical:
+          blunt: 2500
+      render:
+        look:
+          type:  standard
+          model: 1364
+        entity_flags: 159
+        name_prefix:   32
+        model_size:     3
+        hitbox:        16
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 1
+        type:    [at_night]
+      stats:
+        hp: 20000
+        mp: 20000
+    loot:
+      drops:
+        - chance: very_common
+          item:   zoolater_hat
+        - chance: uncommon
+          item:   bandomusha_kote
+        - chance: rare
+          item:   perseuss_harpe
+
+  Xolotls_Hound_Warrior:
+    id:            4397
+    species:       skeleton
+    spell_list_id: 1
+    skill_list_id: 227
+    attributes:
+      combat:
+        skill: great_katana
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 564
+        entity_flags: 159
+        name_prefix:   32
+        model_size:     3
+        hitbox:        16
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 4200
+
+  Xolotls_Sacrifice:
+    id:            4398
+    species:       skeleton
+    skill_list_id: 227
+    attributes:
+      combat:
+        skill: axe
+      render:
+        look:
+          type:  standard
+          model: 572
+        entity_flags: 159
+        name_prefix:   32
+        model_size:     3
+        hitbox:        16
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 4500
+
+spawns:
+  16805889:
+    template: Tracer_Antlion
+    region:   s_1
+    level:    [38, 40]
+  16805890:
+    template: Tracer_Antlion
+    region:   s_1
+    level:    [38, 40]
+  16805891:
+    template: Gallinipper_AC
+    script:   Gallinipper
+    region:   s_1
+    level:    [36, 38]
+  16805892:
+    template: Gallinipper_AC
+    script:   Gallinipper
+    region:   s_1
+    level:    [36, 38]
+  16805893:
+    template: Goblin_Smithy
+    region:   s_1
+    level:    [37, 39]
+  16805894:
+    template: Goblin_Shaman
+    region:   s_1
+    level:    [35, 37]
+  16805895:
+    template: Tracer_Antlion
+    region:   se_7
+    level:    [38, 40]
+  16805896:
+    template: Doom_Scorpion
+    region:   se_7
+    level:    [41, 44]
+  16805897:
+    template: Doom_Scorpion
+    region:   se_7
+    level:    [41, 44]
+  16805898:
+    template: Gallinipper_AC
+    script:   Gallinipper
+    region:   se_7
+    level:    [36, 38]
+  16805899:
+    template: Gallinipper_AC
+    script:   Gallinipper
+    region:   se_7
+    level:    [36, 38]
+  16805900:
+    template: Tracer_Antlion
+    region:   c_12
+    level:    [38, 40]
+  16805901:
+    template: Tracer_Antlion
+    region:   c_12
+    level:    [38, 40]
+  16805902:
+    template: Goblin_Shaman
+    region:   c_12
+    level:    [35, 37]
+  16805903:
+    template: Goblin_Furrier
+    region:   c_12
+    level:    [35, 37]
+  16805904:
+    template: Goblin_Pathfinder
+    region:   c_16
+    level:    [36, 38]
+  16805905:
+    template: Goblins_Gallinipper
+    at:       [175.249, 16.708, 64.557, 216]
+    level:    [31, 34]
+  16805906:
+    template: Goblin_Furrier
+    region:   c_16
+    level:    [35, 37]
+  16805907:
+    template: Gallinipper_AC
+    script:   Gallinipper
+    region:   c_16
+    level:    [36, 38]
+  16805908:
+    template: Gallinipper_AC
+    script:   Gallinipper
+    region:   c_16
+    level:    [36, 38]
+  16805909:
+    template: Attohwa_Coeurl
+    region:   ne_21
+    level:    [37, 39]
+  16805910:
+    template: Tracer_Antlion
+    region:   ne_22
+    level:    [38, 40]
+  16805911:
+    template: Gallinipper_AC
+    script:   Gallinipper
+    region:   ne_22
+    level:    [36, 38]
+  16805912:
+    template: Goblin_Furrier
+    region:   ne_22
+    level:    [35, 37]
+  16805913:
+    template: Goblin_Smithy
+    region:   ne_22
+    level:    [36, 38]
+  16805914:
+    template: Doom_Scorpion
+    region:   ne_26
+    level:    [41, 44]
+  16805915:
+    template: Doom_Scorpion
+    region:   ne_26
+    level:    [41, 44]
+  16805916:
+    template: Gallinipper_AC
+    script:   Gallinipper
+    region:   ne_26
+    level:    [36, 38]
+  16805917:
+    template: Goblin_Furrier
+    region:   ne_26
+    level:    [35, 37]
+  16805918:
+    template: Goblin_Shaman
+    region:   ne_26
+    level:    [35, 37]
+  16805919:
+    template: Gallinipper_AC
+    script:   Gallinipper
+    region:   ne_31
+    level:    [36, 38]
+  16805920:
+    template: Gallinipper_AC
+    script:   Gallinipper
+    region:   ne_31
+    level:    [36, 38]
+  16805921:
+    template: Goblin_Smithy
+    region:   ne_31
+    level:    [37, 39]
+  16805922:
+    template: Attohwa_Coeurl
+    region:   e_34
+    level:    [37, 39]
+  16805923:
+    template: Attohwa_Coeurl
+    region:   e_34
+    level:    [37, 39]
+  16805924:
+    template: Tracer_Antlion
+    region:   e_36
+    level:    [38, 40]
+  16805925:
+    template: Tracer_Antlion
+    region:   e_36
+    level:    [38, 40]
+  16805926:
+    template: Goblin_Pathfinder
+    region:   e_36
+    level:    [38, 39]
+  16805927:
+    template: Goblins_Gallinipper
+    at:       [532.217, 17.517, 81.001, 196]
+    level:    [31, 34]
+  16805928:
+    template: Tracer_Antlion
+    region:   e_40
+    level:    [38, 40]
+  16805929:
+    template: Doom_Scorpion
+    region:   e_40
+    level:    [41, 44]
+  16805930:
+    template: Gallinipper_AC
+    script:   Gallinipper
+    region:   e_40
+    level:    [37, 39]
+  16805931:
+    template: Attohwa_Coeurl
+    region:   e_43
+    level:    [37, 39]
+  16805932:
+    template: Attohwa_Coeurl
+    region:   e_44
+    level:    [38, 39]
+  16805933:
+    template: Doom_Scorpion
+    region:   e_45
+    level:    [41, 44]
+  16805934:
+    template: Doom_Scorpion
+    region:   e_45
+    level:    [41, 44]
+  16805935:
+    template: Gallinipper_AC
+    script:   Gallinipper
+    region:   e_45
+    level:    [37, 39]
+  16805936:
+    template: Chasm_Lizard
+    region:   e_45
+    level:    [40, 42]
+  16805937:
+    template: Burrow_Antlion
+    at:       [231.151, 19.330, 171.645]
+    level:    [41, 44]
+  16805938:
+    template: Chasm_Lizard
+    region:   e_50
+    level:    [40, 42]
+  16805939:
+    template: Goblin_Smithy
+    region:   e_50
+    level:    [37, 39]
+  16805940:
+    template: Chasm_Lizard
+    region:   e_52
+    level:    [40, 42]
+  16805941:
+    template: Gallinipper_AC
+    script:   Gallinipper
+    region:   e_52
+    level:    [37, 39]
+  16805942:
+    template: Chasm_Lizard
+    region:   e_54
+    level:    [40, 42]
+  16805943:
+    template: Gallinipper_AC
+    script:   Gallinipper
+    region:   e_52
+    level:    [37, 39]
+  16805944:
+    template: Goblin_Smithy
+    region:   e_56
+    level:    [37, 39]
+  16805945:
+    template: Gallinipper_AC
+    script:   Gallinipper
+    region:   e_57
+    level:    [37, 39]
+  16805946:
+    template: Tracer_Antlion
+    region:   e_57
+    level:    [38, 40]
+  16805947:
+    template: Tracer_Antlion
+    region:   se_59
+    level:    [38, 40]
+  16805948:
+    template: Goblin_Furrier
+    region:   se_59
+    level:    [35, 37]
+  16805949:
+    template: Chasm_Lizard
+    region:   se_61
+    level:    [40, 42]
+  16805950:
+    template: Goblin_Furrier
+    region:   se_61
+    level:    [35, 37]
+  16805951:
+    template: Chasm_Lizard
+    region:   se_63
+    level:    [40, 42]
+  16805952:
+    template: Gallinipper_AC
+    script:   Gallinipper
+    region:   se_63
+    level:    [37, 39]
+  16805953:
+    template: Goblin_Shaman
+    region:   se_63
+    level:    [35, 37]
+  16805954:
+    template: Goblin_Shaman
+    region:   e_66
+    level:    [35, 37]
+  16805955:
+    template: Goblin_Shaman
+    region:   e_66
+    level:    [35, 37]
+  16805956:
+    template: Tracer_Antlion
+    region:   se_68
+    level:    [38, 40]
+  16805957:
+    template: Goblin_Pathfinder
+    region:   se_68
+    level:    [38, 39]
+  16805958:
+    template: Goblins_Gallinipper
+    at:       [269.870, 19.745, -237.517, 252]
+    level:    [31, 34]
+  16805959:
+    template: Gallinipper_AC
+    script:   Gallinipper
+    region:   se_71
+    level:    [37, 39]
+  16805960:
+    template: Gallinipper_AC
+    script:   Gallinipper
+    region:   se_71
+    level:    [37, 39]
+  16805961:
+    template: Attohwa_Coeurl
+    region:   se_71
+    level:    [37, 39]
+  16805962:
+    template: Sekhmet
+    region:   se_71
+    level:    [52, 53]
+  16805963:
+    template: Tracer_Antlion
+    region:   e_75
+    level:    [38, 40]
+  16805964:
+    template: Attohwa_Coeurl
+    region:   e_75
+    level:    [37, 39]
+  16805965:
+    template: Attohwa_Coeurl
+    region:   ne_77
+    level:    [37, 39]
+  16805966:
+    template: Burrow_Antlion
+    at:       [276.375, 19.518, 122.663]
+    level:    [41, 44]
+  16805967:
+    template: Attohwa_Coeurl
+    region:   e_79
+    level:    [37, 39]
+  16805968:
+    template: Chasm_Lizard
+    region:   e_80
+    level:    [40, 42]
+  16805969:
+    template: Tracer_Antlion
+    region:   e_81
+    level:    [38, 40]
+  16805970:
+    template: Tracer_Antlion
+    region:   e_81
+    level:    [38, 40]
+  16805971:
+    template: Goblin_Smithy
+    region:   e_81
+    level:    [37, 39]
+  16805972:
+    template: Goblin_Shaman
+    region:   e_81
+    level:    [37, 39]
+  16805973:
+    template: Chasm_Lizard
+    region:   e_81
+    level:    [40, 42]
+  16805974:
+    template: Burrow_Antlion
+    at:       [405.358, 19.500, 116.128]
+    level:    [41, 44]
+  16805975:
+    template: Gallinipper_AC
+    script:   Gallinipper
+    region:   e_87
+    level:    [37, 39]
+  16805976:
+    template: Attohwa_Coeurl
+    region:   e_87
+    level:    [37, 39]
+  16805977:
+    template: Gallinipper_AC
+    script:   Gallinipper
+    region:   e_89
+    level:    [37, 39]
+  16805978:
+    template: Gallinipper_AC
+    script:   Gallinipper
+    region:   e_90
+    level:    [37, 39]
+  16805979:
+    template: Goblin_Robber
+    region:   se_91
+    level:    [42, 44]
+  16805980:
+    template: Goblin_Trader
+    region:   se_91
+    level:    [42, 44]
+  16805981:
+    template: Goblins_Ogrefly
+    at:       [234.808, 19.580, -191.177, 123]
+    level:    [38, 39]
+  16805982:
+    template: Goblin_Reaper
+    region:   se_94
+    level:    [42, 44]
+  16805983:
+    template: Master_Coeurl
+    region:   se_94
+    level:    [46, 47]
+  16805984:
+    template: Burrow_Antlion
+    at:       [315.398, 19.822, -146.192]
+    level:    [41, 44]
+  16805985:
+    template: Goblin_Poacher
+    region:   se_97
+    level:    [42, 44]
+  16805986:
+    template: Goblin_Robber
+    region:   se_99
+    level:    [42, 44]
+  16805987:
+    template: Goblin_Reaper
+    region:   se_99
+    level:    [42, 44]
+  16805988:
+    template: Ogrefly
+    region:   se_99
+    level:    [44, 46]
+  16805989:
+    template: Ogrefly
+    region:   se_99
+    level:    [44, 46]
+  16805990:
+    template: Master_Coeurl
+    region:   se_102
+    level:    [46, 47]
+  16805991:
+    template: Burrow_Antlion
+    at:       [328.095, 19.770, -213.731]
+    level:    [41, 44]
+  16805992:
+    template: Hunter_Antlion
+    region:   se_104
+    level:    [45, 46]
+  16805993:
+    template: Ogrefly
+    region:   se_104
+    level:    [44, 46]
+  16805994:
+    template: Burrow_Antlion
+    at:       [374.945, 19.200, -171.876]
+    level:    [41, 44]
+  16805995:
+    template: Ogrefly
+    region:   se_107
+    level:    [44, 46]
+  16805996:
+    template: Goblin_Poacher
+    region:   se_107
+    level:    [42, 44]
+  16805997:
+    template: Goblin_Trader
+    region:   se_109
+    level:    [42, 44]
+  16805998:
+    template: Goblins_Ogrefly
+    at:       [363.780, 19.597, -168.571, 208]
+    level:    [38, 39]
+  16805999:
+    template: Hunter_Antlion
+    region:   se_111
+    level:    [45, 46]
+  16806000:
+    template: Ogrefly
+    region:   se_111
+    level:    [44, 46]
+  16806001:
+    template: Ogrefly
+    region:   se_111
+    level:    [44, 46]
+  16806002:
+    template: Doom_Scorpion
+    region:   se_114
+    level:    [41, 44]
+  16806003:
+    template: Doom_Scorpion
+    region:   se_114
+    level:    [41, 44]
+  16806004:
+    template: Doom_Scorpion
+    region:   se_114
+    level:    [41, 44]
+  16806005:
+    template: Bane_Lizard
+    region:   se_117
+    level:    [47, 48]
+  16806006:
+    template: Bane_Lizard
+    region:   se_117
+    level:    [47, 48]
+  16806007:
+    template: Ogrefly
+    region:   se_117
+    level:    [45, 47]
+  16806008:
+    template: Ogrefly
+    region:   se_117
+    level:    [45, 47]
+  16806009:
+    template: Bane_Lizard
+    region:   se_121
+    level:    [47, 48]
+  16806010:
+    template: Bane_Lizard
+    region:   se_121
+    level:    [47, 48]
+  16806011:
+    template: Pit_Antlion
+    at:       [479.291, 20.358, -219.867]
+    level:    [49, 51]
+  16806012:
+    template: Hunter_Antlion
+    region:   se_124
+    level:    [45, 46]
+  16806013:
+    template: Hunter_Antlion
+    region:   se_124
+    level:    [45, 46]
+  16806014:
+    template: Bane_Lizard
+    region:   se_126
+    level:    [47, 48]
+  16806015:
+    template: Ogrefly
+    region:   se_126
+    level:    [45, 47]
+  16806016:
+    template: Master_Coeurl
+    region:   se_128
+    level:    [47, 48]
+  16806017:
+    template: Ogrefly
+    region:   se_128
+    level:    [45, 47]
+  16806018:
+    template: Master_Coeurl
+    region:   e_130
+    level:    [47, 48]
+  16806019:
+    template: Ogrefly
+    region:   e_130
+    level:    [46, 47]
+  16806020:
+    template: Pit_Antlion
+    at:       [464.744, 19.539, -97.982]
+    level:    [49, 51]
+  16806021:
+    template: Hunter_Antlion
+    region:   se_133
+    level:    [45, 46]
+  16806022:
+    template: Hunter_Antlion
+    region:   se_133
+    level:    [45, 46]
+  16806023:
+    template: Ogrefly
+    region:   se_133
+    level:    [45, 47]
+  16806024:
+    template: Pit_Antlion
+    at:       [468.221, 19.500, -27.535]
+    level:    [49, 51]
+  16806025:
+    template: Bane_Lizard
+    region:   se_137
+    level:    [47, 49]
+  16806026:
+    template: Bane_Lizard
+    region:   se_137
+    level:    [47, 49]
+  16806027:
+    template: Ogrefly
+    region:   se_137
+    level:    [45, 47]
+  16806028:
+    template: Master_Coeurl
+    region:   e_140
+    level:    [47, 48]
+  16806029:
+    template: Ogrefly
+    region:   e_140
+    level:    [46, 47]
+  16806030:
+    template: Master_Coeurl
+    region:   e_142
+    level:    [47, 48]
+  16806031:
+    template: Lioumere
+    at:       [478.863, 19.500, 41.673, 27]
+    level:    [51, 52]
+  16806032:
+    template: Hecteyes_AC
+    script:   Hecteyes
+    region:   s_144
+    level:    [35, 37]
+  16806033:
+    template: Hecteyes_AC
+    script:   Hecteyes
+    region:   s_144
+    level:    [35, 37]
+  16806034:
+    template: Hecteyes_AC
+    script:   Hecteyes
+    region:   s_146
+    level:    [35, 37]
+  16806035:
+    template: Hecteyes_AC
+    script:   Hecteyes
+    region:   s_146
+    level:    [35, 37]
+  16806036:
+    template: Flesh_Eater_AC
+    script:   Flesh_Eater
+    region:   s_146
+    level:    [34, 35]
+  16806037:
+    template: Hecteyes_AC
+    script:   Hecteyes
+    region:   s_149
+    level:    [35, 37]
+  16806038:
+    template: Hecteyes_AC
+    script:   Hecteyes
+    region:   s_149
+    level:    [35, 37]
+  16806039:
+    template: Flesh_Eater_AC
+    script:   Flesh_Eater
+    region:   s_149
+    level:    [34, 35]
+  16806040:
+    template: Flesh_Eater_AC
+    script:   Flesh_Eater
+    region:   s_149
+    level:    [34, 35]
+  16806041:
+    template: Will-o-the-Wykes
+    region:   s_149
+    level:    [40, 43]
+  16806042:
+    template: Hecteyes_AC
+    script:   Hecteyes
+    region:   s_154
+    level:    [35, 37]
+  16806043:
+    template: Hecteyes_AC
+    script:   Hecteyes
+    region:   s_154
+    level:    [35, 37]
+  16806044:
+    template: Hecteyes_AC
+    script:   Hecteyes
+    region:   s_156
+    level:    [35, 37]
+  16806045:
+    template: Hecteyes_AC
+    script:   Hecteyes
+    region:   s_156
+    level:    [36, 37]
+  16806046:
+    template: Flesh_Eater_AC
+    script:   Flesh_Eater
+    region:   s_156
+    level:    [34, 35]
+  16806047:
+    template: Will-o-the-Wykes
+    region:   s_156
+    level:    [40, 43]
+  16806048:
+    template: Flesh_Eater_AC
+    script:   Flesh_Eater
+    region:   s_160
+    level:    [34, 35]
+  16806049:
+    template: Flesh_Eater_AC
+    script:   Flesh_Eater
+    region:   s_160
+    level:    [34, 35]
+  16806050:
+    template: Earth_Elemental
+    region:   s_160
+    level:    [40, 42]
+  16806051:
+    template: Flesh_Eater_AC
+    script:   Flesh_Eater
+    region:   region_136
+    level:    [34, 35]
+  16806052:
+    template: Flesh_Eater_AC
+    script:   Flesh_Eater
+    region:   region_136
+    level:    [34, 35]
+  16806053:
+    template: Flesh_Eater_AC
+    script:   Flesh_Eater
+    region:   region_136
+    level:    [34, 35]
+  16806054:
+    template: Air_Elemental
+    region:   s_167
+    level:    [40, 42]
+  16806055:
+    template: Flesh_Eater_AC
+    script:   Flesh_Eater
+    region:   s_167
+    level:    [34, 35]
+  16806056:
+    template: Flesh_Eater_AC
+    script:   Flesh_Eater
+    region:   s_167
+    level:    [34, 35]
+  16806057:
+    template: Air_Elemental
+    region:   s_167
+    level:    [40, 42]
+  16806058:
+    template: Hecteyes_AC
+    script:   Hecteyes
+    region:   c_170
+    level:    [35, 37]
+  16806059:
+    template: Hecteyes_AC
+    script:   Hecteyes
+    region:   c_170
+    level:    [35, 37]
+  16806060:
+    template: Will-o-the-Wykes
+    region:   c_170
+    level:    [40, 43]
+  16806061:
+    template: Hecteyes_AC
+    script:   Hecteyes
+    region:   c_173
+    level:    [35, 37]
+  16806062:
+    template: Flesh_Eater_AC
+    script:   Flesh_Eater
+    region:   c_173
+    level:    [34, 35]
+  16806063:
+    template: Flesh_Eater_AC
+    script:   Flesh_Eater
+    region:   c_173
+    level:    [34, 35]
+  16806064:
+    template: Hecteyes_AC
+    script:   Hecteyes
+    region:   c_176
+    level:    [35, 37]
+  16806065:
+    template: Flesh_Eater_AC
+    script:   Flesh_Eater
+    region:   c_176
+    level:    [34, 35]
+  16806066:
+    template: Hecteyes_AC
+    script:   Hecteyes
+    region:   c_178
+    level:    [35, 37]
+  16806067:
+    template: Hecteyes_AC
+    script:   Hecteyes
+    region:   c_178
+    level:    [35, 37]
+  16806068:
+    template: Earth_Elemental
+    region:   n_180
+    level:    [40, 42]
+  16806069:
+    template: Earth_Elemental
+    region:   n_180
+    level:    [40, 42]
+  16806070:
+    template: Flesh_Eater_AC
+    script:   Flesh_Eater
+    region:   s_182
+    level:    [34, 35]
+  16806071:
+    template: Flesh_Eater_AC
+    script:   Flesh_Eater
+    region:   s_182
+    level:    [34, 35]
+  16806072:
+    template: Air_Elemental
+    region:   s_182
+    level:    [41, 43]
+  16806073:
+    template: Flesh_Eater_AC
+    script:   Flesh_Eater
+    region:   s_182
+    level:    [34, 35]
+  16806074:
+    template: Flesh_Eater_AC
+    script:   Flesh_Eater
+    region:   region_137
+    level:    [35, 36]
+  16806075:
+    template: Hecteyes_AC
+    script:   Hecteyes
+    region:   c_187
+    level:    [36, 38]
+  16806076:
+    template: Hecteyes_AC
+    script:   Hecteyes
+    region:   c_188
+    level:    [36, 38]
+  16806077:
+    template: Will-o-the-Wykes
+    region:   c_188
+    level:    [40, 43]
+  16806078:
+    template: Will-o-the-Wykes
+    region:   c_188
+    level:    [40, 43]
+  16806079:
+    template: Hecteyes_AC
+    script:   Hecteyes
+    region:   c_191
+    level:    [36, 38]
+  16806080:
+    template: Hecteyes_AC
+    script:   Hecteyes
+    region:   c_191
+    level:    [36, 38]
+  16806081:
+    template: Flesh_Eater_AC
+    script:   Flesh_Eater
+    region:   c_195
+    level:    [34, 36]
+  16806082:
+    template: Flesh_Eater_AC
+    script:   Flesh_Eater
+    region:   region_138
+    level:    [35, 36]
+  16806083:
+    template: Flesh_Eater_AC
+    script:   Flesh_Eater
+    region:   c_195
+    level:    [35, 36]
+  16806084:
+    template: Flesh_Eater_AC
+    script:   Flesh_Eater
+    region:   c_195
+    level:    [35, 36]
+  16806085:
+    template: Hecteyes_AC
+    script:   Hecteyes
+    region:   n_197
+    level:    [36, 38]
+  16806086:
+    template: Hecteyes_AC
+    script:   Hecteyes
+    region:   n_197
+    level:    [36, 39]
+  16806087:
+    template: Flesh_Eater_AC
+    script:   Flesh_Eater
+    region:   n_199
+    level:    [35, 36]
+  16806088:
+    template: Will-o-the-Wykes
+    region:   n_199
+    level:    [40, 43]
+  16806089:
+    template: Flesh_Eater_AC
+    script:   Flesh_Eater
+    region:   n_201
+    level:    [34, 36]
+  16806090:
+    template: Flesh_Eater_AC
+    script:   Flesh_Eater
+    region:   n_201
+    level:    [34, 36]
+  16806091:
+    template: Hecteyes_AC
+    script:   Hecteyes
+    region:   n_203
+    level:    [36, 39]
+  16806092:
+    template: Hecteyes_AC
+    script:   Hecteyes
+    region:   n_203
+    level:    [36, 39]
+  16806093:
+    template: Flesh_Eater_AC
+    script:   Flesh_Eater
+    region:   nw_205
+    level:    [34, 36]
+  16806094:
+    template: Flesh_Eater_AC
+    script:   Flesh_Eater
+    region:   nw_205
+    level:    [34, 36]
+  16806095:
+    template: Air_Elemental
+    region:   nw_205
+    level:    [41, 43]
+  16806096:
+    template: Flesh_Eater_AC
+    script:   Flesh_Eater
+    region:   region_139
+    level:    [34, 36]
+  16806097:
+    template: Air_Elemental
+    region:   nw_205
+    level:    [41, 43]
+  16806098:
+    template: Hecteyes_AC
+    script:   Hecteyes
+    region:   nw_210
+    level:    [36, 39]
+  16806099:
+    template: Hecteyes_AC
+    script:   Hecteyes
+    region:   nw_210
+    level:    [36, 39]
+  16806100:
+    template: Hecteyes_AC
+    script:   Hecteyes
+    region:   nw_210
+    level:    [36, 39]
+  16806101:
+    template: Hecteyes_AC
+    script:   Hecteyes
+    region:   nw_213
+    level:    [36, 39]
+  16806102:
+    template: Flesh_Eater_AC
+    script:   Flesh_Eater
+    region:   nw_213
+    level:    [35, 36]
+  16806103:
+    template: Flesh_Eater_AC
+    script:   Flesh_Eater
+    region:   region_140
+    level:    [36, 37]
+  16806104:
+    template: Flesh_Eater_AC
+    script:   Flesh_Eater
+    region:   region_141
+    level:    [36, 37]
+  16806105:
+    template: Flesh_Eater_AC
+    script:   Flesh_Eater
+    region:   region_141
+    level:    [36, 37]
+  16806106:
+    template: Air_Elemental
+    region:   s_182
+    level:    [41, 43]
+  16806107:
+    template: Tulwar_Scorpion
+    region:   w_219
+    level:    [58, 59]
+  16806108:
+    template: Tulwar_Scorpion
+    region:   w_219
+    level:    [58, 59]
+  16806109:
+    template: Sand_Lizard
+    region:   w_219
+    level:    [65, 67]
+  16806110:
+    template: Sand_Lizard
+    region:   w_219
+    level:    [65, 67]
+  16806111:
+    template: Tulwar_Scorpion
+    region:   sw_223
+    level:    [58, 59]
+  16806112:
+    template: Tulwar_Scorpion
+    region:   sw_223
+    level:    [58, 59]
+  16806113:
+    template: Monarch_Ogrefly
+    region:   sw_223
+    level:    [65, 66]
+  16806114:
+    template: Tulwar_Scorpion
+    region:   sw_226
+    level:    [58, 59]
+  16806115:
+    template: Tulwar_Scorpion
+    region:   sw_226
+    level:    [58, 59]
+  16806116:
+    template: Monarch_Ogrefly
+    region:   sw_226
+    level:    [65, 66]
+  16806117:
+    template: Sargas
+    region:   sw_226
+    level:    [77, 78]
+  16806118:
+    template: Monarch_Ogrefly
+    region:   sw_230
+    level:    [65, 66]
+  16806119:
+    template: Sand_Lizard
+    region:   sw_230
+    level:    [65, 67]
+  16806120:
+    template: Sand_Lizard
+    region:   sw_230
+    level:    [65, 67]
+  16806121:
+    template: Tracker_Antlion
+    region:   w_233
+    level:    [71, 73]
+  16806122:
+    template: Trench_Antlion
+    at:       [-257.640, -4.016, -25.562]
+    level:    [70, 71]
+  16806123:
+    template: Sand_Lizard
+    region:   w_235
+    level:    [65, 67]
+  16806124:
+    template: Sand_Lizard
+    region:   sw_236
+    level:    [65, 67]
+  16806125:
+    template: Sand_Lizard
+    region:   sw_237
+    level:    [65, 67]
+  16806126:
+    template: Monarch_Ogrefly
+    region:   sw_238
+    level:    [65, 66]
+  16806127:
+    template: Monarch_Ogrefly
+    region:   sw_238
+    level:    [65, 66]
+  16806128:
+    template: Tracker_Antlion
+    region:   sw_240
+    level:    [70, 72]
+  16806129:
+    template: Tracker_Antlion
+    region:   sw_240
+    level:    [70, 72]
+  16806130:
+    template: Tracker_Antlion
+    region:   sw_242
+    level:    [70, 72]
+  16806131:
+    template: Tracker_Antlion
+    region:   sw_242
+    level:    [70, 72]
+  16806132:
+    template: Tracker_Antlion
+    region:   sw_242
+    level:    [70, 72]
+  16806133:
+    template: Sand_Lizard
+    region:   sw_245
+    level:    [65, 67]
+  16806134:
+    template: Sand_Lizard
+    region:   sw_245
+    level:    [65, 67]
+  16806135:
+    template: Trench_Antlion
+    at:       [-345.444, -4.500, -109.649]
+    level:    [70, 71]
+  16806136:
+    template: Sand_Lizard
+    region:   sw_248
+    level:    [66, 68]
+  16806137:
+    template: Sand_Lizard
+    region:   sw_248
+    level:    [66, 68]
+  16806138:
+    template: Cutlass_Scorpion_AC
+    script:   Cutlass_Scorpion
+    region:   w_250
+    level:    [67, 69]
+  16806139:
+    template: Cutlass_Scorpion_AC
+    script:   Cutlass_Scorpion
+    region:   w_250
+    level:    [67, 69]
+  16806140:
+    template: Tracker_Antlion
+    region:   sw_252
+    level:    [70, 72]
+  16806141:
+    template: Tracker_Antlion
+    region:   sw_253
+    level:    [70, 72]
+  16806142:
+    template: Tracker_Antlion
+    region:   sw_254
+    level:    [71, 73]
+  16806143:
+    template: Monarch_Ogrefly
+    region:   sw_254
+    level:    [65, 66]
+  16806144:
+    template: Monarch_Ogrefly
+    region:   w_256
+    level:    [65, 67]
+  16806145:
+    template: Tomb_Mage
+    region:   w_256
+    level:    [70, 72]
+  16806146:
+    template: Monarch_Ogrefly
+    region:   w_258
+    level:    [65, 67]
+  16806147:
+    template: Tomb_Warrior
+    region:   w_258
+    level:    [71, 73]
+  16806148:
+    template: Trench_Antlion
+    at:       [-399.050, -3.465, -60.146]
+    level:    [70, 71]
+  16806149:
+    template: Cutlass_Scorpion_AC
+    script:   Cutlass_Scorpion
+    region:   w_261
+    level:    [67, 69]
+  16806150:
+    template: Cutlass_Scorpion_AC
+    script:   Cutlass_Scorpion
+    region:   w_261
+    level:    [67, 69]
+  16806151:
+    template: Mummy
+    region:   w_261
+    level:    [62, 64]
+  16806152:
+    template: Lich
+    region:   w_261
+    level:    [62, 64]
+  16806153:
+    template: Cutlass_Scorpion_AC
+    script:   Cutlass_Scorpion
+    region:   w_265
+    level:    [67, 69]
+  16806154:
+    template: Monarch_Ogrefly
+    region:   w_265
+    level:    [65, 67]
+  16806155:
+    template: Corse
+    region:   w_265
+    level:    [66, 67]
+  16806156:
+    template: Lich
+    region:   w_265
+    level:    [62, 64]
+  16806157:
+    template: Cutlass_Scorpion_AC
+    script:   Cutlass_Scorpion
+    region:   w_269
+    level:    [67, 69]
+  16806158:
+    template: Corse
+    region:   w_269
+    level:    [66, 67]
+  16806159:
+    template: Monarch_Ogrefly
+    region:   w_271
+    level:    [65, 67]
+  16806160:
+    template: Mummy
+    region:   w_271
+    level:    [62, 64]
+  16806161:
+    template: Corse
+    region:   w_273
+    level:    [66, 67]
+  16806162:
+    template: Citipati
+    region:   w_273
+    level:    [67, 70]
+    attributes:
+      spawn:
+        window:
+          start: 20
+          end:    4
+  16806163:
+    template: Tracker_Antlion
+    region:   w_275
+    level:    [71, 73]
+  16806164:
+    template: Sand_Lizard
+    region:   w_276
+    level:    [66, 68]
+  16806165:
+    template: Mummy
+    region:   w_277
+    level:    [62, 64]
+  16806166:
+    template: Sand_Lizard
+    region:   w_278
+    level:    [66, 68]
+  16806167:
+    template: Tomb_Warrior
+    region:   w_278
+    level:    [71, 73]
+  16806168:
+    template: Tomb_Mage
+    region:   w_278
+    level:    [72, 73]
+  16806169:
+    template: Sand_Lizard
+    region:   w_281
+    level:    [66, 68]
+  16806170:
+    template: Monarch_Ogrefly
+    region:   w_281
+    level:    [65, 67]
+  16806171:
+    template: Trench_Antlion
+    at:       [-433.309, -4.300, 113.841]
+    level:    [70, 71]
+  16806172:
+    template: Monarch_Ogrefly
+    region:   w_284
+    level:    [65, 67]
+  16806173:
+    template: Lich
+    region:   w_284
+    level:    [62, 64]
+  16806174:
+    template: Cutlass_Scorpion_AC
+    script:   Cutlass_Scorpion
+    region:   w_286
+    level:    [67, 69]
+  16806175:
+    template: Cutlass_Scorpion_AC
+    script:   Cutlass_Scorpion
+    region:   w_286
+    level:    [67, 69]
+  16806176:
+    template: Monarch_Ogrefly
+    region:   w_286
+    level:    [65, 67]
+  16806177:
+    template: Monarch_Ogrefly
+    region:   nw_289
+    level:    [65, 67]
+  16806178:
+    template: Sand_Lizard
+    region:   w_290
+    level:    [66, 68]
+  16806179:
+    template: Sand_Lizard
+    region:   w_290
+    level:    [66, 68]
+  16806180:
+    template: Sand_Lizard
+    region:   w_292
+    level:    [66, 68]
+  16806181:
+    template: Tracker_Antlion
+    region:   nw_293
+    level:    [71, 72]
+  16806182:
+    template: Tracker_Antlion
+    region:   nw_293
+    level:    [71, 73]
+  16806183:
+    template: Trench_Antlion
+    at:       [-548.200, -4.123, 157.878]
+    level:    [70, 71]
+  16806184:
+    template: Cutlass_Scorpion_AC
+    script:   Cutlass_Scorpion
+    region:   nw_296
+    level:    [67, 69]
+  16806185:
+    template: Monarch_Ogrefly
+    region:   nw_296
+    level:    [65, 67]
+  16806186:
+    template: Trench_Antlion
+    at:       [-481.588, -3.384, 181.697]
+    level:    [70, 71]
+  16806187:
+    template: Monarch_Ogrefly
+    region:   nw_299
+    level:    [65, 67]
+  16806188:
+    template: Tracker_Antlion
+    region:   nw_300
+    level:    [70, 72]
+  16806189:
+    template: Sand_Lizard
+    region:   nw_300
+    level:    [66, 68]
+  16806190:
+    template: Tracker_Antlion
+    region:   nw_302
+    level:    [70, 72]
+  16806191:
+    template: Sand_Lizard
+    region:   nw_302
+    level:    [66, 68]
+  16806192:
+    template: Tracker_Antlion
+    region:   nw_304
+    level:    [70, 72]
+  16806193:
+    template: Monarch_Ogrefly
+    region:   nw_304
+    level:    [65, 67]
+  16806194:
+    template: Tracker_Antlion
+    region:   nw_306
+    level:    [71, 73]
+  16806195:
+    template: Monarch_Ogrefly
+    region:   nw_306
+    level:    [65, 67]
+  16806196:
+    template: Monarch_Ogrefly
+    region:   nw_308
+    level:    [65, 67]
+  16806197:
+    template: Monarch_Ogrefly
+    region:   nw_308
+    level:    [65, 67]
+  16806198:
+    template: Monarch_Ogrefly
+    region:   nw_310
+    level:    [65, 67]
+  16806199:
+    template: Sand_Lizard
+    region:   nw_311
+    level:    [66, 68]
+  16806200:
+    template: Sand_Lizard
+    region:   nw_311
+    level:    [66, 68]
+  16806201:
+    template: Cutlass_Scorpion_AC
+    script:   Cutlass_Scorpion
+    region:   nw_313
+    level:    [67, 69]
+  16806202:
+    template: Tracker_Antlion
+    region:   nw_314
+    level:    [71, 72]
+  16806203:
+    template: Tracker_Antlion
+    region:   nw_314
+    level:    [70, 71]
+  16806204:
+    template: Sand_Lizard
+    region:   nw_316
+    level:    [66, 68]
+  16806205:
+    template: Sand_Lizard
+    region:   nw_316
+    level:    [66, 68]
+  16806206:
+    template: Monarch_Ogrefly
+    region:   nw_316
+    level:    [65, 67]
+  16806207:
+    template: Monarch_Ogrefly
+    region:   nw_319
+    level:    [65, 67]
+  16806208:
+    template: Monarch_Ogrefly
+    region:   nw_319
+    level:    [65, 67]
+  16806209:
+    template: Sand_Lizard
+    region:   nw_321
+    level:    [66, 68]
+  16806210:
+    template: Monarch_Ogrefly
+    region:   nw_321
+    level:    [65, 67]
+  16806211:
+    template: Cutlass_Scorpion_AC
+    script:   Cutlass_Scorpion
+    region:   nw_323
+    level:    [67, 69]
+  16806212:
+    template: Cutlass_Scorpion_AC
+    script:   Cutlass_Scorpion
+    region:   nw_325
+    level:    [67, 69]
+  16806213:
+    template: Cutlass_Scorpion_AC
+    script:   Cutlass_Scorpion
+    region:   nw_325
+    level:    [67, 69]
+  16806214:
+    template: Cutlass_Scorpion_AC
+    script:   Cutlass_Scorpion
+    region:   nw_325
+    level:    [67, 69]
+  16806215:
+    template: Xolotl
+    region:   nw_327
+    level:    [80, 81]
+  16806216:
+    template: Xolotls_Hound_Warrior
+    region:   nw_327
+    level:    [72, 72]
+  16806217:
+    template: Xolotls_Sacrifice
+    region:   nw_327
+    level:    [72, 72]
+  16806218:
+    template: Sand_Lizard
+    region:   nw_330
+    level:    [66, 68]
+  16806219:
+    template: Tracker_Antlion
+    region:   nw_331
+    level:    [70, 72]
+  16806220:
+    template: Tracker_Antlion
+    region:   nw_331
+    level:    [70, 72]
+  16806221:
+    template: Earth_Elemental
+    region:   w_333
+    level:    [40, 42]
+  16806222:
+    template: Cutlass_Scorpion_AC
+    script:   Cutlass_Scorpion
+    region:   w_334
+    level:    [67, 69]
+  16806223:
+    template: Tomb_Warrior
+    region:   w_334
+    level:    [71, 73]
+  16806224:
+    template: Tomb_Mage
+    region:   w_334
+    level:    [72, 73]
+  16806225:
+    template: Arch_Corse
+    region:   w_334
+    level:    [75, 80]
+  16806226:
+    template: Tracker_Antlion
+    region:   w_338
+    level:    [70, 72]
+  16806227:
+    template: Tiamat
+    region:   region_142
+    level:    [95, 95]
+  16806228:
+    template: Arch_Corse
+    region:   w_340
+    level:    [75, 80]
+  16806229:
+    template: Arch_Corse
+    region:   w_340
+    level:    [75, 80]
+  16806230:
+    template: Arch_Corse
+    region:   w_340
+    level:    [75, 80]
+  16806231:
+    template: Bifrons_Attohwa_Chasm
+    script:   Bifrons
+    region:   w_340
+    level:    [75, 75]
+  16806232:
+    template: Bifrons_Attohwa_Chasm
+    script:   Bifrons
+    region:   w_340
+    level:    [75, 75]
+  16806233:
+    template: Air_Elemental
+    region:   w_340
+    level:    [75, 76]
+  16806234:
+    template: Air_Elemental
+    region:   w_340
+    level:    [75, 76]
+  16806235:
+    template: Earth_Elemental
+    region:   w_340
+    level:    [75, 76]
+  16806236:
+    template: Earth_Elemental
+    region:   w_340
+    level:    [75, 76]
+  16806237:
+    template: Cave_Antlion
+    at:       [-520.369, -3.507, 19.853]
+    level:    [77, 79]
+  16806238:
+    template: Cave_Antlion
+    at:       [-515.935, -3.509, -23.010]
+    level:    [77, 79]
+  16806239:
+    template: Cave_Antlion
+    at:       [-506.345, -4.300, -28.542]
+    level:    [77, 79]
+  16806240:
+    template: Cave_Antlion
+    at:       [-538.828, -3.730, -5.722]
+    level:    [77, 79]
+  16806241:
+    template: Cave_Antlion
+    at:       [-532.046, -13.000, -68.401]
+    level:    [77, 79]
+  16806242:
+    template: Feeler_Antlion
+    at:       [-402.574, 3.500, -202.750, 107]
+    level:    [78, 78]
+  16806243:
+    template: Executioner_Antlion
+    at:       [-402.890, 3.500, -199.250, 236]
+    level:    [80, 80]
+  16806244:
+    template: Executioner_Antlion
+    at:       [-398.800, 3.460, -204.180, 236]
+    level:    [80, 80]
+  16806245:
+    template: Executioner_Antlion
+    at:       [-400.670, 3.040, -205.940, 236]
+    level:    [80, 80]
+  16806246:
+    template: Executioner_Antlion
+    at:       [-402.574, 3.500, -202.750, 236]
+    level:    [80, 80]
+  16806247:
+    template: Executioner_Antlion
+    at:       [-402.574, 3.500, -202.750, 236]
+    level:    [80, 80]
+  16806248:
+    template: Alastor_Antlion
+    at:       [-400.190, 3.500, -200.590, 236]
+    level:    [83, 83]
+  16806249:
+    template: Ambusher_Antlion
+    at:       [-490.195, -4.503, 145.451, 201]
+    level:    [75, 77]
+  16806250:
+    template: Fjalar
+    at:       [39.190, -4.500, -116.280, 5]
+  16806251:
+    template: Bloody_Skull
+    at:       [39.592, -4.618, -114.778, 40]
+  16806252:
+    template: Bloody_Skull
+    at:       [39.814, -4.329, -117.597, 212]
+  16806253:
+    template: Bloody_Skull
+    at:       [41.398, -4.500, -121.913, 213]
+  16806254:
+    template: Fjalar
+  16806255:
+    template: Bloody_Skull
+  16806256:
+    template: Bloody_Skull
+  16806257:
+    template: Bloody_Skull
+  16806258:
+    template: Fjalar
+  16806259:
+    template: Bloody_Skull
+  16806260:
+    template: Bloody_Skull
+  16806261:
+    template: Bloody_Skull
+  16806262:
+    template: Muut
+    at:       [-358.195, -3.669, 232.330, 60]
+  16806263:
+    template: Muuts_Hound_Warrior
+    at:       [-357.949, -4.303, 232.060, 62]
+  16806264:
+    template: Muuts_Sacrifice
+    at:       [-360.367, -4.206, 230.122, 24]
+  16806265:
+    template: Muuts_Hound_Warrior
+    at:       [-358.244, -4.177, 229.546, 100]
+  16806266:
+    template: Muuts_Sacrifice
+    at:       [-358.422, -4.299, 231.995, 65]
+  16806267:
+    template: Muuts_Hound_Warrior
+    at:       [-359.252, -4.222, 230.453, 59]
+  16806268:
+    template: Muuts_Sacrifice
+    at:       [-357.807, -4.315, 232.317, 64]
+  16806269:
+    template: Muuts_Hound_Warrior
+    at:       [-356.970, -4.181, 229.632, 88]
+  16806270:
+    template: Muuts_Sacrifice
+    at:       [-357.515, -4.097, 227.978, 164]
+  16806271:
+    template: Muut
+  16806272:
+    template: Muuts_Hound_Warrior
+  16806273:
+    template: Muuts_Sacrifice
+  16806274:
+    template: Muuts_Hound_Warrior
+  16806275:
+    template: Muuts_Sacrifice
+  16806276:
+    template: Muuts_Hound_Warrior
+  16806277:
+    template: Muuts_Sacrifice
+  16806278:
+    template: Muuts_Hound_Warrior
+  16806279:
+    template: Muuts_Sacrifice
+  16806280:
+    template: Muut
+  16806281:
+    template: Muuts_Hound_Warrior
+  16806282:
+    template: Muuts_Sacrifice
+  16806283:
+    template: Muuts_Hound_Warrior
+  16806284:
+    template: Muuts_Sacrifice
+  16806285:
+    template: Muuts_Hound_Warrior
+  16806286:
+    template: Muuts_Sacrifice
+  16806287:
+    template: Muuts_Hound_Warrior
+  16806288:
+    template: Muuts_Sacrifice
+
+slots:
+  - members:
+      16805912: {} # Goblin_Furrier
+      16805913: {} # Goblin_Smithy
+  - members:
+      16805917: {} # Goblin_Furrier
+      16805918: {} # Goblin_Shaman
+  - members:
+      16805941: {} # Gallinipper
+      16805943: {} # Gallinipper
+  - members:
+      16805971: {} # Goblin_Smithy
+      16805972: {} # Goblin_Shaman
+  - members:
+      16805986: {} # Goblin_Robber
+      16805987: {} # Goblin_Reaper
+  - members:
+      16806006: {} # Bane_Lizard
+      16806007: {} # Ogrefly
+  - members:
+      16806054: {} # Air_Elemental
+      16806057: {} # Air_Elemental
+  - members:
+      16806072: {} # Air_Elemental
+      16806106: {} # Air_Elemental
+  - members:
+      16806081: {} # Flesh_Eater
+      16806083: {} # Flesh_Eater
+  - members:
+      16806095: {} # Air_Elemental
+      16806097: {} # Air_Elemental
+  - members:
+      16806212: {} # Cutlass_Scorpion
+      16806213: {} # Cutlass_Scorpion

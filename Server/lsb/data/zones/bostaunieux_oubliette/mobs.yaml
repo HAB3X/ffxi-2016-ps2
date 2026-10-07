@@ -1,0 +1,1952 @@
+# yaml-language-server: $schema=../../schemas/mobs.schema.json
+
+templates:
+
+  Acid_Grease_fished:
+    id:            6785
+    display_name:  Acid_Grease
+    species:       slime
+    type:          [fished]
+    skill_list_id: 229
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 292
+        entity_flags: 1157
+        model_size:      2
+        hitbox:         27
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: common
+          item:   vial_of_slime_oil
+      despoil:
+        vial_of_slime_oil: 0
+
+  Arioch:
+    id:            233
+    species:       bat
+    type:          [notorious]
+    skill_list_id: 46
+    attributes:
+      combat:
+        skill: great_axe
+      render:
+        look:
+          type:  standard
+          model: 257
+        entity_flags: 1179
+        name_prefix:    32
+        model_size:      1
+        hitbox:         12
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [lottery]
+    loot:
+      drops:
+        - chance: always
+          item:   arioch_fang
+        - chance: very_common
+          item:   bat_wing
+        - chance: common
+          item:   vial_of_beastman_blood
+
+  Blind_Bat:
+    id:            6475
+    species:       bat
+    skill_list_id: 46
+    attributes:
+      combat:
+        skill: club
+      render:
+        look:
+          type:  standard
+          model: 256
+        entity_flags:  133
+        animation_sub:   8
+        model_size:      2
+        hitbox:         14
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   bat_wing
+        - chance: uncommon
+          item:   fossilized_fang
+        - chance: very_rare
+          item:   vial_of_fiend_blood
+      despoil:
+        bat_wing: 0
+    content: abyssea
+
+  Bloodsucker_BO:
+    id:            6393
+    display_name:  Bloodsucker
+    species:       leech
+    skill_list_id: 172
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 276
+        entity_flags: 133
+        model_size:     2
+        hitbox:        12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   vial_of_fiend_blood
+        - chance: rare
+          item:   vial_of_beastman_blood
+        - chance: very_rare
+          item:   carbuncles_ruby
+      despoil:
+        vial_of_fiend_blood:    0
+        vial_of_beastman_blood: 0
+        vial_of_bird_blood:     0
+
+  Bloodsucker_NM:
+    id:            5138
+    display_name:  Bloodsucker
+    species:       leech
+    type:          [notorious]
+    skill_list_id: 369
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 277
+        entity_flags: 133
+        model_size:     2
+        hitbox:        12
+      behaviors:
+        aggressive: true
+        links:      true
+      stats:
+        hp: 3400
+    loot:
+      drops:
+        - chance: always
+          item:   pigeons_blood_ruby
+        - chance: common
+          item:   vial_of_beastman_blood
+        - chance: common
+          item:   bloodbead_ring
+
+  Bloodsucker_fished:
+    id:            6770
+    display_name:  Bloodsucker
+    species:       leech
+    type:          [fished]
+    skill_list_id: 172
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 276
+        entity_flags: 641
+        model_size:     2
+        hitbox:        12
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: uncommon
+          item:   vial_of_fiend_blood
+        - chance: rare
+          item:   vial_of_beastman_blood
+        - chance: very_rare
+          item:   carbuncles_ruby
+      despoil:
+        vial_of_fiend_blood:    0
+        vial_of_beastman_blood: 0
+        vial_of_bird_blood:     0
+
+  Bodach:
+    id:            482
+    species:       skeleton
+    type:          [notorious]
+    skill_list_id: 227
+    attributes:
+      combat:
+        skill: axe
+      render:
+        look:
+          type:  standard
+          model: 572
+        entity_flags: 131
+        model_size:     1
+        hitbox:        12
+      behaviors:
+        aggressive:     true
+        true_detection: true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 7500
+
+  Dabilla:
+    id:            6527
+    species:       hound
+    skill_list_id: 143
+    attributes:
+      combat:
+        skill: sword
+      render:
+        look:
+          type:  standard
+          model: 364
+        entity_flags: 133
+        model_size:     2
+        hitbox:        28
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   wolf_hide
+        - chance: uncommon
+          item:   revival_tree_root
+        - chance: rare
+          item:   fossilized_fang
+      despoil:
+        wolf_hide:         0
+        revival_tree_root: 0
+    content: abyssea
+
+  Dark_Aspic:
+    id:            908
+    species:       slime
+    skill_list_id: 229
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 292
+        entity_flags: 131
+        model_size:     1
+        hitbox:        24
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   vial_of_slime_oil
+        - chance: uncommon
+          item:   vial_of_slime_oil
+        - chance: uncommon
+          item:   vial_of_slime_oil
+      despoil:
+        vial_of_slime_oil: 0
+
+  Drexerion_the_Condemned:
+    id:            1118
+    species:       shadow
+    type:          [notorious]
+    skill_list_id: 221
+    attributes:
+      combat:
+        skill: katana
+        delay: 360
+      jobs: [rng, war]
+      resists:
+        rank_element:
+          fire:  -2
+          ice:    4
+          light: -2
+          dark:   4
+        rank_status:
+          paralyze:     4
+          bind:         4
+          light_sleep: -2
+          dark_sleep:   4
+          blind:        4
+      render:
+        look:
+          type:  standard
+          model: 543
+        entity_flags: 157
+        name_prefix:   32
+        model_size:     2
+        hitbox:        22
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: common
+          item:   shadow_mask
+        - chance: uncommon
+          item:   flagellants_crossbow
+
+  Funnel_Bats_BO:
+    id:            1440
+    species:       flock_bat
+    skill_list_id: 47
+    attributes:
+      combat:
+        skill: club
+      render:
+        look:
+          type:  standard
+          model: 260
+        entity_flags:  643
+        animation_sub:   8
+        name_prefix:    64
+        model_size:      1
+        hitbox:         16
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: very_common
+          item:   bat_wing
+        - chance: uncommon
+          item:   bat_fang
+        - chance: rare
+          item:   vial_of_fiend_blood
+        - chance: very_rare
+          item:   vial_of_beastman_blood
+      despoil:
+        bat_wing: 0
+
+  Garbage_Gel:
+    id:            6723
+    species:       slime
+    skill_list_id: 229
+    attributes:
+      combat:
+        skill: scythe
+      jobs: [sam, sam]
+      render:
+        look:
+          type:  standard
+          model: 292
+        entity_flags: 131
+        model_size:     1
+        hitbox:        24
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+
+  Garm_BO:
+    id:            6526
+    species:       hound
+    skill_list_id: 143
+    attributes:
+      combat:
+        skill: sword
+      render:
+        look:
+          type:  standard
+          model: 364
+        entity_flags: 133
+        model_size:     2
+        hitbox:        28
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   wolf_hide
+        - chance: uncommon
+          item:   revival_tree_root
+      despoil:
+        wolf_hide:         0
+        revival_tree_root: 0
+
+  Gespenst:
+    id:            1505
+    species:       ghost
+    spell_list_id: 28
+    skill_list_id: 121
+    attributes:
+      combat:
+        skill: staff
+      jobs: [war, blm]
+      render:
+        look:
+          type:  standard
+          model: 368
+        entity_flags:  133
+        animation_sub:  16
+        model_size:      1
+        hitbox:          8
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   square_of_silk_cloth
+        - chance: common
+          item:   revival_tree_root
+      steal: square_of_cotton_cloth
+      despoil:
+        square_of_cotton_cloth: 0
+
+  Gespenst_Large:
+    id:            7161
+    display_name:  Gespenst
+    species:       ghost
+    spell_list_id: 28
+    skill_list_id: 121
+    attributes:
+      combat:
+        skill: staff
+      jobs: [war, blm]
+      render:
+        look:
+          type:  standard
+          model: 368
+        entity_flags:  133
+        animation_sub:  16
+        model_size:      2
+        hitbox:          9
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   square_of_silk_cloth
+        - chance: common
+          item:   revival_tree_root
+      steal: square_of_cotton_cloth
+      despoil:
+        square_of_cotton_cloth: 0
+
+  Haunt:
+    id:            1900
+    species:       ghost
+    spell_list_id: 28
+    skill_list_id: 121
+    attributes:
+      combat:
+        skill: staff
+      jobs: [war, blm]
+      render:
+        look:
+          type:  standard
+          model: 368
+        entity_flags: 131
+        model_size:     1
+        hitbox:         8
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   revival_tree_root
+        - chance: uncommon
+          item:   square_of_wool_cloth
+      steal: square_of_cotton_cloth
+      despoil:
+        square_of_cotton_cloth: 0
+
+  Hecatomb_Hound:
+    id:            1911
+    species:       hound
+    skill_list_id: 143
+    attributes:
+      combat:
+        skill: sword
+      render:
+        look:
+          type:  standard
+          model: 364
+        entity_flags: 1155
+        model_size:      1
+        hitbox:         25
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   wolf_hide
+        - chance: uncommon
+          item:   revival_tree_root
+      despoil:
+        wolf_hide:         0
+        revival_tree_root: 0
+
+  Manes:
+    id:            2548
+    species:       ghost
+    type:          [notorious]
+    spell_list_id: 28
+    skill_list_id: 121
+    attributes:
+      combat:
+        skill: staff
+      jobs: [war, blm]
+      render:
+        look:
+          type:  standard
+          model: 368
+        name_prefix: 32
+        model_size:   2
+        hitbox:       9
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [lottery]
+    loot:
+      drops:
+        - chance: always
+          item:   square_of_taffeta_cloth
+        - chance: very_common
+          item:   square_of_taffeta_cloth
+        - chance: common
+          item:   square_of_taffeta_cloth
+        - chance: common
+          item:   square_of_taffeta_cloth
+
+  Mousse_BO:
+    id:            2959
+    display_name:  Mousse
+    species:       slime
+    skill_list_id: 229
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 292
+        entity_flags: 645
+        model_size:     2
+        hitbox:        27
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   vial_of_slime_oil
+        - chance: uncommon
+          item:   vial_of_slime_oil
+        - chance: uncommon
+          item:   vial_of_slime_oil
+      despoil:
+        vial_of_slime_oil: 0
+
+  Mousse_fished:
+    id:            6784
+    display_name:  Mousse
+    species:       slime
+    type:          [fished]
+    skill_list_id: 229
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 292
+        entity_flags: 645
+        model_size:     2
+        hitbox:        27
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: common
+          item:   vial_of_slime_oil
+      despoil:
+        vial_of_slime_oil: 0
+
+  Nachtmahr:
+    id:            6509
+    species:       ghost
+    spell_list_id: 28
+    skill_list_id: 121
+    attributes:
+      combat:
+        skill: staff
+      jobs: [war, blm]
+      render:
+        look:
+          type:  standard
+          model: 368
+        entity_flags: 133
+        model_size:     2
+        hitbox:         9
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   revival_tree_root
+        - chance: rare
+          item:   square_of_silk_cloth
+        - chance: uncommon
+          item:   seasoning_stone
+        - chance: uncommon
+          item:   fossilized_fang
+      despoil:
+        square_of_cotton_cloth: 0
+    content: abyssea
+
+  Panna_Cotta:
+    id:            6411
+    species:       slime
+    skill_list_id: 229
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 292
+        entity_flags: 645
+        model_size:     2
+        hitbox:        27
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   vial_of_slime_oil
+        - chance: rare
+          item:   seasoning_stone
+        - chance: rare
+          item:   fossilized_fang
+    content: abyssea
+
+  Phanduron_the_Condemned:
+    id:            3125
+    species:       shadow
+    type:          [notorious]
+    spell_list_id: 21
+    skill_list_id: 221
+    attributes:
+      combat:
+        skill: sword
+        delay: 360
+      jobs: [blm, war]
+      resists:
+        immune_status: [stun, silence]
+        rank_element:
+          fire:  -2
+          ice:    4
+          light: -2
+          dark:   4
+        rank_status:
+          paralyze:     4
+          bind:         4
+          light_sleep: -2
+          dark_sleep:   4
+          blind:        4
+      render:
+        look:
+          type:  standard
+          model: 538
+        entity_flags: 157
+        name_prefix:   32
+        model_size:     2
+        hitbox:        22
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: common
+          item:   shadow_mask
+        - chance: rare
+          item:   ascalon
+
+  Sewer_Syrup:
+    id:            3557
+    species:       slime
+    type:          [notorious]
+    skill_list_id: 229
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 292
+        entity_flags: 131
+        model_size:     1
+        hitbox:        24
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [lottery]
+      stats:
+        hp: 11230
+    loot:
+      drops:
+        - chance: very_common
+          item:   vial_of_slime_oil
+        - chance: very_common
+          item:   vial_of_slime_oil
+        - chance: very_common
+          item:   vial_of_slime_oil
+        - chance: always
+          one_of:
+            jelly_ring: 95
+            nothing:     5
+
+  Shii:
+    id:            3597
+    species:       hound
+    type:          [notorious]
+    skill_list_id: 143
+    attributes:
+      combat:
+        skill: sword
+      render:
+        look:
+          type:  standard
+          model: 364
+        entity_flags: 133
+        model_size:     2
+        hitbox:        28
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [lottery]
+      stats:
+        hp: 10000
+    loot:
+      drops:
+        - chance: always
+          item:   sukesada
+        - chance: very_common
+          item:   wolf_hide
+        - chance: very_common
+          item:   revival_tree_root
+
+  Trion_Bostaunieux:
+    id:            6043
+    display_name:  Trion
+    species:       elvaan
+    type:          [notorious, battlefield]
+    skill_list_id: 483
+    attributes:
+      combat:
+        skill: sword
+      jobs: [pld, war]
+      render:
+        look:
+          type:  standard
+          model: 774
+        entity_flags: 131
+        name_prefix:   32
+        model_size:     1
+        hitbox:        16
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+
+  Werebat:
+    id:            4321
+    species:       bat
+    skill_list_id: 46
+    attributes:
+      combat:
+        skill: club
+      render:
+        look:
+          type:  standard
+          model: 256
+        entity_flags:  643
+        animation_sub:   8
+        model_size:      1
+        hitbox:         12
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: very_common
+          item:   bat_wing
+        - chance: uncommon
+          item:   bat_fang
+        - chance: rare
+          item:   vial_of_fiend_blood
+        - chance: very_rare
+          item:   vial_of_beastman_blood
+      despoil:
+        bat_wing: 0
+
+  Wurdalak:
+    id:            6582
+    species:       vampyr
+    spell_list_id: 293
+    skill_list_id: 309
+    attributes:
+      combat:
+        skill: scythe
+        delay: 290
+      jobs: [smn, smn]
+      render:
+        look:
+          type:  standard
+          model: 1845
+        entity_flags: 131
+        model_size:     1
+        hitbox:        17
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   seasoning_stone
+        - chance: rare
+          item:   fossilized_fang
+    content: abyssea
+
+
+  Beta_hell_Hecatomb_Hound:
+    id:            40081
+    species:       hound
+    skill_list_id: 143
+    attributes:
+      combat:
+        skill: sword
+      render:
+        look:
+          type:  standard
+          model: 2964
+        entity_flags: 1155
+        model_size:      1
+        hitbox:         25
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: rare
+          item:   beta_20002
+        - chance: uncommon
+          item:   beta_60
+        - chance: uncommon
+          item:   beta_3764
+        - chance: uncommon
+          item:   beta_6727
+        - chance: uncommon
+          item:   beta_6877
+        - chance: common
+          item:   wolf_hide
+        - chance: uncommon
+          item:   revival_tree_root
+      despoil:
+        wolf_hide:         0
+        revival_tree_root: 0
+
+spawns:
+  17461249:
+    template: Bloodsucker_fished
+    script:   Bloodsucker
+    at:       [1.000, 1.000, 1.000]
+    level:    [65, 68]
+  17461250:
+    template: Acid_Grease_fished
+    script:   Acid_Grease
+    at:       [1.000, 1.000, 1.000]
+    level:    [52, 54]
+  17461251:
+    template: Bloodsucker_fished
+    script:   Bloodsucker
+    at:       [1.000, 1.000, 1.000]
+    level:    [57, 58]
+  17461252:
+    template: Mousse_fished
+    script:   Mousse
+    at:       [1.000, 1.000, 1.000]
+    level:    [60, 68]
+  17461253:
+    template: Mousse_fished
+    script:   Mousse
+    at:       [1.000, 1.000, 1.000]
+    level:    [60, 68]
+  17461254:
+    template: Funnel_Bats_BO
+    script:   Funnel_Bats
+    region:   n_6
+    level:    [52, 55]
+  17461255:
+    template: Funnel_Bats_BO
+    script:   Funnel_Bats
+    region:   n_6
+    level:    [52, 55]
+  17461256:
+    template: Funnel_Bats_BO
+    script:   Funnel_Bats
+    region:   n_8
+    level:    [52, 55]
+  17461257:
+    template: Funnel_Bats_BO
+    script:   Funnel_Bats
+    region:   n_8
+    level:    [52, 55]
+  17461258:
+    template: Funnel_Bats_BO
+    script:   Funnel_Bats
+    region:   n_10
+    level:    [52, 55]
+  17461259:
+    template: Funnel_Bats_BO
+    script:   Funnel_Bats
+    region:   n_10
+    level:    [52, 55]
+  17461260:
+    template: Funnel_Bats_BO
+    script:   Funnel_Bats
+    region:   n_12
+    level:    [52, 55]
+  17461261:
+    template: Funnel_Bats_BO
+    script:   Funnel_Bats
+    region:   n_12
+    level:    [52, 55]
+  17461262:
+    template: Hecatomb_Hound
+    region:   n_14
+    level:    [56, 59]
+  17461263:
+    template: Werebat
+    region:   n_15
+    level:    [55, 59]
+  17461264:
+    template: Werebat
+    region:   n_15
+    level:    [55, 59]
+  17461265:
+    template: Werebat
+    region:   n_17
+    level:    [55, 59]
+  17461266:
+    template: Werebat
+    region:   n_17
+    level:    [55, 59]
+  17461267:
+    template: Hecatomb_Hound
+    region:   n_19
+    level:    [56, 59]
+  17461268:
+    template: Hecatomb_Hound
+    region:   n_19
+    level:    [56, 59]
+  17461269:
+    template: Werebat
+    region:   nw_21
+    level:    [55, 59]
+  17461270:
+    template: Werebat
+    region:   nw_21
+    level:    [55, 59]
+  17461271:
+    template: Hecatomb_Hound
+    region:   nw_23
+    level:    [56, 59]
+  17461272:
+    template: Hecatomb_Hound
+    region:   nw_23
+    level:    [56, 59]
+  17461273:
+    template: Werebat
+    region:   w_25
+    level:    [55, 59]
+  17461274:
+    template: Werebat
+    region:   w_25
+    level:    [55, 59]
+  17461275:
+    template: Haunt
+    region:   region_89
+    level:    [60, 63]
+  17461276:
+    template: Garm_BO
+    script:   Garm
+    region:   w_28
+    level:    [64, 66]
+  17461277:
+    template: Garm_BO
+    script:   Garm
+    region:   w_28
+    level:    [64, 66]
+  17461278:
+    template: Garm_BO
+    script:   Garm
+    region:   w_28
+    level:    [64, 66]
+  17461279:
+    template: Garm_BO
+    script:   Garm
+    region:   w_28
+    level:    [64, 66]
+  17461280:
+    template: Haunt
+    region:   w_32
+    level:    [60, 63]
+  17461281:
+    template: Haunt
+    region:   w_32
+    level:    [60, 63]
+  17461282:
+    template: Werebat
+    region:   w_34
+    level:    [55, 59]
+  17461283:
+    template: Werebat
+    region:   w_34
+    level:    [55, 59]
+  17461284:
+    template: Werebat
+    region:   w_34
+    level:    [55, 59]
+  17461285:
+    template: Werebat
+    region:   w_37
+    level:    [55, 59]
+  17461286:
+    template: Werebat
+    region:   w_37
+    level:    [55, 59]
+  17461287:
+    template: Funnel_Bats_BO
+    script:   Funnel_Bats
+    region:   c_39
+    level:    [52, 55]
+  17461288:
+    template: Funnel_Bats_BO
+    script:   Funnel_Bats
+    region:   n_40
+    level:    [52, 55]
+  17461289:
+    template: Dark_Aspic
+    region:   n_40
+    level:    [52, 53]
+  17461290:
+    template: Dark_Aspic
+    region:   n_40
+    level:    [52, 54]
+  17461291:
+    template: Funnel_Bats_BO
+    script:   Funnel_Bats
+    region:   c_43
+    level:    [52, 55]
+  17461292:
+    template: Funnel_Bats_BO
+    script:   Funnel_Bats
+    region:   c_44
+    level:    [52, 55]
+  17461293:
+    template: Dark_Aspic
+    region:   c_45
+    level:    [52, 54]
+  17461294:
+    template: Dark_Aspic
+    region:   c_45
+    level:    [52, 54]
+  17461295:
+    template: Haunt
+    region:   region_95
+    level:    [60, 63]
+  17461296:
+    template: Funnel_Bats_BO
+    script:   Funnel_Bats
+    region:   n_48
+    level:    [52, 55]
+  17461297:
+    template: Dark_Aspic
+    region:   n_48
+    level:    [52, 54]
+  17461298:
+    template: Funnel_Bats_BO
+    script:   Funnel_Bats
+    region:   n_50
+    level:    [52, 55]
+  17461299:
+    template: Funnel_Bats_BO
+    script:   Funnel_Bats
+    region:   n_50
+    level:    [52, 55]
+  17461300:
+    template: Funnel_Bats_BO
+    script:   Funnel_Bats
+    region:   n_50
+    level:    [52, 55]
+  17461301:
+    template: Mousse_BO
+    script:   Mousse
+    region:   n_53
+    level:    [58, 62]
+  17461302:
+    template: Mousse_BO
+    script:   Mousse
+    region:   n_54
+    level:    [58, 62]
+  17461303:
+    template: Mousse_BO
+    script:   Mousse
+    region:   n_54
+    level:    [58, 62]
+  17461304:
+    template: Mousse_BO
+    script:   Mousse
+    region:   c_56
+    level:    [58, 62]
+  17461305:
+    template: Mousse_BO
+    script:   Mousse
+    region:   c_56
+    level:    [58, 62]
+  17461306:
+    template: Mousse_BO
+    script:   Mousse
+    region:   c_56
+    level:    [58, 62]
+  17461307:
+    template: Sewer_Syrup
+    region:   c_56
+    level:    [64, 66]
+  17461308:
+    template: Garm_BO
+    script:   Garm
+    region:   region_96
+    level:    [64, 66]
+  17461309:
+    template: Garm_BO
+    script:   Garm
+    region:   region_96
+    level:    [64, 66]
+  17461310:
+    template: Garm_BO
+    script:   Garm
+    region:   region_96
+    level:    [64, 66]
+  17461311:
+    template: Garm_BO
+    script:   Garm
+    region:   c_63
+    level:    [64, 66]
+  17461312:
+    template: Garm_BO
+    script:   Garm
+    region:   c_63
+    level:    [64, 66]
+  17461313:
+    template: Garm_BO
+    script:   Garm
+    region:   c_63
+    level:    [64, 66]
+  17461314:
+    template: Garm_BO
+    script:   Garm
+    region:   region_96
+    level:    [64, 66]
+  17461315:
+    template: Shii
+    region:   region_96
+    level:    [70, 71]
+    attributes:
+      spawn:
+        window:
+          start: 18
+          end:    6
+  17461316:
+    template: Funnel_Bats_BO
+    script:   Funnel_Bats
+    region:   c_68
+    level:    [52, 55]
+  17461317:
+    template: Dark_Aspic
+    region:   c_68
+    level:    [52, 54]
+  17461318:
+    template: Funnel_Bats_BO
+    script:   Funnel_Bats
+    region:   c_70
+    level:    [52, 55]
+  17461319:
+    template: Funnel_Bats_BO
+    script:   Funnel_Bats
+    region:   c_70
+    level:    [52, 55]
+  17461320:
+    template: Dark_Aspic
+    region:   c_70
+    level:    [52, 54]
+  17461321:
+    template: Dark_Aspic
+    region:   c_70
+    level:    [52, 54]
+  17461322:
+    template: Werebat
+    region:   s_74
+    level:    [55, 59]
+  17461323:
+    template: Werebat
+    region:   s_75
+    level:    [55, 59]
+  17461324:
+    template: Werebat
+    region:   s_75
+    level:    [55, 59]
+  17461325:
+    template: Dark_Aspic
+    region:   s_75
+    level:    [52, 54]
+  17461326:
+    template: Dark_Aspic
+    region:   s_75
+    level:    [52, 54]
+  17461327:
+    template: Haunt
+    region:   sw_79
+    level:    [60, 63]
+  17461328:
+    template: Werebat
+    region:   sw_80
+    level:    [55, 59]
+  17461329:
+    template: Werebat
+    region:   sw_80
+    level:    [55, 59]
+  17461330:
+    template: Werebat
+    region:   sw_80
+    level:    [55, 59]
+  17461331:
+    template: Werebat
+    region:   sw_80
+    level:    [55, 59]
+  17461332:
+    template: Dark_Aspic
+    region:   sw_80
+    level:    [52, 53]
+  17461333:
+    template: Dark_Aspic
+    region:   sw_80
+    level:    [52, 53]
+  17461334:
+    template: Garm_BO
+    script:   Garm
+    region:   s_86
+    level:    [64, 66]
+  17461335:
+    template: Garm_BO
+    script:   Garm
+    region:   s_86
+    level:    [64, 66]
+  17461336:
+    template: Haunt
+    region:   s_86
+    level:    [60, 63]
+  17461337:
+    template: Haunt
+    region:   s_91
+    level:    [60, 63]
+  17461338:
+    template: Drexerion_the_Condemned
+    region:   region_90
+    level:    [72, 73]
+  17461339:
+    template: Garm_BO
+    script:   Garm
+    region:   s_91
+    level:    [64, 66]
+  17461340:
+    template: Garm_BO
+    script:   Garm
+    region:   s_91
+    level:    [64, 66]
+  17461341:
+    template: Haunt
+    region:   s_91
+    level:    [60, 63]
+  17461342:
+    template: Haunt
+    region:   s_91
+    level:    [60, 63]
+  17461343:
+    template: Phanduron_the_Condemned
+    region:   region_90
+    level:    [72, 73]
+  17461344:
+    template: Blind_Bat
+    region:   s_96
+    level:    [95, 97]
+  17461345:
+    template: Blind_Bat
+    region:   s_96
+    level:    [95, 97]
+  17461346:
+    template: Blind_Bat
+    region:   s_98
+    level:    [95, 97]
+  17461347:
+    template: Blind_Bat
+    region:   s_99
+    level:    [95, 97]
+  17461348:
+    template: Panna_Cotta
+    region:   s_96
+    level:    [95, 96]
+  17461349:
+    template: Panna_Cotta
+    region:   s_99
+    level:    [95, 96]
+  17461350:
+    template: Blind_Bat
+    region:   s_102
+    level:    [95, 97]
+  17461351:
+    template: Blind_Bat
+    region:   s_102
+    level:    [95, 97]
+  17461352:
+    template: Blind_Bat
+    region:   s_102
+    level:    [95, 97]
+  17461353:
+    template: Panna_Cotta
+    region:   s_102
+    level:    [95, 96]
+  17461354:
+    template: Panna_Cotta
+    region:   s_102
+    level:    [95, 96]
+  17461355:
+    template: Nachtmahr
+    region:   s_107
+    level:    [96, 97]
+  17461356:
+    template: Nachtmahr
+    region:   s_107
+    level:    [96, 97]
+  17461357:
+    template: Panna_Cotta
+    region:   s_109
+    level:    [95, 96]
+  17461358:
+    template: Panna_Cotta
+    region:   s_109
+    level:    [95, 96]
+  17461359:
+    template: Nachtmahr
+    region:   s_111
+    level:    [96, 97]
+  17461360:
+    template: Blind_Bat
+    region:   c_112
+    level:    [95, 97]
+  17461361:
+    template: Blind_Bat
+    region:   c_112
+    level:    [95, 97]
+  17461362:
+    template: Panna_Cotta
+    region:   c_114
+    level:    [95, 96]
+  17461363:
+    template: Nachtmahr
+    region:   region_93
+    level:    [96, 97]
+  17461364:
+    template: Blind_Bat
+    region:   region_94
+    level:    [95, 97]
+  17461365:
+    template: Blind_Bat
+    region:   region_94
+    level:    [95, 97]
+  17461366:
+    template: Blind_Bat
+    region:   se_118
+    level:    [95, 97]
+  17461367:
+    template: Blind_Bat
+    region:   se_118
+    level:    [95, 97]
+  17461368:
+    template: Blind_Bat
+    region:   e_120
+    level:    [95, 97]
+  17461369:
+    template: Panna_Cotta
+    region:   e_121
+    level:    [95, 96]
+  17461370:
+    template: Panna_Cotta
+    region:   e_121
+    level:    [95, 96]
+  17461371:
+    template: Dabilla
+    region:   se_123
+    level:    [94, 96]
+  17461372:
+    template: Dabilla
+    region:   se_123
+    level:    [94, 96]
+  17461373:
+    template: Dabilla
+    region:   se_123
+    level:    [94, 96]
+  17461374:
+    template: Dabilla
+    region:   se_123
+    level:    [94, 96]
+  17461375:
+    template: Dabilla
+    region:   se_127
+    level:    [94, 96]
+  17461376:
+    template: Dabilla
+    region:   se_127
+    level:    [94, 96]
+  17461377:
+    template: Dabilla
+    region:   se_127
+    level:    [94, 96]
+  17461378:
+    template: Dabilla
+    region:   se_127
+    level:    [94, 96]
+  17461379:
+    template: Nachtmahr
+    region:   e_131
+    level:    [96, 97]
+  17461380:
+    template: Nachtmahr
+    region:   region_97
+    level:    [96, 97]
+  17461381:
+    template: Nachtmahr
+    region:   region_97
+    level:    [96, 97]
+  17461382:
+    template: Panna_Cotta
+    region:   e_134
+    level:    [95, 96]
+  17461383:
+    template: Panna_Cotta
+    region:   e_134
+    level:    [95, 96]
+  17461384:
+    template: Nachtmahr
+    region:   c_136
+    level:    [96, 97]
+  17461385:
+    template: Nachtmahr
+    region:   c_136
+    level:    [96, 97]
+  17461386:
+    template: Nachtmahr
+    region:   c_136
+    level:    [96, 97]
+  17461387:
+    template: Blind_Bat
+    region:   e_139
+    level:    [95, 97]
+  17461388:
+    template: Blind_Bat
+    region:   e_140
+    level:    [95, 97]
+  17461389:
+    template: Panna_Cotta
+    region:   e_139
+    level:    [95, 96]
+  17461390:
+    template: Nachtmahr
+    region:   e_142
+    level:    [96, 97]
+  17461391:
+    template: Panna_Cotta
+    region:   e_143
+    level:    [95, 96]
+  17461392:
+    template: Blind_Bat
+    region:   ne_144
+    level:    [95, 97]
+  17461393:
+    template: Blind_Bat
+    region:   ne_144
+    level:    [95, 97]
+  17461394:
+    template: Blind_Bat
+    region:   ne_146
+    level:    [95, 97]
+  17461395:
+    template: Blind_Bat
+    region:   ne_146
+    level:    [95, 97]
+  17461396:
+    template: Panna_Cotta
+    region:   ne_148
+    level:    [95, 96]
+  17461397:
+    template: Panna_Cotta
+    region:   ne_148
+    level:    [95, 96]
+  17461398:
+    template: Dabilla
+    region:   ne_150
+    level:    [94, 96]
+  17461399:
+    template: Dabilla
+    region:   ne_150
+    level:    [94, 96]
+  17461400:
+    template: Dabilla
+    region:   ne_150
+    level:    [94, 96]
+  17461401:
+    template: Dabilla
+    region:   ne_150
+    level:    [94, 96]
+  17461402:
+    template: Wurdalak
+    region:   ne_150
+    level:    [97, 99]
+  17461403:
+    template: Dabilla
+    region:   ne_155
+    level:    [94, 95]
+  17461404:
+    template: Wurdalak
+    region:   ne_155
+    level:    [97, 99]
+  17461405:
+    template: Dabilla
+    region:   ne_157
+    level:    [95, 96]
+  17461406:
+    template: Dabilla
+    region:   ne_157
+    level:    [94, 96]
+  17461407:
+    template: Dabilla
+    region:   ne_157
+    level:    [94, 96]
+  17461408:
+    template: Dabilla
+    region:   ne_157
+    level:    [94, 96]
+  17461409:
+    template: Wurdalak
+    region:   ne_157
+    level:    [97, 99]
+  17461410:
+    template: Blind_Bat
+    region:   ne_162
+    level:    [95, 97]
+  17461411:
+    template: Blind_Bat
+    region:   ne_162
+    level:    [95, 97]
+  17461412:
+    template: Blind_Bat
+    region:   ne_164
+    level:    [95, 97]
+  17461413:
+    template: Blind_Bat
+    region:   ne_164
+    level:    [95, 97]
+  17461414:
+    template: Blind_Bat
+    region:   ne_166
+    level:    [95, 97]
+  17461415:
+    template: Blind_Bat
+    region:   ne_166
+    level:    [95, 97]
+  17461416:
+    template: Blind_Bat
+    region:   ne_166
+    level:    [95, 97]
+  17461417:
+    template: Wurdalak
+    at:       [198.816, 0.163, -19.536, 42]
+    level:    [97, 99]
+  17461418:
+    template: Blind_Bat
+    region:   ne_170
+    level:    [95, 97]
+  17461419:
+    template: Blind_Bat
+    region:   ne_170
+    level:    [95, 97]
+  17461420:
+    template: Blind_Bat
+    region:   ne_170
+    level:    [95, 97]
+  17461421:
+    template: Wurdalak
+    at:       [204.988, 0.176, -57.857, 171]
+    level:    [97, 99]
+  17461422:
+    template: Werebat
+    region:   w_174
+    level:    [55, 59]
+  17461423:
+    template: Werebat
+    region:   w_174
+    level:    [55, 59]
+  17461424:
+    template: Werebat
+    region:   w_174
+    level:    [55, 59]
+  17461425:
+    template: Werebat
+    region:   w_177
+    level:    [55, 59]
+  17461426:
+    template: Werebat
+    region:   w_177
+    level:    [55, 59]
+  17461427:
+    template: Werebat
+    region:   w_177
+    level:    [55, 59]
+  17461428:
+    template: Werebat
+    region:   w_177
+    level:    [55, 59]
+  17461429:
+    template: Werebat
+    region:   w_181
+    level:    [55, 59]
+  17461430:
+    template: Werebat
+    region:   w_181
+    level:    [55, 59]
+  17461431:
+    template: Werebat
+    region:   w_181
+    level:    [55, 59]
+  17461432:
+    template: Werebat
+    region:   w_184
+    level:    [55, 59]
+  17461433:
+    template: Arioch
+    region:   w_181
+    level:    [56, 62]
+  17461434:
+    template: Bloodsucker_BO
+    script:   Bloodsucker
+    region:   s_186
+    level:    [65, 68]
+  17461435:
+    template: Bloodsucker_BO
+    script:   Bloodsucker
+    region:   s_186
+    level:    [65, 68]
+  17461436:
+    template: Bloodsucker_BO
+    script:   Bloodsucker
+    region:   s_186
+    level:    [65, 68]
+  17461437:
+    template: Bloodsucker_BO
+    script:   Bloodsucker
+    region:   s_186
+    level:    [65, 68]
+  17461438:
+    template: Bloodsucker_BO
+    script:   Bloodsucker
+    region:   sw_190
+    level:    [65, 68]
+  17461439:
+    template: Bloodsucker_BO
+    script:   Bloodsucker
+    region:   sw_190
+    level:    [65, 68]
+  17461440:
+    template: Bloodsucker_BO
+    script:   Bloodsucker
+    region:   sw_190
+    level:    [65, 68]
+  17461441:
+    template: Bloodsucker_BO
+    script:   Bloodsucker
+    region:   s_193
+    level:    [65, 68]
+  17461442:
+    template: Bloodsucker_BO
+    script:   Bloodsucker
+    region:   s_193
+    level:    [65, 68]
+  17461443:
+    template: Bloodsucker_BO
+    script:   Bloodsucker
+    region:   s_193
+    level:    [65, 68]
+  17461444:
+    template: Bloodsucker_BO
+    script:   Bloodsucker
+    region:   s_196
+    level:    [65, 68]
+  17461445:
+    template: Bloodsucker_BO
+    script:   Bloodsucker
+    region:   s_196
+    level:    [65, 68]
+  17461446:
+    template: Bloodsucker_BO
+    script:   Bloodsucker
+    region:   c_198
+    level:    [65, 68]
+  17461447:
+    template: Bloodsucker_BO
+    script:   Bloodsucker
+    region:   c_198
+    level:    [65, 68]
+  17461448:
+    template: Bloodsucker_BO
+    script:   Bloodsucker
+    region:   c_198
+    level:    [65, 68]
+  17461449:
+    template: Bloodsucker_BO
+    script:   Bloodsucker
+    region:   c_198
+    level:    [65, 68]
+  17461450:
+    template: Bloodsucker_BO
+    script:   Bloodsucker
+    region:   s_202
+    level:    [65, 68]
+  17461451:
+    template: Bloodsucker_BO
+    script:   Bloodsucker
+    region:   s_202
+    level:    [65, 68]
+  17461452:
+    template: Bloodsucker_BO
+    script:   Bloodsucker
+    region:   s_202
+    level:    [65, 68]
+  17461453:
+    template: Bloodsucker_BO
+    script:   Bloodsucker
+    region:   s_205
+    level:    [65, 68]
+  17461454:
+    template: Bloodsucker_BO
+    script:   Bloodsucker
+    region:   s_205
+    level:    [65, 68]
+  17461455:
+    template: Bloodsucker_BO
+    script:   Bloodsucker
+    region:   s_205
+    level:    [65, 68]
+  17461456:
+    template: Bloodsucker_BO
+    script:   Bloodsucker
+    region:   c_208
+    level:    [65, 68]
+  17461457:
+    template: Bloodsucker_BO
+    script:   Bloodsucker
+    region:   c_208
+    level:    [65, 68]
+  17461458:
+    template: Bloodsucker_BO
+    script:   Bloodsucker
+    region:   c_208
+    level:    [65, 68]
+  17461459:
+    template: Bloodsucker_BO
+    script:   Bloodsucker
+    region:   c_208
+    level:    [65, 68]
+  17461460:
+    template: Bloodsucker_BO
+    script:   Bloodsucker
+    region:   c_208
+    level:    [65, 68]
+  17461461:
+    template: Bloodsucker_BO
+    script:   Bloodsucker
+    region:   region_91
+    level:    [65, 68]
+  17461462:
+    template: Bloodsucker_BO
+    script:   Bloodsucker
+    region:   c_214
+    level:    [65, 68]
+  17461463:
+    template: Bloodsucker_BO
+    script:   Bloodsucker
+    region:   c_214
+    level:    [65, 68]
+  17461464:
+    template: Bloodsucker_BO
+    script:   Bloodsucker
+    region:   c_214
+    level:    [65, 68]
+  17461465:
+    template: Bloodsucker_BO
+    script:   Bloodsucker
+    region:   c_214
+    level:    [65, 68]
+  17461466:
+    template: Bloodsucker_BO
+    script:   Bloodsucker
+    region:   c_214
+    level:    [65, 68]
+  17461467:
+    template: Bloodsucker_BO
+    script:   Bloodsucker
+    region:   c_219
+    level:    [65, 68]
+  17461468:
+    template: Bloodsucker_BO
+    script:   Bloodsucker
+    region:   c_219
+    level:    [65, 68]
+  17461469:
+    template: Gespenst_Large
+    script:   Gespenst
+    region:   c_221
+    level:    [68, 70]
+  17461470:
+    template: Gespenst_Large
+    script:   Gespenst
+    region:   c_221
+    level:    [68, 70]
+  17461471:
+    template: Manes
+    region:   c_221
+    level:    [72, 73]
+    attributes:
+      spawn:
+        window:
+          start: 18
+          end:    6
+  17461472:
+    template: Bloodsucker_BO
+    script:   Bloodsucker
+    region:   c_224
+    level:    [65, 68]
+  17461473:
+    template: Bloodsucker_BO
+    script:   Bloodsucker
+    region:   c_224
+    level:    [65, 68]
+  17461474:
+    template: Bloodsucker_BO
+    script:   Bloodsucker
+    region:   c_226
+    level:    [65, 68]
+  17461475:
+    template: Bloodsucker_BO
+    script:   Bloodsucker
+    region:   c_226
+    level:    [65, 68]
+  17461476:
+    template: Gespenst_Large
+    script:   Gespenst
+    region:   c_228
+    level:    [68, 70]
+  17461477:
+    template: Gespenst_Large
+    script:   Gespenst
+    region:   c_221
+    level:    [68, 70]
+  17461478:
+    template: Bloodsucker_NM
+    region:   region_92
+    level:    [70, 73]
+  17461479:
+    template: Bodach
+    at:       [19.728, 16.841, -139.080, 130]
+    level:    [80, 80]
+  17461480:
+    template: Garbage_Gel
+    level:    [122, 122]
+  17461481:
+    template: Garbage_Gel
+    at:       [68.449, 0.074, -290.609]
+    level:    [122, 122]
+  17461482:
+    template: Garbage_Gel
+    at:       [-222.430, -0.572, -98.601, 32]
+    level:    [122, 122]
+  17461483:
+    template: Trion_Bostaunieux
+    script:   Trion
+    at:       [100.000, -24.522, -56.500, 178]
+    level:    [139, 139]
+
+  17461599:
+    template: Beta_hell_Hecatomb_Hound
+    region:   n_14
+    level:    [56, 59]
+  17461600:
+    template: Beta_hell_Hecatomb_Hound
+    region:   n_14
+    level:    [56, 59]
+slots:
+  - members:
+      17461310: {} # Garm
+      17461314: {} # Garm
+  - members:
+      17461470: {} # Gespenst
+      17461477: {} # Gespenst

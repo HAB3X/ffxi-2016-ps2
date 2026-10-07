@@ -1,0 +1,56 @@
+{
+  "version": 3,
+  "cmakeMinimumRequired": {
+    "major": 3,
+    "minor": 25,
+    "patch": 0
+  },
+  "configurePresets": [
+    {
+      "name": "default",
+      "displayName": "Default",
+      "description": "Every configuration from one directory. Choose the configuration when you build.",
+      "generator": "Ninja Multi-Config",
+      "binaryDir": "${sourceDir}/build"
+    },
+    {
+      "name": "tracy",
+      "displayName": "Tracy profiling",
+      "description": "Default configuration with the Tracy profiler compiled in. Builds xi_map_tracy.",
+      "inherits": "default",
+      "binaryDir": "${sourceDir}/build-tracy",
+      "cacheVariables": {
+        "TRACY_ENABLE": "ON"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "default",
+      "displayName": "Default (RelWithDebInfo)",
+      "description": "Optimized build with debug info. The standard configuration.",
+      "configurePreset": "default",
+      "configuration": "RelWithDebInfo"
+    },
+    {
+      "name": "debug",
+      "displayName": "Debug",
+      "description": "Unoptimized build with full debug info. Many times slower to run.",
+      "configurePreset": "default",
+      "configuration": "Debug"
+    },
+    {
+      "name": "release",
+      "displayName": "Release",
+      "description": "Fully optimized, no debug info.",
+      "configurePreset": "default",
+      "configuration": "Release"
+    },
+    {
+      "name": "tracy",
+      "displayName": "Tracy profiling (RelWithDebInfo)",
+      "configurePreset": "tracy",
+      "configuration": "RelWithDebInfo"
+    }
+  ]
+}

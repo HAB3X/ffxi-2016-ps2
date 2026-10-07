@@ -1,0 +1,3575 @@
+# yaml-language-server: $schema=../../schemas/mobs.schema.json
+
+templates:
+
+  Anantaboga:
+    id:            118
+    species:       dragon
+    type:          [notorious]
+    spell_list_id: 6
+    skill_list_id: 298
+    attributes:
+      combat:
+        skill: staff
+      jobs: [brd, brd]
+      render:
+        look:
+          type:  standard
+          model: 421
+        entity_flags: 1181
+        name_prefix:    32
+        model_size:      2
+        hitbox:         39
+      behaviors:
+        aggressive:     true
+        true_detection: true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 30000
+    loot:
+      drops:
+        - chance: always
+          item:   anantabogas_heart
+        - chance: common
+          item:   trilling_dagger
+        - chance: common
+          item:   hacchonenbutsu_dangozashi
+
+  Ancient_Bombs:
+    id:            122
+    species:       cluster
+    type:          [notorious]
+    skill_list_id: 68
+    attributes:
+      combat:
+        skill: club
+      render:
+        look:
+          type:  standard
+          model: 291
+        entity_flags:  3
+        model_size:    1
+        hitbox:       37
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: very_rare
+          item:   chunk_of_mythril_ore
+
+  Assassin_Fly:
+    id:            271
+    species:       fly
+    skill_list_id: 113
+    attributes:
+      combat:
+        skill: polearm
+      render:
+        look:
+          type:  standard
+          model: 449
+        entity_flags:  1665
+        animation_sub:    8
+        hitbox:          12
+      behaviors:
+        links: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   insect_wing
+      despoil:
+        insect_wing: 0
+
+  Assassin_Fly_Large:
+    id:            7287
+    display_name:  Assassin_Fly
+    species:       fly
+    skill_list_id: 113
+    attributes:
+      combat:
+        skill: polearm
+      render:
+        look:
+          type:  standard
+          model: 449
+        entity_flags:  1665
+        animation_sub:    8
+        model_size:       2
+        hitbox:          17
+      behaviors:
+        links: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   insect_wing
+      despoil:
+        insect_wing: 0
+
+  Awoken_Mokkuralfi:
+    id:            6098
+    species:       flan
+    type:          [notorious]
+    spell_list_id: 1
+    skill_list_id: 2052
+    attributes:
+      combat:
+        skill: staff
+      jobs: [blm, blm]
+      resists:
+        dmg_physical:
+          slashing: -1250
+          blunt:    -2500
+          h2h:      -2500
+      render:
+        look:
+          type:  standard
+          model: 3595
+        entity_flags:  3
+        model_size:    2
+        hitbox:       13
+      behaviors:
+        links:          true
+        true_detection: true
+      spawn:
+        type: [scripted]
+
+  Brass_Borer:
+    id:            524
+    species:       wamouracampa
+    type:          [notorious]
+    skill_list_id: 289
+    attributes:
+      combat:
+        skill: scythe
+        delay: 265
+      resists:
+        immune_status: [light_sleep, dark_sleep]
+        rank_element:
+          fire:  11
+          wind:   2
+          earth: -1
+          dark:  -1
+        rank_status:
+          silence:     2
+          slow:       -1
+          dark_sleep: -1
+          blind:      -1
+      render:
+        look:
+          type:  standard
+          model: 1802
+        entity_flags:  157
+        animation_sub:   5
+        model_size:      2
+        hitbox:         13
+      behaviors:
+        links: true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 15000
+    loot:
+      drops:
+        - chance: always
+          item:   brass_borers_cocoon
+        - chance: common
+          item:   ritterhentzes
+        - chance: common
+          item:   lion_tamer
+
+  Cerberus:
+    id:            680
+    species:       cerberus
+    type:          [notorious]
+    skill_list_id: 62
+    attributes:
+      combat:
+        skill:    scythe
+        delay:    200
+        dmg_mult: 175
+      resists:
+        immune_status: [gravity, light_sleep, dark_sleep]
+        rank_element:
+          fire:  11
+          light: 10
+          dark:  10
+        rank_status:
+          light_sleep: 10
+          dark_sleep:  10
+          blind:       10
+      render:
+        look:
+          type:  standard
+          model: 1793
+        entity_flags: 157
+        name_prefix:   32
+        model_size:     2
+        hitbox:        45
+      behaviors:
+        flags:          [no_turn]
+        aggressive:     true
+        true_detection: true
+      spawn:
+        respawn: 172800
+      stats:
+        hp: 50000
+    loot:
+      drops:
+        - chance: always
+          item:   cerberus_claw
+        - chance: always
+          item:   cerberus_hide
+        - chance: always
+          item:   slice_of_cerberus_meat
+        - chance: always
+          item:   cerberus_claw
+        - chance: very_common
+          item:   algol
+
+  Chary_Apkallu:
+    id:            5190
+    species:       apkallu
+    type:          [notorious]
+    skill_list_id: 27
+    attributes:
+      combat:
+        skill: hand_to_hand
+        delay: 480
+      jobs: [mnk, mnk]
+      resists:
+        immune_status: [gravity, bind, light_sleep, dark_sleep]
+      render:
+        look:
+          type:  standard
+          model: 1723
+        entity_flags: 131
+        model_size:     1
+        hitbox:         8
+    loot:
+      drops:
+        - chance: uncommon
+          item:   aptant_of_arkhe
+        - chance: uncommon
+          item:   aptant_of_ishis
+    content: wotg
+
+  Claret:
+    id:            738
+    species:       scum
+    type:          [notorious]
+    skill_list_id: 290
+    attributes:
+      combat:
+        skill: great_axe
+      resists:
+        immune_status: [light_sleep, dark_sleep]
+        dmg_physical:
+          slashing: -7500
+          piercing: -7500
+          blunt:    -8750
+          h2h:      -8750
+      render:
+        look:
+          type:  standard
+          model: 294
+        entity_flags: 157
+        name_prefix:   32
+        model_size:     2
+        hitbox:        27
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 15000
+    loot:
+      drops:
+        - chance: always
+          item:   globule_of_claret
+        - chance: common
+          item:   kerykeion
+        - chance: common
+          item:   almah_torque
+
+  Dahak:
+    id:            894
+    species:       dahak
+    skill_list_id: 2007
+    attributes:
+      combat:
+        skill: staff
+      render:
+        look:
+          type:  standard
+          model: 421
+        entity_flags: 133
+        model_size:     2
+        hitbox:        39
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 1800
+
+  Dark_Bugler:
+    id:            910
+    species:       imp
+    spell_list_id: 21
+    skill_list_id: 165
+    attributes:
+      combat:
+        skill: scythe
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 1726
+        entity_flags:  131
+        animation_sub:   4
+        model_size:      1
+        hitbox:         12
+      behaviors:
+        aggressive:     true
+        links:          true
+        true_detection: true
+      spawn:
+        type: [scripted]
+
+  Dark_Esquire:
+    id:            914
+    species:       kindred
+    skill_list_id: 169
+    attributes:
+      combat:
+        skill: sword
+      render:
+        look:
+          type:  standard
+          model: 751
+        entity_flags: 131
+        model_size:     1
+        hitbox:        17
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: common
+          item:   pinch_of_bomb_ash
+        - chance: uncommon
+          item:   bomb_arm
+      despoil:
+        pinch_of_bomb_ash: 0
+
+  Dark_Rider:
+    id:            916
+    species:       odin
+    type:          [notorious]
+    spell_list_id: 5
+    skill_list_id: 42
+    attributes:
+      combat:
+        skill: sword
+      jobs: [drk, bst]
+      render:
+        look:
+          type:  standard
+          model: 1829
+        entity_flags: 131
+        model_size:     1
+        hitbox:        34
+      spawn:
+        type: [scripted]
+
+  Earth_Elemental:
+    id:            1160
+    species:       earth_elemental
+    spell_list_id: 13
+    skill_list_id: 101
+    attributes:
+      combat:
+        skill: staff
+      jobs: [blm, rdm]
+      resists:
+        immune_status: [stun, slow, elegy]
+      render:
+        look:
+          type:  standard
+          model: 439
+        entity_flags:  1155
+        animation_sub:   16
+        model_size:       1
+        hitbox:           3
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+        type:    [weather]
+    loot:
+      drops:
+        - chance: always
+          item:   earth_cluster
+        - chance: common
+          item:   earth_cluster
+        - chance: common
+          item:   earth_cluster
+
+  Ebony_Pudding:
+    id:            1170
+    species:       flan
+    spell_list_id: 430
+    skill_list_id: 112
+    attributes:
+      combat:
+        skill: staff
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 1799
+        entity_flags:  1155
+        animation_sub:    4
+        model_size:       1
+        hitbox:          12
+      behaviors:
+        aggressive: true
+        links:      true
+      mob_mods:
+        exp_bonus: 6
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: very_common
+          item:   chunk_of_flan_meat
+      despoil:
+        chunk_of_flan_meat: 0
+
+  Elders_Imp:
+    id:            6751
+    species:       imp
+    spell_list_id: 21
+    skill_list_id: 165
+    attributes:
+      combat:
+        skill: scythe
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 1726
+        entity_flags:  131
+        animation_sub:   4
+      behaviors:
+        aggressive:     true
+        links:          true
+        true_detection: true
+      spawn:
+        type: [scripted]
+
+  Energetic_Eruca:
+    id:            1215
+    species:       eruca
+    type:          [notorious]
+    skill_list_id: 108
+    attributes:
+      combat:
+        skill: club
+      resists:
+        dmg_physical:
+          slashing: -10000
+          blunt:    -10000
+      render:
+        look:
+          type:  standard
+          model: 406
+        entity_flags:  1157
+        animation_sub:   12
+        model_size:       2
+        hitbox:          17
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [lottery]
+      stats:
+        hp: 13000
+    loot:
+      drops:
+        - chance: common
+          item:   astral_staff
+        - chance: uncommon
+          item:   hanzo_tekko
+
+  Fahrafahr_the_Bloodied:
+    id:            6750
+    species:       destroyer
+    type:          [notorious]
+    skill_list_id: 1198
+    attributes:
+      combat:
+        skill: great_axe
+        delay: 320
+      jobs: [pup, pup]
+      resists:
+        immune_status: [gravity, bind, light_sleep, dark_sleep]
+      render:
+        look:
+          type:  standard
+          model: 1784
+        entity_flags:  155
+        animation_sub:   4
+        name_prefix:    32
+        model_size:      1
+        hitbox:         20
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [lottery]
+    loot:
+      drops:
+        - chance: uncommon
+          item:   lyft_ferule
+    content: wotg
+
+  Fire_Elemental:
+    id:            1341
+    species:       fire_elemental
+    spell_list_id: 17
+    skill_list_id: 102
+    attributes:
+      combat:
+        skill: staff
+      jobs: [blm, rdm]
+      resists:
+        immune_status: [bind, paralyze]
+      render:
+        look:
+          type:  standard
+          model: 436
+        entity_flags:  131
+        animation_sub:  16
+        model_size:      1
+        hitbox:          3
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+        type:    [weather]
+    loot:
+      drops:
+        - chance: always
+          item:   fire_cluster
+        - chance: common
+          item:   fire_cluster
+        - chance: common
+          item:   fire_cluster
+
+  Garfurlar_the_Rabid:
+    id:            1460
+    species:       light_troll
+    type:          [notorious]
+    spell_list_id: 3
+    skill_list_id: 246
+    attributes:
+      combat:
+        skill: great_sword
+        delay: 230
+      jobs: [rdm, rdm]
+      render:
+        look:
+          type:  automaton
+          model: 1708
+        entity_flags:  153
+        animation_sub:   4
+        name_prefix:    32
+        hitbox:         15
+      behaviors:
+        aggressive:     true
+        links:          true
+        true_detection: true
+      spawn:
+        type: [scripted]
+
+  Garharlor_the_Unruly:
+    id:            1468
+    species:       light_troll
+    type:          [notorious]
+    skill_list_id: 246
+    attributes:
+      combat:
+        skill: axe
+        delay: 230
+      jobs: [rng, rng]
+      render:
+        look:
+          type:  automaton
+          model: 1707
+        entity_flags:  153
+        animation_sub:   4
+        name_prefix:    32
+        hitbox:         15
+      behaviors:
+        aggressive:     true
+        links:          true
+        true_detection: true
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: very_common
+          item:   genie_gages
+        - chance: common
+          item:   trance_belt
+
+  Garhorlur_the_Brutal:
+    id:            1469
+    species:       heavy_troll
+    type:          [notorious]
+    spell_list_id: 4
+    skill_list_id: 246
+    attributes:
+      combat:
+        skill: dagger
+        delay: 280
+      jobs: [pld, pld]
+      render:
+        look:
+          type:  automaton
+          model: 1689
+        entity_flags:  153
+        animation_sub:   4
+        name_prefix:    32
+        hitbox:         15
+      behaviors:
+        aggressive:     true
+        links:          true
+        true_detection: true
+      spawn:
+        type: [scripted]
+
+  Giant_Orobon:
+    id:            1534
+    species:       orobon
+    type:          [fished, battlefield]
+    skill_list_id: 191
+    attributes:
+      combat:
+        skill: scythe
+        delay: 270
+      render:
+        look:
+          type:  standard
+          model: 1729
+        entity_flags: 133
+        model_size:     2
+        hitbox:        22
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 7700
+    loot:
+      drops:
+        - chance: rare
+          item:   chunk_of_orobon_meat
+      despoil:
+        orobon_lure:          0
+        chunk_of_orobon_meat: 0
+
+  Grand_Grenade:
+    id:            6752
+    species:       bomb
+    skill_list_id: 56
+    attributes:
+      combat:
+        skill: staff
+      render:
+        look:
+          type:  standard
+          model: 282
+        entity_flags:  133
+        animation_sub:   6
+        model_size:      2
+        hitbox:         13
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+
+  Hilltroll_Dark_Knight:
+    id:            1946
+    species:       heavy_troll
+    spell_list_id: 5
+    skill_list_id: 247
+    attributes:
+      combat:
+        skill: axe
+        delay: 280
+      jobs: [drk, drk]
+      render:
+        look:
+          type:  automaton
+          model: 1685
+        entity_flags: 1155
+        model_size:      1
+        hitbox:         17
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   slab_of_plumbago
+        - chance: very_rare
+          item:   troll_vambrace
+      despoil:
+        jadagna_-1: 0
+
+  Hilltroll_Monk:
+    id:            1949
+    species:       light_troll
+    skill_list_id: 246
+    attributes:
+      combat:
+        skill: hand_to_hand
+        delay: 380
+      jobs: [mnk, mnk]
+      render:
+        look:
+          type:  automaton
+          model: 1712
+        entity_flags:  1155
+        animation_sub:    1
+        model_size:       1
+        hitbox:          17
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: very_rare
+          item:   troll_pauldron
+        - chance: rare
+          item:   khroma_nugget
+      despoil:
+        jadagna_-1: 0
+
+  Hilltroll_Paladin:
+    id:            1950
+    species:       heavy_troll
+    spell_list_id: 4
+    skill_list_id: 247
+    attributes:
+      combat:
+        skill: dagger
+        delay: 280
+      jobs: [pld, pld]
+      render:
+        look:
+          type:  automaton
+          model: 1691
+        entity_flags: 1155
+        model_size:      1
+        hitbox:         17
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   jadagna_-1
+        - chance: uncommon
+          item:   januwiyah_-1
+        - chance: very_rare
+          item:   troll_vambrace
+      despoil:
+        jadagna_-1: 0
+
+  Hilltroll_Puppetmaster:
+    id:            1951
+    species:       light_troll
+    skill_list_id: 246
+    attributes:
+      combat:
+        skill: hand_to_hand
+        delay: 380
+      jobs: [pup, pup]
+      render:
+        look:
+          type:  automaton
+          model: 1712
+        entity_flags:  1155
+        animation_sub:    1
+        model_size:       1
+        hitbox:          17
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: very_rare
+          item:   troll_pauldron
+        - chance: uncommon
+          one_of: [armor_plate_ii, tension_spring_ii, mana_jammer_ii, loudspeaker_ii, accelerator_ii, mana_tank_ii, stabilizer_ii, auto-repair_kit_ii]
+        - chance: rare
+          one_of: [flashbulb, scanner, pattern_reader, heatsink, mana_converter, strobe, analyzer, heat_seeker]
+      despoil:
+        jadagna_-1: 0
+
+  Hilltroll_Ranger:
+    id:            1952
+    species:       light_troll
+    skill_list_id: 246
+    attributes:
+      combat:
+        skill: axe
+        delay: 230
+      jobs: [rng, rng]
+      render:
+        look:
+          type:  automaton
+          model: 1709
+        entity_flags: 1155
+        model_size:      1
+        hitbox:         17
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: very_rare
+          item:   troll_pauldron
+        - chance: rare
+          item:   khroma_nugget
+      despoil:
+        jadagna_-1: 0
+
+  Hilltroll_Red_Mage:
+    id:            1953
+    species:       light_troll
+    spell_list_id: 3
+    skill_list_id: 246
+    attributes:
+      combat:
+        skill: great_sword
+        delay: 230
+      jobs: [rdm, rdm]
+      render:
+        look:
+          type:  automaton
+          model: 1710
+        entity_flags: 1155
+        model_size:      1
+        hitbox:         17
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   hydrangea
+        - chance: very_rare
+          item:   troll_pauldron
+      despoil:
+        jadagna_-1: 0
+
+  Hilltroll_Warrior:
+    id:            1954
+    species:       heavy_troll
+    skill_list_id: 247
+    attributes:
+      combat:
+        skill: axe
+        delay: 280
+      render:
+        look:
+          type:  automaton
+          model: 1687
+        entity_flags: 1155
+        model_size:      1
+        hitbox:         17
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   slab_of_plumbago
+        - chance: uncommon
+          item:   hydrangea
+        - chance: very_rare
+          item:   troll_vambrace
+      despoil:
+        jadagna_-1: 0
+
+  Ignamoth:
+    id:            5843
+    species:       wamoura
+    type:          [notorious]
+    skill_list_id: 1006
+    attributes:
+      combat:
+        skill: scythe
+      resists:
+        immune_status: [gravity, bind, paralyze, light_sleep, dark_sleep]
+      render:
+        look:
+          type:  standard
+          model: 1808
+        entity_flags:  1667
+        animation_sub:    8
+        model_size:       1
+        hitbox:          20
+      behaviors:
+        aggressive:     true
+        links:          true
+        true_detection: true
+      spawn:
+        type: [lottery]
+    loot:
+      drops:
+        - chance: uncommon
+          item:   octant
+    content: wotg
+
+  Khromasoul_Bhurborlor:
+    id:            2223
+    species:       plated_troll
+    type:          [notorious]
+    spell_list_id: 4
+    skill_list_id: 308
+    attributes:
+      combat:
+        skill: dagger
+        delay: 230
+      jobs: [pld, pld]
+      resists:
+        immune_status: [light_sleep, dark_sleep]
+      render:
+        look:
+          type:  standard
+          model: 1704
+        entity_flags:  157
+        animation_sub:   4
+        name_prefix:    32
+        model_size:      2
+        hitbox:         20
+      behaviors:
+        aggressive:     true
+        links:          true
+        true_detection: true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 39000
+    loot:
+      drops:
+        - chance: always
+          item:   bhurborlors_vambrace
+        - chance: very_common
+          item:   ice_grip
+        - chance: very_common
+          item:   dark_grip
+        - chance: always
+          one_of: [simba_buckler, oracles_gloves, enkidus_subligar]
+        - chance: uncommon
+          one_of: [simba_buckler, oracles_gloves, enkidus_subligar]
+
+  King_Apkallu:
+    id:            2253
+    species:       apkallu
+    skill_list_id: 27
+    attributes:
+      combat:
+        skill: hand_to_hand
+        delay: 380
+      jobs: [mnk, mnk]
+      render:
+        look:
+          type:  standard
+          model: 1723
+        entity_flags:  133
+        animation_sub:   5
+        model_size:      2
+        hitbox:          9
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: very_common
+          item:   apkallu_feather
+        - chance: uncommon
+          item:   apkallu_egg
+      steal: denizanasi
+      despoil:
+        apkallu_feather: 0
+        apkallu_egg:     0
+
+  Magmatic_Eruca:
+    id:            2485
+    species:       eruca
+    skill_list_id: 107
+    attributes:
+      combat:
+        skill: club
+      render:
+        look:
+          type:  standard
+          model: 406
+        entity_flags:  131
+        animation_sub:  12
+        model_size:      1
+        hitbox:         15
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   piece_of_crawler_cocoon
+        - chance: rare
+          item:   spool_of_silk_thread
+        - chance: common
+          item:   crawler_egg
+      despoil:
+        piece_of_crawler_cocoon: 0
+        crawler_egg:             0
+
+  Mountain_Clot:
+    id:            2758
+    species:       clot
+    skill_list_id: 66
+    attributes:
+      combat:
+        skill: club
+      render:
+        look:
+          type:  standard
+          model: 294
+        entity_flags: 131
+        model_size:     1
+        hitbox:        24
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+
+  Orichalcumshell:
+    id:            5331
+    species:       crab
+    skill_list_id: 77
+    attributes:
+      combat:
+        skill: great_sword
+      jobs: [pld, pld]
+      render:
+        look:
+          type:  standard
+          model: 357
+        entity_flags:  1155
+        animation_sub:    8
+        model_size:       1
+        hitbox:          13
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   slice_of_land_crab_meat
+        - chance: uncommon
+          item:   crab_shell
+        - chance: rare
+          item:   sack_of_white_sand
+        - chance: very_rare
+          item:   high-quality_crab_shell
+      despoil:
+        slice_of_land_crab_meat: 0
+        crab_shell:              0
+    content: abyssea
+
+  Phasma:
+    id:            3130
+    species:       ghost
+    spell_list_id: 28
+    skill_list_id: 121
+    attributes:
+      combat:
+        skill: staff
+      jobs: [war, blm]
+      render:
+        look:
+          type:  standard
+          model: 368
+        entity_flags: 643
+        model_size:     1
+        hitbox:         8
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+        type:    [at_night]
+    loot:
+      drops:
+        - chance: common
+          item:   square_of_cotton_cloth
+        - chance: uncommon
+          item:   revival_tree_root
+      despoil:
+        square_of_cotton_cloth: 0
+
+  Sarama:
+    id:            6753
+    species:       cerberus
+    type:          [notorious]
+    skill_list_id: 62
+    attributes:
+      combat:
+        skill:    scythe
+        delay:    200
+        dmg_mult: 175
+      resists:
+        immune_status: [gravity, light_sleep, dark_sleep]
+        rank_element:
+          fire:  11
+          light: 10
+          dark:  10
+        rank_status:
+          light_sleep: 10
+          dark_sleep:  10
+          blind:       10
+      render:
+        look:
+          type:  standard
+          model: 1793
+        entity_flags: 133
+        name_prefix:   32
+        model_size:     2
+        hitbox:        45
+      behaviors:
+        flags:          [no_turn]
+        aggressive:     true
+        true_detection: true
+      spawn:
+        type: [scripted]
+
+  Sarameya:
+    id:            3465
+    species:       cerberus
+    type:          [notorious]
+    spell_list_id: 139
+    skill_list_id: 314
+    attributes:
+      combat:
+        skill: dagger
+        delay: 180
+      jobs: [rdm, blm]
+      resists:
+        immune_status: [slow, elegy]
+      render:
+        look:
+          type:  standard
+          model: 1793
+        entity_flags: 669
+        name_prefix:   32
+        model_size:     2
+        hitbox:        45
+      behaviors:
+        flags:          [no_turn]
+        aggressive:     true
+        true_detection: true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 50000
+    loot:
+      drops:
+        - chance: always
+          item:   slice_of_cerberus_meat
+        - chance: always
+          item:   cerberus_claw
+        - chance: always
+          item:   cerberus_hide
+        - chance: always
+          item:   sarameyas_hide
+        - chance: always
+          one_of: [aurum_armet, oracles_cap, oracles_robe]
+        - chance: common
+          one_of: [pachipachio, foolkiller, hachiryu_haidate]
+
+  Scoriaceous_Eruca:
+    id:            5332
+    species:       eruca
+    skill_list_id: 107
+    attributes:
+      combat:
+        skill: club
+      render:
+        look:
+          type:  standard
+          model: 406
+        entity_flags:  131
+        animation_sub:  12
+        model_size:      1
+        hitbox:         15
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   piece_of_crawler_cocoon
+        - chance: rare
+          item:   spool_of_silk_thread
+        - chance: common
+          item:   crawler_egg
+      despoil:
+        piece_of_crawler_cocoon: 0
+        crawler_egg:             0
+    content: abyssea
+
+  Sicklemoon_Crab:
+    id:            3615
+    species:       crab
+    type:          [fished]
+    skill_list_id: 77
+    attributes:
+      combat:
+        skill: great_sword
+      jobs: [pld, pld]
+      render:
+        look:
+          type:  standard
+          model: 357
+        entity_flags: 3
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: common
+          item:   slice_of_land_crab_meat
+        - chance: uncommon
+          item:   crab_shell
+        - chance: rare
+          item:   sack_of_white_sand
+        - chance: very_rare
+          item:   high-quality_crab_shell
+      despoil:
+        slice_of_land_crab_meat: 0
+        crab_shell:              0
+
+  Sicklemoon_Jagil:
+    id:            3616
+    species:       pugil
+    skill_list_id: 709
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 349
+        entity_flags: 131
+        model_size:     1
+        hitbox:        27
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   handful_of_pugil_scales
+      steal: handful_of_fish_scales
+      despoil:
+        handful_of_pugil_scales: 0
+        handful_of_fish_scales:  0
+
+  Sulphuric_Jagil:
+    id:            5330
+    species:       pugil
+    skill_list_id: 709
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 349
+        entity_flags: 131
+        model_size:     1
+        hitbox:        27
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   handful_of_pugil_scales
+      steal: handful_of_fish_scales
+      despoil:
+        handful_of_pugil_scales: 0
+        handful_of_fish_scales:  0
+    content: abyssea
+
+  Sweeping_Cluster:
+    id:            3825
+    species:       cluster
+    skill_list_id: 68
+    attributes:
+      combat:
+        skill: club
+      render:
+        look:
+          type:  standard
+          model: 291
+        entity_flags:  131
+        animation_sub:  12
+        model_size:      1
+        hitbox:         37
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   pinch_of_cluster_ash
+        - chance: rare
+          item:   cluster_arm
+
+  Troll_Artilleryman_MZ:
+    id:            6684
+    display_name:  Troll_Artilleryman
+    species:       light_troll
+    skill_list_id: 246
+    attributes:
+      combat:
+        skill: axe
+        delay: 230
+      jobs: [rng, rng]
+      render:
+        look:
+          type:  automaton
+          model: 1709
+        entity_flags:  131
+        animation_sub:   4
+        model_size:      1
+        hitbox:         17
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+
+  Troll_Cuirasser_MZ:
+    id:            6685
+    display_name:  Troll_Cuirasser
+    species:       heavy_troll
+    spell_list_id: 3
+    skill_list_id: 246
+    attributes:
+      combat:
+        skill: great_sword
+        delay: 230
+      jobs: [rdm, rdm]
+      render:
+        look:
+          type:  automaton
+          model: 1685
+        entity_flags:  131
+        animation_sub:   4
+        model_size:      1
+        hitbox:         17
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+
+  Troll_Grenadier_MZ:
+    id:            6686
+    display_name:  Troll_Grenadier
+    species:       light_troll
+    skill_list_id: 246
+    attributes:
+      combat:
+        skill: axe
+        delay: 230
+      jobs: [rng, rng]
+      render:
+        look:
+          type:  automaton
+          model: 1710
+        entity_flags:  131
+        animation_sub:   4
+        model_size:      1
+        hitbox:         17
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+
+  Troll_Hammersmith:
+    id:            4019
+    species:       destroyer
+    skill_list_id: 247
+    attributes:
+      combat:
+        skill: scythe
+        delay: 230
+      render:
+        look:
+          type:  standard
+          model: 1784
+        entity_flags: 131
+        model_size:     1
+        hitbox:        20
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+
+  Troll_Speculator_MtZhayolm:
+    id:            7307
+    display_name:  Troll_Speculator
+    species:       light_troll
+    skill_list_id: 246
+    attributes:
+      combat:
+        skill: scythe
+        delay: 230
+      jobs: [pup, pup]
+      render:
+        look:
+          type:  automaton
+          model: 1712
+        entity_flags: 131
+        model_size:     2
+        hitbox:        20
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+
+  Trolls_Automaton:
+    id:            4035
+    species:       automaton
+    spell_list_id: 567
+    skill_list_id: 363
+    attributes:
+      combat:
+        skill: club
+        delay: 320
+      jobs: [whm, whm]
+      render:
+        look:
+          type:  automaton
+          model: 1977
+        entity_flags: 131
+        model_size:     2
+        hitbox:         8
+      behaviors:
+        links: true
+      spawn:
+        type: [scripted]
+
+  Vanasarvik:
+    id:            5191
+    species:       imp
+    type:          [notorious]
+    spell_list_id: 21
+    skill_list_id: 165
+    attributes:
+      combat:
+        skill: scythe
+      jobs: [blm, blm]
+      resists:
+        dmg_physical:
+          piercing: 2500
+      mods:
+        mdef: 50
+      render:
+        look:
+          type:  standard
+          model: 1728
+        entity_flags:  159
+        animation_sub:   4
+        name_prefix:    32
+        model_size:      3
+        hitbox:         16
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+      stats:
+        mp: 25000
+
+  Volcanic_Leech:
+    id:            4247
+    species:       leech
+    skill_list_id: 172
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 276
+        entity_flags: 643
+        model_size:     1
+        hitbox:        11
+      behaviors:
+        links: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   vial_of_fiend_blood
+        - chance: rare
+          item:   vial_of_beastman_blood
+        - chance: very_rare
+          item:   carbuncles_ruby
+      despoil:
+        vial_of_fiend_blood:    0
+        vial_of_beastman_blood: 0
+        vial_of_bird_blood:     0
+
+  Vozold_Clot:
+    id:            4259
+    species:       clot
+    type:          [fished]
+    skill_list_id: 66
+    attributes:
+      combat:
+        skill: club
+      render:
+        look:
+          type:  standard
+          model: 294
+        entity_flags: 3
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+
+  Vozold_Jagil:
+    id:            4260
+    species:       pugil
+    type:          [fished]
+    skill_list_id: 709
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 349
+        entity_flags: 3
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+    loot:
+      steal: handful_of_fish_scales
+      despoil:
+        handful_of_pugil_scales: 0
+        handful_of_fish_scales:  0
+
+  Wamoura:
+    id:            4280
+    species:       wamoura
+    skill_list_id: 253
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 1808
+        entity_flags:  131
+        animation_sub:   5
+        model_size:      1
+        hitbox:         20
+      behaviors:
+        aggressive:     true
+        links:          true
+        true_detection: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: rare
+          item:   wamoura_cocoon
+      despoil:
+        wamoura_scale: 0
+
+  Wamoura_Eclosion:
+    id:            4280
+    display_name:  Wamoura
+    species:       wamoura
+    skill_list_id: 253
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 1808
+        entity_flags:  131
+        animation_sub:   5
+        model_size:      1
+        hitbox:         20
+      behaviors:
+        aggressive:     true
+        links:          true
+        true_detection: true
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: common
+          item:   clump_of_wamoura_hair
+        - chance: very_common
+          item:   wamoura_scale
+      despoil:
+        wamoura_scale: 0
+
+  Wamoura_Prince:
+    id:            4282
+    species:       wamouracampa
+    skill_list_id: 254
+    attributes:
+      combat:
+        skill: scythe
+        delay: 265
+      render:
+        look:
+          type:  standard
+          model: 1802
+        entity_flags:  131
+        animation_sub:   4
+        model_size:      1
+        hitbox:         12
+      behaviors:
+        links: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   wamoura_cocoon
+      despoil:
+        wamoura_scale: 0
+
+  Wootzshell:
+    id:            4371
+    species:       crab
+    skill_list_id: 77
+    attributes:
+      combat:
+        skill: great_sword
+      jobs: [pld, pld]
+      render:
+        look:
+          type:  standard
+          model: 357
+        entity_flags: 131
+        model_size:     1
+        hitbox:        13
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   slice_of_land_crab_meat
+        - chance: uncommon
+          item:   crab_shell
+        - chance: rare
+          item:   sack_of_white_sand
+        - chance: very_rare
+          item:   high-quality_crab_shell
+      despoil:
+        slice_of_land_crab_meat: 0
+        crab_shell:              0
+
+  Zazalda_Clot:
+    id:            4491
+    species:       clot
+    type:          [fished]
+    skill_list_id: 66
+    attributes:
+      combat:
+        skill: club
+      render:
+        look:
+          type:  standard
+          model: 294
+        entity_flags: 3
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+
+  Zazalda_Jagil:
+    id:            4492
+    species:       pugil
+    type:          [fished]
+    skill_list_id: 709
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 349
+        entity_flags: 3
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: rare
+          item:   handful_of_pugil_scales
+        - chance: very_rare
+          item:   shall_shell
+      steal: handful_of_fish_scales
+      despoil:
+        handful_of_pugil_scales: 0
+        handful_of_fish_scales:  0
+
+  Zhayolm_Apkallu:
+    id:            4501
+    species:       apkallu
+    skill_list_id: 27
+    attributes:
+      combat:
+        skill: hand_to_hand
+        delay: 380
+      jobs: [mnk, mnk]
+      render:
+        look:
+          type:  standard
+          model: 1723
+        entity_flags:  131
+        animation_sub:   5
+        model_size:      1
+        hitbox:          8
+      behaviors:
+        links: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: very_common
+          item:   apkallu_feather
+        - chance: uncommon
+          item:   apkallu_egg
+      steal: denizanasi
+      despoil:
+        apkallu_feather: 0
+        apkallu_egg:     0
+
+spawns:
+  17027073:
+    template: Sicklemoon_Crab
+    at:       [1.000, 1.000, 1.000]
+    level:    [71, 73]
+  17027074:
+    template: Zazalda_Clot
+    at:       [1.000, 1.000, 1.000]
+    level:    [75, 75]
+  17027075:
+    template: Vozold_Clot
+    at:       [1.000, 1.000, 1.000]
+    level:    [75, 75]
+  17027076:
+    template: Zazalda_Jagil
+    at:       [1.000, 1.000, 1.000]
+    level:    [73, 75]
+  17027077:
+    template: Vozold_Jagil
+    at:       [1.000, 1.000, 1.000]
+    level:    [71, 78]
+  17027078:
+    template: Giant_Orobon
+    at:       [1.000, 1.000, 1.000]
+    level:    [79, 80]
+  17027079:
+    template: Wootzshell
+    region:   s_7
+    level:    [70, 71]
+  17027080:
+    template: Wootzshell
+    region:   s_8
+    level:    [70, 71]
+  17027081:
+    template: Wootzshell
+    region:   s_9
+    level:    [70, 71]
+  17027082:
+    template: Wootzshell
+    region:   s_10
+    level:    [70, 71]
+  17027083:
+    template: Wootzshell
+    region:   se_11
+    level:    [70, 71]
+  17027084:
+    template: Sicklemoon_Jagil
+    region:   se_11
+    level:    [74, 76]
+  17027085:
+    template: Sulphuric_Jagil
+    region:   se_13
+    level:    [87, 88]
+  17027086:
+    template: Sulphuric_Jagil
+    region:   se_13
+    level:    [87, 88]
+  17027087:
+    template: Sulphuric_Jagil
+    region:   se_13
+    level:    [87, 88]
+  17027088:
+    template: Sulphuric_Jagil
+    region:   se_16
+    level:    [87, 88]
+  17027089:
+    template: Sulphuric_Jagil
+    region:   se_16
+    level:    [87, 88]
+  17027090:
+    template: Sulphuric_Jagil
+    region:   se_16
+    level:    [87, 88]
+  17027091:
+    template: Sulphuric_Jagil
+    region:   se_19
+    level:    [87, 88]
+  17027092:
+    template: Sulphuric_Jagil
+    region:   se_19
+    level:    [87, 88]
+  17027093:
+    template: Sulphuric_Jagil
+    region:   se_19
+    level:    [87, 88]
+  17027094:
+    template: Wootzshell
+    region:   s_22
+    level:    [70, 71]
+  17027095:
+    template: Sicklemoon_Jagil
+    region:   s_22
+    level:    [74, 76]
+  17027096:
+    template: Phasma
+    region:   s_22
+    level:    [73, 76]
+  17027097:
+    template: Sicklemoon_Jagil
+    region:   s_25
+    level:    [74, 76]
+  17027098:
+    template: Wootzshell
+    region:   s_25
+    level:    [70, 71]
+  17027099:
+    template: Phasma
+    region:   s_27
+    level:    [73, 76]
+  17027100:
+    template: Sicklemoon_Jagil
+    region:   s_28
+    level:    [74, 76]
+  17027101:
+    template: Sicklemoon_Jagil
+    region:   s_28
+    level:    [74, 76]
+  17027102:
+    template: Sicklemoon_Jagil
+    region:   s_30
+    level:    [74, 76]
+  17027103:
+    template: Sicklemoon_Jagil
+    region:   s_30
+    level:    [74, 76]
+  17027104:
+    template: Wootzshell
+    region:   s_30
+    level:    [70, 71]
+  17027105:
+    template: Wootzshell
+    region:   s_33
+    level:    [70, 71]
+  17027106:
+    template: Wootzshell
+    region:   s_33
+    level:    [70, 71]
+  17027107:
+    template: Sicklemoon_Jagil
+    region:   s_35
+    level:    [74, 76]
+  17027108:
+    template: Sicklemoon_Jagil
+    region:   s_35
+    level:    [74, 76]
+  17027109:
+    template: Phasma
+    region:   s_35
+    level:    [73, 76]
+  17027110:
+    template: Wootzshell
+    region:   s_38
+    level:    [70, 71]
+  17027111:
+    template: Earth_Elemental
+    region:   s_38
+    level:    [74, 76]
+  17027112:
+    template: Phasma
+    region:   s_40
+    level:    [73, 76]
+  17027113:
+    template: Sulphuric_Jagil
+    region:   se_41
+    level:    [87, 88]
+  17027114:
+    template: Sulphuric_Jagil
+    region:   se_41
+    level:    [87, 88]
+  17027115:
+    template: Sulphuric_Jagil
+    region:   se_41
+    level:    [87, 88]
+  17027116:
+    template: Sulphuric_Jagil
+    region:   s_44
+    level:    [87, 88]
+  17027117:
+    template: Sulphuric_Jagil
+    region:   s_44
+    level:    [87, 88]
+  17027118:
+    template: Sulphuric_Jagil
+    region:   s_44
+    level:    [87, 88]
+  17027119:
+    template: Sulphuric_Jagil
+    region:   s_47
+    level:    [87, 88]
+  17027120:
+    template: Sulphuric_Jagil
+    region:   s_47
+    level:    [87, 88]
+  17027121:
+    template: Sulphuric_Jagil
+    region:   s_47
+    level:    [87, 88]
+  17027122:
+    template: Earth_Elemental
+    region:   s_47
+    level:    [74, 76]
+  17027123:
+    template: Assassin_Fly_Large
+    script:   Assassin_Fly
+    region:   s_51
+    level:    [73, 75]
+  17027124:
+    template: Assassin_Fly
+    region:   s_51
+    level:    [71, 73]
+  17027125:
+    template: Assassin_Fly
+    region:   s_51
+    level:    [71, 73]
+  17027126:
+    template: Magmatic_Eruca
+    region:   s_54
+    level:    [73, 75]
+  17027127:
+    template: Magmatic_Eruca
+    region:   s_54
+    level:    [73, 75]
+  17027128:
+    template: Magmatic_Eruca
+    region:   s_56
+    level:    [73, 75]
+  17027129:
+    template: Magmatic_Eruca
+    region:   s_56
+    level:    [73, 75]
+  17027130:
+    template: Magmatic_Eruca
+    region:   s_58
+    level:    [73, 75]
+  17027131:
+    template: Magmatic_Eruca
+    region:   s_58
+    level:    [73, 75]
+  17027132:
+    template: Assassin_Fly_Large
+    script:   Assassin_Fly
+    region:   s_60
+    level:    [73, 75]
+  17027133:
+    template: Assassin_Fly
+    region:   s_60
+    level:    [71, 73]
+  17027134:
+    template: Assassin_Fly
+    region:   s_60
+    level:    [71, 73]
+  17027135:
+    template: Magmatic_Eruca
+    region:   s_63
+    level:    [73, 75]
+  17027136:
+    template: Magmatic_Eruca
+    region:   s_64
+    level:    [73, 75]
+  17027137:
+    template: Magmatic_Eruca
+    region:   s_64
+    level:    [73, 75]
+  17027138:
+    template: Fire_Elemental
+    region:   region_218
+    level:    [74, 76]
+  17027139:
+    template: Magmatic_Eruca
+    region:   s_67
+    level:    [73, 75]
+  17027140:
+    template: Magmatic_Eruca
+    region:   s_68
+    level:    [73, 75]
+  17027141:
+    template: Magmatic_Eruca
+    region:   s_69
+    level:    [73, 75]
+  17027142:
+    template: Magmatic_Eruca
+    region:   s_69
+    level:    [73, 75]
+  17027143:
+    template: Phasma
+    region:   s_71
+    level:    [73, 76]
+  17027144:
+    template: Magmatic_Eruca
+    region:   s_71
+    level:    [73, 75]
+  17027145:
+    template: Magmatic_Eruca
+    region:   s_73
+    level:    [73, 75]
+  17027146:
+    template: Magmatic_Eruca
+    region:   s_73
+    level:    [73, 75]
+  17027147:
+    template: Assassin_Fly_Large
+    script:   Assassin_Fly
+    region:   s_75
+    level:    [73, 75]
+  17027148:
+    template: Assassin_Fly
+    region:   s_75
+    level:    [71, 73]
+  17027149:
+    template: Assassin_Fly
+    region:   s_75
+    level:    [71, 73]
+  17027150:
+    template: Magmatic_Eruca
+    region:   s_78
+    level:    [73, 75]
+  17027151:
+    template: Magmatic_Eruca
+    region:   s_79
+    level:    [73, 75]
+  17027152:
+    template: Magmatic_Eruca
+    region:   se_80
+    level:    [73, 75]
+  17027153:
+    template: Mountain_Clot
+    region:   e_81
+    level:    [72, 74]
+  17027154:
+    template: Mountain_Clot
+    region:   e_82
+    level:    [72, 74]
+  17027155:
+    template: Mountain_Clot
+    region:   e_83
+    level:    [72, 74]
+  17027156:
+    template: Mountain_Clot
+    region:   e_84
+    level:    [72, 74]
+  17027157:
+    template: Magmatic_Eruca
+    region:   region_188
+    level:    [73, 75]
+  17027158:
+    template: Magmatic_Eruca
+    region:   c_86
+    level:    [73, 75]
+  17027159:
+    template: Magmatic_Eruca
+    region:   c_87
+    level:    [73, 75]
+  17027160:
+    template: Magmatic_Eruca
+    region:   c_88
+    level:    [73, 75]
+  17027161:
+    template: Hilltroll_Warrior
+    region:   c_89
+    level:    [79, 81]
+  17027162:
+    template: Hilltroll_Puppetmaster
+    region:   c_90
+    level:    [79, 81]
+  17027163:
+    template: Trolls_Automaton
+    region:   c_90
+    level:    [77, 79]
+  17027164:
+    template: Hilltroll_Dark_Knight
+    region:   c_92
+    level:    [79, 81]
+  17027165:
+    template: Hilltroll_Monk
+    region:   c_93
+    level:    [79, 81]
+  17027166:
+    template: Volcanic_Leech
+    region:   c_94
+    level:    [73, 75]
+  17027167:
+    template: Volcanic_Leech
+    region:   c_94
+    level:    [73, 75]
+  17027168:
+    template: Hilltroll_Red_Mage
+    region:   c_94
+    level:    [79, 81]
+  17027169:
+    template: Earth_Elemental
+    region:   c_94
+    level:    [74, 76]
+  17027170:
+    template: Hilltroll_Paladin
+    region:   c_98
+    level:    [79, 81]
+  17027171:
+    template: Hilltroll_Monk
+    region:   c_98
+    level:    [79, 81]
+  17027172:
+    template: Volcanic_Leech
+    region:   c_100
+    level:    [73, 75]
+  17027173:
+    template: Hilltroll_Dark_Knight
+    region:   c_100
+    level:    [79, 81]
+  17027174:
+    template: Volcanic_Leech
+    region:   c_102
+    level:    [73, 75]
+  17027175:
+    template: Hilltroll_Red_Mage
+    region:   c_102
+    level:    [79, 81]
+  17027176:
+    template: Volcanic_Leech
+    region:   c_104
+    level:    [73, 75]
+  17027177:
+    template: Hilltroll_Paladin
+    region:   c_104
+    level:    [79, 81]
+  17027178:
+    template: Hilltroll_Warrior
+    region:   c_106
+    level:    [79, 81]
+  17027179:
+    template: Hilltroll_Red_Mage
+    region:   c_107
+    level:    [79, 81]
+  17027180:
+    template: Hilltroll_Puppetmaster
+    region:   c_108
+    level:    [79, 81]
+  17027181:
+    template: Trolls_Automaton
+    region:   c_108
+    level:    [77, 79]
+  17027182:
+    template: Fire_Elemental
+    region:   c_108
+    level:    [74, 76]
+  17027183:
+    template: Fahrafahr_the_Bloodied
+    region:   c_108
+    level:    [80, 80]
+  17027184:
+    template: Volcanic_Leech
+    region:   region_189
+    level:    [73, 75]
+  17027185:
+    template: Hilltroll_Dark_Knight
+    region:   c_113
+    level:    [79, 81]
+  17027186:
+    template: Hilltroll_Paladin
+    region:   c_114
+    level:    [79, 81]
+  17027187:
+    template: Hilltroll_Red_Mage
+    region:   c_115
+    level:    [79, 81]
+  17027188:
+    template: Hilltroll_Monk
+    region:   c_116
+    level:    [79, 81]
+  17027189:
+    template: Hilltroll_Warrior
+    region:   c_117
+    level:    [79, 81]
+  17027190:
+    template: Mountain_Clot
+    region:   n_118
+    level:    [74, 75]
+  17027191:
+    template: Mountain_Clot
+    region:   n_119
+    level:    [74, 75]
+  17027192:
+    template: Mountain_Clot
+    region:   c_120
+    level:    [74, 75]
+  17027193:
+    template: Mountain_Clot
+    region:   c_120
+    level:    [74, 75]
+  17027194:
+    template: Mountain_Clot
+    region:   n_122
+    level:    [74, 75]
+  17027195:
+    template: Mountain_Clot
+    region:   n_122
+    level:    [74, 75]
+  17027196:
+    template: Wamoura_Prince
+    region:   n_124
+    level:    [79, 81]
+  17027197:
+    template: Wamoura_Prince
+    script:   Wamoura_Prince_Eclosion
+    region:   n_124
+    level:    [79, 81]
+  17027198:
+    template: Wamoura_Eclosion
+    region:   n_124
+    level:    [80, 82]
+  17027199:
+    template: Wamoura_Prince
+    region:   n_127
+    level:    [79, 81]
+  17027200:
+    template: Wamoura_Prince
+    script:   Wamoura_Prince_Eclosion
+    region:   n_127
+    level:    [79, 81]
+  17027201:
+    template: Wamoura_Eclosion
+    region:   n_127
+    level:    [80, 82]
+  17027202:
+    template: Wamoura_Prince
+    region:   n_130
+    level:    [79, 81]
+  17027203:
+    template: Wamoura_Prince
+    region:   n_131
+    level:    [79, 81]
+  17027204:
+    template: Wamoura_Prince
+    region:   n_131
+    level:    [79, 81]
+  17027205:
+    template: Sweeping_Cluster
+    region:   n_133
+    level:    [77, 78]
+  17027206:
+    template: Sweeping_Cluster
+    region:   n_134
+    level:    [77, 78]
+  17027207:
+    template: Mountain_Clot
+    region:   c_135
+    level:    [74, 75]
+  17027208:
+    template: Assassin_Fly_Large
+    script:   Assassin_Fly
+    region:   e_136
+    level:    [73, 75]
+  17027209:
+    template: Assassin_Fly
+    region:   e_136
+    level:    [71, 73]
+  17027210:
+    template: Assassin_Fly
+    region:   e_136
+    level:    [71, 73]
+  17027211:
+    template: Magmatic_Eruca
+    region:   e_139
+    level:    [72, 74]
+  17027212:
+    template: Magmatic_Eruca
+    region:   e_140
+    level:    [72, 74]
+  17027213:
+    template: Magmatic_Eruca
+    region:   e_140
+    level:    [72, 74]
+  17027214:
+    template: Magmatic_Eruca
+    region:   e_142
+    level:    [72, 74]
+  17027215:
+    template: Sicklemoon_Jagil
+    region:   e_143
+    level:    [74, 76]
+  17027216:
+    template: Phasma
+    region:   e_143
+    level:    [73, 76]
+  17027217:
+    template: Sicklemoon_Jagil
+    region:   e_145
+    level:    [73, 75]
+  17027218:
+    template: Sicklemoon_Jagil
+    region:   e_145
+    level:    [73, 75]
+  17027219:
+    template: Magmatic_Eruca
+    region:   e_147
+    level:    [72, 74]
+  17027220:
+    template: Zhayolm_Apkallu
+    region:   e_148
+    level:    [72, 74]
+  17027221:
+    template: Zhayolm_Apkallu
+    region:   e_148
+    level:    [72, 74]
+  17027222:
+    template: Zhayolm_Apkallu
+    region:   e_150
+    level:    [72, 74]
+  17027223:
+    template: Earth_Elemental
+    region:   e_150
+    level:    [74, 76]
+  17027224:
+    template: Zhayolm_Apkallu
+    region:   e_152
+    level:    [72, 74]
+  17027225:
+    template: Sicklemoon_Jagil
+    region:   e_153
+    level:    [73, 75]
+  17027226:
+    template: Zhayolm_Apkallu
+    region:   e_153
+    level:    [72, 74]
+  17027227:
+    template: Phasma
+    region:   e_153
+    level:    [73, 76]
+  17027228:
+    template: Chary_Apkallu
+    region:   e_153
+    level:    [77, 78]
+  17027229:
+    template: Zhayolm_Apkallu
+    region:   e_157
+    level:    [72, 74]
+  17027230:
+    template: Sicklemoon_Jagil
+    region:   e_157
+    level:    [73, 75]
+  17027231:
+    template: Sicklemoon_Jagil
+    region:   e_159
+    level:    [73, 75]
+  17027232:
+    template: Sicklemoon_Jagil
+    region:   e_159
+    level:    [73, 75]
+  17027233:
+    template: Zhayolm_Apkallu
+    region:   e_161
+    level:    [72, 74]
+  17027234:
+    template: Magmatic_Eruca
+    region:   e_162
+    level:    [72, 74]
+  17027235:
+    template: Magmatic_Eruca
+    region:   e_163
+    level:    [72, 74]
+  17027236:
+    template: Fire_Elemental
+    region:   region_190
+    level:    [74, 76]
+  17027237:
+    template: Magmatic_Eruca
+    region:   e_165
+    level:    [72, 74]
+  17027238:
+    template: Magmatic_Eruca
+    region:   e_166
+    level:    [72, 74]
+  17027239:
+    template: Zhayolm_Apkallu
+    region:   e_167
+    level:    [72, 74]
+  17027240:
+    template: Zhayolm_Apkallu
+    region:   e_167
+    level:    [72, 74]
+  17027241:
+    template: Magmatic_Eruca
+    region:   e_169
+    level:    [72, 74]
+  17027242:
+    template: Magmatic_Eruca
+    region:   e_169
+    level:    [72, 74]
+  17027243:
+    template: Zhayolm_Apkallu
+    region:   e_171
+    level:    [72, 74]
+  17027244:
+    template: Zhayolm_Apkallu
+    region:   e_171
+    level:    [72, 74]
+  17027245:
+    template: Zhayolm_Apkallu
+    region:   e_173
+    level:    [72, 74]
+  17027246:
+    template: Zhayolm_Apkallu
+    region:   e_173
+    level:    [72, 74]
+  17027247:
+    template: Zhayolm_Apkallu
+    region:   e_175
+    level:    [72, 74]
+  17027248:
+    template: Magmatic_Eruca
+    region:   e_175
+    level:    [72, 74]
+  17027249:
+    template: Zhayolm_Apkallu
+    region:   e_177
+    level:    [72, 74]
+  17027250:
+    template: Magmatic_Eruca
+    region:   e_177
+    level:    [72, 74]
+  17027251:
+    template: Phasma
+    region:   e_179
+    level:    [73, 76]
+  17027252:
+    template: Magmatic_Eruca
+    region:   e_180
+    level:    [72, 74]
+  17027253:
+    template: Magmatic_Eruca
+    region:   e_180
+    level:    [72, 74]
+  17027254:
+    template: Assassin_Fly_Large
+    script:   Assassin_Fly
+    region:   e_182
+    level:    [73, 75]
+  17027255:
+    template: Assassin_Fly
+    region:   e_182
+    level:    [71, 73]
+  17027256:
+    template: Assassin_Fly
+    region:   e_182
+    level:    [71, 73]
+  17027257:
+    template: Phasma
+    region:   e_185
+    level:    [73, 76]
+  17027258:
+    template: Magmatic_Eruca
+    region:   e_185
+    level:    [72, 74]
+  17027259:
+    template: Magmatic_Eruca
+    region:   e_187
+    level:    [72, 74]
+  17027260:
+    template: Magmatic_Eruca
+    region:   e_187
+    level:    [72, 74]
+  17027261:
+    template: Magmatic_Eruca
+    region:   e_189
+    level:    [72, 74]
+  17027262:
+    template: Magmatic_Eruca
+    region:   e_189
+    level:    [72, 74]
+  17027263:
+    template: Mountain_Clot
+    region:   e_191
+    level:    [72, 74]
+  17027264:
+    template: Mountain_Clot
+    region:   e_191
+    level:    [72, 74]
+  17027265:
+    template: Mountain_Clot
+    region:   e_193
+    level:    [72, 74]
+  17027266:
+    template: Mountain_Clot
+    region:   e_193
+    level:    [72, 74]
+  17027267:
+    template: Mountain_Clot
+    region:   e_195
+    level:    [72, 74]
+  17027268:
+    template: Mountain_Clot
+    region:   e_196
+    level:    [74, 75]
+  17027269:
+    template: Mountain_Clot
+    region:   e_197
+    level:    [71, 73]
+  17027270:
+    template: Mountain_Clot
+    region:   ne_198
+    level:    [71, 73]
+  17027271:
+    template: Mountain_Clot
+    region:   region_191
+    level:    [71, 73]
+  17027272:
+    template: Zhayolm_Apkallu
+    region:   ne_200
+    level:    [70, 72]
+  17027273:
+    template: Magmatic_Eruca
+    region:   ne_201
+    level:    [71, 73]
+  17027274:
+    template: Magmatic_Eruca
+    region:   ne_202
+    level:    [71, 73]
+  17027275:
+    template: Mountain_Clot
+    region:   ne_203
+    level:    [72, 74]
+  17027276:
+    template: Mountain_Clot
+    region:   ne_204
+    level:    [72, 74]
+  17027277:
+    template: Volcanic_Leech
+    region:   ne_205
+    level:    [72, 73]
+  17027278:
+    template: Zhayolm_Apkallu
+    region:   ne_205
+    level:    [70, 72]
+  17027279:
+    template: Zhayolm_Apkallu
+    region:   ne_207
+    level:    [70, 72]
+  17027280:
+    template: Volcanic_Leech
+    region:   ne_207
+    level:    [72, 73]
+  17027281:
+    template: Zhayolm_Apkallu
+    region:   ne_209
+    level:    [70, 72]
+  17027282:
+    template: Volcanic_Leech
+    region:   ne_209
+    level:    [72, 73]
+  17027283:
+    template: Zhayolm_Apkallu
+    region:   ne_211
+    level:    [70, 72]
+  17027284:
+    template: Zhayolm_Apkallu
+    region:   ne_212
+    level:    [70, 72]
+  17027285:
+    template: Zhayolm_Apkallu
+    region:   ne_212
+    level:    [70, 72]
+  17027286:
+    template: Zhayolm_Apkallu
+    region:   ne_214
+    level:    [70, 72]
+  17027287:
+    template: Fire_Elemental
+    region:   ne_214
+    level:    [74, 76]
+  17027288:
+    template: Earth_Elemental
+    region:   ne_214
+    level:    [74, 76]
+  17027289:
+    template: Zhayolm_Apkallu
+    region:   ne_217
+    level:    [70, 72]
+  17027290:
+    template: Zhayolm_Apkallu
+    region:   ne_218
+    level:    [70, 72]
+  17027291:
+    template: Volcanic_Leech
+    region:   ne_218
+    level:    [72, 73]
+  17027292:
+    template: Zhayolm_Apkallu
+    region:   ne_220
+    level:    [70, 72]
+  17027293:
+    template: Zhayolm_Apkallu
+    region:   ne_220
+    level:    [70, 72]
+  17027294:
+    template: Phasma
+    region:   ne_222
+    level:    [73, 76]
+  17027295:
+    template: Zhayolm_Apkallu
+    region:   ne_222
+    level:    [70, 72]
+  17027296:
+    template: Assassin_Fly_Large
+    script:   Assassin_Fly
+    region:   ne_224
+    level:    [74, 76]
+  17027297:
+    template: Assassin_Fly
+    region:   ne_224
+    level:    [72, 74]
+  17027298:
+    template: Assassin_Fly
+    region:   ne_224
+    level:    [72, 74]
+  17027299:
+    template: Sweeping_Cluster
+    region:   region_193
+    level:    [73, 75]
+  17027300:
+    template: Sweeping_Cluster
+    region:   region_194
+    level:    [73, 75]
+  17027301:
+    template: Sweeping_Cluster
+    region:   region_195
+    level:    [73, 75]
+  17027302:
+    template: Assassin_Fly_Large
+    script:   Assassin_Fly
+    region:   ne_232
+    level:    [74, 76]
+  17027303:
+    template: Assassin_Fly
+    region:   ne_232
+    level:    [72, 74]
+  17027304:
+    template: Assassin_Fly
+    region:   ne_232
+    level:    [72, 74]
+  17027305:
+    template: Phasma
+    region:   ne_233
+    level:    [73, 76]
+  17027306:
+    template: Sweeping_Cluster
+    region:   ne_234
+    level:    [73, 75]
+  17027307:
+    template: Sweeping_Cluster
+    region:   ne_235
+    level:    [73, 75]
+  17027308:
+    template: Sweeping_Cluster
+    region:   ne_236
+    level:    [73, 75]
+  17027309:
+    template: Sweeping_Cluster
+    region:   e_237
+    level:    [73, 75]
+  17027310:
+    template: Assassin_Fly_Large
+    script:   Assassin_Fly
+    region:   region_192
+    level:    [74, 76]
+  17027311:
+    template: Assassin_Fly
+    region:   region_192
+    level:    [72, 74]
+  17027312:
+    template: Assassin_Fly
+    region:   region_192
+    level:    [72, 74]
+  17027313:
+    template: Phasma
+    region:   e_241
+    level:    [73, 76]
+  17027314:
+    template: Sweeping_Cluster
+    region:   e_242
+    level:    [73, 75]
+  17027315:
+    template: Phasma
+    region:   e_242
+    level:    [73, 76]
+  17027316:
+    template: Sweeping_Cluster
+    region:   ne_244
+    level:    [73, 75]
+  17027317:
+    template: Sweeping_Cluster
+    region:   ne_245
+    level:    [73, 75]
+  17027318:
+    template: Ebony_Pudding
+    region:   region_219
+    level:    [79, 80]
+  17027319:
+    template: Ebony_Pudding
+    region:   region_220
+    level:    [79, 80]
+  17027320:
+    template: Ebony_Pudding
+    region:   region_221
+    level:    [79, 80]
+  17027321:
+    template: Ebony_Pudding
+    region:   region_222
+    level:    [79, 80]
+  17027322:
+    template: Ebony_Pudding
+    region:   region_223
+    level:    [79, 80]
+  17027323:
+    template: Ebony_Pudding
+    region:   region_224
+    level:    [79, 80]
+  17027324:
+    template: Ebony_Pudding
+    region:   region_196
+    level:    [79, 80]
+  17027325:
+    template: Fire_Elemental
+    region:   region_196
+    level:    [74, 76]
+  17027326:
+    template: Phasma
+    region:   region_196
+    level:    [73, 76]
+  17027327:
+    template: Ebony_Pudding
+    region:   region_225
+    level:    [79, 80]
+  17027328:
+    template: Hilltroll_Ranger
+    region:   c_263
+    level:    [81, 83]
+  17027329:
+    template: Hilltroll_Monk
+    region:   c_263
+    level:    [81, 83]
+  17027330:
+    template: Fire_Elemental
+    region:   region_197
+    level:    [74, 76]
+  17027331:
+    template: Hilltroll_Puppetmaster
+    region:   region_198
+    level:    [81, 83]
+  17027332:
+    template: Trolls_Automaton
+    at:       [256.740, -24.400, 95.383, 11]
+    level:    [77, 79]
+  17027333:
+    template: Phasma
+    region:   region_199
+    level:    [73, 76]
+  17027334:
+    template: Hilltroll_Red_Mage
+    region:   c_262
+    level:    [81, 83]
+  17027335:
+    template: Hilltroll_Dark_Knight
+    region:   c_263
+    level:    [81, 83]
+  17027336:
+    template: Hilltroll_Paladin
+    region:   c_264
+    level:    [81, 83]
+  17027337:
+    template: Earth_Elemental
+    region:   c_264
+    level:    [74, 76]
+  17027338:
+    template: Wamoura_Prince
+    region:   e_266
+    level:    [79, 81]
+  17027339:
+    template: Sweeping_Cluster
+    region:   ne_267
+    level:    [77, 78]
+  17027340:
+    template: Wamoura_Prince
+    region:   e_268
+    level:    [79, 81]
+  17027341:
+    template: Wamoura_Prince
+    script:   Wamoura_Prince_Eclosion
+    region:   e_268
+    level:    [79, 81]
+  17027342:
+    template: Wamoura_Eclosion
+    region:   e_268
+    level:    [80, 82]
+  17027343:
+    template: Wamoura_Prince
+    region:   ne_271
+    level:    [79, 81]
+  17027344:
+    template: Wamoura_Prince
+    region:   e_272
+    level:    [79, 81]
+  17027345:
+    template: Wamoura_Prince
+    region:   e_272
+    level:    [79, 81]
+  17027346:
+    template: Wamoura_Prince
+    script:   Wamoura_Prince_Eclosion
+    region:   e_275
+    level:    [79, 81]
+  17027347:
+    template: Wamoura_Eclosion
+    region:   e_275
+    level:    [80, 82]
+  17027348:
+    template: Hilltroll_Monk
+    region:   c_276
+    level:    [81, 83]
+  17027349:
+    template: Hilltroll_Ranger
+    region:   c_277
+    level:    [81, 83]
+  17027350:
+    template: Hilltroll_Paladin
+    region:   c_278
+    level:    [81, 83]
+  17027351:
+    template: Earth_Elemental
+    region:   c_279
+    level:    [74, 76]
+  17027352:
+    template: Fire_Elemental
+    region:   region_228
+    level:    [74, 76]
+  17027353:
+    template: Hilltroll_Warrior
+    region:   c_281
+    level:    [81, 83]
+  17027354:
+    template: Hilltroll_Ranger
+    region:   region_229
+    level:    [81, 83]
+  17027355:
+    template: Hilltroll_Ranger
+    region:   region_230
+    level:    [81, 83]
+  17027356:
+    template: Hilltroll_Red_Mage
+    region:   region_231
+    level:    [81, 83]
+  17027357:
+    template: Hilltroll_Ranger
+    region:   region_232
+    level:    [81, 83]
+  17027358:
+    template: Hilltroll_Dark_Knight
+    region:   region_233
+    level:    [81, 83]
+  17027359:
+    template: Hilltroll_Paladin
+    region:   region_206
+    level:    [81, 83]
+  17027360:
+    template: Hilltroll_Red_Mage
+    region:   region_234
+    level:    [81, 83]
+  17027361:
+    template: Hilltroll_Warrior
+    region:   region_208
+    level:    [81, 83]
+  17027362:
+    template: Troll_Speculator_MtZhayolm
+    script:   Troll_Speculator
+    at:       [846.093, -14.254, 251.413, 219]
+    level:    [80, 80]
+  17027363:
+    template: Trolls_Automaton
+    at:       [840.928, -14.290, 248.188, 183]
+    level:    [77, 79]
+  17027364:
+    template: Wamoura_Prince
+    region:   region_209
+    level:    [79, 81]
+  17027365:
+    template: Wamoura_Prince
+    region:   region_209
+    level:    [79, 81]
+  17027366:
+    template: King_Apkallu
+    region:   region_211
+    level:    [78, 80]
+  17027367:
+    template: King_Apkallu
+    region:   region_211
+    level:    [78, 80]
+  17027368:
+    template: King_Apkallu
+    region:   region_211
+    level:    [78, 80]
+  17027369:
+    template: King_Apkallu
+    region:   region_211
+    level:    [78, 80]
+  17027370:
+    template: King_Apkallu
+    region:   region_211
+    level:    [78, 80]
+  17027371:
+    template: Phasma
+    region:   region_215
+    level:    [73, 76]
+  17027372:
+    template: Wamoura_Prince
+    region:   region_209
+    level:    [79, 81]
+  17027373:
+    template: Wamoura_Prince
+    region:   region_209
+    level:    [79, 81]
+  17027374:
+    template: Phasma
+    region:   sw_302
+    level:    [73, 76]
+  17027375:
+    template: Wamoura_Prince
+    region:   sw_303
+    level:    [79, 81]
+  17027376:
+    template: King_Apkallu
+    region:   sw_303
+    level:    [78, 80]
+  17027377:
+    template: King_Apkallu
+    region:   sw_303
+    level:    [78, 80]
+  17027378:
+    template: King_Apkallu
+    region:   sw_306
+    level:    [78, 80]
+  17027379:
+    template: King_Apkallu
+    region:   sw_306
+    level:    [78, 80]
+  17027380:
+    template: King_Apkallu
+    region:   sw_306
+    level:    [78, 80]
+  17027381:
+    template: King_Apkallu
+    region:   sw_310
+    level:    [78, 80]
+  17027382:
+    template: King_Apkallu
+    region:   sw_310
+    level:    [78, 80]
+  17027383:
+    template: King_Apkallu
+    region:   sw_310
+    level:    [78, 80]
+  17027384:
+    template: King_Apkallu
+    region:   sw_310
+    level:    [78, 80]
+  17027385:
+    template: Orichalcumshell
+    region:   sw_313
+    level:    [88, 89]
+  17027386:
+    template: Orichalcumshell
+    region:   sw_313
+    level:    [88, 89]
+  17027387:
+    template: Orichalcumshell
+    region:   sw_313
+    level:    [88, 89]
+  17027388:
+    template: Orichalcumshell
+    region:   sw_316
+    level:    [88, 89]
+  17027389:
+    template: Orichalcumshell
+    region:   sw_316
+    level:    [88, 89]
+  17027390:
+    template: Orichalcumshell
+    region:   sw_316
+    level:    [88, 89]
+  17027391:
+    template: Orichalcumshell
+    region:   sw_319
+    level:    [88, 89]
+  17027392:
+    template: Orichalcumshell
+    region:   sw_319
+    level:    [88, 89]
+  17027393:
+    template: Orichalcumshell
+    region:   w_321
+    level:    [88, 89]
+  17027394:
+    template: Orichalcumshell
+    region:   w_321
+    level:    [88, 89]
+  17027395:
+    template: Orichalcumshell
+    region:   w_323
+    level:    [88, 89]
+  17027396:
+    template: Orichalcumshell
+    region:   w_323
+    level:    [88, 89]
+  17027397:
+    template: Orichalcumshell
+    region:   region_212
+    level:    [88, 89]
+  17027398:
+    template: Orichalcumshell
+    region:   region_212
+    level:    [88, 89]
+  17027399:
+    template: Orichalcumshell
+    region:   region_236
+    level:    [88, 89]
+  17027400:
+    template: Orichalcumshell
+    region:   region_236
+    level:    [88, 89]
+  17027401:
+    template: Orichalcumshell
+    region:   region_235
+    level:    [88, 89]
+  17027402:
+    template: Orichalcumshell
+    region:   region_235
+    level:    [88, 89]
+  17027403:
+    template: Wamoura_Prince
+    region:   region_216
+    level:    [79, 81]
+  17027404:
+    template: Wamoura_Prince
+    region:   region_214
+    level:    [79, 81]
+  17027405:
+    template: Sweeping_Cluster
+    region:   w_333
+    level:    [77, 78]
+  17027406:
+    template: Sweeping_Cluster
+    region:   w_334
+    level:    [77, 78]
+  17027407:
+    template: Ebony_Pudding
+    region:   region_226
+    level:    [79, 80]
+  17027408:
+    template: Sweeping_Cluster
+    region:   w_336
+    level:    [77, 78]
+  17027409:
+    template: Sweeping_Cluster
+    region:   w_337
+    level:    [77, 78]
+  17027410:
+    template: Sweeping_Cluster
+    region:   nw_338
+    level:    [77, 78]
+  17027411:
+    template: Ebony_Pudding
+    region:   region_227
+    level:    [79, 80]
+  17027412:
+    template: Wamoura_Prince
+    region:   nw_340
+    level:    [79, 81]
+  17027413:
+    template: Wamoura_Prince
+    region:   nw_341
+    level:    [79, 81]
+  17027414:
+    template: Wamoura_Prince
+    region:   nw_342
+    level:    [79, 81]
+  17027415:
+    template: Wamoura_Prince
+    region:   nw_342
+    level:    [79, 81]
+  17027416:
+    template: Wamoura_Prince
+    region:   nw_344
+    level:    [79, 81]
+  17027417:
+    template: Wamoura_Prince
+    script:   Wamoura_Prince_Eclosion
+    region:   nw_345
+    level:    [79, 81]
+  17027418:
+    template: Wamoura_Eclosion
+    region:   nw_345
+    level:    [80, 82]
+  17027419:
+    template: Wamoura_Prince
+    script:   Wamoura_Prince_Eclosion
+    region:   nw_345
+    level:    [79, 81]
+  17027420:
+    template: Wamoura_Eclosion
+    region:   nw_345
+    level:    [80, 82]
+  17027421:
+    template: Wamoura
+    region:   nw_345
+    level:    [80, 82]
+  17027422:
+    template: Wamoura
+    region:   nw_345
+    level:    [80, 82]
+  17027423:
+    template: Ignamoth
+    at:       [-557.152, -14.000, 278.249, 90]
+    level:    [84, 84]
+  17027424:
+    template: Phasma
+    region:   nw_352
+    level:    [73, 76]
+  17027425:
+    template: Wamoura_Prince
+    script:   Wamoura_Prince_Eclosion
+    region:   nw_354
+    level:    [79, 81]
+  17027426:
+    template: Wamoura_Eclosion
+    region:   nw_354
+    level:    [80, 82]
+  17027427:
+    template: Wamoura_Prince
+    region:   nw_355
+    level:    [79, 81]
+  17027428:
+    template: Wamoura_Prince
+    script:   Wamoura_Prince_Eclosion
+    region:   nw_355
+    level:    [79, 81]
+  17027429:
+    template: Wamoura_Eclosion
+    region:   nw_355
+    level:    [80, 82]
+  17027430:
+    template: Wamoura_Prince
+    region:   nw_358
+    level:    [79, 81]
+  17027431:
+    template: Wamoura_Prince
+    region:   nw_359
+    level:    [79, 81]
+  17027432:
+    template: Phasma
+    region:   nw_360
+    level:    [73, 76]
+  17027433:
+    template: Wamoura_Prince
+    region:   nw_361
+    level:    [79, 81]
+  17027434:
+    template: Wamoura_Prince
+    region:   nw_362
+    level:    [79, 81]
+  17027435:
+    template: Wamoura_Prince
+    region:   nw_363
+    level:    [79, 81]
+  17027436:
+    template: Phasma
+    region:   nw_364
+    level:    [73, 76]
+  17027437:
+    template: Wamoura_Prince
+    region:   nw_365
+    level:    [79, 81]
+  17027438:
+    template: Wamoura_Prince
+    region:   nw_366
+    level:    [79, 81]
+  17027439:
+    template: Scoriaceous_Eruca
+    region:   nw_367
+    level:    [88, 89]
+  17027440:
+    template: Scoriaceous_Eruca
+    region:   nw_367
+    level:    [88, 89]
+  17027441:
+    template: Scoriaceous_Eruca
+    region:   nw_369
+    level:    [88, 89]
+  17027442:
+    template: Scoriaceous_Eruca
+    region:   nw_369
+    level:    [88, 89]
+  17027443:
+    template: Scoriaceous_Eruca
+    region:   nw_369
+    level:    [88, 89]
+  17027444:
+    template: Scoriaceous_Eruca
+    region:   nw_369
+    level:    [88, 89]
+  17027445:
+    template: Scoriaceous_Eruca
+    region:   nw_373
+    level:    [88, 89]
+  17027446:
+    template: Scoriaceous_Eruca
+    region:   nw_373
+    level:    [88, 89]
+  17027447:
+    template: Scoriaceous_Eruca
+    region:   nw_375
+    level:    [88, 89]
+  17027448:
+    template: Scoriaceous_Eruca
+    region:   nw_375
+    level:    [88, 89]
+  17027449:
+    template: Scoriaceous_Eruca
+    region:   nw_375
+    level:    [88, 89]
+  17027450:
+    template: Scoriaceous_Eruca
+    region:   nw_375
+    level:    [88, 89]
+  17027451:
+    template: Scoriaceous_Eruca
+    region:   nw_379
+    level:    [88, 89]
+  17027452:
+    template: Scoriaceous_Eruca
+    region:   nw_379
+    level:    [88, 89]
+  17027453:
+    template: Scoriaceous_Eruca
+    region:   nw_379
+    level:    [88, 89]
+  17027454:
+    template: Dahak
+    region:   nw_382
+    level:    [81, 83]
+  17027455:
+    template: Dahak
+    region:   nw_383
+    level:    [81, 83]
+  17027456:
+    template: Dahak
+    region:   nw_383
+    level:    [81, 83]
+  17027457:
+    template: Dahak
+    region:   nw_385
+    level:    [81, 83]
+  17027458:
+    template: Cerberus
+    region:   region_228
+    level:    [85, 85]
+  17027459:
+    template: Dark_Rider
+    at:       [-280.300, -14.800, 229.567, 84]
+    level:    [95, 95]
+  17027460:
+    template: Dark_Bugler
+    at:       [-570.700, -14.630, 267.773, 180]
+    level:    [76, 76]
+  17027461:
+    template: Dark_Bugler
+    at:       [-481.900, -14.440, 281.033, 240]
+    level:    [76, 76]
+  17027462:
+    template: Dark_Bugler
+    at:       [-449.700, -14.510, 377.674, 233]
+    level:    [76, 76]
+  17027463:
+    template: Dark_Esquire
+    at:       [-396.000, -14.440, 363.906, 117]
+    level:    [76, 76]
+  17027464:
+    template: Dark_Esquire
+    at:       [-311.300, -14.340, 294.959]
+    level:    [76, 76]
+  17027465:
+    template: Dark_Esquire
+    at:       [-290.400, -14.600, 240.197, 72]
+    level:    [76, 76]
+  17027466:
+    template: Energetic_Eruca
+    region:   region_217
+    level:    [80, 80]
+  17027467:
+    template: Garharlor_the_Unruly
+    at:       [99.854, -13.485, -11.898, 108]
+    level:    [80, 80]
+  17027468:
+    template: Garfurlar_the_Rabid
+    at:       [102.073, -14.899, -8.096, 122]
+    level:    [80, 80]
+  17027469:
+    template: Garhorlur_the_Brutal
+    at:       [101.207, -14.232, -10.283, 92]
+    level:    [80, 80]
+  17027470:
+    template: Ancient_Bombs
+    level:    [74, 78]
+  17027471:
+    template: Brass_Borer
+    at:       [399.386, -27.022, 120.479, 245]
+    level:    [83, 83]
+  17027472:
+    template: Claret
+    at:       [497.000, -9.000, 52.000, 248]
+    level:    [78, 80]
+  17027473:
+    template: Anantaboga
+    at:       [-368.341, -13.742, 366.448, 58]
+    level:    [85, 87]
+  17027474:
+    template: Khromasoul_Bhurborlor
+    at:       [88.000, -22.029, 70.000, 134]
+    level:    [82, 84]
+  17027475:
+    template: Troll_Grenadier_MZ
+    script:   Troll_Grenadier
+    at:       [-59.047, -18.848, 277.051, 189]
+    level:    [73, 75]
+  17027476:
+    template: Troll_Grenadier_MZ
+    script:   Troll_Grenadier
+    at:       [-58.460, -18.039, 284.568, 201]
+    level:    [73, 75]
+  17027477:
+    template: Troll_Grenadier_MZ
+    script:   Troll_Grenadier
+    at:       [-59.054, -18.362, 282.803, 201]
+    level:    [73, 75]
+  17027478:
+    template: Troll_Cuirasser_MZ
+    script:   Troll_Cuirasser
+    at:       [-59.422, -18.752, 277.522, 192]
+    level:    [73, 75]
+  17027479:
+    template: Troll_Cuirasser_MZ
+    script:   Troll_Cuirasser
+    at:       [-59.489, -18.850, 275.941, 189]
+    level:    [73, 75]
+  17027480:
+    template: Troll_Cuirasser_MZ
+    script:   Troll_Cuirasser
+    at:       [-59.720, -18.602, 280.275, 192]
+    level:    [73, 75]
+  17027481:
+    template: Troll_Artilleryman_MZ
+    script:   Troll_Artilleryman
+    at:       [-59.313, -19.340, 272.362, 182]
+    level:    [73, 75]
+  17027482:
+    template: Troll_Artilleryman_MZ
+    script:   Troll_Artilleryman
+    at:       [-60.150, -18.702, 278.084, 192]
+    level:    [73, 75]
+  17027483:
+    template: Troll_Hammersmith
+    at:       [-59.578, -17.712, 289.274, 203]
+    level:    [73, 75]
+  17027484:
+    template: Troll_Hammersmith
+    at:       [-59.649, -17.738, 288.015, 200]
+    level:    [73, 75]
+  17027485:
+    template: Sarameya
+    at:       [322.548, -14.706, -581.653, 233]
+    level:    [88, 89]
+  17027486:
+    template: Vanasarvik
+    at:       [901.955, -15.729, 333.408, 41]
+    level:    [99, 99]
+  17027487:
+    template: Elders_Imp
+    at:       [901.352, -15.968, 336.023, 84]
+    level:    [99, 99]
+  17027488:
+    template: Elders_Imp
+    at:       [900.271, -15.968, 335.646, 19]
+    level:    [99, 99]
+  17027489:
+    template: Elders_Imp
+    at:       [901.140, -15.968, 336.091, 73]
+    level:    [99, 99]
+  17027490:
+    template: Elders_Imp
+    at:       [900.769, -15.968, 334.483, 201]
+    level:    [99, 99]
+  17027491:
+    template: Vanasarvik
+    at:       [463.477, -16.256, -62.603, 245]
+    level:    [99, 99]
+  17027492:
+    template: Elders_Imp
+    at:       [464.970, -15.956, -61.984, 106]
+    level:    [99, 99]
+  17027493:
+    template: Elders_Imp
+    at:       [463.596, -16.266, -62.932, 228]
+    level:    [99, 99]
+  17027494:
+    template: Elders_Imp
+    at:       [463.983, -16.185, -61.688, 47]
+    level:    [99, 99]
+  17027495:
+    template: Elders_Imp
+    at:       [463.731, -16.200, -61.721, 36]
+    level:    [99, 99]
+  17027496:
+    template: Vanasarvik
+    at:       [775.982, -16.272, -63.583, 234]
+    level:    [99, 99]
+  17027497:
+    template: Elders_Imp
+    at:       [772.296, -15.047, -62.549, 28]
+    level:    [99, 99]
+  17027498:
+    template: Elders_Imp
+    at:       [775.698, -16.269, -64.301, 141]
+    level:    [99, 99]
+  17027499:
+    template: Elders_Imp
+    at:       [774.380, -16.068, -65.388, 172]
+    level:    [99, 99]
+  17027500:
+    template: Elders_Imp
+    at:       [772.410, -15.091, -62.477, 32]
+    level:    [99, 99]
+  17027501:
+    template: Grand_Grenade
+    at:       [-440.710, -14.060, 387.605, 154]
+    level:    [99, 99]
+  17027502:
+    template: Grand_Grenade
+    at:       [-588.400, -14.120, 277.769, 247]
+    level:    [99, 99]
+  17027503:
+    template: Grand_Grenade
+    at:       [-280.140, -14.500, 241.050, 24]
+    level:    [99, 99]
+  17027504:
+    template: Sarama
+    at:       [-440.072, -14.500, 403.531, 62]
+    level:    [99, 99]
+  17027505:
+    template: Sarama
+    at:       [-588.995, -13.954, 276.884, 88]
+    level:    [99, 99]
+  17027506:
+    template: Sarama
+    level:    [99, 99]
+  17027507:
+    template: Awoken_Mokkuralfi
+    at:       [333.370, -15.000, -361.760, 95]
+    level:    [119, 119]

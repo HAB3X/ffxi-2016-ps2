@@ -1,0 +1,3105 @@
+# yaml-language-server: $schema=../../schemas/mobs.schema.json
+
+templates:
+
+  Aerns_Elemental:
+    id:            54
+    species:       dark_elemental
+    type:          [called]
+    spell_list_id: 5
+    skill_list_id: 100
+    attributes:
+      combat:
+        skill: scythe
+      jobs: [drk, rdm]
+      render:
+        look:
+          type:  standard
+          model: 15
+        entity_flags:  131
+        animation_sub:  16
+        model_size:      1
+        hitbox:          8
+      behaviors:
+        links: true
+      spawn:
+        type: [scripted]
+
+  Aerns_Euvhi:
+    id:            55
+    species:       euvhi
+    type:          [called]
+    skill_list_id: 109
+    attributes:
+      combat:
+        skill: club
+      render:
+        look:
+          type:  standard
+          model: 526
+        entity_flags:  1153
+        animation_sub:    5
+        hitbox:          10
+      behaviors:
+        links: true
+      spawn:
+        type: [scripted]
+
+  Aerns_Wynav:
+    id:            56
+    species:       wynav
+    type:          [called]
+    skill_list_id: 714
+    attributes:
+      combat:
+        skill: scythe
+        delay: 200
+      resists:
+        immune_status: [light_sleep, dark_sleep]
+      render:
+        look:
+          type:  standard
+          model: 530
+        entity_flags: 1155
+        model_size:      1
+        hitbox:         12
+      behaviors:
+        links: true
+      spawn:
+        type: [scripted]
+
+  Aweuvhi:
+    id:            299
+    species:       euvhi
+    skill_list_id: 109
+    attributes:
+      combat:
+        skill: club
+      render:
+        look:
+          type:  standard
+          model: 526
+        entity_flags:  1155
+        animation_sub:    6
+        model_size:       1
+        hitbox:          12
+      behaviors:
+        aggressive:     true
+        true_detection: true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: rare
+          item:   euvhi_organ
+        - chance: rare
+          item:   high-quality_euvhi_organ
+        - chance: rare
+          item:   sample_of_luminian_tissue
+        - chance: rare
+          one_of: [fire_cluster, ice_cluster, wind_cluster, earth_cluster, lightning_cluster, water_cluster, light_cluster, dark_cluster]
+      despoil:
+        sample_of_luminian_tissue: 0
+
+  Aweuvhi_closed:
+    id:            7092
+    display_name:  Aweuvhi
+    species:       euvhi
+    skill_list_id: 109
+    attributes:
+      combat:
+        skill: club
+      render:
+        look:
+          type:  standard
+          model: 526
+        entity_flags:  1155
+        animation_sub:    5
+        model_size:       1
+        hitbox:          12
+      behaviors:
+        links: true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: rare
+          item:   euvhi_organ
+        - chance: rare
+          item:   high-quality_euvhi_organ
+        - chance: rare
+          item:   sample_of_luminian_tissue
+        - chance: rare
+          one_of: [fire_cluster, ice_cluster, wind_cluster, earth_cluster, lightning_cluster, water_cluster, light_cluster, dark_cluster]
+      despoil:
+        sample_of_luminian_tissue: 0
+
+  Awghrah:
+    id:            300
+    species:       bird_ghrah
+    skill_list_id: 122
+    attributes:
+      combat:
+        skill: scythe
+        delay: 220
+      jobs: [war, blm]
+      render:
+        look:
+          type:  automaton
+          model: 1161
+        entity_flags: 1155
+        name_prefix:     2
+        model_size:      1
+        hitbox:         12
+      behaviors:
+        aggressive:     true
+        true_detection: true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: uncommon
+          item:   luminion_chip
+        - chance: very_rare
+          item:   ghrah_m_chip
+        - chance: rare
+          one_of: [fire_cluster, ice_cluster, wind_cluster, earth_cluster, lightning_cluster, water_cluster, light_cluster, dark_cluster]
+      despoil:
+        luminion_chip: 0
+
+  Awzdei:
+    id:            301
+    species:       zdei
+    skill_list_id: 272
+    attributes:
+      combat:
+        skill: scythe
+      jobs: [pld, pld]
+      render:
+        look:
+          type:  standard
+          model: 1157
+        entity_flags:  1155
+        animation_sub:    4
+        model_size:       1
+        hitbox:          12
+      behaviors:
+        aggressive:     true
+        true_detection: true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: uncommon
+          item:   luminion_chip
+
+  Awzdei_Fast:
+    id:            7097
+    display_name:  Awzdei
+    species:       zdei
+    skill_list_id: 272
+    attributes:
+      combat:
+        skill: scythe
+      jobs: [pld, pld]
+      render:
+        look:
+          type:  standard
+          model: 1157
+        entity_flags:  1155
+        animation_sub:    4
+        model_size:       1
+        hitbox:          12
+      behaviors:
+        aggressive:     true
+        true_detection: true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: uncommon
+          item:   luminion_chip
+
+  Awzdei_Left:
+    id:            7096
+    display_name:  Awzdei
+    species:       zdei
+    skill_list_id: 272
+    attributes:
+      combat:
+        skill: scythe
+      jobs: [pld, pld]
+      render:
+        look:
+          type:  standard
+          model: 1157
+        entity_flags:  1155
+        animation_sub:    4
+        model_size:       1
+        hitbox:          12
+      behaviors:
+        aggressive:     true
+        true_detection: true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: uncommon
+          item:   luminion_chip
+
+  Awzdei_LeftFast:
+    id:            7098
+    display_name:  Awzdei
+    species:       zdei
+    skill_list_id: 272
+    attributes:
+      combat:
+        skill: scythe
+      jobs: [pld, pld]
+      render:
+        look:
+          type:  standard
+          model: 1157
+        entity_flags:  1155
+        animation_sub:    4
+        model_size:       1
+        hitbox:          12
+      behaviors:
+        aggressive:     true
+        true_detection: true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: uncommon
+          item:   luminion_chip
+
+  Indoor_aern_blm:
+    id:            6176
+    species:       aern
+    spell_list_id: 21
+    skill_list_id: 442
+    attributes:
+      combat:
+        skill: dagger
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 1373
+        entity_flags:  1155
+        animation_sub:    5
+        hitbox:          10
+      behaviors:
+        links: true
+      spawn:
+        respawn: 960
+      stats:
+        mp: 9999
+    loot:
+      drops:
+        - chance: uncommon
+          item:   aern_organ
+        - chance: rare
+          item:   sample_of_luminian_tissue
+        - chance: rare
+          one_of: [fire_cluster, ice_cluster, wind_cluster, earth_cluster, lightning_cluster, water_cluster, light_cluster, dark_cluster]
+      despoil:
+        sample_of_luminian_tissue: 0
+        aern_organ:                0
+
+  Indoor_aern_brd:
+    id:            6182
+    species:       aern
+    spell_list_id: 6
+    skill_list_id: 442
+    attributes:
+      combat:
+        skill: dagger
+        delay: 360
+      jobs: [brd, brd]
+      render:
+        look:
+          type:  standard
+          model: 1373
+        entity_flags:  1155
+        animation_sub:    5
+        hitbox:          10
+      behaviors:
+        links: true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: uncommon
+          item:   aern_organ
+        - chance: rare
+          item:   sample_of_luminian_tissue
+        - chance: rare
+          one_of: [fire_cluster, ice_cluster, wind_cluster, earth_cluster, lightning_cluster, water_cluster, light_cluster, dark_cluster]
+      despoil:
+        sample_of_luminian_tissue: 0
+        aern_organ:                0
+
+  Indoor_aern_bst:
+    id:            6181
+    species:       aern
+    skill_list_id: 443
+    attributes:
+      combat:
+        skill: axe
+        delay: 360
+      jobs: [bst, bst]
+      render:
+        look:
+          type:  standard
+          model: 1374
+        entity_flags:  1155
+        animation_sub:    5
+        hitbox:          10
+      behaviors:
+        links: true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: uncommon
+          item:   aern_organ
+        - chance: rare
+          item:   sample_of_luminian_tissue
+        - chance: rare
+          one_of: [fire_cluster, ice_cluster, wind_cluster, earth_cluster, lightning_cluster, water_cluster, light_cluster, dark_cluster]
+      despoil:
+        sample_of_luminian_tissue: 0
+        aern_organ:                0
+
+  Indoor_aern_drg:
+    id:            6186
+    species:       aern
+    skill_list_id: 440
+    attributes:
+      combat:
+        skill: polearm
+        delay: 360
+      jobs: [drg, drg]
+      render:
+        look:
+          type:  standard
+          model: 1376
+        entity_flags:  1155
+        animation_sub:    5
+        hitbox:          10
+      behaviors:
+        links: true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: uncommon
+          item:   aern_organ
+        - chance: rare
+          item:   sample_of_luminian_tissue
+        - chance: rare
+          one_of: [fire_cluster, ice_cluster, wind_cluster, earth_cluster, lightning_cluster, water_cluster, light_cluster, dark_cluster]
+      despoil:
+        sample_of_luminian_tissue: 0
+        aern_organ:                0
+
+  Indoor_aern_drk:
+    id:            6180
+    species:       aern
+    spell_list_id: 5
+    skill_list_id: 441
+    attributes:
+      combat:
+        skill: sword
+        delay: 360
+      jobs: [drk, drk]
+      render:
+        look:
+          type:  standard
+          model: 1375
+        entity_flags:  1155
+        animation_sub:    5
+        hitbox:          10
+      behaviors:
+        links: true
+      spawn:
+        respawn: 960
+      stats:
+        mp: 9999
+    loot:
+      drops:
+        - chance: uncommon
+          item:   aern_organ
+        - chance: rare
+          item:   sample_of_luminian_tissue
+        - chance: rare
+          one_of: [fire_cluster, ice_cluster, wind_cluster, earth_cluster, lightning_cluster, water_cluster, light_cluster, dark_cluster]
+      despoil:
+        sample_of_luminian_tissue: 0
+        aern_organ:                0
+
+  Indoor_aern_mnk:
+    id:            6174
+    species:       aern
+    skill_list_id: 3
+    attributes:
+      combat:
+        skill: hand_to_hand
+        delay: 480
+      jobs: [mnk, mnk]
+      render:
+        look:
+          type:  standard
+          model: 1367
+        entity_flags:  1155
+        animation_sub:    5
+        hitbox:          10
+      behaviors:
+        links: true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: uncommon
+          item:   aern_organ
+        - chance: rare
+          item:   sample_of_luminian_tissue
+        - chance: rare
+          one_of: [fire_cluster, ice_cluster, wind_cluster, earth_cluster, lightning_cluster, water_cluster, light_cluster, dark_cluster]
+      despoil:
+        sample_of_luminian_tissue: 0
+        aern_organ:                0
+
+  Indoor_aern_nin:
+    id:            6185
+    species:       aern
+    spell_list_id: 7
+    skill_list_id: 3
+    attributes:
+      combat:
+        skill: katana
+      jobs: [nin, nin]
+      render:
+        look:
+          type:  standard
+          model: 1367
+        entity_flags:  1155
+        animation_sub:    5
+        hitbox:          10
+      behaviors:
+        links: true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: uncommon
+          item:   aern_organ
+        - chance: rare
+          item:   sample_of_luminian_tissue
+        - chance: rare
+          one_of: [fire_cluster, ice_cluster, wind_cluster, earth_cluster, lightning_cluster, water_cluster, light_cluster, dark_cluster]
+      despoil:
+        sample_of_luminian_tissue: 0
+        aern_organ:                0
+
+  Indoor_aern_pld:
+    id:            6179
+    species:       aern
+    spell_list_id: 4
+    skill_list_id: 441
+    attributes:
+      combat:
+        skill: sword
+        delay: 360
+      jobs: [pld, pld]
+      render:
+        look:
+          type:  standard
+          model: 1375
+        entity_flags:  1155
+        animation_sub:    5
+        hitbox:          10
+      behaviors:
+        links: true
+      spawn:
+        respawn: 960
+      stats:
+        mp: 9999
+    loot:
+      drops:
+        - chance: uncommon
+          item:   aern_organ
+        - chance: rare
+          item:   sample_of_luminian_tissue
+        - chance: rare
+          one_of: [fire_cluster, ice_cluster, wind_cluster, earth_cluster, lightning_cluster, water_cluster, light_cluster, dark_cluster]
+      despoil:
+        sample_of_luminian_tissue: 0
+        aern_organ:                0
+
+  Indoor_aern_rdm:
+    id:            6177
+    species:       aern
+    spell_list_id: 3
+    skill_list_id: 441
+    attributes:
+      combat:
+        skill: sword
+        delay: 360
+      jobs: [rdm, rdm]
+      render:
+        look:
+          type:  standard
+          model: 1375
+        entity_flags:  1155
+        animation_sub:    5
+        hitbox:          10
+      behaviors:
+        links: true
+      spawn:
+        respawn: 960
+      stats:
+        mp: 9999
+    loot:
+      drops:
+        - chance: uncommon
+          item:   aern_organ
+        - chance: rare
+          item:   sample_of_luminian_tissue
+        - chance: rare
+          one_of: [fire_cluster, ice_cluster, wind_cluster, earth_cluster, lightning_cluster, water_cluster, light_cluster, dark_cluster]
+      despoil:
+        sample_of_luminian_tissue: 0
+        aern_organ:                0
+
+  Indoor_aern_rng:
+    id:            6183
+    species:       aern
+    skill_list_id: 443
+    attributes:
+      combat:
+        skill: axe
+        delay: 360
+      jobs: [rng, rng]
+      render:
+        look:
+          type:  standard
+          model: 1374
+        entity_flags:  1155
+        animation_sub:    5
+        hitbox:          10
+      behaviors:
+        links: true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: uncommon
+          item:   aern_organ
+        - chance: rare
+          item:   sample_of_luminian_tissue
+        - chance: rare
+          one_of: [fire_cluster, ice_cluster, wind_cluster, earth_cluster, lightning_cluster, water_cluster, light_cluster, dark_cluster]
+      despoil:
+        sample_of_luminian_tissue: 0
+        aern_organ:                0
+
+  Indoor_aern_sam:
+    id:            6184
+    species:       aern
+    skill_list_id: 440
+    attributes:
+      combat:
+        skill: polearm
+        delay: 360
+      jobs: [sam, sam]
+      render:
+        look:
+          type:  standard
+          model: 1376
+        entity_flags:  1155
+        animation_sub:    5
+        hitbox:          10
+      behaviors:
+        links: true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: uncommon
+          item:   aern_organ
+        - chance: rare
+          item:   sample_of_luminian_tissue
+        - chance: rare
+          one_of: [fire_cluster, ice_cluster, wind_cluster, earth_cluster, lightning_cluster, water_cluster, light_cluster, dark_cluster]
+      despoil:
+        sample_of_luminian_tissue: 0
+        aern_organ:                0
+
+  Indoor_aern_smn:
+    id:            6187
+    species:       aern
+    skill_list_id: 439
+    attributes:
+      combat:
+        skill: staff
+        delay: 360
+      jobs: [smn, smn]
+      render:
+        look:
+          type:  standard
+          model: 1377
+        entity_flags:  1155
+        animation_sub:    5
+        hitbox:          10
+      behaviors:
+        links: true
+      spawn:
+        respawn: 960
+      stats:
+        mp: 9999
+    loot:
+      drops:
+        - chance: uncommon
+          item:   aern_organ
+        - chance: rare
+          item:   sample_of_luminian_tissue
+        - chance: rare
+          one_of: [fire_cluster, ice_cluster, wind_cluster, earth_cluster, lightning_cluster, water_cluster, light_cluster, dark_cluster]
+      despoil:
+        sample_of_luminian_tissue: 0
+        aern_organ:                0
+
+  Indoor_aern_thf:
+    id:            6178
+    species:       aern
+    skill_list_id: 442
+    attributes:
+      combat:
+        skill: dagger
+      jobs: [thf, thf]
+      render:
+        look:
+          type:  standard
+          model: 1373
+        entity_flags:  1155
+        animation_sub:    5
+        hitbox:          10
+      behaviors:
+        links: true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: uncommon
+          item:   aern_organ
+        - chance: rare
+          item:   sample_of_luminian_tissue
+        - chance: rare
+          one_of: [fire_cluster, ice_cluster, wind_cluster, earth_cluster, lightning_cluster, water_cluster, light_cluster, dark_cluster]
+      despoil:
+        sample_of_luminian_tissue: 0
+        aern_organ:                0
+
+  Indoor_aern_war:
+    id:            6173
+    species:       aern
+    skill_list_id: 443
+    attributes:
+      combat:
+        skill: axe
+        delay: 360
+      render:
+        look:
+          type:  standard
+          model: 1374
+        entity_flags:  1155
+        animation_sub:    5
+        hitbox:          10
+      behaviors:
+        links: true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: uncommon
+          item:   aern_organ
+        - chance: rare
+          item:   sample_of_luminian_tissue
+        - chance: rare
+          one_of: [fire_cluster, ice_cluster, wind_cluster, earth_cluster, lightning_cluster, water_cluster, light_cluster, dark_cluster]
+      despoil:
+        sample_of_luminian_tissue: 0
+        aern_organ:                0
+
+  Indoor_aern_whm:
+    id:            6175
+    species:       aern
+    spell_list_id: 20
+    skill_list_id: 439
+    attributes:
+      combat:
+        skill: staff
+        delay: 360
+      jobs: [whm, whm]
+      render:
+        look:
+          type:  standard
+          model: 1377
+        entity_flags:  1155
+        animation_sub:    5
+        hitbox:          10
+      behaviors:
+        links: true
+      spawn:
+        respawn: 960
+      stats:
+        mp: 9999
+    loot:
+      drops:
+        - chance: uncommon
+          item:   aern_organ
+        - chance: rare
+          item:   sample_of_luminian_tissue
+        - chance: rare
+          one_of: [fire_cluster, ice_cluster, wind_cluster, earth_cluster, lightning_cluster, water_cluster, light_cluster, dark_cluster]
+      despoil:
+        sample_of_luminian_tissue: 0
+        aern_organ:                0
+
+  Ixaern_drg:
+    id:            2112
+    species:       aern
+    type:          [notorious]
+    skill_list_id: 440
+    attributes:
+      combat:
+        skill: polearm
+        delay: 200
+      jobs: [drg, drg]
+      render:
+        look:
+          type:  standard
+          model: 1376
+        entity_flags:  6
+        model_size:    2
+        hitbox:       13
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 15000
+    loot:
+      drops:
+        - chance: always
+          one_of:
+            deed_of_sensibility: 85
+            vice_of_aspersion:   15
+
+  Ixaern_drgs_Wynav:
+    id:            5536
+    species:       wynav
+    type:          [notorious, called]
+    spell_list_id: 136
+    skill_list_id: 714
+    attributes:
+      combat:
+        skill: scythe
+        delay: 200
+      jobs: [brd, war]
+      resists:
+        immune_status: [light_sleep, dark_sleep]
+      render:
+        look:
+          type:  standard
+          model: 530
+        model_size:  3
+        hitbox:     16
+      behaviors:
+        links: true
+      spawn:
+        type: [scripted]
+
+  Ixaern_drk:
+    id:            4660
+    species:       aern
+    type:          [notorious]
+    spell_list_id: 5
+    skill_list_id: 441
+    attributes:
+      combat:
+        skill: scythe
+        delay: 200
+      jobs: [drk, drk]
+      render:
+        look:
+          type:  standard
+          model: 1375
+        entity_flags:  6
+        model_size:    2
+        hitbox:       13
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 21000
+    loot:
+      drops:
+        - chance: always
+          one_of:
+            deed_of_moderation: 85
+            vice_of_avarice:    15
+
+  Ixzdei_BLM:
+    id:            2114
+    display_name:  Ixzdei
+    species:       zdei
+    type:          [notorious]
+    spell_list_id: 467
+    skill_list_id: 272
+    attributes:
+      combat:
+        skill: scythe
+        delay: 225
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 1158
+        entity_flags: 1153
+        hitbox:         10
+      behaviors:
+        aggressive:     true
+        links:          true
+        true_detection: true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 6500
+        mp: 6500
+
+  Ixzdei_RDM:
+    id:            7039
+    display_name:  Ixzdei
+    species:       zdei
+    type:          [notorious]
+    spell_list_id: 468
+    skill_list_id: 272
+    attributes:
+      combat:
+        skill: scythe
+      jobs: [rdm, blm]
+      render:
+        look:
+          type:  standard
+          model: 1158
+        entity_flags: 1153
+        model_size:      2
+        hitbox:         13
+      behaviors:
+        aggressive:     true
+        links:          true
+        true_detection: true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 6500
+        mp: 6500
+
+  Jailer_of_Faith:
+    id:            2130
+    species:       euvhi
+    type:          [notorious]
+    spell_list_id: 138
+    skill_list_id: 109
+    attributes:
+      combat:
+        skill:    staff
+        delay:    180
+        dmg_mult: 125
+      jobs: [blm, war]
+      render:
+        look:
+          type:  standard
+          model: 526
+        entity_flags: 135
+        model_size:     3
+        hitbox:        16
+      behaviors:
+        aggressive:     true
+        true_detection: true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 25000
+        mp: 25000
+    loot:
+      drops:
+        - chance: always
+          item:   third_virtue
+        - chance: always
+          item:   faith_baghnakhs
+        - chance: uncommon
+          item:   faith_torque
+
+  Jailer_of_Fortitude:
+    id:            2131
+    species:       bird_ghrah
+    type:          [notorious]
+    skill_list_id: 124
+    attributes:
+      combat:
+        skill: sword
+        delay: 200
+      jobs: [pld, pld]
+      resists:
+        dmg_physical:
+          slashing: -1250
+          piercing: -1250
+          blunt:    -1250
+          h2h:      -1250
+      render:
+        look:
+          type:  automaton
+          model: 1169
+        entity_flags:   6
+        animation_sub:  1
+        model_size:     3
+        hitbox:        16
+      behaviors:
+        aggressive:     true
+        true_detection: true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 25000
+        mp: 25000
+    loot:
+      drops:
+        - chance: always
+          item:   second_virtue
+        - chance: always
+          item:   fortitude_axe
+        - chance: uncommon
+          item:   fortitude_torque
+
+  Kfghrah_blm:
+    id:      4659
+    species: bird_ghrah
+    type:    [notorious]
+    spells:
+      - bio_iii
+      - blind
+      - sleepga_ii
+    skill_list_id: 122
+    attributes:
+      combat:
+        skill: scythe
+        delay: 220
+      jobs: [war, blm]
+      resists:
+        rank_element:
+          light: -3
+          dark:  11
+        rank_status:
+          light_sleep: -3
+          dark_sleep:  11
+          blind:       11
+      render:
+        look:
+          type:  automaton
+          model: 1169
+        hitbox: 10
+      behaviors:
+        aggressive:     true
+        true_detection: true
+      spawn:
+        type: [scripted]
+      stats:
+        hp:  9000
+        mp: 10000
+
+  Kfghrah_whm:
+    id:      2215
+    species: bird_ghrah
+    type:    [notorious]
+    spells:
+      - banish_iv
+      - banishga_iii
+      - flash
+    skill_list_id: 122
+    attributes:
+      combat:
+        skill: scythe
+        delay: 220
+      jobs: [war, whm]
+      resists:
+        rank_element:
+          light: 11
+          dark:  -3
+        rank_status:
+          light_sleep: 11
+          dark_sleep:  -3
+          blind:       -3
+      render:
+        look:
+          type:  automaton
+          model: 1169
+        hitbox: 10
+      behaviors:
+        aggressive:     true
+        links:          true
+        true_detection: true
+      spawn:
+        type: [scripted]
+      stats:
+        hp:  9000
+        mp: 10000
+
+  Qnaern_rng:
+    id:            5549
+    species:       aern
+    skill_list_id: 443
+    attributes:
+      combat:
+        skill: great_sword
+      jobs: [rng, rng]
+      render:
+        look:
+          type:  standard
+          model: 1374
+        model_size:  1
+        hitbox:     12
+      behaviors:
+        links: true
+      spawn:
+        type: [scripted]
+
+  Qnzdei:
+    id:            3272
+    species:       zdei
+    type:          [notorious]
+    skill_list_id: 272
+    attributes:
+      combat:
+        skill: scythe
+      resists:
+        immune_status: [light_sleep, dark_sleep]
+      render:
+        look:
+          type:  standard
+          model: 1157
+        entity_flags:  131
+        animation_sub:   4
+        hitbox:         12
+      behaviors:
+        aggressive:     true
+        links:          true
+        true_detection: true
+      spawn:
+        respawn: 960
+
+spawns:
+  16920577:
+    template: Qnzdei
+    at:       [-429.000, -1.500, 427.000, 143]
+    level:    [77, 77]
+  16920578:
+    template: Qnzdei
+    at:       [-411.000, -1.500, 427.000, 33]
+    level:    [77, 77]
+  16920579:
+    template: Qnzdei
+    at:       [-429.000, -1.500, 413.000, 216]
+    level:    [77, 77]
+  16920580:
+    template: Qnzdei
+    at:       [-411.000, -1.500, 413.000, 28]
+    level:    [77, 77]
+  16920581:
+    template: Qnzdei
+    at:       [-467.000, -1.500, 371.000, 187]
+    level:    [77, 77]
+  16920582:
+    template: Qnzdei
+    at:       [-467.000, -1.500, 389.000, 190]
+    level:    [77, 77]
+  16920583:
+    template: Qnzdei
+    at:       [-453.000, -1.500, 371.000, 125]
+    level:    [77, 77]
+  16920584:
+    template: Qnzdei
+    at:       [-453.000, -1.500, 389.000, 33]
+    level:    [77, 77]
+  16920585:
+    template: Qnzdei
+    at:       [-373.000, -1.500, 389.000, 88]
+    level:    [77, 77]
+  16920586:
+    template: Qnzdei
+    at:       [-373.000, -1.500, 371.000, 67]
+    level:    [77, 77]
+  16920587:
+    template: Qnzdei
+    at:       [-387.000, -1.500, 389.000, 197]
+    level:    [77, 77]
+  16920588:
+    template: Qnzdei
+    at:       [-387.000, -1.500, 371.000, 95]
+    level:    [77, 77]
+  16920589:
+    template: Indoor_aern_blm
+    script:   Awaern
+    region:   nw_13
+    level:    [81, 83]
+  16920590:
+    template: Indoor_aern_thf
+    script:   Awaern
+    region:   nw_13
+    level:    [81, 83]
+  16920591:
+    template: Indoor_aern_pld
+    script:   Awaern
+    region:   nw_15
+    level:    [81, 83]
+  16920592:
+    template: Indoor_aern_sam
+    script:   Awaern
+    region:   nw_15
+    level:    [81, 83]
+  16920593:
+    template: Indoor_aern_drk
+    script:   Awaern
+    region:   nw_17
+    level:    [81, 83]
+  16920594:
+    template: Indoor_aern_rng
+    script:   Awaern
+    region:   nw_17
+    level:    [81, 83]
+  16920595:
+    template: Indoor_aern_nin
+    script:   Awaern
+    region:   nw_19
+    level:    [81, 83]
+  16920596:
+    template: Indoor_aern_drg
+    script:   Awaern
+    region:   nw_19
+    level:    [81, 83]
+  16920597:
+    template: Aerns_Wynav
+    at:       [1.000, 1.000, 1.000]
+    level:    [65, 68]
+  16920598:
+    template: Indoor_aern_mnk
+    script:   Awaern
+    region:   nw_22
+    level:    [81, 83]
+  16920599:
+    template: Indoor_aern_whm
+    script:   Awaern
+    region:   nw_22
+    level:    [81, 83]
+  16920600:
+    template: Indoor_aern_rdm
+    script:   Awaern
+    region:   nw_24
+    level:    [81, 83]
+  16920601:
+    template: Indoor_aern_brd
+    script:   Awaern
+    region:   nw_24
+    level:    [81, 83]
+  16920602:
+    template: Awghrah
+    region:   w_26
+    level:    [79, 80]
+  16920603:
+    template: Awghrah
+    region:   w_27
+    level:    [79, 80]
+  16920604:
+    template: Awghrah
+    region:   nw_28
+    level:    [79, 80]
+  16920605:
+    template: Awghrah
+    region:   nw_29
+    level:    [79, 80]
+  16920606:
+    template: Indoor_aern_bst
+    script:   Awaern
+    region:   region_146
+    level:    [81, 83]
+  16920607:
+    template: Aerns_Euvhi
+    at:       [-500.300, -3.255, 304.373, 185]
+    level:    [65, 68]
+  16920608:
+    template: Indoor_aern_war
+    script:   Awaern
+    region:   region_146
+    level:    [81, 83]
+  16920609:
+    template: Indoor_aern_smn
+    script:   Awaern
+    region:   nw_33
+    level:    [81, 83]
+  16920610:
+    template: Aerns_Elemental
+    at:       [-500.130, -3.500, 422.543, 196]
+    level:    [65, 68]
+  16920611:
+    template: Indoor_aern_rdm
+    script:   Awaern
+    region:   nw_33
+    level:    [81, 83]
+  16920612:
+    template: Indoor_aern_rng
+    script:   Awaern
+    region:   nw_36
+    level:    [81, 83]
+  16920613:
+    template: Indoor_aern_brd
+    script:   Awaern
+    region:   nw_36
+    level:    [81, 83]
+  16920614:
+    template: Indoor_aern_mnk
+    script:   Awaern
+    region:   nw_38
+    level:    [81, 83]
+  16920615:
+    template: Indoor_aern_blm
+    script:   Awaern
+    region:   nw_38
+    level:    [81, 83]
+  16920616:
+    template: Awghrah
+    region:   nw_40
+    level:    [79, 80]
+  16920617:
+    template: Awghrah
+    region:   nw_41
+    level:    [79, 80]
+  16920618:
+    template: Awghrah
+    region:   nw_42
+    level:    [79, 80]
+  16920619:
+    template: Awghrah
+    region:   nw_43
+    level:    [79, 80]
+  16920620:
+    template: Awghrah
+    region:   nw_44
+    level:    [79, 80]
+  16920621:
+    template: Awghrah
+    region:   nw_45
+    level:    [79, 80]
+  16920622:
+    template: Awghrah
+    region:   nw_46
+    level:    [79, 80]
+  16920623:
+    template: Awghrah
+    region:   nw_47
+    level:    [79, 80]
+  16920624:
+    template: Awghrah
+    region:   nw_48
+    level:    [79, 80]
+  16920625:
+    template: Awghrah
+    region:   nw_49
+    level:    [79, 80]
+  16920626:
+    template: Awghrah
+    region:   nw_50
+    level:    [79, 80]
+  16920627:
+    template: Awghrah
+    region:   nw_51
+    level:    [79, 80]
+  16920628:
+    template: Aweuvhi
+    at:       [-547.000, 1.500, 293.000, 224]
+    level:    [80, 82]
+  16920629:
+    template: Aweuvhi_closed
+    script:   Aweuvhi
+    region:   nw_53
+    level:    [78, 80]
+  16920630:
+    template: Awghrah
+    region:   nw_53
+    level:    [79, 80]
+  16920631:
+    template: Aweuvhi
+    at:       [-547.000, 1.500, 467.000, 32]
+    level:    [80, 82]
+  16920632:
+    template: Aweuvhi_closed
+    script:   Aweuvhi
+    region:   nw_56
+    level:    [78, 80]
+  16920633:
+    template: Awghrah
+    region:   nw_56
+    level:    [79, 80]
+  16920634:
+    template: Aweuvhi
+    at:       [-467.000, 1.500, 507.000, 32]
+    level:    [80, 82]
+  16920635:
+    template: Aweuvhi_closed
+    script:   Aweuvhi
+    region:   nw_59
+    level:    [78, 80]
+  16920636:
+    template: Awghrah
+    region:   nw_59
+    level:    [79, 80]
+  16920637:
+    template: Aweuvhi
+    at:       [-373.000, 1.500, 507.000, 96]
+    level:    [80, 80]
+  16920638:
+    template: Aweuvhi_closed
+    script:   Aweuvhi
+    region:   nw_62
+    level:    [78, 80]
+  16920639:
+    template: Awghrah
+    region:   nw_62
+    level:    [79, 80]
+  16920640:
+    template: Aweuvhi
+    at:       [-293.000, 1.500, 467.000, 96]
+    level:    [80, 82]
+  16920641:
+    template: Aweuvhi_closed
+    script:   Aweuvhi
+    at:       [-289.772, 1.285, 465.471, 200]
+    level:    [78, 80]
+  16920642:
+    template: Awghrah
+    at:       [-302.608, 1.398, 473.713, 137]
+    level:    [79, 80]
+  16920643:
+    template: Aweuvhi
+    at:       [-293.000, 1.500, 293.000, 160]
+    level:    [80, 82]
+  16920644:
+    template: Aweuvhi_closed
+    script:   Aweuvhi
+    at:       [-308.895, -0.598, 294.611, 61]
+    level:    [78, 80]
+  16920645:
+    template: Awghrah
+    at:       [-287.960, 1.408, 302.522, 137]
+    level:    [79, 80]
+  16920646:
+    template: Indoor_aern_blm
+    script:   Awaern
+    region:   w_72
+    level:    [81, 83]
+  16920647:
+    template: Indoor_aern_brd
+    script:   Awaern
+    region:   w_72
+    level:    [81, 83]
+  16920648:
+    template: Indoor_aern_smn
+    script:   Awaern
+    region:   w_72
+    level:    [81, 83]
+  16920649:
+    template: Aerns_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [65, 68]
+  16920650:
+    template: Awghrah
+    region:   region_148
+    level:    [79, 80]
+  16920651:
+    template: Indoor_aern_rng
+    script:   Awaern
+    region:   nw_75
+    level:    [81, 83]
+  16920652:
+    template: Indoor_aern_rdm
+    script:   Awaern
+    region:   nw_75
+    level:    [81, 83]
+  16920653:
+    template: Indoor_aern_thf
+    script:   Awaern
+    region:   nw_75
+    level:    [81, 83]
+  16920654:
+    template: Awghrah
+    region:   region_144
+    level:    [79, 80]
+  16920655:
+    template: Indoor_aern_sam
+    script:   Awaern
+    region:   nw_79
+    level:    [81, 83]
+  16920656:
+    template: Indoor_aern_nin
+    script:   Awaern
+    region:   nw_80
+    level:    [81, 83]
+  16920657:
+    template: Indoor_aern_bst
+    script:   Awaern
+    region:   nw_80
+    level:    [81, 83]
+  16920658:
+    template: Aerns_Euvhi
+    at:       [1.000, 1.000, 1.000]
+    level:    [65, 68]
+  16920659:
+    template: Awghrah
+    at:       [-420.611, -0.549, 615.225, 192]
+    level:    [79, 80]
+  16920660:
+    template: Indoor_aern_pld
+    script:   Awaern
+    region:   n_84
+    level:    [81, 83]
+  16920661:
+    template: Indoor_aern_whm
+    script:   Awaern
+    region:   n_84
+    level:    [81, 83]
+  16920662:
+    template: Indoor_aern_drg
+    script:   Awaern
+    region:   n_84
+    level:    [81, 83]
+  16920663:
+    template: Aerns_Wynav
+    at:       [1.000, 1.000, 1.000]
+    level:    [65, 68]
+  16920664:
+    template: Awghrah
+    region:   region_147
+    level:    [79, 80]
+  16920665:
+    template: Indoor_aern_war
+    script:   Awaern
+    region:   w_89
+    level:    [81, 83]
+  16920666:
+    template: Indoor_aern_mnk
+    script:   Awaern
+    region:   w_89
+    level:    [81, 83]
+  16920667:
+    template: Indoor_aern_drk
+    script:   Awaern
+    region:   w_89
+    level:    [81, 83]
+  16920668:
+    template: Awghrah
+    at:       [-259.459, -0.549, 176.698, 63]
+    level:    [79, 80]
+  16920669:
+    template: Awzdei
+    at:       [-580.000, -0.500, 140.000, 146]
+    level:    [80, 80]
+  16920670:
+    template: Awghrah
+    at:       [-545.305, -0.583, 138.207, 140]
+    level:    [79, 80]
+  16920671:
+    template: Aweuvhi
+    at:       [-533.000, 1.500, 147.000, 96]
+    level:    [80, 82]
+  16920672:
+    template: Aweuvhi_closed
+    script:   Aweuvhi
+    at:       [-538.439, 1.399, 150.866, 145]
+    level:    [78, 80]
+  16920673:
+    template: Awghrah
+    at:       [-539.758, -0.599, 63.897, 57]
+    level:    [79, 80]
+  16920674:
+    template: Aweuvhi
+    at:       [-533.000, 1.500, 53.000, 160]
+    level:    [80, 82]
+  16920675:
+    template: Aweuvhi_closed
+    script:   Aweuvhi
+    at:       [-527.902, 1.399, 58.578, 236]
+    level:    [80, 82]
+  16920676:
+    template: Awghrah
+    at:       [-618.000, -0.596, 64.187, 64]
+    level:    [79, 80]
+  16920677:
+    template: Aweuvhi
+    at:       [-627.000, 1.500, 53.000, 224]
+    level:    [80, 82]
+  16920678:
+    template: Aweuvhi_closed
+    script:   Aweuvhi
+    region:   w_102
+    level:    [80, 82]
+  16920679:
+    template: Awghrah
+    region:   w_103
+    level:    [79, 80]
+  16920680:
+    template: Aweuvhi
+    at:       [-627.000, 1.500, 147.000, 32]
+    level:    [80, 82]
+  16920681:
+    template: Aweuvhi_closed
+    script:   Aweuvhi
+    region:   w_105
+    level:    [80, 82]
+  16920682:
+    template: Awghrah
+    region:   w_106
+    level:    [79, 80]
+  16920683:
+    template: Awghrah
+    region:   w_107
+    level:    [79, 80]
+  16920684:
+    template: Awzdei_Fast
+    at:       [-552.000, -0.500, 128.000, 48]
+    level:    [80, 80]
+  16920685:
+    template: Awzdei_LeftFast
+    script:   Awzdei_Fast
+    at:       [-552.000, -0.500, 72.000, 80]
+    level:    [80, 80]
+  16920686:
+    template: Awzdei_Fast
+    at:       [-608.000, -0.500, 72.000, 112]
+    level:    [80, 80]
+  16920687:
+    template: Awzdei_LeftFast
+    script:   Awzdei_Fast
+    at:       [-608.000, -0.500, 128.000, 208]
+    level:    [80, 80]
+  16920688:
+    template: Awzdei
+    at:       [-700.000, -0.500, 460.000, 73]
+    level:    [80, 80]
+  16920689:
+    template: Awghrah
+    at:       [-702.342, -0.604, 421.824, 67]
+    level:    [79, 80]
+  16920690:
+    template: Aweuvhi
+    at:       [-693.000, 1.500, 413.000, 160]
+    level:    [80, 82]
+  16920691:
+    template: Aweuvhi_closed
+    script:   Aweuvhi
+    at:       [-709.220, -0.274, 412.373, 127]
+    level:    [78, 80]
+  16920692:
+    template: Awghrah
+    at:       [-774.935, -0.599, 419.904, 255]
+    level:    [79, 80]
+  16920693:
+    template: Aweuvhi
+    at:       [-787.000, 1.500, 413.000, 224]
+    level:    [80, 82]
+  16920694:
+    template: Aweuvhi_closed
+    script:   Aweuvhi
+    at:       [-793.771, 1.388, 423.480, 177]
+    level:    [78, 80]
+  16920695:
+    template: Awghrah
+    at:       [-774.437, -0.597, 497.869, 251]
+    level:    [79, 80]
+  16920696:
+    template: Aweuvhi
+    at:       [-787.000, 1.500, 507.000, 32]
+    level:    [80, 82]
+  16920697:
+    template: Aweuvhi_closed
+    script:   Aweuvhi
+    at:       [-775.742, 0.963, 505.889, 127]
+    level:    [78, 80]
+  16920698:
+    template: Awghrah
+    region:   region_130
+    level:    [79, 80]
+  16920699:
+    template: Aweuvhi
+    at:       [-693.000, 1.500, 507.000, 96]
+    level:    [80, 82]
+  16920700:
+    template: Aweuvhi_closed
+    script:   Aweuvhi
+    region:   nw_124
+    level:    [78, 80]
+  16920701:
+    template: Awghrah
+    region:   nw_125
+    level:    [79, 80]
+  16920702:
+    template: Awghrah
+    region:   nw_126
+    level:    [79, 80]
+  16920703:
+    template: Awzdei_Fast
+    at:       [-768.000, -0.500, 432.000, 112]
+    level:    [80, 80]
+  16920704:
+    template: Awzdei_LeftFast
+    script:   Awzdei_Fast
+    at:       [-712.000, -0.500, 432.000, 48]
+    level:    [80, 80]
+  16920705:
+    template: Awzdei_Fast
+    at:       [-712.000, -0.500, 488.000, 32]
+    level:    [80, 80]
+  16920706:
+    template: Awzdei_LeftFast
+    script:   Awzdei_Fast
+    at:       [-768.000, -0.500, 488.000, 176]
+    level:    [80, 80]
+  16920707:
+    template: Awzdei
+    at:       [-420.000, -0.500, 660.000, 169]
+    level:    [80, 80]
+  16920708:
+    template: Awghrah
+    region:   region_131
+    level:    [79, 80]
+  16920709:
+    template: Aweuvhi
+    at:       [-467.000, 1.500, 653.000, 224]
+    level:    [80, 82]
+  16920710:
+    template: Aweuvhi_closed
+    script:   Aweuvhi
+    region:   nw_134
+    level:    [78, 80]
+  16920711:
+    template: Awghrah
+    region:   nw_135
+    level:    [79, 80]
+  16920712:
+    template: Aweuvhi
+    at:       [-467.000, 1.500, 747.000, 32]
+    level:    [80, 82]
+  16920713:
+    template: Aweuvhi_closed
+    script:   Aweuvhi
+    at:       [-457.188, 0.971, 748.200]
+    level:    [78, 80]
+  16920714:
+    template: Awghrah
+    at:       [-388.685, -0.599, 740.497, 17]
+    level:    [79, 80]
+  16920715:
+    template: Aweuvhi
+    at:       [-373.000, 1.500, 747.000, 96]
+    level:    [80, 82]
+  16920716:
+    template: Aweuvhi_closed
+    script:   Aweuvhi
+    at:       [-381.983, 1.399, 753.783, 255]
+    level:    [78, 80]
+  16920717:
+    template: Awghrah
+    at:       [-387.104, -0.599, 661.960, 113]
+    level:    [79, 80]
+  16920718:
+    template: Aweuvhi
+    at:       [-373.000, 1.500, 653.000, 160]
+    level:    [80, 82]
+  16920719:
+    template: Aweuvhi_closed
+    script:   Aweuvhi
+    at:       [-374.012, -0.290, 668.519, 195]
+    level:    [78, 80]
+  16920720:
+    template: Awghrah
+    at:       [-469.210, -0.599, 690.306, 60]
+    level:    [79, 80]
+  16920721:
+    template: Awghrah
+    at:       [-425.759, -0.598, 731.734, 128]
+    level:    [79, 80]
+  16920722:
+    template: Awzdei_Fast
+    at:       [-448.000, -0.500, 728.000, 112]
+    level:    [80, 80]
+  16920723:
+    template: Awzdei_LeftFast
+    script:   Awzdei_Fast
+    at:       [-448.000, -0.500, 672.000, 112]
+    level:    [80, 80]
+  16920724:
+    template: Awzdei_Fast
+    at:       [-392.000, -0.500, 672.000]
+    level:    [80, 80]
+  16920725:
+    template: Awzdei_LeftFast
+    script:   Awzdei_Fast
+    at:       [-392.000, -0.500, 728.000, 112]
+    level:    [80, 80]
+  16920726:
+    template: Awzdei
+    at:       [-140.000, -0.500, 460.000, 140]
+    level:    [80, 80]
+  16920727:
+    template: Awghrah
+    at:       [-129.234, -0.599, 499.277, 242]
+    level:    [79, 80]
+  16920728:
+    template: Aweuvhi
+    at:       [-147.000, 1.500, 507.000, 32]
+    level:    [80, 82]
+  16920729:
+    template: Aweuvhi_closed
+    script:   Aweuvhi
+    region:   n_153
+    level:    [78, 80]
+  16920730:
+    template: Awghrah
+    at:       [-60.552, -0.597, 495.327, 197]
+    level:    [79, 80]
+  16920731:
+    template: Aweuvhi
+    at:       [-53.000, 1.500, 507.000, 96]
+    level:    [80, 82]
+  16920732:
+    template: Aweuvhi_closed
+    script:   Aweuvhi
+    region:   n_156
+    level:    [80, 82]
+  16920733:
+    template: Awghrah
+    region:   region_132
+    level:    [79, 80]
+  16920734:
+    template: Aweuvhi
+    at:       [-53.000, 1.500, 413.000, 160]
+    level:    [80, 82]
+  16920735:
+    template: Aweuvhi_closed
+    script:   Aweuvhi
+    region:   n_159
+    level:    [80, 82]
+  16920736:
+    template: Awghrah
+    region:   region_133
+    level:    [79, 80]
+  16920737:
+    template: Aweuvhi
+    at:       [-147.000, 1.500, 413.000, 224]
+    level:    [80, 82]
+  16920738:
+    template: Aweuvhi_closed
+    script:   Aweuvhi
+    region:   n_162
+    level:    [78, 80]
+  16920739:
+    template: Awghrah
+    region:   n_163
+    level:    [79, 80]
+  16920740:
+    template: Awghrah
+    region:   n_164
+    level:    [79, 80]
+  16920741:
+    template: Awzdei_Fast
+    at:       [-128.000, -0.500, 488.000, 160]
+    level:    [80, 80]
+  16920742:
+    template: Awzdei_LeftFast
+    script:   Awzdei_Fast
+    at:       [-72.000, -0.500, 488.000, 112]
+    level:    [80, 80]
+  16920743:
+    template: Awzdei_Fast
+    at:       [-72.000, -0.500, 432.000, 176]
+    level:    [80, 80]
+  16920744:
+    template: Awzdei_LeftFast
+    script:   Awzdei_Fast
+    at:       [-128.000, -0.500, 432.000, 112]
+    level:    [80, 80]
+  16920745:
+    template: Awzdei
+    at:       [-260.000, -0.500, 140.000, 172]
+    level:    [80, 80]
+  16920746:
+    template: Awghrah
+    at:       [-220.762, -0.599, 132.379, 177]
+    level:    [79, 80]
+  16920747:
+    template: Aweuvhi
+    at:       [-213.000, 1.500, 147.000, 96]
+    level:    [80, 82]
+  16920748:
+    template: Aweuvhi_closed
+    script:   Aweuvhi
+    region:   c_172
+    level:    [80, 82]
+  16920749:
+    template: Awghrah
+    region:   region_134
+    level:    [79, 80]
+  16920750:
+    template: Aweuvhi
+    at:       [-213.000, 1.500, 53.000, 160]
+    level:    [80, 82]
+  16920751:
+    template: Aweuvhi_closed
+    script:   Aweuvhi
+    region:   c_175
+    level:    [80, 82]
+  16920752:
+    template: Awghrah
+    region:   w_176
+    level:    [79, 80]
+  16920753:
+    template: Aweuvhi
+    at:       [-307.000, 1.500, 53.000, 224]
+    level:    [80, 82]
+  16920754:
+    template: Aweuvhi_closed
+    script:   Aweuvhi
+    region:   w_178
+    level:    [80, 82]
+  16920755:
+    template: Awghrah
+    region:   region_135
+    level:    [79, 80]
+  16920756:
+    template: Aweuvhi
+    at:       [-307.000, 1.500, 147.000, 32]
+    level:    [80, 82]
+  16920757:
+    template: Aweuvhi_closed
+    script:   Aweuvhi
+    region:   w_181
+    level:    [78, 80]
+  16920758:
+    template: Awghrah
+    region:   c_182
+    level:    [79, 80]
+  16920759:
+    template: Awghrah
+    region:   c_183
+    level:    [79, 80]
+  16920760:
+    template: Awzdei_Fast
+    at:       [-232.000, -0.500, 128.000, 192]
+    level:    [80, 80]
+  16920761:
+    template: Awzdei_LeftFast
+    script:   Awzdei_Fast
+    at:       [-232.000, -0.500, 72.000, 224]
+    level:    [80, 80]
+  16920762:
+    template: Awzdei_Fast
+    at:       [-288.000, -0.500, 72.000, 64]
+    level:    [80, 80]
+  16920763:
+    template: Awzdei_LeftFast
+    script:   Awzdei_Fast
+    at:       [-288.000, -0.500, 128.000, 48]
+    level:    [80, 80]
+  16920764:
+    template: Qnzdei
+    at:       [-429.000, -1.500, -373.000, 89]
+    level:    [77, 77]
+  16920765:
+    template: Qnzdei
+    at:       [-411.000, -1.500, -373.000, 144]
+    level:    [77, 77]
+  16920766:
+    template: Qnzdei
+    at:       [-429.000, -1.500, -387.000, 135]
+    level:    [77, 77]
+  16920767:
+    template: Qnzdei
+    at:       [-411.000, -1.500, -387.000, 130]
+    level:    [77, 77]
+  16920768:
+    template: Indoor_aern_rdm
+    script:   Awaern
+    region:   sw_192
+    level:    [83, 84]
+  16920769:
+    template: Indoor_aern_pld
+    script:   Awaern
+    region:   sw_192
+    level:    [83, 84]
+  16920770:
+    template: Indoor_aern_drk
+    script:   Awaern
+    region:   sw_192
+    level:    [83, 84]
+  16920771:
+    template: Indoor_aern_whm
+    script:   Awaern
+    region:   sw_195
+    level:    [83, 84]
+  16920772:
+    template: Indoor_aern_blm
+    script:   Awaern
+    region:   sw_195
+    level:    [83, 84]
+  16920773:
+    template: Indoor_aern_brd
+    script:   Awaern
+    region:   sw_195
+    level:    [83, 84]
+  16920774:
+    template: Indoor_aern_war
+    script:   Awaern
+    region:   sw_198
+    level:    [83, 84]
+  16920775:
+    template: Indoor_aern_mnk
+    script:   Awaern
+    region:   sw_198
+    level:    [83, 84]
+  16920776:
+    template: Indoor_aern_sam
+    script:   Awaern
+    region:   sw_198
+    level:    [83, 84]
+  16920777:
+    template: Indoor_aern_rng
+    script:   Awaern
+    region:   sw_201
+    level:    [83, 84]
+  16920778:
+    template: Indoor_aern_rdm
+    script:   Awaern
+    region:   sw_201
+    level:    [83, 84]
+  16920779:
+    template: Indoor_aern_bst
+    script:   Awaern
+    region:   sw_201
+    level:    [83, 84]
+  16920780:
+    template: Aerns_Euvhi
+    at:       [1.000, 1.000, 1.000]
+    level:    [65, 68]
+  16920781:
+    template: Indoor_aern_nin
+    script:   Awaern
+    region:   sw_205
+    level:    [83, 84]
+  16920782:
+    template: Indoor_aern_drk
+    script:   Awaern
+    region:   sw_205
+    level:    [83, 84]
+  16920783:
+    template: Indoor_aern_drg
+    script:   Awaern
+    region:   sw_205
+    level:    [83, 84]
+  16920784:
+    template: Aerns_Wynav
+    at:       [1.000, 1.000, 1.000]
+    level:    [65, 68]
+  16920785:
+    template: Indoor_aern_thf
+    script:   Awaern
+    region:   sw_209
+    level:    [83, 84]
+  16920786:
+    template: Indoor_aern_pld
+    script:   Awaern
+    region:   sw_209
+    level:    [83, 84]
+  16920787:
+    template: Indoor_aern_smn
+    script:   Awaern
+    region:   sw_209
+    level:    [83, 84]
+  16920788:
+    template: Aerns_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [65, 68]
+  16920789:
+    template: Indoor_aern_mnk
+    script:   Awaern
+    region:   sw_213
+    level:    [83, 84]
+  16920790:
+    template: Indoor_aern_brd
+    script:   Awaern
+    region:   sw_213
+    level:    [83, 84]
+  16920791:
+    template: Indoor_aern_sam
+    script:   Awaern
+    region:   sw_213
+    level:    [83, 84]
+  16920792:
+    template: Awghrah
+    region:   sw_216
+    level:    [80, 81]
+  16920793:
+    template: Awghrah
+    region:   sw_216
+    level:    [80, 81]
+  16920794:
+    template: Awghrah
+    region:   sw_218
+    level:    [80, 81]
+  16920795:
+    template: Indoor_aern_rdm
+    script:   Awaern
+    at:       [-447.895, -0.599, -377.984, 22]
+    level:    [83, 84]
+  16920796:
+    template: Indoor_aern_whm
+    script:   Awaern
+    at:       [-453.444, -0.599, -381.291, 86]
+    level:    [83, 84]
+  16920797:
+    template: Indoor_aern_blm
+    script:   Awaern
+    region:   sw_222
+    level:    [83, 84]
+  16920798:
+    template: Indoor_aern_war
+    script:   Awaern
+    region:   sw_222
+    level:    [83, 84]
+  16920799:
+    template: Indoor_aern_thf
+    script:   Awaern
+    region:   sw_223
+    level:    [83, 84]
+  16920800:
+    template: Indoor_aern_blm
+    script:   Awaern
+    region:   sw_223
+    level:    [83, 84]
+  16920801:
+    template: Indoor_aern_nin
+    script:   Awaern
+    region:   sw_225
+    level:    [83, 84]
+  16920802:
+    template: Indoor_aern_rng
+    script:   Awaern
+    region:   sw_225
+    level:    [83, 84]
+  16920803:
+    template: Awghrah
+    at:       [-334.486, -0.598, -408.796, 221]
+    level:    [80, 81]
+  16920804:
+    template: Awghrah
+    at:       [-370.993, -0.598, -505.414, 212]
+    level:    [80, 81]
+  16920805:
+    template: Awghrah
+    at:       [-363.831, -0.599, -499.745, 233]
+    level:    [80, 81]
+  16920806:
+    template: Awghrah
+    at:       [-457.144, -6.599, -526.962, 138]
+    level:    [80, 81]
+  16920807:
+    template: Awghrah
+    at:       [-526.787, -6.599, -470.092, 11]
+    level:    [80, 81]
+  16920808:
+    template: Awghrah
+    region:   sw_232
+    level:    [80, 81]
+  16920809:
+    template: Awghrah
+    region:   region_136
+    level:    [80, 81]
+  16920810:
+    template: Awzdei_Fast
+    script:   Awzdei
+    at:       [-448.000, -0.500, -312.000, 144]
+    level:    [80, 80]
+  16920811:
+    template: Awzdei_Left
+    script:   Awzdei
+    at:       [-392.000, -0.500, -312.000, 192]
+    level:    [80, 80]
+  16920812:
+    template: Awghrah
+    region:   region_145
+    level:    [80, 81]
+  16920813:
+    template: Awghrah
+    region:   sw_237
+    level:    [80, 81]
+  16920814:
+    template: Awghrah
+    region:   sw_238
+    level:    [80, 81]
+  16920815:
+    template: Awghrah
+    region:   sw_239
+    level:    [80, 81]
+  16920816:
+    template: Awghrah
+    region:   sw_240
+    level:    [80, 81]
+  16920817:
+    template: Awghrah
+    region:   sw_241
+    level:    [80, 81]
+  16920818:
+    template: Awghrah
+    region:   sw_242
+    level:    [80, 81]
+  16920819:
+    template: Awghrah
+    region:   sw_243
+    level:    [80, 81]
+  16920820:
+    template: Awghrah
+    region:   sw_244
+    level:    [80, 81]
+  16920821:
+    template: Awghrah
+    region:   sw_245
+    level:    [80, 81]
+  16920822:
+    template: Aweuvhi
+    at:       [-467.000, 1.500, -293.000, 32]
+    level:    [80, 82]
+  16920823:
+    template: Awghrah
+    region:   region_137
+    level:    [80, 81]
+  16920824:
+    template: Aweuvhi
+    at:       [-373.000, 1.500, -293.000, 96]
+    level:    [80, 82]
+  16920825:
+    template: Awghrah
+    region:   region_138
+    level:    [80, 81]
+  16920826:
+    template: Awzdei_Left
+    script:   Awzdei
+    at:       [-580.000, -0.500, -740.000, 212]
+    level:    [80, 80]
+  16920827:
+    template: Aweuvhi
+    region:   sw_251
+    level:    [80, 82]
+  16920828:
+    template: Aweuvhi_closed
+    script:   Aweuvhi
+    region:   sw_251
+    level:    [80, 82]
+  16920829:
+    template: Aweuvhi_closed
+    script:   Aweuvhi
+    at:       [-627.000, 1.500, -747.000, 224]
+    level:    [80, 82]
+  16920830:
+    template: Aweuvhi
+    region:   sw_254
+    level:    [78, 80]
+  16920831:
+    template: Aweuvhi_closed
+    script:   Aweuvhi
+    region:   sw_254
+    level:    [78, 80]
+  16920832:
+    template: Aweuvhi_closed
+    script:   Aweuvhi
+    at:       [-627.000, 1.500, -653.000, 32]
+    level:    [80, 82]
+  16920833:
+    template: Aweuvhi
+    region:   sw_257
+    level:    [78, 80]
+  16920834:
+    template: Aweuvhi_closed
+    script:   Aweuvhi
+    region:   sw_257
+    level:    [78, 80]
+  16920835:
+    template: Aweuvhi_closed
+    script:   Aweuvhi
+    at:       [-533.000, 1.500, -653.000, 96]
+    level:    [80, 82]
+  16920836:
+    template: Aweuvhi
+    at:       [-540.554, 1.393, -746.447, 133]
+    level:    [78, 80]
+  16920837:
+    template: Aweuvhi_closed
+    script:   Aweuvhi
+    at:       [-541.097, 1.399, -746.250, 132]
+    level:    [78, 80]
+  16920838:
+    template: Aweuvhi_closed
+    script:   Aweuvhi
+    at:       [-533.000, 1.500, -747.000, 160]
+    level:    [80, 82]
+  16920839:
+    template: Awghrah
+    region:   region_139
+    level:    [80, 81]
+  16920840:
+    template: Awghrah
+    region:   sw_264
+    level:    [80, 81]
+  16920841:
+    template: Awghrah
+    at:       [-532.105, -0.597, -699.885, 195]
+    level:    [80, 81]
+  16920842:
+    template: Awzdei_Fast
+    at:       [-608.000, -0.500, -728.000, 160]
+    level:    [80, 80]
+  16920843:
+    template: Awzdei_LeftFast
+    script:   Awzdei_Fast
+    at:       [-608.000, -0.500, -672.000, 112]
+    level:    [80, 80]
+  16920844:
+    template: Awzdei_Fast
+    at:       [-552.000, -0.500, -672.000, 184]
+    level:    [80, 80]
+  16920845:
+    template: Awzdei_LeftFast
+    script:   Awzdei_Fast
+    at:       [-552.000, -0.500, -728.000, 68]
+    level:    [80, 80]
+  16920846:
+    template: Aweuvhi
+    at:       [-580.000, -0.500, -645.000, 64]
+    level:    [80, 82]
+  16920847:
+    template: Awzdei_Left
+    script:   Awzdei
+    at:       [-780.000, -0.500, -340.000, 76]
+    level:    [80, 80]
+  16920848:
+    template: Aweuvhi
+    region:   sw_272
+    level:    [80, 82]
+  16920849:
+    template: Aweuvhi_closed
+    script:   Aweuvhi
+    region:   sw_272
+    level:    [80, 82]
+  16920850:
+    template: Aweuvhi_closed
+    script:   Aweuvhi
+    at:       [-787.000, 1.500, -293.000, 32]
+    level:    [80, 82]
+  16920851:
+    template: Aweuvhi
+    region:   sw_275
+    level:    [80, 82]
+  16920852:
+    template: Aweuvhi_closed
+    script:   Aweuvhi
+    region:   sw_275
+    level:    [80, 82]
+  16920853:
+    template: Aweuvhi_closed
+    script:   Aweuvhi
+    at:       [-693.000, 1.500, -293.000, 96]
+    level:    [80, 82]
+  16920854:
+    template: Aweuvhi
+    region:   sw_278
+    level:    [80, 82]
+  16920855:
+    template: Aweuvhi_closed
+    script:   Aweuvhi
+    region:   sw_278
+    level:    [80, 82]
+  16920856:
+    template: Aweuvhi_closed
+    script:   Aweuvhi
+    at:       [-693.000, 1.500, -387.000, 160]
+    level:    [80, 82]
+  16920857:
+    template: Aweuvhi
+    region:   sw_281
+    level:    [80, 82]
+  16920858:
+    template: Aweuvhi_closed
+    script:   Aweuvhi
+    region:   sw_281
+    level:    [80, 82]
+  16920859:
+    template: Aweuvhi_closed
+    script:   Aweuvhi
+    at:       [-787.000, 1.500, -387.000, 224]
+    level:    [80, 82]
+  16920860:
+    template: Awghrah
+    region:   region_140
+    level:    [80, 81]
+  16920861:
+    template: Awghrah
+    region:   sw_285
+    level:    [80, 81]
+  16920862:
+    template: Awghrah
+    region:   region_141
+    level:    [80, 81]
+  16920863:
+    template: Awzdei_Fast
+    at:       [-768.000, -0.500, -312.000, 140]
+    level:    [80, 80]
+  16920864:
+    template: Awzdei_LeftFast
+    script:   Awzdei_Fast
+    at:       [-712.000, -0.500, -312.000, 132]
+    level:    [80, 80]
+  16920865:
+    template: Awzdei_Fast
+    at:       [-712.000, -0.500, -368.000, 232]
+    level:    [80, 80]
+  16920866:
+    template: Awzdei_LeftFast
+    script:   Awzdei_Fast
+    at:       [-768.000, -0.500, -368.000, 64]
+    level:    [80, 80]
+  16920867:
+    template: Aweuvhi
+    at:       [-685.000, -0.500, -340.000, 128]
+    level:    [80, 82]
+  16920868:
+    template: Awzdei_Left
+    script:   Awzdei
+    at:       [-420.000, -0.500, -60.000, 55]
+    level:    [80, 80]
+  16920869:
+    template: Aweuvhi
+    region:   w_293
+    level:    [78, 80]
+  16920870:
+    template: Aweuvhi_closed
+    script:   Aweuvhi
+    region:   w_293
+    level:    [78, 80]
+  16920871:
+    template: Aweuvhi_closed
+    script:   Aweuvhi
+    at:       [-373.000, 1.500, -53.000, 96]
+    level:    [80, 82]
+  16920872:
+    template: Aweuvhi
+    at:       [-386.733, 0.188, -146.010, 255]
+    level:    [78, 80]
+  16920873:
+    template: Aweuvhi_closed
+    script:   Aweuvhi
+    at:       [-381.535, 1.399, -151.217, 248]
+    level:    [78, 80]
+  16920874:
+    template: Aweuvhi_closed
+    script:   Aweuvhi
+    at:       [-373.000, 1.500, -147.000, 160]
+    level:    [80, 82]
+  16920875:
+    template: Aweuvhi
+    region:   w_299
+    level:    [78, 80]
+  16920876:
+    template: Aweuvhi_closed
+    script:   Aweuvhi
+    region:   w_299
+    level:    [78, 80]
+  16920877:
+    template: Aweuvhi_closed
+    script:   Aweuvhi
+    at:       [-467.000, 1.500, -147.000, 224]
+    level:    [80, 82]
+  16920878:
+    template: Aweuvhi
+    region:   w_302
+    level:    [78, 80]
+  16920879:
+    template: Aweuvhi_closed
+    script:   Aweuvhi
+    region:   w_302
+    level:    [80, 82]
+  16920880:
+    template: Aweuvhi_closed
+    script:   Aweuvhi
+    at:       [-467.000, 1.500, -53.000, 32]
+    level:    [80, 82]
+  16920881:
+    template: Awghrah
+    region:   region_142
+    level:    [80, 81]
+  16920882:
+    template: Awghrah
+    region:   w_306
+    level:    [80, 81]
+  16920883:
+    template: Awghrah
+    region:   w_307
+    level:    [80, 81]
+  16920884:
+    template: Awzdei_Fast
+    at:       [-392.000, -0.500, -72.000, 40]
+    level:    [80, 80]
+  16920885:
+    template: Awzdei_LeftFast
+    script:   Awzdei_Fast
+    at:       [-392.000, -0.500, -128.000, 248]
+    level:    [80, 80]
+  16920886:
+    template: Awzdei_Fast
+    at:       [-448.000, -0.500, -128.000, 96]
+    level:    [80, 80]
+  16920887:
+    template: Awzdei_LeftFast
+    script:   Awzdei_Fast
+    at:       [-448.000, -0.500, -72.000, 96]
+    level:    [80, 80]
+  16920888:
+    template: Aweuvhi
+    at:       [-420.000, -0.500, -155.000, 192]
+    level:    [80, 82]
+  16920889:
+    template: Awzdei_Left
+    script:   Awzdei
+    at:       [-60.000, -0.500, -340.000, 189]
+    level:    [80, 80]
+  16920890:
+    template: Aweuvhi
+    region:   s_314
+    level:    [80, 82]
+  16920891:
+    template: Aweuvhi_closed
+    script:   Aweuvhi
+    region:   s_314
+    level:    [80, 82]
+  16920892:
+    template: Aweuvhi_closed
+    script:   Aweuvhi
+    at:       [-53.000, 1.500, -387.000, 160]
+    level:    [80, 82]
+  16920893:
+    template: Aweuvhi
+    region:   s_317
+    level:    [80, 82]
+  16920894:
+    template: Aweuvhi_closed
+    script:   Aweuvhi
+    region:   s_317
+    level:    [80, 82]
+  16920895:
+    template: Aweuvhi_closed
+    script:   Aweuvhi
+    at:       [-147.000, 1.500, -387.000, 224]
+    level:    [80, 82]
+  16920896:
+    template: Aweuvhi
+    region:   s_320
+    level:    [80, 82]
+  16920897:
+    template: Aweuvhi_closed
+    script:   Aweuvhi
+    region:   s_320
+    level:    [80, 82]
+  16920898:
+    template: Aweuvhi_closed
+    script:   Aweuvhi
+    at:       [-147.000, 1.500, -293.000, 32]
+    level:    [80, 82]
+  16920899:
+    template: Aweuvhi
+    region:   s_323
+    level:    [80, 82]
+  16920900:
+    template: Aweuvhi_closed
+    script:   Aweuvhi
+    region:   s_323
+    level:    [80, 82]
+  16920901:
+    template: Aweuvhi_closed
+    script:   Aweuvhi
+    at:       [-53.000, 1.500, -293.000, 96]
+    level:    [80, 82]
+  16920902:
+    template: Awghrah
+    at:       [-101.891, -0.595, -386.618, 2]
+    level:    [80, 81]
+  16920903:
+    template: Awghrah
+    at:       [-131.018, -0.529, -338.808, 68]
+    level:    [80, 81]
+  16920904:
+    template: Awghrah
+    at:       [-100.133, -0.599, -290.020, 4]
+    level:    [80, 81]
+  16920905:
+    template: Awzdei_Fast
+    at:       [-72.000, -0.500, -368.000, 120]
+    level:    [80, 80]
+  16920906:
+    template: Awzdei_LeftFast
+    script:   Awzdei_Fast
+    at:       [-128.000, -0.500, -368.000, 240]
+    level:    [80, 80]
+  16920907:
+    template: Awzdei_Fast
+    at:       [-128.000, -0.500, -312.000, 32]
+    level:    [80, 80]
+  16920908:
+    template: Awzdei_LeftFast
+    script:   Awzdei_Fast
+    at:       [-72.000, -0.500, -312.000, 148]
+    level:    [80, 80]
+  16920909:
+    template: Aweuvhi
+    at:       [-155.000, -0.500, -340.000]
+    level:    [80, 82]
+  16920910:
+    template: Awzdei_Left
+    script:   Awzdei
+    at:       [-260.000, -0.500, -740.000, 23]
+    level:    [80, 80]
+  16920911:
+    template: Aweuvhi
+    region:   sw_335
+    level:    [80, 82]
+  16920912:
+    template: Aweuvhi_closed
+    script:   Aweuvhi
+    region:   sw_335
+    level:    [80, 82]
+  16920913:
+    template: Aweuvhi_closed
+    script:   Aweuvhi
+    at:       [-307.000, 1.500, -747.000, 224]
+    level:    [80, 82]
+  16920914:
+    template: Aweuvhi
+    region:   sw_338
+    level:    [80, 82]
+  16920915:
+    template: Aweuvhi_closed
+    script:   Aweuvhi
+    region:   sw_338
+    level:    [80, 82]
+  16920916:
+    template: Aweuvhi_closed
+    script:   Aweuvhi
+    at:       [-307.000, 1.500, -653.000, 32]
+    level:    [80, 82]
+  16920917:
+    template: Aweuvhi
+    region:   s_341
+    level:    [80, 82]
+  16920918:
+    template: Aweuvhi_closed
+    script:   Aweuvhi
+    region:   s_341
+    level:    [80, 82]
+  16920919:
+    template: Aweuvhi_closed
+    script:   Aweuvhi
+    at:       [-213.000, 1.500, -653.000, 96]
+    level:    [80, 82]
+  16920920:
+    template: Aweuvhi
+    region:   s_344
+    level:    [80, 82]
+  16920921:
+    template: Aweuvhi_closed
+    script:   Aweuvhi
+    region:   s_344
+    level:    [80, 82]
+  16920922:
+    template: Aweuvhi_closed
+    script:   Aweuvhi
+    at:       [-213.000, 1.500, -747.000, 160]
+    level:    [80, 82]
+  16920923:
+    template: Awghrah
+    region:   region_143
+    level:    [80, 81]
+  16920924:
+    template: Awghrah
+    region:   s_348
+    level:    [80, 81]
+  16920925:
+    template: Awghrah
+    at:       [-210.234, -0.599, -703.533, 199]
+    level:    [80, 81]
+  16920926:
+    template: Awzdei_Fast
+    at:       [-288.000, -0.500, -728.000, 136]
+    level:    [80, 80]
+  16920927:
+    template: Awzdei_LeftFast
+    script:   Awzdei_Fast
+    at:       [-288.000, -0.500, -672.000, 200]
+    level:    [80, 80]
+  16920928:
+    template: Awzdei_Fast
+    at:       [-232.000, -0.500, -672.000, 180]
+    level:    [80, 80]
+  16920929:
+    template: Awzdei_LeftFast
+    script:   Awzdei_Fast
+    at:       [-232.000, -0.500, -728.000, 12]
+    level:    [80, 80]
+  16920930:
+    template: Aweuvhi
+    at:       [-260.000, -0.500, -645.000, 64]
+    level:    [80, 82]
+  16920931:
+    template: Awzdei
+    script:   Awzdei_Still
+    at:       [236.000, -6.500, 98.000, 128]
+    level:    [83, 83]
+  16920932:
+    template: Awzdei
+    script:   Awzdei_Still
+    at:       [236.000, -6.500, 102.000, 128]
+    level:    [83, 83]
+  16920933:
+    template: Awghrah
+    region:   c_357
+    level:    [81, 82]
+  16920934:
+    template: Awzdei
+    script:   Awzdei_Still
+    at:       [284.000, -6.500, 98.000]
+    level:    [83, 83]
+  16920935:
+    template: Awzdei
+    script:   Awzdei_Still
+    at:       [284.000, -6.500, 102.000]
+    level:    [83, 83]
+  16920936:
+    template: Awghrah
+    region:   e_360
+    level:    [81, 82]
+  16920937:
+    template: Awzdei_Left
+    script:   Awzdei
+    at:       [220.000, -0.500, 60.000, 88]
+    level:    [80, 80]
+  16920938:
+    template: Awzdei
+    at:       [220.000, -0.500, 140.000, 98]
+    level:    [80, 80]
+  16920939:
+    template: Awzdei_Left
+    script:   Awzdei
+    at:       [300.000, -0.500, 140.000, 101]
+    level:    [80, 80]
+  16920940:
+    template: Awzdei
+    at:       [300.000, -0.500, 60.000, 31]
+    level:    [80, 80]
+  16920941:
+    template: Awghrah
+    region:   e_365
+    level:    [81, 82]
+  16920942:
+    template: Awghrah
+    region:   e_366
+    level:    [81, 82]
+  16920943:
+    template: Awghrah
+    region:   e_367
+    level:    [81, 82]
+  16920944:
+    template: Awghrah
+    region:   e_368
+    level:    [81, 82]
+  16920945:
+    template: Awzdei_Fast
+    at:       [208.000, -0.500, 88.000, 160]
+    level:    [80, 80]
+  16920946:
+    template: Awzdei_LeftFast
+    script:   Awzdei_Fast
+    at:       [312.000, -0.500, 112.000, 144]
+    level:    [80, 80]
+  16920947:
+    template: Awzdei
+    script:   Awzdei_Still
+    at:       [98.000, -6.500, 436.000, 64]
+    level:    [83, 83]
+  16920948:
+    template: Awzdei
+    script:   Awzdei_Still
+    at:       [102.000, -6.500, 436.000, 64]
+    level:    [83, 83]
+  16920949:
+    template: Awghrah
+    region:   n_373
+    level:    [81, 82]
+  16920950:
+    template: Awzdei
+    script:   Awzdei_Still
+    at:       [98.000, -6.500, 484.000, 192]
+    level:    [83, 83]
+  16920951:
+    template: Awzdei
+    script:   Awzdei_Still
+    at:       [102.000, -6.500, 484.000, 192]
+    level:    [83, 83]
+  16920952:
+    template: Awghrah
+    at:       [94.203, -0.595, 499.790, 218]
+    level:    [81, 82]
+  16920953:
+    template: Awzdei_Left
+    script:   Awzdei
+    at:       [60.000, -0.500, 420.000, 127]
+    level:    [80, 80]
+  16920954:
+    template: Awzdei
+    at:       [60.000, -0.500, 500.000, 37]
+    level:    [80, 80]
+  16920955:
+    template: Awzdei_Left
+    script:   Awzdei
+    at:       [140.000, -0.500, 500.000, 36]
+    level:    [80, 80]
+  16920956:
+    template: Awzdei
+    at:       [140.000, -0.500, 420.000, 143]
+    level:    [80, 80]
+  16920957:
+    template: Awghrah
+    region:   n_381
+    level:    [81, 82]
+  16920958:
+    template: Awghrah
+    region:   n_382
+    level:    [81, 82]
+  16920959:
+    template: Awghrah
+    region:   n_383
+    level:    [81, 82]
+  16920960:
+    template: Awghrah
+    at:       [128.348, -6.582, 468.656, 50]
+    level:    [81, 82]
+  16920961:
+    template: Awzdei_Fast
+    at:       [88.000, -0.500, 408.000, 96]
+    level:    [80, 80]
+  16920962:
+    template: Awzdei_LeftFast
+    script:   Awzdei_Fast
+    at:       [88.000, -0.500, 512.000, 176]
+    level:    [80, 80]
+  16920963:
+    template: Awzdei
+    script:   Awzdei_Still
+    at:       [396.000, -6.500, 702.000, 128]
+    level:    [83, 83]
+  16920964:
+    template: Awzdei
+    script:   Awzdei_Still
+    at:       [396.000, -6.500, 698.000, 128]
+    level:    [83, 83]
+  16920965:
+    template: Awghrah
+    at:       [389.904, -0.599, 690.634, 41]
+    level:    [81, 82]
+  16920966:
+    template: Awzdei
+    script:   Awzdei_Still
+    at:       [444.000, -6.500, 702.000]
+    level:    [83, 83]
+  16920967:
+    template: Awzdei
+    script:   Awzdei_Still
+    at:       [444.000, -6.500, 698.000]
+    level:    [83, 83]
+  16920968:
+    template: Awghrah
+    region:   ne_392
+    level:    [81, 82]
+  16920969:
+    template: Awzdei_Left
+    script:   Awzdei
+    at:       [380.000, -0.500, 660.000, 121]
+    level:    [80, 80]
+  16920970:
+    template: Awzdei
+    at:       [380.000, -0.500, 740.000, 219]
+    level:    [80, 80]
+  16920971:
+    template: Awzdei_Left
+    script:   Awzdei
+    at:       [460.000, -0.500, 740.000, 81]
+    level:    [80, 80]
+  16920972:
+    template: Awzdei
+    at:       [460.000, -0.500, 660.000, 242]
+    level:    [80, 80]
+  16920973:
+    template: Awghrah
+    region:   ne_397
+    level:    [81, 82]
+  16920974:
+    template: Awghrah
+    region:   ne_398
+    level:    [81, 82]
+  16920975:
+    template: Awghrah
+    region:   ne_399
+    level:    [81, 82]
+  16920976:
+    template: Awghrah
+    region:   ne_400
+    level:    [81, 82]
+  16920977:
+    template: Awzdei_Fast
+    at:       [368.000, -0.500, 688.000, 64]
+    level:    [80, 80]
+  16920978:
+    template: Awzdei_LeftFast
+    script:   Awzdei_Fast
+    at:       [472.000, -0.500, 712.000, 128]
+    level:    [80, 80]
+  16920979:
+    template: Awzdei
+    script:   Awzdei_Still
+    at:       [738.000, -6.500, 436.000, 64]
+    level:    [83, 83]
+  16920980:
+    template: Awzdei
+    script:   Awzdei_Still
+    at:       [742.000, -6.500, 436.000, 64]
+    level:    [83, 83]
+  16920981:
+    template: Awghrah
+    region:   ne_405
+    level:    [81, 82]
+  16920982:
+    template: Awzdei
+    script:   Awzdei_Still
+    at:       [738.000, -6.500, 484.000, 192]
+    level:    [83, 83]
+  16920983:
+    template: Awzdei
+    script:   Awzdei_Still
+    at:       [742.000, -6.500, 484.000, 192]
+    level:    [83, 83]
+  16920984:
+    template: Awghrah
+    region:   ne_408
+    level:    [81, 82]
+  16920985:
+    template: Awzdei_Left
+    script:   Awzdei
+    at:       [700.000, -0.500, 420.000, 197]
+    level:    [80, 80]
+  16920986:
+    template: Awzdei
+    at:       [700.000, -0.500, 500.000, 90]
+    level:    [80, 80]
+  16920987:
+    template: Awzdei_Left
+    script:   Awzdei
+    at:       [780.000, -0.500, 500.000, 243]
+    level:    [80, 80]
+  16920988:
+    template: Awzdei
+    at:       [780.000, -0.500, 420.000, 60]
+    level:    [80, 80]
+  16920989:
+    template: Awghrah
+    at:       [689.308, -0.561, 456.922, 191]
+    level:    [81, 82]
+  16920990:
+    template: Awghrah
+    at:       [794.050, -0.599, 456.765, 191]
+    level:    [81, 82]
+  16920991:
+    template: Awghrah
+    at:       [712.404, -6.599, 451.573, 203]
+    level:    [81, 82]
+  16920992:
+    template: Awghrah
+    at:       [768.414, -6.599, 451.420, 206]
+    level:    [81, 82]
+  16920993:
+    template: Awzdei_Fast
+    at:       [752.000, -0.500, 408.000, 176]
+    level:    [80, 80]
+  16920994:
+    template: Awzdei_LeftFast
+    script:   Awzdei_Fast
+    at:       [752.000, -0.500, 512.000, 64]
+    level:    [80, 80]
+  16920995:
+    template: Awzdei
+    script:   Awzdei_Still
+    at:       [556.000, -6.500, 102.000, 128]
+    level:    [83, 83]
+  16920996:
+    template: Awzdei
+    script:   Awzdei_Still
+    at:       [556.000, -6.500, 98.000, 128]
+    level:    [83, 83]
+  16920997:
+    template: Awghrah
+    region:   e_421
+    level:    [81, 82]
+  16920998:
+    template: Awzdei
+    script:   Awzdei_Still
+    at:       [604.000, -6.500, 102.000]
+    level:    [83, 83]
+  16920999:
+    template: Awzdei
+    script:   Awzdei_Still
+    at:       [604.000, -6.500, 98.000]
+    level:    [83, 83]
+  16921000:
+    template: Awghrah
+    region:   e_424
+    level:    [81, 82]
+  16921001:
+    template: Awzdei_Left
+    script:   Awzdei
+    at:       [540.000, -0.500, 60.000, 197]
+    level:    [80, 80]
+  16921002:
+    template: Awzdei
+    at:       [540.000, -0.500, 140.000, 115]
+    level:    [80, 80]
+  16921003:
+    template: Awzdei_Left
+    script:   Awzdei
+    at:       [620.000, -0.500, 140.000, 54]
+    level:    [80, 80]
+  16921004:
+    template: Awzdei
+    at:       [620.000, -0.500, 60.000, 24]
+    level:    [80, 80]
+  16921005:
+    template: Awghrah
+    region:   e_429
+    level:    [81, 82]
+  16921006:
+    template: Awghrah
+    region:   e_430
+    level:    [81, 82]
+  16921007:
+    template: Awghrah
+    region:   e_431
+    level:    [81, 82]
+  16921008:
+    template: Awghrah
+    region:   e_432
+    level:    [81, 82]
+  16921009:
+    template: Awzdei_Fast
+    at:       [632.000, -0.500, 112.000, 208]
+    level:    [80, 80]
+  16921010:
+    template: Awzdei_LeftFast
+    script:   Awzdei_Fast
+    at:       [528.000, -0.500, 88.000, 64]
+    level:    [80, 80]
+  16921011:
+    template: Ixzdei_RDM
+    at:       [428.714, -1.500, 426.944, 128]
+    level:    [78, 78]
+  16921012:
+    template: Ixzdei_RDM
+    at:       [411.359, -1.500, 426.962]
+    level:    [78, 78]
+  16921013:
+    template: Ixzdei_BLM
+    at:       [428.593, -1.500, 412.980, 128]
+    level:    [78, 78]
+  16921014:
+    template: Ixzdei_BLM
+    at:       [411.333, -1.500, 412.997]
+    level:    [78, 78]
+  16921015:
+    template: Jailer_of_Fortitude
+    at:       [-434.100, -0.500, 697.849, 190]
+    level:    [85, 85]
+  16921016:
+    template: Kfghrah_whm
+    script:   Kfghrah_WHM
+    at:       [-433.362, -0.500, 700.028, 186]
+    level:    [80, 80]
+  16921017:
+    template: Kfghrah_blm
+    script:   Kfghrah_BLM
+    at:       [-406.510, -0.500, 699.651, 237]
+    level:    [80, 80]
+  16921018:
+    template: Ixaern_drk
+    script:   Ixaern_DRK
+    at:       [-590.082, -0.592, 110.876, 235]
+    level:    [82, 87]
+  16921019:
+    template: Qnaern_rng
+    script:   Qnaern
+    at:       [-575.403, 3.500, 228.466, 108]
+    level:    [80, 82]
+  16921020:
+    template: Qnaern_rng
+    script:   Qnaern
+    at:       [-548.878, 3.449, 253.894, 145]
+    level:    [80, 82]
+  16921021:
+    template: Jailer_of_Faith
+    at:       [-272.831, -0.500, -703.309, 66]
+    level:    [85, 85]
+  16921022:
+    template: Ixaern_drg
+    script:   Ixaern_DRG
+    at:       [-347.931, -0.500, -377.922, 147]
+    level:    [82, 87]
+  16921023:
+    template: Ixaern_drgs_Wynav
+    script:   Ixaern_DRGs_Wynav
+    at:       [-350.158, -0.607, -379.099, 66]
+    level:    [78, 79]
+  16921024:
+    template: Ixaern_drgs_Wynav
+    script:   Ixaern_DRGs_Wynav
+    at:       [-347.785, -0.379, -380.105, 94]
+    level:    [78, 79]
+  16921025:
+    template: Ixaern_drgs_Wynav
+    script:   Ixaern_DRGs_Wynav
+    at:       [-349.207, -0.499, -380.000, 79]
+    level:    [78, 79]

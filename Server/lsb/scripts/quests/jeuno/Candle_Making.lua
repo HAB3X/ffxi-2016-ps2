@@ -1,0 +1,72 @@
+-----------------------------------
+-- Candle Making
+-----------------------------------
+-- !addquest 3 22
+-- Rouliette : !pos -24 -2 11 244
+-----------------------------------
+
+local quest = Quest:new(xi.questLog.JEUNO, xi.quest.id.jeuno.CANDLE_MAKING)
+
+quest.reward =
+{
+    keyItem  = xi.keyItem.HOLY_CANDLE,
+    title    = xi.title.BELIEVER_OF_ALTANA,
+}
+
+quest.sections =
+{
+    {
+        check = function(player, status, vars)
+            return status == xi.questStatus.QUEST_AVAILABLE and
+                player:getQuestStatus(xi.questLog.JEUNO, xi.quest.id.jeuno.A_CANDLELIGHT_VIGIL) == xi.questStatus.QUEST_ACCEPTED
+        end,
+
+        [xi.zone.UPPER_JEUNO] =
+        {
+            ['Rouliette'] = quest:progressEvent(36),
+
+            onEventFinish =
+            {
+                [36] = function(player, csid, option, npc)
+                    quest:begin(player)
+                end,
+            },
+        },
+    },
+
+    {
+        check = function(player, status, vars)
+            return status == xi.questStatus.QUEST_ACCEPTED
+        end,
+
+        [xi.zone.UPPER_JEUNO] =
+        {
+            ['Rouliette'] =
+            {
+                onTrade = function(player, npc, trade)
+                    if npcUtil.tradeMatches(trade, { { xi.item.LANOLIN_CUBE, 1 } }) then
+                        return quest:progressEvent(37)
+                    end
+                end,
+
+                onTrigger = function(player, npc)
+                    return quest:progressEvent(36)
+                end,
+            },
+
+            onEventFinish =
+            {
+                [37] = function(player, csid, option, npc)
+                    if quest:complete(player) then
+                        player:addFame(xi.fameArea.SANDORIA, 13)
+                        player:addFame(xi.fameArea.BASTOK, 13)
+                        player:addFame(xi.fameArea.WINDURST, 13)
+                        player:tradeComplete()
+                    end
+                end,
+            },
+        },
+    },
+}
+
+return quest

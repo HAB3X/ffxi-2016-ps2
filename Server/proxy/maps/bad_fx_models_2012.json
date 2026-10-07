@@ -1,0 +1,4 @@
+{
+ "why": "converted PC models whose particle meshes were turned into PS2 VU models (d3m->vum) by research/tools/pc2ps2_model.py: at least model 2478 (file 51853) puts a VU DMA packet at an 8-byte (not 16-byte) aligned address, which ends the VIF1 chain and freezes the 2012 client (1 Oct 2026, work/b13_2012/rc2/freeze5_x). Until the converter pads these packets, the 2012 proxy does not show NPCs/mobs using these models (group c12-badfx). | EMPTIED 1 Oct 2026 08:40 after fix_vum_align.py repaired all 355 meshes (drive RC2b); the old list is in bad_fx_models_2012.json.list_1oct.",
+ "models": {}
+}

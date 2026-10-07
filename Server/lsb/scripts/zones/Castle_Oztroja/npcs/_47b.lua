@@ -1,0 +1,54 @@
+-----------------------------------
+-- Area: Castle Oztroja
+--  NPC: _47b (Handle)
+-- Notes: Opens Trap Door (_47a) or Brass Door (_470)
+-- !pos 22.310 -1.087 -14.320 151
+-----------------------------------
+local ID = zones[xi.zone.CASTLE_OZTROJA]
+-----------------------------------
+---@type TNpcEntity
+local entity = {}
+
+entity.onTrigger = function(player, npc)
+    local xPos = player:getXPos()
+    local zPos = player:getZPos()
+    local trapDoor  = GetNPCByID(npc:getID() - 1)
+    local brassDoor = GetNPCByID(npc:getID() - 2)
+
+    if xPos < 21.6 and xPos > 18 and zPos > -15.6 and zPos < -12.4 then
+        if VanadielDayOfTheYear() % 2 == 1 then
+            if
+                brassDoor and
+                brassDoor:getAnimation() == xi.animation.CLOSE_DOOR and
+                npc:getAnimation() == xi.animation.CLOSE_DOOR
+            then
+                npc:openDoor(8)
+                npc:timer(1500, function(npcArg)
+                    brassDoor:openDoor(6)
+                end)
+            end
+        else
+            if
+                trapDoor and
+                trapDoor:getAnimation() == xi.animation.CLOSE_DOOR and
+                npc:getAnimation() == xi.animation.CLOSE_DOOR
+            then
+                npc:openDoor(8)
+                npc:timer(1500, function(npcArg)
+                    trapDoor:openDoor(6)
+                end)
+            end
+
+            if
+                player:getCurrentMission(xi.mission.log_id.WINDURST) == xi.mission.id.windurst.TO_EACH_HIS_OWN_RIGHT and
+                player:getMissionStatus(player:getNation()) == 3
+            then
+                player:startCutscene(43)
+            end
+        end
+    else
+        player:messageSpecial(ID.text.CANNOT_REACH_TARGET)
+    end
+end
+
+return entity

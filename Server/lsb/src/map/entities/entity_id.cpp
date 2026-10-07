@@ -1,0 +1,110 @@
+/*
+===========================================================================
+
+  Copyright (c) 2026 LandSandBoat Dev Teams
+
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with this program.  If not, see http://www.gnu.org/licenses/
+
+===========================================================================
+*/
+
+#include "entity_id.h"
+
+#include "base_entity.h"
+#include "instance.h"
+#include "utils/zoneutils.h"
+#include "zone.h"
+
+EntityId::EntityId(const CBaseEntity* PEntity)
+{
+    if (PEntity == nullptr)
+    {
+        return;
+    }
+
+    UniqueNo      = PEntity->id;
+    ActIndex      = PEntity->targid;
+    zoneId        = PEntity->loc.zone ? PEntity->loc.zone->GetID() : xi::ZoneId::Unknown;
+    instanceRunId = PEntity->PInstance ? Maybe<uint32>(PEntity->PInstance->runId()) : std::nullopt;
+    serial        = PEntity->serial();
+    objtype       = PEntity->objtype;
+}
+
+void EntityId::clean()
+{
+    *this = EntityId{};
+}
+
+auto EntityId::isSet() const -> bool
+{
+    return ActIndex != 0;
+}
+
+auto EntityId::isDynamic() const -> bool
+{
+    return ActIndex >= 0x700;
+}
+
+auto EntityId::operator==(const EntityId& other) const -> bool
+{
+    return isDynamic() ? serial == other.serial : UniqueNo == other.UniqueNo;
+}
+
+auto EntityId::operator==(const CBaseEntity* PEntity) const -> bool
+{
+    if (PEntity == nullptr)
+    {
+        return !isSet();
+    }
+
+    return PEntity->IsDynamicEntity() ? serial == PEntity->serial() : UniqueNo == PEntity->id;
+}
+
+auto EntityId::resolveEntity() const -> CBaseEntity*
+{
+    if (ActIndex == 0 || serial == 0)
+    {
+        return nullptr;
+    }
+
+    CZone* PZone = zoneutils::GetZone(zoneId);
+    if (PZone == nullptr)
+    {
+        return nullptr;
+    }
+
+    CBaseEntity* PEntity = nullptr;
+    if (instanceRunId)
+    {
+        auto* PInstance = zoneutils::GetInstanceByRunId(zoneId, *instanceRunId);
+        if (PInstance == nullptr)
+        {
+            return nullptr;
+        }
+
+        PEntity = PInstance->GetEntity(ActIndex, objtype);
+    }
+    else
+    {
+        PEntity = PZone->GetEntity(ActIndex, objtype);
+    }
+
+    // Verify that we retrieved the exact same entity (dynamic entities).
+    if (PEntity == nullptr || *this != PEntity)
+    {
+        return nullptr;
+    }
+
+    return PEntity;
+}

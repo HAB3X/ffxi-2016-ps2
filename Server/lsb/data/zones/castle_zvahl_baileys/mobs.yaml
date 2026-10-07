@@ -1,0 +1,3081 @@
+# yaml-language-server: $schema=../../schemas/mobs.schema.json
+
+templates:
+
+  Abyssal_Demon:
+    id:            22
+    species:       kindred
+    spell_list_id: 31
+    skill_list_id: 169
+    attributes:
+      combat:
+        skill: great_sword
+      jobs: [smn, smn]
+      render:
+        look:
+          type:  standard
+          model: 754
+        entity_flags: 1157
+        model_size:      2
+        hitbox:         20
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: common
+          item:   orc_piercer
+        - chance: uncommon
+          item:   demon_horn
+        - chance: rare
+          item:   ice_spirit_pact
+        - chance: rare
+          item:   zvahl_coffer_key
+      despoil:
+        demon_horn:  0
+        demon_skull: 0
+
+  Ahriman:
+    id:            65
+    species:       ahriman
+    spell_list_id: 11
+    skill_list_id: 4
+    attributes:
+      combat:
+        skill: scythe
+      jobs: [war, blm]
+      render:
+        look:
+          type:  standard
+          model: 264
+        entity_flags: 1157
+        model_size:      2
+        hitbox:         27
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: common
+          item:   bottle_of_ahriman_tears
+        - chance: uncommon
+          item:   ahriman_lens
+        - chance: rare
+          item:   zvahl_coffer_key
+        - chance: rare
+          item:   ahriman_wing
+      steal: bottle_of_ahriman_tears
+      despoil:
+        bottle_of_ahriman_tears: 0
+        ahriman_wing:            0
+
+  Arch_Demon:
+    id:            226
+    species:       kindred
+    spell_list_id: 5
+    skill_list_id: 169
+    attributes:
+      combat:
+        skill: scythe
+      jobs: [drk, drk]
+      render:
+        look:
+          type:  standard
+          model: 751
+        entity_flags: 1157
+        model_size:      2
+        hitbox:         20
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: common
+          item:   shellbuster
+        - chance: uncommon
+          item:   demon_horn
+        - chance: rare
+          item:   zvahl_coffer_key
+      despoil:
+        demon_horn:  0
+        demon_skull: 0
+
+  Blood_Demon:
+    id:            472
+    species:       kindred
+    skill_list_id: 169
+    attributes:
+      combat:
+        skill: great_axe
+      jobs: [sam, sam]
+      render:
+        look:
+          type:  standard
+          model: 746
+        entity_flags: 133
+        model_size:     2
+        hitbox:        20
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: uncommon
+          item:   yagudo_freezer
+        - chance: uncommon
+          item:   samurais_testimony
+        - chance: rare
+          item:   zvahl_coffer_key
+        - chance: uncommon
+          item:   demon_pen
+      despoil:
+        demon_horn:  0
+        demon_skull: 0
+
+  Dark_Elemental:
+    id:            913
+    species:       dark_elemental
+    spell_list_id: 18
+    skill_list_id: 100
+    attributes:
+      combat:
+        skill: club
+      jobs: [drk, drk]
+      resists:
+        immune_status: [blind, light_sleep, dark_sleep]
+      render:
+        look:
+          type:  standard
+          model: 443
+        entity_flags:  131
+        animation_sub:  16
+        model_size:      1
+        hitbox:          3
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 960
+        type:    [weather]
+    loot:
+      drops:
+        - chance: always
+          item:   dark_cluster
+        - chance: common
+          item:   dark_cluster
+        - chance: common
+          item:   dark_cluster
+
+  Dark_Spark:
+    id:            917
+    species:       bomb
+    type:          [notorious]
+    spell_list_id: 117
+    skill_list_id: 56
+    attributes:
+      combat:
+        skill: scythe
+        delay: 180
+      jobs: [drk, war]
+      render:
+        look:
+          type:  standard
+          model: 280
+        entity_flags: 131
+        model_size:     1
+        hitbox:        12
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 8600
+
+  Demon_Banneret:
+    id:            982
+    species:       kindred
+    skill_list_id: 169
+    attributes:
+      combat:
+        skill: great_sword
+        delay: 210
+      render:
+        look:
+          type:  standard
+          model: 742
+        entity_flags:  3
+        model_size:    1
+        hitbox:       17
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 1400
+
+  Demon_Chancellor:
+    id:            984
+    species:       kindred
+    spell_list_id: 21
+    skill_list_id: 169
+    attributes:
+      combat:
+        skill: great_axe
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 748
+        entity_flags: 131
+        model_size:     1
+        hitbox:        17
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: rare
+          item:   handful_of_the_sands_of_silence
+        - chance: uncommon
+          item:   whine_cellar_key
+      despoil:
+        demon_horn:  0
+        demon_skull: 0
+
+  Demon_Commander:
+    id:            985
+    species:       kindred
+    skill_list_id: 169
+    attributes:
+      combat:
+        skill: great_sword
+      render:
+        look:
+          type:  standard
+          model: 742
+        entity_flags: 131
+        model_size:     1
+        hitbox:        17
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: uncommon
+          item:   whine_cellar_key
+      despoil:
+        demon_horn:  0
+        demon_skull: 0
+
+  Demon_General:
+    id:            986
+    species:       kindred
+    spell_list_id: 5
+    skill_list_id: 169
+    attributes:
+      combat:
+        skill: scythe
+      jobs: [drk, drk]
+      render:
+        look:
+          type:  standard
+          model: 745
+        entity_flags: 131
+        model_size:     1
+        hitbox:        17
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: uncommon
+          item:   whine_cellar_key
+        - chance: rare
+          item:   demon_pen
+        - chance: very_rare
+          item:   scroll_of_absorb-vit
+        - chance: very_rare
+          item:   scroll_of_absorb-agi
+        - chance: rare
+          item:   scroll_of_absorb-int
+      despoil:
+        demon_horn:  0
+        demon_skull: 0
+
+  Demon_Knight:
+    id:            988
+    species:       kindred
+    spell_list_id: 5
+    skill_list_id: 169
+    attributes:
+      combat:
+        skill: scythe
+      jobs: [drk, drk]
+      render:
+        look:
+          type:  standard
+          model: 743
+        entity_flags: 131
+        model_size:     1
+        hitbox:        17
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: rare
+          item:   behemoth_leather_missive
+        - chance: rare
+          item:   zvahl_chest_key
+        - chance: very_rare
+          item:   scroll_of_absorb-vit
+        - chance: very_rare
+          item:   scroll_of_absorb-agi
+        - chance: rare
+          item:   scroll_of_absorb-int
+      despoil:
+        demon_horn:  0
+        demon_skull: 0
+
+  Demon_Magistrate:
+    id:            989
+    species:       kindred
+    spell_list_id: 31
+    skill_list_id: 169
+    attributes:
+      combat:
+        skill: great_sword
+      jobs: [smn, smn]
+      render:
+        look:
+          type:  standard
+          model: 753
+        entity_flags: 131
+        model_size:     1
+        hitbox:        17
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: rare
+          item:   handful_of_the_sands_of_silence
+        - chance: uncommon
+          item:   whine_cellar_key
+        - chance: very_rare
+          item:   ice_spirit_pact
+      despoil:
+        demon_horn:  0
+        demon_skull: 0
+
+  Demon_Pawn:
+    id:            991
+    species:       kindred
+    skill_list_id: 169
+    attributes:
+      combat:
+        skill: great_sword
+      render:
+        look:
+          type:  standard
+          model: 740
+        entity_flags: 131
+        model_size:     1
+        hitbox:        17
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: rare
+          item:   behemoth_leather_missive
+        - chance: rare
+          item:   zvahl_chest_key
+      despoil:
+        demon_horn:  0
+        demon_skull: 0
+
+  Demon_Secretary:
+    id:            992
+    species:       kindred
+    spell_list_id: 1
+    skill_list_id: 169
+    attributes:
+      combat:
+        skill: sword
+      jobs: [blm, war]
+      render:
+        look:
+          type:  standard
+          model: 743
+        entity_flags:  3
+        model_size:    1
+        hitbox:       17
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 1200
+
+  Demon_Warlock:
+    id:            995
+    species:       kindred
+    spell_list_id: 31
+    skill_list_id: 169
+    attributes:
+      combat:
+        skill: great_sword
+      jobs: [smn, smn]
+      render:
+        look:
+          type:  standard
+          model: 744
+        entity_flags: 131
+        model_size:     1
+        hitbox:        17
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: rare
+          item:   zvahl_chest_key
+        - chance: very_rare
+          item:   ice_spirit_pact
+      despoil:
+        demon_horn:  0
+        demon_skull: 0
+
+  Demon_Wizard:
+    id:            997
+    species:       kindred
+    spell_list_id: 21
+    skill_list_id: 169
+    attributes:
+      combat:
+        skill: great_sword
+      jobs: [blm, war]
+      render:
+        look:
+          type:  standard
+          model: 741
+        entity_flags: 131
+        model_size:     1
+        hitbox:        17
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: rare
+          item:   behemoth_leather_missive
+        - chance: rare
+          item:   zvahl_chest_key
+      despoil:
+        demon_horn:  0
+        demon_skull: 0
+
+  Demons_Avatar:
+    id:            993
+    species:       carbuncle
+    skill_list_id: 34
+    attributes:
+      combat:
+        skill: scythe
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 794
+        entity_flags: 131
+        model_size:     1
+        hitbox:        24
+      spawn:
+        type: [scripted]
+
+  Demons_Elemental:
+    id:            994
+    species:       dark_elemental
+    spell_list_id: 5
+    skill_list_id: 100
+    attributes:
+      combat:
+        skill: club
+      jobs: [drk, war]
+      render:
+        look:
+          type:  standard
+          model: 13
+        entity_flags:  131
+        animation_sub:  16
+        model_size:      1
+        hitbox:          3
+      behaviors:
+        links: true
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: very_rare
+          item:   zvahl_chest_key
+
+  Doom_Demon:
+    id:            1081
+    species:       kindred
+    spell_list_id: 21
+    skill_list_id: 169
+    attributes:
+      combat:
+        skill: great_sword
+      jobs: [blm, war]
+      render:
+        look:
+          type:  standard
+          model: 749
+        entity_flags: 133
+        model_size:     2
+        hitbox:        20
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: rare
+          item:   demon_horn
+        - chance: rare
+          item:   zvahl_coffer_key
+      despoil:
+        demon_horn:  0
+        demon_skull: 0
+
+  Dread_Demon_CZB:
+    id:            6612
+    species:       kindred
+    spell_list_id: 21
+    skill_list_id: 169
+    attributes:
+      combat:
+        skill: sword
+      jobs: [blm, war]
+      render:
+        look:
+          type:  standard
+          model: 750
+        entity_flags: 133
+        model_size:     2
+        hitbox:        20
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: uncommon
+          item:   demon_horn
+        - chance: uncommon
+          item:   scroll_of_firaga_ii
+        - chance: rare
+          item:   scroll_of_fire_iii
+        - chance: very_rare
+          item:   scroll_of_fire_iv
+        - chance: very_rare
+          item:   scroll_of_firaga_iii
+        - chance: super_rare
+          item:   scroll_of_flare
+      despoil:
+        demon_horn:  0
+        demon_skull: 0
+
+  Duke_Haborym:
+    id:            1134
+    species:       kindred
+    type:          [notorious]
+    spell_list_id: 5
+    skill_list_id: 169
+    attributes:
+      combat:
+        skill: scythe
+      jobs: [drk, drk]
+      render:
+        look:
+          type:  standard
+          model: 751
+        entity_flags: 143
+        name_prefix:   32
+        model_size:     3
+        hitbox:        25
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 4500
+    loot:
+      drops:
+        - chance: very_common
+          item:   demon_horn
+        - chance: very_common
+          item:   barbarians_scythe
+        - chance: very_common
+          item:   scroll_of_absorb-dex
+        - chance: common
+          item:   demon_skull
+
+  Elder_Quadav:
+    id:            1192
+    species:       quadav
+    skill_list_id: 202
+    attributes:
+      combat:
+        skill: dagger
+        delay: 265
+      render:
+        look:
+          type:  standard
+          model: 648
+        entity_flags: 1155
+        model_size:      1
+        hitbox:         15
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: ultra_rare
+          item:   sallet
+        - chance: ultra_rare
+          item:   gauntlets
+        - chance: ultra_rare
+          item:   cuisses
+        - chance: ultra_rare
+          item:   plate_leggings
+      steal: mythril_beastcoin
+      despoil:
+        hard-boiled_egg:              0
+        serving_of_herb_crawler_eggs: 0
+
+  Emerald_Quadav:
+    id:            1207
+    species:       quadav
+    spell_list_id: 3
+    skill_list_id: 202
+    attributes:
+      combat:
+        skill: great_sword
+        delay: 265
+      jobs: [rdm, rdm]
+      render:
+        look:
+          type:  standard
+          model: 667
+        entity_flags: 1155
+        model_size:      1
+        hitbox:         15
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: rare
+          item:   bottle_of_warding_oil
+        - chance: super_rare
+          item:   padded_cap
+        - chance: super_rare
+          item:   iron_mittens
+        - chance: super_rare
+          item:   iron_subligar
+        - chance: super_rare
+          item:   leggings
+      steal: mythril_beastcoin
+      despoil:
+        serving_of_herb_crawler_eggs: 0
+        hard-boiled_egg:              0
+
+  Evil_Eye:
+    id:            1264
+    species:       ahriman
+    spell_list_id: 11
+    skill_list_id: 4
+    attributes:
+      combat:
+        skill: club
+      jobs: [war, blm]
+      render:
+        look:
+          type:  standard
+          model: 264
+        entity_flags:  1155
+        animation_sub:   16
+        model_size:       1
+        hitbox:          24
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: uncommon
+          item:   bottle_of_ahriman_tears
+        - chance: rare
+          item:   ahriman_lens
+      steal: bottle_of_ahriman_tears
+      despoil:
+        bottle_of_ahriman_tears: 0
+        ahriman_wing:            0
+
+  Goblin_Poacher:
+    id:            1701
+    species:       goblin
+    skill_list_id: 133
+    attributes:
+      combat:
+        skill: dagger
+      jobs: [rng, rng]
+      render:
+        look:
+          type:  standard
+          model: 496
+        entity_flags: 131
+        model_size:     1
+        hitbox:        12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: super_rare
+          item:   cuir_bandana
+        - chance: super_rare
+          item:   cuir_gloves
+        - chance: super_rare
+          item:   cuir_trousers
+        - chance: super_rare
+          item:   cuir_highboots
+      steal: crossbow_bolt
+      despoil:
+        loaf_of_goblin_bread:      0
+        chunk_of_goblin_chocolate: 0
+        bowl_of_goblin_stew:       0
+        goblin_mushpot:            0
+
+  Goblin_Reaper:
+    id:            1705
+    species:       armored_goblin
+    spell_list_id: 5
+    skill_list_id: 133
+    attributes:
+      combat:
+        skill: sword
+      jobs: [drk, drk]
+      render:
+        look:
+          type:  standard
+          model: 501
+        entity_flags: 131
+        model_size:     1
+        hitbox:        12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: rare
+          item:   scroll_of_stun
+        - chance: very_rare
+          item:   scroll_of_absorb-vit
+        - chance: very_rare
+          item:   scroll_of_absorb-agi
+        - chance: very_rare
+          item:   scroll_of_absorb-int
+      steal: mythril_beastcoin
+      despoil:
+        loaf_of_goblin_bread:      0
+        chunk_of_goblin_chocolate: 0
+        bowl_of_goblin_stew:       0
+        goblin_mushpot:            0
+
+  Goblin_Robber:
+    id:            1709
+    species:       goblin
+    skill_list_id: 133
+    attributes:
+      combat:
+        skill: dagger
+      jobs: [thf, thf]
+      render:
+        look:
+          type:  standard
+          model: 500
+        entity_flags: 131
+        model_size:     1
+        hitbox:        12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: super_rare
+          item:   cuir_bandana
+        - chance: super_rare
+          item:   cuir_gloves
+        - chance: super_rare
+          item:   cuir_trousers
+        - chance: super_rare
+          item:   cuir_highboots
+      steal: mythril_beastcoin
+      despoil:
+        loaf_of_goblin_bread:      0
+        chunk_of_goblin_chocolate: 0
+        bowl_of_goblin_stew:       0
+        goblin_mushpot:            0
+
+  Goblin_Trader:
+    id:            1741
+    species:       goblin
+    skill_list_id: 133
+    attributes:
+      combat:
+        skill: axe
+      jobs: [bst, bst]
+      render:
+        look:
+          type:  standard
+          model: 498
+        entity_flags: 131
+        model_size:     1
+        hitbox:        12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: ultra_rare
+          item:   square_of_velvet_cloth
+        - chance: super_rare
+          item:   cuir_bandana
+        - chance: super_rare
+          item:   cuir_gloves
+        - chance: super_rare
+          item:   cuir_trousers
+        - chance: super_rare
+          item:   cuir_highboots
+      steal: mythril_beastcoin
+      despoil:
+        loaf_of_goblin_bread:      0
+        chunk_of_goblin_chocolate: 0
+        bowl_of_goblin_stew:       0
+        goblin_mushpot:            0
+
+  Goblins_Bats:
+    id:            1721
+    species:       flock_bat
+    skill_list_id: 47
+    attributes:
+      combat:
+        skill: club
+      render:
+        look:
+          type:  standard
+          model: 260
+        entity_flags:  643
+        animation_sub:   8
+        name_prefix:    64
+        model_size:      1
+        hitbox:         16
+      behaviors:
+        links: true
+      spawn:
+        type: [scripted]
+
+  Gore_Demon_CZB:
+    id:            6613
+    species:       kindred
+    skill_list_id: 169
+    attributes:
+      combat:
+        skill: sword
+      render:
+        look:
+          type:  standard
+          model: 747
+        entity_flags: 133
+        model_size:     2
+        hitbox:        20
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: uncommon
+          item:   samurais_testimony
+        - chance: uncommon
+          item:   yagudo_freezer
+      despoil:
+        demon_horn:  0
+        demon_skull: 0
+
+  Grand_Duke_Batym:
+    id:            1786
+    species:       kindred
+    type:          [notorious]
+    spell_list_id: 31
+    skill_list_id: 169
+    attributes:
+      combat:
+        skill: club
+      jobs: [smn, smn]
+      render:
+        look:
+          type:  standard
+          model: 752
+        entity_flags: 143
+        name_prefix:   32
+        model_size:     3
+        hitbox:        25
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 4100
+    loot:
+      drops:
+        - chance: very_common
+          item:   demon_horn
+        - chance: common
+          item:   demonslicer
+        - chance: common
+          item:   demon_skull
+
+  Ice_Elemental:
+    id:            2043
+    species:       ice_elemental
+    spell_list_id: 14
+    skill_list_id: 103
+    attributes:
+      combat:
+        skill: staff
+      jobs: [blm, rdm]
+      resists:
+        immune_status: [gravity, bind, silence, paralyze]
+      render:
+        look:
+          type:  standard
+          model: 437
+        entity_flags:  1155
+        animation_sub:   16
+        model_size:       1
+        hitbox:           3
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 960
+        type:    [weather]
+    loot:
+      drops:
+        - chance: always
+          item:   ice_cluster
+        - chance: common
+          item:   ice_cluster
+        - chance: common
+          item:   ice_cluster
+
+  Iron_Quadav:
+    id:            2102
+    species:       quadav
+    spell_list_id: 4
+    skill_list_id: 202
+    attributes:
+      combat:
+        skill: sword
+        delay: 265
+      jobs: [pld, pld]
+      render:
+        look:
+          type:  standard
+          model: 653
+        entity_flags: 1155
+        model_size:      1
+        hitbox:         15
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: rare
+          item:   scroll_of_flash
+        - chance: ultra_rare
+          item:   sallet
+        - chance: ultra_rare
+          item:   gauntlets
+        - chance: ultra_rare
+          item:   cuisses
+        - chance: ultra_rare
+          item:   plate_leggings
+      steal: mythril_beastcoin
+      despoil:
+        hard-boiled_egg:              0
+        serving_of_herb_crawler_eggs: 0
+
+  Judicator_Demon_CZB:
+    id:            6614
+    species:       kindred
+    spell_list_id: 5
+    skill_list_id: 169
+    attributes:
+      combat:
+        skill: scythe
+      jobs: [drk, drk]
+      render:
+        look:
+          type:  standard
+          model: 752
+        entity_flags: 133
+        model_size:     2
+        hitbox:        20
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: common
+          item:   shellbuster
+        - chance: uncommon
+          item:   demon_horn
+      despoil:
+        demon_horn:  0
+        demon_skull: 0
+
+  Likho:
+    id:            2414
+    species:       ahriman
+    type:          [notorious]
+    spell_list_id: 237
+    skill_list_id: 53
+    attributes:
+      combat:
+        skill: staff
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 264
+        entity_flags: 131
+        model_size:     1
+        hitbox:        24
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 7000
+    loot:
+      drops:
+        - chance: common
+          item:   likho_talon
+    content: wotg
+
+  Marquis_Allocen:
+    id:            2568
+    species:       kindred
+    type:          [notorious]
+    skill_list_id: 169
+    attributes:
+      combat:
+        skill: great_sword
+      render:
+        look:
+          type:  standard
+          model: 742
+        entity_flags: 135
+        model_size:     3
+        hitbox:        25
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 4800
+    loot:
+      drops:
+        - chance: very_common
+          item:   demon_horn
+        - chance: very_common
+          item:   corsairs_knife
+        - chance: common
+          item:   demon_skull
+
+  Marquis_Amon:
+    id:            2569
+    species:       kindred
+    type:          [notorious]
+    spell_list_id: 21
+    skill_list_id: 169
+    attributes:
+      combat:
+        skill: great_katana
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 745
+        entity_flags: 135
+        model_size:     3
+        hitbox:        25
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 4200
+    loot:
+      drops:
+        - chance: very_common
+          item:   demon_horn
+        - chance: very_common
+          item:   lion_crossbow
+        - chance: uncommon
+          item:   scroll_of_fire_iii
+        - chance: common
+          item:   demon_skull
+        - chance: rare
+          item:   scroll_of_firaga_iii
+        - chance: rare
+          item:   scroll_of_fire_iv
+        - chance: very_rare
+          item:   scroll_of_flare
+
+  Marquis_Andrealphus:
+    id:            2571
+    species:       kindred
+    type:          [notorious]
+    spell_list_id: 2
+    skill_list_id: 169
+    attributes:
+      combat:
+        skill: axe
+        delay: 210
+      jobs: [drk, drk]
+      render:
+        look:
+          type:  standard
+          model: 741
+        entity_flags:  6
+        model_size:    3
+        hitbox:       25
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 4600
+
+  Marquis_Naberius:
+    id:            5890
+    species:       kindred
+    type:          [notorious]
+    spell_list_id: 12
+    skill_list_id: 169
+    attributes:
+      combat:
+        skill: great_sword
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 749
+        entity_flags: 141
+        name_prefix:   32
+        model_size:     2
+        hitbox:        20
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 3600
+      stats:
+        hp: 6000
+    loot:
+      drops:
+        - chance: common
+          item:   yellow_brass_chain
+    content: wotg
+
+  Marquis_Sabnock:
+    id:            5763
+    species:       kindred
+    type:          [notorious]
+    skill_list_id: 169
+    attributes:
+      combat:
+        skill: great_axe
+      render:
+        look:
+          type:  standard
+          model: 747
+        entity_flags: 141
+        name_prefix:   32
+        model_size:     2
+        hitbox:        20
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [lottery]
+      stats:
+        hp: 9500
+    loot:
+      drops:
+        - chance: common
+          item:   astrolabe
+    content: wotg
+
+  Mimic:
+    id:            2664
+    species:       mimic
+    type:          [notorious]
+    skill_list_id: 183
+    attributes:
+      combat:
+        skill: scythe
+        delay: 170
+      resists:
+        dmg_physical:
+          slashing: -5000
+          piercing: -5000
+          blunt:    -5000
+          h2h:      -5000
+      render:
+        look:
+          type:  standard
+          model: 259
+        entity_flags:  131
+        animation_sub:  13
+        model_size:      1
+        hitbox:         12
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: always
+          item:   zvahl_coffer_key
+
+  Morbid_Eye:
+    id:            2738
+    species:       ahriman
+    spell_list_id: 11
+    skill_list_id: 4
+    attributes:
+      combat:
+        skill: club
+      jobs: [war, blm]
+      render:
+        look:
+          type:  standard
+          model: 264
+        entity_flags:  131
+        animation_sub:  16
+        model_size:      1
+        hitbox:         24
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: rare
+          item:   zvahl_chest_key
+        - chance: common
+          item:   bottle_of_ahriman_tears
+        - chance: uncommon
+          item:   ahriman_lens
+        - chance: rare
+          item:   ahriman_wing
+      steal: bottle_of_ahriman_tears
+      despoil:
+        bottle_of_ahriman_tears: 0
+        ahriman_wing:            0
+
+  Orcish_Bowshooter:
+    id:            2997
+    species:       orc
+    skill_list_id: 189
+    attributes:
+      combat:
+        skill: axe
+      jobs: [rng, war]
+      render:
+        look:
+          type:  standard
+          model: 617
+        entity_flags: 1155
+        model_size:      1
+        hitbox:         15
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: super_rare
+          item:   cuir_bandana
+        - chance: super_rare
+          item:   cuir_gloves
+        - chance: super_rare
+          item:   cuir_trousers
+        - chance: super_rare
+          item:   cuir_highboots
+      steal: mythril_beastcoin
+      despoil:
+        strip_of_meat_jerky:    0
+        dhalmel_steak:          0
+        strip_of_buffalo_jerky: 0
+
+  Orcish_Footsoldier:
+    id:            3014
+    species:       orc
+    skill_list_id: 189
+    attributes:
+      combat:
+        skill: dagger
+      render:
+        look:
+          type:  standard
+          model: 618
+        entity_flags: 1155
+        model_size:      1
+        hitbox:         15
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: uncommon
+          item:   soiled_letter
+        - chance: super_rare
+          item:   silver_mask
+        - chance: super_rare
+          item:   silver_mittens
+        - chance: super_rare
+          item:   silver_hose
+        - chance: super_rare
+          item:   silver_greaves
+      steal: mythril_beastcoin
+      despoil:
+        strip_of_meat_jerky:    0
+        dhalmel_steak:          0
+        strip_of_buffalo_jerky: 0
+
+  Orcish_Gladiator:
+    id:            3015
+    species:       orc
+    skill_list_id: 189
+    attributes:
+      combat:
+        skill: hand_to_hand
+        delay: 250
+      jobs: [mnk, war]
+      render:
+        look:
+          type:  standard
+          model: 632
+        entity_flags: 1155
+        model_size:      1
+        hitbox:         15
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: super_rare
+          item:   padded_cap
+        - chance: super_rare
+          item:   iron_mittens
+        - chance: super_rare
+          item:   iron_subligar
+        - chance: super_rare
+          item:   leggings
+      steal: mythril_beastcoin
+      despoil:
+        strip_of_meat_jerky:    0
+        dhalmel_steak:          0
+        strip_of_buffalo_jerky: 0
+
+  Orcish_Trooper:
+    id:            3039
+    species:       orc
+    spell_list_id: 4
+    skill_list_id: 189
+    attributes:
+      combat:
+        skill: sword
+      jobs: [pld, war]
+      render:
+        look:
+          type:  standard
+          model: 634
+        entity_flags: 1155
+        model_size:      1
+        hitbox:         15
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: uncommon
+          item:   gold_orcmask
+        - chance: rare
+          item:   scroll_of_flash
+        - chance: ultra_rare
+          item:   sallet
+        - chance: ultra_rare
+          item:   gauntlets
+        - chance: ultra_rare
+          item:   cuisses
+        - chance: ultra_rare
+          item:   plate_leggings
+      steal: mythril_beastcoin
+      despoil:
+        strip_of_meat_jerky:    0
+        dhalmel_steak:          0
+        strip_of_buffalo_jerky: 0
+
+  Spinel_Quadav:
+    id:            3731
+    species:       quadav
+    spell_list_id: 21
+    skill_list_id: 202
+    attributes:
+      combat:
+        skill: axe
+        delay: 265
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 662
+        entity_flags: 131
+        model_size:     1
+        hitbox:        15
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: super_rare
+          item:   velvet_hat
+        - chance: super_rare
+          item:   velvet_cuffs
+        - chance: super_rare
+          item:   velvet_slops
+        - chance: super_rare
+          item:   ebony_sabots
+      steal: mythril_beastcoin
+      despoil:
+        hard-boiled_egg:              0
+        serving_of_herb_crawler_eggs: 0
+
+  Stygian_Demon_CZB:
+    id:            6634
+    species:       kindred
+    spell_list_id: 31
+    skill_list_id: 169
+    attributes:
+      combat:
+        skill: great_sword
+      jobs: [smn, smn]
+      render:
+        look:
+          type:  standard
+          model: 755
+        entity_flags: 133
+        model_size:     2
+        hitbox:        20
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: common
+          item:   orc_piercer
+        - chance: uncommon
+          item:   demon_horn
+        - chance: rare
+          item:   ice_spirit_pact
+      despoil:
+        demon_horn:  0
+        demon_skull: 0
+
+  Yagudo_Conquistador:
+    id:            4413
+    species:       yagudo
+    spell_list_id: 7
+    skill_list_id: 270
+    attributes:
+      combat:
+        skill: dagger
+      jobs: [nin, nin]
+      render:
+        look:
+          type:  standard
+          model: 587
+        entity_flags: 131
+        model_size:     1
+        hitbox:        15
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: rare
+          item:   juji_shuriken
+        - chance: very_rare
+          item:   scroll_of_raiton_ni
+        - chance: very_rare
+          item:   scroll_of_suiton_ni
+        - chance: very_rare
+          item:   scroll_of_katon_ni
+        - chance: very_rare
+          item:   scroll_of_hyoton_ni
+        - chance: very_rare
+          item:   scroll_of_huton_ni
+        - chance: very_rare
+          item:   scroll_of_doton_ni
+      steal: mythril_beastcoin
+      despoil:
+        roast_carp:       0
+        roast_pipira:     0
+        boiled_tuna_head: 0
+
+  Yagudo_Lutenist:
+    id:            4431
+    species:       yagudo
+    spell_list_id: 6
+    skill_list_id: 270
+    attributes:
+      combat:
+        skill: axe
+      jobs: [brd, brd]
+      render:
+        look:
+          type:  standard
+          model: 593
+        entity_flags: 131
+        model_size:     1
+        hitbox:        15
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: rare
+          item:   scroll_of_blade_madrigal
+        - chance: very_rare
+          item:   scroll_of_dragonfoe_mambo
+      steal: mythril_beastcoin
+      despoil:
+        roast_carp:       0
+        roast_pipira:     0
+        boiled_tuna_head: 0
+
+  Yagudo_Prior:
+    id:            4445
+    species:       yagudo
+    spell_list_id: 21
+    skill_list_id: 270
+    attributes:
+      combat:
+        skill: axe
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 604
+        entity_flags: 131
+        model_size:     1
+        hitbox:        15
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: ultra_rare
+          item:   black_mitts
+        - chance: ultra_rare
+          item:   white_slacks
+        - chance: ultra_rare
+          item:   moccasins
+      steal: mythril_beastcoin
+      despoil:
+        roast_carp:       0
+        roast_pipira:     0
+        boiled_tuna_head: 0
+
+  Yagudo_Zealot:
+    id:            4461
+    species:       yagudo
+    skill_list_id: 270
+    attributes:
+      combat:
+        skill: hand_to_hand
+        delay: 250
+      jobs: [mnk, mnk]
+      render:
+        look:
+          type:  standard
+          model: 585
+        entity_flags: 131
+        model_size:     1
+        hitbox:        15
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: super_rare
+          item:   cuir_bandana
+        - chance: super_rare
+          item:   cuir_gloves
+        - chance: super_rare
+          item:   cuir_trousers
+        - chance: super_rare
+          item:   cuir_highboots
+      steal: mythril_beastcoin
+      despoil:
+        roast_carp:       0
+        roast_pipira:     0
+        boiled_tuna_head: 0
+
+
+  Beta_ahri_Evil_Eye:
+    id:            40068
+    species:       ahriman
+    spell_list_id: 11
+    skill_list_id: 4
+    attributes:
+      combat:
+        skill: club
+      jobs: [war, blm]
+      render:
+        look:
+          type:  standard
+          model: 2949
+        entity_flags:  1155
+        animation_sub:   16
+        model_size:       1
+        hitbox:          24
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: uncommon
+          item:   beta_170
+        - chance: uncommon
+          item:   beta_4806
+        - chance: uncommon
+          item:   beta_6768
+        - chance: uncommon
+          item:   bottle_of_ahriman_tears
+        - chance: rare
+          item:   ahriman_lens
+      steal: bottle_of_ahriman_tears
+      despoil:
+        bottle_of_ahriman_tears: 0
+        ahriman_wing:            0
+
+spawns:
+  17436673:
+    template: Evil_Eye
+    region:   e_1
+    level:    [46, 48]
+  17436674:
+    template: Evil_Eye
+    region:   e_1
+    level:    [46, 48]
+  17436675:
+    template: Demon_Pawn
+    region:   e_3
+    level:    [48, 50]
+  17436676:
+    template: Evil_Eye
+    region:   e_3
+    level:    [46, 48]
+  17436677:
+    template: Evil_Eye
+    region:   e_3
+    level:    [46, 48]
+  17436678:
+    template: Dark_Elemental
+    region:   e_3
+    level:    [48, 49]
+  17436679:
+    template: Ice_Elemental
+    region:   e_3
+    level:    [48, 49]
+  17436680:
+    template: Demon_Pawn
+    region:   e_8
+    level:    [48, 50]
+  17436681:
+    template: Demon_Pawn
+    region:   e_8
+    level:    [48, 50]
+  17436682:
+    template: Evil_Eye
+    region:   e_8
+    level:    [46, 48]
+  17436683:
+    template: Dark_Elemental
+    region:   e_8
+    level:    [48, 49]
+  17436684:
+    template: Ice_Elemental
+    region:   e_8
+    level:    [48, 49]
+  17436685:
+    template: Demon_Pawn
+    region:   e_13
+    level:    [48, 50]
+  17436686:
+    template: Demon_Pawn
+    region:   e_13
+    level:    [48, 50]
+  17436687:
+    template: Evil_Eye
+    region:   e_13
+    level:    [46, 48]
+  17436688:
+    template: Dark_Elemental
+    region:   e_13
+    level:    [48, 49]
+  17436689:
+    template: Ice_Elemental
+    region:   e_13
+    level:    [48, 49]
+  17436690:
+    template: Evil_Eye
+    region:   e_18
+    level:    [46, 48]
+  17436691:
+    template: Demon_Pawn
+    region:   c_19
+    level:    [50, 52]
+  17436692:
+    template: Demon_Knight
+    region:   c_19
+    level:    [50, 52]
+  17436693:
+    template: Demon_Pawn
+    region:   c_21
+    level:    [50, 52]
+  17436694:
+    template: Demon_Knight
+    region:   c_21
+    level:    [50, 52]
+  17436695:
+    template: Demon_Pawn
+    region:   c_23
+    level:    [50, 52]
+  17436696:
+    template: Demon_Knight
+    region:   c_23
+    level:    [50, 52]
+  17436697:
+    template: Demon_Pawn
+    region:   c_25
+    level:    [50, 52]
+  17436698:
+    template: Demon_Knight
+    region:   c_25
+    level:    [50, 52]
+  17436699:
+    template: Evil_Eye
+    region:   c_27
+    level:    [46, 48]
+  17436700:
+    template: Demon_Pawn
+    region:   e_28
+    level:    [50, 52]
+  17436701:
+    template: Demon_Pawn
+    region:   e_29
+    level:    [50, 52]
+  17436702:
+    template: Demon_Pawn
+    region:   ne_30
+    level:    [50, 52]
+  17436703:
+    template: Demon_Wizard
+    region:   ne_30
+    level:    [50, 52]
+  17436704:
+    template: Demon_Pawn
+    region:   se_32
+    level:    [50, 52]
+  17436705:
+    template: Demon_Wizard
+    region:   se_32
+    level:    [50, 52]
+  17436706:
+    template: Demon_Pawn
+    region:   n_34
+    level:    [50, 52]
+  17436707:
+    template: Dark_Elemental
+    region:   n_34
+    level:    [48, 49]
+  17436708:
+    template: Ice_Elemental
+    region:   n_34
+    level:    [48, 49]
+  17436709:
+    template: Demon_Pawn
+    region:   s_37
+    level:    [50, 52]
+  17436710:
+    template: Dark_Elemental
+    region:   s_37
+    level:    [48, 49]
+  17436711:
+    template: Ice_Elemental
+    region:   s_37
+    level:    [48, 49]
+  17436712:
+    template: Evil_Eye
+    region:   c_40
+    level:    [46, 48]
+  17436713:
+    template: Evil_Eye
+    region:   c_40
+    level:    [46, 48]
+  17436714:
+    template: Likho
+    region:   c_40
+    level:    [67, 68]
+  17436715:
+    template: Evil_Eye
+    region:   c_43
+    level:    [46, 48]
+  17436716:
+    template: Evil_Eye
+    region:   c_43
+    level:    [46, 48]
+  17436717:
+    template: Demon_Pawn
+    region:   region_103
+    level:    [50, 52]
+  17436718:
+    template: Demon_Pawn
+    region:   region_103
+    level:    [50, 52]
+  17436719:
+    template: Demon_Wizard
+    region:   region_103
+    level:    [50, 52]
+  17436720:
+    template: Demon_Knight
+    region:   region_103
+    level:    [50, 52]
+  17436721:
+    template: Demon_Pawn
+    region:   c_49
+    level:    [50, 52]
+  17436722:
+    template: Demon_Pawn
+    region:   c_49
+    level:    [50, 52]
+  17436723:
+    template: Demon_Wizard
+    region:   c_49
+    level:    [50, 52]
+  17436724:
+    template: Demon_Knight
+    region:   c_49
+    level:    [50, 52]
+  17436725:
+    template: Goblin_Poacher
+    region:   n_53
+    level:    [47, 49]
+  17436726:
+    template: Goblin_Trader
+    region:   n_53
+    level:    [47, 49]
+  17436727:
+    template: Goblins_Bats
+    at:       [1.000, 1.000, 1.000]
+    level:    [40, 42]
+  17436728:
+    template: Goblin_Robber
+    region:   n_53
+    level:    [47, 49]
+  17436729:
+    template: Goblin_Reaper
+    region:   n_53
+    level:    [47, 49]
+  17436730:
+    template: Orcish_Bowshooter
+    region:   s_58
+    level:    [47, 49]
+  17436731:
+    template: Orcish_Footsoldier
+    region:   s_58
+    level:    [47, 49]
+  17436732:
+    template: Orcish_Gladiator
+    region:   s_58
+    level:    [47, 49]
+  17436733:
+    template: Orcish_Trooper
+    region:   s_58
+    level:    [47, 49]
+  17436734:
+    template: Goblin_Poacher
+    region:   n_62
+    level:    [47, 49]
+  17436735:
+    template: Goblin_Trader
+    region:   n_62
+    level:    [47, 49]
+  17436736:
+    template: Goblins_Bats
+    at:       [1.000, 1.000, 1.000]
+    level:    [40, 42]
+  17436737:
+    template: Goblin_Robber
+    region:   n_62
+    level:    [47, 49]
+  17436738:
+    template: Goblin_Reaper
+    region:   n_62
+    level:    [47, 49]
+  17436739:
+    template: Orcish_Bowshooter
+    region:   s_67
+    level:    [47, 49]
+  17436740:
+    template: Orcish_Footsoldier
+    region:   s_67
+    level:    [47, 49]
+  17436741:
+    template: Orcish_Gladiator
+    region:   s_67
+    level:    [47, 49]
+  17436742:
+    template: Orcish_Trooper
+    region:   s_67
+    level:    [47, 49]
+  17436743:
+    template: Demon_Wizard
+    region:   n_72
+    level:    [50, 52]
+  17436744:
+    template: Demon_Knight
+    region:   n_72
+    level:    [50, 52]
+  17436745:
+    template: Demon_Warlock
+    region:   n_72
+    level:    [50, 52]
+  17436746:
+    template: Demons_Elemental
+    at:       [1.000, 1.000, 1.000, 127]
+    level:    [43, 45]
+  17436747:
+    template: Demon_Wizard
+    region:   s_76
+    level:    [50, 52]
+  17436748:
+    template: Demon_Knight
+    region:   s_76
+    level:    [50, 52]
+  17436749:
+    template: Demon_Warlock
+    region:   s_76
+    level:    [50, 52]
+  17436750:
+    template: Demons_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [43, 45]
+  17436751:
+    template: Goblin_Poacher
+    region:   n_79
+    level:    [47, 49]
+  17436752:
+    template: Goblin_Trader
+    region:   n_79
+    level:    [47, 49]
+  17436753:
+    template: Goblins_Bats
+    at:       [1.000, 1.000, 1.000]
+    level:    [40, 42]
+  17436754:
+    template: Goblin_Robber
+    region:   n_79
+    level:    [47, 49]
+  17436755:
+    template: Goblin_Reaper
+    region:   n_79
+    level:    [47, 49]
+  17436756:
+    template: Orcish_Bowshooter
+    region:   s_84
+    level:    [47, 49]
+  17436757:
+    template: Orcish_Footsoldier
+    region:   s_84
+    level:    [47, 49]
+  17436758:
+    template: Orcish_Gladiator
+    region:   s_84
+    level:    [47, 49]
+  17436759:
+    template: Orcish_Trooper
+    region:   s_84
+    level:    [47, 49]
+  17436760:
+    template: Goblin_Poacher
+    region:   n_88
+    level:    [47, 49]
+  17436761:
+    template: Goblin_Trader
+    region:   n_88
+    level:    [47, 49]
+  17436762:
+    template: Goblins_Bats
+    at:       [1.000, 1.000, 1.000]
+    level:    [40, 42]
+  17436763:
+    template: Goblin_Robber
+    region:   n_88
+    level:    [47, 49]
+  17436764:
+    template: Goblin_Reaper
+    region:   n_88
+    level:    [47, 49]
+  17436765:
+    template: Orcish_Bowshooter
+    region:   s_94
+    level:    [47, 49]
+  17436766:
+    template: Orcish_Footsoldier
+    region:   s_94
+    level:    [47, 49]
+  17436767:
+    template: Orcish_Gladiator
+    region:   s_94
+    level:    [47, 49]
+  17436768:
+    template: Orcish_Trooper
+    region:   s_94
+    level:    [47, 49]
+  17436769:
+    template: Demon_Knight
+    region:   c_97
+    level:    [50, 52]
+  17436770:
+    template: Demon_Knight
+    region:   c_97
+    level:    [50, 52]
+  17436771:
+    template: Evil_Eye
+    region:   c_99
+    level:    [46, 48]
+  17436772:
+    template: Evil_Eye
+    region:   c_99
+    level:    [46, 48]
+  17436773:
+    template: Evil_Eye
+    region:   region_94
+    level:    [46, 48]
+  17436774:
+    template: Goblin_Poacher
+    region:   nw_105
+    level:    [47, 49]
+  17436775:
+    template: Goblin_Trader
+    region:   nw_105
+    level:    [47, 49]
+  17436776:
+    template: Goblins_Bats
+    at:       [1.000, 1.000, 1.000]
+    level:    [40, 42]
+  17436777:
+    template: Goblin_Robber
+    region:   nw_105
+    level:    [47, 49]
+  17436778:
+    template: Goblin_Reaper
+    region:   nw_105
+    level:    [47, 49]
+  17436779:
+    template: Orcish_Bowshooter
+    region:   sw_107
+    level:    [47, 49]
+  17436780:
+    template: Orcish_Footsoldier
+    region:   sw_107
+    level:    [47, 49]
+  17436781:
+    template: Orcish_Gladiator
+    region:   sw_107
+    level:    [47, 49]
+  17436782:
+    template: Orcish_Trooper
+    region:   sw_107
+    level:    [47, 49]
+  17436783:
+    template: Elder_Quadav
+    region:   nw_111
+    level:    [47, 49]
+  17436784:
+    template: Iron_Quadav
+    region:   nw_111
+    level:    [47, 49]
+  17436785:
+    template: Spinel_Quadav
+    region:   nw_111
+    level:    [47, 49]
+  17436786:
+    template: Emerald_Quadav
+    region:   nw_111
+    level:    [47, 49]
+  17436787:
+    template: Yagudo_Zealot
+    region:   sw_115
+    level:    [47, 49]
+  17436788:
+    template: Yagudo_Conquistador
+    region:   sw_115
+    level:    [47, 49]
+  17436789:
+    template: Yagudo_Lutenist
+    region:   sw_115
+    level:    [47, 49]
+  17436790:
+    template: Yagudo_Prior
+    region:   sw_115
+    level:    [47, 49]
+  17436791:
+    template: Elder_Quadav
+    region:   nw_119
+    level:    [47, 49]
+  17436792:
+    template: Iron_Quadav
+    region:   nw_119
+    level:    [47, 49]
+  17436793:
+    template: Spinel_Quadav
+    region:   nw_119
+    level:    [47, 49]
+  17436794:
+    template: Emerald_Quadav
+    region:   nw_119
+    level:    [47, 49]
+  17436795:
+    template: Yagudo_Zealot
+    region:   sw_123
+    level:    [47, 49]
+  17436796:
+    template: Yagudo_Conquistador
+    region:   sw_123
+    level:    [47, 49]
+  17436797:
+    template: Yagudo_Lutenist
+    region:   sw_123
+    level:    [47, 49]
+  17436798:
+    template: Yagudo_Prior
+    region:   sw_123
+    level:    [47, 49]
+  17436799:
+    template: Elder_Quadav
+    region:   w_129
+    level:    [47, 49]
+  17436800:
+    template: Iron_Quadav
+    region:   w_129
+    level:    [47, 49]
+  17436801:
+    template: Spinel_Quadav
+    region:   w_129
+    level:    [47, 49]
+  17436802:
+    template: Emerald_Quadav
+    region:   w_129
+    level:    [47, 49]
+  17436803:
+    template: Yagudo_Zealot
+    region:   w_131
+    level:    [47, 49]
+  17436804:
+    template: Yagudo_Conquistador
+    region:   w_131
+    level:    [47, 49]
+  17436805:
+    template: Yagudo_Lutenist
+    region:   w_131
+    level:    [47, 49]
+  17436806:
+    template: Yagudo_Prior
+    region:   w_131
+    level:    [47, 49]
+  17436807:
+    template: Morbid_Eye
+    region:   w_135
+    level:    [52, 53]
+  17436808:
+    template: Morbid_Eye
+    region:   w_136
+    level:    [52, 53]
+  17436809:
+    template: Elder_Quadav
+    region:   nw_137
+    level:    [47, 49]
+  17436810:
+    template: Iron_Quadav
+    region:   nw_137
+    level:    [47, 49]
+  17436811:
+    template: Spinel_Quadav
+    region:   nw_137
+    level:    [47, 49]
+  17436812:
+    template: Emerald_Quadav
+    region:   nw_140
+    level:    [47, 49]
+  17436813:
+    template: Yagudo_Zealot
+    region:   sw_141
+    level:    [47, 49]
+  17436814:
+    template: Yagudo_Conquistador
+    region:   sw_141
+    level:    [47, 49]
+  17436815:
+    template: Yagudo_Lutenist
+    region:   sw_141
+    level:    [47, 49]
+  17436816:
+    template: Yagudo_Prior
+    region:   sw_141
+    level:    [47, 49]
+  17436817:
+    template: Demon_Pawn
+    region:   w_145
+    level:    [50, 52]
+  17436818:
+    template: Demon_Pawn
+    region:   w_145
+    level:    [50, 52]
+  17436819:
+    template: Demon_Wizard
+    region:   w_145
+    level:    [50, 52]
+  17436820:
+    template: Elder_Quadav
+    region:   nw_148
+    level:    [47, 49]
+  17436821:
+    template: Iron_Quadav
+    region:   nw_148
+    level:    [47, 49]
+  17436822:
+    template: Spinel_Quadav
+    region:   nw_148
+    level:    [47, 49]
+  17436823:
+    template: Emerald_Quadav
+    region:   nw_148
+    level:    [47, 49]
+  17436824:
+    template: Yagudo_Zealot
+    region:   sw_152
+    level:    [47, 49]
+  17436825:
+    template: Yagudo_Conquistador
+    region:   sw_152
+    level:    [47, 49]
+  17436826:
+    template: Yagudo_Lutenist
+    region:   sw_152
+    level:    [47, 49]
+  17436827:
+    template: Yagudo_Prior
+    region:   sw_152
+    level:    [47, 49]
+  17436828:
+    template: Demon_Pawn
+    region:   w_156
+    level:    [50, 52]
+  17436829:
+    template: Demon_Pawn
+    region:   w_156
+    level:    [50, 52]
+  17436830:
+    template: Demon_Wizard
+    region:   w_156
+    level:    [50, 52]
+  17436831:
+    template: Morbid_Eye
+    region:   w_159
+    level:    [52, 53]
+  17436832:
+    template: Morbid_Eye
+    region:   w_159
+    level:    [52, 53]
+  17436833:
+    template: Morbid_Eye
+    region:   w_159
+    level:    [52, 53]
+  17436834:
+    template: Demon_Wizard
+    region:   w_162
+    level:    [50, 52]
+  17436835:
+    template: Demon_Knight
+    region:   w_162
+    level:    [50, 52]
+  17436836:
+    template: Demon_Wizard
+    region:   w_164
+    level:    [50, 52]
+  17436837:
+    template: Demon_Warlock
+    region:   w_164
+    level:    [50, 52]
+  17436838:
+    template: Demons_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [43, 45]
+  17436839:
+    template: Morbid_Eye
+    region:   w_167
+    level:    [52, 53]
+  17436840:
+    template: Morbid_Eye
+    region:   nw_168
+    level:    [54, 55]
+  17436841:
+    template: Morbid_Eye
+    region:   nw_168
+    level:    [54, 55]
+  17436842:
+    template: Morbid_Eye
+    region:   sw_170
+    level:    [54, 55]
+  17436843:
+    template: Morbid_Eye
+    region:   sw_170
+    level:    [54, 55]
+  17436844:
+    template: Demon_Commander
+    region:   n_172
+    level:    [57, 59]
+  17436845:
+    template: Demon_General
+    region:   s_173
+    level:    [57, 59]
+  17436846:
+    template: Demon_Chancellor
+    region:   nw_174
+    level:    [57, 59]
+  17436847:
+    template: Demon_Magistrate
+    region:   sw_175
+    level:    [57, 59]
+  17436848:
+    template: Demons_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [49, 54]
+  17436849:
+    template: Demon_Commander
+    region:   n_177
+    level:    [57, 59]
+  17436850:
+    template: Demon_General
+    region:   n_177
+    level:    [57, 59]
+  17436851:
+    template: Demon_Chancellor
+    region:   n_177
+    level:    [57, 59]
+  17436852:
+    template: Demon_Magistrate
+    region:   n_177
+    level:    [57, 59]
+  17436853:
+    template: Demons_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [49, 54]
+  17436854:
+    template: Demon_Commander
+    region:   s_182
+    level:    [57, 59]
+  17436855:
+    template: Demon_General
+    region:   s_182
+    level:    [57, 59]
+  17436856:
+    template: Demon_Chancellor
+    region:   s_182
+    level:    [57, 59]
+  17436857:
+    template: Demon_Magistrate
+    region:   s_182
+    level:    [57, 59]
+  17436858:
+    template: Demons_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [49, 54]
+  17436859:
+    template: Demon_Commander
+    region:   nw_187
+    level:    [57, 59]
+  17436860:
+    template: Demon_General
+    region:   nw_187
+    level:    [57, 59]
+  17436861:
+    template: Demon_Chancellor
+    region:   nw_187
+    level:    [57, 59]
+  17436862:
+    template: Demon_Magistrate
+    region:   nw_187
+    level:    [57, 59]
+  17436863:
+    template: Demons_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [49, 54]
+  17436864:
+    template: Demon_Commander
+    region:   sw_192
+    level:    [57, 59]
+  17436865:
+    template: Demon_General
+    region:   sw_192
+    level:    [57, 59]
+  17436866:
+    template: Demon_Chancellor
+    region:   sw_192
+    level:    [57, 59]
+  17436867:
+    template: Demon_Magistrate
+    region:   sw_192
+    level:    [57, 59]
+  17436868:
+    template: Demons_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [49, 54]
+  17436869:
+    template: Blood_Demon
+    region:   n_197
+    level:    [64, 66]
+  17436870:
+    template: Doom_Demon
+    region:   n_197
+    level:    [64, 66]
+  17436871:
+    template: Arch_Demon
+    region:   n_197
+    level:    [64, 66]
+  17436872:
+    template: Blood_Demon
+    region:   n_202
+    level:    [64, 66]
+  17436873:
+    template: Doom_Demon
+    region:   n_202
+    level:    [64, 66]
+  17436874:
+    template: Abyssal_Demon
+    region:   n_202
+    level:    [64, 66]
+  17436875:
+    template: Demons_Elemental
+    at:       [96.725, -8.500, 148.978, 252]
+    level:    [49, 54]
+  17436876:
+    template: Marquis_Naberius
+    region:   n_202
+    level:    [63, 64]
+  17436877:
+    template: Blood_Demon
+    region:   s_205
+    level:    [64, 66]
+  17436878:
+    template: Doom_Demon
+    region:   s_205
+    level:    [64, 66]
+  17436879:
+    template: Abyssal_Demon
+    region:   s_205
+    level:    [64, 66]
+  17436880:
+    template: Demons_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [49, 54]
+  17436881:
+    template: Marquis_Sabnock
+    region:   region_101
+    level:    [73, 75]
+  17436882:
+    template: Doom_Demon
+    region:   s_210
+    level:    [64, 66]
+  17436883:
+    template: Arch_Demon
+    region:   s_210
+    level:    [64, 66]
+  17436884:
+    template: Abyssal_Demon
+    region:   s_210
+    level:    [64, 66]
+  17436885:
+    template: Demons_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [49, 54]
+  17436886:
+    template: Blood_Demon
+    region:   nw_214
+    level:    [64, 66]
+  17436887:
+    template: Arch_Demon
+    region:   nw_214
+    level:    [64, 66]
+  17436888:
+    template: Abyssal_Demon
+    region:   nw_214
+    level:    [64, 66]
+  17436889:
+    template: Demons_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [49, 54]
+  17436890:
+    template: Blood_Demon
+    region:   nw_218
+    level:    [64, 66]
+  17436891:
+    template: Doom_Demon
+    region:   nw_218
+    level:    [64, 66]
+  17436892:
+    template: Arch_Demon
+    region:   nw_218
+    level:    [64, 66]
+  17436893:
+    template: Doom_Demon
+    region:   sw_221
+    level:    [64, 66]
+  17436894:
+    template: Arch_Demon
+    region:   sw_221
+    level:    [64, 66]
+  17436895:
+    template: Abyssal_Demon
+    region:   sw_221
+    level:    [64, 66]
+  17436896:
+    template: Demons_Elemental
+    at:       [-193.236, -8.500, -139.596, 95]
+    level:    [49, 54]
+  17436897:
+    template: Blood_Demon
+    region:   sw_225
+    level:    [64, 66]
+  17436898:
+    template: Arch_Demon
+    region:   sw_225
+    level:    [64, 66]
+  17436899:
+    template: Abyssal_Demon
+    region:   sw_225
+    level:    [64, 66]
+  17436900:
+    template: Demons_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [49, 54]
+  17436901:
+    template: Ahriman
+    region:   region_95
+    level:    [63, 65]
+  17436902:
+    template: Ahriman
+    region:   region_96
+    level:    [63, 65]
+  17436903:
+    template: Ahriman
+    region:   region_97
+    level:    [63, 65]
+  17436904:
+    template: Ahriman
+    region:   region_98
+    level:    [63, 65]
+  17436905:
+    template: Ahriman
+    region:   region_99
+    level:    [63, 65]
+  17436906:
+    template: Ahriman
+    region:   c_234
+    level:    [63, 65]
+  17436907:
+    template: Ahriman
+    region:   region_105
+    level:    [63, 65]
+  17436908:
+    template: Ahriman
+    region:   region_100
+    level:    [63, 65]
+  17436909:
+    template: Dread_Demon_CZB
+    script:   Dread_Demon
+    region:   w_237
+    level:    [71, 73]
+  17436910:
+    template: Judicator_Demon_CZB
+    script:   Judicator_Demon
+    region:   w_237
+    level:    [71, 73]
+  17436911:
+    template: Stygian_Demon_CZB
+    script:   Stygian_Demon
+    region:   w_237
+    level:    [71, 73]
+  17436912:
+    template: Demons_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [60, 64]
+  17436913:
+    template: Marquis_Allocen
+    region:   w_237
+    level:    [76, 76]
+  17436914:
+    template: Gore_Demon_CZB
+    script:   Gore_Demon
+    region:   w_242
+    level:    [71, 73]
+  17436915:
+    template: Judicator_Demon_CZB
+    script:   Judicator_Demon
+    region:   w_242
+    level:    [71, 73]
+  17436916:
+    template: Stygian_Demon_CZB
+    script:   Stygian_Demon
+    region:   w_242
+    level:    [71, 73]
+  17436917:
+    template: Demons_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [60, 64]
+  17436918:
+    template: Marquis_Amon
+    region:   w_242
+    level:    [76, 76]
+  17436919:
+    template: Gore_Demon_CZB
+    script:   Gore_Demon
+    region:   w_247
+    level:    [71, 73]
+  17436920:
+    template: Dread_Demon_CZB
+    script:   Dread_Demon
+    region:   w_247
+    level:    [71, 73]
+  17436921:
+    template: Stygian_Demon_CZB
+    script:   Stygian_Demon
+    region:   w_247
+    level:    [71, 73]
+  17436922:
+    template: Demons_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [60, 64]
+  17436923:
+    template: Duke_Haborym
+    region:   w_247
+    level:    [76, 76]
+  17436924:
+    template: Gore_Demon_CZB
+    script:   Gore_Demon
+    region:   w_252
+    level:    [71, 73]
+  17436925:
+    template: Dread_Demon_CZB
+    script:   Dread_Demon
+    region:   w_252
+    level:    [71, 73]
+  17436926:
+    template: Judicator_Demon_CZB
+    script:   Judicator_Demon
+    region:   w_252
+    level:    [71, 73]
+  17436927:
+    template: Grand_Duke_Batym
+    region:   w_252
+    level:    [76, 76]
+  17436928:
+    template: Demons_Elemental
+    region:   w_252
+    level:    [60, 64]
+  17436929:
+    template: Demons_Avatar
+    at:       [1.000, 1.000, 1.000, 127]
+    level:    [52, 54]
+  17436930:
+    template: Ahriman
+    region:   w_258
+    level:    [63, 65]
+  17436931:
+    template: Ahriman
+    region:   w_258
+    level:    [63, 65]
+  17436932:
+    template: Ahriman
+    region:   w_260
+    level:    [63, 65]
+  17436933:
+    template: Ahriman
+    region:   w_260
+    level:    [63, 65]
+  17436934:
+    template: Ahriman
+    region:   w_262
+    level:    [63, 65]
+  17436935:
+    template: Ahriman
+    region:   w_262
+    level:    [63, 65]
+  17436936:
+    template: Ahriman
+    region:   w_264
+    level:    [63, 65]
+  17436937:
+    template: Ahriman
+    region:   w_264
+    level:    [63, 65]
+  17436938:
+    template: Ahriman
+    region:   region_102
+    level:    [63, 65]
+  17436939:
+    template: Ahriman
+    region:   region_104
+    level:    [63, 65]
+  17436940:
+    template: Ahriman
+    region:   c_268
+    level:    [63, 65]
+  17436941:
+    template: Ahriman
+    region:   c_268
+    level:    [63, 65]
+  17436942:
+    template: Ahriman
+    region:   w_270
+    level:    [63, 65]
+  17436943:
+    template: Ahriman
+    region:   w_270
+    level:    [63, 65]
+  17436944:
+    template: Dread_Demon_CZB
+    script:   Dread_Demon
+    region:   w_272
+    level:    [71, 73]
+  17436945:
+    template: Judicator_Demon_CZB
+    script:   Judicator_Demon
+    region:   w_272
+    level:    [71, 73]
+  17436946:
+    template: Stygian_Demon_CZB
+    script:   Stygian_Demon
+    region:   w_272
+    level:    [71, 73]
+  17436947:
+    template: Demons_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [49, 54]
+  17436948:
+    template: Gore_Demon_CZB
+    script:   Gore_Demon
+    region:   w_276
+    level:    [71, 73]
+  17436949:
+    template: Gore_Demon_CZB
+    script:   Gore_Demon
+    region:   w_277
+    level:    [71, 73]
+  17436950:
+    template: Judicator_Demon_CZB
+    script:   Judicator_Demon
+    region:   w_277
+    level:    [71, 73]
+  17436951:
+    template: Stygian_Demon_CZB
+    script:   Stygian_Demon
+    region:   w_277
+    level:    [71, 73]
+  17436952:
+    template: Demons_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [49, 54]
+  17436953:
+    template: Dread_Demon_CZB
+    script:   Dread_Demon
+    region:   w_281
+    level:    [71, 73]
+  17436954:
+    template: Gore_Demon_CZB
+    script:   Gore_Demon
+    region:   w_282
+    level:    [71, 73]
+  17436955:
+    template: Dread_Demon_CZB
+    script:   Dread_Demon
+    region:   w_282
+    level:    [71, 73]
+  17436956:
+    template: Stygian_Demon_CZB
+    script:   Stygian_Demon
+    region:   w_282
+    level:    [71, 73]
+  17436957:
+    template: Demons_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [49, 54]
+  17436958:
+    template: Judicator_Demon_CZB
+    script:   Judicator_Demon
+    region:   w_286
+    level:    [71, 73]
+  17436959:
+    template: Gore_Demon_CZB
+    script:   Gore_Demon
+    region:   w_287
+    level:    [71, 73]
+  17436960:
+    template: Dread_Demon_CZB
+    script:   Dread_Demon
+    region:   w_287
+    level:    [71, 73]
+  17436961:
+    template: Judicator_Demon_CZB
+    script:   Judicator_Demon
+    region:   w_287
+    level:    [71, 73]
+  17436962:
+    template: Stygian_Demon_CZB
+    script:   Stygian_Demon
+    region:   region_106
+    level:    [71, 73]
+  17436963:
+    template: Demons_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [49, 54]
+  17436964:
+    template: Dark_Spark
+    at:       [62.000, -24.000, 19.000, 10]
+    level:    [55, 55]
+  17436965:
+    template: Mimic
+    at:       [189.783, 20.290, 20.761, 77]
+    level:    [60, 60]
+  17436966:
+    template: Marquis_Andrealphus
+    at:       [-13.818, -24.539, 20.325, 245]
+    level:    [52, 52]
+  17436967:
+    template: Demon_Banneret
+    at:       [20.000, -24.620, 25.000, 64]
+    level:    [47, 48]
+  17436968:
+    template: Demon_Secretary
+    at:       [20.000, -24.527, 30.000, 64]
+    level:    [47, 48]
+  17436969:
+    template: Demon_Banneret
+    at:       [20.000, -24.575, 14.500, 192]
+    level:    [47, 48]
+  17436970:
+    template: Demon_Secretary
+    at:       [20.000, -24.528, 9.500, 192]
+    level:    [47, 48]
+
+  17437019:
+    template: Beta_ahri_Evil_Eye
+    region:   e_1
+    level:    [46, 48]
+  17437020:
+    template: Beta_ahri_Evil_Eye
+    region:   e_1
+    level:    [46, 48]
+slots:
+  - members:
+      17436678: {} # Dark_Elemental
+      17436683: {} # Dark_Elemental
+      17436688: {} # Dark_Elemental
+  - members:
+      17436679: {} # Ice_Elemental
+      17436684: {} # Ice_Elemental
+      17436689: {} # Ice_Elemental
+  - members:
+      17436743: {} # Demon_Wizard
+      17436744: {} # Demon_Knight
+  - members:
+      17436747: {} # Demon_Wizard
+      17436748: {} # Demon_Knight
+  - members:
+      17436760: {} # Goblin_Poacher
+      17436761: {} # Goblin_Trader
+  - members:
+      17436763: {} # Goblin_Robber
+      17436764: {} # Goblin_Reaper
+  - members:
+      17436765: {} # Orcish_Bowshooter
+      17436766: {} # Orcish_Footsoldier
+  - members:
+      17436767: {} # Orcish_Gladiator
+      17436768: {} # Orcish_Trooper
+  - members:
+      17436774: {} # Goblin_Poacher
+      17436777: {} # Goblin_Robber
+  - members:
+      17436775: {} # Goblin_Trader
+      17436778: {} # Goblin_Reaper
+  - members:
+      17436779: {} # Orcish_Bowshooter
+      17436781: {} # Orcish_Gladiator
+  - members:
+      17436780: {} # Orcish_Footsoldier
+      17436782: {} # Orcish_Trooper
+  - members:
+      17436783: {} # Elder_Quadav
+      17436784: {} # Iron_Quadav
+  - members:
+      17436785: {} # Spinel_Quadav
+      17436786: {} # Emerald_Quadav
+  - members:
+      17436787: {} # Yagudo_Zealot
+      17436788: {} # Yagudo_Conquistador
+  - members:
+      17436789: {} # Yagudo_Lutenist
+      17436790: {} # Yagudo_Prior
+  - members:
+      17436799: {} # Elder_Quadav
+      17436801: {} # Spinel_Quadav
+  - members:
+      17436800: {} # Iron_Quadav
+      17436802: {} # Emerald_Quadav
+  - members:
+      17436803: {} # Yagudo_Zealot
+      17436805: {} # Yagudo_Lutenist
+  - members:
+      17436804: {} # Yagudo_Conquistador
+      17436806: {} # Yagudo_Prior
+  - members:
+      17436869: {} # Blood_Demon
+      17436870: {} # Doom_Demon
+  - members:
+      17436872: {} # Blood_Demon
+      17436873: {} # Doom_Demon
+  - members:
+      17436878: {} # Doom_Demon
+      17436879: {} # Abyssal_Demon
+  - members:
+      17436882: {} # Doom_Demon
+      17436884: {} # Abyssal_Demon
+  - members:
+      17436886: {} # Blood_Demon
+      17436887: {} # Arch_Demon
+  - members:
+      17436890: {} # Blood_Demon
+      17436892: {} # Arch_Demon
+  - members:
+      17436894: {} # Arch_Demon
+      17436895: {} # Abyssal_Demon
+  - members:
+      17436898: {} # Arch_Demon
+      17436899: {} # Abyssal_Demon

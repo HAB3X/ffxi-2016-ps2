@@ -1,0 +1,377 @@
+# yaml-language-server: $schema=../../schemas/mobs.schema.json
+
+templates:
+
+  Bark_Tarantula:
+    id:            344
+    species:       spider
+    skill_list_id: 236
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 310
+        entity_flags:  645
+        animation_sub:   8
+        model_size:      2
+        hitbox:         16
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: uncommon
+          item:   spider_web
+      steal: spider_web
+      despoil:
+        spool_of_rainbow_thread: 0
+        spider_web:              0
+
+  Darter:
+    id:            920
+    species:       fly
+    skill_list_id: 113
+    attributes:
+      combat:
+        skill: polearm
+      render:
+        look:
+          type:  standard
+          model: 448
+        entity_flags: 133
+        model_size:     2
+        hitbox:        17
+      behaviors:
+        links: true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: common
+          item:   insect_wing
+      despoil:
+        insect_wing: 0
+
+  Demonic_Pugil_fished:
+    id:            6783
+    display_name:  Demonic_Pugil
+    species:       pugil
+    type:          [fished]
+    skill_list_id: 197
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 348
+        entity_flags: 133
+        model_size:     2
+        hitbox:        32
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+    loot:
+      steal: handful_of_fish_scales
+      despoil:
+        handful_of_pugil_scales: 0
+        handful_of_fish_scales:  0
+
+  Demonic_Rose:
+    id:            978
+    species:       morbol
+    skill_list_id: 186
+    attributes:
+      combat:
+        skill: scythe
+        delay: 200
+      render:
+        look:
+          type:  standard
+          model: 380
+        entity_flags:  645
+        animation_sub:   8
+        model_size:      2
+        hitbox:         36
+      behaviors:
+        aggressive: true
+      mob_mods:
+        exp_bonus: 23
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: very_common
+          item:   malboro_vine
+        - chance: very_common
+          item:   malboro_vine
+        - chance: rare
+          item:   lacquer_tree_log
+      steal: malboro_vine
+
+  Fafnir:
+    id:            1280
+    species:       black_wyrm
+    type:          [notorious]
+    skill_list_id: 260
+    attributes:
+      combat:
+        skill: scythe
+      resists:
+        rank_element:
+          light: -2
+      render:
+        look:
+          type:  standard
+          model: 783
+        entity_flags: 153
+        name_prefix:   32
+        hitbox:        42
+      behaviors:
+        flags:          [no_turn]
+        aggressive:     true
+        links:          true
+        true_detection: true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 60000
+    loot:
+      drops:
+        - chance: always
+          item:   dragon_talon
+        - chance: very_common
+          item:   andvaranauts
+        - chance: common
+          item:   aegishjalmr
+        - chance: very_common
+          item:   handful_of_dragon_scales
+        - chance: very_common
+          item:   handful_of_dragon_scales
+        - chance: common
+          item:   dragon_heart
+        - chance: uncommon
+          item:   balmung
+        - chance: uncommon
+          item:   hrotti
+        - chance: rare
+          item:   cup_of_sweet_tea
+        - chance: very_rare
+          item:   ridill
+        - chance: always
+          one_of:
+            neptunal_abjuration_head:  31
+            aquarian_abjuration_feet:  23
+            aquarian_abjuration_hands: 23
+            earthen_abjuration_hands:  23
+        - chance: uncommon
+          one_of:
+            neptunal_abjuration_head:  31
+            aquarian_abjuration_feet:  23
+            aquarian_abjuration_hands: 23
+            earthen_abjuration_hands:  23
+
+  Nidhogg:
+    id:            2840
+    species:       black_wyrm
+    type:          [notorious]
+    skill_list_id: 263
+    attributes:
+      combat:
+        skill: scythe
+      resists:
+        rank_element:
+          light: -2
+      render:
+        look:
+          type:  standard
+          model: 783
+        entity_flags:  155
+        animation_sub:   6
+        name_prefix:    32
+        model_size:      1
+        hitbox:         50
+      behaviors:
+        flags:          [no_turn]
+        aggressive:     true
+        true_detection: true
+      mods:
+        regain: 70
+        regen:  50
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 60000
+    loot:
+      drops:
+        - chance: always
+          item:   dragon_heart
+        - chance: very_common
+          item:   vial_of_dragon_blood
+        - chance: very_common
+          item:   vial_of_dragon_blood
+        - chance: rare
+          item:   slice_of_dragon_meat
+        - chance: uncommon
+          item:   handful_of_nidhoggs_scales
+        - chance: uncommon
+          item:   handful_of_nidhoggs_scales
+        - chance: uncommon
+          item:   handful_of_nidhoggs_scales
+        - chance: uncommon
+          item:   handful_of_nidhoggs_scales
+        - chance: very_common
+          item:   wyrm_beard
+        - chance: always
+          one_of:
+            earthen_abjuration_body:  31
+            aquarian_abjuration_body: 23
+            martial_abjuration_body:  23
+            neptunal_abjuration_legs: 23
+        - chance: uncommon
+          one_of:
+            earthen_abjuration_body:  31
+            aquarian_abjuration_body: 23
+            martial_abjuration_body:  23
+            neptunal_abjuration_legs: 23
+
+spawns:
+  17408001:
+    template: Demonic_Pugil_fished
+    script:   Demonic_Pugil
+    at:       [1.000, 1.000, 1.000]
+    level:    [70, 75]
+  17408002:
+    template: Demonic_Pugil_fished
+    script:   Demonic_Pugil
+    at:       [1.000, 1.000, 1.000]
+    level:    [70, 75]
+  17408003:
+    template: Demonic_Pugil_fished
+    script:   Demonic_Pugil
+    at:       [1.000, 1.000, 1.000]
+    level:    [70, 75]
+  17408004:
+    template: Demonic_Pugil_fished
+    script:   Demonic_Pugil
+    at:       [1.000, 1.000, 1.000]
+    level:    [70, 75]
+  17408005:
+    template: Demonic_Pugil_fished
+    script:   Demonic_Pugil
+    at:       [1.000, 1.000, 1.000]
+    level:    [70, 75]
+  17408006:
+    template: Bark_Tarantula
+    region:   sw_6
+    level:    [77, 80]
+  17408007:
+    template: Bark_Tarantula
+    region:   sw_6
+    level:    [77, 80]
+  17408008:
+    template: Bark_Tarantula
+    region:   sw_8
+    level:    [77, 80]
+  17408009:
+    template: Darter
+    region:   sw_8
+    level:    [76, 79]
+  17408010:
+    template: Darter
+    region:   sw_8
+    level:    [76, 79]
+  17408011:
+    template: Darter
+    region:   region_8
+    level:    [76, 79]
+  17408012:
+    template: Darter
+    region:   w_12
+    level:    [76, 79]
+  17408013:
+    template: Darter
+    region:   w_12
+    level:    [76, 79]
+  17408014:
+    template: Demonic_Rose
+    region:   w_12
+    level:    [77, 79]
+  17408015:
+    template: Bark_Tarantula
+    region:   s_15
+    level:    [77, 80]
+  17408016:
+    template: Bark_Tarantula
+    region:   s_15
+    level:    [77, 80]
+  17408017:
+    template: Bark_Tarantula
+    region:   s_15
+    level:    [77, 80]
+  17408018:
+    template: Fafnir
+    at:       [82.325, 6.876, 42.041]
+    level:    [90, 90]
+  17408019:
+    template: Nidhogg
+    at:       [82.325, 6.876, 42.041]
+    level:    [90, 90]
+  17408020:
+    template: Darter
+    region:   e_20
+    level:    [76, 79]
+  17408021:
+    template: Darter
+    region:   e_20
+    level:    [76, 79]
+  17408022:
+    template: Darter
+    region:   e_20
+    level:    [76, 79]
+  17408023:
+    template: Darter
+    region:   e_20
+    level:    [76, 79]
+  17408024:
+    template: Darter
+    region:   e_20
+    level:    [76, 79]
+  17408025:
+    template: Darter
+    region:   e_20
+    level:    [76, 79]
+  17408026:
+    template: Bark_Tarantula
+    region:   ne_26
+    level:    [77, 80]
+  17408027:
+    template: Bark_Tarantula
+    region:   ne_26
+    level:    [77, 80]
+  17408028:
+    template: Bark_Tarantula
+    region:   ne_26
+    level:    [77, 80]
+  17408029:
+    template: Bark_Tarantula
+    region:   ne_29
+    level:    [77, 80]
+  17408030:
+    template: Bark_Tarantula
+    region:   ne_29
+    level:    [77, 80]
+  17408031:
+    template: Bark_Tarantula
+    region:   ne_29
+    level:    [77, 80]
+
+slots:
+  - members:
+      17408013: {} # Darter
+      17408014: {} # Demonic_Rose

@@ -1,0 +1,401 @@
+# yaml-language-server: $schema=../../schemas/mobs.schema.json
+
+templates:
+
+  Blanched_Kraken:
+    id:            445
+    species:       sea_monk
+    type:          [fished]
+    skill_list_id: 218
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 353
+        entity_flags: 131
+        model_size:     1
+        hitbox:        17
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: always
+          item:   seashell
+        - chance: rare
+          item:   shall_shell
+      despoil:
+        seashell: 0
+
+  Gugru_Crab:
+    id:            1837
+    species:       crab
+    skill_list_id: 77
+    attributes:
+      combat:
+        skill: great_sword
+      jobs: [pld, pld]
+      render:
+        look:
+          type:  standard
+          model: 356
+        entity_flags: 131
+        model_size:     1
+        hitbox:        13
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   slice_of_land_crab_meat
+        - chance: uncommon
+          item:   crab_shell
+        - chance: rare
+          item:   sack_of_white_sand
+        - chance: very_rare
+          item:   high-quality_crab_shell
+      despoil:
+        slice_of_land_crab_meat: 0
+        crab_shell:              0
+
+  Gugru_Jagil:
+    id:            1838
+    species:       pugil
+    type:          [fished]
+    skill_list_id: 709
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 349
+        entity_flags: 131
+        model_size:     1
+        hitbox:        27
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: uncommon
+          item:   handful_of_pugil_scales
+      steal: handful_of_fish_scales
+      despoil:
+        handful_of_pugil_scales: 0
+        handful_of_fish_scales:  0
+
+  Gugru_Orobon:
+    id:            1839
+    species:       orobon
+    type:          [fished]
+    skill_list_id: 191
+    attributes:
+      combat:
+        skill: scythe
+        delay: 270
+      render:
+        look:
+          type:  standard
+          model: 1729
+        entity_flags: 131
+        model_size:     1
+        hitbox:        20
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 5500
+    loot:
+      drops:
+        - chance: rare
+          item:   chunk_of_orobon_meat
+      despoil:
+        orobon_lure:          0
+        chunk_of_orobon_meat: 0
+
+  Northern_Piranu:
+    id:            2906
+    species:       orobon
+    type:          [fished]
+    skill_list_id: 191
+    attributes:
+      combat:
+        skill: scythe
+        delay: 270
+      render:
+        look:
+          type:  standard
+          model: 1729
+        entity_flags:  133
+        animation_sub:   4
+        model_size:      2
+        hitbox:         22
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 14000
+    loot:
+      drops:
+        - chance: uncommon
+          item:   otori
+        - chance: uncommon
+          item:   spagyric_nails
+
+  Ocean_Jagil:
+    id:            2935
+    species:       pugil
+    skill_list_id: 709
+    attributes:
+      combat:
+        skill: scythe
+      jobs: [cor, cor]
+      render:
+        look:
+          type:  standard
+          model: 349
+        entity_flags: 1155
+        model_size:      1
+        hitbox:         27
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   handful_of_pugil_scales
+      steal: handful_of_fish_scales
+      despoil:
+        handful_of_pugil_scales: 0
+        handful_of_fish_scales:  0
+
+  Ocean_Kraken:
+    id:            2936
+    species:       sea_monk
+    skill_list_id: 218
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 353
+        entity_flags: 1155
+        model_size:      1
+        hitbox:         17
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: always
+          item:   seashell
+        - chance: rare
+          item:   shall_shell
+      despoil:
+        seashell: 0
+
+  Passage_Crab:
+    id:            3102
+    species:       crab
+    type:          [fished]
+    skill_list_id: 77
+    attributes:
+      combat:
+        skill: great_sword
+      jobs: [pld, pld]
+      render:
+        look:
+          type:  standard
+          model: 356
+        entity_flags:  129
+        animation_sub:   8
+        model_size:      1
+        hitbox:         13
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: common
+          item:   slice_of_land_crab_meat
+        - chance: rare
+          item:   sack_of_white_sand
+        - chance: rare
+          item:   crab_shell
+        - chance: very_rare
+          item:   high-quality_crab_shell
+      steal: chunk_of_rock_salt
+      despoil:
+        slice_of_land_crab_meat: 0
+        crab_shell:              0
+
+  Revenant_SoZ_ENS_FY:
+    id:            3358
+    species:       ghost
+    spell_list_id: 28
+    skill_list_id: 121
+    attributes:
+      combat:
+        skill: staff
+      jobs: [war, blm]
+      render:
+        look:
+          type:  standard
+          model: 368
+        entity_flags: 131
+        model_size:     1
+        hitbox:         8
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+        type:    [at_night]
+    loot:
+      drops:
+        - chance: common
+          item:   square_of_cotton_cloth
+        - chance: uncommon
+          item:   revival_tree_root
+      steal: square_of_cotton_cloth
+      despoil:
+        square_of_cotton_cloth: 0
+
+  Thunder_Elemental:
+    id:            3912
+    species:       thunder_elemental
+    spell_list_id: 16
+    skill_list_id: 105
+    attributes:
+      combat:
+        skill: staff
+      jobs: [blm, rdm]
+      resists:
+        immune_status: [stun, poison]
+      render:
+        look:
+          type:  standard
+          model: 441
+        entity_flags:  131
+        animation_sub:  16
+        model_size:      1
+        hitbox:          3
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+        type:    [weather]
+    loot:
+      drops:
+        - chance: always
+          item:   lightning_cluster
+        - chance: common
+          item:   lightning_cluster
+        - chance: common
+          item:   lightning_cluster
+
+  Water_Elemental:
+    id:            4309
+    species:       water_elemental
+    spell_list_id: 15
+    skill_list_id: 106
+    attributes:
+      combat:
+        skill: staff
+      jobs: [blm, rdm]
+      resists:
+        immune_status: [poison]
+      render:
+        look:
+          type:  standard
+          model: 440
+        entity_flags:  131
+        animation_sub:  16
+        model_size:      1
+        hitbox:          3
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+        type:    [weather]
+    loot:
+      drops:
+        - chance: always
+          item:   water_cluster
+        - chance: common
+          item:   water_cluster
+        - chance: common
+          item:   water_cluster
+
+spawns:
+  16965633:
+    template: Passage_Crab
+    at:       [1.000, 1.000, 1.000]
+    level:    [35, 35]
+  16965634:
+    template: Passage_Crab
+    at:       [1.000, 1.000, 1.000]
+    level:    [35, 35]
+  16965635:
+    template: Gugru_Jagil
+    region:   region_1
+    level:    [34, 37]
+  16965636:
+    template: Gugru_Jagil
+    region:   region_1
+    level:    [34, 37]
+  16965637:
+    template: Blanched_Kraken
+    at:       [1.000, 1.000, 1.000]
+    level:    [45, 45]
+  16965638:
+    template: Gugru_Orobon
+    at:       [1.000, 1.000, 1.000]
+    level:    [63, 64]
+  16965639:
+    template: Northern_Piranu
+    at:       [1.000, 1.000, 1.000]
+    level:    [81, 81]
+  16965640:
+    template: Gugru_Crab
+    region:   region_1
+    level:    [33, 35]
+  16965641:
+    template: Gugru_Crab
+    region:   region_1
+    level:    [33, 35]
+  16965642:
+    template: Ocean_Jagil
+    region:   region_1
+    level:    [34, 36]
+  16965643:
+    template: Ocean_Jagil
+    region:   region_1
+    level:    [34, 36]
+  16965644:
+    template: Ocean_Kraken
+    region:   region_1
+    level:    [41, 43]
+  16965645:
+    template: Revenant_SoZ_ENS_FY
+    script:   Revenant
+    region:   region_1
+    level:    [41, 41]
+  16965646:
+    template: Thunder_Elemental
+    region:   region_1
+    level:    [39, 40]
+  16965647:
+    template: Water_Elemental
+    region:   region_1
+    level:    [39, 40]

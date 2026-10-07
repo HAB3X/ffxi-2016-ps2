@@ -1,0 +1,3572 @@
+# yaml-language-server: $schema=../../schemas/mobs.schema.json
+
+templates:
+
+  Achamoth:
+    id:            34
+    species:       wamoura
+    type:          [notorious]
+    skill_list_id: 253
+    attributes:
+      combat:
+        skill: scythe
+      resists:
+        immune_status: [light_sleep, dark_sleep]
+      render:
+        look:
+          type:  standard
+          model: 1808
+        entity_flags:  1181
+        animation_sub:    4
+        name_prefix:     32
+        model_size:       2
+        hitbox:          22
+      behaviors:
+        aggressive:     true
+        true_detection: true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 38000
+    loot:
+      drops:
+        - chance: always
+          item:   achamoths_antenna
+        - chance: very_common
+          item:   ice_grip
+        - chance: very_common
+          item:   thunder_grip
+        - chance: always
+          one_of: [organics, aurum_sabatons, oracles_braconi]
+        - chance: uncommon
+          one_of: [organics, aurum_sabatons, oracles_braconi]
+
+  Achamoth_Nympha:
+    id:            36
+    species:       wamoura
+    skill_list_id: 253
+    attributes:
+      combat:
+        skill: scythe
+      resists:
+        immune_status: [light_sleep, dark_sleep]
+      render:
+        look:
+          type:  standard
+          model: 1808
+        entity_flags:  1689
+        animation_sub:    5
+        hitbox:          17
+      behaviors:
+        aggressive:     true
+        links:          true
+        true_detection: true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 12000
+
+  Achamothcampa:
+    id:            35
+    species:       wamouracampa
+    type:          [notorious]
+    skill_list_id: 254
+    attributes:
+      combat:
+        skill: scythe
+        delay: 265
+      resists:
+        rank_element:
+          fire:  11
+          wind:   2
+          earth: -1
+          dark:  -1
+        rank_status:
+          silence:     2
+          slow:       -1
+          dark_sleep: -1
+          blind:      -1
+      render:
+        look:
+          type:  standard
+          model: 1802
+        entity_flags:  1177
+        animation_sub:   12
+        name_prefix:     32
+        hitbox:          10
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 8000
+
+  Antares_H:
+    id:            163
+    species:       scorpion
+    skill_list_id: 217
+    attributes:
+      combat:
+        skill: scythe
+        delay: 280
+      render:
+        look:
+          type:  standard
+          model: 284
+        entity_flags: 1157
+        model_size:      2
+        hitbox:         32
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: very_common
+          item:   scorpion_claw
+        - chance: uncommon
+          item:   scorpion_shell
+        - chance: rare
+          item:   high-quality_scorpion_shell
+      steal: antlion_jaw
+      despoil:
+        scorpion_shell: 0
+        scorpion_claw:  0
+
+  Archaic_Mirror:
+    id:      220
+    species: mirrors
+    attributes:
+      render:
+        look:
+          type:  automaton
+          model: 1557
+        entity_flags:  1155
+        animation_sub:    4
+        model_size:       1
+        hitbox:          12
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: always
+          item:   archaic_mirror
+
+  Big_Bomb:
+    id:            416
+    species:       bomb
+    type:          [notorious]
+    spell_list_id: 1
+    skill_list_id: 2090
+    attributes:
+      combat:
+        skill: staff
+      jobs: [war, blm]
+      render:
+        look:
+          type:  standard
+          model: 282
+        entity_flags: 645
+        model_size:     2
+        hitbox:        13
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 12500
+    loot:
+      drops:
+        - chance: common
+          item:   horrent_mace
+        - chance: uncommon
+          item:   fire_bomblet
+      steal: bomb_arm
+
+  Black_Pudding:
+    id:            437
+    species:       flan
+    spell_list_id: 21
+    skill_list_id: 112
+    attributes:
+      combat:
+        skill: staff
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 1799
+        entity_flags:  131
+        animation_sub:   4
+        model_size:      1
+        hitbox:         12
+      behaviors:
+        aggressive: true
+        links:      true
+      mob_mods:
+        exp_bonus: 6
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: very_common
+          item:   chunk_of_flan_meat
+      despoil:
+        chunk_of_flan_meat: 0
+
+  Chiliarch_Gordarvor:
+    id:            718
+    species:       heavy_troll
+    spell_list_id: 4
+    skill_list_id: 246
+    attributes:
+      combat:
+        skill: dagger
+        delay: 280
+      jobs: [pld, pld]
+      render:
+        look:
+          type:  automaton
+          model: 1690
+        entity_flags: 3
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+
+  Copper_Borer:
+    id:            5209
+    species:       wamouracampa
+    type:          [notorious]
+    skill_list_id: 2002
+    attributes:
+      combat:
+        skill: scythe
+        delay: 265
+      resists:
+        immune_status: [gravity, bind, light_sleep, dark_sleep]
+        rank_element:
+          fire:  11
+          wind:   2
+          earth: -1
+          dark:  -1
+        rank_status:
+          silence:     2
+          slow:       -1
+          dark_sleep: -1
+          blind:      -1
+      render:
+        look:
+          type:  standard
+          model: 1802
+        entity_flags: 129
+        hitbox:        10
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 7200
+      stats:
+        hp: 22500
+    loot:
+      drops:
+        - chance: uncommon
+          item:   wayang_kulit_mantle
+    content: wotg
+
+  Dahak:
+    id:            894
+    species:       dahak
+    skill_list_id: 2007
+    attributes:
+      combat:
+        skill: staff
+      render:
+        look:
+          type:  standard
+          model: 421
+        entity_flags: 133
+        model_size:     2
+        hitbox:        39
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 960
+
+  Dextrose:
+    id:            1020
+    species:       gold_flan
+    type:          [notorious]
+    spell_list_id: 21
+    skill_list_id: 299
+    attributes:
+      combat:
+        skill: staff
+      jobs: [blm, rdm]
+      resists:
+        immune_status: [light_sleep, dark_sleep]
+        dmg_physical:
+          slashing: -1250
+          blunt:    -2500
+          h2h:      -2500
+      render:
+        look:
+          type:  standard
+          model: 1800
+        entity_flags:  157
+        animation_sub:   4
+        name_prefix:    32
+        model_size:      2
+        hitbox:         13
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 26000
+    loot:
+      drops:
+        - chance: always
+          item:   blob_of_dextroses_blubber
+        - chance: common
+          item:   achilles_spear
+        - chance: common
+          item:   ruby_seraweels
+
+  Dorgerwor_the_Astute:
+    id:            1091
+    species:       light_troll
+    type:          [notorious]
+    skill_list_id: 246
+    attributes:
+      combat:
+        skill: axe
+        delay: 230
+      jobs: [rng, rng]
+      render:
+        look:
+          type:  automaton
+          model: 1709
+        entity_flags:  159
+        animation_sub:   4
+        name_prefix:    32
+        model_size:      3
+        hitbox:         17
+      behaviors:
+        aggressive:     true
+        links:          true
+        true_detection: true
+      spawn:
+        respawn: 259200
+    loot:
+      drops:
+        - chance: common
+          item:   mercenarys_mantle
+        - chance: rare
+          item:   troll_pauldron
+
+  Earth_Elemental:
+    id:            1160
+    species:       earth_elemental
+    spell_list_id: 13
+    skill_list_id: 101
+    attributes:
+      combat:
+        skill: staff
+      jobs: [blm, rdm]
+      resists:
+        immune_status: [stun, slow, elegy]
+      render:
+        look:
+          type:  standard
+          model: 439
+        entity_flags:  1155
+        animation_sub:   16
+        model_size:       1
+        hitbox:           3
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 960
+        type:    [weather]
+    loot:
+      drops:
+        - chance: always
+          item:   earth_cluster
+        - chance: common
+          item:   earth_cluster
+        - chance: common
+          item:   earth_cluster
+
+  Ebony_Pudding:
+    id:            1170
+    species:       flan
+    spell_list_id: 430
+    skill_list_id: 112
+    attributes:
+      combat:
+        skill: staff
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 1799
+        entity_flags:  1155
+        animation_sub:    4
+        model_size:       1
+        hitbox:          12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: very_common
+          item:   chunk_of_flan_meat
+      despoil:
+        chunk_of_flan_meat: 0
+
+  Farlarder_the_Shrewd:
+    id:            1302
+    species:       light_troll
+    type:          [notorious]
+    skill_list_id: 246
+    attributes:
+      combat:
+        skill: hand_to_hand
+        delay: 480
+      jobs: [mnk, mnk]
+      render:
+        look:
+          type:  automaton
+          model: 1712
+        entity_flags:  159
+        animation_sub:   4
+        name_prefix:    32
+        model_size:      3
+        hitbox:         17
+      behaviors:
+        aggressive:     true
+        links:          true
+        true_detection: true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: common
+          item:   mercenarys_subligar
+        - chance: rare
+          item:   troll_pauldron
+
+  Fire_Elemental:
+    id:            1341
+    species:       fire_elemental
+    spell_list_id: 17
+    skill_list_id: 102
+    attributes:
+      combat:
+        skill: staff
+      jobs: [blm, rdm]
+      resists:
+        immune_status: [bind, paralyze]
+      render:
+        look:
+          type:  standard
+          model: 436
+        entity_flags:  131
+        animation_sub:  16
+        model_size:      1
+        hitbox:          3
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 960
+        type:    [weather]
+    loot:
+      drops:
+        - chance: always
+          item:   fire_cluster
+        - chance: common
+          item:   fire_cluster
+        - chance: common
+          item:   fire_cluster
+
+  Flammeri:
+    id:            5210
+    species:       flan
+    type:          [notorious]
+    skill_list_id: 112
+    attributes:
+      combat:
+        skill: staff
+      jobs: [blm, blm]
+      resists:
+        immune_status: [gravity, bind, light_sleep, dark_sleep]
+        dmg_physical:
+          slashing: -1250
+          blunt:    -2500
+          h2h:      -2500
+      render:
+        look:
+          type:  standard
+          model: 2234
+        entity_flags: 131
+        model_size:     1
+        hitbox:        12
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 22500
+        mp:  5000
+    content: wotg
+
+  Friars_Lantern:
+    id:            1426
+    species:       bomb
+    spell_list_id: 17
+    skill_list_id: 56
+    attributes:
+      combat:
+        skill: club
+      jobs: [war, blm]
+      render:
+        look:
+          type:  standard
+          model: 280
+        entity_flags:  643
+        animation_sub:   8
+        model_size:      1
+        hitbox:         12
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: very_common
+          item:   pinch_of_bomb_ash
+        - chance: rare
+          item:   bomb_arm
+      steal: bomb_arm
+      despoil:
+        pinch_of_bomb_ash: 0
+
+  Friars_Lantern_Grow:
+    id:            6587
+    species:       bomb
+    spell_list_id: 295
+    skill_list_id: 2090
+    attributes:
+      combat:
+        skill: club
+      jobs: [war, blm]
+      render:
+        look:
+          type:  standard
+          model: 282
+        entity_flags: 643
+        model_size:     1
+        hitbox:        12
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: common
+          item:   pinch_of_bomb_ash
+        - chance: rare
+          item:   smoke-filled_flask
+      despoil:
+        pinch_of_bomb_ash: 0
+
+  Gurfurlur_the_Menacing:
+    id:            1851
+    species:       general
+    type:          [notorious]
+    skill_list_id: 326
+    attributes:
+      combat:
+        skill:    hand_to_hand
+        delay:    480
+        dmg_mult: 125
+      mods:
+        udmgbreath: -6725
+      jobs: [mnk, mnk]
+      render:
+        look:
+          type:  standard
+          model: 1867
+        entity_flags: 157
+        name_prefix:   32
+        model_size:     2
+        hitbox:        20
+      behaviors:
+        aggressive:     true
+        links:          true
+        true_detection: true
+      spawn:
+        respawn: 900
+      stats:
+        hp: 80000
+    loot:
+      drops:
+        - chance: very_common
+          item:   gurfurlurs_helmet
+        - chance: common
+          item:   mercenarys_ring
+
+  Hetairoi_Vuryargur:
+    id:            1937
+    species:       light_troll
+    skill_list_id: 246
+    attributes:
+      combat:
+        skill: hand_to_hand
+        delay: 480
+      jobs: [mnk, mnk]
+      render:
+        look:
+          type:  automaton
+          model: 1692
+        entity_flags: 3
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+
+  Hetairoi_Zarwarkur:
+    id:            1938
+    species:       heavy_troll
+    spell_list_id: 3
+    skill_list_id: 246
+    attributes:
+      combat:
+        skill: great_sword
+        delay: 230
+      jobs: [rdm, rdm]
+      render:
+        look:
+          type:  automaton
+          model: 1685
+        entity_flags: 3
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+
+  Hilltroll_Elite_Guard:
+    id:            1947
+    species:       heavy_troll
+    type:          [notorious]
+    spell_list_id: 4
+    skill_list_id: 247
+    attributes:
+      combat:
+        skill: dagger
+        delay: 280
+      jobs: [pld, pld]
+      render:
+        look:
+          type:  automaton
+          model: 1691
+        entity_flags: 157
+        name_prefix:   32
+        model_size:     2
+        hitbox:        17
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+
+  Hilltroll_Mirror_Guard:
+    id:            1948
+    species:       light_troll
+    spell_list_id: 3
+    skill_list_id: 246
+    attributes:
+      combat:
+        skill: great_sword
+        delay: 230
+      jobs: [rdm, rdm]
+      render:
+        look:
+          type:  automaton
+          model: 1710
+        entity_flags: 157
+        name_prefix:   32
+        model_size:     2
+        hitbox:        20
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+
+  Kirlirger_the_Abhorrent:
+    id:            2267
+    species:       heavy_troll
+    type:          [notorious]
+    spell_list_id: 5
+    skill_list_id: 246
+    attributes:
+      combat:
+        skill: axe
+        delay: 280
+      jobs: [drk, drk]
+      render:
+        look:
+          type:  automaton
+          model: 1685
+        entity_flags:  159
+        animation_sub:   4
+        name_prefix:    32
+        model_size:      3
+        hitbox:         17
+      behaviors:
+        aggressive:     true
+        links:          true
+        true_detection: true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: common
+          item:   mercenarys_boots
+        - chance: rare
+          item:   troll_vambrace
+
+  Magmatic_Eruca:
+    id:            2485
+    species:       eruca
+    skill_list_id: 107
+    attributes:
+      combat:
+        skill: club
+      render:
+        look:
+          type:  standard
+          model: 406
+        entity_flags:  131
+        animation_sub:  12
+        model_size:      1
+        hitbox:         15
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: uncommon
+          item:   piece_of_crawler_cocoon
+        - chance: rare
+          item:   spool_of_silk_thread
+        - chance: common
+          item:   crawler_egg
+      despoil:
+        piece_of_crawler_cocoon: 0
+        crawler_egg:             0
+
+  Moblin_Billionaire:
+    id:            2686
+    species:       moblin
+    spell_list_id: 3
+    skill_list_id: 184
+    attributes:
+      combat:
+        skill: great_sword
+      jobs: [rdm, rdm]
+      render:
+        look:
+          type:  standard
+          model: 696
+        entity_flags: 131
+        model_size:     1
+        hitbox:        15
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: always
+          item:   halvung_shakudo_key
+        - chance: uncommon
+          item:   moblin_mask
+        - chance: rare
+          item:   moblin_armor
+      despoil:
+        loaf_of_goblin_bread:      0
+        chunk_of_goblin_chocolate: 0
+        bowl_of_goblin_stew:       0
+        goblin_mushpot:            0
+
+  Moblin_Millionaire:
+    id:            2697
+    species:       moblin
+    spell_list_id: 20
+    skill_list_id: 184
+    attributes:
+      combat:
+        skill: great_axe
+      jobs: [whm, whm]
+      render:
+        look:
+          type:  standard
+          model: 691
+        entity_flags: 131
+        model_size:     1
+        hitbox:        15
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: always
+          item:   halvung_shakudo_key
+        - chance: uncommon
+          item:   moblin_mask
+        - chance: uncommon
+          item:   moblin_sheepskin
+        - chance: rare
+          item:   moblin_armor
+      despoil:
+        loaf_of_goblin_bread:      0
+        chunk_of_goblin_chocolate: 0
+        bowl_of_goblin_stew:       0
+        goblin_mushpot:            0
+
+  Mythril_Mouth_Monamaq:
+    id:            2794
+    species:       moblin
+    type:          [notorious]
+    spell_list_id: 3
+    skill_list_id: 184
+    attributes:
+      combat:
+        skill: great_sword
+      jobs: [rdm, rdm]
+      render:
+        look:
+          type:  standard
+          model: 696
+        entity_flags: 159
+        name_prefix:   32
+        model_size:     3
+        hitbox:        15
+      behaviors:
+        links: true
+      spawn:
+        respawn: 960
+      stats:
+        hp: 50000
+    loot:
+      drops:
+        - chance: common
+          item:   volunteers_earring
+        - chance: uncommon
+          item:   moblin_mask
+        - chance: uncommon
+          item:   moblin_armor
+
+  Purgatory_Bat_Halvung:
+    id:            6471
+    display_name:  Purgatory_Bat
+    species:       bat
+    skill_list_id: 224
+    attributes:
+      combat:
+        skill: club
+      render:
+        look:
+          type:  standard
+          model: 256
+        entity_flags:  643
+        animation_sub:   8
+        model_size:      1
+        hitbox:         12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: very_common
+          item:   bat_wing
+        - chance: uncommon
+          item:   bat_fang
+        - chance: rare
+          item:   vial_of_fiend_blood
+        - chance: very_rare
+          item:   vial_of_beastman_blood
+      despoil:
+        bat_wing: 0
+
+  Qiqirn_Diamantaire:
+    id:            3249
+    species:       qiqirn
+    skill_list_id: 199
+    attributes:
+      combat:
+        skill: dagger
+        delay: 200
+      jobs: [thf, thf]
+      render:
+        look:
+          type:  standard
+          model: 1735
+        entity_flags: 133
+        model_size:     2
+        hitbox:        13
+      behaviors:
+        links: true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: very_common
+          item:   handful_of_almonds
+        - chance: very_rare
+          item:   pebble
+        - chance: very_rare
+          item:   qiqirn_sandbag
+        - chance: very_rare
+          item:   qiqirn_cape
+        - chance: super_rare
+          item:   jar_of_firesand
+        - chance: super_rare
+          item:   handful_of_iron_sand
+        - chance: ultra_rare
+          item:   bowl_of_nashmau_stew
+        - chance: ultra_rare
+          item:   sack_of_silica
+      steal: qiqirn_sandbag
+      despoil:
+        qiqirn_cape:    0
+        qiqirn_sandbag: 0
+
+  Qiqirn_Mercenary:
+    id:            3257
+    species:       qiqirn
+    skill_list_id: 199
+    attributes:
+      combat:
+        skill: axe
+        delay: 200
+      jobs: [rng, rng]
+      render:
+        look:
+          type:  standard
+          model: 1735
+        entity_flags: 133
+        model_size:     2
+        hitbox:        13
+      behaviors:
+        links: true
+      mob_mods:
+        hp_standback: 1
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: very_common
+          item:   handful_of_almonds
+        - chance: very_rare
+          item:   pebble
+        - chance: very_rare
+          item:   qiqirn_sandbag
+        - chance: very_rare
+          item:   qiqirn_cape
+        - chance: super_rare
+          item:   jar_of_firesand
+        - chance: super_rare
+          item:   handful_of_iron_sand
+        - chance: ultra_rare
+          item:   bowl_of_nashmau_stew
+        - chance: ultra_rare
+          item:   sack_of_silica
+      steal: qiqirn_sandbag
+      despoil:
+        qiqirn_cape:    0
+        qiqirn_sandbag: 0
+
+  Qiqirn_Mine:
+    id:      3258
+    species: fortifications
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 1790
+        entity_flags:  643
+        animation_sub:   8
+        model_size:      1
+        hitbox:         12
+      behaviors:
+        aggressive:     true
+        true_detection: true
+      spawn:
+        type: [scripted]
+
+  Reacton:
+    id:            3339
+    species:       bomb
+    type:          [notorious]
+    spell_list_id: 21
+    skill_list_id: 300
+    attributes:
+      combat:
+        skill: staff
+        delay: 220
+      jobs: [blm, blm]
+      resists:
+        immune_status: [stun, silence, light_sleep, dark_sleep]
+      render:
+        look:
+          type:  standard
+          model: 282
+        entity_flags:  669
+        animation_sub:   6
+        name_prefix:    32
+        model_size:      2
+        hitbox:         13
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 25000
+    loot:
+      drops:
+        - chance: always
+          item:   pile_of_reactons_ashes
+        - chance: common
+          item:   magic_strap
+        - chance: common
+          item:   reacton_arm
+      steal: bomb_arm
+
+  Troll_Artilleryman_H:
+    id:            4009
+    display_name:  Troll_Artilleryman
+    species:       light_troll
+    skill_list_id: 246
+    attributes:
+      combat:
+        skill: axe
+        delay: 230
+      jobs: [rng, rng]
+      render:
+        look:
+          type:  automaton
+          model: 1709
+        entity_flags: 133
+        model_size:     2
+        hitbox:        20
+      behaviors:
+        aggressive:     true
+        links:          true
+        true_detection: true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: uncommon
+          item:   halvung_bronze_key
+        - chance: very_rare
+          item:   troll_pauldron
+        - chance: rare
+          item:   khroma_nugget
+      despoil:
+        jadagna_-1: 0
+
+  Troll_Cameist:
+    id:            4010
+    species:       light_troll
+    spell_list_id: 3
+    skill_list_id: 246
+    attributes:
+      combat:
+        skill: great_sword
+        delay: 230
+      jobs: [rdm, rdm]
+      render:
+        look:
+          type:  automaton
+          model: 1708
+        entity_flags: 131
+        model_size:     1
+        hitbox:        17
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: uncommon
+          item:   puppetmasters_testimony
+        - chance: rare
+          item:   halvung_brass_key
+        - chance: rare
+          item:   vial_of_moblin_oil
+        - chance: very_rare
+          item:   troll_pauldron
+      despoil:
+        jadagna_-1: 0
+
+  Troll_Combatant:
+    id:            4012
+    species:       light_troll
+    skill_list_id: 246
+    attributes:
+      combat:
+        skill: hand_to_hand
+        delay: 480
+      jobs: [mnk, mnk]
+      render:
+        look:
+          type:  automaton
+          model: 1712
+        entity_flags:  133
+        animation_sub:   1
+        model_size:      2
+        hitbox:         20
+      behaviors:
+        aggressive:     true
+        links:          true
+        true_detection: true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: uncommon
+          item:   halvung_bronze_key
+        - chance: very_rare
+          item:   troll_pauldron
+        - chance: rare
+          item:   khroma_nugget
+      despoil:
+        jadagna_-1: 0
+
+  Troll_Cuirasser_H:
+    id:            4013
+    display_name:  Troll_Cuirasser
+    species:       heavy_troll
+    spell_list_id: 3
+    skill_list_id: 246
+    attributes:
+      combat:
+        skill: great_sword
+        delay: 230
+      jobs: [rdm, rdm]
+      render:
+        look:
+          type:  automaton
+          model: 1685
+        entity_flags: 133
+        model_size:     2
+        hitbox:        20
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: uncommon
+          item:   slab_of_plumbago
+        - chance: uncommon
+          item:   halvung_bronze_key
+        - chance: very_rare
+          item:   troll_vambrace
+      despoil:
+        jadagna_-1: 0
+
+  Troll_Engraver:
+    id:            4015
+    species:       light_troll
+    skill_list_id: 246
+    attributes:
+      combat:
+        skill: hand_to_hand
+        delay: 380
+      jobs: [pup, pup]
+      render:
+        look:
+          type:  automaton
+          model: 1712
+        entity_flags:  131
+        animation_sub:   1
+        model_size:      1
+        hitbox:         17
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: uncommon
+          item:   puppetmasters_testimony
+        - chance: rare
+          item:   halvung_brass_key
+        - chance: rare
+          item:   vial_of_moblin_oil
+        - chance: very_rare
+          item:   troll_pauldron
+      despoil:
+        jadagna_-1: 0
+
+  Troll_Gemologist:
+    id:            4017
+    species:       heavy_troll
+    spell_list_id: 4
+    skill_list_id: 247
+    attributes:
+      combat:
+        skill: dagger
+        delay: 280
+      jobs: [pld, pld]
+      render:
+        look:
+          type:  automaton
+          model: 1689
+        entity_flags: 131
+        model_size:     1
+        hitbox:        17
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: uncommon
+          item:   puppetmasters_testimony
+        - chance: rare
+          item:   halvung_brass_key
+        - chance: rare
+          item:   vial_of_moblin_oil
+        - chance: very_rare
+          item:   troll_vambrace
+      despoil:
+        jadagna_-1: 0
+
+  Troll_Grenadier_H:
+    id:            4018
+    display_name:  Troll_Grenadier
+    species:       light_troll
+    skill_list_id: 246
+    attributes:
+      combat:
+        skill: axe
+        delay: 230
+      jobs: [rng, rng]
+      render:
+        look:
+          type:  automaton
+          model: 1710
+        entity_flags: 133
+        model_size:     2
+        hitbox:        20
+      behaviors:
+        aggressive:     true
+        links:          true
+        true_detection: true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: uncommon
+          item:   halvung_bronze_key
+        - chance: very_rare
+          item:   troll_pauldron
+      despoil:
+        jadagna_-1: 0
+
+  Troll_Ironworker:
+    id:            4021
+    species:       heavy_troll
+    skill_list_id: 247
+    attributes:
+      combat:
+        skill: axe
+        delay: 280
+      render:
+        look:
+          type:  automaton
+          model: 1686
+        entity_flags: 131
+        model_size:     1
+        hitbox:        17
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: uncommon
+          item:   puppetmasters_testimony
+        - chance: uncommon
+          item:   slab_of_plumbago
+        - chance: rare
+          item:   halvung_brass_key
+        - chance: very_rare
+          item:   troll_vambrace
+      despoil:
+        jadagna_-1: 0
+
+  Troll_Lapidarist:
+    id:            4022
+    species:       heavy_troll
+    spell_list_id: 5
+    skill_list_id: 247
+    attributes:
+      combat:
+        skill: axe
+        delay: 280
+      jobs: [drk, drk]
+      render:
+        look:
+          type:  automaton
+          model: 1684
+        entity_flags: 131
+        model_size:     1
+        hitbox:        17
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: uncommon
+          item:   puppetmasters_testimony
+        - chance: uncommon
+          item:   slab_of_plumbago
+        - chance: rare
+          item:   halvung_brass_key
+        - chance: very_rare
+          item:   troll_vambrace
+      despoil:
+        jadagna_-1: 0
+
+  Troll_Machinist:
+    id:            4023
+    species:       light_troll
+    skill_list_id: 246
+    attributes:
+      combat:
+        skill: hand_to_hand
+        delay: 380
+      jobs: [pup, pup]
+      render:
+        look:
+          type:  automaton
+          model: 1712
+        entity_flags: 133
+        model_size:     2
+        hitbox:        20
+      behaviors:
+        aggressive:     true
+        links:          true
+        true_detection: true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: uncommon
+          item:   halvung_bronze_key
+        - chance: very_rare
+          item:   troll_pauldron
+        - chance: rare
+          one_of: [flashbulb, scanner, pattern_reader, heatsink, mana_converter, strobe, analyzer, heat_seeker]
+      despoil:
+        jadagna_-1: 0
+
+  Troll_Mythril_Guard:
+    id:            4024
+    species:       heavy_troll
+    spell_list_id: 5
+    skill_list_id: 247
+    attributes:
+      combat:
+        skill: axe
+        delay: 280
+      jobs: [drk, drk]
+      render:
+        look:
+          type:  automaton
+          model: 1687
+        entity_flags: 155
+        name_prefix:   32
+        model_size:     1
+        hitbox:        17
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+
+  Troll_Scrimer:
+    id:            4028
+    species:       heavy_troll
+    skill_list_id: 247
+    attributes:
+      combat:
+        skill: axe
+        delay: 280
+      render:
+        look:
+          type:  automaton
+          model: 1687
+        entity_flags: 133
+        model_size:     2
+        hitbox:        20
+      behaviors:
+        aggressive:     true
+        links:          true
+        true_detection: true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: uncommon
+          item:   slab_of_plumbago
+        - chance: uncommon
+          item:   halvung_bronze_key
+        - chance: very_rare
+          item:   troll_vambrace
+      despoil:
+        jadagna_-1: 0
+
+  Troll_Smelter:
+    id:            4030
+    species:       light_troll
+    skill_list_id: 246
+    attributes:
+      combat:
+        skill: axe
+        delay: 230
+      jobs: [rng, rng]
+      render:
+        look:
+          type:  automaton
+          model: 1707
+        entity_flags: 131
+        model_size:     1
+        hitbox:        17
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: uncommon
+          item:   puppetmasters_testimony
+        - chance: rare
+          item:   halvung_brass_key
+        - chance: very_rare
+          item:   troll_pauldron
+      despoil:
+        jadagna_-1: 0
+
+  Troll_Stoneworker:
+    id:            4032
+    species:       light_troll
+    skill_list_id: 246
+    attributes:
+      combat:
+        skill: hand_to_hand
+        delay: 380
+      jobs: [mnk, mnk]
+      render:
+        look:
+          type:  automaton
+          model: 1712
+        entity_flags:  131
+        animation_sub:   1
+        model_size:      1
+        hitbox:         17
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: uncommon
+          item:   puppetmasters_testimony
+        - chance: rare
+          item:   halvung_brass_key
+        - chance: very_rare
+          item:   troll_pauldron
+      despoil:
+        jadagna_-1: 0
+
+  Troll_Targeteer:
+    id:            4036
+    species:       heavy_troll
+    spell_list_id: 4
+    skill_list_id: 247
+    attributes:
+      combat:
+        skill: dagger
+        delay: 280
+      jobs: [pld, pld]
+      render:
+        look:
+          type:  automaton
+          model: 1691
+        entity_flags: 133
+        model_size:     2
+        hitbox:        20
+      behaviors:
+        aggressive:     true
+        links:          true
+        true_detection: true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: common
+          item:   jadagna_-1
+        - chance: uncommon
+          item:   januwiyah_-1
+        - chance: very_rare
+          item:   troll_vambrace
+      despoil:
+        jadagna_-1: 0
+
+  Trolls_Automaton:
+    id:            4035
+    species:       automaton
+    spell_list_id: 567
+    skill_list_id: 363
+    attributes:
+      combat:
+        skill: club
+        delay: 320
+      jobs: [whm, whm]
+      render:
+        look:
+          type:  automaton
+          model: 1977
+        entity_flags: 131
+        model_size:     2
+        hitbox:         8
+      behaviors:
+        links: true
+      spawn:
+        type: [scripted]
+
+  Volcanic_Bats:
+    id:            4244
+    species:       flock_bat
+    skill_list_id: 2015
+    attributes:
+      combat:
+        skill: club
+      render:
+        look:
+          type:  standard
+          model: 260
+        entity_flags: 643
+        name_prefix:   64
+        model_size:     1
+        hitbox:        16
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: very_common
+          item:   bat_wing
+        - chance: uncommon
+          item:   bat_fang
+        - chance: rare
+          item:   vial_of_fiend_blood
+        - chance: very_rare
+          item:   vial_of_beastman_blood
+      despoil:
+        bat_wing: 0
+
+  Wamoura:
+    id:            4280
+    species:       wamoura
+    skill_list_id: 253
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 1808
+        entity_flags:  131
+        animation_sub:   5
+        model_size:      1
+        hitbox:         20
+      behaviors:
+        aggressive:     true
+        links:          true
+        true_detection: true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: common
+          item:   clump_of_wamoura_hair
+        - chance: very_common
+          item:   wamoura_scale
+      despoil:
+        wamoura_scale: 0
+
+  Wamouracampa:
+    id:            4281
+    species:       wamouracampa
+    skill_list_id: 254
+    attributes:
+      combat:
+        skill: scythe
+        delay: 265
+      render:
+        look:
+          type:  standard
+          model: 1802
+        entity_flags:  131
+        animation_sub:   4
+        model_size:      1
+        hitbox:         12
+      behaviors:
+        links: true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: rare
+          item:   wamoura_cocoon
+      despoil:
+        wamoura_scale: 0
+
+  Wamouracampa_Small:
+    id:            7268
+    display_name:  Wamouracampa
+    species:       wamouracampa
+    skill_list_id: 254
+    attributes:
+      combat:
+        skill: scythe
+        delay: 265
+      render:
+        look:
+          type:  standard
+          model: 1802
+        entity_flags:  131
+        animation_sub:   4
+        hitbox:         10
+      behaviors:
+        links: true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: rare
+          item:   wamoura_cocoon
+      despoil:
+        wamoura_scale: 0
+
+  Wheel_Wamoura:
+    id:            4327
+    species:       wamouracampa
+    skill_list_id: 254
+    attributes:
+      combat:
+        skill: scythe
+        delay: 265
+      render:
+        look:
+          type:  standard
+          model: 1802
+        entity_flags:  3
+        model_size:    1
+        hitbox:       12
+      behaviors:
+        aggressive:     true
+        true_detection: true
+      spawn:
+        type: [scripted]
+
+  Woodtroll_Elite_Guard:
+    id:            4365
+    species:       light_troll
+    type:          [notorious]
+    skill_list_id: 246
+    attributes:
+      combat:
+        skill: axe
+        delay: 230
+      jobs: [rng, rng]
+      render:
+        look:
+          type:  automaton
+          model: 1709
+        entity_flags: 157
+        name_prefix:   32
+        model_size:     2
+        hitbox:        17
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+
+  Woodtroll_Mirror_Guard:
+    id:            4366
+    species:       heavy_troll
+    type:          [notorious]
+    spell_list_id: 5
+    skill_list_id: 247
+    attributes:
+      combat:
+        skill: axe
+        delay: 280
+      jobs: [drk, drk]
+      render:
+        look:
+          type:  automaton
+          model: 1685
+        entity_flags: 157
+        name_prefix:   32
+        model_size:     2
+        hitbox:        20
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+
+spawns:
+  17031169:
+    template: Qiqirn_Mercenary
+    region:   s_1
+    level:    [72, 73]
+  17031170:
+    template: Qiqirn_Diamantaire
+    region:   s_1
+    level:    [72, 73]
+  17031171:
+    template: Qiqirn_Mine
+    level:    [75, 75]
+  17031172:
+    template: Volcanic_Bats
+    region:   s_4
+    level:    [69, 71]
+  17031173:
+    template: Purgatory_Bat_Halvung
+    script:   Purgatory_Bat
+    region:   s_4
+    level:    [70, 72]
+  17031174:
+    template: Troll_Gemologist
+    region:   s_4
+    level:    [73, 73]
+  17031175:
+    template: Volcanic_Bats
+    region:   s_7
+    level:    [69, 71]
+  17031176:
+    template: Purgatory_Bat_Halvung
+    script:   Purgatory_Bat
+    region:   s_7
+    level:    [70, 72]
+  17031177:
+    template: Troll_Stoneworker
+    region:   s_9
+    level:    [71, 72]
+  17031178:
+    template: Troll_Lapidarist
+    region:   s_10
+    level:    [71, 73]
+  17031179:
+    template: Troll_Smelter
+    region:   s_10
+    level:    [71, 73]
+  17031180:
+    template: Purgatory_Bat_Halvung
+    script:   Purgatory_Bat
+    region:   s_12
+    level:    [70, 72]
+  17031181:
+    template: Volcanic_Bats
+    region:   s_12
+    level:    [69, 71]
+  17031182:
+    template: Volcanic_Bats
+    region:   s_14
+    level:    [69, 71]
+  17031183:
+    template: Purgatory_Bat_Halvung
+    script:   Purgatory_Bat
+    region:   s_14
+    level:    [70, 72]
+  17031184:
+    template: Troll_Stoneworker
+    region:   s_16
+    level:    [73, 75]
+  17031185:
+    template: Troll_Engraver
+    region:   s_16
+    level:    [73, 75]
+  17031186:
+    template: Trolls_Automaton
+    region:   s_16
+    level:    [69, 78]
+  17031187:
+    template: Troll_Cameist
+    region:   s_19
+    level:    [73, 75]
+  17031188:
+    template: Troll_Stoneworker
+    region:   s_19
+    level:    [73, 75]
+  17031189:
+    template: Troll_Ironworker
+    region:   s_21
+    level:    [73, 75]
+  17031190:
+    template: Troll_Cameist
+    region:   s_21
+    level:    [73, 75]
+  17031191:
+    template: Earth_Elemental
+    region:   s_21
+    level:    [74, 75]
+  17031192:
+    template: Black_Pudding
+    region:   sw_25
+    level:    [72, 74]
+  17031193:
+    template: Troll_Smelter
+    region:   sw_25
+    level:    [73, 75]
+  17031194:
+    template: Troll_Lapidarist
+    region:   sw_26
+    level:    [73, 75]
+  17031195:
+    template: Black_Pudding
+    region:   sw_26
+    level:    [72, 74]
+  17031196:
+    template: Black_Pudding
+    region:   w_29
+    level:    [72, 74]
+  17031197:
+    template: Troll_Engraver
+    region:   w_29
+    level:    [73, 75]
+  17031198:
+    template: Trolls_Automaton
+    region:   w_29
+    level:    [69, 78]
+  17031199:
+    template: Troll_Ironworker
+    region:   sw_31
+    level:    [73, 75]
+  17031200:
+    template: Troll_Gemologist
+    region:   sw_31
+    level:    [73, 75]
+  17031201:
+    template: Wamouracampa
+    region:   sw_33
+    level:    [72, 76]
+  17031202:
+    template: Black_Pudding
+    region:   sw_35
+    level:    [72, 74]
+  17031203:
+    template: Wamouracampa
+    region:   sw_35
+    level:    [72, 76]
+  17031204:
+    template: Troll_Cameist
+    region:   w_36
+    level:    [73, 75]
+  17031205:
+    template: Troll_Smelter
+    region:   w_36
+    level:    [73, 75]
+  17031206:
+    template: Troll_Gemologist
+    region:   w_38
+    level:    [73, 75]
+  17031207:
+    template: Black_Pudding
+    region:   w_38
+    level:    [72, 74]
+  17031208:
+    template: Troll_Lapidarist
+    region:   w_40
+    level:    [73, 75]
+  17031209:
+    template: Troll_Ironworker
+    region:   w_41
+    level:    [73, 75]
+  17031210:
+    template: Troll_Cameist
+    region:   s_42
+    level:    [73, 75]
+  17031211:
+    template: Black_Pudding
+    region:   s_42
+    level:    [72, 74]
+  17031212:
+    template: Black_Pudding
+    region:   s_45
+    level:    [72, 74]
+  17031213:
+    template: Troll_Stoneworker
+    region:   s_45
+    level:    [73, 75]
+  17031214:
+    template: Volcanic_Bats
+    region:   s_46
+    level:    [69, 71]
+  17031215:
+    template: Purgatory_Bat_Halvung
+    script:   Purgatory_Bat
+    region:   s_46
+    level:    [70, 72]
+  17031216:
+    template: Purgatory_Bat_Halvung
+    script:   Purgatory_Bat
+    region:   s_48
+    level:    [70, 72]
+  17031217:
+    template: Magmatic_Eruca
+    region:   s_49
+    level:    [71, 73]
+  17031218:
+    template: Magmatic_Eruca
+    region:   s_49
+    level:    [71, 73]
+  17031219:
+    template: Volcanic_Bats
+    region:   s_51
+    level:    [69, 71]
+  17031220:
+    template: Copper_Borer
+    region:   s_51
+    level:    [82, 82]
+  17031221:
+    template: Purgatory_Bat_Halvung
+    script:   Purgatory_Bat
+    region:   s_53
+    level:    [70, 72]
+  17031222:
+    template: Troll_Cameist
+    region:   c_54
+    level:    [73, 75]
+  17031223:
+    template: Black_Pudding
+    region:   c_54
+    level:    [72, 74]
+  17031224:
+    template: Troll_Gemologist
+    region:   c_54
+    level:    [73, 75]
+  17031225:
+    template: Troll_Gemologist
+    region:   w_57
+    level:    [73, 75]
+  17031226:
+    template: Troll_Lapidarist
+    region:   c_58
+    level:    [73, 75]
+  17031227:
+    template: Black_Pudding
+    region:   c_60
+    level:    [72, 74]
+  17031228:
+    template: Troll_Ironworker
+    region:   c_60
+    level:    [73, 75]
+  17031229:
+    template: Troll_Smelter
+    region:   c_61
+    level:    [73, 75]
+  17031230:
+    template: Black_Pudding
+    region:   c_61
+    level:    [72, 74]
+  17031231:
+    template: Troll_Engraver
+    region:   c_63
+    level:    [73, 75]
+  17031232:
+    template: Trolls_Automaton
+    region:   c_63
+    level:    [69, 78]
+  17031233:
+    template: Black_Pudding
+    region:   c_63
+    level:    [72, 74]
+  17031234:
+    template: Magmatic_Eruca
+    region:   c_66
+    level:    [72, 74]
+  17031235:
+    template: Magmatic_Eruca
+    region:   c_67
+    level:    [72, 74]
+  17031236:
+    template: Magmatic_Eruca
+    region:   c_68
+    level:    [72, 74]
+  17031237:
+    template: Magmatic_Eruca
+    region:   c_68
+    level:    [72, 74]
+  17031238:
+    template: Magmatic_Eruca
+    region:   c_70
+    level:    [72, 74]
+  17031239:
+    template: Magmatic_Eruca
+    region:   c_71
+    level:    [72, 74]
+  17031240:
+    template: Magmatic_Eruca
+    region:   c_71
+    level:    [72, 74]
+  17031241:
+    template: Troll_Lapidarist
+    region:   w_73
+    level:    [73, 75]
+  17031242:
+    template: Moblin_Millionaire
+    region:   w_73
+    level:    [74, 75]
+  17031243:
+    template: Troll_Gemologist
+    region:   sw_75
+    level:    [73, 75]
+  17031244:
+    template: Troll_Engraver
+    region:   s_76
+    level:    [71, 73]
+  17031245:
+    template: Trolls_Automaton
+    region:   s_76
+    level:    [69, 78]
+  17031246:
+    template: Troll_Ironworker
+    region:   s_76
+    level:    [71, 73]
+  17031247:
+    template: Troll_Lapidarist
+    region:   s_79
+    level:    [71, 73]
+  17031248:
+    template: Magmatic_Eruca
+    region:   n_80
+    level:    [73, 75]
+  17031249:
+    template: Magmatic_Eruca
+    region:   n_81
+    level:    [73, 75]
+  17031250:
+    template: Magmatic_Eruca
+    region:   n_81
+    level:    [73, 75]
+  17031251:
+    template: Magmatic_Eruca
+    region:   region_211
+    level:    [73, 75]
+  17031252:
+    template: Magmatic_Eruca
+    region:   n_84
+    level:    [73, 75]
+  17031253:
+    template: Troll_Stoneworker
+    region:   n_85
+    level:    [71, 73]
+  17031254:
+    template: Troll_Cameist
+    region:   n_86
+    level:    [71, 73]
+  17031255:
+    template: Troll_Gemologist
+    region:   n_87
+    level:    [71, 73]
+  17031256:
+    template: Fire_Elemental
+    region:   n_88
+    level:    [74, 75]
+  17031257:
+    template: Troll_Lapidarist
+    region:   n_88
+    level:    [71, 73]
+  17031258:
+    template: Magmatic_Eruca
+    region:   n_90
+    level:    [71, 73]
+  17031259:
+    template: Magmatic_Eruca
+    region:   e_91
+    level:    [71, 73]
+  17031260:
+    template: Friars_Lantern
+    region:   n_92
+    level:    [72, 76]
+  17031261:
+    template: Friars_Lantern
+    region:   n_93
+    level:    [72, 76]
+  17031262:
+    template: Wamouracampa
+    region:   n_94
+    level:    [72, 76]
+  17031263:
+    template: Friars_Lantern
+    region:   n_94
+    level:    [72, 76]
+  17031264:
+    template: Wamouracampa
+    region:   ne_96
+    level:    [72, 76]
+  17031265:
+    template: Friars_Lantern
+    region:   ne_96
+    level:    [72, 76]
+  17031266:
+    template: Troll_Cameist
+    region:   ne_98
+    level:    [73, 75]
+  17031267:
+    template: Troll_Gemologist
+    region:   ne_98
+    level:    [73, 75]
+  17031268:
+    template: Volcanic_Bats
+    region:   ne_100
+    level:    [69, 71]
+  17031269:
+    template: Qiqirn_Mercenary
+    region:   region_212
+    level:    [72, 73]
+  17031270:
+    template: Volcanic_Bats
+    region:   ne_102
+    level:    [69, 71]
+  17031271:
+    template: Volcanic_Bats
+    region:   e_103
+    level:    [69, 71]
+  17031272:
+    template: Purgatory_Bat_Halvung
+    script:   Purgatory_Bat
+    region:   e_103
+    level:    [70, 72]
+  17031273:
+    template: Purgatory_Bat_Halvung
+    script:   Purgatory_Bat
+    region:   e_105
+    level:    [70, 72]
+  17031274:
+    template: Magmatic_Eruca
+    region:   e_106
+    level:    [71, 73]
+  17031275:
+    template: Magmatic_Eruca
+    region:   e_106
+    level:    [71, 73]
+  17031276:
+    template: Magmatic_Eruca
+    region:   e_108
+    level:    [71, 73]
+  17031277:
+    template: Magmatic_Eruca
+    region:   e_108
+    level:    [71, 73]
+  17031278:
+    template: Magmatic_Eruca
+    region:   e_110
+    level:    [71, 73]
+  17031279:
+    template: Magmatic_Eruca
+    region:   e_111
+    level:    [71, 73]
+  17031280:
+    template: Magmatic_Eruca
+    region:   e_111
+    level:    [71, 73]
+  17031281:
+    template: Magmatic_Eruca
+    region:   c_113
+    level:    [71, 73]
+  17031282:
+    template: Magmatic_Eruca
+    region:   c_113
+    level:    [71, 73]
+  17031283:
+    template: Magmatic_Eruca
+    region:   c_115
+    level:    [71, 73]
+  17031284:
+    template: Magmatic_Eruca
+    region:   c_115
+    level:    [71, 73]
+  17031285:
+    template: Magmatic_Eruca
+    region:   c_117
+    level:    [71, 73]
+  17031286:
+    template: Magmatic_Eruca
+    region:   c_117
+    level:    [71, 73]
+  17031287:
+    template: Friars_Lantern
+    region:   c_119
+    level:    [72, 76]
+  17031288:
+    template: Friars_Lantern
+    region:   c_119
+    level:    [72, 76]
+  17031289:
+    template: Friars_Lantern
+    region:   c_121
+    level:    [72, 76]
+  17031290:
+    template: Fire_Elemental
+    region:   region_213
+    level:    [74, 75]
+  17031291:
+    template: Troll_Lapidarist
+    region:   ne_123
+    level:    [73, 75]
+  17031292:
+    template: Troll_Gemologist
+    region:   ne_124
+    level:    [73, 75]
+  17031293:
+    template: Troll_Stoneworker
+    region:   ne_125
+    level:    [73, 75]
+  17031294:
+    template: Troll_Ironworker
+    region:   ne_126
+    level:    [73, 75]
+  17031295:
+    template: Troll_Cameist
+    region:   region_214
+    level:    [71, 73]
+  17031296:
+    template: Troll_Engraver
+    region:   e_128
+    level:    [71, 73]
+  17031297:
+    template: Trolls_Automaton
+    region:   e_128
+    level:    [69, 78]
+  17031298:
+    template: Troll_Gemologist
+    region:   region_215
+    level:    [71, 73]
+  17031299:
+    template: Troll_Lapidarist
+    region:   c_131
+    level:    [71, 73]
+  17031300:
+    template: Magmatic_Eruca
+    region:   c_132
+    level:    [71, 73]
+  17031301:
+    template: Magmatic_Eruca
+    region:   c_133
+    level:    [71, 73]
+  17031302:
+    template: Troll_Engraver
+    region:   c_134
+    level:    [71, 73]
+  17031303:
+    template: Trolls_Automaton
+    region:   c_134
+    level:    [69, 78]
+  17031304:
+    template: Wamouracampa
+    region:   region_216
+    level:    [72, 76]
+  17031305:
+    template: Wamouracampa
+    region:   w_137
+    level:    [72, 76]
+  17031306:
+    template: Wamouracampa
+    region:   w_137
+    level:    [72, 76]
+  17031307:
+    template: Earth_Elemental
+    region:   w_137
+    level:    [74, 75]
+  17031308:
+    template: Wamouracampa
+    region:   w_137
+    level:    [72, 76]
+  17031309:
+    template: Black_Pudding
+    region:   w_137
+    level:    [72, 74]
+  17031310:
+    template: Wamouracampa
+    region:   w_142
+    level:    [72, 76]
+  17031311:
+    template: Wamouracampa
+    region:   w_142
+    level:    [72, 76]
+  17031312:
+    template: Flammeri
+    region:   w_142
+    level:    [79, 80]
+  17031313:
+    template: Black_Pudding
+    region:   w_146
+    level:    [72, 74]
+  17031314:
+    template: Wamouracampa
+    region:   w_146
+    level:    [72, 76]
+  17031315:
+    template: Wamouracampa
+    region:   w_147
+    level:    [72, 76]
+  17031316:
+    template: Wamouracampa
+    region:   w_147
+    level:    [72, 76]
+  17031317:
+    template: Friars_Lantern
+    region:   w_149
+    level:    [72, 76]
+  17031318:
+    template: Friars_Lantern
+    region:   w_149
+    level:    [72, 76]
+  17031319:
+    template: Wamouracampa
+    region:   w_151
+    level:    [72, 76]
+  17031320:
+    template: Wamouracampa
+    region:   w_151
+    level:    [72, 76]
+  17031321:
+    template: Wamouracampa
+    region:   n_153
+    level:    [72, 76]
+  17031322:
+    template: Magmatic_Eruca
+    region:   n_154
+    level:    [73, 75]
+  17031323:
+    template: Magmatic_Eruca
+    region:   n_154
+    level:    [73, 75]
+  17031324:
+    template: Magmatic_Eruca
+    region:   n_156
+    level:    [73, 75]
+  17031325:
+    template: Earth_Elemental
+    region:   n_156
+    level:    [74, 75]
+  17031326:
+    template: Magmatic_Eruca
+    region:   n_158
+    level:    [73, 75]
+  17031327:
+    template: Magmatic_Eruca
+    region:   n_158
+    level:    [73, 75]
+  17031328:
+    template: Magmatic_Eruca
+    region:   region_217
+    level:    [73, 75]
+  17031329:
+    template: Magmatic_Eruca
+    region:   n_161
+    level:    [73, 75]
+  17031330:
+    template: Magmatic_Eruca
+    region:   n_161
+    level:    [73, 75]
+  17031331:
+    template: Wamouracampa
+    region:   region_218
+    level:    [72, 76]
+  17031332:
+    template: Friars_Lantern
+    region:   w_164
+    level:    [72, 76]
+  17031333:
+    template: Friars_Lantern
+    region:   w_164
+    level:    [72, 76]
+  17031334:
+    template: Wamouracampa
+    region:   n_166
+    level:    [72, 76]
+  17031335:
+    template: Wamoura
+    region:   n_167
+    level:    [80, 82]
+  17031336:
+    template: Wamouracampa
+    region:   n_167
+    level:    [72, 76]
+  17031337:
+    template: Wamoura
+    region:   n_169
+    level:    [80, 82]
+  17031338:
+    template: Wamouracampa
+    region:   n_169
+    level:    [72, 76]
+  17031339:
+    template: Wamoura
+    region:   n_171
+    level:    [80, 82]
+  17031340:
+    template: Wamouracampa
+    region:   n_171
+    level:    [72, 76]
+  17031341:
+    template: Wamouracampa_Small
+    script:   Wamouracampa
+    region:   n_173
+    level:    [72, 76]
+  17031342:
+    template: Wamoura
+    region:   n_173
+    level:    [80, 82]
+  17031343:
+    template: Troll_Engraver
+    region:   n_175
+    level:    [73, 75]
+  17031344:
+    template: Trolls_Automaton
+    region:   n_175
+    level:    [69, 78]
+  17031345:
+    template: Troll_Ironworker
+    region:   n_177
+    level:    [73, 75]
+  17031346:
+    template: Troll_Cameist
+    region:   region_249
+    level:    [73, 75]
+  17031347:
+    template: Troll_Gemologist
+    region:   n_179
+    level:    [73, 75]
+  17031348:
+    template: Troll_Cameist
+    region:   region_219
+    level:    [73, 75]
+  17031349:
+    template: Moblin_Billionaire
+    region:   w_181
+    level:    [74, 75]
+  17031350:
+    template: Troll_Gemologist
+    region:   w_182
+    level:    [73, 75]
+  17031351:
+    template: Troll_Lapidarist
+    region:   w_182
+    level:    [73, 75]
+  17031352:
+    template: Troll_Ironworker
+    region:   w_184
+    level:    [73, 75]
+  17031353:
+    template: Troll_Smelter
+    region:   w_184
+    level:    [71, 73]
+  17031354:
+    template: Troll_Engraver
+    region:   w_186
+    level:    [73, 75]
+  17031355:
+    template: Trolls_Automaton
+    region:   w_186
+    level:    [69, 78]
+  17031356:
+    template: Moblin_Billionaire
+    region:   w_188
+    level:    [74, 75]
+  17031357:
+    template: Troll_Ironworker
+    region:   n_189
+    level:    [73, 75]
+  17031358:
+    template: Troll_Cameist
+    region:   n_189
+    level:    [73, 75]
+  17031359:
+    template: Troll_Engraver
+    region:   n_191
+    level:    [73, 75]
+  17031360:
+    template: Trolls_Automaton
+    region:   n_191
+    level:    [69, 78]
+  17031361:
+    template: Troll_Stoneworker
+    region:   n_193
+    level:    [73, 75]
+  17031362:
+    template: Moblin_Millionaire
+    region:   n_193
+    level:    [74, 75]
+  17031363:
+    template: Troll_Gemologist
+    region:   n_195
+    level:    [73, 75]
+  17031364:
+    template: Troll_Smelter
+    region:   c_196
+    level:    [71, 73]
+  17031365:
+    template: Troll_Ironworker
+    region:   c_197
+    level:    [73, 75]
+  17031366:
+    template: Troll_Artilleryman_H
+    script:   Troll_Artilleryman
+    region:   region_220
+    level:    [78, 82]
+  17031367:
+    template: Troll_Combatant
+    region:   region_221
+    level:    [78, 82]
+  17031368:
+    template: Troll_Targeteer
+    region:   n_200
+    level:    [78, 82]
+  17031369:
+    template: Friars_Lantern_Grow
+    script:   Friars_Lantern
+    region:   n_200
+    level:    [72, 76]
+  17031370:
+    template: Wamouracampa
+    region:   nw_202
+    level:    [72, 76]
+  17031371:
+    template: Friars_Lantern
+    region:   nw_203
+    level:    [72, 76]
+  17031372:
+    template: Friars_Lantern
+    region:   nw_203
+    level:    [72, 76]
+  17031373:
+    template: Friars_Lantern
+    region:   nw_205
+    level:    [72, 76]
+  17031374:
+    template: Friars_Lantern
+    region:   nw_205
+    level:    [72, 76]
+  17031375:
+    template: Wamouracampa
+    region:   nw_207
+    level:    [72, 76]
+  17031376:
+    template: Ebony_Pudding
+    region:   region_228
+    level:    [77, 79]
+  17031377:
+    template: Ebony_Pudding
+    region:   region_229
+    level:    [77, 79]
+  17031378:
+    template: Ebony_Pudding
+    region:   region_230
+    level:    [77, 79]
+  17031379:
+    template: Friars_Lantern
+    region:   nw_211
+    level:    [72, 76]
+  17031380:
+    template: Fire_Elemental
+    region:   nw_211
+    level:    [74, 75]
+  17031381:
+    template: Friars_Lantern
+    region:   nw_213
+    level:    [72, 76]
+  17031382:
+    template: Ebony_Pudding
+    region:   region_231
+    level:    [77, 79]
+  17031383:
+    template: Ebony_Pudding
+    region:   region_232
+    level:    [77, 79]
+  17031384:
+    template: Friars_Lantern
+    region:   w_216
+    level:    [72, 76]
+  17031385:
+    template: Friars_Lantern
+    region:   w_216
+    level:    [72, 76]
+  17031386:
+    template: Friars_Lantern
+    region:   nw_218
+    level:    [72, 76]
+  17031387:
+    template: Friars_Lantern
+    region:   nw_218
+    level:    [72, 76]
+  17031388:
+    template: Friars_Lantern
+    region:   nw_220
+    level:    [72, 76]
+  17031389:
+    template: Friars_Lantern
+    region:   nw_220
+    level:    [72, 76]
+  17031390:
+    template: Friars_Lantern
+    region:   region_222
+    level:    [72, 76]
+  17031391:
+    template: Friars_Lantern
+    region:   nw_223
+    level:    [72, 76]
+  17031392:
+    template: Fire_Elemental
+    region:   nw_223
+    level:    [74, 75]
+  17031393:
+    template: Ebony_Pudding
+    region:   region_233
+    level:    [77, 79]
+  17031394:
+    template: Ebony_Pudding
+    region:   region_233
+    level:    [77, 79]
+  17031395:
+    template: Friars_Lantern
+    region:   nw_227
+    level:    [72, 76]
+  17031396:
+    template: Friars_Lantern
+    region:   nw_227
+    level:    [72, 76]
+  17031397:
+    template: Friars_Lantern
+    region:   nw_229
+    level:    [72, 76]
+  17031398:
+    template: Friars_Lantern_Grow
+    region:   nw_230
+    level:    [77, 79]
+  17031399:
+    template: Friars_Lantern_Grow
+    region:   nw_230
+    level:    [77, 79]
+  17031400:
+    template: Fire_Elemental
+    region:   nw_230
+    level:    [74, 75]
+  17031401:
+    template: Big_Bomb
+    at:       [-233.800, 13.612, 286.713, 173]
+    level:    [83, 83]
+  17031402:
+    template: Troll_Machinist
+    region:   nw_234
+    level:    [78, 82]
+  17031403:
+    template: Trolls_Automaton
+    region:   nw_234
+    level:    [69, 78]
+  17031404:
+    template: Troll_Scrimer
+    region:   nw_234
+    level:    [78, 82]
+  17031405:
+    template: Troll_Grenadier_H
+    script:   Troll_Grenadier
+    region:   n_237
+    level:    [78, 82]
+  17031406:
+    template: Troll_Targeteer
+    region:   nw_238
+    level:    [78, 82]
+  17031407:
+    template: Troll_Cuirasser_H
+    script:   Troll_Cuirasser
+    region:   n_239
+    level:    [78, 82]
+  17031408:
+    template: Troll_Artilleryman_H
+    script:   Troll_Artilleryman
+    region:   nw_240
+    level:    [78, 82]
+  17031409:
+    template: Friars_Lantern_Grow
+    region:   w_241
+    level:    [77, 79]
+  17031410:
+    template: Friars_Lantern_Grow
+    region:   w_241
+    level:    [77, 79]
+  17031411:
+    template: Ebony_Pudding
+    region:   region_234
+    level:    [77, 79]
+  17031412:
+    template: Ebony_Pudding
+    region:   region_234
+    level:    [77, 79]
+  17031413:
+    template: Ebony_Pudding
+    region:   region_235
+    level:    [77, 79]
+  17031414:
+    template: Ebony_Pudding
+    region:   region_236
+    level:    [77, 79]
+  17031415:
+    template: Ebony_Pudding
+    region:   region_237
+    level:    [77, 79]
+  17031416:
+    template: Ebony_Pudding
+    region:   region_238
+    level:    [77, 79]
+  17031417:
+    template: Antares_H
+    script:   Antares
+    region:   w_249
+    level:    [77, 79]
+  17031418:
+    template: Antares_H
+    script:   Antares
+    region:   w_249
+    level:    [77, 79]
+  17031419:
+    template: Troll_Targeteer
+    region:   nw_251
+    level:    [78, 82]
+  17031420:
+    template: Troll_Targeteer
+    region:   nw_252
+    level:    [78, 82]
+  17031421:
+    template: Troll_Cuirasser_H
+    script:   Troll_Cuirasser
+    region:   nw_252
+    level:    [78, 82]
+  17031422:
+    template: Troll_Artilleryman_H
+    script:   Troll_Artilleryman
+    region:   nw_254
+    level:    [78, 82]
+  17031423:
+    template: Ebony_Pudding
+    region:   nw_254
+    level:    [77, 79]
+  17031424:
+    template: Troll_Combatant
+    region:   nw_256
+    level:    [78, 82]
+  17031425:
+    template: Troll_Machinist
+    region:   nw_257
+    level:    [78, 82]
+  17031426:
+    template: Trolls_Automaton
+    region:   nw_257
+    level:    [69, 78]
+  17031427:
+    template: Troll_Scrimer
+    region:   nw_259
+    level:    [78, 82]
+  17031428:
+    template: Ebony_Pudding
+    region:   nw_259
+    level:    [77, 79]
+  17031429:
+    template: Troll_Grenadier_H
+    script:   Troll_Grenadier
+    region:   nw_261
+    level:    [78, 82]
+  17031430:
+    template: Ebony_Pudding
+    region:   nw_261
+    level:    [77, 79]
+  17031431:
+    template: Antares_H
+    script:   Antares
+    region:   nw_263
+    level:    [77, 79]
+  17031432:
+    template: Antares_H
+    script:   Antares
+    region:   nw_264
+    level:    [77, 79]
+  17031433:
+    template: Troll_Artilleryman_H
+    script:   Troll_Artilleryman
+    region:   nw_265
+    level:    [78, 82]
+  17031434:
+    template: Friars_Lantern_Grow
+    region:   nw_265
+    level:    [77, 79]
+  17031435:
+    template: Friars_Lantern_Grow
+    region:   nw_265
+    level:    [77, 79]
+  17031436:
+    template: Troll_Combatant
+    region:   nw_268
+    level:    [78, 82]
+  17031437:
+    template: Troll_Scrimer
+    region:   nw_268
+    level:    [78, 82]
+  17031438:
+    template: Troll_Machinist
+    region:   nw_270
+    level:    [78, 82]
+  17031439:
+    template: Trolls_Automaton
+    region:   nw_270
+    level:    [69, 78]
+  17031440:
+    template: Mythril_Mouth_Monamaq
+    region:   region_247
+    level:    [81, 81]
+  17031441:
+    template: Troll_Mythril_Guard
+    region:   region_247
+    level:    [82, 83]
+  17031442:
+    template: Troll_Mythril_Guard
+    region:   region_247
+    level:    [82, 83]
+  17031443:
+    template: Troll_Grenadier_H
+    script:   Troll_Grenadier
+    region:   nw_275
+    level:    [78, 82]
+  17031444:
+    template: Antares_H
+    script:   Antares
+    region:   nw_275
+    level:    [77, 79]
+  17031445:
+    template: Antares_H
+    script:   Antares
+    region:   nw_277
+    level:    [77, 79]
+  17031446:
+    template: Kirlirger_the_Abhorrent
+    region:   nw_277
+    level:    [80, 80]
+  17031447:
+    template: Antares_H
+    script:   Antares
+    region:   nw_279
+    level:    [77, 79]
+  17031448:
+    template: Troll_Cuirasser_H
+    script:   Troll_Cuirasser
+    region:   nw_280
+    level:    [78, 82]
+  17031449:
+    template: Antares_H
+    script:   Antares
+    region:   nw_281
+    level:    [77, 79]
+  17031450:
+    template: Troll_Stoneworker
+    region:   w_282
+    level:    [73, 75]
+  17031451:
+    template: Ebony_Pudding
+    region:   region_239
+    level:    [77, 79]
+  17031452:
+    template: Ebony_Pudding
+    region:   region_240
+    level:    [77, 79]
+  17031453:
+    template: Ebony_Pudding
+    region:   nw_286
+    level:    [77, 79]
+  17031454:
+    template: Antares_H
+    script:   Antares
+    region:   nw_286
+    level:    [77, 79]
+  17031455:
+    template: Earth_Elemental
+    region:   nw_286
+    level:    [74, 75]
+  17031456:
+    template: Ebony_Pudding
+    region:   region_241
+    level:    [77, 79]
+  17031457:
+    template: Ebony_Pudding
+    region:   region_241
+    level:    [77, 79]
+  17031458:
+    template: Antares_H
+    script:   Antares
+    region:   n_290
+    level:    [77, 79]
+  17031459:
+    template: Ebony_Pudding
+    region:   region_242
+    level:    [77, 79]
+  17031460:
+    template: Ebony_Pudding
+    region:   region_243
+    level:    [77, 79]
+  17031461:
+    template: Ebony_Pudding
+    region:   region_243
+    level:    [77, 79]
+  17031462:
+    template: Friars_Lantern
+    region:   n_294
+    level:    [72, 76]
+  17031463:
+    template: Fire_Elemental
+    region:   n_294
+    level:    [74, 75]
+  17031464:
+    template: Friars_Lantern
+    region:   n_296
+    level:    [72, 76]
+  17031465:
+    template: Friars_Lantern
+    region:   n_296
+    level:    [76, 76]
+  17031466:
+    template: Friars_Lantern_Grow
+    script:   Friars_Lantern
+    region:   n_298
+    level:    [77, 79]
+  17031467:
+    template: Friars_Lantern_Grow
+    script:   Friars_Lantern
+    region:   n_298
+    level:    [77, 79]
+  17031468:
+    template: Troll_Artilleryman_H
+    script:   Troll_Artilleryman
+    region:   n_300
+    level:    [78, 82]
+  17031469:
+    template: Troll_Cuirasser_H
+    script:   Troll_Cuirasser
+    region:   c_301
+    level:    [78, 82]
+  17031470:
+    template: Antares_H
+    script:   Antares
+    region:   nw_302
+    level:    [77, 79]
+  17031471:
+    template: Troll_Machinist
+    region:   nw_303
+    level:    [78, 82]
+  17031472:
+    template: Trolls_Automaton
+    region:   nw_303
+    level:    [69, 78]
+  17031473:
+    template: Troll_Scrimer
+    region:   nw_305
+    level:    [78, 82]
+  17031474:
+    template: Antares_H
+    script:   Antares
+    region:   nw_306
+    level:    [77, 79]
+  17031475:
+    template: Troll_Targeteer
+    region:   n_307
+    level:    [78, 82]
+  17031476:
+    template: Moblin_Millionaire
+    region:   n_307
+    level:    [76, 77]
+  17031477:
+    template: Troll_Artilleryman_H
+    script:   Troll_Artilleryman
+    region:   nw_309
+    level:    [78, 82]
+  17031478:
+    template: Troll_Machinist
+    region:   nw_310
+    level:    [78, 82]
+  17031479:
+    template: Trolls_Automaton
+    region:   nw_310
+    level:    [69, 78]
+  17031480:
+    template: Moblin_Billionaire
+    region:   nw_310
+    level:    [76, 77]
+  17031481:
+    template: Farlarder_the_Shrewd
+    region:   w_182
+    level:    [80, 80]
+  17031482:
+    template: Dorgerwor_the_Astute
+    region:   c_196
+    level:    [81, 81]
+  17031483:
+    template: Troll_Targeteer
+    region:   region_224
+    level:    [78, 82]
+  17031484:
+    template: Troll_Scrimer
+    region:   n_316
+    level:    [78, 82]
+  17031485:
+    template: Troll_Grenadier_H
+    script:   Troll_Grenadier
+    region:   n_316
+    level:    [78, 82]
+  17031486:
+    template: Troll_Artilleryman_H
+    script:   Troll_Artilleryman
+    region:   region_225
+    level:    [78, 82]
+  17031487:
+    template: Troll_Combatant
+    region:   e_319
+    level:    [78, 82]
+  17031488:
+    template: Friars_Lantern
+    region:   e_320
+    level:    [77, 79]
+  17031489:
+    template: Friars_Lantern
+    region:   region_210
+    level:    [77, 79]
+  17031490:
+    template: Troll_Grenadier_H
+    script:   Troll_Grenadier
+    region:   e_322
+    level:    [78, 82]
+  17031491:
+    template: Troll_Targeteer
+    region:   e_322
+    level:    [78, 82]
+  17031492:
+    template: Troll_Cuirasser_H
+    script:   Troll_Cuirasser
+    region:   e_324
+    level:    [78, 82]
+  17031493:
+    template: Troll_Artilleryman_H
+    script:   Troll_Artilleryman
+    region:   e_324
+    level:    [78, 82]
+  17031494:
+    template: Troll_Targeteer
+    region:   e_326
+    level:    [78, 82]
+  17031495:
+    template: Troll_Grenadier_H
+    script:   Troll_Grenadier
+    region:   e_326
+    level:    [78, 82]
+  17031496:
+    template: Friars_Lantern
+    region:   e_328
+    level:    [77, 79]
+  17031497:
+    template: Friars_Lantern
+    region:   e_328
+    level:    [77, 79]
+  17031498:
+    template: Troll_Scrimer
+    region:   e_330
+    level:    [78, 82]
+  17031499:
+    template: Friars_Lantern
+    region:   e_331
+    level:    [77, 79]
+  17031500:
+    template: Troll_Cuirasser_H
+    script:   Troll_Cuirasser
+    region:   e_331
+    level:    [78, 82]
+  17031501:
+    template: Troll_Artilleryman_H
+    script:   Troll_Artilleryman
+    region:   se_333
+    level:    [78, 82]
+  17031502:
+    template: Troll_Combatant
+    region:   se_334
+    level:    [78, 82]
+  17031503:
+    template: Troll_Machinist
+    region:   se_334
+    level:    [78, 82]
+  17031504:
+    template: Trolls_Automaton
+    region:   se_334
+    level:    [69, 78]
+  17031505:
+    template: Friars_Lantern
+    region:   se_337
+    level:    [77, 79]
+  17031506:
+    template: Friars_Lantern
+    region:   s_338
+    level:    [77, 79]
+  17031507:
+    template: Ebony_Pudding
+    region:   region_244
+    level:    [77, 79]
+  17031508:
+    template: Friars_Lantern
+    region:   s_340
+    level:    [77, 79]
+  17031509:
+    template: Ebony_Pudding
+    region:   s_340
+    level:    [77, 79]
+  17031510:
+    template: Ebony_Pudding
+    region:   c_343
+    level:    [77, 79]
+  17031511:
+    template: Troll_Artilleryman_H
+    script:   Troll_Artilleryman
+    region:   c_343
+    level:    [78, 82]
+  17031512:
+    template: Ebony_Pudding
+    region:   e_345
+    level:    [77, 79]
+  17031513:
+    template: Troll_Machinist
+    region:   e_345
+    level:    [78, 82]
+  17031514:
+    template: Trolls_Automaton
+    region:   e_345
+    level:    [69, 78]
+  17031515:
+    template: Ebony_Pudding
+    region:   region_246
+    level:    [77, 79]
+  17031516:
+    template: Ebony_Pudding
+    region:   region_246
+    level:    [77, 79]
+  17031517:
+    template: Friars_Lantern
+    region:   se_349
+    level:    [77, 79]
+  17031518:
+    template: Troll_Targeteer
+    region:   se_349
+    level:    [78, 82]
+  17031519:
+    template: Friars_Lantern
+    region:   se_351
+    level:    [77, 79]
+  17031520:
+    template: Troll_Cuirasser_H
+    script:   Troll_Cuirasser
+    region:   se_351
+    level:    [78, 82]
+  17031521:
+    template: Troll_Combatant
+    region:   e_353
+    level:    [78, 82]
+  17031522:
+    template: Antares_H
+    script:   Antares
+    region:   e_354
+    level:    [77, 79]
+  17031523:
+    template: Friars_Lantern
+    region:   e_354
+    level:    [77, 79]
+  17031524:
+    template: Antares_H
+    script:   Antares
+    region:   e_356
+    level:    [77, 79]
+  17031525:
+    template: Troll_Machinist
+    region:   e_357
+    level:    [78, 82]
+  17031526:
+    template: Trolls_Automaton
+    region:   e_357
+    level:    [69, 78]
+  17031527:
+    template: Friars_Lantern
+    region:   e_359
+    level:    [77, 79]
+  17031528:
+    template: Antares_H
+    script:   Antares
+    region:   e_359
+    level:    [77, 79]
+  17031529:
+    template: Troll_Scrimer
+    region:   e_361
+    level:    [78, 82]
+  17031530:
+    template: Troll_Grenadier_H
+    script:   Troll_Grenadier
+    region:   e_362
+    level:    [78, 82]
+  17031531:
+    template: Friars_Lantern
+    region:   e_362
+    level:    [77, 79]
+  17031532:
+    template: Troll_Targeteer
+    region:   e_364
+    level:    [78, 82]
+  17031533:
+    template: Dahak
+    region:   c_365
+    level:    [79, 82]
+  17031534:
+    template: Friars_Lantern
+    region:   e_366
+    level:    [77, 79]
+  17031535:
+    template: Troll_Cuirasser_H
+    script:   Troll_Cuirasser
+    region:   e_366
+    level:    [78, 82]
+  17031536:
+    template: Antares_H
+    script:   Antares
+    region:   se_368
+    level:    [77, 79]
+  17031537:
+    template: Troll_Artilleryman_H
+    script:   Troll_Artilleryman
+    region:   se_369
+    level:    [78, 82]
+  17031538:
+    template: Troll_Combatant
+    region:   se_369
+    level:    [78, 82]
+  17031539:
+    template: Friars_Lantern
+    region:   se_371
+    level:    [77, 79]
+  17031540:
+    template: Troll_Machinist
+    region:   se_371
+    level:    [78, 82]
+  17031541:
+    template: Trolls_Automaton
+    region:   se_371
+    level:    [69, 78]
+  17031542:
+    template: Antares_H
+    script:   Antares
+    region:   se_374
+    level:    [77, 79]
+  17031543:
+    template: Friars_Lantern
+    region:   se_374
+    level:    [77, 79]
+  17031544:
+    template: Troll_Scrimer
+    region:   se_376
+    level:    [78, 82]
+  17031545:
+    template: Troll_Grenadier_H
+    script:   Troll_Grenadier
+    region:   se_377
+    level:    [78, 82]
+  17031546:
+    template: Troll_Targeteer
+    region:   se_378
+    level:    [78, 82]
+  17031547:
+    template: Troll_Cuirasser_H
+    script:   Troll_Cuirasser
+    region:   se_379
+    level:    [78, 82]
+  17031548:
+    template: Troll_Artilleryman_H
+    script:   Troll_Artilleryman
+    region:   region_226
+    level:    [78, 82]
+  17031549:
+    template: Troll_Combatant
+    region:   se_381
+    level:    [78, 82]
+  17031550:
+    template: Troll_Machinist
+    region:   se_381
+    level:    [78, 82]
+  17031551:
+    template: Trolls_Automaton
+    region:   se_381
+    level:    [69, 78]
+  17031552:
+    template: Troll_Scrimer
+    region:   region_227
+    level:    [78, 82]
+  17031553:
+    template: Troll_Targeteer
+    region:   s_385
+    level:    [78, 82]
+  17031554:
+    template: Troll_Cuirasser_H
+    script:   Troll_Cuirasser
+    region:   s_386
+    level:    [81, 83]
+  17031555:
+    template: Friars_Lantern
+    region:   s_386
+    level:    [77, 79]
+  17031556:
+    template: Troll_Artilleryman_H
+    script:   Troll_Artilleryman
+    region:   s_388
+    level:    [81, 83]
+  17031557:
+    template: Troll_Scrimer
+    region:   c_389
+    level:    [81, 83]
+  17031558:
+    template: Troll_Scrimer
+    region:   c_389
+    level:    [81, 83]
+  17031559:
+    template: Troll_Cuirasser_H
+    script:   Troll_Cuirasser
+    region:   c_391
+    level:    [81, 83]
+  17031560:
+    template: Troll_Cuirasser_H
+    script:   Troll_Cuirasser
+    region:   c_391
+    level:    [81, 83]
+  17031561:
+    template: Troll_Combatant
+    region:   c_365
+    level:    [81, 83]
+  17031562:
+    template: Troll_Combatant
+    region:   c_365
+    level:    [81, 83]
+  17031563:
+    template: Troll_Targeteer
+    region:   c_395
+    level:    [81, 83]
+  17031564:
+    template: Troll_Targeteer
+    region:   c_395
+    level:    [81, 83]
+  17031565:
+    template: Chiliarch_Gordarvor
+    at:       [244.736, 9.609, 35.778, 142]
+    level:    [80, 83]
+  17031566:
+    template: Hetairoi_Vuryargur
+    at:       [76.800, -10.655, 208.697, 176]
+    level:    [80, 83]
+  17031567:
+    template: Hetairoi_Zarwarkur
+    at:       [-52.487, 9.378, -278.094, 68]
+    level:    [80, 83]
+  17031568:
+    template: Archaic_Mirror
+    region:   c_408
+    level:    [75, 75]
+  17031569:
+    template: Archaic_Mirror
+    region:   n_410
+    level:    [75, 75]
+  17031570:
+    template: Archaic_Mirror
+    region:   s_76
+    level:    [75, 75]
+  17031571:
+    template: Archaic_Mirror
+    region:   w_414
+    level:    [75, 75]
+  17031572:
+    template: Archaic_Mirror
+    region:   region_248
+    level:    [75, 75]
+  17031573:
+    template: Archaic_Mirror
+    region:   region_249
+    level:    [75, 75]
+  17031574:
+    template: Archaic_Mirror
+    region:   w_249
+    level:    [75, 75]
+  17031575:
+    template: Archaic_Mirror
+    region:   nw_305
+    level:    [75, 75]
+  17031576:
+    template: Hilltroll_Mirror_Guard
+    region:   c_408
+    level:    [81, 82]
+  17031577:
+    template: Woodtroll_Mirror_Guard
+    region:   c_408
+    level:    [81, 82]
+  17031578:
+    template: Hilltroll_Mirror_Guard
+    region:   n_410
+    level:    [81, 82]
+  17031579:
+    template: Woodtroll_Mirror_Guard
+    region:   n_410
+    level:    [81, 82]
+  17031580:
+    template: Hilltroll_Mirror_Guard
+    region:   s_76
+    level:    [81, 82]
+  17031581:
+    template: Woodtroll_Mirror_Guard
+    region:   s_76
+    level:    [81, 82]
+  17031582:
+    template: Hilltroll_Mirror_Guard
+    region:   w_414
+    level:    [81, 82]
+  17031583:
+    template: Woodtroll_Mirror_Guard
+    region:   w_414
+    level:    [81, 82]
+  17031584:
+    template: Hilltroll_Mirror_Guard
+    region:   region_248
+    level:    [81, 82]
+  17031585:
+    template: Woodtroll_Mirror_Guard
+    region:   region_248
+    level:    [81, 82]
+  17031586:
+    template: Hilltroll_Mirror_Guard
+    region:   region_249
+    level:    [81, 82]
+  17031587:
+    template: Woodtroll_Mirror_Guard
+    region:   region_249
+    level:    [81, 82]
+  17031588:
+    template: Hilltroll_Mirror_Guard
+    region:   w_249
+    level:    [81, 82]
+  17031589:
+    template: Woodtroll_Mirror_Guard
+    region:   w_249
+    level:    [81, 82]
+  17031590:
+    template: Hilltroll_Mirror_Guard
+    region:   nw_305
+    level:    [81, 82]
+  17031591:
+    template: Woodtroll_Mirror_Guard
+    region:   nw_305
+    level:    [81, 82]
+  17031592:
+    template: Gurfurlur_the_Menacing
+    at:       [-59.000, -23.000, 3.000, 195]
+    level:    [85, 90]
+  17031593:
+    template: Hilltroll_Elite_Guard
+    at:       [-57.000, -23.000, 5.000, 195]
+    level:    [80, 80]
+  17031594:
+    template: Hilltroll_Elite_Guard
+    at:       [-57.000, -23.000, 5.000, 195]
+    level:    [80, 80]
+  17031595:
+    template: Woodtroll_Elite_Guard
+    at:       [-62.000, -23.000, 5.000, 195]
+    level:    [80, 80]
+  17031596:
+    template: Woodtroll_Elite_Guard
+    at:       [-62.000, -23.000, 5.000, 195]
+    level:    [80, 80]
+  17031597:
+    template: Wheel_Wamoura
+    level:    [74, 79]
+  17031598:
+    template: Dextrose
+    at:       [-144.000, 11.000, 464.000, 48]
+    level:    [80, 82]
+  17031599:
+    template: Reacton
+    at:       [18.000, -9.000, 213.000, 224]
+    level:    [81, 83]
+  17031600:
+    template: Achamoth
+    at:       [-13.170, 9.699, 339.540, 229]
+    level:    [86, 88]
+  17031601:
+    template: Achamothcampa
+    at:       [-23.190, 9.474, 338.281, 251]
+    level:    [73, 75]
+  17031602:
+    template: Achamothcampa
+    at:       [-35.000, 10.000, 336.000, 238]
+    level:    [73, 75]
+  17031603:
+    template: Achamoth_Nympha
+    at:       [-17.310, 9.902, 340.296, 240]
+    level:    [73, 75]
+  17031604:
+    template: Achamoth_Nympha
+    at:       [-35.000, 10.000, 336.000, 238]
+    level:    [73, 75]

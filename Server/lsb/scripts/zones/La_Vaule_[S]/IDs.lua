@@ -1,0 +1,47 @@
+-- Text ids rebuilt for the 2007 PS2 client data tooling: PROFILE 2012 = the 2012 client data (report 28) by research/tools/lsb_textids_2007.py (17 changed, 6 not in the 2007 dialog DAT 6505 and left unchanged).
+-----------------------------------
+-- Area: La_Vaule_[S] (85)
+-----------------------------------
+zones = zones or {}
+
+zones[xi.zone.LA_VAULE_S] =
+{
+    text =
+    {
+        ITEM_CANNOT_BE_OBTAINED       = 6375, -- You cannot obtain the <item>. Come back after sorting your inventory.
+        ITEM_OBTAINED                 = 6378, -- Obtained: <item>.
+        GIL_OBTAINED                  = 6379, -- Obtained <number> gil.
+        KEYITEM_OBTAINED              = 6398, -- Obtained key item: <keyitem>.
+        CARRIED_OVER_POINTS           = 7006, -- You have carried over <number> login point[/s].
+        LOGIN_CAMPAIGN_UNDERWAY       = 7007, -- The [/January/February/March/April/May/June/July/August/September/October/November/December] <number> Login Campaign is currently underway!
+        LOGIN_NUMBER                  = 7008, -- In celebration of your most recent login (login no. <number>), we have provided you with <number> points! You currently have a total of <number> points.
+        MEMBERS_LEVELS_ARE_RESTRICTED = 7028, -- Your party is unable to participate because certain members' levels are restricted.
+        FISHING_MESSAGE_OFFSET        = 6994, -- You can't fish here.
+        GATE_IS_LOCKED                = 7132, -- The gate is locked.
+        CAMPAIGN_RESULTS_TALLIED      = 7523, -- Campaign results tallied.
+        TIME_IN_THE_BATTLEFIELD_IS_UP = 7613, -- Your time in the battlefield is up! Now exiting...
+        CLEARED_BUT_MEMBERS_ENGAGED   = 7615, -- You are cleared to enter the battlefield, but you cannot while party members are engaged in combat.
+        PARTY_MEMBERS_ARE_ENGAGED     = 7626, -- The battlefield where your party members are engaged in combat is locked. Access is denied.
+        DOOR_IS_LOCKED                = 7651, -- The door is locked.
+        MEMBERS_OF_YOUR_PARTY         = 7914, -- Currently, # members of your party (including yourself) have clearance to enter the battlefield.
+        MEMBERS_OF_YOUR_ALLIANCE      = 7915, -- Currently, # members of your alliance (including yourself) have clearance to enter the battlefield.
+        TIME_LIMIT_FOR_THIS_BATTLE_IS = 7917, -- The time limit for this battle is <number> minutes.
+        PARTY_MEMBERS_HAVE_FALLEN     = 7953, -- All party members have fallen in battle. Now leaving the battlefield.
+        THE_PARTY_WILL_BE_REMOVED     = 7959, -- If all party members' HP are still zero after # minute[/s], the party will be removed from the battlefield.
+        ENTERING_THE_BATTLEFIELD_FOR  = 7973, -- Entering the battlefield for [Splitting Heirs (S)/Purple, The New Black/The Blood-bathed Crown]!
+        GATHERED_DAWNDROPS_LIGHT      = 8361, -- The gathered dawndrops unleash a brilliant light, melding together to form <keyitem>!
+        RETRACED_ALL_JUNCTIONS        = 8260, -- You have retraced all junctions of eventualities. Hasten back to where Cait Sith and Lilisette await.
+    },
+    mob =
+    {
+        ASHMAKER_GOTBLUT = GetFirstID('Ashmaker_Gotblut'),
+        HAWKEYED_DNATBAT = GetFirstID('Hawkeyed_Dnatbat'),
+        GALARHIGG        = GetFirstID('Galarhigg'),
+    },
+    npc =
+    {
+        CAMPAIGN_NPC_OFFSET = GetFirstID('Framaraix_TK'), -- San, Bas, Win, Flag +4, CA
+    },
+}
+
+return zones[xi.zone.LA_VAULE_S]

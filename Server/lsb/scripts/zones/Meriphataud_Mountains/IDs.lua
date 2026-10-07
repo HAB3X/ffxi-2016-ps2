@@ -1,0 +1,121 @@
+-- Text ids rebuilt for the 2007 PS2 client data tooling: PROFILE 2012pc = the 2012 client + PC 2025 import (report 36) by research/tools/lsb_textids_2007.py (1 changed, 15 not in the 2007 dialog DAT 6539 and left unchanged).
+-----------------------------------
+-- Area: Meriphataud_Mountains
+-----------------------------------
+zones = zones or {}
+
+zones[xi.zone.MERIPHATAUD_MOUNTAINS] =
+{
+    text =
+    {
+        NOTHING_HAPPENS               = 122,   -- Nothing happens...
+        ITEM_CANNOT_BE_OBTAINED       = 6378,  -- You cannot obtain the <item>. Come back after sorting your inventory.
+        ITEM_OBTAINED                 = 6381,  -- Obtained: <item>.
+        GIL_OBTAINED                  = 6383,  -- Obtained <number> gil.
+        KEYITEM_OBTAINED              = 6420,  -- Obtained key item: <keyitem>.
+        KEYITEM_LOST                  = 6421,  -- Lost key item: <keyitem>.
+        FELLOW_MESSAGE_OFFSET         = 6409,  -- I'm ready. I suppose.
+        CARRIED_OVER_POINTS           = 7028,  -- You have carried over <number> login point[/s].
+        LOGIN_CAMPAIGN_UNDERWAY       = 7029,  -- The [/January/February/March/April/May/June/July/August/September/October/November/December] <number> Login Campaign is currently underway!
+        LOGIN_NUMBER                  = 7030,  -- In celebration of your most recent login (login no. <number>), we have provided you with <number> points! You currently have a total of <number> points.
+        MEMBERS_LEVELS_ARE_RESTRICTED = 7050,  -- Your party is unable to participate because certain members' levels are restricted.
+        CONQUEST_BASE                 = 6997,  -- Tallying conquest results...
+        REGION_POINTS_SANDORIA        = 7062,  -- San d'Oria's region points have increased!
+        EXP_FORCE_KILL_SANDORIA       = 7065,  -- San d'Orian E.F. defeats beastmen hordes... Maintain current momentum.
+        BEASTMEN_BANNER_CURSE         = 7076,  -- There was a curse on the beastmen's banner!
+        BEASTMEN_BANNER_LIFTED        = 7077,  -- The curse of the beastmen's banner has been lifted!
+        BEASTMEN_BANNER               = 7078,  -- There is a beastmen's banner.
+        FISHING_MESSAGE_OFFSET        = 7156,  -- You can't fish here.
+        DIG_THROW_AWAY                = 7169,  -- You dig up <item>, but your inventory is full. You regretfully throw the <item> away.
+        FIND_NOTHING                  = 7171,  -- You dig and you dig, but find nothing.
+        AMK_DIGGING_OFFSET            = 7237,  -- You spot some familiar footprints. You are convinced that your moogle friend has been digging in the immediate vicinity.
+        FOUND_ITEM_WITH_EASE          = 7246,  -- It appears your chocobo found this item with ease.
+        BEASTMEN_CACHE_OFFSET         = 7349,  -- You discover a cache of beastman resources and receive <number> conquest point[/s]!
+        NOTHING_FOUND                 = 7406,  -- You find nothing.
+        CONQUEST                      = 7815,  -- You've earned conquest points!
+        ITEMS_ITEMS_LA_LA             = 8189,  -- You can hear a strange voice... Items, items, la la la la la
+        GOBLIN_SLIPPED_AWAY           = 8195,  -- The Goblin slipped away when you were not looking...
+        GARRISON_BASE                 = 8205,  -- Hm? What is this? %? How do I know this is not some [San d'Orian/Bastokan/Windurstian] trick?
+        PLAYER_OBTAINS_ITEM           = 8252,  -- <name> obtains <item>!
+        UNABLE_TO_OBTAIN_ITEM         = 8253,  -- You were unable to obtain the item.
+        PLAYER_OBTAINS_TEMP_ITEM      = 8254,  -- <name> obtains the temporary item: <item>!
+        ALREADY_POSSESS_TEMP          = 8255,  -- You already possess that temporary item.
+        NO_COMBINATION                = 8260,  -- You were unable to enter a combination.
+        VOIDWALKER_DESPAWN            = 8291,  -- The monster fades before your eyes, a look of disappointment on its face.
+        UNITY_WANTED_BATTLE_INTERACT  = 12536, -- Those who have accepted % must pay # Unity accolades to participate. The content for this Wanted battle is #. [Ready to begin?/You do not have the appropriate object set, so your rewards will be limited.]
+        TIME_ELAPSED                  = 8378,  -- Time elapsed: <number> [hour/hours] (Vana'diel time) <number> [minute/minutes] and <number> [second/seconds] (Earth time)
+        REGIME_REGISTERED             = 10478, -- New training regime registered!
+        VOIDWALKER_NO_MOB             = 11729, -- The <keyitem> quivers ever so slightly, but emits no light. There seem to be no monsters in the area.
+        VOIDWALKER_MOB_TOO_FAR        = 11730, -- The <keyitem> quivers ever so slightly and emits a faint light. There seem to be no monsters in the immediate vicinity.
+        VOIDWALKER_MOB_HINT           = 11731, -- The <keyitem> resonates [feebly/softly/solidly/strongly/very strongly/furiously], sending a radiant beam of light lancing towards a spot roughly <number> [yalm/yalms] [east/southeast/south/southwest/west/northwest/north/northeast] of here.
+        VOIDWALKER_SPAWN_MOB          = 11598, -- A monster materializes out of nowhere!
+        VOIDWALKER_UPGRADE_KI_1       = 11734, -- The <keyitem> takes on a slightly deeper hue and becomes <keyitem>!
+        VOIDWALKER_UPGRADE_KI_2       = 11735, -- The <keyitem> takes on a deeper, richer hue and becomes <keyitem>!
+        VOIDWALKER_BREAK_KI           = 11736, -- The <keyitem> shatters into tiny fragments.
+        VOIDWALKER_OBTAIN_KI          = 11737, -- Obtained key item: <keyitem>!
+        COMMON_SENSE_SURVIVAL         = 12639, -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
+    },
+
+    mob =
+    {
+        COO_KEJA_THE_UNSEEN    = GetFirstID('Coo_Keja_the_Unseen'),
+        DAGGERCLAW_DRACOS      = GetFirstID('Daggerclaw_Dracos'),
+        HOBGOBLIN_BEASTMASTER  = GetFirstID('Hobgoblin_Beastmaster'),
+        HOBGOBLIN_BLACK_MAGE   = GetFirstID('Hobgoblin_Black_Mage'),
+        HOBGOBLIN_DARK_KNIGHT  = GetFirstID('Hobgoblin_Dark_Knight'),
+        HOBGOBLIN_RANGER       = GetFirstID('Hobgoblin_Ranger'),
+        HOBGOBLIN_RED_MAGE     = GetFirstID('Hobgoblin_Red_Mage'),
+        HOBGOBLIN_THIEF        = GetFirstID('Hobgoblin_Thief'),
+        HOBGOBLIN_WARRIOR      = GetFirstID('Hobgoblin_Warrior'),
+        HOBGOBLIN_WHITE_MAGE   = GetFirstID('Hobgoblin_White_Mage'),
+        NAA_ZEKU_THE_UNWAITING = GetFirstID('Naa_Zeku_the_Unwaiting'),
+        PATRIPATAN             = GetFirstID('Patripatan'),
+        THEOYAGUDO_BARD        = GetFirstID('Theoyagudo_Bard'),
+        THEOYAGUDO_BLACK_MAGE  = GetFirstID('Theoyagudo_Black_Mage'),
+        THEOYAGUDO_MONK        = GetFirstID('Theoyagudo_Monk'),
+        THEOYAGUDO_NINJA       = GetFirstID('Theoyagudo_Ninja'),
+        THEOYAGUDO_SAMURAI     = GetFirstID('Theoyagudo_Samurai'),
+        THEOYAGUDO_SUMMONER    = GetFirstID('Theoyagudo_Summoner'),
+        THEOYAGUDO_WHITE_MAGE  = GetFirstID('Theoyagudo_White_Mage'),
+        WARAXE_BEAK            = GetFirstID('Waraxe_Beak'),
+
+        VOIDWALKER =
+        {
+            [xi.keyItem.CLEAR_ABYSSITE] =
+            {
+                17265129, -- Raker bee
+                17265128, -- Raker bee
+                17265127, -- Raker bee
+                17265126, -- Raker bee
+                17265125, -- Rummager beetle
+                17265124, -- Rummager beetle
+                17265123, -- Rummager beetle
+                17265122, -- Rummager beetle
+            },
+
+            [xi.keyItem.COLORFUL_ABYSSITE] =
+            {
+                17265121, -- Jyeshtha
+                17265120, -- Farruca Fly
+            },
+
+            [xi.keyItem.BROWN_ABYSSITE] =
+            {
+                17265119, -- Orcus
+            },
+
+            [xi.keyItem.BLACK_ABYSSITE] =
+            {
+                17265118, -- Yilbegan
+            }
+        }
+    },
+
+    npc =
+    {
+        BEASTMENS_BANNER = GetFirstID('Beastmens_Banner'),
+        OVERSEER_BASE    = GetFirstID('Chegourt_RK'),
+    },
+}
+
+return zones[xi.zone.MERIPHATAUD_MOUNTAINS]

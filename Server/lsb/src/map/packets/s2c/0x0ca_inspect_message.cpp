@@ -1,0 +1,39 @@
+/*
+===========================================================================
+
+  Copyright (c) 2025 LandSandBoat Dev Teams
+
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with this program.  If not, see http://www.gnu.org/licenses/
+
+===========================================================================
+*/
+
+#include "0x0ca_inspect_message.h"
+
+#include "entities/char_entity.h"
+
+GP_SERV_COMMAND_INSPECT_MESSAGE::GP_SERV_COMMAND_INSPECT_MESSAGE(const CCharEntity* PChar, const CCharEntity* PTarget)
+{
+    auto& packet = this->data();
+
+    std::memcpy(packet.sInspectMessage, PTarget->bazaar.message.c_str(), std::min<size_t>(PTarget->bazaar.message.size(), sizeof(packet.sInspectMessage)));
+
+    packet.BazaarFlag = 1;
+    packet.MyFlag     = PChar == PTarget ? 1 : 0;
+    packet.Race       = 1;
+
+    packet.DesignationNo = PTarget->profile.title;
+
+    std::memcpy(packet.sName, PTarget->getName().c_str(), std::min<size_t>(PTarget->getName().size(), sizeof(packet.sName)));
+}

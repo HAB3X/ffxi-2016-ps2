@@ -1,0 +1,118 @@
+gametitle=FFXI 2016 install disc (b52): Adoulin INSTALL.ELF (CRC 0EA2DC0B) as installer; boots the 2016 host when installed
+// I1: skip the copy of the locked FFXI_POL.ENC from the PlayOnline viewer partition (nothing is decrypted)
+patch=2,EE,002B97D0,word,00001021
+// I2: same, repair path
+patch=2,EE,003055D0,word,00001021
+// J3: no FFXI data on the drive -> state 0x0C (install) instead of 0x12 ("not installed")
+patch=2,EE,00306838,word,2405000C
+// J4: install step 3: every set ROM..ROM9 is installed (slti at,a1,8 -> 0)
+patch=2,EE,002E93B8,word,28A10000
+// J5: same
+patch=2,EE,002E93C8,word,28A10000
+// J6: the size pass sizes every set
+patch=2,EE,002BBC90,word,2A410000
+// N: size pass per-set size table alloc (bytes+3)<<2 -> bytes+3 (else no room for the unpack window)
+patch=2,EE,002BBB90,word,00402021
+// K1: YmPad::Update jal 0x1542B0 -> pad_hook (reads L1 only: held at start = show the reinstall question; never presses anything)
+patch=2,EE,00154B40,word,0C106CE0
+// K3: decision point -> decide (DONE=1, UIPTR=s0, then lb v0,0x30(s0); li a2,1)
+patch=2,EE,003067CC,word,0C106CEB
+// K3: nop
+patch=2,EE,003067D0,word,00000000
+// K2: "already installed" -> installed (2016 marker -> SetState(33) = restart into the host; else the reinstall screen)
+patch=2,EE,003067F4,word,08106CF2
+// K2: nop
+patch=2,EE,003067F8,word,00000000
+// M1: title screen (state 6) -> the menu is skipped: once the title is up, choice = "Start Installation" (sb zero,1384(s0))
+patch=2,EE,003062B8,word,A2000568
+// M1: nop
+patch=2,EE,003062BC,word,00000000
+// M1: nop (no button test)
+patch=2,EE,003062C0,word,00000000
+// M1: nop
+patch=2,EE,003062C4,word,00000000
+// M1: nop
+patch=2,EE,003062C8,word,00000000
+// M1: nop
+patch=2,EE,003062CC,word,00000000
+// M1: nop
+patch=2,EE,003062D0,word,00000000
+// M1: nop (no menu sound)
+patch=2,EE,003062D4,word,00000000
+// M1: nop
+patch=2,EE,003062D8,word,00000000
+// M1: SetState(9) (start installation: installed -> the game, new drive -> install) instead of SetState(7) (the menu)
+patch=2,EE,003062EC,word,24050009
+// R: SetState jump table entry 32 ("Restart PlayOnline Viewer? / No = power down") -> the entry of 33 (restart now): after "Installation complete" OK the host starts
+patch=2,EE,0052B050,word,00305C60
+// cave
+patch=2,EE,0041B380,word,3C080051
+patch=2,EE,0041B384,word,90AE0001
+patch=2,EE,0041B388,word,11C00006
+patch=2,EE,0041B38C,word,00000000
+patch=2,EE,0041B390,word,90AD0003
+patch=2,EE,0041B394,word,31AD0004
+patch=2,EE,0041B398,word,15A00002
+patch=2,EE,0041B39C,word,240D0001
+patch=2,EE,0041B3A0,word,AD0DF928
+patch=2,EE,0041B3A4,word,080550AC
+patch=2,EE,0041B3A8,word,00000000
+patch=2,EE,0041B3AC,word,3C080051
+patch=2,EE,0041B3B0,word,24090001
+patch=2,EE,0041B3B4,word,AD09F920
+patch=2,EE,0041B3B8,word,AD10F91C
+patch=2,EE,0041B3BC,word,82020030
+patch=2,EE,0041B3C0,word,03E00008
+patch=2,EE,0041B3C4,word,24060001
+patch=2,EE,0041B3C8,word,3C080051
+patch=2,EE,0041B3CC,word,8D09F928
+patch=2,EE,0041B3D0,word,15200009
+patch=2,EE,0041B3D4,word,00000000
+patch=2,EE,0041B3D8,word,8E040010
+patch=2,EE,0041B3DC,word,2405C29E
+patch=2,EE,0041B3E0,word,0C0AE868
+patch=2,EE,0041B3E4,word,24060001
+patch=2,EE,0041B3E8,word,10400004
+patch=2,EE,0041B3EC,word,2405000C
+patch=2,EE,0041B3F0,word,10000002
+patch=2,EE,0041B3F4,word,24050021
+patch=2,EE,0041B3F8,word,2405001D
+patch=2,EE,0041B3FC,word,8E190000
+patch=2,EE,0041B400,word,0200202D
+patch=2,EE,0041B404,word,8F390014
+patch=2,EE,0041B408,word,0320F809
+patch=2,EE,0041B40C,word,00000000
+patch=2,EE,0041B410,word,080C1B9E
+patch=2,EE,0041B414,word,00000000
+patch=2,EE,0041B418,word,00000000
+patch=2,EE,0041B41C,word,00000000
+patch=2,EE,0041B420,word,00000000
+patch=2,EE,0041B424,word,00000000
+patch=2,EE,0041B428,word,00000000
+patch=2,EE,0041B42C,word,00000000
+patch=2,EE,0041B430,word,00000000
+patch=2,EE,0041B434,word,00000000
+patch=2,EE,0041B438,word,0041B440
+patch=2,EE,0041B43C,word,00000000
+patch=2,EE,0041B440,word,2F535953
+patch=2,EE,0041B444,word,49584646
+patch=2,EE,0041B448,word,36313032
+patch=2,EE,0041B44C,word,5245562E
+patch=2,EE,0041B450,word,00000000
+patch=2,EE,0041B454,word,00000000
+patch=2,EE,0041B458,word,00000000
+patch=2,EE,0041B45C,word,00000000
+patch=2,EE,0041B460,word,00000000
+patch=2,EE,0041B464,word,00000000
+patch=2,EE,0041B468,word,00000000
+patch=2,EE,0041B46C,word,00000000
+patch=2,EE,0041B470,word,00000000
+patch=2,EE,0041B474,word,00000000
+patch=2,EE,0041B478,word,00000000
+patch=2,EE,0041B47C,word,00000000
+// data words (UIPTR, DONE, unused, MANUAL, unused)
+patch=2,EE,0050F91C,word,00000000
+patch=2,EE,0050F920,word,00000000
+patch=2,EE,0050F924,word,00000000
+patch=2,EE,0050F928,word,00000000
+patch=2,EE,0050F92C,word,00000000

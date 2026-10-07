@@ -1,0 +1,3591 @@
+# yaml-language-server: $schema=../../schemas/mobs.schema.json
+
+templates:
+
+  Ancient_Quadav:
+    id:            125
+    species:       quadav
+    skill_list_id: 202
+    attributes:
+      combat:
+        skill: dagger
+        delay: 265
+      render:
+        look:
+          type:  standard
+          model: 649
+        entity_flags: 1157
+        model_size:      2
+        hitbox:         17
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: rare
+          item:   beadeaux_coffer_key
+        - chance: uncommon
+          item:   warriors_testimony
+        - chance: ultra_rare
+          item:   mythril_sallet
+        - chance: ultra_rare
+          item:   mythril_gauntlets
+        - chance: ultra_rare
+          item:   mythril_cuisses
+        - chance: ultra_rare
+          item:   mythril_leggings
+      steal: gold_beastcoin
+      despoil:
+        hard-boiled_egg:              0
+        serving_of_herb_crawler_eggs: 0
+
+  BiGho_Headtaker_B:
+    id:            427
+    display_name:  BiGho_Headtaker
+    species:       quadav
+    type:          [notorious]
+    spell_list_id: 5
+    skill_list_id: 202
+    attributes:
+      combat:
+        skill: dagger
+      jobs: [drk, drk]
+      resists:
+        rank_element:
+          fire:     2
+          thunder: -1
+          water:    2
+        rank_status:
+          poison: 2
+      render:
+        look:
+          type:  standard
+          model: 689
+        entity_flags: 155
+        name_prefix:   32
+        model_size:     1
+        hitbox:        15
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [lottery]
+      stats:
+        hp: 1050
+    loot:
+      drops:
+        - chance: always
+          one_of:
+            power_crossbow: 90
+            plantbane:      10
+      steal: silver_beastcoin
+
+  Big_Jaw_Beadeaux:
+    id:            7309
+    display_name:  Big_Jaw
+    species:       pugil
+    skill_list_id: 197
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 348
+        entity_flags: 131
+        model_size:     2
+        hitbox:        32
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 720
+    loot:
+      drops:
+        - chance: uncommon
+          item:   handful_of_pugil_scales
+      steal: handful_of_fish_scales
+      despoil:
+        handful_of_pugil_scales: 0
+        handful_of_fish_scales:  0
+
+  Big_Jaw_Large:
+    id:            7184
+    display_name:  Big_Jaw
+    species:       pugil
+    skill_list_id: 197
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 348
+        entity_flags: 131
+        model_size:     2
+        hitbox:        32
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 720
+    loot:
+      drops:
+        - chance: uncommon
+          item:   handful_of_pugil_scales
+      steal: handful_of_fish_scales
+      despoil:
+        handful_of_pugil_scales: 0
+        handful_of_fish_scales:  0
+
+  Brass_Quadav:
+    id:            525
+    species:       quadav
+    spell_list_id: 5
+    skill_list_id: 202
+    attributes:
+      combat:
+        skill: dagger
+        delay: 265
+      jobs: [drk, drk]
+      render:
+        look:
+          type:  standard
+          model: 652
+        entity_flags: 131
+        model_size:     1
+        hitbox:        15
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 600
+    loot:
+      drops:
+        - chance: common
+          item:   shell_bug
+        - chance: very_rare
+          item:   brass_subligar
+        - chance: very_rare
+          item:   brass_cap
+        - chance: very_rare
+          item:   brass_leggings
+        - chance: very_rare
+          item:   brass_mittens
+        - chance: uncommon
+          one_of: [quadav_fetich_arms, quadav_fetich_legs, quadav_fetich_head, quadav_fetich_torso]
+      steal: silver_beastcoin
+      despoil:
+        hard-boiled_egg:              0
+        serving_of_herb_crawler_eggs: 0
+
+  Bronze_Quadav:
+    id:            538
+    species:       quadav
+    spell_list_id: 4
+    skill_list_id: 202
+    attributes:
+      combat:
+        skill: sword
+        delay: 265
+      jobs: [pld, pld]
+      render:
+        look:
+          type:  standard
+          model: 651
+        entity_flags: 131
+        model_size:     1
+        hitbox:        15
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 720
+    loot:
+      drops:
+        - chance: rare
+          item:   silver_engraving
+        - chance: very_rare
+          item:   scale_greaves
+        - chance: very_rare
+          item:   faceguard
+        - chance: very_rare
+          item:   scale_finger_gauntlets
+        - chance: very_rare
+          item:   scale_cuisses
+      steal: bowl_of_quadav_stew
+      despoil:
+        hard-boiled_egg:              0
+        serving_of_herb_crawler_eggs: 0
+
+  Broo:
+    id:            539
+    species:       sheep
+    skill_list_id: 226
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 340
+        entity_flags: 133
+        model_size:     2
+        hitbox:        27
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 840
+    loot:
+      drops:
+        - chance: very_common
+          item:   slice_of_giant_sheep_meat
+        - chance: very_common
+          item:   sheepskin
+        - chance: very_common
+          item:   slice_of_giant_sheep_meat
+        - chance: very_common
+          item:   sheepskin
+        - chance: common
+          item:   jug_of_selbina_milk
+        - chance: very_common
+          item:   slice_of_giant_sheep_meat
+        - chance: common
+          item:   sheepskin
+        - chance: uncommon
+          item:   jug_of_selbina_milk
+        - chance: uncommon
+          item:   sheep_tooth
+        - chance: uncommon
+          item:   jug_of_selbina_milk
+        - chance: rare
+          item:   sheep_tooth
+        - chance: rare
+          item:   beadeaux_chest_key
+      steal: clump_of_sheep_wool
+      despoil:
+        sheep_tooth: 50
+
+  Caterpillar:
+    id:            659
+    species:       crawler
+    skill_list_id: 79
+    attributes:
+      combat:
+        skill: club
+      render:
+        look:
+          type:  standard
+          model: 396
+        entity_flags: 129
+        hitbox:        12
+      behaviors:
+        links: true
+      spawn:
+        respawn: 600
+    loot:
+      drops:
+        - chance: uncommon
+          item:   spool_of_silk_thread
+      despoil:
+        piece_of_crawler_cocoon: 0
+        crawler_egg:             0
+
+  Charging_Sheep:
+    id:            696
+    species:       sheep
+    skill_list_id: 226
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 340
+        entity_flags:  129
+        animation_sub:  16
+        hitbox:         20
+      behaviors:
+        links: true
+      spawn:
+        respawn: 600
+    loot:
+      drops:
+        - chance: common
+          item:   jug_of_selbina_milk
+        - chance: uncommon
+          item:   sheep_tooth
+        - chance: common
+          item:   sheepskin
+        - chance: rare
+          item:   jug_of_selbina_milk
+        - chance: rare
+          item:   sheep_tooth
+        - chance: uncommon
+          item:   slice_of_giant_sheep_meat
+        - chance: common
+          item:   sheepskin
+        - chance: very_common
+          item:   slice_of_giant_sheep_meat
+        - chance: uncommon
+          item:   sheepskin
+      steal: clump_of_sheep_wool
+      despoil:
+        sheep_tooth: 50
+
+  Copper_Quadav:
+    id:            791
+    species:       quadav
+    skill_list_id: 202
+    attributes:
+      combat:
+        skill: dagger
+        delay: 265
+      jobs: [thf, thf]
+      render:
+        look:
+          type:  standard
+          model: 650
+        entity_flags: 131
+        model_size:     1
+        hitbox:        15
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 600
+    loot:
+      drops:
+        - chance: very_rare
+          item:   brass_subligar
+        - chance: very_rare
+          item:   brass_cap
+        - chance: very_rare
+          item:   brass_leggings
+        - chance: very_rare
+          item:   brass_mittens
+      steal: silver_beastcoin
+      despoil:
+        hard-boiled_egg:              0
+        serving_of_herb_crawler_eggs: 0
+
+  DaDha_Hundredmask:
+    id:            928
+    species:       quadav
+    type:          [notorious]
+    skill_list_id: 202
+    attributes:
+      combat:
+        skill: dagger
+      jobs: [thf, thf]
+      resists:
+        rank_element:
+          fire:     2
+          thunder: -1
+          water:    2
+        rank_status:
+          poison: 2
+      render:
+        look:
+          type:  standard
+          model: 652
+        entity_flags: 155
+        name_prefix:   32
+        model_size:     1
+        hitbox:        15
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [lottery]
+      stats:
+        hp: 1530
+    loot:
+      drops:
+        - chance: always
+          one_of:
+            parrying_knife:   90
+            mithran_scimitar: 10
+
+  Darksteel_Quadav:
+    id:            907
+    species:       quadav
+    spell_list_id: 4
+    skill_list_id: 202
+    attributes:
+      combat:
+        skill: sword
+        delay: 265
+      jobs: [pld, war]
+      render:
+        look:
+          type:  standard
+          model: 656
+        entity_flags: 133
+        model_size:     2
+        hitbox:        17
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: uncommon
+          item:   paladins_testimony
+        - chance: rare
+          item:   beadeaux_coffer_key
+        - chance: very_rare
+          item:   gold_beastcoin
+      steal: gold_beastcoin
+      despoil:
+        serving_of_herb_crawler_eggs: 0
+        hard-boiled_egg:              0
+
+  DeVyu_Headhunter:
+    id:            1023
+    species:       quadav
+    type:          [notorious]
+    skill_list_id: 202
+    attributes:
+      combat:
+        skill: sword
+      resists:
+        rank_element:
+          fire:     2
+          thunder: -1
+          water:    2
+        rank_status:
+          poison: 2
+      render:
+        look:
+          type:  standard
+          model: 646
+        entity_flags: 155
+        name_prefix:   32
+        model_size:     1
+        hitbox:        15
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+      stats:
+        hp: 1870
+    loot:
+      drops:
+        - chance: always
+          item:   quadav_charm
+        - chance: very_common
+          item:   quadav_charm
+        - chance: very_common
+          item:   quadav_charm
+        - chance: very_common
+          item:   quadav_charm
+
+  Elder_Quadav:
+    id:            1192
+    species:       quadav
+    skill_list_id: 202
+    attributes:
+      combat:
+        skill: dagger
+        delay: 265
+      render:
+        look:
+          type:  standard
+          model: 648
+        entity_flags: 1155
+        model_size:      1
+        hitbox:         15
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 840
+    loot:
+      drops:
+        - chance: rare
+          item:   beadeaux_chest_key
+        - chance: ultra_rare
+          item:   sallet
+        - chance: ultra_rare
+          item:   gauntlets
+        - chance: ultra_rare
+          item:   cuisses
+        - chance: ultra_rare
+          item:   plate_leggings
+      steal: mythril_beastcoin
+      despoil:
+        hard-boiled_egg:              0
+        serving_of_herb_crawler_eggs: 0
+
+  Emerald_Quadav:
+    id:            1207
+    species:       quadav
+    spell_list_id: 3
+    skill_list_id: 202
+    attributes:
+      combat:
+        skill: great_sword
+        delay: 265
+      jobs: [rdm, rdm]
+      render:
+        look:
+          type:  standard
+          model: 667
+        entity_flags: 1155
+        model_size:      1
+        hitbox:         15
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 840
+    loot:
+      drops:
+        - chance: rare
+          item:   bottle_of_warding_oil
+        - chance: very_rare
+          item:   beadeaux_chest_key
+        - chance: super_rare
+          item:   padded_cap
+        - chance: super_rare
+          item:   iron_mittens
+        - chance: super_rare
+          item:   iron_subligar
+        - chance: super_rare
+          item:   leggings
+      steal: mythril_beastcoin
+      despoil:
+        hard-boiled_egg:              0
+        serving_of_herb_crawler_eggs: 0
+
+  GaBhu_Unvanquished:
+    id:            1482
+    species:       quadav
+    type:          [notorious]
+    spell_list_id: 3
+    skill_list_id: 202
+    attributes:
+      combat:
+        skill: great_sword
+      jobs: [rdm, rdm]
+      resists:
+        rank_element:
+          fire:     2
+          thunder: -1
+          water:    2
+        rank_status:
+          poison: 2
+      render:
+        look:
+          type:  standard
+          model: 667
+        entity_flags: 155
+        name_prefix:   32
+        model_size:     1
+        hitbox:        15
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [lottery]
+      stats:
+        hp: 3500
+    loot:
+      drops:
+        - chance: always
+          one_of:
+            duel_rapier:    90
+            valkyries_mask: 10
+      steal: mythril_beastcoin
+
+  Garnet_Quadav:
+    id:            1472
+    species:       quadav
+    spell_list_id: 20
+    skill_list_id: 202
+    attributes:
+      combat:
+        skill: sword
+        delay: 265
+      jobs: [whm, whm]
+      render:
+        look:
+          type:  standard
+          model: 663
+        entity_flags: 131
+        model_size:     1
+        hitbox:        15
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 720
+    loot:
+      drops:
+        - chance: uncommon
+          item:   maul
+        - chance: rare
+          item:   scroll_of_reraise
+        - chance: rare
+          item:   scroll_of_cura
+        - chance: ultra_rare
+          item:   wool_hat
+        - chance: ultra_rare
+          item:   wool_cuffs
+        - chance: ultra_rare
+          item:   wool_slops
+        - chance: ultra_rare
+          item:   chestnut_sabots
+      steal: bowl_of_quadav_stew
+      despoil:
+        hard-boiled_egg:              0
+        serving_of_herb_crawler_eggs: 0
+
+  GeDha_Evileye:
+    id:            1509
+    species:       quadav
+    type:          [notorious]
+    spell_list_id: 20
+    skill_list_id: 202
+    attributes:
+      combat:
+        skill: sword
+      jobs: [whm, whm]
+      resists:
+        rank_element:
+          fire:     2
+          thunder: -1
+          water:    2
+        rank_status:
+          poison: 2
+      render:
+        look:
+          type:  standard
+          model: 668
+        entity_flags: 155
+        name_prefix:   32
+        model_size:     1
+        hitbox:        15
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [lottery]
+      stats:
+        hp: 1400
+    loot:
+      drops:
+        - chance: uncommon
+          item:   scroll_of_invisible
+        - chance: uncommon
+          item:   scroll_of_sneak
+        - chance: common
+          item:   holy_phial
+        - chance: rare
+          item:   faerie_tunic
+
+  Gloop:
+    id:            1624
+    species:       slime
+    skill_list_id: 229
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 292
+        entity_flags: 131
+        model_size:     1
+        hitbox:        24
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 840
+    loot:
+      drops:
+        - chance: common
+          item:   vial_of_slime_oil
+        - chance: uncommon
+          item:   vial_of_slime_oil
+        - chance: rare
+          item:   beadeaux_chest_key
+      despoil:
+        vial_of_slime_oil: 0
+
+  Gloop_Large:
+    id:            7183
+    display_name:  Gloop
+    species:       slime
+    skill_list_id: 229
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 292
+        entity_flags: 131
+        model_size:     2
+        hitbox:        27
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 840
+    loot:
+      drops:
+        - chance: common
+          item:   vial_of_slime_oil
+        - chance: uncommon
+          item:   vial_of_slime_oil
+        - chance: rare
+          item:   beadeaux_chest_key
+      despoil:
+        vial_of_slime_oil: 0
+
+  GoBhu_Gascon:
+    id:            1778
+    species:       quadav
+    type:          [notorious]
+    skill_list_id: 202
+    attributes:
+      combat:
+        skill: great_sword
+      resists:
+        rank_element:
+          fire:     2
+          thunder: -1
+          water:    2
+        rank_status:
+          poison: 2
+      render:
+        look:
+          type:  standard
+          model: 646
+        entity_flags: 155
+        name_prefix:   32
+        model_size:     1
+        hitbox:        15
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+      stats:
+        hp: 1500
+    loot:
+      drops:
+        - chance: always
+          item:   quadav_augury_shell
+        - chance: very_common
+          item:   quadav_augury_shell
+        - chance: very_common
+          item:   quadav_augury_shell
+        - chance: very_common
+          item:   quadav_augury_shell
+
+  Gold_Quadav:
+    id:            1753
+    species:       quadav
+    skill_list_id: 202
+    attributes:
+      combat:
+        skill: dagger
+        delay: 265
+      jobs: [thf, war]
+      render:
+        look:
+          type:  standard
+          model: 659
+        entity_flags: 131
+        model_size:     1
+        hitbox:        15
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: super_rare
+          item:   padded_cap
+        - chance: super_rare
+          item:   iron_mittens
+        - chance: super_rare
+          item:   iron_subligar
+        - chance: super_rare
+          item:   leggings
+      steal: mythril_beastcoin
+      despoil:
+        hard-boiled_egg:              0
+        serving_of_herb_crawler_eggs: 0
+
+  Iron_Quadav:
+    id:            2102
+    species:       quadav
+    spell_list_id: 4
+    skill_list_id: 202
+    attributes:
+      combat:
+        skill: sword
+        delay: 265
+      jobs: [pld, pld]
+      render:
+        look:
+          type:  standard
+          model: 653
+        entity_flags: 1155
+        model_size:      1
+        hitbox:         15
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 840
+    loot:
+      drops:
+        - chance: rare
+          item:   beadeaux_chest_key
+        - chance: ultra_rare
+          item:   sallet
+        - chance: ultra_rare
+          item:   gauntlets
+        - chance: ultra_rare
+          item:   cuisses
+        - chance: ultra_rare
+          item:   plate_leggings
+      steal: mythril_beastcoin
+      despoil:
+        hard-boiled_egg:              0
+        serving_of_herb_crawler_eggs: 0
+
+  Land_Pugil_Beadeaux:
+    id:            2634
+    display_name:  Land_Pugil
+    species:       pugil
+    skill_list_id: 197
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 348
+        entity_flags: 131
+        model_size:     1
+        hitbox:        27
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 600
+    loot:
+      drops:
+        - chance: uncommon
+          item:   handful_of_pugil_scales
+      steal: handful_of_fish_scales
+      despoil:
+        handful_of_pugil_scales: 0
+        handful_of_fish_scales:  0
+
+  Land_Pugil_Small_Beadeaux:
+    id:            2661
+    display_name:  Land_Pugil
+    species:       pugil
+    skill_list_id: 197
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 348
+        entity_flags: 131
+        hitbox:        23
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 600
+    loot:
+      drops:
+        - chance: uncommon
+          item:   handful_of_pugil_scales
+      steal: handful_of_fish_scales
+      despoil:
+        handful_of_pugil_scales: 0
+        handful_of_fish_scales:  0
+
+  Larva:
+    id:            2377
+    species:       crawler
+    skill_list_id: 79
+    attributes:
+      combat:
+        skill: club
+      render:
+        look:
+          type:  standard
+          model: 396
+        entity_flags: 643
+        model_size:     1
+        hitbox:        15
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 720
+    loot:
+      drops:
+        - chance: uncommon
+          item:   spool_of_silk_thread
+      despoil:
+        piece_of_crawler_cocoon: 0
+        crawler_egg:             0
+
+  Magnes_Quadav_NM:
+    id:            7089
+    species:       quadav
+    type:          [notorious]
+    spell_list_id: 21
+    skill_list_id: 202
+    attributes:
+      combat:
+        skill: axe
+        delay: 265
+      jobs: [blm, blm]
+      resists:
+        rank_element:
+          fire:     2
+          thunder: -1
+          water:    2
+        rank_status:
+          poison: 2
+      render:
+        look:
+          type:  standard
+          model: 661
+        entity_flags: 131
+        model_size:     1
+        hitbox:        15
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+
+  Mimic:
+    id:            2664
+    species:       mimic
+    type:          [notorious]
+    skill_list_id: 183
+    attributes:
+      combat:
+        skill: scythe
+        delay: 170
+      resists:
+        dmg_physical:
+          slashing: -5000
+          piercing: -5000
+          blunt:    -5000
+          h2h:      -5000
+      render:
+        look:
+          type:  standard
+          model: 259
+        entity_flags:  131
+        animation_sub:  13
+        model_size:      1
+        hitbox:         12
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: always
+          item:   beadeaux_coffer_key
+
+  Mythril_Quadav:
+    id:            2795
+    species:       quadav
+    spell_list_id: 5
+    skill_list_id: 202
+    attributes:
+      combat:
+        skill: dagger
+        delay: 265
+      jobs: [drk, war]
+      render:
+        look:
+          type:  standard
+          model: 655
+        entity_flags: 131
+        model_size:     1
+        hitbox:        15
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: ultra_rare
+          item:   mythril_sallet
+        - chance: ultra_rare
+          item:   mythril_gauntlets
+        - chance: ultra_rare
+          item:   mythril_cuisses
+        - chance: ultra_rare
+          item:   mythril_leggings
+        - chance: very_rare
+          item:   scroll_of_absorb-int
+        - chance: very_rare
+          item:   scroll_of_absorb-agi
+        - chance: very_rare
+          item:   scroll_of_absorb-vit
+      steal: mythril_beastcoin
+      despoil:
+        hard-boiled_egg:              0
+        serving_of_herb_crawler_eggs: 0
+
+  Nickel_Quadav_NM:
+    id:            7090
+    species:       quadav
+    type:          [notorious]
+    spell_list_id: 4
+    skill_list_id: 202
+    attributes:
+      combat:
+        skill: sword
+        delay: 265
+      jobs: [pld, pld]
+      resists:
+        rank_element:
+          fire:     2
+          thunder: -1
+          water:    2
+        rank_status:
+          poison: 2
+      render:
+        look:
+          type:  standard
+          model: 651
+        entity_flags: 131
+        model_size:     1
+        hitbox:        15
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+
+  Old_Quadav:
+    id:            2965
+    species:       quadav
+    skill_list_id: 202
+    attributes:
+      combat:
+        skill: dagger
+        delay: 265
+      render:
+        look:
+          type:  standard
+          model: 645
+        entity_flags: 1155
+        model_size:      1
+        hitbox:         15
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 600
+    loot:
+      drops:
+        - chance: common
+          item:   quadav_helm
+      steal: silver_beastcoin
+      despoil:
+        hard-boiled_egg:              0
+        serving_of_herb_crawler_eggs: 0
+
+  Ooze:
+    id:            2987
+    species:       slime
+    skill_list_id: 229
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 292
+        entity_flags: 1155
+        model_size:      1
+        hitbox:         24
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 600
+    loot:
+      drops:
+        - chance: uncommon
+          item:   vial_of_slime_oil
+        - chance: very_rare
+          item:   dodge_earring
+      despoil:
+        vial_of_slime_oil: 0
+
+  Platinum_Quadav:
+    id:            3156
+    species:       quadav
+    skill_list_id: 202
+    attributes:
+      combat:
+        skill: dagger
+        delay: 265
+      jobs: [thf, war]
+      render:
+        look:
+          type:  standard
+          model: 660
+        entity_flags: 133
+        model_size:     2
+        hitbox:        17
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: rare
+          item:   beadeaux_coffer_key
+        - chance: common
+          item:   beastcoin
+        - chance: rare
+          item:   gold_beastcoin
+      steal: thiefs_testimony
+      despoil:
+        hard-boiled_egg:              0
+        serving_of_herb_crawler_eggs: 0
+
+  Sapphire_Quadav:
+    id:            3463
+    species:       quadav
+    spell_list_id: 21
+    skill_list_id: 202
+    attributes:
+      combat:
+        skill: axe
+        delay: 265
+      jobs: [blm, war]
+      render:
+        look:
+          type:  standard
+          model: 671
+        entity_flags: 133
+        model_size:     2
+        hitbox:        17
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: uncommon
+          item:   black_mages_testimony
+        - chance: very_rare
+          item:   beadeaux_coffer_key
+        - chance: rare
+          item:   scroll_of_water_iii
+        - chance: very_rare
+          item:   scroll_of_waterga_ii
+        - chance: very_rare
+          item:   scroll_of_waterga_iii
+        - chance: very_rare
+          item:   scroll_of_water_iv
+        - chance: very_rare
+          item:   scroll_of_flood
+        - chance: ultra_rare
+          item:   black_mitts
+        - chance: ultra_rare
+          item:   white_slacks
+        - chance: ultra_rare
+          item:   moccasins
+      steal: gold_beastcoin
+      despoil:
+        hard-boiled_egg:              0
+        serving_of_herb_crawler_eggs: 0
+
+  Silver_Quadav:
+    id:            3628
+    species:       quadav
+    skill_list_id: 202
+    attributes:
+      combat:
+        skill: dagger
+        delay: 265
+      jobs: [thf, thf]
+      render:
+        look:
+          type:  standard
+          model: 658
+        entity_flags: 131
+        model_size:     1
+        hitbox:        15
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 720
+    loot:
+      drops:
+        - chance: rare
+          item:   silver_engraving
+        - chance: very_rare
+          item:   brass_cap
+        - chance: very_rare
+          item:   brass_mittens
+        - chance: very_rare
+          item:   brass_subligar
+        - chance: very_rare
+          item:   brass_leggings
+      steal: bowl_of_quadav_stew
+      despoil:
+        hard-boiled_egg:              0
+        serving_of_herb_crawler_eggs: 0
+
+  Spinel_Quadav:
+    id:            3731
+    species:       quadav
+    spell_list_id: 21
+    skill_list_id: 202
+    attributes:
+      combat:
+        skill: axe
+        delay: 265
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 662
+        entity_flags: 131
+        model_size:     1
+        hitbox:        15
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 840
+    loot:
+      drops:
+        - chance: rare
+          item:   beadeaux_chest_key
+        - chance: super_rare
+          item:   velvet_hat
+        - chance: super_rare
+          item:   velvet_cuffs
+        - chance: super_rare
+          item:   velvet_slops
+        - chance: super_rare
+          item:   ebony_sabots
+      steal: mythril_beastcoin
+      despoil:
+        hard-boiled_egg:              0
+        serving_of_herb_crawler_eggs: 0
+
+  Steel_Quadav:
+    id:            3769
+    species:       quadav
+    spell_list_id: 4
+    skill_list_id: 202
+    attributes:
+      combat:
+        skill: sword
+        delay: 265
+      jobs: [pld, war]
+      render:
+        look:
+          type:  standard
+          model: 654
+        entity_flags: 131
+        model_size:     1
+        hitbox:        15
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: rare
+          item:   scroll_of_flash
+        - chance: ultra_rare
+          item:   mythril_sallet
+        - chance: ultra_rare
+          item:   mythril_gauntlets
+        - chance: ultra_rare
+          item:   mythril_cuisses
+        - chance: ultra_rare
+          item:   mythril_leggings
+      steal: mythril_beastcoin
+      despoil:
+        hard-boiled_egg:              0
+        serving_of_herb_crawler_eggs: 0
+
+  Thunder_Elemental:
+    id:            3912
+    species:       thunder_elemental
+    spell_list_id: 16
+    skill_list_id: 105
+    attributes:
+      combat:
+        skill: staff
+      jobs: [blm, rdm]
+      resists:
+        immune_status: [stun, poison]
+      render:
+        look:
+          type:  standard
+          model: 441
+        entity_flags:  131
+        animation_sub:  16
+        model_size:      1
+        hitbox:          3
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 960
+        type:    [weather]
+    loot:
+      drops:
+        - chance: always
+          item:   lightning_cluster
+        - chance: common
+          item:   lightning_cluster
+        - chance: common
+          item:   lightning_cluster
+
+  Topaz_Quadav:
+    id:            3974
+    species:       quadav
+    spell_list_id: 20
+    skill_list_id: 202
+    attributes:
+      combat:
+        skill: sword
+        delay: 265
+      jobs: [whm, war]
+      render:
+        look:
+          type:  standard
+          model: 668
+        entity_flags: 131
+        model_size:     1
+        hitbox:        15
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: rare
+          item:   vial_of_quadav_mage_blood
+        - chance: uncommon
+          item:   scroll_of_auspice
+        - chance: uncommon
+          item:   scroll_of_reraise
+        - chance: ultra_rare
+          item:   black_mitts
+        - chance: ultra_rare
+          item:   white_slacks
+        - chance: ultra_rare
+          item:   moccasins
+      steal: [mythril_beastcoin, hard-boiled_egg] # audit needed
+      despoil:
+        serving_of_herb_crawler_eggs: 0
+
+  Water_Elemental:
+    id:            4309
+    species:       water_elemental
+    spell_list_id: 15
+    skill_list_id: 106
+    attributes:
+      combat:
+        skill: staff
+      jobs: [blm, rdm]
+      resists:
+        immune_status: [poison]
+      render:
+        look:
+          type:  standard
+          model: 440
+        entity_flags:  131
+        animation_sub:  16
+        model_size:      1
+        hitbox:          3
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 960
+        type:    [weather]
+    loot:
+      drops:
+        - chance: always
+          item:   water_cluster
+        - chance: common
+          item:   water_cluster
+        - chance: common
+          item:   water_cluster
+
+  Zircon_Quadav:
+    id:            4506
+    species:       quadav
+    spell_list_id: 21
+    skill_list_id: 202
+    attributes:
+      combat:
+        skill: axe
+        delay: 265
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 661
+        entity_flags: 131
+        model_size:     1
+        hitbox:        15
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 720
+    loot:
+      drops:
+        - chance: rare
+          item:   silver_engraving
+        - chance: ultra_rare
+          item:   wool_hat
+        - chance: ultra_rare
+          item:   wool_cuffs
+        - chance: ultra_rare
+          item:   wool_slops
+        - chance: ultra_rare
+          item:   chestnut_sabots
+      steal: bowl_of_quadav_stew
+      despoil:
+        hard-boiled_egg:              0
+        serving_of_herb_crawler_eggs: 0
+
+  ZoKhu_Blackcloud:
+    id:            4522
+    species:       quadav
+    type:          [notorious]
+    spell_list_id: 21
+    skill_list_id: 202
+    attributes:
+      combat:
+        skill: axe
+      jobs: [blm, blm]
+      resists:
+        rank_element:
+          fire:     2
+          thunder: -1
+          water:    2
+        rank_status:
+          poison: 2
+      render:
+        look:
+          type:  standard
+          model: 669
+        entity_flags: 155
+        name_prefix:   32
+        model_size:     1
+        hitbox:        15
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [lottery]
+      stats:
+        hp: 2000
+    loot:
+      drops:
+        - chance: always
+          one_of:
+            marine_hat:    90
+            faerie_shield: 10
+      steal: mythril_beastcoin
+
+
+  Beta_slim_Ooze:
+    id:            40040
+    species:       slime
+    skill_list_id: 229
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 2954
+        entity_flags: 1155
+        model_size:      1
+        hitbox:         24
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 600
+    loot:
+      drops:
+        - chance: rare
+          item:   beta_10399
+        - chance: uncommon
+          item:   beta_166
+        - chance: uncommon
+          item:   beta_4796
+        - chance: uncommon
+          item:   beta_6764
+        - chance: uncommon
+          item:   vial_of_slime_oil
+        - chance: very_rare
+          item:   dodge_earring
+      despoil:
+        vial_of_slime_oil: 0
+
+spawns:
+  17379329:
+    template: Old_Quadav
+    region:   nw_1
+    level:    [22, 23]
+  17379330:
+    template: Copper_Quadav
+    region:   nw_1
+    level:    [22, 23]
+  17379331:
+    template: Copper_Quadav
+    region:   nw_1
+    level:    [22, 23]
+  17379332:
+    template: Copper_Quadav
+    region:   nw_1
+    level:    [22, 23]
+  17379333:
+    template: Land_Pugil_Small_Beadeaux
+    script:   Land_Pugil
+    region:   nw_1
+    level:    [20, 23]
+  17379334:
+    template: Land_Pugil_Small_Beadeaux
+    script:   Land_Pugil
+    region:   nw_1
+    level:    [20, 23]
+  17379335:
+    template: Old_Quadav
+    region:   nw_7
+    level:    [22, 23]
+  17379336:
+    template: Brass_Quadav
+    region:   nw_7
+    level:    [22, 23]
+  17379337:
+    template: Land_Pugil_Small_Beadeaux
+    script:   Land_Pugil
+    region:   nw_7
+    level:    [20, 23]
+  17379338:
+    template: Old_Quadav
+    region:   nw_10
+    level:    [22, 23]
+  17379339:
+    template: Copper_Quadav
+    region:   nw_10
+    level:    [22, 23]
+  17379340:
+    template: Copper_Quadav
+    region:   nw_10
+    level:    [22, 23]
+  17379341:
+    template: Brass_Quadav
+    region:   nw_10
+    level:    [22, 23]
+  17379342:
+    template: Land_Pugil_Small_Beadeaux
+    script:   Land_Pugil
+    region:   nw_10
+    level:    [20, 23]
+  17379343:
+    template: Land_Pugil_Small_Beadeaux
+    script:   Land_Pugil
+    region:   nw_10
+    level:    [20, 23]
+  17379344:
+    template: Old_Quadav
+    region:   nw_16
+    level:    [22, 23]
+  17379345:
+    template: Copper_Quadav
+    region:   nw_16
+    level:    [22, 23]
+  17379346:
+    template: Brass_Quadav
+    region:   nw_16
+    level:    [22, 23]
+  17379347:
+    template: Land_Pugil_Small_Beadeaux
+    script:   Land_Pugil
+    region:   nw_16
+    level:    [20, 23]
+  17379348:
+    template: Land_Pugil_Small_Beadeaux
+    script:   Land_Pugil
+    region:   nw_16
+    level:    [20, 23]
+  17379349:
+    template: Old_Quadav
+    region:   nw_21
+    level:    [22, 23]
+  17379350:
+    template: Brass_Quadav
+    region:   nw_21
+    level:    [22, 23]
+  17379351:
+    template: BiGho_Headtaker_B
+    script:   BiGho_Headtaker
+    region:   nw_21
+    level:    [25, 25]
+  17379352:
+    template: Ooze
+    region:   region_84
+    level:    [28, 30]
+  17379353:
+    template: Ooze
+    region:   region_84
+    level:    [28, 30]
+  17379354:
+    template: Old_Quadav
+    region:   nw_26
+    level:    [22, 23]
+  17379355:
+    template: Copper_Quadav
+    region:   nw_26
+    level:    [22, 23]
+  17379356:
+    template: Brass_Quadav
+    region:   nw_26
+    level:    [22, 23]
+  17379357:
+    template: Old_Quadav
+    region:   nw_26
+    level:    [22, 23]
+  17379358:
+    template: Copper_Quadav
+    region:   nw_26
+    level:    [22, 23]
+  17379359:
+    template: Brass_Quadav
+    region:   nw_26
+    level:    [22, 23]
+  17379360:
+    template: Land_Pugil_Small_Beadeaux
+    script:   Land_Pugil
+    region:   nw_26
+    level:    [20, 23]
+  17379361:
+    template: Silver_Quadav
+    region:   region_85
+    level:    [33, 37]
+  17379362:
+    template: Silver_Quadav
+    region:   region_85
+    level:    [33, 37]
+  17379363:
+    template: Garnet_Quadav
+    region:   region_86
+    level:    [35, 39]
+  17379364:
+    template: Garnet_Quadav
+    region:   region_86
+    level:    [35, 39]
+  17379365:
+    template: Zircon_Quadav
+    region:   region_87
+    level:    [34, 38]
+  17379366:
+    template: Zircon_Quadav
+    region:   region_87
+    level:    [34, 38]
+  17379367:
+    template: Bronze_Quadav
+    region:   region_88
+    level:    [32, 36]
+  17379368:
+    template: Bronze_Quadav
+    region:   region_88
+    level:    [32, 36]
+  17379369:
+    template: Old_Quadav
+    region:   nw_43
+    level:    [22, 25]
+  17379370:
+    template: Copper_Quadav
+    region:   nw_43
+    level:    [23, 27]
+  17379371:
+    template: Brass_Quadav
+    region:   nw_43
+    level:    [24, 28]
+  17379372:
+    template: Old_Quadav
+    region:   nw_43
+    level:    [22, 25]
+  17379373:
+    template: Copper_Quadav
+    region:   nw_43
+    level:    [23, 27]
+  17379374:
+    template: Brass_Quadav
+    region:   nw_43
+    level:    [24, 28]
+  17379375:
+    template: Caterpillar
+    region:   nw_47
+    level:    [22, 25]
+  17379376:
+    template: Caterpillar
+    region:   nw_47
+    level:    [22, 25]
+  17379377:
+    template: Caterpillar
+    region:   nw_47
+    level:    [22, 25]
+  17379378:
+    template: Caterpillar
+    region:   nw_47
+    level:    [22, 25]
+  17379379:
+    template: Old_Quadav
+    region:   w_53
+    level:    [22, 25]
+  17379380:
+    template: Copper_Quadav
+    region:   w_53
+    level:    [23, 27]
+  17379381:
+    template: Brass_Quadav
+    region:   w_53
+    level:    [24, 28]
+  17379382:
+    template: Old_Quadav
+    region:   w_53
+    level:    [22, 26]
+  17379383:
+    template: Copper_Quadav
+    region:   w_53
+    level:    [23, 27]
+  17379384:
+    template: Brass_Quadav
+    region:   w_53
+    level:    [24, 28]
+  17379385:
+    template: Caterpillar
+    region:   w_57
+    level:    [22, 25]
+  17379386:
+    template: Caterpillar
+    region:   w_57
+    level:    [22, 25]
+  17379387:
+    template: Caterpillar
+    region:   w_57
+    level:    [22, 25]
+  17379388:
+    template: Caterpillar
+    region:   w_57
+    level:    [22, 25]
+  17379389:
+    template: Copper_Quadav
+    region:   w_61
+    level:    [23, 27]
+  17379390:
+    template: Copper_Quadav
+    region:   w_61
+    level:    [23, 27]
+  17379391:
+    template: Copper_Quadav
+    region:   w_61
+    level:    [23, 27]
+  17379392:
+    template: Old_Quadav
+    region:   nw_64
+    level:    [22, 26]
+  17379393:
+    template: Copper_Quadav
+    region:   nw_64
+    level:    [23, 27]
+  17379394:
+    template: Brass_Quadav
+    region:   nw_64
+    level:    [24, 28]
+  17379395:
+    template: Old_Quadav
+    region:   nw_64
+    level:    [22, 26]
+  17379396:
+    template: Copper_Quadav
+    region:   nw_64
+    level:    [23, 27]
+  17379397:
+    template: Brass_Quadav
+    region:   nw_64
+    level:    [24, 28]
+  17379398:
+    template: Copper_Quadav
+    region:   nw_70
+    level:    [23, 27]
+  17379399:
+    template: Copper_Quadav
+    region:   nw_70
+    level:    [23, 27]
+  17379400:
+    template: Copper_Quadav
+    region:   nw_70
+    level:    [23, 27]
+  17379401:
+    template: Caterpillar
+    region:   nw_73
+    level:    [22, 25]
+  17379402:
+    template: Caterpillar
+    region:   nw_73
+    level:    [22, 25]
+  17379403:
+    template: Caterpillar
+    region:   nw_73
+    level:    [22, 25]
+  17379404:
+    template: Caterpillar
+    region:   nw_73
+    level:    [22, 25]
+  17379405:
+    template: Caterpillar
+    region:   nw_77
+    level:    [22, 25]
+  17379406:
+    template: Caterpillar
+    region:   nw_77
+    level:    [22, 25]
+  17379407:
+    template: Caterpillar
+    region:   nw_77
+    level:    [22, 25]
+  17379408:
+    template: Caterpillar
+    region:   nw_77
+    level:    [22, 25]
+  17379409:
+    template: Old_Quadav
+    region:   w_81
+    level:    [22, 26]
+  17379410:
+    template: Copper_Quadav
+    region:   w_81
+    level:    [23, 27]
+  17379411:
+    template: Brass_Quadav
+    region:   w_81
+    level:    [24, 28]
+  17379412:
+    template: Land_Pugil_Small_Beadeaux
+    script:   Land_Pugil
+    region:   w_81
+    level:    [20, 23]
+  17379413:
+    template: Land_Pugil_Small_Beadeaux
+    script:   Land_Pugil
+    region:   w_81
+    level:    [20, 23]
+  17379414:
+    template: Old_Quadav
+    region:   w_86
+    level:    [22, 26]
+  17379415:
+    template: Copper_Quadav
+    region:   w_86
+    level:    [23, 27]
+  17379416:
+    template: Brass_Quadav
+    region:   w_86
+    level:    [24, 28]
+  17379417:
+    template: Old_Quadav
+    region:   w_86
+    level:    [22, 26]
+  17379418:
+    template: Copper_Quadav
+    region:   w_86
+    level:    [23, 27]
+  17379419:
+    template: Brass_Quadav
+    region:   w_86
+    level:    [24, 28]
+  17379420:
+    template: Old_Quadav
+    region:   w_92
+    level:    [22, 26]
+  17379421:
+    template: Brass_Quadav
+    region:   w_92
+    level:    [24, 28]
+  17379422:
+    template: Old_Quadav
+    region:   w_92
+    level:    [22, 26]
+  17379423:
+    template: Brass_Quadav
+    region:   w_92
+    level:    [24, 28]
+  17379424:
+    template: Land_Pugil_Small_Beadeaux
+    script:   Land_Pugil
+    region:   w_92
+    level:    [20, 23]
+  17379425:
+    template: Land_Pugil_Small_Beadeaux
+    script:   Land_Pugil
+    region:   w_92
+    level:    [20, 23]
+  17379426:
+    template: Copper_Quadav
+    region:   w_98
+    level:    [23, 27]
+  17379427:
+    template: DaDha_Hundredmask
+    region:   sw_100
+    level:    [30, 30]
+  17379428:
+    template: Old_Quadav
+    region:   sw_100
+    level:    [22, 26]
+  17379429:
+    template: Copper_Quadav
+    region:   sw_100
+    level:    [23, 27]
+  17379430:
+    template: Brass_Quadav
+    region:   sw_100
+    level:    [24, 28]
+  17379431:
+    template: Old_Quadav
+    region:   sw_100
+    level:    [22, 26]
+  17379432:
+    template: Copper_Quadav
+    region:   sw_100
+    level:    [23, 27]
+  17379433:
+    template: Brass_Quadav
+    region:   sw_100
+    level:    [24, 28]
+  17379434:
+    template: Land_Pugil_Small_Beadeaux
+    script:   Land_Pugil
+    region:   sw_100
+    level:    [20, 23]
+  17379435:
+    template: Land_Pugil_Small_Beadeaux
+    script:   Land_Pugil
+    region:   sw_100
+    level:    [20, 23]
+  17379436:
+    template: Old_Quadav
+    region:   sw_108
+    level:    [22, 26]
+  17379437:
+    template: Copper_Quadav
+    region:   sw_108
+    level:    [23, 27]
+  17379438:
+    template: Brass_Quadav
+    region:   sw_108
+    level:    [24, 28]
+  17379439:
+    template: Old_Quadav
+    region:   sw_108
+    level:    [22, 26]
+  17379440:
+    template: Copper_Quadav
+    region:   sw_108
+    level:    [23, 27]
+  17379441:
+    template: Brass_Quadav
+    region:   sw_108
+    level:    [24, 28]
+  17379442:
+    template: Land_Pugil_Small_Beadeaux
+    script:   Land_Pugil
+    region:   sw_108
+    level:    [20, 23]
+  17379443:
+    template: Land_Pugil_Small_Beadeaux
+    script:   Land_Pugil
+    region:   sw_108
+    level:    [20, 23]
+  17379444:
+    template: Old_Quadav
+    region:   sw_116
+    level:    [22, 26]
+  17379445:
+    template: Copper_Quadav
+    region:   sw_116
+    level:    [23, 27]
+  17379446:
+    template: Brass_Quadav
+    region:   sw_116
+    level:    [24, 28]
+  17379447:
+    template: Old_Quadav
+    region:   sw_116
+    level:    [22, 26]
+  17379448:
+    template: Land_Pugil_Small_Beadeaux
+    script:   Land_Pugil
+    region:   sw_116
+    level:    [20, 23]
+  17379449:
+    template: Land_Pugil_Small_Beadeaux
+    script:   Land_Pugil
+    region:   sw_116
+    level:    [20, 23]
+  17379450:
+    template: GeDha_Evileye
+    region:   sw_116
+    level:    [30, 30]
+  17379451:
+    template: Old_Quadav
+    region:   sw_123
+    level:    [22, 26]
+  17379452:
+    template: Copper_Quadav
+    region:   sw_123
+    level:    [23, 27]
+  17379453:
+    template: Brass_Quadav
+    region:   sw_123
+    level:    [24, 28]
+  17379454:
+    template: Old_Quadav
+    region:   sw_123
+    level:    [22, 26]
+  17379455:
+    template: Copper_Quadav
+    region:   sw_123
+    level:    [23, 27]
+  17379456:
+    template: Brass_Quadav
+    region:   sw_123
+    level:    [24, 28]
+  17379457:
+    template: Land_Pugil_Small_Beadeaux
+    script:   Land_Pugil
+    region:   sw_123
+    level:    [20, 23]
+  17379458:
+    template: Land_Pugil_Small_Beadeaux
+    script:   Land_Pugil
+    region:   sw_123
+    level:    [20, 23]
+  17379459:
+    template: Bronze_Quadav
+    region:   w_132
+    level:    [32, 36]
+  17379460:
+    template: Silver_Quadav
+    region:   w_132
+    level:    [33, 37]
+  17379461:
+    template: Zircon_Quadav
+    region:   w_132
+    level:    [34, 38]
+  17379462:
+    template: Garnet_Quadav
+    region:   w_132
+    level:    [35, 39]
+  17379463:
+    template: Charging_Sheep
+    region:   w_132
+    level:    [28, 30]
+  17379464:
+    template: Charging_Sheep
+    region:   w_132
+    level:    [28, 30]
+  17379465:
+    template: Charging_Sheep
+    region:   w_132
+    level:    [28, 30]
+  17379466:
+    template: Charging_Sheep
+    region:   w_132
+    level:    [28, 30]
+  17379467:
+    template: Charging_Sheep
+    region:   w_132
+    level:    [28, 30]
+  17379468:
+    template: Thunder_Elemental
+    region:   w_132
+    level:    [47, 49]
+  17379469:
+    template: Water_Elemental
+    region:   w_132
+    level:    [47, 49]
+  17379470:
+    template: Bronze_Quadav
+    region:   s_142
+    level:    [32, 36]
+  17379471:
+    template: Silver_Quadav
+    region:   s_142
+    level:    [33, 37]
+  17379472:
+    template: Zircon_Quadav
+    region:   s_142
+    level:    [34, 38]
+  17379473:
+    template: Garnet_Quadav
+    region:   s_142
+    level:    [35, 39]
+  17379474:
+    template: Charging_Sheep
+    region:   s_142
+    level:    [28, 30]
+  17379475:
+    template: Charging_Sheep
+    region:   s_142
+    level:    [28, 30]
+  17379476:
+    template: Charging_Sheep
+    region:   s_142
+    level:    [28, 30]
+  17379477:
+    template: Bronze_Quadav
+    region:   sw_149
+    level:    [32, 36]
+  17379478:
+    template: Silver_Quadav
+    region:   sw_149
+    level:    [33, 37]
+  17379479:
+    template: Zircon_Quadav
+    region:   sw_149
+    level:    [34, 38]
+  17379480:
+    template: Garnet_Quadav
+    region:   sw_149
+    level:    [35, 39]
+  17379481:
+    template: Charging_Sheep
+    region:   sw_149
+    level:    [28, 30]
+  17379482:
+    template: Charging_Sheep
+    region:   sw_149
+    level:    [28, 30]
+  17379483:
+    template: Charging_Sheep
+    region:   sw_149
+    level:    [28, 30]
+  17379484:
+    template: Charging_Sheep
+    region:   sw_149
+    level:    [28, 30]
+  17379485:
+    template: Charging_Sheep
+    region:   sw_149
+    level:    [28, 30]
+  17379486:
+    template: Charging_Sheep
+    region:   sw_149
+    level:    [28, 30]
+  17379487:
+    template: Thunder_Elemental
+    region:   sw_149
+    level:    [47, 49]
+  17379488:
+    template: Water_Elemental
+    region:   sw_149
+    level:    [47, 49]
+  17379489:
+    template: Bronze_Quadav
+    region:   region_89
+    level:    [32, 36]
+  17379490:
+    template: Silver_Quadav
+    region:   region_89
+    level:    [33, 37]
+  17379491:
+    template: Silver_Quadav
+    region:   region_90
+    level:    [33, 37]
+  17379492:
+    template: Zircon_Quadav
+    region:   region_90
+    level:    [34, 38]
+  17379493:
+    template: Bronze_Quadav
+    region:   region_91
+    level:    [32, 36]
+  17379494:
+    template: Zircon_Quadav
+    region:   region_91
+    level:    [34, 38]
+  17379495:
+    template: Bronze_Quadav
+    region:   region_92
+    level:    [32, 36]
+  17379496:
+    template: Garnet_Quadav
+    region:   region_92
+    level:    [35, 39]
+  17379497:
+    template: Silver_Quadav
+    region:   region_93
+    level:    [33, 37]
+  17379498:
+    template: Garnet_Quadav
+    region:   region_93
+    level:    [35, 39]
+  17379499:
+    template: Zircon_Quadav
+    region:   region_94
+    level:    [34, 38]
+  17379500:
+    template: Garnet_Quadav
+    region:   region_94
+    level:    [35, 39]
+  17379501:
+    template: Bronze_Quadav
+    region:   sw_173
+    level:    [32, 36]
+  17379502:
+    template: Silver_Quadav
+    region:   sw_173
+    level:    [33, 37]
+  17379503:
+    template: Zircon_Quadav
+    region:   sw_173
+    level:    [34, 38]
+  17379504:
+    template: Garnet_Quadav
+    region:   sw_173
+    level:    [35, 39]
+  17379505:
+    template: Bronze_Quadav
+    region:   sw_173
+    level:    [32, 36]
+  17379506:
+    template: Silver_Quadav
+    region:   sw_173
+    level:    [33, 37]
+  17379507:
+    template: Zircon_Quadav
+    region:   sw_173
+    level:    [34, 38]
+  17379508:
+    template: Garnet_Quadav
+    region:   sw_173
+    level:    [35, 39]
+  17379509:
+    template: Bronze_Quadav
+    region:   w_181
+    level:    [32, 36]
+  17379510:
+    template: Silver_Quadav
+    region:   w_181
+    level:    [33, 37]
+  17379511:
+    template: Zircon_Quadav
+    region:   w_181
+    level:    [34, 38]
+  17379512:
+    template: Garnet_Quadav
+    region:   w_181
+    level:    [35, 39]
+  17379513:
+    template: Bronze_Quadav
+    region:   w_181
+    level:    [32, 36]
+  17379514:
+    template: Silver_Quadav
+    region:   w_181
+    level:    [33, 37]
+  17379515:
+    template: Zircon_Quadav
+    region:   w_181
+    level:    [34, 38]
+  17379516:
+    template: Garnet_Quadav
+    region:   w_181
+    level:    [35, 39]
+  17379517:
+    template: Bronze_Quadav
+    region:   w_189
+    level:    [32, 36]
+  17379518:
+    template: Silver_Quadav
+    region:   w_189
+    level:    [33, 37]
+  17379519:
+    template: Zircon_Quadav
+    region:   w_189
+    level:    [34, 38]
+  17379520:
+    template: Garnet_Quadav
+    region:   w_189
+    level:    [35, 39]
+  17379521:
+    template: Bronze_Quadav
+    region:   w_193
+    level:    [32, 36]
+  17379522:
+    template: Silver_Quadav
+    region:   w_193
+    level:    [33, 37]
+  17379523:
+    template: Zircon_Quadav
+    region:   w_193
+    level:    [34, 38]
+  17379524:
+    template: Garnet_Quadav
+    region:   w_193
+    level:    [35, 39]
+  17379525:
+    template: Bronze_Quadav
+    region:   w_193
+    level:    [32, 36]
+  17379526:
+    template: Silver_Quadav
+    region:   w_193
+    level:    [33, 37]
+  17379527:
+    template: Zircon_Quadav
+    region:   w_193
+    level:    [34, 38]
+  17379528:
+    template: Garnet_Quadav
+    region:   w_193
+    level:    [35, 39]
+  17379529:
+    template: Bronze_Quadav
+    region:   nw_201
+    level:    [32, 36]
+  17379530:
+    template: Silver_Quadav
+    region:   nw_201
+    level:    [33, 37]
+  17379531:
+    template: Zircon_Quadav
+    region:   nw_201
+    level:    [34, 38]
+  17379532:
+    template: Garnet_Quadav
+    region:   nw_201
+    level:    [35, 39]
+  17379533:
+    template: Bronze_Quadav
+    region:   nw_205
+    level:    [32, 36]
+  17379534:
+    template: Silver_Quadav
+    region:   nw_205
+    level:    [33, 37]
+  17379535:
+    template: Zircon_Quadav
+    region:   nw_205
+    level:    [34, 38]
+  17379536:
+    template: Garnet_Quadav
+    region:   nw_205
+    level:    [35, 39]
+  17379537:
+    template: Ooze
+    region:   nw_205
+    level:    [28, 30]
+  17379538:
+    template: Bronze_Quadav
+    region:   n_210
+    level:    [32, 36]
+  17379539:
+    template: Silver_Quadav
+    region:   n_210
+    level:    [33, 37]
+  17379540:
+    template: Zircon_Quadav
+    region:   n_210
+    level:    [34, 38]
+  17379541:
+    template: Garnet_Quadav
+    region:   n_210
+    level:    [35, 39]
+  17379542:
+    template: Ooze
+    region:   n_210
+    level:    [28, 30]
+  17379543:
+    template: Bronze_Quadav
+    region:   nw_215
+    level:    [32, 36]
+  17379544:
+    template: Silver_Quadav
+    region:   nw_215
+    level:    [33, 37]
+  17379545:
+    template: Zircon_Quadav
+    region:   nw_215
+    level:    [34, 38]
+  17379546:
+    template: Garnet_Quadav
+    region:   nw_215
+    level:    [35, 39]
+  17379547:
+    template: Bronze_Quadav
+    region:   nw_219
+    level:    [32, 36]
+  17379548:
+    template: Silver_Quadav
+    region:   nw_219
+    level:    [33, 37]
+  17379549:
+    template: Zircon_Quadav
+    region:   nw_219
+    level:    [34, 38]
+  17379550:
+    template: Garnet_Quadav
+    region:   nw_219
+    level:    [35, 39]
+  17379551:
+    template: GoBhu_Gascon
+    region:   nw_219
+    level:    [41, 42]
+  17379552:
+    template: Bronze_Quadav
+    region:   w_224
+    level:    [32, 36]
+  17379553:
+    template: Silver_Quadav
+    region:   w_224
+    level:    [33, 37]
+  17379554:
+    template: Zircon_Quadav
+    region:   w_224
+    level:    [34, 38]
+  17379555:
+    template: Garnet_Quadav
+    region:   w_224
+    level:    [35, 39]
+  17379556:
+    template: Bronze_Quadav
+    region:   w_228
+    level:    [32, 36]
+  17379557:
+    template: Silver_Quadav
+    region:   w_228
+    level:    [33, 37]
+  17379558:
+    template: Zircon_Quadav
+    region:   w_228
+    level:    [34, 38]
+  17379559:
+    template: Garnet_Quadav
+    region:   w_228
+    level:    [35, 39]
+  17379560:
+    template: Bronze_Quadav
+    region:   sw_232
+    level:    [32, 36]
+  17379561:
+    template: Silver_Quadav
+    region:   sw_232
+    level:    [33, 37]
+  17379562:
+    template: Zircon_Quadav
+    region:   sw_232
+    level:    [34, 38]
+  17379563:
+    template: Garnet_Quadav
+    region:   sw_232
+    level:    [35, 39]
+  17379564:
+    template: ZoKhu_Blackcloud
+    region:   sw_232
+    level:    [36, 38]
+  17379565:
+    template: Bronze_Quadav
+    region:   sw_237
+    level:    [32, 36]
+  17379566:
+    template: Silver_Quadav
+    region:   sw_237
+    level:    [33, 37]
+  17379567:
+    template: Zircon_Quadav
+    region:   sw_237
+    level:    [34, 38]
+  17379568:
+    template: Garnet_Quadav
+    region:   sw_237
+    level:    [35, 39]
+  17379569:
+    template: Bronze_Quadav
+    region:   sw_241
+    level:    [32, 36]
+  17379570:
+    template: Silver_Quadav
+    region:   sw_241
+    level:    [33, 37]
+  17379571:
+    template: Zircon_Quadav
+    region:   sw_241
+    level:    [34, 38]
+  17379572:
+    template: Garnet_Quadav
+    region:   sw_241
+    level:    [35, 39]
+  17379573:
+    template: Bronze_Quadav
+    region:   sw_241
+    level:    [32, 36]
+  17379574:
+    template: Silver_Quadav
+    region:   sw_241
+    level:    [33, 37]
+  17379575:
+    template: Zircon_Quadav
+    region:   sw_241
+    level:    [34, 38]
+  17379576:
+    template: Garnet_Quadav
+    region:   sw_241
+    level:    [35, 39]
+  17379577:
+    template: Bronze_Quadav
+    region:   s_249
+    level:    [32, 36]
+  17379578:
+    template: Silver_Quadav
+    region:   s_249
+    level:    [33, 37]
+  17379579:
+    template: Zircon_Quadav
+    region:   s_249
+    level:    [34, 38]
+  17379580:
+    template: Garnet_Quadav
+    region:   s_249
+    level:    [35, 39]
+  17379581:
+    template: Bronze_Quadav
+    region:   s_249
+    level:    [32, 36]
+  17379582:
+    template: Silver_Quadav
+    region:   s_249
+    level:    [33, 37]
+  17379583:
+    template: Zircon_Quadav
+    region:   s_249
+    level:    [34, 38]
+  17379584:
+    template: Garnet_Quadav
+    region:   s_249
+    level:    [35, 39]
+  17379585:
+    template: Bronze_Quadav
+    region:   sw_257
+    level:    [32, 36]
+  17379586:
+    template: Silver_Quadav
+    region:   sw_257
+    level:    [33, 37]
+  17379587:
+    template: Zircon_Quadav
+    region:   sw_257
+    level:    [34, 38]
+  17379588:
+    template: Garnet_Quadav
+    region:   sw_257
+    level:    [35, 39]
+  17379589:
+    template: Elder_Quadav
+    region:   sw_261
+    level:    [42, 46]
+  17379590:
+    template: Iron_Quadav
+    region:   sw_261
+    level:    [43, 47]
+  17379591:
+    template: Spinel_Quadav
+    region:   sw_261
+    level:    [44, 48]
+  17379592:
+    template: Emerald_Quadav
+    region:   sw_261
+    level:    [45, 49]
+  17379593:
+    template: Elder_Quadav
+    region:   sw_266
+    level:    [42, 46]
+  17379594:
+    template: Iron_Quadav
+    region:   sw_266
+    level:    [43, 47]
+  17379595:
+    template: Spinel_Quadav
+    region:   region_96
+    level:    [44, 48]
+  17379596:
+    template: Emerald_Quadav
+    region:   region_96
+    level:    [45, 49]
+  17379597:
+    template: Bronze_Quadav
+    region:   s_269
+    level:    [32, 36]
+  17379598:
+    template: Silver_Quadav
+    region:   s_269
+    level:    [33, 37]
+  17379599:
+    template: Zircon_Quadav
+    region:   s_269
+    level:    [34, 38]
+  17379600:
+    template: Garnet_Quadav
+    region:   s_269
+    level:    [35, 39]
+  17379601:
+    template: DeVyu_Headhunter
+    region:   s_269
+    level:    [45, 45]
+  17379602:
+    template: Elder_Quadav
+    region:   c_275
+    level:    [42, 46]
+  17379603:
+    template: Iron_Quadav
+    region:   c_275
+    level:    [43, 47]
+  17379604:
+    template: Spinel_Quadav
+    region:   c_275
+    level:    [44, 48]
+  17379605:
+    template: Emerald_Quadav
+    region:   c_275
+    level:    [45, 49]
+  17379606:
+    template: Elder_Quadav
+    region:   c_278
+    level:    [42, 46]
+  17379607:
+    template: Iron_Quadav
+    region:   c_278
+    level:    [43, 47]
+  17379608:
+    template: Spinel_Quadav
+    region:   c_278
+    level:    [44, 48]
+  17379609:
+    template: Emerald_Quadav
+    region:   c_278
+    level:    [45, 49]
+  17379610:
+    template: Elder_Quadav
+    region:   n_282
+    level:    [42, 46]
+  17379611:
+    template: Iron_Quadav
+    region:   n_282
+    level:    [43, 47]
+  17379612:
+    template: Spinel_Quadav
+    region:   n_282
+    level:    [44, 48]
+  17379613:
+    template: Emerald_Quadav
+    region:   n_282
+    level:    [45, 49]
+  17379614:
+    template: Broo
+    region:   n_282
+    level:    [39, 41]
+  17379615:
+    template: Elder_Quadav
+    region:   n_287
+    level:    [42, 46]
+  17379616:
+    template: Iron_Quadav
+    region:   n_287
+    level:    [43, 47]
+  17379617:
+    template: Spinel_Quadav
+    region:   n_287
+    level:    [44, 48]
+  17379618:
+    template: Emerald_Quadav
+    region:   n_287
+    level:    [45, 49]
+  17379619:
+    template: Thunder_Elemental
+    region:   n_287
+    level:    [47, 49]
+  17379620:
+    template: Water_Elemental
+    region:   n_287
+    level:    [47, 49]
+  17379621:
+    template: Elder_Quadav
+    region:   n_293
+    level:    [42, 46]
+  17379622:
+    template: Iron_Quadav
+    region:   n_293
+    level:    [43, 47]
+  17379623:
+    template: Spinel_Quadav
+    region:   n_293
+    level:    [44, 48]
+  17379624:
+    template: Broo
+    region:   n_293
+    level:    [39, 41]
+  17379625:
+    template: Emerald_Quadav
+    region:   n_297
+    level:    [45, 49]
+  17379626:
+    template: GaBhu_Unvanquished
+    region:   n_293
+    level:    [47, 48]
+  17379627:
+    template: Elder_Quadav
+    region:   n_299
+    level:    [42, 46]
+  17379628:
+    template: Iron_Quadav
+    region:   n_299
+    level:    [43, 47]
+  17379629:
+    template: Spinel_Quadav
+    region:   n_299
+    level:    [44, 48]
+  17379630:
+    template: Emerald_Quadav
+    region:   n_299
+    level:    [45, 49]
+  17379631:
+    template: Broo
+    region:   n_299
+    level:    [39, 41]
+  17379632:
+    template: Elder_Quadav
+    region:   ne_304
+    level:    [42, 46]
+  17379633:
+    template: Iron_Quadav
+    region:   ne_304
+    level:    [43, 47]
+  17379634:
+    template: Spinel_Quadav
+    region:   ne_304
+    level:    [44, 48]
+  17379635:
+    template: Emerald_Quadav
+    region:   ne_304
+    level:    [45, 49]
+  17379636:
+    template: Broo
+    region:   ne_304
+    level:    [39, 41]
+  17379637:
+    template: Gloop_Large
+    script:   Gloop
+    region:   ne_309
+    level:    [38, 40]
+  17379638:
+    template: Gloop_Large
+    script:   Gloop
+    region:   ne_309
+    level:    [38, 40]
+  17379639:
+    template: Elder_Quadav
+    region:   ne_312
+    level:    [42, 46]
+  17379640:
+    template: Iron_Quadav
+    region:   ne_312
+    level:    [43, 47]
+  17379641:
+    template: Spinel_Quadav
+    region:   ne_312
+    level:    [44, 48]
+  17379642:
+    template: Emerald_Quadav
+    region:   ne_312
+    level:    [45, 49]
+  17379643:
+    template: Gloop_Large
+    script:   Gloop
+    region:   e_315
+    level:    [38, 40]
+  17379644:
+    template: Gloop_Large
+    script:   Gloop
+    region:   e_315
+    level:    [38, 40]
+  17379645:
+    template: Elder_Quadav
+    region:   e_317
+    level:    [42, 46]
+  17379646:
+    template: Iron_Quadav
+    region:   e_317
+    level:    [43, 47]
+  17379647:
+    template: Spinel_Quadav
+    region:   e_317
+    level:    [44, 48]
+  17379648:
+    template: Emerald_Quadav
+    region:   e_317
+    level:    [45, 49]
+  17379649:
+    template: Thunder_Elemental
+    region:   e_317
+    level:    [47, 49]
+  17379650:
+    template: Water_Elemental
+    region:   e_317
+    level:    [47, 49]
+  17379651:
+    template: Elder_Quadav
+    region:   c_323
+    level:    [42, 46]
+  17379652:
+    template: Iron_Quadav
+    region:   c_323
+    level:    [43, 47]
+  17379653:
+    template: Spinel_Quadav
+    region:   c_323
+    level:    [44, 48]
+  17379654:
+    template: Emerald_Quadav
+    region:   c_323
+    level:    [45, 49]
+  17379655:
+    template: Elder_Quadav
+    region:   e_327
+    level:    [42, 46]
+  17379656:
+    template: Iron_Quadav
+    region:   e_327
+    level:    [43, 47]
+  17379657:
+    template: Spinel_Quadav
+    region:   e_327
+    level:    [44, 48]
+  17379658:
+    template: Emerald_Quadav
+    region:   e_327
+    level:    [45, 49]
+  17379659:
+    template: Elder_Quadav
+    region:   c_331
+    level:    [42, 46]
+  17379660:
+    template: Iron_Quadav
+    region:   c_331
+    level:    [43, 47]
+  17379661:
+    template: Spinel_Quadav
+    region:   c_331
+    level:    [44, 48]
+  17379662:
+    template: Emerald_Quadav
+    region:   c_331
+    level:    [45, 49]
+  17379663:
+    template: Broo
+    region:   region_97
+    level:    [39, 41]
+  17379664:
+    template: Broo
+    region:   region_97
+    level:    [39, 41]
+  17379665:
+    template: Broo
+    region:   region_97
+    level:    [39, 41]
+  17379666:
+    template: Broo
+    region:   region_97
+    level:    [39, 41]
+  17379667:
+    template: Elder_Quadav
+    region:   region_97
+    level:    [42, 46]
+  17379668:
+    template: Iron_Quadav
+    region:   region_97
+    level:    [43, 47]
+  17379669:
+    template: Broo
+    region:   c_342
+    level:    [39, 41]
+  17379670:
+    template: Broo
+    region:   c_342
+    level:    [39, 41]
+  17379671:
+    template: Broo
+    region:   c_342
+    level:    [39, 41]
+  17379672:
+    template: Broo
+    region:   c_342
+    level:    [39, 41]
+  17379673:
+    template: Steel_Quadav
+    region:   n_346
+    level:    [52, 56]
+  17379674:
+    template: Mythril_Quadav
+    region:   n_346
+    level:    [53, 57]
+  17379675:
+    template: Gold_Quadav
+    region:   n_346
+    level:    [54, 58]
+  17379676:
+    template: Topaz_Quadav
+    region:   n_346
+    level:    [55, 59]
+  17379677:
+    template: Steel_Quadav
+    region:   n_346
+    level:    [52, 56]
+  17379678:
+    template: Mythril_Quadav
+    region:   n_346
+    level:    [53, 57]
+  17379679:
+    template: Gold_Quadav
+    region:   n_346
+    level:    [54, 58]
+  17379680:
+    template: Topaz_Quadav
+    region:   n_346
+    level:    [55, 59]
+  17379681:
+    template: Broo
+    region:   e_353
+    level:    [39, 41]
+  17379682:
+    template: Broo
+    region:   e_353
+    level:    [39, 41]
+  17379683:
+    template: Broo
+    region:   e_353
+    level:    [39, 41]
+  17379684:
+    template: Broo
+    region:   e_353
+    level:    [39, 41]
+  17379685:
+    template: Broo
+    region:   e_353
+    level:    [39, 41]
+  17379686:
+    template: Spinel_Quadav
+    region:   e_353
+    level:    [44, 48]
+  17379687:
+    template: Emerald_Quadav
+    region:   e_353
+    level:    [45, 49]
+  17379688:
+    template: Steel_Quadav
+    region:   c_360
+    level:    [52, 56]
+  17379689:
+    template: Mythril_Quadav
+    region:   c_360
+    level:    [53, 57]
+  17379690:
+    template: Big_Jaw_Large
+    script:   Big_Jaw
+    region:   c_360
+    level:    [37, 39]
+  17379691:
+    template: Big_Jaw_Large
+    script:   Big_Jaw
+    region:   c_360
+    level:    [37, 39]
+  17379692:
+    template: Gold_Quadav
+    region:   n_364
+    level:    [54, 58]
+  17379693:
+    template: Topaz_Quadav
+    region:   n_364
+    level:    [55, 59]
+  17379694:
+    template: Big_Jaw_Large
+    script:   Big_Jaw
+    region:   n_364
+    level:    [37, 39]
+  17379695:
+    template: Big_Jaw_Large
+    script:   Big_Jaw
+    region:   n_364
+    level:    [37, 39]
+  17379696:
+    template: Steel_Quadav
+    region:   c_368
+    level:    [52, 56]
+  17379697:
+    template: Topaz_Quadav
+    region:   c_368
+    level:    [55, 59]
+  17379698:
+    template: Big_Jaw_Large
+    script:   Big_Jaw
+    region:   c_368
+    level:    [37, 39]
+  17379699:
+    template: Big_Jaw_Large
+    script:   Big_Jaw
+    region:   c_368
+    level:    [37, 39]
+  17379700:
+    template: Mythril_Quadav
+    region:   region_108
+    level:    [53, 57]
+  17379701:
+    template: Topaz_Quadav
+    region:   region_108
+    level:    [55, 59]
+  17379702:
+    template: Big_Jaw_Large
+    script:   Big_Jaw
+    region:   region_108
+    level:    [37, 39]
+  17379703:
+    template: Big_Jaw_Large
+    script:   Big_Jaw
+    region:   region_108
+    level:    [37, 39]
+  17379704:
+    template: Steel_Quadav
+    region:   n_376
+    level:    [52, 56]
+  17379705:
+    template: Mythril_Quadav
+    region:   n_376
+    level:    [53, 57]
+  17379706:
+    template: Gold_Quadav
+    region:   n_376
+    level:    [54, 58]
+  17379707:
+    template: Topaz_Quadav
+    region:   n_376
+    level:    [55, 59]
+  17379708:
+    template: Steel_Quadav
+    region:   n_380
+    level:    [52, 56]
+  17379709:
+    template: Mythril_Quadav
+    region:   n_380
+    level:    [53, 57]
+  17379710:
+    template: Gold_Quadav
+    region:   n_380
+    level:    [54, 58]
+  17379711:
+    template: Topaz_Quadav
+    region:   n_380
+    level:    [55, 59]
+  17379712:
+    template: Mythril_Quadav
+    region:   e_384
+    level:    [53, 57]
+  17379713:
+    template: Gold_Quadav
+    region:   e_384
+    level:    [54, 58]
+  17379714:
+    template: Big_Jaw_Beadeaux
+    script:   Big_Jaw
+    region:   e_384
+    level:    [37, 39]
+  17379715:
+    template: Big_Jaw_Beadeaux
+    script:   Big_Jaw
+    region:   e_384
+    level:    [37, 39]
+  17379716:
+    template: Steel_Quadav
+    region:   ne_388
+    level:    [52, 56]
+  17379717:
+    template: Gold_Quadav
+    region:   ne_388
+    level:    [54, 58]
+  17379718:
+    template: Big_Jaw_Beadeaux
+    script:   Big_Jaw
+    region:   ne_388
+    level:    [37, 39]
+  17379719:
+    template: Big_Jaw_Large
+    script:   Big_Jaw
+    region:   ne_388
+    level:    [37, 39]
+  17379720:
+    template: Topaz_Quadav
+    region:   n_392
+    level:    [55, 59]
+  17379721:
+    template: Ancient_Quadav
+    region:   n_392
+    level:    [62, 66]
+  17379722:
+    template: Steel_Quadav
+    region:   n_394
+    level:    [52, 56]
+  17379723:
+    template: Mythril_Quadav
+    region:   n_394
+    level:    [53, 57]
+  17379724:
+    template: Gold_Quadav
+    region:   n_394
+    level:    [54, 58]
+  17379725:
+    template: Topaz_Quadav
+    region:   n_394
+    level:    [55, 59]
+  17379726:
+    template: Steel_Quadav
+    region:   n_398
+    level:    [52, 56]
+  17379727:
+    template: Big_Jaw_Large
+    script:   Big_Jaw
+    region:   n_398
+    level:    [37, 39]
+  17379728:
+    template: Big_Jaw_Large
+    script:   Big_Jaw
+    region:   n_398
+    level:    [37, 39]
+  17379729:
+    template: Steel_Quadav
+    region:   n_401
+    level:    [52, 56]
+  17379730:
+    template: Mythril_Quadav
+    region:   n_401
+    level:    [53, 57]
+  17379731:
+    template: Gold_Quadav
+    region:   n_401
+    level:    [54, 58]
+  17379732:
+    template: Topaz_Quadav
+    region:   n_401
+    level:    [55, 59]
+  17379733:
+    template: Big_Jaw_Large
+    script:   Big_Jaw
+    region:   n_401
+    level:    [37, 39]
+  17379734:
+    template: Big_Jaw_Large
+    script:   Big_Jaw
+    region:   n_401
+    level:    [37, 39]
+  17379735:
+    template: Ancient_Quadav
+    region:   region_98
+    level:    [62, 66]
+  17379736:
+    template: Darksteel_Quadav
+    region:   region_98
+    level:    [63, 67]
+  17379737:
+    template: Platinum_Quadav
+    region:   region_99
+    level:    [64, 68]
+  17379738:
+    template: Sapphire_Quadav
+    region:   region_99
+    level:    [65, 69]
+  17379739:
+    template: Ancient_Quadav
+    region:   region_100
+    level:    [62, 66]
+  17379740:
+    template: Sapphire_Quadav
+    region:   region_100
+    level:    [65, 69]
+  17379741:
+    template: Darksteel_Quadav
+    region:   region_101
+    level:    [63, 67]
+  17379742:
+    template: Sapphire_Quadav
+    region:   region_101
+    level:    [65, 69]
+  17379743:
+    template: Ancient_Quadav
+    region:   region_102
+    level:    [62, 66]
+  17379744:
+    template: Platinum_Quadav
+    region:   region_102
+    level:    [64, 68]
+  17379745:
+    template: Steel_Quadav
+    region:   region_109
+    level:    [52, 56]
+  17379746:
+    template: Mythril_Quadav
+    region:   region_109
+    level:    [53, 57]
+  17379747:
+    template: Gold_Quadav
+    region:   region_109
+    level:    [54, 58]
+  17379748:
+    template: Topaz_Quadav
+    region:   region_109
+    level:    [55, 59]
+  17379749:
+    template: Larva
+    region:   ne_421
+    level:    [35, 38]
+  17379750:
+    template: Larva
+    region:   ne_421
+    level:    [35, 38]
+  17379751:
+    template: Ancient_Quadav
+    region:   ne_423
+    level:    [62, 66]
+  17379752:
+    template: Darksteel_Quadav
+    region:   ne_423
+    level:    [63, 67]
+  17379753:
+    template: Platinum_Quadav
+    region:   ne_423
+    level:    [64, 68]
+  17379754:
+    template: Sapphire_Quadav
+    region:   ne_423
+    level:    [65, 69]
+  17379755:
+    template: Ancient_Quadav
+    region:   ne_423
+    level:    [62, 66]
+  17379756:
+    template: Darksteel_Quadav
+    region:   ne_423
+    level:    [63, 67]
+  17379757:
+    template: Platinum_Quadav
+    region:   ne_423
+    level:    [64, 68]
+  17379758:
+    template: Sapphire_Quadav
+    region:   ne_423
+    level:    [65, 69]
+  17379759:
+    template: Larva
+    region:   region_103
+    level:    [35, 38]
+  17379760:
+    template: Larva
+    region:   region_103
+    level:    [35, 38]
+  17379761:
+    template: Platinum_Quadav
+    region:   c_433
+    level:    [64, 68]
+  17379762:
+    template: Platinum_Quadav
+    region:   c_433
+    level:    [64, 68]
+  17379763:
+    template: Platinum_Quadav
+    region:   c_433
+    level:    [64, 68]
+  17379764:
+    template: Ancient_Quadav
+    region:   region_105
+    level:    [62, 66]
+  17379765:
+    template: Platinum_Quadav
+    region:   region_105
+    level:    [64, 68]
+  17379766:
+    template: Larva
+    region:   region_106
+    level:    [35, 38]
+  17379767:
+    template: Larva
+    region:   region_106
+    level:    [35, 38]
+  17379768:
+    template: Larva
+    region:   region_106
+    level:    [35, 38]
+  17379769:
+    template: Ancient_Quadav
+    region:   ne_442
+    level:    [62, 66]
+  17379770:
+    template: Darksteel_Quadav
+    region:   ne_442
+    level:    [63, 67]
+  17379771:
+    template: Sapphire_Quadav
+    region:   ne_442
+    level:    [65, 69]
+  17379772:
+    template: Ancient_Quadav
+    region:   ne_444
+    level:    [62, 66]
+  17379773:
+    template: Darksteel_Quadav
+    region:   ne_444
+    level:    [63, 67]
+  17379774:
+    template: Platinum_Quadav
+    region:   ne_444
+    level:    [64, 68]
+  17379775:
+    template: Ancient_Quadav
+    region:   ne_447
+    level:    [62, 66]
+  17379776:
+    template: Platinum_Quadav
+    region:   ne_447
+    level:    [64, 68]
+  17379777:
+    template: Sapphire_Quadav
+    region:   ne_447
+    level:    [65, 69]
+  17379778:
+    template: Darksteel_Quadav
+    region:   ne_450
+    level:    [63, 67]
+  17379779:
+    template: Platinum_Quadav
+    region:   ne_450
+    level:    [64, 68]
+  17379780:
+    template: Sapphire_Quadav
+    region:   ne_450
+    level:    [65, 69]
+  17379781:
+    template: Larva
+    region:   region_107
+    level:    [35, 38]
+  17379782:
+    template: Larva
+    region:   region_107
+    level:    [35, 38]
+  17379783:
+    template: Mimic
+    at:       [1.000, 1.000, 1.000]
+    level:    [60, 60]
+  17379784:
+    template: Magnes_Quadav_NM
+    at:       [-81.333, -3.519, -125.682, 129]
+    level:    [43, 45]
+  17379785:
+    template: Nickel_Quadav_NM
+    at:       [-81.171, -3.183, -129.277, 137]
+    level:    [43, 45]
+  17379786:
+    template: Magnes_Quadav_NM
+    at:       [-84.954, -3.807, -120.894, 98]
+    level:    [43, 45]
+  17379787:
+    template: Nickel_Quadav_NM
+    at:       [-88.153, -3.937, -118.159, 75]
+    level:    [43, 45]
+
+  17379874:
+    template: Beta_slim_Ooze
+    region:   region_84
+    level:    [28, 30]
+  17379875:
+    template: Beta_slim_Ooze
+    region:   region_84
+    level:    [28, 30]
+slots:
+  - members:
+      17379357: {} # Old_Quadav
+      17379358: {} # Copper_Quadav
+      17379359: {} # Brass_Quadav
+  - members:
+      17379369: {} # Old_Quadav
+      17379370: {} # Copper_Quadav
+      17379371: {} # Brass_Quadav
+  - members:
+      17379372: {} # Old_Quadav
+      17379373: {} # Copper_Quadav
+      17379374: {} # Brass_Quadav
+  - members:
+      17379379: {} # Old_Quadav
+      17379380: {} # Copper_Quadav
+      17379381: {} # Brass_Quadav
+  - members:
+      17379382: {} # Old_Quadav
+      17379383: {} # Copper_Quadav
+      17379384: {} # Brass_Quadav
+  - members:
+      17379392: {} # Old_Quadav
+      17379393: {} # Copper_Quadav
+  - members:
+      17379394: {} # Brass_Quadav
+      17379395: {} # Old_Quadav
+  - members:
+      17379396: {} # Copper_Quadav
+      17379397: {} # Brass_Quadav
+  - members:
+      17379410: {} # Copper_Quadav
+      17379411: {} # Brass_Quadav
+  - members:
+      17379414: {} # Old_Quadav
+      17379415: {} # Copper_Quadav
+  - members:
+      17379416: {} # Brass_Quadav
+      17379417: {} # Old_Quadav
+  - members:
+      17379418: {} # Copper_Quadav
+      17379419: {} # Brass_Quadav
+  - members:
+      17379431: {} # Old_Quadav
+      17379432: {} # Copper_Quadav
+      17379433: {} # Brass_Quadav
+  - members:
+      17379439: {} # Old_Quadav
+      17379440: {} # Copper_Quadav
+      17379441: {} # Brass_Quadav
+  - members:
+      17379454: {} # Old_Quadav
+      17379455: {} # Copper_Quadav
+      17379456: {} # Brass_Quadav
+  - members:
+      17379459: {} # Bronze_Quadav
+      17379460: {} # Silver_Quadav
+  - members:
+      17379461: {} # Zircon_Quadav
+      17379462: {} # Garnet_Quadav
+  - members:
+      17379470: {} # Bronze_Quadav
+      17379473: {} # Garnet_Quadav
+  - members:
+      17379471: {} # Silver_Quadav
+      17379472: {} # Zircon_Quadav
+  - members:
+      17379477: {} # Bronze_Quadav
+      17379480: {} # Garnet_Quadav
+  - members:
+      17379478: {} # Silver_Quadav
+      17379479: {} # Zircon_Quadav
+  - members:
+      17379505: {} # Bronze_Quadav
+      17379506: {} # Silver_Quadav
+  - members:
+      17379507: {} # Zircon_Quadav
+      17379508: {} # Garnet_Quadav
+  - members:
+      17379513: {} # Bronze_Quadav
+      17379516: {} # Garnet_Quadav
+  - members:
+      17379514: {} # Silver_Quadav
+      17379515: {} # Zircon_Quadav
+  - members:
+      17379525: {} # Bronze_Quadav
+      17379528: {} # Garnet_Quadav
+  - members:
+      17379526: {} # Silver_Quadav
+      17379527: {} # Zircon_Quadav
+  - members:
+      17379573: {} # Bronze_Quadav
+      17379576: {} # Garnet_Quadav
+  - members:
+      17379574: {} # Silver_Quadav
+      17379575: {} # Zircon_Quadav
+  - members:
+      17379581: {} # Bronze_Quadav
+      17379583: {} # Zircon_Quadav
+  - members:
+      17379582: {} # Silver_Quadav
+      17379584: {} # Garnet_Quadav
+  - members:
+      17379593: {} # Elder_Quadav
+      17379594: {} # Iron_Quadav
+  - members:
+      17379595: {} # Spinel_Quadav
+      17379596: {} # Emerald_Quadav
+  - members:
+      17379602: {} # Elder_Quadav
+      17379603: {} # Iron_Quadav
+  - members:
+      17379604: {} # Spinel_Quadav
+      17379605: {} # Emerald_Quadav
+  - members:
+      17379667: {} # Elder_Quadav
+      17379668: {} # Iron_Quadav
+  - members:
+      17379673: {} # Steel_Quadav
+      17379675: {} # Gold_Quadav
+  - members:
+      17379674: {} # Mythril_Quadav
+      17379676: {} # Topaz_Quadav
+  - members:
+      17379677: {} # Steel_Quadav
+      17379679: {} # Gold_Quadav
+  - members:
+      17379678: {} # Mythril_Quadav
+      17379680: {} # Topaz_Quadav
+  - members:
+      17379686: {} # Spinel_Quadav
+      17379687: {} # Emerald_Quadav
+  - members:
+      17379751: {} # Ancient_Quadav
+      17379752: {} # Darksteel_Quadav
+  - members:
+      17379753: {} # Platinum_Quadav
+      17379754: {} # Sapphire_Quadav
+  - members:
+      17379755: {} # Ancient_Quadav
+      17379756: {} # Darksteel_Quadav
+  - members:
+      17379757: {} # Platinum_Quadav
+      17379758: {} # Sapphire_Quadav

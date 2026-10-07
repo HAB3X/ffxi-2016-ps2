@@ -1,0 +1,268 @@
+﻿/*
+===========================================================================
+
+  Copyright (c) 2010-2015 Darkstar Dev Teams
+
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with this program.  If not, see http://www.gnu.org/licenses/
+
+===========================================================================
+*/
+
+#include "pet_controller.h"
+
+#include "ai/ai_container.h"
+#include "ai/states/magic_state.h"
+#include "common/utils.h"
+#include "entities/pet_entity.h"
+#include "mob_spell_container.h"
+#include "status_effect_container.h"
+#include "utils/petutils.h"
+
+namespace
+{
+
+const std::set immobilePets = {
+    PETID_LUOPAN,
+    PETID_ALEXANDER,
+    PETID_ODIN,
+    PETID_ATOMOS,
+};
+
+}
+
+CPetController::CPetController(CMobEntity* _PPet)
+: CMobController(_PPet)
+, PPet(_PPet)
+{
+    // TODO: this probably will have to depend on pet type (automaton does WS on its own..)
+    SetWeaponSkillEnabled(false);
+}
+
+auto CPetController::DoRoamTick(timer::time_point tick) -> Task<void>
+{
+    TracyZoneScopedN("CPetController::DoRoamTick");
+
+    if ((PPet->PMaster == nullptr || PPet->PMaster->isDead()) && PPet->isAlive() && PPet->objtype != TYPE_MOB)
+    {
+        PPet->Die();
+        co_return;
+    }
+
+    // If pet cannot change state (for example because pet is asleep) then just return
+    if (!PPet->PAI->CanChangeState())
+    {
+        co_return;
+    }
+
+    const auto isPet        = PPet->objtype == TYPE_PET;
+    const auto isCharmedMob = PPet->objtype == TYPE_MOB && PPet->PMaster && PPet->PMaster->objtype == TYPE_PC;
+
+    if (isPet || isCharmedMob)
+    {
+        const auto* PPetEntity = dynamic_cast<CPetEntity*>(PPet);
+
+        // A non-CPetEntity is a CMobEntity that has been charmed - a BST pet
+        const auto isBstPet = PPetEntity ? PPetEntity->isBstPet() : true;
+
+        if (PPetEntity != nullptr)
+        {
+            const auto petType             = PPetEntity->getPetType();
+            const auto isWyvernOrAutomaton = petType == PET_TYPE::WYVERN || petType == PET_TYPE::AUTOMATON;
+
+            if (isWyvernOrAutomaton)
+            {
+                if (PetIsHealing())
+                {
+                    co_return;
+                }
+
+                // TODO: Other logic?
+            }
+
+            // Certain pets do not roam
+            if (immobilePets.contains(static_cast<PETID>(PPetEntity->petID())))
+            {
+                co_return;
+            }
+        }
+
+        if (isBstPet && PPet->StatusEffectContainer->GetStatusEffect(xi::StatusEffect::Healing))
+        {
+            co_return;
+        }
+    }
+
+    if (!PPet->PMaster)
+    {
+        co_return;
+    }
+
+    const float currentDistance = distance(PPet->loc.p, PPet->PMaster->loc.p);
+
+    if (currentDistance <= PetRoamDistance)
+    {
+        co_return;
+    }
+
+    // Recalculate path only if owner moves more than X yalms
+    if (!PPet->PAI->PathFind->IsFollowingPath() ||
+        distance(PPet->PAI->PathFind->GetDestination(), PPet->PMaster->loc.p) > 2.0f)
+    {
+        if (!PPet->PAI->PathFind->PathAround(PPet->PMaster->loc.p, 2.0f, PATHFLAG_RUN) &&
+            !PPet->PAI->PathFind->PathInRange(PPet->PMaster->loc.p, 2.0f, PATHFLAG_RUN))
+        {
+            // If we got here, the pet isn't able to path to master
+            // But it cant, so maybe we teleported or dropped down a hole
+            PPet->PAI->PathFind->WarpTo(PPet->PMaster->loc.p, PetRoamDistance);
+        }
+    }
+
+    PPet->PAI->PathFind->FollowPath(m_Tick);
+
+    co_return;
+}
+
+auto CPetController::PetSkill(const EntityId& target, uint16 abilityid) const -> bool
+{
+    TracyZoneScoped;
+
+    if (POwner)
+    {
+        FaceTarget(target);
+        PPet->PAI->EventHandler.triggerListener("WEAPONSKILL_BEFORE_USE", PPet, abilityid);
+        return POwner->PAI->Internal_PetSkill(target, abilityid);
+    }
+
+    return false;
+}
+
+auto CPetController::PetIsHealing() const -> bool
+{
+    const auto isMasterHealing = PPet->PMaster->animation == xi::Animation::Healing;
+    const auto isPetHealing    = PPet->animation == xi::Animation::Healing;
+
+    if (isMasterHealing && !isPetHealing && !PPet->StatusEffectContainer->HasPreventActionEffect())
+    {
+        // Animation down
+        PPet->animation = xi::Animation::Healing;
+        PPet->StatusEffectContainer->AddStatusEffect(xi::StatusEffect::Healing, 0, 0, std::chrono::seconds(settings::get<uint8>("map.HEALING_TICK_DELAY")), 0s);
+        PPet->updatemask |= UPDATE_HP;
+        return true;
+    }
+    else if (!isMasterHealing && isPetHealing)
+    {
+        // Animation up
+        PPet->animation = xi::Animation::None;
+        PPet->StatusEffectContainer->DelStatusEffect(xi::StatusEffect::Healing);
+        PPet->updatemask |= UPDATE_HP;
+        return false;
+    }
+
+    return isMasterHealing;
+}
+
+auto CPetController::Tick(const timer::time_point tick) -> Task<void>
+{
+    TracyZoneScopedN("CPetController::Tick");
+    TracyZoneString(PPet->getName());
+
+    bool isPlayerPet = PPet->objtype == TYPE_PET || (PPet->objtype == TYPE_MOB && PPet->PMaster && PPet->PMaster->objtype == TYPE_PC);
+
+    // if a player pet then check if a charmed mob or jug pet and if it should despawn
+    if (isPlayerPet)
+    {
+        // if a charmed mob and charm time is up then despawn
+        if (PPet->isCharmed && tick > PPet->charmTime)
+        {
+            petutils::DespawnPet(PPet->PMaster);
+            co_return;
+        }
+
+        // if a jug pet and the current time > jug spawn time + jug duration then despawn
+        auto* PPetEntity = dynamic_cast<CPetEntity*>(PPet);
+        if (PPetEntity && PPetEntity->isAlive() && PPetEntity->getPetType() == PET_TYPE::JUG_PET)
+        {
+            if (tick > PPetEntity->getJugSpawnTime() + PPetEntity->getJugDuration())
+            {
+                petutils::DespawnPet(PPetEntity->PMaster);
+                co_return;
+            }
+        }
+    }
+
+    co_await CMobController::Tick(tick);
+}
+
+// Light Spirit is the only elemental spirit that is allowed to cast out of combat.
+// Pet workings are unknown so keep the combat cast path how it was
+auto CPetController::DoBuffTick() -> bool
+{
+    const auto* PPetEntity = dynamic_cast<CPetEntity*>(PPet);
+    if (!PPetEntity || PPetEntity->petID() != PETID_LIGHTSPIRIT)
+    {
+        return false;
+    }
+
+    if (PPet->PAI->IsCurrentState<CMagicState>())
+    {
+        return true;
+    }
+
+    if (!IsSpellReady(0, 0) || !PPet->SpellContainer->HasBuffSpells())
+    {
+        return false;
+    }
+
+    return TryCastSpell();
+}
+
+void CPetController::HandleEnmity()
+{
+}
+
+auto CPetController::TryDeaggro() -> bool
+{
+    auto* PTarget = target().resolve<CBattleEntity>();
+
+    if (PTarget == nullptr)
+    {
+        return true;
+    }
+
+    // target is no longer valid, so wipe them from our enmity list
+    if (PTarget->isDead() || PTarget->isMounted() || PTarget->loc.zone->GetID() != PPet->loc.zone->GetID() ||
+        PPet->StatusEffectContainer->GetConfrontationEffect() != PTarget->StatusEffectContainer->GetConfrontationEffect() ||
+        PPet->getBattleID() != PTarget->getBattleID())
+    {
+        return true;
+    }
+
+    return false;
+}
+
+void CPetController::TryLink()
+{
+}
+
+auto CPetController::Ability(const EntityId target, const uint16 abilityid) -> bool
+{
+    TracyZoneScoped;
+
+    if (PPet->PAI->CanChangeState())
+    {
+        return PPet->PAI->Internal_Ability(target, abilityid);
+    }
+
+    return false;
+}

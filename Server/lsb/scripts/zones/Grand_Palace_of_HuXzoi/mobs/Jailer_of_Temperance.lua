@@ -1,0 +1,196 @@
+-----------------------------------
+-- Area: Grand Palace of Hu'Xzoi
+--   NM: Jailer of Temperance
+-----------------------------------
+local ID           = zones[xi.zone.GRAND_PALACE_OF_HUXZOI]
+local huxzoiGlobal = require('scripts/zones/Grand_Palace_of_HuXzoi/globals')
+mixins = { require('scripts/mixins/job_special') }
+-----------------------------------
+---@type TMobEntity
+local entity = {}
+
+-- Damage resistance configurations
+local resistConfigs = {
+    [0] = { HTH = 0, SLASH = -10000, PIERCE = -10000, IMPACT = 0 }, -- Pot Idle
+    [1] = { HTH = 0, SLASH = -10000, PIERCE = -10000, IMPACT = 0 }, -- Pot Combat
+    [2] = { HTH = -10000, SLASH = -10000, PIERCE = 0, IMPACT = -10000 }, -- Poles
+    [3] = { HTH = -10000, SLASH = 0, PIERCE = -10000, IMPACT = -10000 }  -- Rings
+}
+
+entity.spawnPoints =
+{
+    { x = -426.739, y = -0.500, z =  687.728 }
+}
+
+local function applyResistances(mob, form)
+    local config = resistConfigs[form]
+    mob:setMod(xi.mod.HTH_SDT, config.HTH)
+    mob:setMod(xi.mod.SLASH_SDT, config.SLASH)
+    mob:setMod(xi.mod.PIERCE_SDT, config.PIERCE)
+    mob:setMod(xi.mod.IMPACT_SDT, config.IMPACT)
+end
+
+entity.onMobInitialize = function(mob)
+    mob:setMobMod(xi.mobMod.IDLE_DESPAWN, 180)
+    mob:addImmunity(xi.immunity.BIND)
+    mob:addImmunity(xi.immunity.BLIND)
+    mob:addImmunity(xi.immunity.DARK_SLEEP)
+    mob:addImmunity(xi.immunity.ELEGY)
+    mob:addImmunity(xi.immunity.LIGHT_SLEEP)
+    mob:addImmunity(xi.immunity.PARALYZE)
+    mob:addImmunity(xi.immunity.PETRIFY)
+    mob:addImmunity(xi.immunity.PLAGUE)
+    mob:addImmunity(xi.immunity.SLOW)
+    mob:addImmunity(xi.immunity.STUN)
+    mob:addImmunity(xi.immunity.TERROR)
+end
+
+entity.onMobSpawn = function(mob)
+    mob:addMobMod(xi.mobMod.BASE_DAMAGE_MODIFIER, 13) -- 100 total weapon damage
+    mob:addMod(xi.mod.EVA, 10)
+    mob:addMod(xi.mod.MDEF, 20)
+    mob:addMod(xi.mod.ATT, mob:getMod(xi.mod.ATT) * 0.65) -- Increase attack by 65%
+    mob:delMod(xi.mod.DEF, 50)
+    mob:setMod(xi.mod.STORETP, 110)
+
+    -- Change animation to pot
+    mob:setAnimationSub(0)
+    applyResistances(mob, 0)
+
+    -- Two usages of Meikyo at specific HP thresholds
+    xi.mix.jobSpecial.config(mob, {
+        between  = 45,
+        specials =
+        {
+            { id = xi.mobSkill.MEIKYO_SHISUI_1, hpp = math.randomInt(65, 70) },
+            { id = xi.mobSkill.MEIKYO_SHISUI_1, hpp = math.randomInt(35, 40) },
+        },
+    })
+
+    -- Set the magic resists. It always takes no damage from direct magic
+    for element = xi.element.FIRE, xi.element.DARK do
+        mob:setMod(xi.data.element.getElementalMEVAModifier(element), 0)
+        mob:setMod(xi.data.element.getElementalSDTModifier(element), -10000)
+    end
+
+    mob:setLocalVar('changeTime', GetSystemTime() + math.randomInt(30, 180))
+
+    -- Uses 6 skills while under the effect of Meikyo Shisui
+    mob:setLocalVar('[MeikyoShisui]SkillCount', 6)
+end
+
+entity.onMobFight = function(mob)
+    if xi.combat.behavior.isEntityBusy(mob) then
+        return
+    end
+
+    -- No form changes while under the effect of Meikyo Shisui
+    if mob:hasStatusEffect(xi.effect.MEIKYO_SHISUI) then
+        return
+    end
+
+    local currentTime = GetSystemTime()
+    local changeTime = mob:getLocalVar('changeTime')
+    local currentForm = mob:getAnimationSub()
+
+    -- Apply the form change
+    if currentTime >= changeTime then
+        local newForm = math.randomInt(1, 3)
+
+        while newForm == currentForm do
+            newForm = math.randomInt(1, 3)
+        end
+
+        -- Briefly transition to animationSub 1, then change to new form
+        mob:setAnimationSub(1)
+
+        -- Schedule the actual form change after a brief delay
+        mob:timer(2000, function(mobArg)
+            if mobArg then
+                mobArg:setAnimationSub(newForm)
+                applyResistances(mobArg, newForm)
+            end
+        end)
+
+        mob:setLocalVar('changeTime', currentTime + math.randomInt(30, 390))
+    end
+end
+
+-- If Meikyo Shisui is active, skills have essentially no ready time.
+entity.onMobSkillReadyTime = function(target, mob, skill)
+    -- 1 Produces a ready message and ready spikes, but is effectively instant (matches retail)
+    if mob:hasStatusEffect(xi.effect.MEIKYO_SHISUI) then
+        return 1
+    end
+end
+
+entity.onMobMobskillChoose = function(mob, target, skillId)
+    local form         = mob:getAnimationSub()
+    local meikyoActive = mob:hasStatusEffect(xi.effect.MEIKYO_SHISUI)
+    local skillList    = {}
+
+    switch (form): caseof
+    {
+        [0] = function()
+            table.insert(skillList, xi.mobSkill.REACTOR_COOL)
+        end,
+
+        [1] = function()
+            if meikyoActive then
+                table.insert(skillList, xi.mobSkill.OPTIC_INDURATION)
+                return
+            end
+
+            table.insert(skillList, xi.mobSkill.REACTOR_COOL)
+            table.insert(skillList, xi.mobSkill.OPTIC_INDURATION)
+        end,
+
+        [2] = function()
+            if meikyoActive then
+                table.insert(skillList, xi.mobSkill.DECAYED_FILAMENT)
+                return
+            end
+
+            table.insert(skillList, xi.mobSkill.REACTOR_COOL)
+            table.insert(skillList, xi.mobSkill.STATIC_FILAMENT)
+            table.insert(skillList, xi.mobSkill.DECAYED_FILAMENT)
+        end,
+
+        [3] = function()
+            if meikyoActive then
+                table.insert(skillList, xi.mobSkill.REACTOR_OVERLOAD)
+                return
+            end
+
+            table.insert(skillList, xi.mobSkill.REACTOR_COOL)
+            table.insert(skillList, xi.mobSkill.REACTOR_OVERLOAD)
+            table.insert(skillList, xi.mobSkill.REACTOR_OVERHEAT)
+        end,
+    }
+
+    return skillList[math.randomInt(1, #skillList)]
+end
+
+entity.onMobDespawn = function(mob)
+    local phId = mob:getLocalVar('ph')
+
+    -- Temperance can spawn outside of the zdei system with no placeholder set, so pick one at random.
+    if phId == 0 then
+        local phTable = ID.mob.JAILER_OF_TEMPERANCE_PH
+        phId = phTable[math.randomInt(1, #phTable)]
+    end
+
+    local ph = GetMobByID(phId)
+
+    -- allow the placeholder to respawn
+    if ph then
+        DisallowRespawn(mob:getID(), true)
+        DisallowRespawn(phId, false)
+        ph:setRespawnTime(GetMobRespawnTime(phId))
+    end
+
+    mob:setLocalVar('pop', GetSystemTime() + 900) -- 15 mins
+    huxzoiGlobal.pickTemperancePH()
+end
+
+return entity

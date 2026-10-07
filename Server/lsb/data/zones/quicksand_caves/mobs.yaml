@@ -1,0 +1,3613 @@
+# yaml-language-server: $schema=../../schemas/mobs.schema.json
+
+templates:
+
+  Ancient_Vessel:
+    id:            128
+    species:       magic_pot
+    type:          [notorious]
+    spell_list_id: 1
+    skill_list_id: 175
+    attributes:
+      combat:
+        skill: scythe
+      jobs: [rdm, war]
+      resists:
+        dmg_physical:
+          h2h: 2500
+      render:
+        look:
+          type:  standard
+          model: 412
+        entity_flags:  1159
+        animation_sub:    8
+        model_size:       3
+        hitbox:          53
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 12000
+
+  Antican_Aedilis:
+    id:            165
+    species:       antica
+    skill_list_id: 25
+    attributes:
+      combat:
+        skill: dagger
+        delay: 265
+      jobs: [rng, rng]
+      render:
+        look:
+          type:  standard
+          model: 1269
+        entity_flags: 1157
+        model_size:      2
+        hitbox:         13
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   piece_of_rotten_meat
+        - chance: rare
+          item:   antican_robe
+        - chance: uncommon
+          item:   rangers_testimony
+        - chance: very_rare
+          item:   bag_of_xhifhut_strings
+        - chance: very_rare
+          item:   scroll_of_archers_prelude
+      despoil:
+        chunk_of_iron_ore: 0
+
+  Antican_Antesignanus:
+    id:            166
+    species:       antica
+    spell_list_id: 4
+    skill_list_id: 25
+    attributes:
+      combat:
+        skill: sword
+        delay: 265
+      jobs: [pld, pld]
+      render:
+        look:
+          type:  standard
+          model: 1292
+        entity_flags: 1157
+        model_size:      2
+        hitbox:         13
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   paladins_testimony
+        - chance: very_rare
+          item:   chunk_of_darksteel_ore
+        - chance: very_common
+          item:   piece_of_rotten_meat
+        - chance: rare
+          item:   antican_pauldron
+      steal: gold_beastcoin
+      despoil:
+        chunk_of_iron_ore: 0
+
+  Antican_Consul:
+    id:            169
+    species:       antica
+    type:          [notorious]
+    skill_list_id: 25
+    attributes:
+      combat:
+        skill: axe
+        delay: 265
+      render:
+        look:
+          type:  standard
+          model: 1259
+        entity_flags: 1159
+        model_size:      3
+        hitbox:         16
+      behaviors:
+        aggressive:     true
+        links:          true
+        true_detection: true
+      spawn:
+        respawn: 86400
+      stats:
+        hp: 4800
+    loot:
+      drops:
+        - chance: rare
+          item:   berserkers_axe
+        - chance: always
+          item:   antican_pauldron
+        - chance: always
+          item:   chunk_of_darksteel_ore
+        - chance: very_common
+          item:   warriors_testimony
+        - chance: very_rare
+          item:   antican_pauldron
+      steal: platinum_beastcoin
+
+  Antican_Hastatus:
+    id:            175
+    species:       antica
+    skill_list_id: 25
+    attributes:
+      combat:
+        skill: axe
+        delay: 265
+      render:
+        look:
+          type:  standard
+          model: 1265
+        entity_flags: 1155
+        model_size:      1
+        hitbox:         12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   piece_of_rotten_meat
+        - chance: uncommon
+          item:   antican_pauldron
+        - chance: rare
+          item:   dhalmel_leather_missive
+        - chance: rare
+          item:   quicksand_coffer_key
+        - chance: very_rare
+          item:   chunk_of_mythril_ore
+      steal: mythril_beastcoin
+      despoil:
+        chunk_of_iron_ore: 0
+
+  Antican_Legatus:
+    id:            178
+    species:       antica
+    type:          [notorious]
+    spell_list_id: 4
+    skill_list_id: 25
+    attributes:
+      combat:
+        skill: sword
+        delay: 265
+      jobs: [pld, pld]
+      render:
+        look:
+          type:  standard
+          model: 1289
+        entity_flags: 1157
+        model_size:      2
+        hitbox:         13
+      behaviors:
+        aggressive:     true
+        links:          true
+        true_detection: true
+      spawn:
+        respawn: 1200
+      stats:
+        hp: 4250
+        mp: 4250
+    loot:
+      drops:
+        - chance: rare
+          item:   company_sword
+        - chance: uncommon
+          item:   paladins_testimony
+        - chance: always
+          item:   chunk_of_darksteel_ore
+        - chance: common
+          item:   antican_pauldron
+      steal: gold_beastcoin
+
+  Antican_Magister:
+    id:            179
+    species:       antica
+    type:          [notorious]
+    skill_list_id: 25
+    attributes:
+      combat:
+        skill: axe
+        delay: 265
+      render:
+        look:
+          type:  standard
+          model: 1260
+        entity_flags: 1157
+        model_size:      2
+        hitbox:         13
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [lottery]
+      stats:
+        hp: 7700
+    loot:
+      drops:
+        - chance: uncommon
+          item:   arcanabane
+        - chance: always
+          item:   chunk_of_mythril_ore
+        - chance: always
+          item:   antican_pauldron
+      steal: gold_beastcoin
+
+  Antican_Praefectus:
+    id:            180
+    species:       antica
+    type:          [notorious]
+    spell_list_id: 4
+    skill_list_id: 25
+    attributes:
+      combat:
+        skill: sword
+        delay: 265
+      jobs: [pld, pld]
+      render:
+        look:
+          type:  standard
+          model: 1297
+        entity_flags: 1157
+        model_size:      2
+        hitbox:         13
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [lottery]
+      stats:
+        hp: 5000
+        mp: 5000
+    loot:
+      drops:
+        - chance: uncommon
+          item:   save_the_queen
+        - chance: always
+          item:   chunk_of_mythril_ore
+        - chance: always
+          item:   antican_pauldron
+      steal: gold_beastcoin
+
+  Antican_Praetor:
+    id:            181
+    species:       antica
+    type:          [notorious]
+    spell_list_id: 21
+    skill_list_id: 25
+    attributes:
+      combat:
+        skill: staff
+        delay: 265
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 1281
+        entity_flags: 1157
+        model_size:      2
+        hitbox:         13
+      behaviors:
+        aggressive:     true
+        links:          true
+        true_detection: true
+      spawn:
+        respawn: 1200
+      stats:
+        hp: 3950
+        mp: 3950
+    loot:
+      drops:
+        - chance: very_common
+          item:   chunk_of_darksteel_ore
+        - chance: very_common
+          item:   black_mages_testimony
+        - chance: uncommon
+          item:   scroll_of_stone_iv
+        - chance: uncommon
+          item:   scroll_of_stonega_iii
+      steal: gold_beastcoin
+
+  Antican_Princeps:
+    id:            182
+    species:       antica
+    spell_list_id: 4
+    skill_list_id: 25
+    attributes:
+      combat:
+        skill: sword
+        delay: 265
+      jobs: [pld, pld]
+      render:
+        look:
+          type:  standard
+          model: 1296
+        entity_flags: 1155
+        model_size:      1
+        hitbox:         12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   piece_of_rotten_meat
+        - chance: uncommon
+          item:   antican_pauldron
+        - chance: rare
+          item:   dhalmel_leather_missive
+        - chance: rare
+          item:   quicksand_coffer_key
+        - chance: very_rare
+          item:   chunk_of_mythril_ore
+      steal: mythril_beastcoin
+      despoil:
+        chunk_of_iron_ore: 0
+
+  Antican_Proconsul:
+    id:            183
+    species:       antica
+    type:          [notorious]
+    spell_list_id: 21
+    skill_list_id: 25
+    attributes:
+      combat:
+        skill: staff
+        delay: 265
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 1284
+        entity_flags: 1157
+        model_size:      2
+        hitbox:         13
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [lottery]
+      stats:
+        hp: 6750
+        mp: 6750
+    loot:
+      drops:
+        - chance: very_common
+          item:   chunk_of_mythril_ore
+        - chance: uncommon
+          item:   scroll_of_stone_iv
+        - chance: uncommon
+          item:   scroll_of_stonega_iii
+
+  Antican_Quaestor:
+    id:            184
+    species:       antica
+    spell_list_id: 21
+    skill_list_id: 25
+    attributes:
+      combat:
+        skill: staff
+        delay: 265
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 1280
+        entity_flags: 1157
+        model_size:      2
+        hitbox:         13
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: very_common
+          item:   piece_of_rotten_meat
+        - chance: uncommon
+          item:   scroll_of_stone_iv
+        - chance: very_common
+          item:   antican_robe
+        - chance: uncommon
+          item:   black_mages_testimony
+        - chance: uncommon
+          item:   scroll_of_stonega_ii
+        - chance: rare
+          item:   scroll_of_stonega_iii
+      steal: gold_beastcoin
+      despoil:
+        chunk_of_iron_ore: 0
+
+  Antican_Signifer:
+    id:            188
+    species:       antica
+    spell_list_id: 21
+    skill_list_id: 25
+    attributes:
+      combat:
+        skill: staff
+        delay: 265
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 1279
+        entity_flags: 1155
+        model_size:      1
+        hitbox:         12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   jar_of_antican_acid
+        - chance: uncommon
+          item:   piece_of_rotten_meat
+        - chance: rare
+          item:   antican_robe
+        - chance: rare
+          item:   quicksand_coffer_key
+        - chance: very_rare
+          item:   chunk_of_mythril_ore
+        - chance: very_rare
+          item:   xhifhut_body
+      steal: mythril_beastcoin
+      despoil:
+        chunk_of_iron_ore: 0
+
+  Antican_Triarius:
+    id:            190
+    species:       antica
+    skill_list_id: 25
+    attributes:
+      combat:
+        skill: axe
+        delay: 265
+      render:
+        look:
+          type:  standard
+          model: 1263
+        entity_flags: 1157
+        model_size:      2
+        hitbox:         13
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   piece_of_rotten_meat
+        - chance: uncommon
+          item:   warriors_testimony
+        - chance: rare
+          item:   antican_pauldron
+        - chance: very_rare
+          item:   chunk_of_darksteel_ore
+      steal: gold_beastcoin
+      despoil:
+        chunk_of_iron_ore: 0
+
+  Antican_Tribunus:
+    id:            191
+    species:       antica
+    type:          [notorious]
+    skill_list_id: 25
+    attributes:
+      combat:
+        skill: dagger
+        delay: 265
+      jobs: [rng, rng]
+      render:
+        look:
+          type:  standard
+          model: 1276
+        entity_flags:  3
+        model_size:    2
+        hitbox:       13
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [lottery]
+      stats:
+        hp: 6850
+    loot:
+      drops:
+        - chance: always
+          item:   chunk_of_mythril_ore
+        - chance: always
+          item:   antican_robe
+        - chance: uncommon
+          item:   pharaohs_bow
+
+  Centurio_IV-VII:
+    id:            672
+    species:       antica
+    type:          [notorious]
+    skill_list_id: 25
+    attributes:
+      combat:
+        skill: axe
+        delay: 265
+      render:
+        look:
+          type:  standard
+          model: 1261
+        entity_flags: 133
+        model_size:     2
+        hitbox:        13
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+
+  Centurio_X-I:
+    id:            674
+    species:       antica
+    type:          [notorious]
+    spell_list_id: 21
+    skill_list_id: 25
+    attributes:
+      combat:
+        skill: staff
+        delay: 265
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 1281
+        entity_flags: 135
+        model_size:     3
+        hitbox:        16
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [lottery]
+      stats:
+        hp: 5500
+        mp: 5500
+    loot:
+      drops:
+        - chance: always
+          item:   antican_robe
+        - chance: always
+          item:   chunk_of_iron_ore
+        - chance: common
+          item:   shamans_cloak
+        - chance: common
+          item:   scroll_of_stone_iii
+        - chance: very_common
+          item:   chunk_of_mythril_ore
+        - chance: common
+          item:   scroll_of_stonega_ii
+        - chance: uncommon
+          item:   scroll_of_stonega_iii
+        - chance: uncommon
+          item:   chunk_of_darksteel_ore
+        - chance: uncommon
+          item:   scroll_of_stone_iv
+        - chance: rare
+          item:   scroll_of_quake
+        - chance: rare
+          item:   chunk_of_adaman_ore
+
+  Centurio_XX-I:
+    id:            6902
+    species:       antica
+    type:          [notorious]
+    spell_list_id: 21
+    skill_list_id: 25
+    attributes:
+      combat:
+        skill: staff
+        delay: 265
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 1281
+        entity_flags: 135
+        model_size:     3
+        hitbox:        16
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+
+  Diamond_Daig:
+    id:            1033
+    species:       beetle
+    type:          [notorious]
+    spell_list_id: 4
+    skill_list_id: 49
+    attributes:
+      combat:
+        skill: great_sword
+      jobs: [pld, pld]
+      resists:
+        immune_status: [bind, light_sleep, dark_sleep]
+      render:
+        look:
+          type:  standard
+          model: 408
+        entity_flags:  3
+        model_size:    2
+        hitbox:       14
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [lottery]
+      stats:
+        hp: 13000
+    loot:
+      drops:
+        - chance: always
+          item:   protecting_bangles
+        - chance: common
+          item:   beetle_shell
+        - chance: common
+          item:   beetle_jaw
+        - chance: common
+          item:   insect_wing
+
+  Girtab:
+    id:            1606
+    species:       scorpion
+    skill_list_id: 217
+    attributes:
+      combat:
+        skill: scythe
+        delay: 280
+      render:
+        look:
+          type:  standard
+          model: 284
+        entity_flags: 131
+        model_size:     1
+        hitbox:        27
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: very_common
+          item:   scorpion_claw
+        - chance: uncommon
+          item:   scorpion_shell
+        - chance: very_rare
+          item:   high-quality_scorpion_shell
+      despoil:
+        scorpion_shell: 0
+        scorpion_claw:  0
+
+  Girtablulu:
+    id:            1607
+    species:       scorpion
+    type:          [notorious]
+    skill_list_id: 217
+    attributes:
+      combat:
+        skill: scythe
+        delay: 280
+      render:
+        look:
+          type:  standard
+          model: 284
+        entity_flags: 131
+        model_size:     1
+        hitbox:        27
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 10000
+
+  Hastatus_XI-XII:
+    id:            1894
+    species:       antica
+    type:          [notorious]
+    skill_list_id: 25
+    attributes:
+      combat:
+        skill: axe
+        delay: 265
+      render:
+        look:
+          type:  standard
+          model: 1263
+        entity_flags: 1183
+        name_prefix:    32
+        model_size:      3
+        hitbox:         16
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [lottery]
+      stats:
+        hp: 7000
+    loot:
+      drops:
+        - chance: always
+          item:   xhifhut_head
+
+  Helm_Beetle:
+    id:            1928
+    species:       beetle
+    skill_list_id: 49
+    attributes:
+      combat:
+        skill: polearm
+      jobs: [pld, pld]
+      render:
+        look:
+          type:  standard
+          model: 408
+        entity_flags: 1155
+        model_size:      1
+        hitbox:         12
+      behaviors:
+        links: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   insect_wing
+        - chance: uncommon
+          item:   beetle_shell
+        - chance: rare
+          item:   beetle_jaw
+        - chance: rare
+          item:   quicksand_coffer_key
+      despoil:
+        insect_wing:  0
+        beetle_shell: 0
+        beetle_jaw:   0
+
+  Honor:
+    id:            1987
+    species:       sea_monk
+    type:          [notorious]
+    spell_list_id: 2
+    skill_list_id: 218
+    attributes:
+      combat:
+        skill: scythe
+      jobs: [war, rdm]
+      render:
+        look:
+          type:  standard
+          model: 352
+        entity_flags: 1177
+        name_prefix:    32
+        hitbox:         15
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 5400
+
+  Malleator_Maurok:
+    id:            6900
+    species:       scorpion
+    type:          [notorious]
+    skill_list_id: 217
+    attributes:
+      combat:
+        skill: axe
+      render:
+        look:
+          type:  standard
+          model: 2107
+        entity_flags: 159
+        name_prefix:   32
+        model_size:     3
+        hitbox:        39
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+
+  Mimic:
+    id:            2664
+    species:       mimic
+    type:          [notorious]
+    skill_list_id: 183
+    attributes:
+      combat:
+        skill: scythe
+        delay: 170
+      resists:
+        dmg_physical:
+          slashing: -5000
+          piercing: -5000
+          blunt:    -5000
+          h2h:      -5000
+      render:
+        look:
+          type:  standard
+          model: 259
+        entity_flags:  131
+        animation_sub:  13
+        model_size:      1
+        hitbox:         12
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: always
+          item:   quicksand_coffer_key
+
+  Nussknacker:
+    id:            2923
+    species:       ash_lizard
+    type:          [notorious]
+    skill_list_id: 174
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 328
+        entity_flags:  3
+        model_size:    2
+        hitbox:       18
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [lottery]
+      stats:
+        hp: 6000
+    loot:
+      drops:
+        - chance: very_common
+          item:   lizard_tail
+        - chance: uncommon
+          item:   sand_gloves
+        - chance: rare
+          item:   lizard_skin
+        - chance: uncommon
+          item:   lizard_egg
+
+  Oggbi_TVR:
+    id:           24
+    display_name: Oggbi
+    species:      galks
+    attributes:
+      combat:
+        skill: hand_to_hand
+        delay: 480
+      jobs: [mnk, mnk]
+      render:
+        look:
+          type:  equipped
+          race:  8
+          face:  3
+          head:  4113
+          body:  8209
+          hands: 12305
+          legs:  16401
+          feet:  20497
+          main:  24583
+        entity_flags: 131
+        name_prefix:   32
+        model_size:     1
+        hitbox:        32
+      spawn:
+        type: [scripted]
+    allegiance: player
+
+  Peon_Pounder:
+    id:            6901
+    species:       scorpion
+    type:          [notorious]
+    skill_list_id: 217
+    attributes:
+      combat:
+        skill: scythe
+        delay: 280
+      render:
+        look:
+          type:  standard
+          model: 2243
+        entity_flags: 129
+        hitbox:        23
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+
+  Princeps_IV-XLV:
+    id:            3193
+    species:       antica
+    type:          [notorious]
+    spell_list_id: 4
+    skill_list_id: 25
+    attributes:
+      combat:
+        skill: sword
+        delay: 265
+      jobs: [pld, pld]
+      render:
+        look:
+          type:  standard
+          model: 1298
+        entity_flags: 133
+        model_size:     2
+        hitbox:        13
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+
+  Proconsul_XII:
+    id:            3201
+    species:       antica
+    type:          [notorious]
+    spell_list_id: 4
+    skill_list_id: 25
+    attributes:
+      combat:
+        skill: sword
+        delay: 265
+      jobs: [pld, pld]
+      render:
+        look:
+          type:  standard
+          model: 1297
+        entity_flags: 135
+        model_size:     3
+        hitbox:        16
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 7200
+      stats:
+        hp: 11500
+        mp: 11500
+    loot:
+      drops:
+        - chance: always
+          item:   antican_pauldron
+        - chance: always
+          item:   chunk_of_iron_ore
+        - chance: always
+          item:   chunk_of_iron_ore
+        - chance: very_common
+          item:   chunk_of_mythril_ore
+        - chance: common
+          item:   chunk_of_mythril_ore
+        - chance: common
+          item:   chunk_of_darksteel_ore
+        - chance: rare
+          item:   chunk_of_adaman_ore
+        - chance: rare
+          item:   chunk_of_adaman_ore
+        - chance: common
+          item:   dainslaif
+
+  Sabotender_Bailaor:
+    id:            6898
+    species:       sabotender
+    skill_list_id: 212
+    attributes:
+      combat:
+        skill: scythe
+        delay: 360
+      jobs: [mnk, mnk]
+      render:
+        look:
+          type:  standard
+          model: 372
+        entity_flags: 131
+        model_size:     1
+        hitbox:         8
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: rare
+          item:   quicksand_coffer_key
+        - chance: uncommon
+          item:   flask_of_distilled_water
+        - chance: uncommon
+          item:   cactuar_needle
+        - chance: uncommon
+          item:   cactus_arm
+        - chance: uncommon
+          item:   bag_of_cactus_stems
+      steal: cactuar_needle
+      despoil:
+        cactuar_needle: 0
+
+  Sabotender_Bailarin:
+    id:            3428
+    species:       sabotender
+    type:          [notorious]
+    skill_list_id: 212
+    attributes:
+      combat:
+        skill: scythe
+        delay: 360
+      jobs: [mnk, mnk]
+      render:
+        look:
+          type:  standard
+          model: 372
+        entity_flags: 133
+        model_size:     2
+        hitbox:         9
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [lottery]
+      stats:
+        hp: 7000
+    loot:
+      drops:
+        - chance: very_common
+          item:   bailathorn
+        - chance: common
+          item:   cactuar_root
+        - chance: very_common
+          item:   bailathorn
+        - chance: common
+          item:   bailathorn
+
+  Sabotender_Bailarina:
+    id:            6899
+    species:       sabotender
+    type:          [notorious]
+    skill_list_id: 212
+    attributes:
+      combat:
+        skill: scythe
+        delay: 360
+      jobs: [mnk, mnk]
+      render:
+        look:
+          type:  standard
+          model: 372
+        entity_flags: 647
+        model_size:     3
+        hitbox:        11
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [lottery]
+      stats:
+        hp: 26500
+    loot:
+      drops:
+        - chance: always
+          item:   dune_boots
+        - chance: very_common
+          item:   cactuar_root
+        - chance: common
+          item:   bag_of_cactus_stems
+        - chance: common
+          item:   cactuar_needle
+
+  Sagittarius_X-XIII:
+    id:            3438
+    species:       antica
+    type:          [notorious]
+    skill_list_id: 25
+    attributes:
+      combat:
+        skill: dagger
+        delay: 265
+      jobs: [rng, rng]
+      render:
+        look:
+          type:  standard
+          model: 1276
+        entity_flags: 135
+        model_size:     3
+        hitbox:        16
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [lottery]
+      stats:
+        hp: 6000
+    loot:
+      drops:
+        - chance: always
+          item:   antican_robe
+        - chance: very_common
+          item:   loxley_bow
+        - chance: always
+          item:   chunk_of_iron_ore
+        - chance: always
+          item:   chunk_of_iron_ore
+        - chance: very_common
+          item:   chunk_of_mythril_ore
+        - chance: common
+          item:   chunk_of_mythril_ore
+        - chance: uncommon
+          item:   chunk_of_darksteel_ore
+        - chance: uncommon
+          item:   chunk_of_darksteel_ore
+        - chance: rare
+          item:   chunk_of_adaman_ore
+        - chance: rare
+          item:   chunk_of_adaman_ore
+
+  Sand_Digger:
+    id:            3453
+    species:       worm
+    roam:          [worm]
+    spell_list_id: 9
+    skill_list_id: 258
+    attributes:
+      combat:
+        skill: scythe
+      jobs: [blm, rdm]
+      render:
+        look:
+          type:  standard
+          model: 424
+        entity_flags: 133
+        model_size:     2
+        hitbox:        14
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: rare
+          item:   rock_of_ancient_salt
+      steal: pebble
+      despoil:
+        chunk_of_copper_ore: 0
+        chunk_of_iron_ore:   0
+        chunk_of_silver_ore: 0
+        chunk_of_zinc_ore:   0
+
+  Sand_Eater:
+    id:            3454
+    species:       worm
+    roam:          [worm]
+    spell_list_id: 9
+    skill_list_id: 258
+    attributes:
+      combat:
+        skill: scythe
+      jobs: [blm, rdm]
+      render:
+        look:
+          type:  standard
+          model: 424
+        entity_flags: 131
+        model_size:     1
+        hitbox:        12
+      behaviors:
+        links: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   flint_stone
+        - chance: uncommon
+          item:   chunk_of_copper_ore
+        - chance: rare
+          item:   chunk_of_zinc_ore
+        - chance: very_rare
+          item:   quicksand_coffer_key
+        - chance: very_rare
+          item:   chunk_of_iron_ore
+      despoil:
+        chunk_of_copper_ore: 0
+        chunk_of_iron_ore:   0
+        chunk_of_silver_ore: 0
+        chunk_of_zinc_ore:   0
+
+  Sand_Lizard:
+    id:            3456
+    species:       hill_lizard
+    skill_list_id: 174
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 328
+        entity_flags: 131
+        model_size:     1
+        hitbox:        16
+      behaviors:
+        links: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   lizard_tail
+        - chance: rare
+          item:   lizard_skin
+        - chance: common
+          item:   lizard_egg
+        - chance: rare
+          item:   lizard_skin
+        - chance: rare
+          item:   quicksand_coffer_key
+      steal: lizard_egg
+      despoil:
+        lizard_skin: 0
+        lizard_tail: 0
+        lizard_egg:  0
+
+  Sand_Lizard_TVR:
+    id:            7069
+    display_name:  Sand_Lizard
+    species:       hill_lizard
+    type:          [notorious]
+    skill_list_id: 174
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 328
+        entity_flags: 131
+        model_size:     1
+        hitbox:        16
+      behaviors:
+        links: true
+      spawn:
+        type: [scripted]
+
+  Sand_Spider:
+    id:            3459
+    species:       spider
+    skill_list_id: 236
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 310
+        entity_flags:  643
+        animation_sub:   8
+        model_size:      1
+        hitbox:         13
+      behaviors:
+        links: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: very_rare
+          item:   spider_web
+        - chance: very_rare
+          item:   quicksand_coffer_key
+      steal: spider_web
+      despoil:
+        spool_of_rainbow_thread: 0
+        spider_web:              0
+
+  Sand_Tarantula:
+    id:            3461
+    species:       spider
+    skill_list_id: 236
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 310
+        entity_flags:  645
+        animation_sub:   8
+        model_size:      2
+        hitbox:         16
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   spider_web
+      steal: spider_web
+      despoil:
+        spool_of_rainbow_thread: 0
+        spider_web:              0
+
+  Sand_Tarantula_TVR:
+    id:            7055
+    display_name:  Sand_Tarantula
+    species:       spider
+    type:          [notorious]
+    skill_list_id: 236
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 310
+        entity_flags:  645
+        animation_sub:   8
+        model_size:      2
+        hitbox:         16
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+
+  Spelunking_Sabotender:
+    id:            3727
+    species:       sabotender
+    skill_list_id: 212
+    attributes:
+      combat:
+        skill: scythe
+        delay: 360
+      render:
+        look:
+          type:  standard
+          model: 372
+        entity_flags: 133
+        model_size:     2
+        hitbox:         9
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   cactuar_needle
+        - chance: uncommon
+          item:   cactus_arm
+        - chance: uncommon
+          item:   star_spinel
+        - chance: uncommon
+          item:   bag_of_cactus_stems
+      steal: cactuar_needle
+      despoil:
+        cactuar_needle: 0
+
+  Spelunking_Sabotender_TVR:
+    id:            6695
+    display_name:  Spelunking_Sabotender
+    species:       sabotender
+    type:          [notorious]
+    skill_list_id: 212
+    attributes:
+      combat:
+        skill: scythe
+        delay: 360
+      jobs: [mnk, mnk]
+      render:
+        look:
+          type:  standard
+          model: 372
+        entity_flags: 133
+        model_size:     2
+        hitbox:         9
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+
+  Triarius_IV-XIV:
+    id:            3999
+    species:       antica
+    type:          [notorious]
+    spell_list_id: 21
+    skill_list_id: 25
+    attributes:
+      combat:
+        skill: staff
+        delay: 265
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 1282
+        entity_flags: 131
+        model_size:     1
+        hitbox:        12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+
+  Triarius_X-XV:
+    id:            4001
+    species:       antica
+    type:          [notorious]
+    skill_list_id: 25
+    attributes:
+      combat:
+        skill: axe
+        delay: 265
+      render:
+        look:
+          type:  standard
+          model: 1260
+        entity_flags: 135
+        model_size:     3
+        hitbox:        16
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [lottery]
+      stats:
+        hp: 11500
+    loot:
+      drops:
+        - chance: always
+          item:   antican_pauldron
+        - chance: common
+          item:   pendragon_axe
+        - chance: always
+          item:   chunk_of_iron_ore
+        - chance: always
+          item:   chunk_of_iron_ore
+        - chance: very_common
+          item:   chunk_of_mythril_ore
+        - chance: common
+          item:   chunk_of_mythril_ore
+        - chance: uncommon
+          item:   chunk_of_darksteel_ore
+        - chance: uncommon
+          item:   chunk_of_darksteel_ore
+        - chance: rare
+          item:   chunk_of_adaman_ore
+        - chance: rare
+          item:   chunk_of_adaman_ore
+
+  Tribunus_VII-I:
+    id:            4003
+    species:       antica
+    type:          [notorious]
+    skill_list_id: 25
+    attributes:
+      combat:
+        skill: axe
+        delay: 265
+      render:
+        look:
+          type:  standard
+          model: 1259
+        entity_flags: 135
+        model_size:     3
+        hitbox:        16
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 10500
+    loot:
+      drops:
+        - chance: always
+          item:   antican_pauldron
+        - chance: common
+          item:   tungi
+        - chance: always
+          item:   chunk_of_iron_ore
+        - chance: always
+          item:   chunk_of_iron_ore
+        - chance: very_common
+          item:   chunk_of_mythril_ore
+        - chance: common
+          item:   chunk_of_mythril_ore
+        - chance: uncommon
+          item:   chunk_of_darksteel_ore
+        - chance: uncommon
+          item:   chunk_of_darksteel_ore
+        - chance: rare
+          item:   chunk_of_adaman_ore
+        - chance: rare
+          item:   chunk_of_adaman_ore
+
+  Uran-Mafran_Quicksand:
+    id:           6692
+    display_name: Uran-Mafran
+    species:      tarutaru
+    type:         [notorious]
+    attributes:
+      combat:
+        skill: hand_to_hand
+      render:
+        look:
+          type:  equipped
+          race:  5
+          face:  4
+          head:  4096
+          body:  8238
+          hands: 12334
+          legs:  16430
+          feet:  20526
+          main:  25477
+          sub:   28672
+        entity_flags:  3
+        model_size:    1
+        hitbox:       12
+      spawn:
+        type: [scripted]
+
+  Valor:
+    id:            4126
+    species:       sea_monk
+    type:          [notorious]
+    skill_list_id: 218
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 352
+        entity_flags: 159
+        name_prefix:   32
+        model_size:     3
+        hitbox:        25
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 6400
+
+
+  Beta_sabo_Sabotender_Bailaor:
+    id:            40079
+    species:       sabotender
+    skill_list_id: 212
+    attributes:
+      combat:
+        skill: scythe
+        delay: 360
+      jobs: [mnk, mnk]
+      render:
+        look:
+          type:  standard
+          model: 2966
+        entity_flags: 131
+        model_size:     1
+        hitbox:         8
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: rare
+          item:   beta_10599
+        - chance: uncommon
+          item:   beta_243
+        - chance: uncommon
+          item:   beta_4911
+        - chance: uncommon
+          item:   beta_6791
+        - chance: rare
+          item:   quicksand_coffer_key
+        - chance: uncommon
+          item:   flask_of_distilled_water
+        - chance: uncommon
+          item:   cactuar_needle
+        - chance: uncommon
+          item:   cactus_arm
+        - chance: uncommon
+          item:   bag_of_cactus_stems
+      steal: cactuar_needle
+      despoil:
+        cactuar_needle: 0
+
+spawns:
+  17629185:
+    template: Valor
+    at:       [572.037, 22.212, -940.621, 117]
+    level:    [70, 70]
+  17629186:
+    template: Honor
+    at:       [576.066, 22.890, -935.485, 117]
+    level:    [70, 70]
+  17629187:
+    template: Centurio_IV-VII
+    at:       [-468.000, 0.001, 625.000, 27]
+    level:    [70, 70]
+  17629188:
+    template: Triarius_IV-XIV
+    at:       [-468.000, 0.001, 617.000, 240]
+    level:    [70, 70]
+  17629189:
+    template: Princeps_IV-XLV
+    at:       [-468.000, 0.001, 620.000, 27]
+    level:    [70, 70]
+  17629190:
+    template: Mimic
+    at:       [1.000, 1.000, 1.000]
+    level:    [55, 55]
+  17629191:
+    template: Sand_Spider
+    region:   region_101
+    level:    [51, 55]
+  17629192:
+    template: Sand_Spider
+    region:   e_8
+    level:    [51, 55]
+  17629193:
+    template: Sand_Spider
+    region:   e_8
+    level:    [51, 55]
+  17629194:
+    template: Helm_Beetle
+    region:   e_8
+    level:    [51, 54]
+  17629195:
+    template: Helm_Beetle
+    region:   e_8
+    level:    [51, 54]
+  17629196:
+    template: Sand_Spider
+    region:   region_102
+    level:    [51, 55]
+  17629197:
+    template: Sand_Spider
+    region:   se_13
+    level:    [51, 55]
+  17629198:
+    template: Sand_Spider
+    region:   se_13
+    level:    [51, 55]
+  17629199:
+    template: Helm_Beetle
+    region:   se_13
+    level:    [51, 54]
+  17629200:
+    template: Helm_Beetle
+    region:   se_13
+    level:    [51, 54]
+  17629201:
+    template: Sand_Spider
+    region:   se_17
+    level:    [51, 55]
+  17629202:
+    template: Helm_Beetle
+    region:   se_17
+    level:    [51, 54]
+  17629203:
+    template: Antican_Hastatus
+    region:   se_17
+    level:    [52, 55]
+  17629204:
+    template: Antican_Princeps
+    region:   se_17
+    level:    [52, 55]
+  17629205:
+    template: Antican_Signifer
+    region:   se_17
+    level:    [52, 55]
+  17629206:
+    template: Sand_Eater
+    region:   region_103
+    level:    [51, 54]
+  17629207:
+    template: Sand_Eater
+    region:   se_23
+    level:    [51, 54]
+  17629208:
+    template: Sand_Eater
+    region:   se_23
+    level:    [51, 54]
+  17629209:
+    template: Antican_Hastatus
+    region:   se_23
+    level:    [52, 55]
+  17629210:
+    template: Antican_Princeps
+    region:   se_23
+    level:    [52, 55]
+  17629211:
+    template: Antican_Signifer
+    region:   se_23
+    level:    [52, 55]
+  17629212:
+    template: Antican_Hastatus
+    region:   se_28
+    level:    [52, 55]
+  17629213:
+    template: Antican_Princeps
+    region:   se_28
+    level:    [52, 55]
+  17629214:
+    template: Antican_Signifer
+    region:   se_28
+    level:    [52, 55]
+  17629215:
+    template: Helm_Beetle
+    region:   se_28
+    level:    [51, 54]
+  17629216:
+    template: Helm_Beetle
+    region:   se_28
+    level:    [51, 54]
+  17629217:
+    template: Helm_Beetle
+    region:   region_104
+    level:    [51, 54]
+  17629218:
+    template: Antican_Princeps
+    region:   region_105
+    level:    [52, 55]
+  17629219:
+    template: Helm_Beetle
+    region:   region_106
+    level:    [51, 54]
+  17629220:
+    template: Helm_Beetle
+    region:   se_36
+    level:    [51, 54]
+  17629221:
+    template: Helm_Beetle
+    region:   se_36
+    level:    [51, 54]
+  17629222:
+    template: Sand_Spider
+    region:   se_38
+    level:    [51, 55]
+  17629223:
+    template: Sand_Eater
+    region:   se_38
+    level:    [51, 54]
+  17629224:
+    template: Sand_Eater
+    region:   se_38
+    level:    [51, 54]
+  17629225:
+    template: Antican_Hastatus
+    region:   se_38
+    level:    [52, 55]
+  17629226:
+    template: Antican_Princeps
+    region:   se_38
+    level:    [52, 55]
+  17629227:
+    template: Antican_Signifer
+    region:   se_38
+    level:    [52, 55]
+  17629228:
+    template: Sand_Spider
+    region:   se_44
+    level:    [51, 55]
+  17629229:
+    template: Sand_Eater
+    region:   se_44
+    level:    [52, 55]
+  17629230:
+    template: Antican_Hastatus
+    region:   se_44
+    level:    [52, 55]
+  17629231:
+    template: Antican_Princeps
+    region:   se_44
+    level:    [52, 55]
+  17629232:
+    template: Antican_Signifer
+    region:   se_44
+    level:    [52, 55]
+  17629233:
+    template: Sand_Spider
+    region:   se_49
+    level:    [51, 55]
+  17629234:
+    template: Sand_Eater
+    region:   se_49
+    level:    [52, 55]
+  17629235:
+    template: Antican_Hastatus
+    region:   se_49
+    level:    [52, 55]
+  17629236:
+    template: Antican_Princeps
+    region:   se_49
+    level:    [52, 55]
+  17629237:
+    template: Antican_Signifer
+    region:   se_49
+    level:    [52, 55]
+  17629238:
+    template: Centurio_X-I
+    region:   se_49
+    level:    [56, 58]
+  17629239:
+    template: Sand_Spider
+    region:   se_55
+    level:    [51, 55]
+  17629240:
+    template: Antican_Hastatus
+    region:   se_56
+    level:    [52, 55]
+  17629241:
+    template: Antican_Princeps
+    region:   se_56
+    level:    [52, 55]
+  17629242:
+    template: Antican_Signifer
+    region:   se_56
+    level:    [52, 55]
+  17629243:
+    template: Antican_Hastatus
+    region:   se_56
+    level:    [52, 55]
+  17629244:
+    template: Antican_Princeps
+    region:   se_56
+    level:    [52, 55]
+  17629245:
+    template: Sand_Spider
+    region:   se_56
+    level:    [51, 55]
+  17629246:
+    template: Sand_Eater
+    region:   region_107
+    level:    [52, 55]
+  17629247:
+    template: Sand_Spider
+    region:   se_63
+    level:    [51, 55]
+  17629248:
+    template: Sand_Spider
+    region:   se_63
+    level:    [51, 55]
+  17629249:
+    template: Sand_Spider
+    region:   se_63
+    level:    [51, 55]
+  17629250:
+    template: Sand_Eater
+    region:   se_63
+    level:    [52, 55]
+  17629251:
+    template: Sand_Eater
+    region:   se_63
+    level:    [52, 55]
+  17629252:
+    template: Antican_Hastatus
+    region:   se_68
+    level:    [52, 55]
+  17629253:
+    template: Antican_Princeps
+    region:   se_68
+    level:    [52, 55]
+  17629254:
+    template: Antican_Signifer
+    region:   se_68
+    level:    [52, 55]
+  17629255:
+    template: Sabotender_Bailaor
+    region:   se_68
+    level:    [52, 55]
+  17629256:
+    template: Sabotender_Bailaor
+    region:   se_68
+    level:    [52, 55]
+  17629257:
+    template: Sand_Eater
+    region:   se_68
+    level:    [52, 55]
+  17629258:
+    template: Antican_Hastatus
+    region:   se_74
+    level:    [52, 55]
+  17629259:
+    template: Antican_Princeps
+    region:   se_74
+    level:    [52, 55]
+  17629260:
+    template: Antican_Signifer
+    region:   se_74
+    level:    [52, 55]
+  17629261:
+    template: Sabotender_Bailaor
+    region:   se_74
+    level:    [52, 55]
+  17629262:
+    template: Sabotender_Bailaor
+    region:   se_74
+    level:    [52, 55]
+  17629263:
+    template: Sand_Eater
+    region:   se_74
+    level:    [52, 55]
+  17629264:
+    template: Sabotender_Bailarin
+    region:   se_74
+    level:    [59, 61]
+  17629265:
+    template: Sabotender_Bailaor
+    region:   se_81
+    level:    [52, 55]
+  17629266:
+    template: Sabotender_Bailaor
+    region:   se_81
+    level:    [52, 55]
+  17629267:
+    template: Sand_Eater
+    region:   se_81
+    level:    [52, 55]
+  17629268:
+    template: Sand_Eater
+    region:   se_84
+    level:    [52, 55]
+  17629269:
+    template: Sand_Eater
+    region:   se_84
+    level:    [52, 55]
+  17629270:
+    template: Antican_Hastatus
+    region:   se_86
+    level:    [52, 55]
+  17629271:
+    template: Antican_Princeps
+    region:   se_86
+    level:    [52, 55]
+  17629272:
+    template: Antican_Signifer
+    region:   se_86
+    level:    [52, 55]
+  17629273:
+    template: Antican_Princeps
+    region:   se_86
+    level:    [52, 55]
+  17629274:
+    template: Antican_Signifer
+    region:   se_86
+    level:    [52, 55]
+  17629275:
+    template: Sand_Spider
+    region:   region_108
+    level:    [51, 55]
+  17629276:
+    template: Antican_Hastatus
+    region:   se_92
+    level:    [52, 55]
+  17629277:
+    template: Antican_Signifer
+    region:   se_92
+    level:    [52, 55]
+  17629278:
+    template: Sand_Eater
+    region:   se_92
+    level:    [52, 55]
+  17629279:
+    template: Antican_Hastatus
+    region:   se_95
+    level:    [52, 55]
+  17629280:
+    template: Antican_Princeps
+    region:   se_95
+    level:    [52, 55]
+  17629281:
+    template: Antican_Praefectus
+    region:   se_95
+    level:    [65, 65]
+  17629282:
+    template: Sand_Eater
+    region:   se_95
+    level:    [52, 55]
+  17629283:
+    template: Antican_Hastatus
+    region:   se_99
+    level:    [52, 55]
+  17629284:
+    template: Antican_Princeps
+    region:   se_99
+    level:    [52, 55]
+  17629285:
+    template: Antican_Signifer
+    region:   se_99
+    level:    [52, 55]
+  17629286:
+    template: Sand_Eater
+    region:   se_99
+    level:    [52, 55]
+  17629287:
+    template: Antican_Hastatus
+    region:   se_103
+    level:    [52, 55]
+  17629288:
+    template: Antican_Signifer
+    region:   se_103
+    level:    [52, 55]
+  17629289:
+    template: Sand_Eater
+    region:   se_103
+    level:    [52, 55]
+  17629290:
+    template: Antican_Hastatus
+    region:   se_106
+    level:    [52, 55]
+  17629291:
+    template: Antican_Princeps
+    region:   se_106
+    level:    [52, 55]
+  17629292:
+    template: Sand_Eater
+    region:   se_106
+    level:    [52, 55]
+  17629293:
+    template: Sand_Eater
+    region:   region_109
+    level:    [52, 55]
+  17629294:
+    template: Helm_Beetle
+    region:   se_110
+    level:    [51, 54]
+  17629295:
+    template: Antican_Hastatus
+    region:   se_111
+    level:    [52, 55]
+  17629296:
+    template: Antican_Princeps
+    region:   se_111
+    level:    [52, 55]
+  17629297:
+    template: Antican_Signifer
+    region:   se_111
+    level:    [52, 55]
+  17629298:
+    template: Antican_Hastatus
+    region:   se_111
+    level:    [52, 55]
+  17629299:
+    template: Antican_Signifer
+    region:   se_111
+    level:    [52, 55]
+  17629300:
+    template: Helm_Beetle
+    region:   se_111
+    level:    [51, 54]
+  17629301:
+    template: Sagittarius_X-XIII
+    region:   se_111
+    level:    [55, 57]
+  17629302:
+    template: Helm_Beetle
+    region:   region_110
+    level:    [51, 54]
+  17629303:
+    template: Antican_Hastatus
+    region:   se_119
+    level:    [52, 55]
+  17629304:
+    template: Antican_Princeps
+    region:   se_119
+    level:    [52, 55]
+  17629305:
+    template: Antican_Signifer
+    region:   se_119
+    level:    [52, 55]
+  17629306:
+    template: Antican_Hastatus
+    region:   se_119
+    level:    [52, 55]
+  17629307:
+    template: Antican_Princeps
+    region:   se_119
+    level:    [52, 55]
+  17629308:
+    template: Antican_Signifer
+    region:   se_119
+    level:    [52, 55]
+  17629309:
+    template: Helm_Beetle
+    region:   se_125
+    level:    [51, 54]
+  17629310:
+    template: Antican_Signifer
+    region:   region_111
+    level:    [52, 55]
+  17629311:
+    template: Antican_Princeps
+    region:   region_112
+    level:    [52, 55]
+  17629312:
+    template: Sabotender_Bailaor
+    region:   se_128
+    level:    [52, 55]
+  17629313:
+    template: Sabotender_Bailaor
+    region:   se_128
+    level:    [52, 55]
+  17629314:
+    template: Sabotender_Bailaor
+    region:   se_130
+    level:    [52, 55]
+  17629315:
+    template: Antican_Hastatus
+    region:   se_130
+    level:    [52, 55]
+  17629316:
+    template: Antican_Princeps
+    region:   se_130
+    level:    [52, 55]
+  17629317:
+    template: Antican_Signifer
+    region:   se_130
+    level:    [52, 55]
+  17629318:
+    template: Antican_Hastatus
+    region:   se_130
+    level:    [52, 55]
+  17629319:
+    template: Antican_Princeps
+    region:   se_130
+    level:    [52, 55]
+  17629320:
+    template: Helm_Beetle
+    region:   region_113
+    level:    [51, 54]
+  17629321:
+    template: Antican_Hastatus
+    region:   se_137
+    level:    [52, 55]
+  17629322:
+    template: Antican_Princeps
+    region:   se_137
+    level:    [52, 55]
+  17629323:
+    template: Antican_Signifer
+    region:   se_137
+    level:    [52, 55]
+  17629324:
+    template: Antican_Hastatus
+    region:   se_137
+    level:    [52, 55]
+  17629325:
+    template: Antican_Princeps
+    region:   se_137
+    level:    [52, 55]
+  17629326:
+    template: Antican_Signifer
+    region:   se_137
+    level:    [52, 55]
+  17629327:
+    template: Helm_Beetle
+    region:   se_137
+    level:    [51, 54]
+  17629328:
+    template: Antican_Signifer
+    region:   region_116
+    level:    [52, 55]
+  17629329:
+    template: Antican_Princeps
+    region:   region_115
+    level:    [52, 55]
+  17629330:
+    template: Helm_Beetle
+    region:   region_117
+    level:    [51, 54]
+  17629331:
+    template: Helm_Beetle
+    region:   se_147
+    level:    [51, 54]
+  17629332:
+    template: Antican_Hastatus
+    region:   se_147
+    level:    [52, 55]
+  17629333:
+    template: Antican_Princeps
+    region:   se_147
+    level:    [52, 55]
+  17629334:
+    template: Antican_Signifer
+    region:   se_147
+    level:    [52, 55]
+  17629335:
+    template: Antican_Hastatus
+    region:   se_147
+    level:    [52, 55]
+  17629336:
+    template: Antican_Signifer
+    region:   se_147
+    level:    [52, 55]
+  17629337:
+    template: Antican_Hastatus
+    region:   se_153
+    level:    [52, 55]
+  17629338:
+    template: Antican_Princeps
+    region:   se_153
+    level:    [52, 55]
+  17629339:
+    template: Antican_Signifer
+    region:   se_153
+    level:    [52, 55]
+  17629340:
+    template: Sabotender_Bailaor
+    region:   se_153
+    level:    [52, 55]
+  17629341:
+    template: Sabotender_Bailaor
+    region:   se_153
+    level:    [52, 55]
+  17629342:
+    template: Sand_Eater
+    region:   se_153
+    level:    [52, 55]
+  17629343:
+    template: Sabotender_Bailaor
+    region:   se_159
+    level:    [52, 55]
+  17629344:
+    template: Sand_Eater
+    region:   se_159
+    level:    [52, 55]
+  17629345:
+    template: Sabotender_Bailaor
+    region:   se_161
+    level:    [52, 55]
+  17629346:
+    template: Sand_Eater
+    region:   se_161
+    level:    [52, 55]
+  17629347:
+    template: Sabotender_Bailaor
+    region:   se_163
+    level:    [52, 55]
+  17629348:
+    template: Sabotender_Bailaor
+    region:   se_163
+    level:    [52, 55]
+  17629349:
+    template: Sand_Eater
+    region:   se_163
+    level:    [52, 55]
+  17629350:
+    template: Antican_Hastatus
+    region:   se_166
+    level:    [52, 55]
+  17629351:
+    template: Antican_Princeps
+    region:   se_166
+    level:    [52, 55]
+  17629352:
+    template: Antican_Signifer
+    region:   se_166
+    level:    [52, 55]
+  17629353:
+    template: Sabotender_Bailaor
+    region:   se_166
+    level:    [52, 55]
+  17629354:
+    template: Sabotender_Bailaor
+    region:   se_166
+    level:    [52, 55]
+  17629355:
+    template: Sand_Eater
+    region:   se_166
+    level:    [52, 55]
+  17629356:
+    template: Helm_Beetle
+    region:   c_172
+    level:    [55, 58]
+  17629357:
+    template: Helm_Beetle
+    region:   c_173
+    level:    [55, 58]
+  17629358:
+    template: Helm_Beetle
+    region:   c_173
+    level:    [55, 58]
+  17629359:
+    template: Antican_Hastatus
+    region:   c_175
+    level:    [56, 59]
+  17629360:
+    template: Antican_Princeps
+    region:   c_175
+    level:    [56, 59]
+  17629361:
+    template: Antican_Signifer
+    region:   c_175
+    level:    [56, 59]
+  17629362:
+    template: Antican_Hastatus
+    region:   c_175
+    level:    [56, 59]
+  17629363:
+    template: Antican_Princeps
+    region:   c_175
+    level:    [56, 59]
+  17629364:
+    template: Antican_Signifer
+    region:   c_175
+    level:    [56, 59]
+  17629365:
+    template: Helm_Beetle
+    region:   c_175
+    level:    [55, 58]
+  17629366:
+    template: Antican_Hastatus
+    region:   c_182
+    level:    [57, 59]
+  17629367:
+    template: Antican_Princeps
+    region:   c_182
+    level:    [56, 57]
+  17629368:
+    template: Antican_Signifer
+    region:   c_182
+    level:    [56, 59]
+  17629369:
+    template: Antican_Hastatus
+    region:   c_182
+    level:    [56, 59]
+  17629370:
+    template: Antican_Princeps
+    region:   c_182
+    level:    [56, 59]
+  17629371:
+    template: Antican_Signifer
+    region:   c_182
+    level:    [56, 59]
+  17629372:
+    template: Helm_Beetle
+    region:   c_182
+    level:    [55, 58]
+  17629373:
+    template: Sand_Lizard
+    region:   c_182
+    level:    [56, 59]
+  17629374:
+    template: Antican_Hastatus
+    region:   c_190
+    level:    [56, 59]
+  17629375:
+    template: Antican_Princeps
+    region:   c_190
+    level:    [56, 59]
+  17629376:
+    template: Antican_Signifer
+    region:   c_190
+    level:    [56, 59]
+  17629377:
+    template: Antican_Princeps
+    region:   c_190
+    level:    [56, 59]
+  17629378:
+    template: Antican_Signifer
+    region:   c_190
+    level:    [56, 59]
+  17629379:
+    template: Helm_Beetle
+    region:   c_190
+    level:    [55, 58]
+  17629380:
+    template: Sand_Lizard
+    region:   c_190
+    level:    [56, 59]
+  17629381:
+    template: Antican_Hastatus
+    region:   c_197
+    level:    [56, 59]
+  17629382:
+    template: Antican_Princeps
+    region:   c_197
+    level:    [56, 59]
+  17629383:
+    template: Antican_Signifer
+    region:   c_197
+    level:    [56, 59]
+  17629384:
+    template: Antican_Princeps
+    region:   c_197
+    level:    [56, 59]
+  17629385:
+    template: Antican_Signifer
+    region:   c_197
+    level:    [56, 59]
+  17629386:
+    template: Sabotender_Bailaor
+    region:   c_197
+    level:    [56, 59]
+  17629387:
+    template: Sand_Lizard
+    region:   region_121
+    level:    [56, 59]
+  17629388:
+    template: Antican_Hastatus
+    region:   c_204
+    level:    [56, 59]
+  17629389:
+    template: Antican_Princeps
+    region:   c_204
+    level:    [56, 59]
+  17629390:
+    template: Antican_Signifer
+    region:   c_204
+    level:    [56, 59]
+  17629391:
+    template: Antican_Hastatus
+    region:   c_204
+    level:    [56, 59]
+  17629392:
+    template: Antican_Princeps
+    region:   c_204
+    level:    [56, 59]
+  17629393:
+    template: Antican_Signifer
+    region:   c_204
+    level:    [56, 59]
+  17629394:
+    template: Sand_Lizard
+    region:   c_204
+    level:    [56, 59]
+  17629395:
+    template: Sand_Lizard
+    region:   c_211
+    level:    [56, 59]
+  17629396:
+    template: Sand_Lizard
+    region:   c_212
+    level:    [56, 59]
+  17629397:
+    template: Sand_Lizard
+    region:   c_212
+    level:    [56, 59]
+  17629398:
+    template: Antican_Hastatus
+    region:   c_212
+    level:    [56, 59]
+  17629399:
+    template: Antican_Princeps
+    region:   c_212
+    level:    [56, 59]
+  17629400:
+    template: Antican_Signifer
+    region:   c_212
+    level:    [56, 59]
+  17629401:
+    template: Antican_Hastatus
+    region:   c_212
+    level:    [56, 59]
+  17629402:
+    template: Antican_Signifer
+    region:   c_212
+    level:    [56, 59]
+  17629403:
+    template: Nussknacker
+    region:   c_212
+    level:    [60, 61]
+  17629404:
+    template: Sand_Eater
+    region:   c_220
+    level:    [56, 59]
+  17629405:
+    template: Sand_Eater
+    region:   c_220
+    level:    [56, 59]
+  17629406:
+    template: Sabotender_Bailaor
+    region:   c_220
+    level:    [56, 59]
+  17629407:
+    template: Sabotender_Bailaor
+    region:   c_220
+    level:    [56, 59]
+  17629408:
+    template: Sand_Lizard
+    region:   region_118
+    level:    [56, 59]
+  17629409:
+    template: Antican_Hastatus
+    region:   c_225
+    level:    [56, 59]
+  17629410:
+    template: Antican_Princeps
+    region:   c_225
+    level:    [56, 59]
+  17629411:
+    template: Antican_Signifer
+    region:   c_225
+    level:    [56, 59]
+  17629412:
+    template: Antican_Magister
+    region:   c_225
+    level:    [65, 66]
+  17629413:
+    template: Sand_Lizard
+    region:   c_225
+    level:    [56, 59]
+  17629414:
+    template: Sand_Lizard
+    region:   c_225
+    level:    [56, 59]
+  17629415:
+    template: Sand_Lizard
+    region:   c_225
+    level:    [56, 59]
+  17629416:
+    template: Antican_Princeps
+    region:   region_119
+    level:    [56, 59]
+  17629417:
+    template: Helm_Beetle
+    region:   region_120
+    level:    [55, 58]
+  17629418:
+    template: Antican_Hastatus
+    region:   c_234
+    level:    [56, 59]
+  17629419:
+    template: Antican_Princeps
+    region:   c_234
+    level:    [56, 59]
+  17629420:
+    template: Antican_Signifer
+    region:   c_234
+    level:    [56, 59]
+  17629421:
+    template: Antican_Proconsul
+    region:   c_234
+    level:    [65, 65]
+  17629422:
+    template: Helm_Beetle
+    region:   c_234
+    level:    [55, 58]
+  17629423:
+    template: Helm_Beetle
+    region:   c_234
+    level:    [55, 58]
+  17629424:
+    template: Helm_Beetle
+    region:   c_234
+    level:    [55, 58]
+  17629425:
+    template: Antican_Hastatus
+    region:   c_241
+    level:    [56, 59]
+  17629426:
+    template: Antican_Princeps
+    region:   c_241
+    level:    [56, 59]
+  17629427:
+    template: Antican_Signifer
+    region:   c_241
+    level:    [56, 59]
+  17629428:
+    template: Antican_Princeps
+    region:   c_241
+    level:    [56, 59]
+  17629429:
+    template: Antican_Signifer
+    region:   c_241
+    level:    [56, 59]
+  17629430:
+    template: Diamond_Daig
+    region:   c_241
+    level:    [70, 70]
+  17629431:
+    template: Antican_Hastatus
+    region:   c_247
+    level:    [56, 59]
+  17629432:
+    template: Antican_Signifer
+    region:   c_247
+    level:    [56, 59]
+  17629433:
+    template: Helm_Beetle
+    region:   c_256
+    level:    [55, 58]
+  17629434:
+    template: Antican_Princeps
+    region:   c_250
+    level:    [56, 59]
+  17629435:
+    template: Antican_Signifer
+    region:   c_250
+    level:    [56, 59]
+  17629436:
+    template: Helm_Beetle
+    region:   c_256
+    level:    [55, 58]
+  17629437:
+    template: Antican_Hastatus
+    region:   c_253
+    level:    [56, 59]
+  17629438:
+    template: Antican_Princeps
+    region:   c_253
+    level:    [56, 59]
+  17629439:
+    template: Helm_Beetle
+    region:   c_256
+    level:    [55, 58]
+  17629440:
+    template: Antican_Hastatus
+    region:   c_256
+    level:    [56, 59]
+  17629441:
+    template: Antican_Signifer
+    region:   c_256
+    level:    [56, 59]
+  17629442:
+    template: Helm_Beetle
+    region:   c_256
+    level:    [55, 58]
+  17629443:
+    template: Antican_Princeps
+    region:   region_141
+    level:    [56, 59]
+  17629444:
+    template: Antican_Princeps
+    region:   c_260
+    level:    [56, 59]
+  17629445:
+    template: Antican_Princeps
+    region:   c_260
+    level:    [56, 59]
+  17629446:
+    template: Helm_Beetle
+    region:   c_256
+    level:    [55, 58]
+  17629447:
+    template: Helm_Beetle
+    region:   region_142
+    level:    [55, 58]
+  17629448:
+    template: Antican_Hastatus
+    region:   c_264
+    level:    [56, 59]
+  17629449:
+    template: Antican_Princeps
+    region:   c_264
+    level:    [56, 59]
+  17629450:
+    template: Sand_Eater
+    region:   c_264
+    level:    [56, 59]
+  17629451:
+    template: Sabotender_Bailaor
+    region:   c_264
+    level:    [56, 59]
+  17629452:
+    template: Antican_Hastatus
+    region:   c_268
+    level:    [56, 59]
+  17629453:
+    template: Antican_Princeps
+    region:   c_268
+    level:    [56, 59]
+  17629454:
+    template: Antican_Signifer
+    region:   c_268
+    level:    [56, 59]
+  17629455:
+    template: Sand_Eater
+    region:   c_268
+    level:    [56, 59]
+  17629456:
+    template: Sabotender_Bailaor
+    region:   c_268
+    level:    [56, 59]
+  17629457:
+    template: Sabotender_Bailaor
+    region:   c_268
+    level:    [56, 59]
+  17629458:
+    template: Sand_Eater
+    region:   c_274
+    level:    [56, 59]
+  17629459:
+    template: Sabotender_Bailaor
+    region:   c_274
+    level:    [56, 59]
+  17629460:
+    template: Sabotender_Bailaor
+    region:   c_274
+    level:    [56, 59]
+  17629461:
+    template: Sand_Eater
+    region:   c_277
+    level:    [56, 59]
+  17629462:
+    template: Sand_Lizard
+    region:   sw_278
+    level:    [56, 59]
+  17629463:
+    template: Sand_Lizard
+    region:   sw_279
+    level:    [56, 59]
+  17629464:
+    template: Sand_Lizard
+    region:   sw_279
+    level:    [56, 59]
+  17629465:
+    template: Antican_Triarius
+    region:   sw_281
+    level:    [62, 65]
+  17629466:
+    template: Antican_Antesignanus
+    region:   sw_281
+    level:    [62, 65]
+  17629467:
+    template: Antican_Quaestor
+    region:   sw_281
+    level:    [62, 65]
+  17629468:
+    template: Sand_Lizard
+    region:   sw_281
+    level:    [56, 59]
+  17629469:
+    template: Antican_Triarius
+    region:   sw_285
+    level:    [62, 65]
+  17629470:
+    template: Antican_Aedilis
+    region:   sw_285
+    level:    [62, 65]
+  17629471:
+    template: Antican_Quaestor
+    region:   sw_285
+    level:    [62, 65]
+  17629472:
+    template: Sand_Lizard
+    region:   sw_285
+    level:    [56, 59]
+  17629473:
+    template: Antican_Triarius
+    region:   sw_289
+    level:    [62, 65]
+  17629474:
+    template: Antican_Antesignanus
+    region:   sw_289
+    level:    [62, 65]
+  17629475:
+    template: Antican_Aedilis
+    region:   sw_289
+    level:    [62, 65]
+  17629476:
+    template: Antican_Quaestor
+    region:   sw_289
+    level:    [62, 65]
+  17629477:
+    template: Sand_Lizard
+    region:   sw_289
+    level:    [56, 59]
+  17629478:
+    template: Sand_Lizard
+    region:   region_136
+    level:    [56, 59]
+  17629479:
+    template: Antican_Triarius
+    region:   sw_311
+    level:    [62, 65]
+  17629480:
+    template: Antican_Aedilis
+    region:   sw_311
+    level:    [62, 65]
+  17629481:
+    template: Antican_Antesignanus
+    region:   sw_303
+    level:    [62, 65]
+  17629482:
+    template: Antican_Quaestor
+    region:   sw_315
+    level:    [62, 65]
+  17629483:
+    template: Antican_Tribunus
+    region:   sw_311
+    level:    [65, 65]
+  17629484:
+    template: Girtab
+    region:   sw_315
+    level:    [62, 65]
+  17629485:
+    template: Girtab
+    region:   sw_315
+    level:    [62, 65]
+  17629486:
+    template: Girtab
+    region:   sw_302
+    level:    [62, 65]
+  17629487:
+    template: Antican_Triarius
+    region:   sw_303
+    level:    [62, 65]
+  17629488:
+    template: Antican_Aedilis
+    region:   sw_303
+    level:    [62, 65]
+  17629489:
+    template: Antican_Triarius
+    region:   sw_303
+    level:    [62, 65]
+  17629490:
+    template: Sand_Lizard
+    region:   sw_303
+    level:    [56, 59]
+  17629491:
+    template: Antican_Antesignanus
+    region:   sw_307
+    level:    [62, 65]
+  17629492:
+    template: Antican_Antesignanus
+    region:   sw_307
+    level:    [62, 65]
+  17629493:
+    template: Antican_Quaestor
+    region:   sw_307
+    level:    [62, 65]
+  17629494:
+    template: Sand_Lizard
+    region:   sw_307
+    level:    [56, 59]
+  17629495:
+    template: Antican_Quaestor
+    region:   sw_311
+    level:    [62, 65]
+  17629496:
+    template: Antican_Antesignanus
+    region:   sw_311
+    level:    [62, 65]
+  17629497:
+    template: Antican_Quaestor
+    region:   sw_311
+    level:    [62, 65]
+  17629498:
+    template: Sand_Lizard
+    region:   sw_311
+    level:    [56, 59]
+  17629499:
+    template: Antican_Triarius
+    region:   sw_315
+    level:    [62, 65]
+  17629500:
+    template: Antican_Aedilis
+    region:   sw_315
+    level:    [62, 65]
+  17629501:
+    template: Antican_Aedilis
+    region:   sw_315
+    level:    [62, 65]
+  17629502:
+    template: Sand_Lizard
+    region:   sw_315
+    level:    [56, 59]
+  17629503:
+    template: Sand_Lizard
+    region:   region_137
+    level:    [56, 59]
+  17629504:
+    template: Antican_Antesignanus
+    region:   sw_320
+    level:    [62, 65]
+  17629505:
+    template: Antican_Quaestor
+    region:   sw_320
+    level:    [62, 65]
+  17629506:
+    template: Sand_Lizard
+    region:   sw_320
+    level:    [56, 59]
+  17629507:
+    template: Sand_Digger
+    region:   region_138
+    level:    [62, 65]
+  17629508:
+    template: Antican_Antesignanus
+    region:   region_139
+    level:    [62, 65]
+  17629509:
+    template: Antican_Triarius
+    region:   region_139
+    level:    [62, 65]
+  17629510:
+    template: Girtab
+    region:   region_139
+    level:    [62, 65]
+  17629511:
+    template: Girtab
+    region:   region_139
+    level:    [62, 65]
+  17629512:
+    template: Girtab
+    region:   region_139
+    level:    [62, 65]
+  17629513:
+    template: Girtab
+    region:   region_139
+    level:    [62, 65]
+  17629514:
+    template: Sand_Digger
+    region:   region_139
+    level:    [62, 65]
+  17629515:
+    template: Sand_Digger
+    region:   region_140
+    level:    [62, 65]
+  17629516:
+    template: Sand_Digger
+    region:   w_332
+    level:    [62, 65]
+  17629517:
+    template: Sand_Lizard
+    region:   region_122
+    level:    [56, 59]
+  17629518:
+    template: Sand_Lizard
+    region:   region_123
+    level:    [56, 59]
+  17629519:
+    template: Girtab
+    region:   sw_335
+    level:    [62, 65]
+  17629520:
+    template: Girtab
+    region:   sw_335
+    level:    [62, 65]
+  17629521:
+    template: Girtab
+    region:   sw_335
+    level:    [62, 65]
+  17629522:
+    template: Girtab
+    region:   sw_335
+    level:    [62, 65]
+  17629523:
+    template: Girtab
+    region:   sw_335
+    level:    [62, 65]
+  17629524:
+    template: Triarius_X-XV
+    region:   sw_335
+    level:    [72, 74]
+  17629525:
+    template: Antican_Triarius
+    region:   sw_341
+    level:    [62, 72]
+  17629526:
+    template: Antican_Quaestor
+    region:   sw_341
+    level:    [62, 65]
+  17629527:
+    template: Antican_Antesignanus
+    region:   sw_341
+    level:    [62, 65]
+  17629528:
+    template: Antican_Aedilis
+    region:   sw_341
+    level:    [62, 65]
+  17629529:
+    template: Antican_Triarius
+    region:   sw_345
+    level:    [62, 65]
+  17629530:
+    template: Antican_Quaestor
+    region:   sw_345
+    level:    [62, 65]
+  17629531:
+    template: Antican_Antesignanus
+    region:   sw_345
+    level:    [62, 65]
+  17629532:
+    template: Antican_Aedilis
+    region:   sw_345
+    level:    [62, 65]
+  17629533:
+    template: Antican_Triarius
+    region:   sw_350
+    level:    [62, 65]
+  17629534:
+    template: Antican_Quaestor
+    region:   sw_350
+    level:    [62, 65]
+  17629535:
+    template: Antican_Antesignanus
+    region:   sw_350
+    level:    [62, 65]
+  17629536:
+    template: Antican_Aedilis
+    region:   sw_350
+    level:    [62, 65]
+  17629537:
+    template: Antican_Triarius
+    region:   region_124
+    level:    [62, 72]
+  17629538:
+    template: Antican_Quaestor
+    region:   region_124
+    level:    [62, 65]
+  17629539:
+    template: Antican_Antesignanus
+    region:   region_124
+    level:    [62, 65]
+  17629540:
+    template: Antican_Aedilis
+    region:   region_124
+    level:    [62, 65]
+  17629541:
+    template: Sand_Lizard
+    region:   region_125
+    level:    [57, 59]
+  17629542:
+    template: Girtab
+    region:   region_126
+    level:    [62, 65]
+  17629543:
+    template: Antican_Triarius
+    region:   region_126
+    level:    [62, 65]
+  17629544:
+    template: Antican_Quaestor
+    region:   region_126
+    level:    [62, 65]
+  17629545:
+    template: Spelunking_Sabotender
+    region:   region_127
+    level:    [62, 65]
+  17629546:
+    template: Girtab
+    region:   sw_362
+    level:    [62, 65]
+  17629547:
+    template: Girtab
+    region:   sw_362
+    level:    [62, 65]
+  17629548:
+    template: Spelunking_Sabotender
+    region:   sw_362
+    level:    [62, 65]
+  17629549:
+    template: Spelunking_Sabotender
+    region:   w_365
+    level:    [62, 65]
+  17629550:
+    template: Spelunking_Sabotender
+    region:   w_366
+    level:    [62, 65]
+  17629551:
+    template: Spelunking_Sabotender
+    region:   w_367
+    level:    [62, 65]
+  17629552:
+    template: Sand_Tarantula
+    region:   nw_368
+    level:    [65, 68]
+  17629553:
+    template: Antican_Triarius
+    region:   nw_369
+    level:    [66, 69]
+  17629554:
+    template: Antican_Quaestor
+    region:   nw_369
+    level:    [66, 69]
+  17629555:
+    template: Antican_Antesignanus
+    region:   nw_369
+    level:    [66, 69]
+  17629556:
+    template: Antican_Aedilis
+    region:   nw_369
+    level:    [66, 69]
+  17629557:
+    template: Antican_Triarius
+    region:   nw_373
+    level:    [66, 69]
+  17629558:
+    template: Antican_Quaestor
+    region:   nw_373
+    level:    [66, 69]
+  17629559:
+    template: Antican_Antesignanus
+    region:   nw_373
+    level:    [66, 69]
+  17629560:
+    template: Antican_Aedilis
+    region:   nw_373
+    level:    [66, 69]
+  17629561:
+    template: Hastatus_XI-XII
+    region:   nw_373
+    level:    [65, 68]
+  17629562:
+    template: Antican_Triarius
+    region:   nw_378
+    level:    [66, 69]
+  17629563:
+    template: Antican_Quaestor
+    region:   nw_378
+    level:    [66, 69]
+  17629564:
+    template: Antican_Antesignanus
+    region:   nw_378
+    level:    [66, 69]
+  17629565:
+    template: Antican_Aedilis
+    region:   nw_378
+    level:    [66, 69]
+  17629566:
+    template: Antican_Triarius
+    region:   n_382
+    level:    [66, 69]
+  17629567:
+    template: Antican_Quaestor
+    region:   n_382
+    level:    [66, 69]
+  17629568:
+    template: Antican_Antesignanus
+    region:   n_382
+    level:    [66, 69]
+  17629569:
+    template: Antican_Aedilis
+    region:   n_382
+    level:    [66, 69]
+  17629570:
+    template: Antican_Triarius
+    region:   nw_386
+    level:    [66, 69]
+  17629571:
+    template: Antican_Quaestor
+    region:   nw_386
+    level:    [66, 69]
+  17629572:
+    template: Antican_Antesignanus
+    region:   nw_386
+    level:    [66, 69]
+  17629573:
+    template: Antican_Aedilis
+    region:   nw_389
+    level:    [66, 69]
+  17629574:
+    template: Sand_Tarantula
+    region:   region_128
+    level:    [65, 68]
+  17629575:
+    template: Antican_Triarius
+    region:   nw_391
+    level:    [66, 69]
+  17629576:
+    template: Antican_Antesignanus
+    region:   nw_391
+    level:    [66, 69]
+  17629577:
+    template: Antican_Quaestor
+    region:   nw_391
+    level:    [66, 69]
+  17629578:
+    template: Antican_Aedilis
+    region:   nw_391
+    level:    [66, 69]
+  17629579:
+    template: Girtab
+    region:   nw_391
+    level:    [62, 65]
+  17629580:
+    template: Sand_Tarantula
+    region:   nw_396
+    level:    [65, 68]
+  17629581:
+    template: Spelunking_Sabotender
+    region:   nw_396
+    level:    [65, 68]
+  17629582:
+    template: Spelunking_Sabotender
+    region:   nw_396
+    level:    [65, 68]
+  17629583:
+    template: Sand_Tarantula
+    region:   nw_399
+    level:    [65, 68]
+  17629584:
+    template: Antican_Antesignanus
+    region:   nw_399
+    level:    [66, 69]
+  17629585:
+    template: Antican_Quaestor
+    region:   nw_399
+    level:    [66, 69]
+  17629586:
+    template: Spelunking_Sabotender
+    region:   region_129
+    level:    [65, 68]
+  17629587:
+    template: Sabotender_Bailarina
+    region:   nw_399
+    level:    [80, 81]
+  17629588:
+    template: Sand_Tarantula
+    region:   region_130
+    level:    [65, 68]
+  17629589:
+    template: Spelunking_Sabotender
+    region:   region_129
+    level:    [65, 68]
+  17629590:
+    template: Spelunking_Sabotender
+    region:   region_130
+    level:    [65, 68]
+  17629591:
+    template: Sand_Tarantula
+    region:   region_131
+    level:    [65, 68]
+  17629592:
+    template: Antican_Triarius
+    region:   n_412
+    level:    [66, 69]
+  17629593:
+    template: Antican_Antesignanus
+    region:   n_412
+    level:    [66, 69]
+  17629594:
+    template: Antican_Quaestor
+    region:   n_412
+    level:    [66, 69]
+  17629595:
+    template: Antican_Aedilis
+    region:   n_412
+    level:    [66, 69]
+  17629596:
+    template: Girtab
+    region:   n_412
+    level:    [62, 65]
+  17629597:
+    template: Sand_Tarantula
+    region:   region_132
+    level:    [65, 68]
+  17629598:
+    template: Sand_Tarantula
+    region:   nw_414
+    level:    [66, 69]
+  17629599:
+    template: Antican_Triarius
+    region:   nw_414
+    level:    [66, 69]
+  17629600:
+    template: Antican_Antesignanus
+    region:   nw_414
+    level:    [66, 69]
+  17629601:
+    template: Antican_Quaestor
+    region:   nw_414
+    level:    [66, 69]
+  17629602:
+    template: Antican_Aedilis
+    region:   nw_414
+    level:    [66, 69]
+  17629603:
+    template: Girtab
+    region:   nw_414
+    level:    [62, 65]
+  17629604:
+    template: Sand_Tarantula
+    region:   nw_420
+    level:    [66, 69]
+  17629605:
+    template: Sand_Tarantula
+    region:   nw_420
+    level:    [66, 69]
+  17629606:
+    template: Antican_Triarius
+    region:   nw_422
+    level:    [66, 69]
+  17629607:
+    template: Antican_Quaestor
+    region:   nw_422
+    level:    [66, 69]
+  17629608:
+    template: Antican_Aedilis
+    region:   nw_422
+    level:    [66, 69]
+  17629609:
+    template: Sand_Tarantula
+    region:   region_133
+    level:    [65, 68]
+  17629610:
+    template: Sand_Tarantula
+    region:   n_426
+    level:    [65, 68]
+  17629611:
+    template: Antican_Triarius
+    region:   n_426
+    level:    [66, 69]
+  17629612:
+    template: Antican_Antesignanus
+    region:   n_426
+    level:    [66, 69]
+  17629613:
+    template: Antican_Quaestor
+    region:   n_426
+    level:    [66, 69]
+  17629614:
+    template: Antican_Aedilis
+    region:   n_426
+    level:    [66, 69]
+  17629615:
+    template: Girtab
+    region:   n_426
+    level:    [62, 65]
+  17629616:
+    template: Antican_Antesignanus
+    region:   n_432
+    level:    [69, 71]
+  17629617:
+    template: Antican_Aedilis
+    region:   n_432
+    level:    [69, 71]
+  17629618:
+    template: Antican_Triarius
+    region:   n_434
+    level:    [69, 71]
+  17629619:
+    template: Antican_Quaestor
+    region:   n_434
+    level:    [69, 71]
+  17629620:
+    template: Antican_Antesignanus
+    region:   n_436
+    level:    [69, 71]
+  17629621:
+    template: Antican_Praetor
+    region:   n_436
+    level:    [72, 74]
+  17629622:
+    template: Antican_Triarius
+    region:   n_438
+    level:    [69, 71]
+  17629623:
+    template: Antican_Antesignanus
+    region:   n_438
+    level:    [69, 71]
+  17629624:
+    template: Antican_Aedilis
+    region:   n_438
+    level:    [69, 71]
+  17629625:
+    template: Antican_Quaestor
+    region:   n_438
+    level:    [69, 71]
+  17629626:
+    template: Spelunking_Sabotender
+    region:   region_134
+    level:    [65, 68]
+  17629627:
+    template: Antican_Triarius
+    region:   n_443
+    level:    [69, 71]
+  17629628:
+    template: Antican_Antesignanus
+    region:   n_443
+    level:    [69, 71]
+  17629629:
+    template: Antican_Aedilis
+    region:   n_443
+    level:    [69, 71]
+  17629630:
+    template: Antican_Quaestor
+    region:   n_443
+    level:    [69, 72]
+  17629631:
+    template: Antican_Triarius
+    region:   n_447
+    level:    [69, 72]
+  17629632:
+    template: Antican_Quaestor
+    region:   n_447
+    level:    [69, 72]
+  17629633:
+    template: Antican_Antesignanus
+    region:   n_449
+    level:    [69, 72]
+  17629634:
+    template: Antican_Quaestor
+    region:   n_449
+    level:    [69, 72]
+  17629635:
+    template: Antican_Aedilis
+    region:   n_449
+    level:    [69, 72]
+  17629636:
+    template: Antican_Triarius
+    region:   n_452
+    level:    [69, 72]
+  17629637:
+    template: Antican_Antesignanus
+    region:   n_452
+    level:    [69, 72]
+  17629638:
+    template: Antican_Aedilis
+    region:   n_452
+    level:    [69, 72]
+  17629639:
+    template: Antican_Praetor
+    region:   region_135
+    level:    [72, 74]
+  17629640:
+    template: Antican_Legatus
+    region:   n_449
+    level:    [72, 74]
+  17629641:
+    template: Antican_Consul
+    region:   n_449
+    level:    [75, 75]
+  17629642:
+    template: Ancient_Vessel
+    at:       [-500.000, 19.000, -422.000, 185]
+    level:    [72, 72]
+  17629643:
+    template: Tribunus_VII-I
+    at:       [-47.410, -0.312, -139.298, 127]
+    level:    [60, 62]
+  17629644:
+    template: Proconsul_XII
+    region:   n_426
+    level:    [70, 72]
+  17629645:
+    template: Girtablulu
+    at:       [-141.600, -2.000, 450.480, 99]
+    level:    [80, 80]
+  17629646:
+    template: Malleator_Maurok
+    at:       [-83.623, -0.031, -39.748, 69]
+    level:    [99, 99]
+  17629647:
+    template: Peon_Pounder
+    at:       [-85.923, -0.108, -40.829, 20]
+    level:    [99, 99]
+  17629648:
+    template: Peon_Pounder
+    at:       [-85.225, -0.094, -39.755, 41]
+    level:    [99, 99]
+  17629649:
+    template: Malleator_Maurok
+    level:    [99, 99]
+  17629650:
+    template: Peon_Pounder
+    level:    [99, 99]
+  17629651:
+    template: Peon_Pounder
+    level:    [99, 99]
+  17629652:
+    template: Malleator_Maurok
+    at:       [41.024, -0.500, -130.467, 45]
+    level:    [99, 99]
+  17629653:
+    template: Peon_Pounder
+    at:       [42.756, -0.500, -129.786, 79]
+    level:    [99, 99]
+  17629654:
+    template: Peon_Pounder
+    at:       [41.967, -0.500, -128.705, 65]
+    level:    [99, 99]
+  17629655:
+    template: Centurio_XX-I
+    at:       [810.733, 1.389, -566.859]
+    level:    [99, 99]
+  17629656:
+    template: Centurio_XX-I
+    at:       [778.500, 1.527, -657.380]
+    level:    [99, 99]
+  17629657:
+    template: Centurio_XX-I
+    at:       [822.080, -8.500, -382.989, 251]
+    level:    [99, 99]
+  17629658:
+    template: Spelunking_Sabotender_TVR
+    script:   Spelunking_Sabotender
+    region:   sw_320
+    level:    [139, 139]
+  17629659:
+    template: Spelunking_Sabotender_TVR
+    script:   Spelunking_Sabotender
+    region:   sw_320
+    level:    [139, 139]
+  17629660:
+    template: Sand_Tarantula_TVR
+    script:   Sand_Tarantula
+    at:       [-536.630, -0.500, -418.220, 17]
+    level:    [139, 139]
+  17629661:
+    template: Sand_Tarantula_TVR
+    script:   Sand_Tarantula
+    at:       [-532.410, -0.500, -417.830, 119]
+    level:    [139, 139]
+  17629662:
+    template: Sand_Lizard_TVR
+    script:   Sand_Lizard
+    at:       [-536.640, -0.500, -421.020, 37]
+    level:    [139, 139]
+  17629663:
+    template: Sand_Lizard_TVR
+    script:   Sand_Lizard
+    at:       [-536.470, -0.500, -423.440, 150]
+    level:    [139, 139]
+  17629664:
+    template: Uran-Mafran_Quicksand
+    script:   Uran-Mafran
+    at:       [-61.030, -16.230, 275.180, 206]
+    level:    [139, 139]
+  17629665:
+    template: Oggbi_TVR
+    script:   Oggbi
+    at:       [-58.149, -16.399, 278.045, 96]
+    level:    [139, 139]
+
+  17629812:
+    template: Beta_sabo_Sabotender_Bailaor
+    region:   se_68
+    level:    [52, 55]
+  17629813:
+    template: Beta_sabo_Sabotender_Bailaor
+    region:   se_68
+    level:    [52, 55]
+slots:
+  - members:
+      17629420: {} # Antican_Signifer
+      17629421: {} # Antican_Proconsul
+  - members:
+      17629433: {} # Helm_Beetle
+      17629436: {} # Helm_Beetle
+      17629439: {} # Helm_Beetle
+      17629442: {} # Helm_Beetle
+      17629446: {} # Helm_Beetle
+  - members:
+      17629525: {} # Antican_Triarius
+      17629529: {} # Antican_Triarius
+      17629533: {} # Antican_Triarius
+      17629537: {} # Antican_Triarius
+  - members:
+      17629582: {} # Spelunking_Sabotender
+      17629586: {} # Spelunking_Sabotender
+      17629590: {} # Spelunking_Sabotender

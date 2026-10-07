@@ -1,0 +1,3536 @@
+# yaml-language-server: $schema=../../schemas/mobs.schema.json
+
+templates:
+
+  Anemone:
+    id:            136
+    species:       morbol
+    skill_list_id: 186
+    attributes:
+      combat:
+        skill: scythe
+        delay: 200
+      render:
+        look:
+          type:  standard
+          model: 380
+        entity_flags:  1667
+        animation_sub:    8
+        model_size:       1
+        hitbox:          32
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: very_common
+          item:   malboro_vine
+        - chance: common
+          item:   malboro_vine
+        - chance: common
+          item:   malboro_vine
+        - chance: rare
+          item:   avengers_earring
+      steal: malboro_vine
+
+  Azer:
+    id:            310
+    species:       bomb
+    skill_list_id: 56
+    attributes:
+      combat:
+        skill: club
+      render:
+        look:
+          type:  standard
+          model: 280
+        entity_flags: 1155
+        model_size:      1
+        hitbox:         12
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: rare
+          item:   eldieme_chest_key
+        - chance: common
+          item:   pinch_of_bomb_ash
+        - chance: uncommon
+          item:   bomb_arm
+
+  Blood_Soul:
+    id:            473
+    species:       ghost
+    spell_list_id: 28
+    skill_list_id: 121
+    attributes:
+      combat:
+        skill: staff
+      jobs: [war, blm]
+      render:
+        look:
+          type:  standard
+          model: 368
+        entity_flags:  643
+        animation_sub:   8
+        model_size:      1
+        hitbox:          8
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   square_of_cotton_cloth
+        - chance: rare
+          item:   revival_tree_root
+        - chance: rare
+          item:   eldieme_chest_key
+        - chance: very_rare
+          item:   luminicloth
+      steal: square_of_cotton_cloth
+      despoil:
+        square_of_cotton_cloth: 0
+
+  Cwn_Cyrff:
+    id:            876
+    species:       hound
+    type:          [notorious]
+    spell_list_id: 104
+    skill_list_id: 143
+    attributes:
+      combat:
+        skill: sword
+      jobs: [drk, war]
+      render:
+        look:
+          type:  standard
+          model: 364
+        entity_flags: 133
+        model_size:     2
+        hitbox:        28
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [lottery]
+      stats:
+        hp: 14700
+    loot:
+      drops:
+        - chance: very_common
+          item:   swan_bilbo
+
+  Dark_Stalker_blm:
+    id:            5410
+    species:       shadow
+    spell_list_id: 21
+    skill_list_id: 221
+    attributes:
+      combat:
+        skill: sword
+        delay: 360
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 537
+        entity_flags: 131
+        model_size:     1
+        hitbox:        20
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+      stats:
+        mp: 5000
+    loot:
+      drops:
+        - chance: rare
+          item:   tavnazia_bell
+        - chance: very_rare
+          item:   scroll_of_absorb-vit
+        - chance: very_rare
+          item:   scroll_of_absorb-agi
+        - chance: rare
+          item:   scroll_of_absorb-int
+        - chance: very_rare
+          item:   revival_tree_root
+
+  Dark_Stalker_rng:
+    id:            5411
+    species:       shadow
+    skill_list_id: 221
+    attributes:
+      combat:
+        skill: sword
+        delay: 360
+      jobs: [rng, rng]
+      render:
+        look:
+          type:  standard
+          model: 545
+        entity_flags: 131
+        model_size:     1
+        hitbox:        20
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: rare
+          item:   tavnazia_bell
+        - chance: very_rare
+          item:   scroll_of_absorb-vit
+        - chance: very_rare
+          item:   scroll_of_absorb-agi
+        - chance: rare
+          item:   scroll_of_absorb-int
+        - chance: very_rare
+          item:   revival_tree_root
+
+  Dark_Stalker_thf:
+    id:            5412
+    species:       shadow
+    skill_list_id: 221
+    attributes:
+      combat:
+        skill: sword
+        delay: 360
+      jobs: [thf, thf]
+      render:
+        look:
+          type:  standard
+          model: 541
+        entity_flags: 131
+        model_size:     1
+        hitbox:        20
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: rare
+          item:   tavnazia_bell
+        - chance: very_rare
+          item:   revival_tree_root
+
+  Dark_Stalker_war:
+    id:            918
+    display_name:  Dark_Stalker
+    species:       shadow
+    skill_list_id: 221
+    attributes:
+      combat:
+        skill: sword
+        delay: 360
+      render:
+        look:
+          type:  standard
+          model: 533
+        entity_flags: 131
+        model_size:     1
+        hitbox:        20
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: rare
+          item:   tavnazia_bell
+        - chance: very_rare
+          item:   scroll_of_absorb-vit
+        - chance: very_rare
+          item:   scroll_of_absorb-agi
+        - chance: rare
+          item:   scroll_of_absorb-int
+        - chance: very_rare
+          item:   revival_tree_root
+
+  Dog_Guardian:
+    id:            1075
+    species:       skeleton
+    type:          [notorious]
+    skill_list_id: 227
+    attributes:
+      combat:
+        skill: axe
+      render:
+        look:
+          type:  standard
+          model: 572
+        entity_flags: 131
+        model_size:     1
+        hitbox:        12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 5500
+
+  Earth_Elemental:
+    id:            1160
+    species:       earth_elemental
+    spell_list_id: 13
+    skill_list_id: 101
+    attributes:
+      combat:
+        skill: staff
+      jobs: [blm, rdm]
+      resists:
+        immune_status: [stun, slow, elegy]
+      render:
+        look:
+          type:  standard
+          model: 439
+        entity_flags:  1155
+        animation_sub:   16
+        model_size:       1
+        hitbox:           3
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 960
+        type:    [weather]
+    loot:
+      drops:
+        - chance: always
+          item:   earth_cluster
+        - chance: common
+          item:   earth_cluster
+        - chance: common
+          item:   earth_cluster
+
+  Fallen_Knight_EN:
+    id:            6545
+    species:       skeleton
+    spell_list_id: 5
+    skill_list_id: 227
+    attributes:
+      combat:
+        skill: polearm
+      jobs: [drk, drk]
+      render:
+        look:
+          type:  standard
+          model: 572
+        entity_flags: 133
+        model_size:     2
+        hitbox:        13
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: very_common
+          item:   bone_chip
+        - chance: rare
+          item:   eldieme_chest_key
+        - chance: very_rare
+          item:   scroll_of_absorb-vit
+        - chance: very_rare
+          item:   scroll_of_absorb-agi
+        - chance: very_rare
+          item:   scroll_of_absorb-int
+      steal: bone_chip
+      despoil:
+        bone_chip: 0
+
+  Gasha-1stform:
+    id:            5179
+    species:       skeleton
+    skill_list_id: 227
+    attributes:
+      combat:
+        skill: great_katana
+      render:
+        look:
+          type:  standard
+          model: 2103
+        entity_flags:  159
+        animation_sub:   7
+        name_vis:        4
+        name_prefix:    32
+        model_size:      3
+        hitbox:         16
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+
+  Gazer:
+    id:            1481
+    species:       hecteye
+    spell_list_id: 10
+    skill_list_id: 139
+    attributes:
+      combat:
+        skill: staff
+        delay: 280
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 384
+        entity_flags: 131
+        model_size:     1
+        hitbox:        12
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: very_common
+          item:   vial_of_mercury
+        - chance: very_common
+          item:   hecteyes_eye
+        - chance: rare
+          item:   burning_hakutaku_eye
+      despoil:
+        hecteyes_eye: 0
+
+  Haunt_EN:
+    id:            6508
+    species:       ghost
+    spell_list_id: 28
+    skill_list_id: 121
+    attributes:
+      combat:
+        skill: staff
+      jobs: [war, blm]
+      render:
+        look:
+          type:  standard
+          model: 368
+        entity_flags: 133
+        model_size:     2
+        hitbox:         9
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   square_of_cotton_cloth
+        - chance: uncommon
+          item:   scroll_of_blizzaga_ii
+        - chance: rare
+          item:   eldieme_coffer_key
+        - chance: rare
+          item:   scroll_of_freeze
+      steal: square_of_cotton_cloth
+      despoil:
+        square_of_cotton_cloth: 0
+
+  Hell_Hound:
+    id:            1926
+    species:       hound
+    skill_list_id: 143
+    attributes:
+      combat:
+        skill: sword
+      render:
+        look:
+          type:  standard
+          model: 364
+        entity_flags: 131
+        model_size:     1
+        hitbox:        25
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   wolf_hide
+        - chance: rare
+          item:   revival_tree_root
+      despoil:
+        wolf_hide:         0
+        revival_tree_root: 0
+
+  Hellbound_Warlock:
+    id:            6536
+    species:       skeleton
+    spell_list_id: 28
+    skill_list_id: 227
+    attributes:
+      combat:
+        skill: great_katana
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 564
+        entity_flags: 133
+        model_size:     2
+        hitbox:        13
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   bone_chip
+      steal: bone_chip
+      despoil:
+        bone_chip: 0
+    content: abyssea
+
+  Hellbound_Warrior:
+    id:            6531
+    species:       skeleton
+    skill_list_id: 227
+    attributes:
+      combat:
+        skill: polearm
+      render:
+        look:
+          type:  standard
+          model: 572
+        entity_flags: 133
+        model_size:     2
+        hitbox:        13
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    content: abyssea
+
+  Ice_Elemental:
+    id:            2043
+    species:       ice_elemental
+    spell_list_id: 14
+    skill_list_id: 103
+    attributes:
+      combat:
+        skill: staff
+      jobs: [blm, rdm]
+      resists:
+        immune_status: [gravity, bind, silence, paralyze]
+      render:
+        look:
+          type:  standard
+          model: 437
+        entity_flags:  1155
+        animation_sub:   16
+        model_size:       1
+        hitbox:           3
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 960
+        type:    [weather]
+    loot:
+      drops:
+        - chance: always
+          item:   ice_cluster
+        - chance: common
+          item:   ice_cluster
+        - chance: common
+          item:   ice_cluster
+
+  Ice_Elemental_SA:
+    id:            5535
+    display_name:  Ice_Elemental
+    species:       ice_elemental
+    type:          [notorious]
+    spell_list_id: 14
+    skill_list_id: 103
+    attributes:
+      combat:
+        skill: staff
+      jobs: [blm, rdm]
+      resists:
+        immune_status: [gravity, bind, silence, paralyze]
+      render:
+        look:
+          type:  standard
+          model: 9
+        entity_flags: 131
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: always
+          item:   ice_cluster
+        - chance: common
+          item:   ice_cluster
+        - chance: common
+          item:   ice_cluster
+
+  Ka_blm:
+    id:            5405
+    species:       shadow
+    spell_list_id: 21
+    skill_list_id: 221
+    attributes:
+      combat:
+        skill: sword
+        delay: 360
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 536
+        entity_flags: 131
+        model_size:     1
+        hitbox:        20
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+      stats:
+        mp: 5000
+    loot:
+      drops:
+        - chance: rare
+          item:   eldieme_chest_key
+        - chance: very_rare
+          item:   revival_tree_root
+        - chance: very_rare
+          item:   scroll_of_absorb-int
+        - chance: very_rare
+          item:   scroll_of_absorb-vit
+        - chance: very_rare
+          item:   scroll_of_absorb-agi
+
+  Ka_rng:
+    id:            5406
+    species:       shadow
+    skill_list_id: 221
+    attributes:
+      combat:
+        skill: sword
+        delay: 360
+      jobs: [rng, rng]
+      render:
+        look:
+          type:  standard
+          model: 544
+        entity_flags: 131
+        model_size:     1
+        hitbox:        20
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: rare
+          item:   eldieme_chest_key
+        - chance: very_rare
+          item:   revival_tree_root
+        - chance: very_rare
+          item:   scroll_of_absorb-int
+        - chance: very_rare
+          item:   scroll_of_absorb-vit
+        - chance: very_rare
+          item:   scroll_of_absorb-agi
+
+  Ka_thf:
+    id:            5407
+    species:       shadow
+    skill_list_id: 221
+    attributes:
+      combat:
+        skill: sword
+        delay: 360
+      jobs: [thf, thf]
+      render:
+        look:
+          type:  standard
+          model: 540
+        entity_flags: 131
+        model_size:     1
+        hitbox:        20
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: rare
+          item:   eldieme_chest_key
+        - chance: very_rare
+          item:   revival_tree_root
+        - chance: very_rare
+          item:   scroll_of_absorb-int
+        - chance: very_rare
+          item:   scroll_of_absorb-vit
+        - chance: very_rare
+          item:   scroll_of_absorb-agi
+
+  Ka_war:
+    id:            2176
+    species:       shadow
+    skill_list_id: 221
+    attributes:
+      combat:
+        skill: sword
+        delay: 360
+      render:
+        look:
+          type:  standard
+          model: 532
+        entity_flags: 131
+        model_size:     1
+        hitbox:        20
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: rare
+          item:   eldieme_chest_key
+        - chance: very_rare
+          item:   revival_tree_root
+        - chance: very_rare
+          item:   scroll_of_absorb-int
+        - chance: very_rare
+          item:   scroll_of_absorb-vit
+        - chance: very_rare
+          item:   scroll_of_absorb-agi
+
+  Lich:
+    id:            2407
+    species:       skeleton
+    spell_list_id: 28
+    skill_list_id: 227
+    attributes:
+      combat:
+        skill: great_katana
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 564
+        entity_flags: 131
+        model_size:     1
+        hitbox:        12
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   piece_of_ancient_papyrus
+        - chance: common
+          item:   bone_chip
+        - chance: rare
+          item:   eldieme_chest_key
+      steal: bone_chip
+      despoil:
+        bone_chip: 0
+
+  Lich_C_Magnus:
+    id:            2408
+    species:       skeleton
+    spell_list_id: 28
+    skill_list_id: 227
+    attributes:
+      combat:
+        skill: great_katana
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 576
+        entity_flags: 159
+        name_prefix:   32
+        model_size:     3
+        hitbox:        16
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: always
+          item:   bone_chip
+        - chance: common
+          item:   liliths_rod
+
+  Lost_Soul_blm_EN:
+    id:            6560
+    species:       skeleton
+    spell_list_id: 28
+    skill_list_id: 227
+    attributes:
+      combat:
+        skill: axe
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 564
+        entity_flags:  129
+        animation_sub:   8
+        hitbox:         10
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   bone_chip
+      steal: bone_chip
+      despoil:
+        bone_chip: 0
+
+  Lost_Soul_war_EN:
+    id:            6561
+    species:       skeleton
+    skill_list_id: 227
+    attributes:
+      combat:
+        skill: axe
+      render:
+        look:
+          type:  standard
+          model: 572
+        entity_flags:  129
+        animation_sub:   8
+        hitbox:         10
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   bone_chip
+      steal: bone_chip
+      despoil:
+        bone_chip: 0
+
+  Marchosias:
+    id:            2559
+    species:       hound
+    skill_list_id: 143
+    attributes:
+      combat:
+        skill: sword
+      render:
+        look:
+          type:  standard
+          model: 364
+        entity_flags: 129
+        hitbox:        21
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   wolf_hide
+        - chance: rare
+          item:   revival_tree_root
+      despoil:
+        wolf_hide:         0
+        revival_tree_root: 0
+
+  Mimic:
+    id:            2664
+    species:       mimic
+    type:          [notorious]
+    skill_list_id: 183
+    attributes:
+      combat:
+        skill: scythe
+        delay: 170
+      resists:
+        dmg_physical:
+          slashing: -5000
+          piercing: -5000
+          blunt:    -5000
+          h2h:      -5000
+      render:
+        look:
+          type:  standard
+          model: 259
+        entity_flags:  131
+        animation_sub:  13
+        model_size:      1
+        hitbox:         12
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: always
+          item:   eldieme_coffer_key
+
+  Mummy:
+    id:            2770
+    species:       skeleton
+    skill_list_id: 227
+    attributes:
+      combat:
+        skill: axe
+      render:
+        look:
+          type:  standard
+          model: 572
+        entity_flags:  643
+        animation_sub:   8
+        model_size:      1
+        hitbox:         12
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: rare
+          item:   eldieme_chest_key
+        - chance: common
+          item:   bone_chip
+        - chance: very_rare
+          item:   scroll_of_stun
+        - chance: very_rare
+          item:   scroll_of_absorb-vit
+        - chance: very_rare
+          item:   scroll_of_absorb-agi
+        - chance: very_rare
+          item:   scroll_of_absorb-int
+      steal: bone_chip
+      despoil:
+        bone_chip: 0
+
+  Namorodo:
+    id:            2802
+    species:       skeleton
+    type:          [notorious]
+    spell_list_id: 28
+    skill_list_id: 227
+    attributes:
+      combat:
+        skill: great_katana
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 564
+        entity_flags: 153
+        name_prefix:   32
+        hitbox:        10
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+
+  Nekros_Hound:
+    id:            6171
+    species:       hound
+    skill_list_id: 143
+    attributes:
+      combat:
+        skill: sword
+      render:
+        look:
+          type:  standard
+          model: 364
+        entity_flags: 133
+        model_size:     2
+        hitbox:        28
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   wolf_hide
+        - chance: uncommon
+          item:   revival_tree_root
+      despoil:
+        wolf_hide:         0
+        revival_tree_root: 0
+    content: abyssea
+
+  Owl_Guardian:
+    id:            3081
+    species:       skeleton
+    type:          [notorious]
+    skill_list_id: 227
+    attributes:
+      combat:
+        skill: axe
+      render:
+        look:
+          type:  standard
+          model: 572
+        entity_flags: 131
+        model_size:     1
+        hitbox:        12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 5500
+
+  Puroboros_EN_GC:
+    id:            6589
+    species:       bomb
+    skill_list_id: 56
+    attributes:
+      combat:
+        skill: club
+      render:
+        look:
+          type:  standard
+          model: 280
+        entity_flags: 129
+        hitbox:        10
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   pinch_of_bomb_ash
+        - chance: uncommon
+          item:   bomb_arm
+      steal: pinch_of_bomb_ash
+      despoil:
+        pinch_of_bomb_ash: 0
+
+  Revenant_NGS_EN_GC:
+    id:            6511
+    species:       ghost
+    spell_list_id: 28
+    skill_list_id: 121
+    attributes:
+      combat:
+        skill: staff
+      jobs: [war, blm]
+      render:
+        look:
+          type:  standard
+          model: 368
+        entity_flags: 129
+        hitbox:         6
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   square_of_cotton_cloth
+        - chance: rare
+          item:   revival_tree_root
+        - chance: very_rare
+          item:   luminicloth
+      steal: square_of_cotton_cloth
+      despoil:
+        square_of_silk_cloth: 0
+
+  Shade_drk:
+    id:            5400
+    species:       shadow
+    spell_list_id: 5
+    skill_list_id: 221
+    attributes:
+      combat:
+        skill: dagger
+        delay: 360
+      jobs: [drk, drk]
+      render:
+        look:
+          type:  standard
+          model: 536
+        entity_flags: 129
+        hitbox:        17
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   revival_tree_root
+        - chance: rare
+          item:   scroll_of_stun
+        - chance: very_rare
+          item:   scroll_of_absorb-int
+        - chance: very_rare
+          item:   scroll_of_absorb-vit
+        - chance: very_rare
+          item:   scroll_of_absorb-agi
+
+  Shade_rng:
+    id:            5402
+    species:       shadow
+    skill_list_id: 221
+    attributes:
+      combat:
+        skill: dagger
+        delay: 360
+      jobs: [rng, rng]
+      render:
+        look:
+          type:  standard
+          model: 534
+        entity_flags: 129
+        hitbox:        17
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   revival_tree_root
+        - chance: rare
+          item:   scroll_of_stun
+        - chance: very_rare
+          item:   scroll_of_absorb-int
+        - chance: very_rare
+          item:   scroll_of_absorb-vit
+        - chance: very_rare
+          item:   scroll_of_absorb-agi
+
+  Shade_thf:
+    id:            5401
+    species:       shadow
+    skill_list_id: 221
+    attributes:
+      combat:
+        skill: dagger
+        delay: 360
+      jobs: [thf, thf]
+      render:
+        look:
+          type:  standard
+          model: 535
+        entity_flags: 129
+        hitbox:        17
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+      stats:
+        mp: 5000
+    loot:
+      drops:
+        - chance: uncommon
+          item:   revival_tree_root
+        - chance: rare
+          item:   scroll_of_stun
+        - chance: very_rare
+          item:   scroll_of_absorb-int
+        - chance: very_rare
+          item:   scroll_of_absorb-vit
+        - chance: very_rare
+          item:   scroll_of_absorb-agi
+
+  Shade_war:
+    id:            3559
+    species:       shadow
+    skill_list_id: 221
+    attributes:
+      combat:
+        skill: dagger
+        delay: 360
+      render:
+        look:
+          type:  standard
+          model: 533
+        entity_flags: 129
+        hitbox:        17
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   revival_tree_root
+        - chance: rare
+          item:   scroll_of_stun
+        - chance: very_rare
+          item:   scroll_of_absorb-int
+        - chance: very_rare
+          item:   scroll_of_absorb-vit
+        - chance: very_rare
+          item:   scroll_of_absorb-agi
+
+  Skull_of_Envy:
+    id:            3654
+    species:       skeleton
+    type:          [notorious]
+    skill_list_id: 227
+    attributes:
+      combat:
+        skill: axe
+        delay: 210
+      render:
+        look:
+          type:  standard
+          model: 1125
+        entity_flags:  3
+        model_size:    3
+        hitbox:       16
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 3350
+    loot:
+      drops:
+        - chance: always
+          item:   jadeite
+        - chance: uncommon
+          item:   envy_spear
+
+  Skull_of_Gluttony:
+    id:            3655
+    species:       skeleton
+    type:          [notorious]
+    skill_list_id: 227
+    attributes:
+      combat:
+        skill: great_sword
+        delay: 210
+      render:
+        look:
+          type:  standard
+          model: 1176
+        model_size:  3
+        hitbox:     13
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 3350
+    loot:
+      drops:
+        - chance: always
+          item:   chrysoberyl
+        - chance: uncommon
+          item:   gluttony_sword
+
+  Skull_of_Greed:
+    id:            3656
+    species:       skeleton
+    type:          [notorious]
+    skill_list_id: 227
+    attributes:
+      combat:
+        skill: great_sword
+        delay: 210
+      render:
+        look:
+          type:  standard
+          model: 571
+        entity_flags:  3
+        model_size:    3
+        hitbox:       16
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 3350
+    loot:
+      drops:
+        - chance: always
+          item:   fluorite
+        - chance: uncommon
+          item:   greed_scimitar
+
+  Skull_of_Lust:
+    id:            3657
+    species:       skeleton
+    type:          [notorious]
+    skill_list_id: 227
+    attributes:
+      combat:
+        skill: axe
+        delay: 210
+      render:
+        look:
+          type:  standard
+          model: 1101
+        entity_flags:  3
+        model_size:    3
+        hitbox:       16
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 3350
+    loot:
+      drops:
+        - chance: always
+          item:   painite
+        - chance: uncommon
+          item:   lust_dagger
+
+  Skull_of_Pride:
+    id:            3658
+    species:       skeleton
+    type:          [notorious]
+    spell_list_id: 28
+    skill_list_id: 227
+    attributes:
+      combat:
+        skill: axe
+        delay: 210
+      jobs: [blm, war]
+      render:
+        look:
+          type:  standard
+          model: 1146
+        entity_flags:  3
+        model_size:    3
+        hitbox:       16
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 3200
+    loot:
+      drops:
+        - chance: always
+          item:   aquamarine
+        - chance: uncommon
+          item:   pride_staff
+
+  Skull_of_Sloth:
+    id:            3659
+    species:       skeleton
+    type:          [notorious]
+    spell_list_id: 28
+    skill_list_id: 227
+    attributes:
+      combat:
+        skill: axe
+        delay: 210
+      jobs: [blm, war]
+      render:
+        look:
+          type:  standard
+          model: 1136
+        entity_flags:  3
+        model_size:    3
+        hitbox:       16
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 3000
+    loot:
+      drops:
+        - chance: always
+          item:   zircon
+        - chance: uncommon
+          item:   cytherea_pearl
+
+  Skull_of_Wrath:
+    id:            3660
+    species:       skeleton
+    type:          [notorious]
+    skill_list_id: 227
+    attributes:
+      combat:
+        skill: dagger
+        delay: 210
+      render:
+        look:
+          type:  standard
+          model: 1118
+        entity_flags:  3
+        model_size:    3
+        hitbox:       16
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 3350
+    loot:
+      drops:
+        - chance: always
+          item:   sunstone
+        - chance: uncommon
+          item:   wrath_tabar
+
+  Spriggan_blm:
+    id:            5415
+    species:       shadow
+    spell_list_id: 21
+    skill_list_id: 221
+    attributes:
+      combat:
+        skill: axe
+        delay: 360
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 538
+        entity_flags: 131
+        model_size:     1
+        hitbox:        20
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+      stats:
+        mp: 5000
+    loot:
+      drops:
+        - chance: rare
+          item:   eldieme_coffer_key
+        - chance: very_rare
+          item:   revival_tree_root
+
+  Spriggan_rng:
+    id:            5414
+    species:       shadow
+    skill_list_id: 221
+    attributes:
+      combat:
+        skill: axe
+        delay: 360
+      jobs: [rng, rng]
+      render:
+        look:
+          type:  standard
+          model: 546
+        entity_flags: 131
+        model_size:     1
+        hitbox:        20
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: rare
+          item:   eldieme_coffer_key
+        - chance: very_rare
+          item:   revival_tree_root
+
+  Spriggan_thf:
+    id:            5416
+    species:       shadow
+    skill_list_id: 221
+    attributes:
+      combat:
+        skill: axe
+        delay: 360
+      jobs: [thf, thf]
+      render:
+        look:
+          type:  standard
+          model: 542
+        entity_flags: 131
+        model_size:     1
+        hitbox:        20
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: rare
+          item:   eldieme_coffer_key
+        - chance: very_rare
+          item:   revival_tree_root
+
+  Spriggan_war:
+    id:            3741
+    species:       shadow
+    skill_list_id: 221
+    attributes:
+      combat:
+        skill: axe
+        delay: 360
+      render:
+        look:
+          type:  standard
+          model: 534
+        entity_flags: 131
+        model_size:     1
+        hitbox:        20
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: rare
+          item:   eldieme_coffer_key
+        - chance: very_rare
+          item:   revival_tree_root
+
+  Sturm:
+    id:            3799
+    species:       hound
+    type:          [notorious]
+    skill_list_id: 143
+    attributes:
+      combat:
+        skill: sword
+      render:
+        look:
+          type:  standard
+          model: 364
+        entity_flags: 131
+        model_size:     1
+        hitbox:        25
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 14200
+
+  Taifun:
+    id:            3834
+    species:       tiger
+    skill_list_id: 242
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 308
+        entity_flags: 129
+        hitbox:        22
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 3250
+
+  Tomb_Mage:
+    id:            3943
+    species:       skeleton
+    spell_list_id: 28
+    skill_list_id: 227
+    attributes:
+      combat:
+        skill: great_katana
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 564
+        entity_flags: 133
+        model_size:     2
+        hitbox:        13
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   bone_chip
+        - chance: rare
+          item:   scroll_of_blizzard_iii
+        - chance: rare
+          item:   eldieme_coffer_key
+      steal: bone_chip
+      despoil:
+        bone_chip: 0
+
+  Tomb_Warrior:
+    id:            3944
+    species:       skeleton
+    skill_list_id: 227
+    attributes:
+      combat:
+        skill: axe
+      render:
+        look:
+          type:  standard
+          model: 572
+        entity_flags: 133
+        model_size:     2
+        hitbox:        13
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   bone_chip
+        - chance: rare
+          item:   eldieme_coffer_key
+      steal: bone_chip
+      despoil:
+        bone_chip: 0
+
+  Tomb_Wolf:
+    id:            3945
+    species:       hound
+    skill_list_id: 143
+    attributes:
+      combat:
+        skill: sword
+      render:
+        look:
+          type:  standard
+          model: 364
+        entity_flags: 133
+        model_size:     2
+        hitbox:        28
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: rare
+          item:   eldieme_chest_key
+        - chance: common
+          item:   wolf_hide
+        - chance: uncommon
+          item:   revival_tree_root
+      despoil:
+        wolf_hide:         0
+        revival_tree_root: 0
+
+  Trombe:
+    id:            4038
+    species:       tiger
+    skill_list_id: 242
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 308
+        entity_flags: 129
+        hitbox:        22
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 3250
+
+  Utukku_EN_FY:
+    id:            6512
+    species:       ghost
+    spell_list_id: 28
+    skill_list_id: 121
+    attributes:
+      combat:
+        skill: staff
+      jobs: [war, blm]
+      render:
+        look:
+          type:  standard
+          model: 368
+        entity_flags: 1157
+        model_size:      2
+        hitbox:          9
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: very_rare
+          item:   eldieme_chest_key
+        - chance: common
+          item:   square_of_cotton_cloth
+        - chance: uncommon
+          item:   revival_tree_root
+        - chance: very_rare
+          item:   luminicloth
+      steal: square_of_cotton_cloth
+      despoil:
+        square_of_cotton_cloth: 0
+
+  Yum_Kimil:
+    id:            4484
+    species:       skeleton
+    type:          [notorious]
+    spell_list_id: 28
+    skill_list_id: 227
+    attributes:
+      combat:
+        skill: axe
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 1146
+        entity_flags: 131
+        model_size:     1
+        hitbox:        12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 7800
+        mp: 7800
+
+
+  Beta_eys_Gazer:
+    id:            40058
+    species:       hecteye
+    spell_list_id: 10
+    skill_list_id: 139
+    attributes:
+      combat:
+        skill: staff
+        delay: 280
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 2969
+        entity_flags: 131
+        model_size:     1
+        hitbox:        12
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   beta_240
+        - chance: uncommon
+          item:   beta_4908
+        - chance: uncommon
+          item:   beta_6788
+        - chance: very_common
+          item:   vial_of_mercury
+        - chance: very_common
+          item:   hecteyes_eye
+        - chance: rare
+          item:   burning_hakutaku_eye
+      despoil:
+        hecteyes_eye: 0
+
+  Beta_hell_Hell_Hound:
+    id:            40069
+    species:       hound
+    skill_list_id: 143
+    attributes:
+      combat:
+        skill: sword
+      render:
+        look:
+          type:  standard
+          model: 2964
+        entity_flags: 131
+        model_size:     1
+        hitbox:        25
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   beta_298
+        - chance: uncommon
+          item:   beta_5025
+        - chance: uncommon
+          item:   beta_6811
+        - chance: uncommon
+          item:   wolf_hide
+        - chance: rare
+          item:   revival_tree_root
+      despoil:
+        wolf_hide:         0
+        revival_tree_root: 0
+
+  Beta_ghos_Blood_Soul:
+    id:            40073
+    species:       ghost
+    spell_list_id: 28
+    skill_list_id: 121
+    attributes:
+      combat:
+        skill: staff
+      jobs: [war, blm]
+      render:
+        look:
+          type:  standard
+          model: 2965
+        entity_flags:  643
+        animation_sub:   8
+        model_size:      1
+        hitbox:          8
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: rare
+          item:   beta_11463
+        - chance: uncommon
+          item:   beta_1070
+        - chance: uncommon
+          item:   beta_6422
+        - chance: uncommon
+          item:   beta_6833
+        - chance: common
+          item:   square_of_cotton_cloth
+        - chance: rare
+          item:   revival_tree_root
+        - chance: rare
+          item:   eldieme_chest_key
+        - chance: very_rare
+          item:   luminicloth
+      steal: square_of_cotton_cloth
+      despoil:
+        square_of_cotton_cloth: 0
+
+  Beta_skel_Tomb_Mage:
+    id:            40085
+    species:       skeleton
+    spell_list_id: 28
+    skill_list_id: 227
+    attributes:
+      combat:
+        skill: great_katana
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 2963
+        entity_flags: 133
+        model_size:     2
+        hitbox:        13
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: rare
+          item:   beta_18836
+        - chance: uncommon
+          item:   beta_85
+        - chance: uncommon
+          item:   beta_4639
+        - chance: uncommon
+          item:   beta_6749
+        - chance: uncommon
+          item:   beta_6899
+        - chance: common
+          item:   bone_chip
+        - chance: rare
+          item:   scroll_of_blizzard_iii
+        - chance: rare
+          item:   eldieme_coffer_key
+      steal: bone_chip
+      despoil:
+        bone_chip: 0
+
+spawns:
+  17575937:
+    template: Lich_C_Magnus
+    at:       [300.000, -0.750, 19.921, 139]
+    level:    [58, 58]
+  17575938:
+    template: Skull_of_Gluttony
+    at:       [17.450, -15.940, 339.670, 2]
+    level:    [60, 60]
+  17575939:
+    template: Skull_of_Greed
+    at:       [140.120, -15.920, 303.910, 63]
+    level:    [60, 60]
+  17575940:
+    template: Skull_of_Sloth
+    at:       [-186.780, 0.000, 57.410, 163]
+    level:    [60, 60]
+  17575941:
+    template: Skull_of_Lust
+    at:       [99.890, 8.080, -103.650, 188]
+    level:    [60, 60]
+  17575942:
+    template: Skull_of_Pride
+    at:       [382.730, -32.000, -372.690, 160]
+    level:    [60, 60]
+  17575943:
+    template: Skull_of_Envy
+    at:       [-657.490, 0.000, 213.270, 102]
+    level:    [60, 60]
+  17575944:
+    template: Skull_of_Wrath
+    at:       [-348.130, 0.000, 338.150, 156]
+    level:    [60, 60]
+  17575945:
+    template: Marchosias
+    region:   n_9
+    level:    [40, 43]
+  17575946:
+    template: Lost_Soul_war_EN
+    script:   Lost_Soul
+    region:   n_10
+    level:    [42, 43]
+  17575947:
+    template: Lost_Soul_war_EN
+    script:   Lost_Soul
+    region:   n_10
+    level:    [42, 43]
+  17575948:
+    template: Lost_Soul_blm_EN
+    script:   Lost_Soul
+    region:   n_10
+    level:    [42, 43]
+  17575949:
+    template: Lost_Soul_blm_EN
+    script:   Lost_Soul
+    region:   n_10
+    level:    [42, 43]
+  17575950:
+    template: Marchosias
+    region:   n_14
+    level:    [40, 43]
+  17575951:
+    template: Marchosias
+    region:   n_14
+    level:    [40, 43]
+  17575952:
+    template: Marchosias
+    region:   n_14
+    level:    [40, 43]
+  17575953:
+    template: Shade_war
+    script:   Shade
+    region:   c_18
+    level:    [46, 48]
+  17575954:
+    template: Shade_rng
+    script:   Shade
+    region:   c_18
+    level:    [46, 48]
+  17575955:
+    template: Shade_thf
+    script:   Shade
+    region:   c_18
+    level:    [46, 48]
+  17575956:
+    template: Shade_drk
+    script:   Shade
+    region:   c_18
+    level:    [46, 48]
+  17575957:
+    template: Lost_Soul_war_EN
+    script:   Lost_Soul
+    region:   c_18
+    level:    [44, 45]
+  17575958:
+    template: Lost_Soul_blm_EN
+    script:   Lost_Soul
+    region:   c_18
+    level:    [44, 45]
+  17575959:
+    template: Hellbound_Warrior
+    region:   n_23
+    level:    [91, 93]
+  17575960:
+    template: Hellbound_Warlock
+    region:   n_23
+    level:    [91, 93]
+  17575961:
+    template: Hellbound_Warrior
+    region:   n_25
+    level:    [91, 93]
+  17575962:
+    template: Hellbound_Warlock
+    region:   se_26
+    level:    [91, 93]
+  17575963:
+    template: Hellbound_Warrior
+    region:   n_27
+    level:    [91, 93]
+  17575964:
+    template: Hellbound_Warlock
+    region:   n_27
+    level:    [91, 93]
+  17575965:
+    template: Hellbound_Warrior
+    region:   se_29
+    level:    [91, 93]
+  17575966:
+    template: Hellbound_Warlock
+    region:   n_30
+    level:    [91, 93]
+  17575967:
+    template: Marchosias
+    region:   c_31
+    level:    [40, 43]
+  17575968:
+    template: Marchosias
+    region:   c_31
+    level:    [40, 43]
+  17575969:
+    template: Lost_Soul_war_EN
+    script:   Lost_Soul
+    region:   c_33
+    level:    [42, 43]
+  17575970:
+    template: Lost_Soul_war_EN
+    script:   Lost_Soul
+    region:   c_33
+    level:    [42, 43]
+  17575971:
+    template: Lost_Soul_war_EN
+    script:   Lost_Soul
+    region:   c_33
+    level:    [42, 43]
+  17575972:
+    template: Lost_Soul_blm_EN
+    script:   Lost_Soul
+    region:   c_33
+    level:    [42, 43]
+  17575973:
+    template: Lost_Soul_blm_EN
+    script:   Lost_Soul
+    region:   c_33
+    level:    [42, 43]
+  17575974:
+    template: Revenant_NGS_EN_GC
+    script:   Revenant
+    region:   c_33
+    level:    [44, 47]
+  17575975:
+    template: Marchosias
+    region:   c_39
+    level:    [40, 43]
+  17575976:
+    template: Marchosias
+    region:   c_39
+    level:    [40, 43]
+  17575977:
+    template: Marchosias
+    region:   c_39
+    level:    [40, 43]
+  17575978:
+    template: Hellbound_Warrior
+    region:   se_42
+    level:    [91, 93]
+  17575979:
+    template: Hellbound_Warlock
+    region:   se_43
+    level:    [91, 93]
+  17575980:
+    template: Hellbound_Warrior
+    region:   se_44
+    level:    [91, 93]
+  17575981:
+    template: Hellbound_Warlock
+    region:   se_44
+    level:    [91, 93]
+  17575982:
+    template: Hellbound_Warrior
+    region:   se_46
+    level:    [91, 93]
+  17575983:
+    template: Hellbound_Warlock
+    region:   se_47
+    level:    [91, 93]
+  17575984:
+    template: Hellbound_Warrior
+    region:   se_48
+    level:    [91, 93]
+  17575985:
+    template: Hellbound_Warlock
+    region:   se_48
+    level:    [91, 93]
+  17575986:
+    template: Marchosias
+    region:   ne_50
+    level:    [40, 43]
+  17575987:
+    template: Marchosias
+    region:   ne_50
+    level:    [40, 43]
+  17575988:
+    template: Lost_Soul_war_EN
+    script:   Lost_Soul
+    region:   ne_52
+    level:    [45, 46]
+  17575989:
+    template: Lost_Soul_war_EN
+    script:   Lost_Soul
+    region:   ne_52
+    level:    [45, 46]
+  17575990:
+    template: Lost_Soul_blm_EN
+    script:   Lost_Soul
+    region:   ne_52
+    level:    [45, 46]
+  17575991:
+    template: Lost_Soul_blm_EN
+    script:   Lost_Soul
+    region:   ne_52
+    level:    [45, 46]
+  17575992:
+    template: Hell_Hound
+    region:   ne_56
+    level:    [46, 49]
+  17575993:
+    template: Hell_Hound
+    region:   ne_56
+    level:    [46, 49]
+  17575994:
+    template: Hell_Hound
+    region:   ne_56
+    level:    [46, 49]
+  17575995:
+    template: Hellbound_Warrior
+    region:   ne_59
+    level:    [91, 93]
+  17575996:
+    template: Hellbound_Warlock
+    region:   ne_59
+    level:    [91, 93]
+  17575997:
+    template: Hellbound_Warrior
+    region:   se_61
+    level:    [91, 93]
+  17575998:
+    template: Hellbound_Warlock
+    region:   ne_62
+    level:    [91, 93]
+  17575999:
+    template: Hellbound_Warrior
+    region:   ne_63
+    level:    [91, 93]
+  17576000:
+    template: Hellbound_Warlock
+    region:   se_64
+    level:    [91, 93]
+  17576001:
+    template: Hellbound_Warrior
+    region:   ne_65
+    level:    [91, 93]
+  17576002:
+    template: Hellbound_Warlock
+    region:   ne_65
+    level:    [91, 93]
+  17576003:
+    template: Revenant_NGS_EN_GC
+    script:   Revenant
+    region:   ne_67
+    level:    [44, 47]
+  17576004:
+    template: Revenant_NGS_EN_GC
+    script:   Revenant
+    region:   ne_67
+    level:    [44, 47]
+  17576005:
+    template: Lost_Soul_war_EN
+    script:   Lost_Soul
+    region:   ne_69
+    level:    [45, 46]
+  17576006:
+    template: Lost_Soul_war_EN
+    script:   Lost_Soul
+    region:   ne_69
+    level:    [45, 46]
+  17576007:
+    template: Lost_Soul_blm_EN
+    script:   Lost_Soul
+    region:   ne_69
+    level:    [45, 46]
+  17576008:
+    template: Anemone
+    region:   c_72
+    level:    [45, 46]
+  17576009:
+    template: Gazer
+    region:   c_72
+    level:    [41, 43]
+  17576010:
+    template: Gazer
+    region:   c_72
+    level:    [41, 43]
+  17576011:
+    template: Gazer
+    region:   c_72
+    level:    [41, 43]
+  17576012:
+    template: Gazer
+    region:   c_72
+    level:    [41, 43]
+  17576013:
+    template: Gazer
+    region:   c_72
+    level:    [41, 43]
+  17576014:
+    template: Gazer
+    region:   c_78
+    level:    [41, 43]
+  17576015:
+    template: Gazer
+    region:   c_78
+    level:    [41, 43]
+  17576016:
+    template: Puroboros_EN_GC
+    script:   Puroboros
+    region:   c_78
+    level:    [42, 44]
+  17576017:
+    template: Puroboros_EN_GC
+    script:   Puroboros
+    region:   c_78
+    level:    [42, 44]
+  17576018:
+    template: Hell_Hound
+    region:   nw_82
+    level:    [46, 49]
+  17576019:
+    template: Hell_Hound
+    region:   nw_82
+    level:    [46, 49]
+  17576020:
+    template: Mummy
+    region:   nw_84
+    level:    [50, 52]
+  17576021:
+    template: Mummy
+    region:   nw_84
+    level:    [50, 52]
+  17576022:
+    template: Lich
+    region:   nw_84
+    level:    [51, 53]
+  17576023:
+    template: Mummy
+    region:   nw_87
+    level:    [50, 52]
+  17576024:
+    template: Mummy
+    region:   nw_87
+    level:    [50, 52]
+  17576025:
+    template: Lich
+    region:   nw_87
+    level:    [51, 53]
+  17576026:
+    template: Mummy
+    region:   nw_90
+    level:    [50, 52]
+  17576027:
+    template: Mummy
+    region:   nw_90
+    level:    [50, 52]
+  17576028:
+    template: Lich
+    region:   nw_90
+    level:    [51, 53]
+  17576029:
+    template: Lich
+    region:   nw_90
+    level:    [51, 53]
+  17576030:
+    template: Hell_Hound
+    region:   nw_94
+    level:    [46, 49]
+  17576031:
+    template: Blood_Soul
+    region:   nw_95
+    level:    [50, 52]
+  17576032:
+    template: Blood_Soul
+    region:   nw_95
+    level:    [50, 52]
+  17576033:
+    template: Blood_Soul
+    region:   nw_95
+    level:    [50, 52]
+  17576034:
+    template: Ka_war
+    script:   Ka
+    region:   nw_99
+    level:    [52, 54]
+  17576035:
+    template: Ka_blm
+    script:   Ka
+    region:   nw_99
+    level:    [52, 54]
+  17576036:
+    template: Ka_thf
+    script:   Ka
+    region:   nw_99
+    level:    [52, 54]
+  17576037:
+    template: Ka_thf
+    script:   Ka
+    region:   nw_99
+    level:    [52, 54]
+  17576038:
+    template: Mummy
+    region:   nw_99
+    level:    [50, 52]
+  17576039:
+    template: Mummy
+    region:   nw_99
+    level:    [50, 52]
+  17576040:
+    template: Lich
+    region:   nw_99
+    level:    [51, 53]
+  17576041:
+    template: Lich
+    region:   nw_99
+    level:    [51, 53]
+  17576042:
+    template: Ka_rng
+    script:   Ka
+    region:   nw_106
+    level:    [52, 54]
+  17576043:
+    template: Ka_war
+    script:   Ka
+    region:   nw_106
+    level:    [52, 54]
+  17576044:
+    template: Ka_blm
+    script:   Ka
+    region:   nw_106
+    level:    [52, 54]
+  17576045:
+    template: Ka_thf
+    script:   Ka
+    region:   nw_106
+    level:    [52, 54]
+  17576046:
+    template: Mummy
+    region:   nw_106
+    level:    [50, 52]
+  17576047:
+    template: Mummy
+    region:   nw_106
+    level:    [50, 52]
+  17576048:
+    template: Lich
+    region:   nw_106
+    level:    [51, 53]
+  17576049:
+    template: Lich
+    region:   nw_106
+    level:    [51, 53]
+  17576050:
+    template: Tomb_Wolf
+    region:   nw_114
+    level:    [53, 55]
+  17576051:
+    template: Tomb_Wolf
+    region:   nw_114
+    level:    [53, 55]
+  17576052:
+    template: Tomb_Wolf
+    region:   nw_114
+    level:    [53, 55]
+  17576053:
+    template: Tomb_Wolf
+    region:   nw_114
+    level:    [53, 55]
+  17576054:
+    template: Cwn_Cyrff
+    region:   nw_114
+    level:    [63, 63]
+  17576055:
+    template: Utukku_EN_FY
+    script:   Utukku
+    region:   nw_119
+    level:    [55, 57]
+  17576056:
+    template: Utukku_EN_FY
+    script:   Utukku
+    region:   nw_119
+    level:    [55, 57]
+  17576057:
+    template: Utukku_EN_FY
+    script:   Utukku
+    region:   nw_119
+    level:    [55, 57]
+  17576058:
+    template: Utukku_EN_FY
+    script:   Utukku
+    region:   nw_119
+    level:    [55, 57]
+  17576059:
+    template: Lost_Soul_war_EN
+    script:   Lost_Soul
+    region:   w_123
+    level:    [42, 43]
+  17576060:
+    template: Lost_Soul_war_EN
+    script:   Lost_Soul
+    region:   w_123
+    level:    [42, 43]
+  17576061:
+    template: Lost_Soul_blm_EN
+    script:   Lost_Soul
+    region:   w_123
+    level:    [42, 43]
+  17576062:
+    template: Lost_Soul_blm_EN
+    script:   Lost_Soul
+    region:   w_123
+    level:    [42, 43]
+  17576063:
+    template: Gazer
+    region:   w_127
+    level:    [41, 43]
+  17576064:
+    template: Gazer
+    region:   w_127
+    level:    [41, 43]
+  17576065:
+    template: Gazer
+    region:   w_127
+    level:    [41, 43]
+  17576066:
+    template: Gazer
+    region:   w_127
+    level:    [41, 43]
+  17576067:
+    template: Anemone
+    region:   w_131
+    level:    [45, 46]
+  17576068:
+    template: Puroboros_EN_GC
+    script:   Puroboros
+    region:   w_131
+    level:    [42, 44]
+  17576069:
+    template: Nekros_Hound
+    region:   se_26
+    level:    [93, 95]
+  17576070:
+    template: Nekros_Hound
+    region:   n_25
+    level:    [93, 95]
+  17576071:
+    template: Nekros_Hound
+    region:   se_135
+    level:    [93, 95]
+  17576072:
+    template: Nekros_Hound
+    region:   se_135
+    level:    [93, 95]
+  17576073:
+    template: Nekros_Hound
+    region:   se_29
+    level:    [93, 95]
+  17576074:
+    template: Nekros_Hound
+    region:   n_30
+    level:    [93, 95]
+  17576075:
+    template: Nekros_Hound
+    region:   se_43
+    level:    [93, 95]
+  17576076:
+    template: Nekros_Hound
+    region:   se_42
+    level:    [93, 95]
+  17576077:
+    template: Nekros_Hound
+    region:   se_46
+    level:    [93, 95]
+  17576078:
+    template: Nekros_Hound
+    region:   se_47
+    level:    [93, 95]
+  17576079:
+    template: Nekros_Hound
+    region:   se_61
+    level:    [93, 95]
+  17576080:
+    template: Nekros_Hound
+    region:   ne_62
+    level:    [93, 95]
+  17576081:
+    template: Nekros_Hound
+    region:   se_145
+    level:    [93, 95]
+  17576082:
+    template: Nekros_Hound
+    region:   se_146
+    level:    [93, 95]
+  17576083:
+    template: Lich
+    region:   region_104
+    level:    [52, 54]
+  17576084:
+    template: Lich
+    region:   region_104
+    level:    [52, 54]
+  17576085:
+    template: Nekros_Hound
+    region:   se_64
+    level:    [93, 95]
+  17576086:
+    template: Nekros_Hound
+    region:   ne_63
+    level:    [93, 95]
+  17576087:
+    template: Nekros_Hound
+    region:   se_151
+    level:    [93, 95]
+  17576088:
+    template: Nekros_Hound
+    region:   se_151
+    level:    [93, 95]
+  17576089:
+    template: Nekros_Hound
+    region:   se_153
+    level:    [93, 95]
+  17576090:
+    template: Nekros_Hound
+    region:   se_154
+    level:    [93, 95]
+  17576091:
+    template: Lost_Soul_war_EN
+    script:   Lost_Soul
+    region:   se_155
+    level:    [45, 46]
+  17576092:
+    template: Lost_Soul_war_EN
+    script:   Lost_Soul
+    region:   se_155
+    level:    [45, 46]
+  17576093:
+    template: Lost_Soul_blm_EN
+    script:   Lost_Soul
+    region:   se_155
+    level:    [45, 46]
+  17576094:
+    template: Lost_Soul_blm_EN
+    script:   Lost_Soul
+    region:   se_155
+    level:    [45, 46]
+  17576095:
+    template: Hell_Hound
+    region:   e_159
+    level:    [46, 49]
+  17576096:
+    template: Revenant_NGS_EN_GC
+    script:   Revenant
+    region:   e_160
+    level:    [44, 47]
+  17576097:
+    template: Revenant_NGS_EN_GC
+    script:   Revenant
+    region:   e_160
+    level:    [44, 47]
+  17576098:
+    template: Revenant_NGS_EN_GC
+    script:   Revenant
+    region:   e_160
+    level:    [44, 47]
+  17576099:
+    template: Hell_Hound
+    region:   e_163
+    level:    [46, 49]
+  17576100:
+    template: Hell_Hound
+    region:   e_163
+    level:    [46, 49]
+  17576101:
+    template: Hell_Hound
+    region:   e_163
+    level:    [46, 49]
+  17576102:
+    template: Hell_Hound
+    region:   e_166
+    level:    [46, 49]
+  17576103:
+    template: Hell_Hound
+    region:   e_166
+    level:    [46, 49]
+  17576104:
+    template: Hell_Hound
+    region:   e_166
+    level:    [46, 49]
+  17576105:
+    template: Ka_war
+    script:   Ka
+    region:   e_170
+    level:    [52, 54]
+  17576106:
+    template: Ka_blm
+    script:   Ka
+    region:   e_170
+    level:    [52, 54]
+  17576107:
+    template: Ka_thf
+    script:   Ka
+    region:   e_170
+    level:    [52, 54]
+  17576108:
+    template: Ka_rng
+    script:   Ka
+    region:   e_170
+    level:    [52, 54]
+  17576109:
+    template: Blood_Soul
+    region:   e_170
+    level:    [50, 52]
+  17576110:
+    template: Blood_Soul
+    region:   e_170
+    level:    [50, 52]
+  17576111:
+    template: Blood_Soul
+    region:   e_170
+    level:    [50, 52]
+  17576112:
+    template: Dark_Stalker_war
+    script:   Dark_Stalker
+    region:   e_176
+    level:    [57, 59]
+  17576113:
+    template: Dark_Stalker_blm
+    script:   Dark_Stalker
+    region:   e_176
+    level:    [57, 59]
+  17576114:
+    template: Dark_Stalker_thf
+    script:   Dark_Stalker
+    region:   e_176
+    level:    [57, 59]
+  17576115:
+    template: Dark_Stalker_rng
+    script:   Dark_Stalker
+    region:   e_176
+    level:    [57, 59]
+  17576116:
+    template: Utukku_EN_FY
+    script:   Utukku
+    region:   e_176
+    level:    [55, 57]
+  17576117:
+    template: Utukku_EN_FY
+    script:   Utukku
+    region:   e_176
+    level:    [55, 57]
+  17576118:
+    template: Utukku_EN_FY
+    script:   Utukku
+    region:   e_176
+    level:    [55, 57]
+  17576119:
+    template: Ka_war
+    script:   Ka
+    region:   se_183
+    level:    [52, 54]
+  17576120:
+    template: Ka_blm
+    script:   Ka
+    region:   se_183
+    level:    [52, 54]
+  17576121:
+    template: Ka_thf
+    script:   Ka
+    region:   se_183
+    level:    [52, 54]
+  17576122:
+    template: Ka_rng
+    script:   Ka
+    region:   se_183
+    level:    [52, 54]
+  17576123:
+    template: Blood_Soul
+    region:   se_183
+    level:    [50, 52]
+  17576124:
+    template: Blood_Soul
+    region:   se_183
+    level:    [50, 52]
+  17576125:
+    template: Blood_Soul
+    region:   se_183
+    level:    [50, 52]
+  17576126:
+    template: Dark_Stalker_war
+    script:   Dark_Stalker
+    region:   c_191
+    level:    [57, 59]
+  17576127:
+    template: Dark_Stalker_blm
+    script:   Dark_Stalker
+    region:   c_191
+    level:    [57, 59]
+  17576128:
+    template: Dark_Stalker_thf
+    script:   Dark_Stalker
+    region:   c_191
+    level:    [57, 59]
+  17576129:
+    template: Dark_Stalker_rng
+    script:   Dark_Stalker
+    region:   c_191
+    level:    [57, 59]
+  17576130:
+    template: Utukku_EN_FY
+    script:   Utukku
+    region:   c_191
+    level:    [55, 57]
+  17576131:
+    template: Utukku_EN_FY
+    script:   Utukku
+    region:   c_191
+    level:    [55, 57]
+  17576132:
+    template: Utukku_EN_FY
+    script:   Utukku
+    region:   c_191
+    level:    [55, 57]
+  17576133:
+    template: Azer
+    region:   e_197
+    level:    [51, 53]
+  17576134:
+    template: Azer
+    region:   e_198
+    level:    [51, 53]
+  17576135:
+    template: Azer
+    region:   e_199
+    level:    [51, 53]
+  17576136:
+    template: Azer
+    region:   e_200
+    level:    [51, 53]
+  17576137:
+    template: Fallen_Knight_EN
+    script:   Fallen_Knight
+    region:   e_201
+    level:    [54, 56]
+  17576138:
+    template: Lich
+    region:   e_201
+    level:    [52, 54]
+  17576139:
+    template: Lich
+    region:   e_201
+    level:    [52, 54]
+  17576140:
+    template: Fallen_Knight_EN
+    script:   Fallen_Knight
+    region:   se_204
+    level:    [54, 56]
+  17576141:
+    template: Lich
+    region:   se_204
+    level:    [52, 54]
+  17576142:
+    template: Lich
+    region:   se_204
+    level:    [52, 54]
+  17576143:
+    template: Fallen_Knight_EN
+    script:   Fallen_Knight
+    region:   e_207
+    level:    [54, 56]
+  17576144:
+    template: Fallen_Knight_EN
+    script:   Fallen_Knight
+    region:   e_207
+    level:    [54, 56]
+  17576145:
+    template: Lich
+    region:   e_207
+    level:    [52, 54]
+  17576146:
+    template: Fallen_Knight_EN
+    script:   Fallen_Knight
+    region:   se_210
+    level:    [54, 56]
+  17576147:
+    template: Fallen_Knight_EN
+    script:   Fallen_Knight
+    region:   se_210
+    level:    [54, 56]
+  17576148:
+    template: Lich
+    region:   se_210
+    level:    [52, 54]
+  17576149:
+    template: Ka_war
+    script:   Ka
+    region:   e_214
+    level:    [52, 54]
+  17576150:
+    template: Ka_blm
+    script:   Ka
+    region:   e_214
+    level:    [52, 54]
+  17576151:
+    template: Ka_thf
+    script:   Ka
+    region:   e_214
+    level:    [52, 54]
+  17576152:
+    template: Ka_rng
+    script:   Ka
+    region:   e_214
+    level:    [52, 54]
+  17576153:
+    template: Tomb_Wolf
+    region:   e_217
+    level:    [53, 55]
+  17576154:
+    template: Tomb_Wolf
+    region:   e_217
+    level:    [53, 55]
+  17576155:
+    template: Ice_Elemental
+    region:   e_217
+    level:    [52, 55]
+  17576156:
+    template: Earth_Elemental
+    region:   e_220
+    level:    [52, 55]
+  17576157:
+    template: Tomb_Wolf
+    region:   e_221
+    level:    [53, 55]
+  17576158:
+    template: Tomb_Wolf
+    region:   e_221
+    level:    [53, 55]
+  17576159:
+    template: Ice_Elemental
+    region:   e_221
+    level:    [52, 55]
+  17576160:
+    template: Earth_Elemental
+    region:   e_221
+    level:    [52, 55]
+  17576161:
+    template: Tomb_Wolf
+    region:   e_225
+    level:    [53, 55]
+  17576162:
+    template: Tomb_Wolf
+    region:   e_225
+    level:    [53, 55]
+  17576163:
+    template: Ice_Elemental
+    region:   e_225
+    level:    [52, 55]
+  17576164:
+    template: Earth_Elemental
+    region:   e_225
+    level:    [52, 55]
+  17576165:
+    template: Tomb_Wolf
+    region:   e_229
+    level:    [53, 55]
+  17576166:
+    template: Tomb_Wolf
+    region:   e_229
+    level:    [53, 55]
+  17576167:
+    template: Ice_Elemental
+    region:   e_229
+    level:    [52, 55]
+  17576168:
+    template: Earth_Elemental
+    region:   e_229
+    level:    [52, 55]
+  17576169:
+    template: Tomb_Wolf
+    region:   e_233
+    level:    [53, 55]
+  17576170:
+    template: Tomb_Wolf
+    region:   e_234
+    level:    [53, 55]
+  17576171:
+    template: Tomb_Wolf
+    region:   c_235
+    level:    [53, 55]
+  17576172:
+    template: Tomb_Wolf
+    region:   c_236
+    level:    [53, 55]
+  17576173:
+    template: Tomb_Wolf
+    region:   se_237
+    level:    [53, 55]
+  17576174:
+    template: Tomb_Wolf
+    region:   se_238
+    level:    [53, 55]
+  17576175:
+    template: Haunt_EN
+    script:   Haunt
+    region:   se_239
+    level:    [63, 65]
+  17576176:
+    template: Haunt_EN
+    script:   Haunt
+    region:   se_239
+    level:    [63, 65]
+  17576177:
+    template: Tomb_Warrior
+    region:   se_241
+    level:    [60, 62]
+  17576178:
+    template: Tomb_Warrior
+    region:   se_241
+    level:    [60, 62]
+  17576179:
+    template: Tomb_Mage
+    region:   se_241
+    level:    [60, 63]
+  17576180:
+    template: Shade_war
+    script:   Shade
+    region:   se_245
+    level:    [46, 48]
+  17576181:
+    template: Shade_rng
+    script:   Shade
+    region:   se_245
+    level:    [46, 48]
+  17576182:
+    template: Shade_thf
+    script:   Shade
+    region:   se_245
+    level:    [46, 48]
+  17576183:
+    template: Shade_drk
+    script:   Shade
+    region:   se_245
+    level:    [46, 48]
+  17576184:
+    template: Lost_Soul_blm_EN
+    script:   Lost_Soul
+    region:   se_245
+    level:    [45, 46]
+  17576185:
+    template: Lost_Soul_blm_EN
+    script:   Lost_Soul
+    region:   se_245
+    level:    [45, 46]
+  17576186:
+    template: Ka_war
+    script:   Ka
+    region:   e_250
+    level:    [52, 54]
+  17576187:
+    template: Ka_blm
+    script:   Ka
+    region:   e_250
+    level:    [52, 54]
+  17576188:
+    template: Ka_thf
+    script:   Ka
+    region:   e_250
+    level:    [52, 54]
+  17576189:
+    template: Ka_rng
+    script:   Ka
+    region:   e_250
+    level:    [52, 54]
+  17576190:
+    template: Fallen_Knight_EN
+    script:   Fallen_Knight
+    region:   e_254
+    level:    [54, 56]
+  17576191:
+    template: Fallen_Knight_EN
+    script:   Fallen_Knight
+    region:   e_254
+    level:    [54, 56]
+  17576192:
+    template: Lich
+    region:   e_254
+    level:    [53, 55]
+  17576193:
+    template: Fallen_Knight_EN
+    script:   Fallen_Knight
+    region:   e_257
+    level:    [54, 56]
+  17576194:
+    template: Fallen_Knight_EN
+    script:   Fallen_Knight
+    region:   e_257
+    level:    [54, 56]
+  17576195:
+    template: Lich
+    region:   e_257
+    level:    [53, 55]
+  17576196:
+    template: Dark_Stalker_war
+    script:   Dark_Stalker
+    region:   e_261
+    level:    [57, 59]
+  17576197:
+    template: Dark_Stalker_blm
+    script:   Dark_Stalker
+    region:   e_261
+    level:    [57, 59]
+  17576198:
+    template: Dark_Stalker_thf
+    script:   Dark_Stalker
+    region:   e_261
+    level:    [57, 59]
+  17576199:
+    template: Dark_Stalker_rng
+    script:   Dark_Stalker
+    region:   e_261
+    level:    [57, 59]
+  17576200:
+    template: Dark_Stalker_war
+    script:   Dark_Stalker
+    region:   e_265
+    level:    [57, 59]
+  17576201:
+    template: Dark_Stalker_blm
+    script:   Dark_Stalker
+    region:   e_265
+    level:    [57, 59]
+  17576202:
+    template: Dark_Stalker_thf
+    script:   Dark_Stalker
+    region:   e_265
+    level:    [57, 59]
+  17576203:
+    template: Dark_Stalker_rng
+    script:   Dark_Stalker
+    region:   e_265
+    level:    [57, 59]
+  17576204:
+    template: Ice_Elemental
+    region:   e_269
+    level:    [52, 55]
+  17576205:
+    template: Earth_Elemental
+    region:   e_269
+    level:    [52, 55]
+  17576206:
+    template: Tomb_Warrior
+    region:   e_270
+    level:    [60, 62]
+  17576207:
+    template: Tomb_Warrior
+    region:   e_270
+    level:    [60, 62]
+  17576208:
+    template: Tomb_Mage
+    region:   e_270
+    level:    [60, 63]
+  17576209:
+    template: Spriggan_war
+    script:   Spriggan
+    region:   e_273
+    level:    [64, 66]
+  17576210:
+    template: Spriggan_blm
+    script:   Spriggan
+    region:   e_273
+    level:    [64, 66]
+  17576211:
+    template: Spriggan_thf
+    script:   Spriggan
+    region:   e_273
+    level:    [64, 66]
+  17576212:
+    template: Spriggan_rng
+    script:   Spriggan
+    region:   e_276
+    level:    [64, 66]
+  17576213:
+    template: Spriggan_war
+    script:   Spriggan
+    region:   e_277
+    level:    [64, 66]
+  17576214:
+    template: Spriggan_blm
+    script:   Spriggan
+    region:   e_276
+    level:    [64, 66]
+  17576215:
+    template: Spriggan_thf
+    script:   Spriggan
+    region:   e_273
+    level:    [64, 66]
+  17576216:
+    template: Spriggan_rng
+    script:   Spriggan
+    region:   e_273
+    level:    [64, 66]
+  17576217:
+    template: Haunt_EN
+    script:   Haunt
+    region:   e_273
+    level:    [63, 65]
+  17576218:
+    template: Haunt_EN
+    script:   Haunt
+    region:   e_277
+    level:    [63, 65]
+  17576219:
+    template: Haunt_EN
+    script:   Haunt
+    region:   e_273
+    level:    [63, 65]
+  17576220:
+    template: Haunt_EN
+    script:   Haunt
+    region:   e_273
+    level:    [63, 65]
+  17576221:
+    template: Tomb_Warrior
+    region:   e_285
+    level:    [60, 62]
+  17576222:
+    template: Tomb_Warrior
+    region:   e_285
+    level:    [60, 62]
+  17576223:
+    template: Tomb_Mage
+    region:   e_285
+    level:    [60, 63]
+  17576224:
+    template: Tomb_Mage
+    region:   e_285
+    level:    [60, 63]
+  17576225:
+    template: Spriggan_war
+    script:   Spriggan
+    region:   c_289
+    level:    [64, 66]
+  17576226:
+    template: Spriggan_blm
+    script:   Spriggan
+    region:   c_289
+    level:    [64, 66]
+  17576227:
+    template: Spriggan_thf
+    script:   Spriggan
+    region:   c_289
+    level:    [64, 66]
+  17576228:
+    template: Spriggan_rng
+    script:   Spriggan
+    region:   c_289
+    level:    [64, 66]
+  17576229:
+    template: Haunt_EN
+    script:   Haunt
+    region:   c_289
+    level:    [63, 65]
+  17576230:
+    template: Haunt_EN
+    script:   Haunt
+    region:   c_289
+    level:    [63, 65]
+  17576231:
+    template: Haunt_EN
+    script:   Haunt
+    region:   c_289
+    level:    [63, 65]
+  17576232:
+    template: Tomb_Warrior
+    region:   c_296
+    level:    [60, 62]
+  17576233:
+    template: Tomb_Warrior
+    region:   c_296
+    level:    [60, 62]
+  17576234:
+    template: Tomb_Mage
+    region:   c_296
+    level:    [60, 63]
+  17576235:
+    template: Tomb_Mage
+    region:   c_296
+    level:    [60, 63]
+  17576236:
+    template: Shade_thf
+    script:   Shade
+    region:   e_300
+    level:    [46, 48]
+  17576237:
+    template: Shade_war
+    script:   Shade
+    region:   e_300
+    level:    [46, 48]
+  17576238:
+    template: Shade_rng
+    script:   Shade
+    region:   e_300
+    level:    [46, 48]
+  17576239:
+    template: Shade_drk
+    script:   Shade
+    region:   e_300
+    level:    [46, 48]
+  17576240:
+    template: Lost_Soul_war_EN
+    script:   Lost_Soul
+    region:   e_304
+    level:    [45, 46]
+  17576241:
+    template: Lost_Soul_blm_EN
+    script:   Lost_Soul
+    region:   e_304
+    level:    [45, 46]
+  17576242:
+    template: Lost_Soul_war_EN
+    script:   Lost_Soul
+    region:   e_306
+    level:    [45, 46]
+  17576243:
+    template: Lost_Soul_blm_EN
+    script:   Lost_Soul
+    region:   e_306
+    level:    [45, 46]
+  17576244:
+    template: Spriggan_war
+    script:   Spriggan
+    region:   e_308
+    level:    [64, 66]
+  17576245:
+    template: Spriggan_blm
+    script:   Spriggan
+    region:   e_308
+    level:    [64, 66]
+  17576246:
+    template: Spriggan_thf
+    script:   Spriggan
+    region:   e_308
+    level:    [64, 66]
+  17576247:
+    template: Spriggan_rng
+    script:   Spriggan
+    region:   e_308
+    level:    [64, 66]
+  17576248:
+    template: Haunt_EN
+    script:   Haunt
+    region:   e_308
+    level:    [63, 65]
+  17576249:
+    template: Haunt_EN
+    script:   Haunt
+    region:   e_308
+    level:    [63, 65]
+  17576250:
+    template: Haunt_EN
+    script:   Haunt
+    region:   e_308
+    level:    [63, 65]
+  17576251:
+    template: Tomb_Warrior
+    region:   e_315
+    level:    [60, 62]
+  17576252:
+    template: Tomb_Warrior
+    region:   e_315
+    level:    [60, 62]
+  17576253:
+    template: Tomb_Warrior
+    region:   e_315
+    level:    [60, 62]
+  17576254:
+    template: Tomb_Mage
+    region:   e_315
+    level:    [60, 63]
+  17576255:
+    template: Tomb_Mage
+    region:   e_315
+    level:    [60, 63]
+  17576256:
+    template: Tomb_Warrior
+    region:   e_320
+    level:    [60, 62]
+  17576257:
+    template: Tomb_Warrior
+    region:   e_320
+    level:    [60, 62]
+  17576258:
+    template: Tomb_Mage
+    region:   e_320
+    level:    [60, 63]
+  17576259:
+    template: Tomb_Mage
+    region:   e_320
+    level:    [60, 63]
+  17576260:
+    template: Tomb_Warrior
+    region:   ne_324
+    level:    [60, 62]
+  17576261:
+    template: Tomb_Warrior
+    region:   ne_324
+    level:    [60, 62]
+  17576262:
+    template: Tomb_Mage
+    region:   ne_324
+    level:    [60, 63]
+  17576263:
+    template: Tomb_Mage
+    region:   ne_324
+    level:    [60, 63]
+  17576264:
+    template: Yum_Kimil
+    at:       [-421.036, 7.500, 505.506, 222]
+    level:    [54, 54]
+  17576265:
+    template: Dog_Guardian
+    at:       [-421.414, 7.500, 502.336, 218]
+    level:    [52, 52]
+  17576266:
+    template: Owl_Guardian
+    at:       [-420.622, 7.500, 504.018, 227]
+    level:    [52, 52]
+  17576267:
+    template: Sturm
+    at:       [-412.175, 6.000, 503.615, 120]
+    level:    [62, 62]
+  17576268:
+    template: Taifun
+    at:       [-414.222, 8.000, 504.432, 65]
+    level:    [58, 58]
+  17576269:
+    template: Trombe
+    at:       [-414.272, 8.000, 496.999, 193]
+    level:    [58, 58]
+  17576270:
+    template: Mimic
+    at:       [1.000, 1.000, 1.000]
+    level:    [60, 60]
+  17576271:
+    template: Ice_Elemental_SA
+    script:   Ice_Elemental
+    at:       [102.815, -0.761, -180.001]
+    level:    [75, 75]
+  17576272:
+    template: Namorodo
+    at:       [-261.763, -0.517, 147.821, 209]
+    level:    [61, 65]
+  17576273:
+    template: Namorodo
+    level:    [61, 65]
+  17576274:
+    template: Namorodo
+    level:    [61, 65]
+  17576275:
+    template: Gasha-1stform
+    script:   Gasha
+    at:       [-2.000, 0.500, 43.000, 108]
+    level:    [94, 95]
+  17576276:
+    template: Gasha-1stform
+    script:   Gasha
+    at:       [42.000, -15.500, 322.000]
+    level:    [94, 95]
+  17576277:
+    template: Gasha-1stform
+    script:   Gasha
+    at:       [180.000, -0.750, 140.000, 242]
+    level:    [94, 95]
+
+  17576450:
+    template: Beta_eys_Gazer
+    region:   c_72
+    level:    [41, 43]
+  17576451:
+    template: Beta_eys_Gazer
+    region:   c_72
+    level:    [41, 43]
+  17576452:
+    template: Beta_hell_Hell_Hound
+    region:   ne_56
+    level:    [46, 49]
+  17576453:
+    template: Beta_hell_Hell_Hound
+    region:   ne_56
+    level:    [46, 49]
+  17576454:
+    template: Beta_ghos_Blood_Soul
+    region:   nw_95
+    level:    [50, 52]
+  17576455:
+    template: Beta_ghos_Blood_Soul
+    region:   nw_95
+    level:    [50, 52]
+  17576456:
+    template: Beta_skel_Tomb_Mage
+    region:   se_241
+    level:    [60, 63]
+  17576457:
+    template: Beta_skel_Tomb_Mage
+    region:   se_241
+    level:    [60, 63]
+slots:
+  - members:
+      17575953: {} # Shade
+      17575954: {} # Shade
+  - members:
+      17575955: {} # Shade
+      17575956: {} # Shade
+  - members:
+      17575957: {} # Lost_Soul
+      17575958: {} # Lost_Soul
+  - members:
+      17576034: {} # Ka
+      17576035: {} # Ka
+  - members:
+      17576036: {} # Ka
+      17576037: {} # Ka
+  - members:
+      17576042: {} # Ka
+      17576045: {} # Ka
+  - members:
+      17576043: {} # Ka
+      17576044: {} # Ka
+  - members:
+      17576105: {} # Ka
+      17576106: {} # Ka
+  - members:
+      17576107: {} # Ka
+      17576108: {} # Ka
+  - members:
+      17576112: {} # Dark_Stalker
+      17576113: {} # Dark_Stalker
+  - members:
+      17576114: {} # Dark_Stalker
+      17576115: {} # Dark_Stalker
+  - members:
+      17576119: {} # Ka
+      17576122: {} # Ka
+  - members:
+      17576120: {} # Ka
+      17576121: {} # Ka
+  - members:
+      17576126: {} # Dark_Stalker
+      17576129: {} # Dark_Stalker
+  - members:
+      17576127: {} # Dark_Stalker
+      17576128: {} # Dark_Stalker
+  - members:
+      17576149: {} # Ka
+      17576151: {} # Ka
+  - members:
+      17576150: {} # Ka
+      17576152: {} # Ka
+  - members:
+      17576180: {} # Shade
+      17576181: {} # Shade
+  - members:
+      17576182: {} # Shade
+      17576183: {} # Shade
+  - members:
+      17576184: {} # Lost_Soul
+      17576185: {} # Lost_Soul
+  - members:
+      17576186: {} # Ka
+      17576189: {} # Ka
+  - members:
+      17576187: {} # Ka
+      17576188: {} # Ka
+  - members:
+      17576196: {} # Dark_Stalker
+      17576198: {} # Dark_Stalker
+  - members:
+      17576197: {} # Dark_Stalker
+      17576199: {} # Dark_Stalker
+  - members:
+      17576200: {} # Dark_Stalker
+      17576201: {} # Dark_Stalker
+  - members:
+      17576202: {} # Dark_Stalker
+      17576203: {} # Dark_Stalker
+  - members:
+      17576209: {} # Spriggan
+      17576210: {} # Spriggan
+      17576211: {} # Spriggan
+  - members:
+      17576212: {} # Spriggan
+      17576213: {} # Spriggan
+      17576214: {} # Spriggan
+  - members:
+      17576215: {} # Spriggan
+      17576216: {} # Spriggan
+  - members:
+      17576225: {} # Spriggan
+      17576228: {} # Spriggan
+  - members:
+      17576226: {} # Spriggan
+      17576227: {} # Spriggan
+  - members:
+      17576236: {} # Shade
+      17576238: {} # Shade
+  - members:
+      17576237: {} # Shade
+      17576239: {} # Shade
+  - members:
+      17576244: {} # Spriggan
+      17576245: {} # Spriggan
+  - members:
+      17576246: {} # Spriggan
+      17576247: {} # Spriggan

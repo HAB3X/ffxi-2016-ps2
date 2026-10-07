@@ -1,0 +1,767 @@
+{
+ "about": "Proxy-side model renumbering for the 2012 PS2 client (report 34 section 5.3). The 2012 engine loads skeleton models only for ids < 3000 (XiSkeletonActor::SetUp: id & 0xFFF; < 1500 -> file 1300+id; 1500-2999 -> file 50875+(id-1500); >= 3000 -> model 0). These PC-only models were converted and placed in PS2 slots 2850-2999 that no LSB entity and no PS2 file uses. Rewrite the model id (s2c 0x00E standard look, u16 @0x32, low 12 bits, SubKind 0/5/6) from \"lsb\" to \"ps2\" for a 2012 client only, and only on a drive that carries batch B (DEV9hdd-...+pc2ps2b.raw).",
+ "drive": "work/b9_fill/drives/DEV9hdd-v3-US+dic+sysinfo+poldb+soa2012-v2+pc2ps2b.raw",
+ "free_slots_left": [
+  2975,
+  2976,
+  2977,
+  2978,
+  2979,
+  2980,
+  2981,
+  2982,
+  2983,
+  2984,
+  2985,
+  2986,
+  2987,
+  2988,
+  2989,
+  2990,
+  2991,
+  2992,
+  2993,
+  2994,
+  2995,
+  2996,
+  2997,
+  2998,
+  2999
+ ],
+ "map": {
+  "3157": {
+   "ps2": 2850,
+   "names": [
+    "Gloom Phantom",
+    "blank"
+   ],
+   "lsb_npcs": 12,
+   "lsb_mobs": 0
+  },
+  "3584": {
+   "ps2": 2851,
+   "names": [
+    "Gloom Phantom",
+    "Gloom_Phantom",
+    "templates"
+   ],
+   "lsb_npcs": 5,
+   "lsb_mobs": 4
+  },
+  "3585": {
+   "ps2": 2852,
+   "names": [
+    "Magh Bihu",
+    "Magh_Bihu",
+    "templates"
+   ],
+   "lsb_npcs": 5,
+   "lsb_mobs": 3
+  },
+  "3636": {
+   "ps2": 2853,
+   "names": [
+    "Apex Knight Lugcrawler",
+    "Apex Lugcrawler",
+    "Apex Rumble Lugcrawler"
+   ],
+   "lsb_npcs": 0,
+   "lsb_mobs": 8
+  },
+  "3154": {
+   "ps2": 2854,
+   "names": [
+    "blank",
+    "Egg"
+   ],
+   "lsb_npcs": 6,
+   "lsb_mobs": 0
+  },
+  "3168": {
+   "ps2": 2855,
+   "names": [
+    "Orc 3",
+    "Orc 4",
+    "Orc 5"
+   ],
+   "lsb_npcs": 6,
+   "lsb_mobs": 0
+  },
+  "3634": {
+   "ps2": 2857,
+   "names": [
+    "Duke Alloces"
+   ],
+   "lsb_npcs": 5,
+   "lsb_mobs": 0
+  },
+  "3635": {
+   "ps2": 2858,
+   "names": [
+    "Apex Blazer Elytra",
+    "Apex Helm Elytra",
+    "Apex Nest Elytra"
+   ],
+   "lsb_npcs": 0,
+   "lsb_mobs": 5
+  },
+  "3640": {
+   "ps2": 2859,
+   "names": [
+    "Tethys",
+    "Echion",
+    "templates"
+   ],
+   "lsb_npcs": 3,
+   "lsb_mobs": 1
+  },
+  "3594": {
+   "ps2": 2860,
+   "names": [
+    "Awoken Vampyr Jarl",
+    "Awoken_Vampyr_Jarl",
+    "templates"
+   ],
+   "lsb_npcs": 2,
+   "lsb_mobs": 2
+  },
+  "3615": {
+   "ps2": 2861,
+   "names": [
+    "templates"
+   ],
+   "lsb_npcs": 0,
+   "lsb_mobs": 4
+  },
+  "3622": {
+   "ps2": 2862,
+   "names": [
+    "templates"
+   ],
+   "lsb_npcs": 0,
+   "lsb_mobs": 4
+  },
+  "3638": {
+   "ps2": 2863,
+   "names": [
+    "Maat"
+   ],
+   "lsb_npcs": 3,
+   "lsb_mobs": 0
+  },
+  "3598": {
+   "ps2": 2864,
+   "names": [
+    "Awoken Ariri Samariri",
+    "Awoken_Ariri_Samariri",
+    "templates"
+   ],
+   "lsb_npcs": 1,
+   "lsb_mobs": 2
+  },
+  "3596": {
+   "ps2": 2865,
+   "names": [
+    "Awoken Hildesvini",
+    "Awoken_Hildesvini",
+    "templates"
+   ],
+   "lsb_npcs": 1,
+   "lsb_mobs": 2
+  },
+  "3166": {
+   "ps2": 2867,
+   "names": [
+    "Slackjawed Mukdrom"
+   ],
+   "lsb_npcs": 2,
+   "lsb_mobs": 0
+  },
+  "3162": {
+   "ps2": 2868,
+   "names": [
+    "Pichichi"
+   ],
+   "lsb_npcs": 2,
+   "lsb_mobs": 0
+  },
+  "3182": {
+   "ps2": 2870,
+   "names": [
+    "Qutrub",
+    "Qutrub B"
+   ],
+   "lsb_npcs": 2,
+   "lsb_mobs": 0
+  },
+  "3167": {
+   "ps2": 2871,
+   "names": [
+    "Orcish Pikedancer",
+    "Orcish Woomera"
+   ],
+   "lsb_npcs": 2,
+   "lsb_mobs": 0
+  },
+  "3592": {
+   "ps2": 2875,
+   "names": [
+    "Arisen Soulflayer",
+    "templates"
+   ],
+   "lsb_npcs": 1,
+   "lsb_mobs": 1
+  },
+  "3156": {
+   "ps2": 2876,
+   "names": [
+    "Chaos"
+   ],
+   "lsb_npcs": 2,
+   "lsb_mobs": 0
+  },
+  "3660": {
+   "ps2": 2877,
+   "names": [
+    "Spikehelm Argok"
+   ],
+   "lsb_npcs": 2,
+   "lsb_mobs": 0
+  },
+  "3175": {
+   "ps2": 2878,
+   "names": [
+    "blank"
+   ],
+   "lsb_npcs": 2,
+   "lsb_mobs": 0
+  },
+  "3613": {
+   "ps2": 2879,
+   "names": [
+    "Reikuu"
+   ],
+   "lsb_npcs": 2,
+   "lsb_mobs": 0
+  },
+  "3652": {
+   "ps2": 2880,
+   "names": [
+    "Gloom Phantom",
+    "templates"
+   ],
+   "lsb_npcs": 1,
+   "lsb_mobs": 1
+  },
+  "3190": {
+   "ps2": 2881,
+   "names": [
+    "Boudox",
+    "Gloom Phantom"
+   ],
+   "lsb_npcs": 2,
+   "lsb_mobs": 0
+  },
+  "3591": {
+   "ps2": 2882,
+   "names": [
+    "Mind-warped Scorpion",
+    "templates"
+   ],
+   "lsb_npcs": 1,
+   "lsb_mobs": 1
+  },
+  "3641": {
+   "ps2": 2883,
+   "names": [
+    "Enkelados"
+   ],
+   "lsb_npcs": 1,
+   "lsb_mobs": 1
+  },
+  "3654": {
+   "ps2": 2884,
+   "names": [
+    "Orcish Warchief",
+    "templates"
+   ],
+   "lsb_npcs": 1,
+   "lsb_mobs": 1
+  },
+  "3655": {
+   "ps2": 2885,
+   "names": [
+    "Topaz Quadav",
+    "templates"
+   ],
+   "lsb_npcs": 1,
+   "lsb_mobs": 1
+  },
+  "3191": {
+   "ps2": 2886,
+   "names": [
+    "Yagudo Inquisitor",
+    "templates"
+   ],
+   "lsb_npcs": 1,
+   "lsb_mobs": 1
+  },
+  "3593": {
+   "ps2": 2887,
+   "names": [
+    "Returned Soulflayer",
+    "templates"
+   ],
+   "lsb_npcs": 1,
+   "lsb_mobs": 1
+  },
+  "3589": {
+   "ps2": 2888,
+   "names": [
+    "templates"
+   ],
+   "lsb_npcs": 0,
+   "lsb_mobs": 2
+  },
+  "3163": {
+   "ps2": 2889,
+   "names": [
+    "Shanruru"
+   ],
+   "lsb_npcs": 1,
+   "lsb_mobs": 0
+  },
+  "3155": {
+   "ps2": 2890,
+   "names": [
+    "blank"
+   ],
+   "lsb_npcs": 1,
+   "lsb_mobs": 0
+  },
+  "3181": {
+   "ps2": 2891,
+   "names": [
+    "Lamia No.1"
+   ],
+   "lsb_npcs": 1,
+   "lsb_mobs": 0
+  },
+  "3180": {
+   "ps2": 2892,
+   "names": [
+    "Lamia No.5"
+   ],
+   "lsb_npcs": 1,
+   "lsb_mobs": 0
+  },
+  "3653": {
+   "ps2": 2893,
+   "names": [
+    "Gloom Phantom"
+   ],
+   "lsb_npcs": 1,
+   "lsb_mobs": 0
+  },
+  "3176": {
+   "ps2": 2894,
+   "names": [
+    "Sikool Ja"
+   ],
+   "lsb_npcs": 1,
+   "lsb_mobs": 0
+  },
+  "3189": {
+   "ps2": 2895,
+   "names": [
+    "Gloom Phantom"
+   ],
+   "lsb_npcs": 1,
+   "lsb_mobs": 0
+  },
+  "3185": {
+   "ps2": 2896,
+   "names": [
+    "Gloom Phantom"
+   ],
+   "lsb_npcs": 1,
+   "lsb_mobs": 0
+  },
+  "3129": {
+   "ps2": 2897,
+   "names": [
+    "Prishe"
+   ],
+   "lsb_npcs": 1,
+   "lsb_mobs": 0
+  },
+  "3135": {
+   "ps2": 2898,
+   "names": [
+    "Zeid"
+   ],
+   "lsb_npcs": 1,
+   "lsb_mobs": 0
+  },
+  "3136": {
+   "ps2": 2899,
+   "names": [
+    "Volker"
+   ],
+   "lsb_npcs": 1,
+   "lsb_mobs": 0
+  },
+  "3137": {
+   "ps2": 2900,
+   "names": [
+    "Trion"
+   ],
+   "lsb_npcs": 1,
+   "lsb_mobs": 0
+  },
+  "3144": {
+   "ps2": 2901,
+   "names": [
+    "Ovjang"
+   ],
+   "lsb_npcs": 1,
+   "lsb_mobs": 0
+  },
+  "3145": {
+   "ps2": 2902,
+   "names": [
+    "Mnejing"
+   ],
+   "lsb_npcs": 1,
+   "lsb_mobs": 0
+  },
+  "3612": {
+   "ps2": 2903,
+   "names": [
+    "Nii Aquu"
+   ],
+   "lsb_npcs": 1,
+   "lsb_mobs": 0
+  },
+  "3149": {
+   "ps2": 2904,
+   "names": [
+    "Prishe"
+   ],
+   "lsb_npcs": 1,
+   "lsb_mobs": 0
+  },
+  "3639": {
+   "ps2": 2905,
+   "names": [
+    "Delkfutt"
+   ],
+   "lsb_npcs": 1,
+   "lsb_mobs": 0
+  },
+  "3161": {
+   "ps2": 2906,
+   "names": [
+    "Pichichi"
+   ],
+   "lsb_npcs": 1,
+   "lsb_mobs": 0
+  },
+  "3174": {
+   "ps2": 2907,
+   "names": [
+    "Brass Quadav"
+   ],
+   "lsb_npcs": 1,
+   "lsb_mobs": 0
+  },
+  "3602": {
+   "ps2": 2908,
+   "names": [
+    "templates"
+   ],
+   "lsb_npcs": 0,
+   "lsb_mobs": 1
+  },
+  "3587": {
+   "ps2": 2909,
+   "names": [
+    "templates"
+   ],
+   "lsb_npcs": 0,
+   "lsb_mobs": 1
+  },
+  "3608": {
+   "ps2": 2910,
+   "names": [
+    "templates"
+   ],
+   "lsb_npcs": 0,
+   "lsb_mobs": 1
+  },
+  "3657": {
+   "ps2": 2912,
+   "names": [
+    "templates"
+   ],
+   "lsb_npcs": 0,
+   "lsb_mobs": 1
+  },
+  "3658": {
+   "ps2": 2913,
+   "names": [
+    "templates"
+   ],
+   "lsb_npcs": 0,
+   "lsb_mobs": 1
+  },
+  "3605": {
+   "ps2": 2914,
+   "names": [
+    "templates"
+   ],
+   "lsb_npcs": 0,
+   "lsb_mobs": 1
+  },
+  "3629": {
+   "ps2": 2915,
+   "names": [
+    "Apex Archaic Cog"
+   ],
+   "lsb_npcs": 0,
+   "lsb_mobs": 1
+  },
+  "3630": {
+   "ps2": 2916,
+   "names": [
+    "Apex Archaic Cogs"
+   ],
+   "lsb_npcs": 0,
+   "lsb_mobs": 1
+  },
+  "3600": {
+   "ps2": 2918,
+   "names": [
+    "templates"
+   ],
+   "lsb_npcs": 0,
+   "lsb_mobs": 1
+  },
+  "3595": {
+   "ps2": 2921,
+   "names": [
+    "templates"
+   ],
+   "lsb_npcs": 0,
+   "lsb_mobs": 1
+  },
+  "3637": {
+   "ps2": 2925,
+   "names": [
+    "Apex Mycelar"
+   ],
+   "lsb_npcs": 0,
+   "lsb_mobs": 1
+  },
+  "3597": {
+   "ps2": 2926,
+   "names": [
+    "templates"
+   ],
+   "lsb_npcs": 0,
+   "lsb_mobs": 1
+  },
+  "3590": {
+   "ps2": 2927,
+   "names": [
+    "templates"
+   ],
+   "lsb_npcs": 0,
+   "lsb_mobs": 1
+  },
+  "3588": {
+   "ps2": 2932,
+   "names": [
+    "templates"
+   ],
+   "lsb_npcs": 0,
+   "lsb_mobs": 1
+  },
+  "3610": {
+   "ps2": 2937,
+   "names": [
+    "templates"
+   ],
+   "lsb_npcs": 0,
+   "lsb_mobs": 1
+  },
+  "3662": {
+   "ps2": 2938,
+   "names": [
+    "templates"
+   ],
+   "lsb_npcs": 0,
+   "lsb_mobs": 1
+  },
+  "3603": {
+   "ps2": 2944,
+   "names": [
+    "templates"
+   ],
+   "lsb_npcs": 0,
+   "lsb_mobs": 1
+  },
+  "3607": {
+   "ps2": 2948,
+   "names": [
+    "templates"
+   ],
+   "lsb_npcs": 0,
+   "lsb_mobs": 1
+  },
+  "3599": {
+   "ps2": 2949,
+   "names": [
+    "templates"
+   ],
+   "lsb_npcs": 0,
+   "lsb_mobs": 1
+  },
+  "3601": {
+   "ps2": 2950,
+   "names": [
+    "templates"
+   ],
+   "lsb_npcs": 0,
+   "lsb_mobs": 1
+  },
+  "3606": {
+   "ps2": 2951,
+   "names": [
+    "templates"
+   ],
+   "lsb_npcs": 0,
+   "lsb_mobs": 1
+  },
+  "3604": {
+   "ps2": 2952,
+   "names": [
+    "templates"
+   ],
+   "lsb_npcs": 0,
+   "lsb_mobs": 1
+  },
+  "3017": {
+   "ps2": 2953,
+   "names": [
+    "prishe"
+   ],
+   "lsb_npcs": 0,
+   "lsb_mobs": 1
+  },
+  "3022": {
+   "ps2": 2954,
+   "names": [
+    "gessho"
+   ],
+   "lsb_npcs": 0,
+   "lsb_mobs": 1
+  },
+  "3026": {
+   "ps2": 2955,
+   "names": [
+    "lehko_habhoka"
+   ],
+   "lsb_npcs": 0,
+   "lsb_mobs": 1
+  },
+  "3029": {
+   "ps2": 2956,
+   "names": [
+    "ovjang"
+   ],
+   "lsb_npcs": 0,
+   "lsb_mobs": 1
+  },
+  "3030": {
+   "ps2": 2957,
+   "names": [
+    "mnejing"
+   ],
+   "lsb_npcs": 0,
+   "lsb_mobs": 1
+  },
+  "3035": {
+   "ps2": 2964,
+   "names": [
+    "moogle"
+   ],
+   "lsb_npcs": 0,
+   "lsb_mobs": 1
+  },
+  "3036": {
+   "ps2": 2967,
+   "names": [
+    "fablinix"
+   ],
+   "lsb_npcs": 0,
+   "lsb_mobs": 1
+  },
+  "3049": {
+   "ps2": 2968,
+   "names": [
+    "lilisette"
+   ],
+   "lsb_npcs": 0,
+   "lsb_mobs": 1
+  },
+  "3067": {
+   "ps2": 2969,
+   "names": [
+    "babban"
+   ],
+   "lsb_npcs": 0,
+   "lsb_mobs": 1
+  },
+  "3105": {
+   "ps2": 2970,
+   "names": [
+    "ullegore"
+   ],
+   "lsb_npcs": 0,
+   "lsb_mobs": 1
+  },
+  "3107": {
+   "ps2": 2971,
+   "names": [
+    "king_of_hearts"
+   ],
+   "lsb_npcs": 0,
+   "lsb_mobs": 1
+  },
+  "3052": {
+   "ps2": 2972,
+   "names": [
+    "excenmille_s"
+   ],
+   "lsb_npcs": 0,
+   "lsb_mobs": 1
+  },
+  "3082": {
+   "ps2": 2973,
+   "names": [
+    "prishe_ii"
+   ],
+   "lsb_npcs": 0,
+   "lsb_mobs": 1
+  },
+  "3084": {
+   "ps2": 2974,
+   "names": [
+    "lilisette_ii"
+   ],
+   "lsb_npcs": 0,
+   "lsb_mobs": 1
+  }
+ }
+}

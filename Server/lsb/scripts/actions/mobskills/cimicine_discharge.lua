@@ -1,0 +1,34 @@
+-----------------------------------
+-- Cimicine Discharge
+-- Reduces the attack speed of enemies within range.
+-- Duration: Variable, with max of 3 min
+-----------------------------------
+---@type TMobSkill
+local mobskillObject = {}
+
+mobskillObject.onMobSkillCheck = function(target, mob, skill)
+    return 0
+end
+
+mobskillObject.onMobWeaponSkill = function(mob, target, skill, action)
+    local power    = 1950
+    local duration = math.randomInt(60, 180)
+
+    if not mob:hasStatusEffect(xi.effect.HASTE) then
+        mob:addStatusEffect(xi.effect.HASTE, { power = 1500, duration = duration, origin = mob })
+    end
+
+    local effectTable =
+    {
+        [1] = { effectId = xi.effect.SLOW, power = power, duration = duration, tier = 8 },
+    }
+
+    return xi.combat.action.executeMobskillStatusEffect(mob, target, skill, effectTable, {})
+
+    --[[ Is there suppsoed to be a message about haste?
+    skill:setMsg(xi.mobskills.mobBuffMove(mob, xi.effect.HASTE, 150, 0, duration))
+    return xi.effect.HASTE
+    ]]--
+end
+
+return mobskillObject

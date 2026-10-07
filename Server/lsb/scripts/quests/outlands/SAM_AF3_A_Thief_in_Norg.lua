@@ -1,0 +1,245 @@
+-----------------------------------
+-- A Thief in Norg!? (SAM AF3)
+-----------------------------------
+-- Log ID: 5, Quest ID: 142
+-- Jaucribaix      : !pos 91 -7 -8 252
+-- Sanosuke        : !pos -63 7 0 246
+-- Phoochuchu      : !pos -4 -4 69 249
+-- _6i8 (Door)     : !pos 70 7 2 234
+-----------------------------------
+local waughroonID = zones[xi.zone.WAUGHROON_SHRINE]
+-----------------------------------
+
+local quest = Quest:new(xi.questLog.OUTLANDS, xi.quest.id.outlands.A_THIEF_IN_NORG)
+
+quest.reward =
+{
+    fame = 20,
+    fameArea = xi.fameArea.NORG,
+    item = xi.item.MYOCHIN_KABUTO,
+    title = xi.title.PARAGON_OF_SAMURAI_EXCELLENCE,
+}
+
+quest.sections =
+{
+    {
+        check = function(player, status, vars)
+            return status == xi.questStatus.QUEST_AVAILABLE and
+                player:hasCompletedQuest(xi.questLog.OUTLANDS, xi.quest.id.outlands.YOMI_OKURI) and
+                player:getMainJob() == xi.job.SAM and
+                player:getMainLvl() >= xi.settings.main.AF3_QUEST_LEVEL
+        end,
+
+        [xi.zone.NORG] =
+        {
+            ['Jaucribaix'] =
+            {
+                onTrigger = function(player, npc)
+                    if
+                        quest:getMustZone(player) or
+                        GetSystemTime() < quest:getVar(player, 'Timer')
+                    then
+                        return quest:event(157)
+                    end
+
+                    return quest:progressEvent(158)
+                end,
+            },
+
+            onEventFinish =
+            {
+                [158] = function(player, csid, option, npc)
+                    if option == 1 then
+                        quest:begin(player)
+                        quest:setVar(player, 'Prog', 1)
+                    end
+                end,
+            },
+        },
+    },
+
+    {
+        check = function(player, status, vars)
+            return status == xi.questStatus.QUEST_ACCEPTED
+        end,
+
+        [xi.zone.BASTOK_MINES] =
+        {
+            ['_6i8'] =
+            {
+                onTrigger = function(player, npc)
+                    if quest:getVar(player, 'Prog') == 3 then
+                        return quest:progressEvent(186)
+                    end
+                end,
+            },
+
+            onEventFinish =
+            {
+                [186] = function(player, csid, option, npc)
+                    quest:setVar(player, 'Prog', 4)
+                end,
+            },
+        },
+
+        [xi.zone.MHAURA] =
+        {
+            ['Phoochuchu'] =
+            {
+                onTrigger = function(player, npc)
+                    local questProgress = quest:getVar(player, 'Prog')
+
+                    if questProgress == 2 then
+                        return quest:progressEvent(301)
+                    elseif questProgress == 3 then
+                        return quest:event(303)
+                    elseif questProgress >= 4 then
+                        return quest:event(302)
+                    end
+                end,
+            },
+
+            onEventFinish =
+            {
+                [301] = function(player, csid, option, npc)
+                    quest:setVar(player, 'Prog', 3)
+                end,
+            },
+        },
+
+        [xi.zone.NORG] =
+        {
+            ['Jaucribaix'] =
+            {
+                onTrade = function(player, npc, trade)
+                    if
+                        player:hasKeyItem(xi.keyItem.CHARRED_HELM) and
+                        npcUtil.tradeMatches(trade, { { xi.item.SPOOL_OF_GOLD_THREAD, 1 } })
+                    then
+                        return quest:progressEvent(162)
+                    end
+                end,
+
+                onTrigger = function(player, npc)
+                    local questProgress = quest:getVar(player, 'Prog')
+
+                    if questProgress <= 4 then
+                        return quest:event(159)
+                    elseif questProgress == 5 then
+                        return quest:progressEvent(166)
+                    elseif questProgress == 6 then
+                        if player:findItem(xi.item.BANISHING_CHARM) then
+                            return quest:event(167)
+                        end
+
+                        return quest:progressEvent(168)
+                    elseif questProgress == 7 then
+                        return quest:progressEvent(160)
+                    elseif questProgress == 8 then
+                        return quest:event(161)
+                    elseif questProgress == 9 then
+                        if
+                            quest:getMustZone(player) or
+                            GetSystemTime() < quest:getVar(player, 'Wait')
+                        then
+                            return quest:event(163)
+                        end
+
+                        return quest:progressEvent(164)
+                    end
+                end,
+            },
+
+            onEventFinish =
+            {
+                [160] = function(player, csid, option, npc)
+                    quest:setVar(player, 'Prog', 8)
+                end,
+
+                [162] = function(player, csid, option, npc)
+                    player:tradeComplete()
+                    player:delKeyItem(xi.keyItem.CHARRED_HELM)
+                    quest:setVar(player, 'Prog', 9)
+                    quest:setMustZone(player)
+                    quest:setVar(player, 'Wait', GetSystemTime() + 60) -- 1 minute wait time
+                end,
+
+                [164] = function(player, csid, option, npc)
+                    quest:complete(player)
+                end,
+
+                [166] = function(player, csid, option, npc)
+                    if npcUtil.giveItem(player, xi.item.BANISHING_CHARM) then
+                        quest:setVar(player, 'Prog', 6)
+                    end
+                end,
+
+                [168] = function(player, csid, option, npc)
+                    npcUtil.giveItem(player, xi.item.BANISHING_CHARM)
+                end,
+            },
+        },
+
+        [xi.zone.PORT_JEUNO] =
+        {
+            ['Sanosuke'] =
+            {
+                onTrigger = function(player, npc)
+                    local questProgress = quest:getVar(player, 'Prog')
+
+                    if questProgress == 1 then
+                        return quest:progressEvent(304)
+                    elseif questProgress == 2 then
+                        return quest:event(305)
+                    elseif questProgress >= 3 then
+                        return quest:event(306)
+                    end
+                end,
+            },
+
+            onEventFinish =
+            {
+                [304] = function(player, csid, option, npc)
+                    quest:setVar(player, 'Prog', 2)
+                end,
+            },
+        },
+
+        [xi.zone.WAUGHROON_SHRINE] =
+        {
+            onZoneIn = function(player, prevZone)
+                if quest:getVar(player, 'Prog') == 4 then
+                    return 2
+                end
+            end,
+
+            onEventFinish =
+            {
+                [2] = function(player, csid, option, npc)
+                    quest:setVar(player, 'Prog', 5)
+                end,
+
+                [32001] = function(player, csid, option, npc)
+                    if player:getLocalVar('battlefieldWin') == xi.battlefield.id.THIEF_IN_NORG then
+                        player:messageSpecial(waughroonID.text.CHARM_DAMAGED, xi.keyItem.CHARRED_HELM, xi.item.BANISHING_CHARM)
+                        player:addKeyItem(xi.keyItem.CHARRED_HELM)
+                        quest:setVar(player, 'Prog', 7)
+                    end
+                end,
+            },
+        },
+    },
+
+    {
+        check = function(player, status, vars)
+            return status == xi.questStatus.QUEST_COMPLETED
+        end,
+
+        [xi.zone.NORG] =
+        {
+            ['Jaucribaix'] = quest:event(165):replaceDefault()
+        },
+    },
+}
+
+return quest

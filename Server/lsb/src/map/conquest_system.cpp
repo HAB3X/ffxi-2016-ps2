@@ -1,0 +1,606 @@
+﻿/*
+===========================================================================
+
+  Copyright (c) 2010-2015 Darkstar Dev Teams
+
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with this program.  If not, see http://www.gnu.org/licenses/
+
+===========================================================================
+*/
+
+#include "conquest_system.h"
+
+#include "common/vana_time.h"
+
+#include "entities/char_entity.h"
+#include "ipc_client.h"
+#include "utils/charutils.h"
+#include "utils/zoneutils.h"
+
+#include "latent_effect_container.h"
+#include "lua/luautils.h"
+#include "packets/s2c/0x05e_conquest.h"
+
+namespace conquest
+{
+
+// Lazily initialized conquest data
+// TODO: This should be a member of _something_
+Maybe<ConquestData> conquestData;
+
+ConquestData& GetConquestData()
+{
+    if (!conquestData)
+    {
+        conquestData = ConquestData{};
+    }
+    return *conquestData;
+}
+
+void HandleMessage(ConquestMessage type, const std::span<const uint8> data)
+{
+    switch (type)
+    {
+        case W2M_WeeklyUpdateStart:
+        {
+            HandleWeeklyTallyStart();
+        }
+        break;
+        case W2M_WeeklyUpdateEnd:
+        {
+            if (const auto object = ipc::fromBytes<ConquestRegionControlUpdate>(data))
+            {
+                HandleWeeklyTallyEnd((*object).regionControls);
+            }
+        }
+        break;
+        case W2M_BroadcastInfluencePoints:
+        {
+            if (const auto object = ipc::fromBytes<ConquestInfluenceUpdate>(data))
+            {
+                HandleInfluenceUpdate((*object).influences, ShouldUpdateZones{ (*object).shouldUpdateZones });
+            }
+        }
+        break;
+        case W2M_BroadcastRegionControls:
+        {
+            if (const auto object = ipc::fromBytes<ConquestRegionControlUpdate>(data))
+            {
+                GetConquestData().updateRegionControls((*object).regionControls);
+            }
+        }
+        break;
+        default:
+        {
+            ShowWarningFmt("Message: unhandled conquest type message received: {}", type);
+        }
+        break;
+    }
+}
+
+void AddInfluencePoints(int points, unsigned int nation, REGION_TYPE region)
+{
+    // Send update message to world server
+    // Note that we do not update local cache, as it would potentially become out of sync from
+    // world server due to other map updates anyway. We wait for eventual consistency.
+
+    message::send(ipc::ConquestEvent{
+        .type    = ConquestMessage::M2W_AddInfluencePoints,
+        .payload = ipc::toBytes(ConquestAddInfluencePoints{
+            .points = points,
+            .nation = nation,
+            .region = static_cast<uint8>(region),
+        }),
+    });
+}
+
+void AddMobKills(int32 count, REGION_TYPE region)
+{
+    message::send(ipc::ConquestEvent{
+        .type    = ConquestMessage::M2W_AddMobKills,
+        .payload = ipc::toBytes(ConquestAddCounter{
+            .count  = count,
+            .region = static_cast<uint8>(region),
+        }),
+    });
+}
+
+void AddPlayerHomepoints(int32 count, REGION_TYPE region)
+{
+    message::send(ipc::ConquestEvent{
+        .type    = ConquestMessage::M2W_AddPlayerHomepoints,
+        .payload = ipc::toBytes(ConquestAddCounter{
+            .count  = count,
+            .region = static_cast<uint8>(region),
+        }),
+    });
+}
+
+/************************************************************************
+ *    GainInfluencePoints                                               *
+ *    +1 point for nation                                               *
+ ************************************************************************/
+
+void GainInfluencePoints(CCharEntity* PChar, uint32 points)
+{
+    const double percentage = 1.0 + static_cast<double>(PChar->getMod(xi::Mod::CONQUEST_REGION_BONUS)) / 100.0;
+    points                  = static_cast<uint32>(static_cast<double>(points) * percentage);
+    conquest::AddInfluencePoints(points, PChar->profile.nation, PChar->loc.zone->GetRegionID());
+}
+
+/************************************************************************
+ *                                                                       *
+ *  GetInfluenceGraphics                                                *
+ *                                                                      *
+ ************************************************************************/
+
+uint8 GetInfluenceGraphics(int32 san_inf, int32 bas_inf, int32 win_inf, int32 bst_inf)
+{
+    // if all nations and beastmen == 0
+    if (san_inf == 0 && bas_inf == 0 && win_inf == 0 && bst_inf == 0)
+    {
+        return 0;
+    }
+    // if all nations and beastmen, has same number
+    else if (san_inf == bas_inf && san_inf == win_inf && san_inf == bst_inf)
+    {
+        return 0;
+    }
+    // if Beast influence > all nations
+    else if (bst_inf > san_inf && bst_inf > win_inf && bst_inf > bas_inf)
+    {
+        return 64;
+    }
+    else
+    {
+        uint8 offset = 0;
+        int64 total  = san_inf + bas_inf + win_inf;
+
+        // Sandoria
+        if (san_inf >= total * 0.65)
+        {
+            offset = 3;
+        }
+        else if (san_inf >= total * 0.5)
+        {
+            offset = 2;
+        }
+        else if (san_inf >= total * 0.25)
+        {
+            offset = 1;
+        }
+        else
+        {
+            offset = 0;
+        }
+
+        // Bastok
+        if (bas_inf >= total * 0.65)
+        {
+            offset += 12;
+        }
+        else if (bas_inf >= total * 0.5)
+        {
+            offset += 8;
+        }
+        else if (bas_inf >= total * 0.25)
+        {
+            offset += 4;
+        }
+        else
+        {
+            offset += 0;
+        }
+
+        // Windurst
+        if (win_inf >= total * 0.65)
+        {
+            offset += 48;
+        }
+        else if (win_inf >= total * 0.5)
+        {
+            offset += 32;
+        }
+        else if (win_inf >= total * 0.25)
+        {
+            offset += 16;
+        }
+        else
+        {
+            offset += 0;
+        }
+
+        return offset;
+    }
+}
+
+uint8 GetInfluenceGraphics(REGION_TYPE region)
+{
+    int32 sandoria = GetConquestData().getInfluence(region, NATION_SANDORIA);
+    int32 bastok   = GetConquestData().getInfluence(region, NATION_BASTOK);
+    int32 windurst = GetConquestData().getInfluence(region, NATION_WINDURST);
+    int32 beastmen = GetConquestData().getInfluence(region, NATION_BEASTMEN);
+
+    return GetInfluenceGraphics(sandoria, bastok, windurst, beastmen);
+}
+
+// TODO: figure out what the beastmen-less numbers are for
+uint8 GetInfluenceRanking(int32 san_inf, int32 bas_inf, int32 win_inf, int32 bst_inf)
+{
+    uint8 ranking = 63;
+    if (san_inf >= bas_inf)
+    {
+        ranking -= 1;
+    }
+
+    if (san_inf >= win_inf)
+    {
+        ranking -= 1;
+    }
+
+    if (bas_inf >= san_inf)
+    {
+        ranking -= 4;
+    }
+
+    if (bas_inf >= win_inf)
+    {
+        ranking -= 4;
+    }
+
+    if (win_inf >= san_inf)
+    {
+        ranking -= 16;
+    }
+
+    if (win_inf >= bas_inf)
+    {
+        ranking -= 16;
+    }
+
+    return ranking;
+}
+
+uint8 GetInfluenceRanking(int32 san_inf, int32 bas_inf, int32 win_inf)
+{
+    return GetInfluenceRanking(san_inf, bas_inf, win_inf, 0);
+}
+
+/************************************************************************
+ *   UpdateConquestGM                                                   *
+ *   Update region control                                              *
+ *   just used by GM command                                            *
+ ************************************************************************/
+
+void UpdateConquestGM(ConquestUpdate type)
+{
+    if (type == Conquest_Tally_Start)
+    {
+        message::send(ipc::ConquestEvent{
+            .type = ConquestMessage::M2W_GM_WeeklyUpdate,
+        });
+    }
+    else if (type == Conquest_Update)
+    {
+        message::send(ipc::ConquestEvent{
+            .type = ConquestMessage::M2W_GM_ConquestUpdate,
+        });
+    }
+    else if (type == Conquest_Tally_End)
+    {
+        // Call conquest callbacks with cached data
+        conquest::HandleWeeklyTallyEnd(GetConquestData().getRegionControls());
+    }
+}
+
+/************************************************************************
+ *   HandleWeekConquestUpdateStart                                      *
+ *   Calls map handlers for when conquest update starts                 *
+ *   called 1 time per week                                             *
+ *   This does NOT update the DB. World server is responsible for that. *
+ ************************************************************************/
+
+void HandleWeeklyTallyStart()
+{
+    TracyZoneScoped;
+
+    uint8 ranking            = conquest::GetBalance();
+    bool  isConquestAlliance = conquest::IsAlliance();
+    // clang-format off
+        zoneutils::ForEachZone([ranking, isConquestAlliance](CZone* PZone)
+        {
+            // only find chars for zones that have had conquest updated
+            REGION_TYPE regionId = PZone->GetRegionID();
+            if (regionId <= REGION_TYPE::DYNAMIS)
+            {
+                // Cities do not have owner or influence
+                uint8 influence = 0;
+                uint8 owner = 0;
+                if (regionId <= REGION_TYPE::TAVNAZIA)
+                {
+                    influence = conquest::GetInfluenceGraphics(PZone->GetRegionID());
+                    owner     = conquest::GetRegionOwner(PZone->GetRegionID());
+                }
+
+                luautils::OnConquestUpdate(PZone, Conquest_Tally_Start, influence, owner, ranking, isConquestAlliance);
+            }
+        });
+    // clang-format on
+}
+
+/************************************************************************
+ *   HandleWeekConquestUpdateEnd                                        *
+ *   Calls map handlers for when conquest update ends                   *
+ *   Called in response to world msg after actual db is updated         *
+ *   This does NOT update the DB. World server is responsible for that. *
+ ************************************************************************/
+void HandleWeeklyTallyEnd(const std::vector<region_control_t>& regionControls)
+{
+    TracyZoneScoped;
+
+    // 1-  Update local cache
+    GetConquestData().updateRegionControls(regionControls);
+
+    // 2- Update zones based on the new data
+    // update conquest overseers
+    for (uint8 i = 0; i <= 18; i++)
+    {
+        luautils::SetRegionalConquestOverseers(i);
+    }
+
+    uint8 ranking            = conquest::GetBalance();
+    bool  isConquestAlliance = conquest::IsAlliance();
+
+    // clang-format off
+        zoneutils::ForEachZone([ranking, isConquestAlliance](CZone* PZone)
+        {
+            REGION_TYPE regionId = PZone->GetRegionID();
+            if (regionId <= REGION_TYPE::DYNAMIS)
+            {
+                // Cities do not have owner or influence
+                uint8 influence = 0;
+                uint8 owner = 0;
+                if (regionId <= REGION_TYPE::TAVNAZIA)
+                {
+                    influence = conquest::GetInfluenceGraphics(PZone->GetRegionID());
+                    owner     = conquest::GetRegionOwner(PZone->GetRegionID());
+                }
+
+                luautils::OnConquestUpdate(PZone, Conquest_Tally_End, influence, owner, ranking, isConquestAlliance);
+                PZone->ForEachChar([](CCharEntity* PChar)
+                {
+                    PChar->pushPacket<GP_SERV_COMMAND_CONQUEST>(PChar);
+                    PChar->PLatentEffectContainer->CheckLatentsZone();
+                });
+            }
+        });
+    // clang-format on
+
+    ShowDebug("Conquest Weekly Update is finished");
+}
+
+/************************************************************************
+ *                                                                       *
+ *  HandleInfluenceUpdate                                                *
+ *  Called when influence updates are received from the world server.    *
+ *                                                                       *
+ ************************************************************************/
+
+void HandleInfluenceUpdate(const std::vector<influence_t>& influences, ShouldUpdateZones shouldUpdateZones)
+{
+    TracyZoneScoped;
+
+    GetConquestData().updateInfluencePoints(influences);
+
+    if (shouldUpdateZones)
+    {
+        uint8 ranking            = conquest::GetBalance();
+        bool  isConquestAlliance = conquest::IsAlliance();
+
+        // clang-format off
+            zoneutils::ForEachZone([ranking, isConquestAlliance](CZone* PZone)
+            {
+                // only find chars for zones that have had conquest updated
+                REGION_TYPE regionId = PZone->GetRegionID();
+                if (regionId <= REGION_TYPE::DYNAMIS)
+                {
+                    // Cities do not have owner or influence
+                    uint8 influence = 0;
+                    uint8 owner = 0;
+                    if (regionId <= REGION_TYPE::TAVNAZIA)
+                    {
+                        influence = conquest::GetInfluenceGraphics(PZone->GetRegionID());
+                        owner     = conquest::GetRegionOwner(PZone->GetRegionID());
+                    }
+
+                    luautils::OnConquestUpdate(PZone, Conquest_Update, influence, owner, ranking, isConquestAlliance);
+                    PZone->ForEachChar([](CCharEntity* PChar)
+                    {
+                        PChar->PLatentEffectContainer->CheckLatentsZone();
+                    });
+                }
+            });
+        // clang-format on
+    }
+}
+
+/************************************************************************
+ *  GetBalance                                                          *
+ *  Ranking for the 3 nations                                           *
+ ************************************************************************/
+
+uint8 GetBalance(uint8 sandoria, uint8 bastok, uint8 windurst)
+{
+    // Based on the below values, it seems to be in pairs of bits.
+    // Order is Windurst, Bastok, San d'Oria
+    // 01 for first place, 10 for second, 11 for third.
+    // 45 = 0b101101 = Windurst in second, Bastok in third, San d'Oria in first
+    // 30 = 0b011110 = Windurst in first, Bastok in third, San d'Oria in second
+
+    auto calculateRank = [](int inNation, int otherNationA, int otherNationB)
+    {
+        uint8 rank = 1; // default 1st place, 0b01
+
+        // For each nation above us, drop ranking by 1
+        if (inNation < otherNationA)
+        {
+            rank++;
+        }
+
+        if (inNation < otherNationB)
+        {
+            rank++;
+        }
+
+        return rank;
+    };
+
+    uint8 sandyRank  = calculateRank(sandoria, bastok, windurst);
+    uint8 bastokRank = calculateRank(bastok, sandoria, windurst);
+    uint8 windyRank  = calculateRank(windurst, bastok, sandoria);
+
+    uint8 ranking = sandyRank + (bastokRank << 2) + (windyRank << 4);
+
+    return ranking;
+}
+
+uint8 GetBalance()
+{
+    uint8 sandoria = GetConquestData().getRegionControlCount(NATION_SANDORIA);
+    uint8 bastok   = GetConquestData().getRegionControlCount(NATION_BASTOK);
+    uint8 windurst = GetConquestData().getRegionControlCount(NATION_WINDURST);
+
+    return GetBalance(sandoria, bastok, windurst);
+}
+
+// Bits are nations allied: Sandoria, Bastok, Windurst
+uint8 GetAlliance(uint8 sandoria, uint8 bastok, uint8 windurst)
+{
+    if (sandoria > bastok + windurst)
+    {
+        return 0b011; // Bastok + Windurst allied
+    }
+
+    if (bastok > sandoria + windurst)
+    {
+        return 0b101; // Sandoria + Windurst allied
+    }
+
+    if (windurst > sandoria + bastok)
+    {
+        return 0b110; // Sandoria + Bastok allied
+    }
+
+    return 0;
+}
+
+bool IsAlliance()
+{
+    uint8 sandoria = GetConquestData().getRegionControlCount(NATION_SANDORIA);
+    uint8 bastok   = GetConquestData().getRegionControlCount(NATION_BASTOK);
+    uint8 windurst = GetConquestData().getRegionControlCount(NATION_WINDURST);
+
+    return GetAlliance(sandoria, bastok, windurst) > 0;
+}
+
+/************************************************************************
+ *                                                                       *
+ *  Gets the number of Vanadiel days left for tally                      *
+ *                                                                       *
+ ************************************************************************/
+
+uint8 GetNextTally()
+{
+    auto nextWeek   = earth_time::get_next_game_week();
+    auto untilTally = vanadiel_time::from_earth_time(nextWeek) - vanadiel_time::now();
+
+    auto vanaDaysUntilTally = std::chrono::ceil<xi::vanadiel_clock::days>(untilTally).count();
+
+    return static_cast<uint8>(vanaDaysUntilTally);
+}
+
+/************************************************************************
+ *                                                                       *
+ *  Get the nation that owns the given ration                            *
+ *                                                                       *
+ ************************************************************************/
+
+uint8 GetRegionOwner(REGION_TYPE region)
+{
+    return GetConquestData().getRegionOwner(region);
+}
+
+/************************************************************************
+ *                                                                       *
+ *  Adds conquest points to the character based on the exp gained.       *
+ *  Sends an update to world server with the influence change.           *
+ *                                                                       *
+ ************************************************************************/
+
+// TODO: Take into account the added points for the weekly tally
+// NOTE: This todo was an old comment. Unsure if it's still valid
+uint32 AddConquestPoints(CCharEntity* PChar, uint32 exp)
+{
+    // NOTE: No need to send CConquestPacket,
+    // The client itself requests this packet after a fixed period of time
+
+    const REGION_TYPE region = PChar->loc.zone->GetRegionID();
+
+    if (region != REGION_TYPE::UNKNOWN)
+    {
+        // Follows the CP multiplier in https://www.playonline.com/comnews/200302052327.html
+        const uint8 owner      = GetRegionOwner(region);
+        const uint8 nationRank = luautils::GetNationRank(PChar->profile.nation);
+
+        double percentage = 0.15;
+
+        // Only different multiplier if region is not owned by beastmen and nation is not rank 1
+        if (owner <= NATION_WINDURST && nationRank > 1)
+        {
+            if (IsAlliance()) // In alliance and owner of the region is rank 1 or not.
+            {
+                percentage = luautils::GetNationRank(owner) == 1 ? 0.2 : 0.1;
+            }
+            else if (owner == PChar->profile.nation) // Player's nation owns the region
+            {
+                percentage = 0.1;
+            }
+        }
+
+        percentage += PChar->getMod(xi::Mod::CONQUEST_BONUS) / 100.0;
+        const uint32 points = static_cast<uint32>(static_cast<double>(exp) * percentage);
+
+        charutils::AddPoints(PChar, charutils::GetConquestPointsName(PChar).c_str(), points);
+    }
+    return 0; // added conquest points
+}
+
+// GetConquestInfluence(region,nation)
+// AddConquestInfluence(region,nation)
+// ResetConquestInfluence()
+// UpdateConquestInfluence()
+
+// gain/loss influence
+// Dying in the Outlands decrease your Allegiance influence and increase the influence of the Beastmen hordes instead.
+// Gain: XP/CP, Garrison quests, Expeditionary Forces, trade items to Outpost Vendors (influence only)
+
+// Region control
+// 0: sandoria
+// 1: bastok
+// 2: windurst
+// 3: beastmen
+// 4: other
+// 5: neutral
+
+}; // namespace conquest

@@ -1,0 +1,1695 @@
+# yaml-language-server: $schema=../../schemas/mobs.schema.json
+
+templates:
+
+  Apex_Idle_Drifter:
+    id:            2048
+    species:       wanderer
+    skill_list_id: 255
+    attributes:
+      combat:
+        skill: club
+      jobs: [war, drk]
+      render:
+        look:
+          type:  standard
+          model: 3615
+        entity_flags:  1155
+        animation_sub:    5
+        model_size:       1
+        hitbox:          12
+      behaviors:
+        aggressive:     true
+        true_detection: true
+      spawn:
+        respawn: 960
+      stats:
+        hp: 260000
+    content: abyssea
+
+  Apex_Livid_Rager:
+    id:            4527
+    species:       seether
+    skill_list_id: 220
+    attributes:
+      combat:
+        skill: scythe
+        delay: 0
+      render:
+        look:
+          type:  standard
+          model: 3624
+        entity_flags:  131
+        animation_sub:   5
+        model_size:      1
+        hitbox:         12
+      behaviors:
+        aggressive:     true
+        links:          true
+        true_detection: true
+      spawn:
+        respawn: 960
+      stats:
+        hp: 260000
+    loot:
+      drops:
+        - chance: uncommon
+          one_of: [remnant_of_a_burning_memory, remnant_of_a_bitter_memory, remnant_of_a_fleeting_memory, remnant_of_a_profane_memory, remnant_of_a_startling_memory, remnant_of_a_somber_memory, remnant_of_a_radiant_memory, remnant_of_a_malevolent_memory]
+    content: abyssea
+
+  Apex_Woeful_Lamenter:
+    id:            298
+    species:       weeper
+    skill_list_id: 256
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 3622
+        entity_flags:  131
+        animation_sub:   5
+        model_size:      1
+        hitbox:         12
+      behaviors:
+        aggressive:     true
+        links:          true
+        true_detection: true
+      spawn:
+        respawn: 960
+      stats:
+        hp: 260000
+    loot:
+      drops:
+        - chance: uncommon
+          one_of: [remnant_of_a_burning_memory, remnant_of_a_bitter_memory, remnant_of_a_fleeting_memory, remnant_of_a_profane_memory, remnant_of_a_startling_memory, remnant_of_a_somber_memory, remnant_of_a_radiant_memory, remnant_of_a_malevolent_memory]
+    content: abyssea
+
+  Cerebrator:
+    id:            681
+    species:       thinker
+    type:          [notorious]
+    skill_list_id: 706
+    attributes:
+      combat:
+        skill: scythe
+      jobs: [war, rdm]
+      render:
+        look:
+          type:  standard
+          model: 1128
+        entity_flags:  157
+        animation_sub:   6
+        name_prefix:    32
+        model_size:      2
+        hitbox:         13
+      behaviors:
+        aggressive:     true
+        true_detection: true
+      spawn:
+        respawn: 14400
+      stats:
+        hp: 3000
+    loot:
+      drops:
+        - chance: always
+          item:   remnant_of_a_cerebrator
+        - chance: very_common
+          item:   teal_memosphere
+        - chance: very_common
+          item:   teal_memosphere
+        - chance: very_common
+          item:   teal_memosphere
+
+  Memory_Receptacle_PH:
+    id:            2614
+    display_name:  Memory_Receptacle
+    species:       receptacle
+    type:          [notorious, battlefield]
+    skill_list_id: 181
+    attributes:
+      combat:
+        skill: scythe
+      resists:
+        dmg_physical:
+          slashing: 10000
+          piercing: 10000
+          blunt:    10000
+          h2h:      10000
+      render:
+        look:
+          type:  standard
+          model: 1102
+        entity_flags:  131
+        animation_sub:   4
+        model_size:      1
+        hitbox:         12
+      spawn:
+        respawn: 300
+      stats:
+        hp: 2300
+
+  Seether_Prom:
+    id:            3634
+    species:       seether
+    skill_list_id: 220
+    attributes:
+      combat:
+        skill: scythe
+      jobs: [war, rdm]
+      render:
+        look:
+          type:  standard
+          model: 1121
+        entity_flags:  131
+        animation_sub:   5
+        model_size:      1
+        hitbox:         12
+      behaviors:
+        aggressive:     true
+        true_detection: true
+      spawn:
+        respawn: 720
+    loot:
+      drops:
+        - chance: uncommon
+          item:   recollection_of_guilt
+        - chance: uncommon
+          one_of: [remnant_of_a_burning_memory, remnant_of_a_bitter_memory, remnant_of_a_fleeting_memory, remnant_of_a_profane_memory, remnant_of_a_startling_memory, remnant_of_a_somber_memory, remnant_of_a_radiant_memory, remnant_of_a_malevolent_memory]
+
+  Stray:
+    id:            3784
+    species:       wanderer
+    type:          [notorious]
+    skill_list_id: 255
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 1107
+        entity_flags:  129
+        animation_sub:  13
+        hitbox:         10
+      behaviors:
+        aggressive:     true
+        true_detection: true
+      mob_mods:
+        gil_max:     -1
+        exp_bonus: -100
+      spawn:
+        type: [scripted]
+
+  Thinker_PH:
+    id:            3897
+    display_name:  Thinker
+    species:       thinker
+    skill_list_id: 241
+    attributes:
+      combat:
+        skill: scythe
+      jobs: [war, rdm]
+      render:
+        look:
+          type:  standard
+          model: 1127
+        entity_flags:  131
+        animation_sub:  13
+        model_size:      1
+        hitbox:         12
+      behaviors:
+        aggressive:     true
+        true_detection: true
+      spawn:
+        respawn: 600
+    loot:
+      drops:
+        - chance: uncommon
+          item:   recollection_of_pain
+        - chance: uncommon
+          item:   recollection_of_fear
+        - chance: rare
+          item:   teal_memosphere
+        - chance: uncommon
+          one_of: [remnant_of_a_burning_memory, remnant_of_a_bitter_memory, remnant_of_a_fleeting_memory, remnant_of_a_profane_memory, remnant_of_a_startling_memory, remnant_of_a_somber_memory, remnant_of_a_radiant_memory, remnant_of_a_malevolent_memory]
+
+  Thinker_PH_2:
+    id:            3897
+    display_name:  Thinker
+    species:       thinker
+    skill_list_id: 241
+    attributes:
+      combat:
+        skill: scythe
+      jobs: [war, rdm]
+      render:
+        look:
+          type:  standard
+          model: 1127
+        entity_flags:  131
+        animation_sub:  13
+        model_size:      1
+        hitbox:         12
+      behaviors:
+        aggressive:     true
+        true_detection: true
+      spawn:
+        respawn: 720
+    loot:
+      drops:
+        - chance: uncommon
+          item:   recollection_of_pain
+        - chance: uncommon
+          item:   recollection_of_fear
+        - chance: rare
+          item:   teal_memosphere
+        - chance: uncommon
+          one_of: [remnant_of_a_burning_memory, remnant_of_a_bitter_memory, remnant_of_a_fleeting_memory, remnant_of_a_profane_memory, remnant_of_a_startling_memory, remnant_of_a_somber_memory, remnant_of_a_radiant_memory, remnant_of_a_malevolent_memory]
+
+  Wanderer_PV:
+    id:            6651
+    display_name:  Wanderer
+    species:       wanderer
+    skill_list_id: 255
+    attributes:
+      combat:
+        skill: scythe
+      jobs: [war, rdm]
+      render:
+        look:
+          type:  standard
+          model: 1110
+        entity_flags:  133
+        animation_sub:   5
+        model_size:      1
+        hitbox:         12
+      behaviors:
+        aggressive:     true
+        true_detection: true
+      spawn:
+        respawn: 600
+    loot:
+      drops:
+        - chance: uncommon
+          item:   recollection_of_fear
+        - chance: uncommon
+          one_of: [remnant_of_a_burning_memory, remnant_of_a_bitter_memory, remnant_of_a_fleeting_memory, remnant_of_a_profane_memory, remnant_of_a_startling_memory, remnant_of_a_somber_memory, remnant_of_a_radiant_memory, remnant_of_a_malevolent_memory]
+
+  Wanderer_PV_2:
+    id:            6651
+    display_name:  Wanderer
+    species:       wanderer
+    skill_list_id: 255
+    attributes:
+      combat:
+        skill: scythe
+      jobs: [war, rdm]
+      render:
+        look:
+          type:  standard
+          model: 1110
+        entity_flags:  133
+        animation_sub:   5
+        model_size:      1
+        hitbox:         12
+      behaviors:
+        aggressive:     true
+        true_detection: true
+      spawn:
+        respawn: 720
+    loot:
+      drops:
+        - chance: uncommon
+          item:   recollection_of_fear
+        - chance: uncommon
+          one_of: [remnant_of_a_burning_memory, remnant_of_a_bitter_memory, remnant_of_a_fleeting_memory, remnant_of_a_profane_memory, remnant_of_a_startling_memory, remnant_of_a_somber_memory, remnant_of_a_radiant_memory, remnant_of_a_malevolent_memory]
+
+  Weeper_PH:
+    id:            4331
+    display_name:  Weeper
+    species:       weeper
+    skill_list_id: 256
+    attributes:
+      combat:
+        skill: scythe
+      jobs: [war, rdm]
+      render:
+        look:
+          type:  standard
+          model: 1112
+        entity_flags:  133
+        animation_sub:   5
+        model_size:      1
+        hitbox:         12
+      behaviors:
+        aggressive:     true
+        true_detection: true
+      spawn:
+        respawn: 600
+    loot:
+      drops:
+        - chance: uncommon
+          item:   recollection_of_pain
+        - chance: uncommon
+          one_of: [remnant_of_a_burning_memory, remnant_of_a_bitter_memory, remnant_of_a_fleeting_memory, remnant_of_a_profane_memory, remnant_of_a_startling_memory, remnant_of_a_somber_memory, remnant_of_a_radiant_memory, remnant_of_a_malevolent_memory]
+
+  Weeper_PH_2:
+    id:            4331
+    display_name:  Weeper
+    species:       weeper
+    skill_list_id: 256
+    attributes:
+      combat:
+        skill: scythe
+      jobs: [war, rdm]
+      render:
+        look:
+          type:  standard
+          model: 1112
+        entity_flags:  133
+        animation_sub:   5
+        model_size:      1
+        hitbox:         12
+      behaviors:
+        aggressive:     true
+        true_detection: true
+      spawn:
+        respawn: 720
+    loot:
+      drops:
+        - chance: uncommon
+          item:   recollection_of_pain
+        - chance: uncommon
+          one_of: [remnant_of_a_burning_memory, remnant_of_a_bitter_memory, remnant_of_a_fleeting_memory, remnant_of_a_profane_memory, remnant_of_a_startling_memory, remnant_of_a_somber_memory, remnant_of_a_radiant_memory, remnant_of_a_malevolent_memory]
+
+spawns:
+  16842753:
+    template: Wanderer_PV
+    script:   Wanderer
+    region:   c_1
+    level:    [22, 24]
+  16842754:
+    template: Wanderer_PV
+    script:   Wanderer
+    region:   c_1
+    level:    [22, 24]
+  16842755:
+    template: Weeper_PH
+    script:   Weeper
+    region:   c_3
+    level:    [24, 26]
+  16842756:
+    template: Wanderer_PV
+    script:   Wanderer
+    region:   c_4
+    level:    [22, 24]
+  16842757:
+    template: Wanderer_PV
+    script:   Wanderer
+    region:   c_4
+    level:    [22, 24]
+  16842758:
+    template: Weeper_PH
+    script:   Weeper
+    region:   c_6
+    level:    [24, 26]
+  16842759:
+    template: Wanderer_PV
+    script:   Wanderer
+    region:   c_7
+    level:    [22, 24]
+  16842760:
+    template: Wanderer_PV
+    script:   Wanderer
+    region:   c_7
+    level:    [22, 24]
+  16842761:
+    template: Wanderer_PV
+    script:   Wanderer
+    region:   c_7
+    level:    [22, 24]
+  16842762:
+    template: Weeper_PH
+    script:   Weeper
+    region:   c_7
+    level:    [24, 26]
+  16842763:
+    template: Weeper_PH
+    script:   Weeper
+    region:   c_7
+    level:    [24, 26]
+  16842764:
+    template: Weeper_PH
+    script:   Weeper
+    region:   c_12
+    level:    [24, 26]
+  16842765:
+    template: Apex_Idle_Drifter
+    region:   n_13
+    level:    [139, 142]
+  16842766:
+    template: Apex_Idle_Drifter
+    region:   n_13
+    level:    [139, 142]
+  16842767:
+    template: Apex_Idle_Drifter
+    region:   n_13
+    level:    [139, 142]
+  16842768:
+    template: Apex_Idle_Drifter
+    region:   n_13
+    level:    [139, 142]
+  16842769:
+    template: Apex_Idle_Drifter
+    region:   n_17
+    level:    [139, 142]
+  16842770:
+    template: Apex_Idle_Drifter
+    region:   n_17
+    level:    [139, 142]
+  16842771:
+    template: Apex_Idle_Drifter
+    region:   n_17
+    level:    [139, 142]
+  16842772:
+    template: Apex_Idle_Drifter
+    region:   n_17
+    level:    [139, 142]
+  16842773:
+    template: Apex_Idle_Drifter
+    region:   n_17
+    level:    [139, 142]
+  16842774:
+    template: Apex_Idle_Drifter
+    region:   n_17
+    level:    [139, 142]
+  16842775:
+    template: Apex_Idle_Drifter
+    region:   c_23
+    level:    [139, 142]
+  16842776:
+    template: Apex_Idle_Drifter
+    region:   c_23
+    level:    [139, 142]
+  16842777:
+    template: Apex_Idle_Drifter
+    region:   c_23
+    level:    [139, 142]
+  16842778:
+    template: Apex_Idle_Drifter
+    region:   c_23
+    level:    [139, 142]
+  16842779:
+    template: Thinker_PH
+    script:   Thinker
+    region:   c_27
+    level:    [28, 30]
+  16842781:
+    template: Memory_Receptacle_PH
+    script:   Memory_Receptacle
+    at:       [-40.000, -1.000, 200.000]
+    level:    [30, 30]
+  16842782:
+    template: Stray
+    region:   n_30
+    level:    [20, 21]
+  16842783:
+    template: Stray
+    region:   n_30
+    level:    [20, 21]
+  16842784:
+    template: Stray
+    region:   n_30
+    level:    [20, 21]
+  16842785:
+    template: Wanderer_PV
+    script:   Wanderer
+    region:   c_33
+    level:    [26, 28]
+  16842786:
+    template: Wanderer_PV
+    script:   Wanderer
+    region:   c_34
+    level:    [26, 28]
+  16842787:
+    template: Wanderer_PV
+    script:   Wanderer
+    region:   c_34
+    level:    [26, 28]
+  16842788:
+    template: Weeper_PH
+    script:   Weeper
+    region:   c_36
+    level:    [28, 30]
+  16842789:
+    template: Wanderer_PV
+    script:   Wanderer
+    region:   w_37
+    level:    [26, 28]
+  16842790:
+    template: Wanderer_PV
+    script:   Wanderer
+    region:   region_108
+    level:    [26, 28]
+  16842791:
+    template: Weeper_PH
+    script:   Weeper
+    region:   region_109
+    level:    [28, 30]
+  16842792:
+    template: Wanderer_PV
+    script:   Wanderer
+    region:   w_40
+    level:    [26, 28]
+  16842793:
+    template: Wanderer_PV
+    script:   Wanderer
+    region:   region_110
+    level:    [26, 28]
+  16842794:
+    template: Wanderer_PV
+    script:   Wanderer
+    region:   w_42
+    level:    [26, 28]
+  16842795:
+    template: Wanderer_PV
+    script:   Wanderer
+    region:   c_43
+    level:    [26, 28]
+  16842796:
+    template: Wanderer_PV
+    script:   Wanderer
+    region:   c_43
+    level:    [26, 28]
+  16842797:
+    template: Thinker_PH_2
+    script:   Thinker
+    region:   w_45
+    level:    [32, 34]
+  16842798:
+    template: Wanderer_PV
+    script:   Wanderer
+    region:   w_46
+    level:    [26, 28]
+  16842799:
+    template: Wanderer_PV
+    script:   Wanderer
+    region:   w_46
+    level:    [26, 28]
+  16842800:
+    template: Weeper_PH
+    script:   Weeper
+    region:   s_57
+    level:    [28, 30]
+  16842801:
+    template: Weeper_PH
+    script:   Weeper
+    region:   region_111
+    level:    [28, 30]
+  16842802:
+    template: Weeper_PH
+    script:   Weeper
+    region:   sw_68
+    level:    [28, 30]
+  16842803:
+    template: Weeper_PH
+    script:   Weeper
+    at:       [-109.133, -0.500, -85.624, 67]
+    level:    [29, 30]
+  16842804:
+    template: Seether_Prom
+    script:   Seether
+    region:   region_112
+    level:    [30, 32]
+  16842805:
+    template: Weeper_PH
+    script:   Weeper
+    region:   s_53
+    level:    [28, 30]
+  16842806:
+    template: Weeper_PH
+    script:   Weeper
+    region:   s_53
+    level:    [28, 30]
+  16842807:
+    template: Weeper_PH
+    script:   Weeper
+    at:       [-122.755, -0.500, -109.002, 103]
+    level:    [28, 30]
+  16842808:
+    template: Weeper_PH
+    script:   Weeper
+    region:   s_56
+    level:    [28, 30]
+  16842809:
+    template: Wanderer_PV
+    script:   Wanderer
+    region:   s_57
+    level:    [26, 28]
+  16842810:
+    template: Weeper_PH
+    script:   Weeper
+    region:   s_56
+    level:    [28, 30]
+  16842811:
+    template: Weeper_PH
+    script:   Weeper
+    region:   region_113
+    level:    [28, 30]
+  16842812:
+    template: Apex_Idle_Drifter
+    region:   sw_60
+    level:    [139, 142]
+  16842813:
+    template: Apex_Idle_Drifter
+    region:   sw_60
+    level:    [139, 142]
+  16842814:
+    template: Apex_Idle_Drifter
+    region:   sw_60
+    level:    [139, 142]
+  16842815:
+    template: Apex_Idle_Drifter
+    region:   sw_60
+    level:    [139, 142]
+  16842816:
+    template: Apex_Idle_Drifter
+    region:   sw_60
+    level:    [139, 142]
+  16842817:
+    template: Apex_Idle_Drifter
+    region:   sw_60
+    level:    [139, 142]
+  16842818:
+    template: Apex_Idle_Drifter
+    region:   sw_60
+    level:    [139, 142]
+  16842819:
+    template: Apex_Woeful_Lamenter
+    region:   sw_60
+    level:    [139, 142]
+  16842820:
+    template: Apex_Idle_Drifter
+    region:   sw_68
+    level:    [139, 142]
+  16842821:
+    template: Apex_Idle_Drifter
+    region:   sw_68
+    level:    [139, 142]
+  16842822:
+    template: Apex_Idle_Drifter
+    region:   sw_68
+    level:    [139, 142]
+  16842823:
+    template: Apex_Idle_Drifter
+    region:   sw_68
+    level:    [139, 142]
+  16842824:
+    template: Apex_Woeful_Lamenter
+    region:   sw_68
+    level:    [139, 142]
+  16842825:
+    template: Apex_Idle_Drifter
+    region:   sw_73
+    level:    [139, 142]
+  16842826:
+    template: Apex_Idle_Drifter
+    region:   sw_73
+    level:    [139, 142]
+  16842827:
+    template: Apex_Idle_Drifter
+    region:   sw_73
+    level:    [139, 142]
+  16842828:
+    template: Apex_Idle_Drifter
+    region:   sw_73
+    level:    [139, 142]
+  16842829:
+    template: Wanderer_PV
+    script:   Wanderer
+    region:   c_77
+    level:    [26, 28]
+  16842830:
+    template: Weeper_PH
+    script:   Weeper
+    region:   s_78
+    level:    [28, 30]
+  16842831:
+    template: Seether_Prom
+    script:   Seether
+    region:   s_78
+    level:    [30, 32]
+  16842832:
+    template: Weeper_PH
+    script:   Weeper
+    region:   c_80
+    level:    [28, 30]
+  16842833:
+    template: Seether_Prom
+    script:   Seether
+    region:   c_80
+    level:    [30, 32]
+  16842834:
+    template: Seether_Prom
+    script:   Seether
+    region:   c_82
+    level:    [30, 32]
+  16842835:
+    template: Wanderer_PV
+    script:   Wanderer
+    region:   w_83
+    level:    [26, 28]
+  16842836:
+    template: Wanderer_PV
+    script:   Wanderer
+    at:       [-233.583, -0.500, -12.624, 54]
+    level:    [26, 28]
+  16842837:
+    template: Seether_Prom
+    script:   Seether
+    region:   s_85
+    level:    [30, 32]
+  16842838:
+    template: Thinker_PH_2
+    script:   Thinker
+    region:   c_86
+    level:    [32, 34]
+  16842839:
+    template: Thinker_PH_2
+    script:   Thinker
+    region:   sw_87
+    level:    [32, 34]
+  16842841:
+    template: Memory_Receptacle_PH
+    script:   Memory_Receptacle
+    at:       [-240.000, -1.000, 40.000]
+    level:    [30, 30]
+  16842842:
+    template: Stray
+    region:   w_90
+    level:    [23, 24]
+  16842843:
+    template: Stray
+    region:   w_90
+    level:    [23, 24]
+  16842844:
+    template: Stray
+    region:   w_90
+    level:    [23, 24]
+  16842845:
+    template: Stray
+    region:   w_90
+    level:    [23, 24]
+  16842846:
+    template: Stray
+    region:   w_90
+    level:    [23, 24]
+  16842848:
+    template: Memory_Receptacle_PH
+    script:   Memory_Receptacle
+    at:       [-280.000, -1.000, -40.000]
+    level:    [30, 30]
+  16842849:
+    template: Stray
+    region:   w_97
+    level:    [23, 24]
+  16842850:
+    template: Stray
+    region:   w_97
+    level:    [23, 24]
+  16842851:
+    template: Stray
+    region:   w_97
+    level:    [23, 24]
+  16842852:
+    template: Stray
+    region:   w_97
+    level:    [23, 24]
+  16842853:
+    template: Stray
+    region:   w_97
+    level:    [23, 24]
+  16842855:
+    template: Memory_Receptacle_PH
+    script:   Memory_Receptacle
+    at:       [-160.000, -1.000, -200.000]
+    level:    [30, 30]
+  16842856:
+    template: Stray
+    region:   s_104
+    level:    [23, 24]
+  16842857:
+    template: Stray
+    region:   s_104
+    level:    [23, 24]
+  16842858:
+    template: Stray
+    region:   s_104
+    level:    [23, 24]
+  16842859:
+    template: Stray
+    region:   s_104
+    level:    [23, 24]
+  16842860:
+    template: Stray
+    region:   s_104
+    level:    [23, 24]
+  16842862:
+    template: Memory_Receptacle_PH
+    script:   Memory_Receptacle
+    at:       [0.000, -1.000, -40.000]
+    level:    [30, 30]
+  16842863:
+    template: Stray
+    region:   c_111
+    level:    [23, 24]
+  16842864:
+    template: Stray
+    region:   c_111
+    level:    [23, 24]
+  16842865:
+    template: Stray
+    region:   c_111
+    level:    [23, 24]
+  16842866:
+    template: Stray
+    region:   c_111
+    level:    [23, 24]
+  16842867:
+    template: Stray
+    region:   c_111
+    level:    [23, 24]
+  16842868:
+    template: Wanderer_PV
+    script:   Wanderer
+    region:   w_116
+    level:    [29, 31]
+  16842869:
+    template: Wanderer_PV
+    script:   Wanderer
+    region:   w_116
+    level:    [29, 31]
+  16842870:
+    template: Weeper_PH_2
+    script:   Weeper
+    region:   w_118
+    level:    [31, 33]
+  16842871:
+    template: Weeper_PH_2
+    script:   Weeper
+    region:   w_119
+    level:    [31, 33]
+  16842872:
+    template: Seether_Prom
+    script:   Seether
+    region:   w_120
+    level:    [33, 35]
+  16842873:
+    template: Weeper_PH_2
+    script:   Weeper
+    region:   nw_121
+    level:    [31, 33]
+  16842874:
+    template: Weeper_PH_2
+    script:   Weeper
+    region:   w_123
+    level:    [31, 33]
+  16842875:
+    template: Weeper_PH_2
+    script:   Weeper
+    region:   w_123
+    level:    [31, 33]
+  16842876:
+    template: Wanderer_PV
+    script:   Wanderer
+    region:   nw_124
+    level:    [29, 31]
+  16842877:
+    template: Weeper_PH_2
+    script:   Weeper
+    region:   nw_124
+    level:    [31, 33]
+  16842878:
+    template: Seether_Prom
+    script:   Seether
+    region:   nw_126
+    level:    [33, 35]
+  16842879:
+    template: Wanderer_PV
+    script:   Wanderer
+    region:   nw_127
+    level:    [29, 31]
+  16842880:
+    template: Seether_Prom
+    script:   Seether
+    region:   nw_127
+    level:    [33, 35]
+  16842881:
+    template: Seether_Prom
+    script:   Seether
+    region:   nw_129
+    level:    [33, 35]
+  16842882:
+    template: Seether_Prom
+    script:   Seether
+    region:   nw_130
+    level:    [33, 35]
+  16842883:
+    template: Weeper_PH_2
+    script:   Weeper
+    region:   nw_131
+    level:    [31, 33]
+  16842884:
+    template: Weeper_PH_2
+    script:   Weeper
+    region:   nw_131
+    level:    [31, 33]
+  16842885:
+    template: Thinker_PH_2
+    script:   Thinker
+    region:   nw_133
+    level:    [35, 37]
+  16842886:
+    template: Thinker_PH_2
+    script:   Thinker
+    region:   nw_134
+    level:    [35, 37]
+  16842888:
+    template: Memory_Receptacle_PH
+    script:   Memory_Receptacle
+    at:       [-280.000, -1.000, 280.000]
+    level:    [30, 30]
+  16842889:
+    template: Stray
+    region:   nw_137
+    level:    [26, 27]
+  16842890:
+    template: Stray
+    region:   nw_137
+    level:    [26, 27]
+  16842891:
+    template: Stray
+    region:   nw_137
+    level:    [26, 27]
+  16842892:
+    template: Stray
+    region:   nw_137
+    level:    [26, 27]
+  16842893:
+    template: Stray
+    region:   nw_137
+    level:    [26, 27]
+  16842894:
+    template: Stray
+    region:   nw_137
+    level:    [26, 27]
+  16842895:
+    template: Stray
+    region:   nw_137
+    level:    [26, 27]
+  16842897:
+    template: Memory_Receptacle_PH
+    script:   Memory_Receptacle
+    at:       [-360.000, -1.000, 240.000]
+    level:    [30, 30]
+  16842898:
+    template: Stray
+    region:   nw_146
+    level:    [26, 27]
+  16842899:
+    template: Stray
+    region:   nw_146
+    level:    [26, 27]
+  16842900:
+    template: Stray
+    region:   nw_146
+    level:    [26, 27]
+  16842901:
+    template: Stray
+    region:   nw_146
+    level:    [26, 27]
+  16842902:
+    template: Stray
+    region:   nw_146
+    level:    [26, 27]
+  16842903:
+    template: Stray
+    region:   nw_146
+    level:    [26, 27]
+  16842904:
+    template: Stray
+    region:   nw_146
+    level:    [26, 27]
+  16842906:
+    template: Memory_Receptacle_PH
+    script:   Memory_Receptacle
+    at:       [-360.000, -1.000, 120.000]
+    level:    [30, 30]
+  16842907:
+    template: Stray
+    region:   w_155
+    level:    [26, 27]
+  16842908:
+    template: Stray
+    region:   w_155
+    level:    [26, 27]
+  16842909:
+    template: Stray
+    region:   w_155
+    level:    [26, 27]
+  16842910:
+    template: Stray
+    region:   w_155
+    level:    [26, 27]
+  16842911:
+    template: Stray
+    region:   w_155
+    level:    [26, 27]
+  16842912:
+    template: Stray
+    region:   w_155
+    level:    [26, 27]
+  16842913:
+    template: Stray
+    region:   w_155
+    level:    [26, 27]
+  16842914:
+    template: Weeper_PH_2
+    script:   Weeper
+    region:   ne_162
+    level:    [31, 33]
+  16842915:
+    template: Seether_Prom
+    script:   Seether
+    region:   ne_162
+    level:    [33, 35]
+  16842916:
+    template: Wanderer_PV
+    script:   Wanderer
+    region:   ne_164
+    level:    [29, 31]
+  16842917:
+    template: Weeper_PH_2
+    script:   Weeper
+    region:   ne_165
+    level:    [31, 33]
+  16842918:
+    template: Weeper_PH_2
+    script:   Weeper
+    region:   ne_165
+    level:    [31, 33]
+  16842919:
+    template: Wanderer_PV
+    script:   Wanderer
+    region:   n_167
+    level:    [29, 31]
+  16842920:
+    template: Weeper_PH_2
+    script:   Weeper
+    region:   n_167
+    level:    [31, 33]
+  16842921:
+    template: Weeper_PH_2
+    script:   Weeper
+    region:   n_167
+    level:    [31, 33]
+  16842922:
+    template: Weeper_PH_2
+    script:   Weeper
+    region:   n_167
+    level:    [31, 33]
+  16842923:
+    template: Seether_Prom
+    script:   Seether
+    region:   n_171
+    level:    [33, 35]
+  16842924:
+    template: Wanderer_PV
+    script:   Wanderer
+    region:   n_172
+    level:    [29, 31]
+  16842925:
+    template: Weeper_PH_2
+    script:   Weeper
+    region:   n_172
+    level:    [31, 33]
+  16842926:
+    template: Seether_Prom
+    script:   Seether
+    region:   n_172
+    level:    [33, 35]
+  16842927:
+    template: Seether_Prom
+    script:   Seether
+    region:   n_175
+    level:    [33, 35]
+  16842928:
+    template: Weeper_PH_2
+    script:   Weeper
+    region:   ne_178
+    level:    [31, 33]
+  16842929:
+    template: Seether_Prom
+    script:   Seether
+    region:   ne_177
+    level:    [33, 35]
+  16842930:
+    template: Weeper_PH_2
+    script:   Weeper
+    region:   ne_178
+    level:    [31, 33]
+  16842931:
+    template: Weeper_PH_2
+    script:   Weeper
+    region:   ne_178
+    level:    [31, 33]
+  16842932:
+    template: Weeper_PH_2
+    script:   Weeper
+    region:   ne_180
+    level:    [31, 33]
+  16842933:
+    template: Wanderer_PV
+    script:   Wanderer
+    region:   ne_181
+    level:    [29, 31]
+  16842934:
+    template: Weeper_PH_2
+    script:   Weeper
+    region:   ne_181
+    level:    [31, 33]
+  16842935:
+    template: Weeper_PH_2
+    script:   Weeper
+    region:   ne_181
+    level:    [31, 33]
+  16842936:
+    template: Weeper_PH_2
+    script:   Weeper
+    region:   ne_184
+    level:    [31, 33]
+  16842937:
+    template: Thinker_PH_2
+    script:   Thinker
+    region:   ne_185
+    level:    [35, 37]
+  16842938:
+    template: Thinker_PH_2
+    script:   Thinker
+    region:   ne_186
+    level:    [35, 37]
+  16842940:
+    template: Memory_Receptacle_PH
+    script:   Memory_Receptacle
+    at:       [40.000, -1.000, 320.000]
+    level:    [30, 30]
+  16842941:
+    template: Stray
+    region:   n_189
+    level:    [26, 27]
+  16842942:
+    template: Stray
+    region:   n_189
+    level:    [26, 27]
+  16842943:
+    template: Stray
+    region:   n_189
+    level:    [26, 27]
+  16842944:
+    template: Stray
+    region:   n_189
+    level:    [26, 27]
+  16842945:
+    template: Stray
+    region:   n_189
+    level:    [26, 27]
+  16842946:
+    template: Stray
+    region:   n_189
+    level:    [26, 27]
+  16842947:
+    template: Stray
+    region:   n_189
+    level:    [26, 27]
+  16842949:
+    template: Memory_Receptacle_PH
+    script:   Memory_Receptacle
+    at:       [160.000, -1.000, 360.000]
+    level:    [30, 30]
+  16842950:
+    template: Stray
+    region:   ne_198
+    level:    [26, 27]
+  16842951:
+    template: Stray
+    region:   ne_198
+    level:    [26, 27]
+  16842952:
+    template: Stray
+    region:   ne_198
+    level:    [26, 27]
+  16842953:
+    template: Stray
+    region:   ne_198
+    level:    [26, 27]
+  16842954:
+    template: Stray
+    region:   ne_198
+    level:    [26, 27]
+  16842955:
+    template: Stray
+    region:   ne_198
+    level:    [26, 27]
+  16842956:
+    template: Stray
+    region:   ne_198
+    level:    [26, 27]
+  16842958:
+    template: Memory_Receptacle_PH
+    script:   Memory_Receptacle
+    at:       [280.000, -1.000, 200.000]
+    level:    [30, 30]
+  16842959:
+    template: Stray
+    region:   ne_207
+    level:    [26, 27]
+  16842960:
+    template: Stray
+    region:   ne_207
+    level:    [26, 27]
+  16842961:
+    template: Stray
+    region:   ne_207
+    level:    [26, 27]
+  16842962:
+    template: Stray
+    region:   ne_207
+    level:    [26, 27]
+  16842963:
+    template: Stray
+    region:   ne_207
+    level:    [26, 27]
+  16842964:
+    template: Stray
+    region:   ne_207
+    level:    [26, 27]
+  16842965:
+    template: Stray
+    region:   ne_207
+    level:    [26, 27]
+  16842966:
+    template: Weeper_PH_2
+    script:   Weeper
+    region:   s_214
+    level:    [33, 35]
+  16842967:
+    template: Weeper_PH_2
+    script:   Weeper
+    region:   s_215
+    level:    [33, 35]
+  16842968:
+    template: Seether_Prom
+    script:   Seether
+    region:   s_215
+    level:    [35, 37]
+  16842969:
+    template: Apex_Idle_Drifter
+    region:   s_217
+    level:    [139, 142]
+  16842970:
+    template: Apex_Idle_Drifter
+    region:   s_217
+    level:    [139, 142]
+  16842971:
+    template: Apex_Idle_Drifter
+    region:   s_217
+    level:    [139, 142]
+  16842972:
+    template: Apex_Idle_Drifter
+    region:   s_217
+    level:    [139, 142]
+  16842973:
+    template: Apex_Idle_Drifter
+    region:   s_221
+    level:    [139, 142]
+  16842974:
+    template: Apex_Idle_Drifter
+    region:   s_221
+    level:    [139, 142]
+  16842975:
+    template: Apex_Idle_Drifter
+    region:   s_221
+    level:    [139, 142]
+  16842976:
+    template: Apex_Idle_Drifter
+    region:   s_221
+    level:    [139, 142]
+  16842977:
+    template: Apex_Idle_Drifter
+    region:   s_221
+    level:    [139, 142]
+  16842978:
+    template: Apex_Idle_Drifter
+    region:   s_226
+    level:    [139, 142]
+  16842979:
+    template: Apex_Idle_Drifter
+    region:   s_226
+    level:    [139, 142]
+  16842980:
+    template: Apex_Idle_Drifter
+    region:   s_226
+    level:    [139, 142]
+  16842981:
+    template: Apex_Idle_Drifter
+    region:   s_226
+    level:    [139, 142]
+  16842982:
+    template: Apex_Idle_Drifter
+    region:   s_226
+    level:    [139, 142]
+  16842983:
+    template: Apex_Livid_Rager
+    region:   s_231
+    level:    [139, 142]
+  16842984:
+    template: Apex_Idle_Drifter
+    region:   s_232
+    level:    [139, 142]
+  16842985:
+    template: Apex_Idle_Drifter
+    region:   s_232
+    level:    [139, 142]
+  16842986:
+    template: Apex_Idle_Drifter
+    region:   s_232
+    level:    [139, 142]
+  16842987:
+    template: Apex_Idle_Drifter
+    region:   s_232
+    level:    [139, 142]
+  16842988:
+    template: Apex_Idle_Drifter
+    region:   s_232
+    level:    [139, 142]
+  16842989:
+    template: Apex_Livid_Rager
+    region:   s_232
+    level:    [139, 142]
+  16842990:
+    template: Apex_Idle_Drifter
+    region:   s_238
+    level:    [139, 142]
+  16842991:
+    template: Apex_Idle_Drifter
+    region:   s_238
+    level:    [139, 142]
+  16842992:
+    template: Apex_Idle_Drifter
+    region:   s_238
+    level:    [139, 142]
+  16842993:
+    template: Apex_Idle_Drifter
+    region:   s_238
+    level:    [139, 142]
+  16842994:
+    template: Apex_Idle_Drifter
+    region:   s_238
+    level:    [139, 142]
+  16842995:
+    template: Apex_Livid_Rager
+    region:   s_238
+    level:    [139, 142]
+  16842996:
+    template: Weeper_PH_2
+    script:   Weeper
+    region:   s_246
+    level:    [33, 35]
+  16842997:
+    template: Seether_Prom
+    script:   Seether
+    region:   s_245
+    level:    [35, 37]
+  16842998:
+    template: Weeper_PH_2
+    script:   Weeper
+    region:   s_246
+    level:    [33, 35]
+  16842999:
+    template: Weeper_PH_2
+    script:   Weeper
+    region:   s_246
+    level:    [33, 35]
+  16843000:
+    template: Seether_Prom
+    script:   Seether
+    region:   s_248
+    level:    [35, 37]
+  16843001:
+    template: Weeper_PH_2
+    script:   Weeper
+    region:   s_249
+    level:    [33, 35]
+  16843002:
+    template: Weeper_PH_2
+    script:   Weeper
+    region:   s_249
+    level:    [33, 35]
+  16843003:
+    template: Weeper_PH_2
+    script:   Weeper
+    region:   s_251
+    level:    [33, 35]
+  16843004:
+    template: Seether_Prom
+    script:   Seether
+    region:   s_251
+    level:    [35, 37]
+  16843005:
+    template: Weeper_PH_2
+    script:   Weeper
+    region:   s_253
+    level:    [33, 35]
+  16843006:
+    template: Weeper_PH_2
+    script:   Weeper
+    region:   s_253
+    level:    [33, 35]
+  16843007:
+    template: Seether_Prom
+    script:   Seether
+    region:   region_114
+    level:    [35, 37]
+  16843008:
+    template: Seether_Prom
+    script:   Seether
+    region:   c_256
+    level:    [35, 37]
+  16843009:
+    template: Seether_Prom
+    script:   Seether
+    region:   e_257
+    level:    [35, 37]
+  16843010:
+    template: Weeper_PH_2
+    script:   Weeper
+    region:   se_260
+    level:    [33, 35]
+  16843011:
+    template: Seether_Prom
+    script:   Seether
+    region:   se_259
+    level:    [35, 37]
+  16843012:
+    template: Weeper_PH_2
+    script:   Weeper
+    region:   se_260
+    level:    [33, 35]
+  16843013:
+    template: Wanderer_PV_2
+    script:   Wanderer
+    region:   se_261
+    level:    [31, 33]
+  16843014:
+    template: Wanderer_PV_2
+    script:   Wanderer
+    region:   se_261
+    level:    [31, 33]
+  16843015:
+    template: Weeper_PH_2
+    script:   Weeper
+    region:   se_261
+    level:    [33, 35]
+  16843016:
+    template: Weeper_PH_2
+    script:   Weeper
+    region:   se_261
+    level:    [33, 35]
+  16843017:
+    template: Seether_Prom
+    script:   Seether
+    region:   region_115
+    level:    [35, 37]
+  16843018:
+    template: Weeper_PH_2
+    script:   Weeper
+    region:   region_116
+    level:    [33, 35]
+  16843019:
+    template: Weeper_PH_2
+    script:   Weeper
+    region:   se_267
+    level:    [33, 35]
+  16843020:
+    template: Seether_Prom
+    script:   Seether
+    region:   se_267
+    level:    [35, 37]
+  16843021:
+    template: Weeper_PH_2
+    script:   Weeper
+    region:   se_269
+    level:    [33, 35]
+  16843022:
+    template: Weeper_PH_2
+    script:   Weeper
+    region:   se_269
+    level:    [33, 35]
+  16843023:
+    template: Weeper_PH_2
+    script:   Weeper
+    region:   se_271
+    level:    [33, 35]
+  16843024:
+    template: Seether_Prom
+    script:   Seether
+    region:   se_271
+    level:    [35, 37]
+  16843025:
+    template: Seether_Prom
+    script:   Seether
+    region:   se_273
+    level:    [35, 37]
+  16843026:
+    template: Seether_Prom
+    script:   Seether
+    region:   se_274
+    level:    [35, 37]
+  16843027:
+    template: Weeper_PH_2
+    script:   Weeper
+    region:   se_275
+    level:    [33, 35]
+  16843028:
+    template: Thinker_PH_2
+    script:   Thinker
+    region:   se_276
+    level:    [37, 39]
+  16843029:
+    template: Seether_Prom
+    script:   Seether
+    region:   region_117
+    level:    [35, 37]
+  16843030:
+    template: Wanderer_PV_2
+    script:   Wanderer
+    region:   e_278
+    level:    [31, 33]
+  16843031:
+    template: Weeper_PH_2
+    script:   Weeper
+    region:   e_278
+    level:    [33, 35]
+  16843032:
+    template: Seether_Prom
+    script:   Seether
+    region:   e_278
+    level:    [35, 37]
+  16843033:
+    template: Weeper_PH_2
+    script:   Weeper
+    region:   e_281
+    level:    [33, 35]
+  16843034:
+    template: Weeper_PH_2
+    script:   Weeper
+    region:   e_281
+    level:    [33, 35]
+  16843035:
+    template: Weeper_PH_2
+    script:   Weeper
+    region:   e_281
+    level:    [33, 35]
+  16843036:
+    template: Seether_Prom
+    script:   Seether
+    region:   e_284
+    level:    [35, 37]
+  16843037:
+    template: Wanderer_PV_2
+    script:   Wanderer
+    region:   se_285
+    level:    [31, 33]
+  16843038:
+    template: Seether_Prom
+    script:   Seether
+    region:   se_285
+    level:    [35, 37]
+  16843039:
+    template: Thinker_PH_2
+    script:   Thinker
+    region:   e_287
+    level:    [37, 39]
+  16843040:
+    template: Thinker_PH_2
+    script:   Thinker
+    region:   e_288
+    level:    [37, 39]
+  16843041:
+    template: Thinker_PH_2
+    script:   Thinker
+    region:   s_289
+    level:    [37, 39]
+  16843042:
+    template: Thinker_PH_2
+    script:   Thinker
+    region:   s_290
+    level:    [37, 39]
+  16843043:
+    template: Cerebrator
+    region:   w_291
+    level:    [38, 38]
+
+slots:
+  - members:
+      16842786: {} # Wanderer
+      16842787: {} # Wanderer
+  - members:
+      16842800: {} # Weeper
+      16842801: {} # Weeper
+  - members:
+      16842802: {} # Weeper
+      16842803: {} # Weeper
+  - members:
+      16842805: {} # Weeper
+      16842806: {} # Weeper
+  - members:
+      16842808: {} # Weeper
+      16842810: {} # Weeper
+  - members:
+      16842874: {} # Weeper
+      16842875: {} # Weeper
+  - members:
+      16842883: {} # Weeper
+      16842884: {} # Weeper
+  - members:
+      16842928: {} # Weeper
+      16842930: {} # Weeper
+  - members:
+      16842996: {} # Weeper
+      16842998: {} # Weeper
+  - members:
+      16843010: {} # Weeper
+      16843012: {} # Weeper

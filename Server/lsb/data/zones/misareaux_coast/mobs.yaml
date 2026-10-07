@@ -1,0 +1,3159 @@
+# yaml-language-server: $schema=../../schemas/mobs.schema.json
+
+templates:
+
+  Air_Elemental:
+    id:            71
+    species:       air_elemental
+    spell_list_id: 12
+    skill_list_id: 99
+    attributes:
+      combat:
+        skill: staff
+      jobs: [blm, rdm]
+      resists:
+        immune_status: [gravity, silence, slow, elegy]
+      render:
+        look:
+          type:  standard
+          model: 438
+        entity_flags:  1155
+        animation_sub:   16
+        model_size:       1
+        hitbox:           3
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+        type:    [weather]
+    loot:
+      drops:
+        - chance: always
+          item:   wind_cluster
+        - chance: common
+          item:   wind_cluster
+        - chance: common
+          item:   wind_cluster
+
+  Alsha:
+    id:            98
+    species:       elvaan
+    type:          [notorious]
+    spell_list_id: 21
+    skill_list_id: 149
+    attributes:
+      combat:
+        skill: club
+      jobs: [blm, whm]
+      render:
+        look:
+          type:  misc
+          model: 567
+        entity_flags: 1563
+        name_prefix:    32
+        model_size:      1
+        hitbox:         12
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 5000
+        mp: 5000
+
+  Atomic_Cluster:
+    id:            277
+    species:       cluster
+    skill_list_id: 68
+    attributes:
+      combat:
+        skill: club
+      render:
+        look:
+          type:  standard
+          model: 290
+        entity_flags:  1155
+        animation_sub:    4
+        model_size:       1
+        hitbox:          37
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+        type:    [fog]
+    loot:
+      drops:
+        - chance: always
+          item:   cluster_core
+        - chance: uncommon
+          item:   pinch_of_cluster_ash
+        - chance: rare
+          item:   cluster_arm
+      steal: cluster_core
+
+  Bigclaw_noaggro_MC:
+    id:            4814
+    display_name:  Bigclaw
+    species:       crab
+    skill_list_id: 77
+    attributes:
+      combat:
+        skill: great_sword
+      jobs: [pld, pld]
+      render:
+        look:
+          type:  standard
+          model: 357
+        entity_flags: 133
+        model_size:     2
+        hitbox:        16
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   slice_of_land_crab_meat
+        - chance: uncommon
+          item:   crab_shell
+        - chance: rare
+          item:   sack_of_silica
+        - chance: very_rare
+          item:   high-quality_crab_shell
+      steal: chunk_of_rock_salt
+      despoil:
+        slice_of_land_crab_meat: 0
+        crab_shell:              0
+
+  Bloodswiller_Fly:
+    id:            6740
+    species:       fly
+    type:          [notorious]
+    skill_list_id: 113
+    attributes:
+      combat:
+        skill: polearm
+      render:
+        look:
+          type:  standard
+          model: 448
+        entity_flags:  643
+        animation_sub:   8
+        model_size:      1
+        hitbox:         15
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+
+  Bloody_Coffin:
+    id:            466
+    species:       crab
+    type:          [notorious]
+    spell_list_id: 555
+    skill_list_id: 76
+    attributes:
+      combat:
+        skill: sword
+      jobs: [rdm, rdm]
+      render:
+        look:
+          type:  standard
+          model: 357
+        entity_flags: 135
+        model_size:     3
+        hitbox:        19
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 3500
+
+  Boggelmann:
+    id:            484
+    species:       bugard
+    type:          [notorious]
+    spell_list_id: 5
+    skill_list_id: 58
+    attributes:
+      combat:
+        skill: sword
+        delay: 300
+      jobs: [drk, war]
+      render:
+        look:
+          type:  standard
+          model: 1351
+        entity_flags: 133
+        model_size:     2
+        hitbox:        13
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 7600
+
+  Bugard:
+    id:            557
+    species:       bugard
+    skill_list_id: 58
+    attributes:
+      combat:
+        skill: sword
+        delay: 300
+      render:
+        look:
+          type:  standard
+          model: 1351
+        entity_flags: 131
+        model_size:     1
+        hitbox:        12
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   bugard_skin
+        - chance: rare
+          item:   high-quality_bugard_skin
+        - chance: very_rare
+          item:   bugard_tusk
+      steal: slice_of_giant_sheep_meat
+      despoil:
+        bugard_skin: 0
+        bugard_tusk: 0
+
+  Clipper_fished:
+    id:            6765
+    display_name:  Clipper
+    species:       crab
+    type:          [fished]
+    skill_list_id: 77
+    attributes:
+      combat:
+        skill: great_sword
+      jobs: [pld, pld]
+      render:
+        look:
+          type:  standard
+          model: 356
+        entity_flags: 131
+        model_size:     1
+        hitbox:        13
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: common
+          item:   chunk_of_rock_salt
+        - chance: rare
+          item:   slice_of_land_crab_meat
+        - chance: very_rare
+          item:   crab_shell
+      steal: chunk_of_rock_salt
+      despoil:
+        slice_of_land_crab_meat: 0
+        crab_shell:              0
+
+  Crimson_Knight_Crab:
+    id:            839
+    species:       crab
+    skill_list_id: 77
+    attributes:
+      combat:
+        skill: great_sword
+      jobs: [pld, pld]
+      render:
+        look:
+          type:  standard
+          model: 357
+        entity_flags:  131
+        animation_sub:   8
+        model_size:      1
+        hitbox:         13
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   slice_of_land_crab_meat
+        - chance: uncommon
+          item:   crab_shell
+        - chance: rare
+          item:   sack_of_silica
+      steal: chunk_of_rock_salt
+      despoil:
+        slice_of_land_crab_meat: 0
+        crab_shell:              0
+
+  Dark_Elemental:
+    id:            913
+    species:       dark_elemental
+    spell_list_id: 18
+    skill_list_id: 100
+    attributes:
+      combat:
+        skill: club
+      jobs: [drk, drk]
+      resists:
+        immune_status: [blind, light_sleep, dark_sleep]
+      render:
+        look:
+          type:  standard
+          model: 443
+        entity_flags:  131
+        animation_sub:  16
+        model_size:      1
+        hitbox:          3
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+        type:    [weather]
+    loot:
+      drops:
+        - chance: always
+          item:   dark_cluster
+        - chance: common
+          item:   dark_cluster
+        - chance: common
+          item:   dark_cluster
+
+  Death_Jacket_LM_MC:
+    id:            940
+    species:       yellow_bee
+    skill_list_id: 48
+    attributes:
+      combat:
+        skill: dagger
+      render:
+        look:
+          type:  standard
+          model: 272
+        entity_flags:  643
+        animation_sub:   8
+        model_size:      1
+        hitbox:         10
+      behaviors:
+        links: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   beehive_chip
+        - chance: uncommon
+          item:   pot_of_honey
+        - chance: rare
+          item:   insect_wing
+        - chance: very_rare
+          item:   giant_stinger
+      steal: pot_of_honey
+      despoil:
+        beehive_chip:  0
+        giant_stinger: 0
+        pot_of_honey:  0
+
+  Diatryma_MC:
+    id:            1035
+    display_name:  Diatryma
+    species:       roc
+    skill_list_id: 125
+    attributes:
+      combat:
+        skill: club
+      render:
+        look:
+          type:  standard
+          model: 336
+        entity_flags: 131
+        model_size:     1
+        hitbox:        32
+      behaviors:
+        links: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   slice_of_diatryma_meat
+        - chance: uncommon
+          item:   giant_bird_feather
+        - chance: rare
+          item:   giant_bird_plume
+      despoil:
+        giant_bird_feather: 0
+
+  Fomor_Bard:
+    id:            1380
+    species:       fomor
+    spell_list_id: 6
+    skill_list_id: 115
+    attributes:
+      combat:
+        skill: sword
+      jobs: [brd, brd]
+      render:
+        look:
+          type:  misc
+          model: 1038
+        entity_flags: 131
+        model_size:     1
+        hitbox:        20
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+        type:    [at_night]
+    loot:
+      drops:
+        - chance: rare
+          item:   square_of_spectral_crimson
+        - chance: very_rare
+          item:   revival_tree_root
+
+  Fomor_Black_Mage:
+    id:            1382
+    species:       fomor
+    spell_list_id: 21
+    skill_list_id: 115
+    attributes:
+      combat:
+        skill: club
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  misc
+          model: 1030
+        entity_flags: 131
+        model_size:     1
+        hitbox:        15
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+        type:    [at_night]
+
+  Fomor_Dark_Knight:
+    id:            1383
+    species:       fomor
+    spell_list_id: 5
+    skill_list_id: 115
+    attributes:
+      combat:
+        skill: scythe
+      jobs: [drk, drk]
+      render:
+        look:
+          type:  misc
+          model: 1034
+        entity_flags:  3
+        model_size:    1
+        hitbox:       17
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+        type:    [at_night]
+
+  Fomor_Dragoon:
+    id:            1384
+    species:       fomor
+    skill_list_id: 115
+    attributes:
+      combat:
+        skill: polearm
+      jobs: [drg, drg]
+      render:
+        look:
+          type:  misc
+          model: 1014
+        entity_flags: 131
+        model_size:     1
+        hitbox:        17
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+        type:    [at_night]
+
+  Fomor_Monk:
+    id:            1385
+    species:       fomor
+    skill_list_id: 115
+    attributes:
+      combat:
+        skill: hand_to_hand
+        delay: 380
+      jobs: [mnk, mnk]
+      render:
+        look:
+          type:  misc
+          model: 1028
+        entity_flags: 131
+        model_size:     1
+        hitbox:        15
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+        type:    [at_night]
+
+  Fomor_Ninja:
+    id:            1386
+    species:       fomor
+    spell_list_id: 7
+    skill_list_id: 115
+    attributes:
+      combat:
+        skill: katana
+      jobs: [nin, nin]
+      render:
+        look:
+          type:  misc
+          model: 1036
+        entity_flags:  3
+        model_size:    1
+        hitbox:       17
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+        type:    [at_night]
+
+  Fomor_Paladin:
+    id:            1387
+    species:       fomor
+    spell_list_id: 4
+    skill_list_id: 115
+    attributes:
+      combat:
+        skill: sword
+      jobs: [pld, pld]
+      render:
+        look:
+          type:  misc
+          model: 1040
+        entity_flags: 131
+        model_size:     1
+        hitbox:        20
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+        type:    [at_night]
+    loot:
+      drops:
+        - chance: rare
+          item:   square_of_spectral_crimson
+        - chance: very_rare
+          item:   revival_tree_root
+
+  Fomor_Ranger:
+    id:            1388
+    species:       fomor
+    skill_list_id: 115
+    attributes:
+      combat:
+        skill: dagger
+      jobs: [rng, rng]
+      render:
+        look:
+          type:  misc
+          model: 1017
+        entity_flags: 131
+        model_size:     1
+        hitbox:        17
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+        type:    [at_night]
+
+  Fomor_Ranger_Large:
+    id:            7284
+    display_name:  Fomor_Ranger
+    species:       fomor
+    skill_list_id: 115
+    attributes:
+      combat:
+        skill: dagger
+      jobs: [rng, rng]
+      render:
+        look:
+          type:  misc
+          model: 1017
+        entity_flags: 131
+        model_size:     1
+        hitbox:        20
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+        type:    [at_night]
+
+  Fomor_Red_Mage:
+    id:            1389
+    species:       fomor
+    spell_list_id: 3
+    skill_list_id: 115
+    attributes:
+      combat:
+        skill: sword
+      jobs: [rdm, rdm]
+      render:
+        look:
+          type:  misc
+          model: 1032
+        entity_flags:  3
+        model_size:    1
+        hitbox:       17
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+        type:    [at_night]
+    loot:
+      drops:
+        - chance: rare
+          item:   square_of_spectral_crimson
+        - chance: very_rare
+          item:   revival_tree_root
+
+  Fomor_Samurai:
+    id:            1390
+    species:       fomor
+    skill_list_id: 115
+    attributes:
+      combat:
+        skill: great_katana
+      jobs: [sam, sam]
+      render:
+        look:
+          type:  misc
+          model: 1012
+        entity_flags: 131
+        model_size:     1
+        hitbox:        17
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+        type:    [at_night]
+
+  Fomor_Summoner:
+    id:            1391
+    species:       fomor
+    spell_list_id: 34
+    skill_list_id: 115
+    attributes:
+      combat:
+        skill: staff
+      jobs: [smn, smn]
+      render:
+        look:
+          type:  misc
+          model: 1026
+        entity_flags: 131
+        model_size:     1
+        hitbox:        15
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+        type:    [at_night]
+    loot:
+      drops:
+        - chance: very_rare
+          item:   revival_tree_root
+
+  Fomor_Thief:
+    id:            1397
+    species:       fomor
+    skill_list_id: 115
+    attributes:
+      combat:
+        skill: dagger
+      jobs: [thf, thf]
+      render:
+        look:
+          type:  misc
+          model: 1022
+        entity_flags: 131
+        model_size:     1
+        hitbox:        20
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+        type:    [at_night]
+
+  Fomor_Warrior:
+    id:            1398
+    species:       fomor
+    skill_list_id: 115
+    attributes:
+      combat:
+        skill: great_axe
+      render:
+        look:
+          type:  misc
+          model: 1020
+        entity_flags: 131
+        model_size:     1
+        hitbox:        20
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+        type:    [at_night]
+
+  Fomors_Elemental:
+    id:            1395
+    species:       earth_elemental
+    spell_list_id: 21
+    skill_list_id: 101
+    attributes:
+      combat:
+        skill: staff
+      jobs: [blm, rdm]
+      render:
+        look:
+          type:  standard
+          model: 11
+        entity_flags:  131
+        animation_sub:  16
+        model_size:      1
+        hitbox:          8
+      behaviors:
+        links: true
+      spawn:
+        type: [scripted]
+
+  Fomors_Wyvern:
+    id:            1396
+    species:       blue_wyvern
+    skill_list_id: 714
+    attributes:
+      combat:
+        skill: scythe
+        delay: 200
+      render:
+        look:
+          type:  standard
+          model: 24
+        entity_flags: 131
+        model_size:     1
+        hitbox:         8
+      behaviors:
+        links: true
+      spawn:
+        type: [scripted]
+
+  Gigantobugard:
+    id:            1549
+    species:       bugard
+    skill_list_id: 58
+    attributes:
+      combat:
+        skill: sword
+        delay: 300
+      render:
+        look:
+          type:  standard
+          model: 1351
+        entity_flags: 131
+        model_size:     1
+        hitbox:        12
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: very_common
+          item:   bugard_skin
+        - chance: uncommon
+          item:   high-quality_bugard_skin
+        - chance: rare
+          item:   bugard_tusk
+      steal: slice_of_giant_sheep_meat
+      despoil:
+        bugard_skin: 0
+        bugard_tusk: 0
+
+  Gigas_Braver:
+    id:            1553
+    species:       gigas
+    skill_list_id: 126
+    attributes:
+      combat:
+        skill: club
+      render:
+        look:
+          type:  standard
+          model: 708
+        entity_flags: 131
+        model_size:     1
+        hitbox:        30
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   gigas_socks
+        - chance: uncommon
+          item:   maple_shield
+        - chance: rare
+          item:   gigas_necklace
+      despoil:
+        spool_of_wool_thread: 0
+        square_of_wool_cloth: 0
+
+  Gigas_Catapulter:
+    id:            1555
+    species:       gigas
+    skill_list_id: 127
+    attributes:
+      combat:
+        skill: axe
+      jobs: [rng, war]
+      render:
+        look:
+          type:  standard
+          model: 711
+        entity_flags: 131
+        model_size:     1
+        hitbox:        30
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   gigas_socks
+        - chance: uncommon
+          item:   maple_shield
+        - chance: rare
+          item:   gigas_necklace
+        - chance: very_rare
+          item:   gigas_bracelets
+      despoil:
+        spool_of_wool_thread: 0
+        square_of_wool_cloth: 0
+
+  Gigas_Martialist:
+    id:            1573
+    species:       gigas
+    skill_list_id: 127
+    attributes:
+      combat:
+        skill: hand_to_hand
+        delay: 380
+      jobs: [mnk, mnk]
+      render:
+        look:
+          type:  standard
+          model: 709
+        entity_flags: 131
+        model_size:     1
+        hitbox:        30
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   gigas_socks
+        - chance: uncommon
+          item:   maple_shield
+        - chance: rare
+          item:   gigas_necklace
+      despoil:
+        spool_of_wool_thread: 0
+        square_of_wool_cloth: 0
+
+  Gigas_Warwolf:
+    id:            1599
+    species:       gigas
+    skill_list_id: 126
+    attributes:
+      combat:
+        skill: axe
+      jobs: [bst, bst]
+      render:
+        look:
+          type:  standard
+          model: 710
+        entity_flags: 131
+        model_size:     1
+        hitbox:        30
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   gigas_socks
+        - chance: uncommon
+          item:   maple_shield
+        - chance: rare
+          item:   gigas_necklace
+      despoil:
+        spool_of_wool_thread: 0
+        square_of_wool_cloth: 0
+
+  Gigass_Sheep:
+    id:            1592
+    species:       sheep
+    skill_list_id: 226
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 340
+        entity_flags:  131
+        animation_sub:  16
+        model_size:      1
+        hitbox:         24
+      behaviors:
+        links: true
+      spawn:
+        type: [scripted]
+
+  Goaftrap:
+    id:            5877
+    species:       flytrap
+    type:          [notorious]
+    skill_list_id: 346
+    attributes:
+      combat:
+        skill: polearm
+        delay: 200
+      resists:
+        immune_status: [gravity, bind, light_sleep, dark_sleep]
+      render:
+        look:
+          type:  standard
+          model: 1345
+        entity_flags:  131
+        animation_sub:   8
+        model_size:      1
+        hitbox:         12
+      spawn:
+        respawn: 5400
+      stats:
+        hp: 5500
+    loot:
+      drops:
+        - chance: rare
+          item:   altdorfs_earring
+    content: wotg
+
+  Gration:
+    id:            1792
+    species:       gigas
+    type:          [notorious]
+    spell_list_id: 1
+    skill_list_id: 126
+    attributes:
+      combat:
+        skill: club
+      jobs: [blm, rdm]
+      render:
+        look:
+          type:  standard
+          model: 708
+        entity_flags: 159
+        name_prefix:   32
+        model_size:     3
+        hitbox:        41
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 32000
+        mp: 32000
+
+  Greater_Pugil_fished:
+    id:            5868
+    display_name:  Greater_Pugil
+    species:       pugil
+    type:          [fished]
+    skill_list_id: 197
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 348
+        entity_flags: 131
+        model_size:     1
+        hitbox:        27
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+    loot:
+      steal: handful_of_fish_scales
+      despoil:
+        handful_of_pugil_scales: 0
+        handful_of_fish_scales:  0
+
+  Grindylow:
+    id:            1817
+    species:       crab
+    type:          [fished]
+    skill_list_id: 77
+    attributes:
+      combat:
+        skill: great_sword
+      jobs: [pld, pld]
+      render:
+        look:
+          type:  standard
+          model: 357
+        entity_flags: 131
+        model_size:     1
+        hitbox:        13
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: uncommon
+          item:   chunk_of_rock_salt
+        - chance: uncommon
+          item:   slice_of_land_crab_meat
+      despoil:
+        slice_of_land_crab_meat: 0
+        crab_shell:              0
+
+  Makara:
+    id:            2491
+    species:       pugil
+    skill_list_id: 197
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 348
+        entity_flags: 131
+        model_size:     1
+        hitbox:        27
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   sack_of_silica
+        - chance: uncommon
+          item:   handful_of_pugil_scales
+      steal: handful_of_fish_scales
+      despoil:
+        handful_of_pugil_scales: 0
+        handful_of_fish_scales:  0
+
+  Mantrap:
+    id:            2556
+    species:       flytrap
+    skill_list_id: 114
+    attributes:
+      combat:
+        skill: polearm
+        delay: 200
+      render:
+        look:
+          type:  standard
+          model: 1345
+        entity_flags:  131
+        animation_sub:   8
+        model_size:      1
+        hitbox:         12
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   bunch_of_habanero_peppers
+      despoil:
+        flytrap_leaf: 0
+
+  Mantrap_fished:
+    id:            5866
+    display_name:  Mantrap
+    species:       flytrap
+    type:          [fished]
+    skill_list_id: 114
+    attributes:
+      combat:
+        skill: polearm
+        delay: 200
+      render:
+        look:
+          type:  standard
+          model: 1345
+        entity_flags: 3
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+
+  Miner_Bee:
+    id:            2672
+    species:       yellow_bee
+    skill_list_id: 48
+    attributes:
+      combat:
+        skill: dagger
+      render:
+        look:
+          type:  standard
+          model: 272
+        entity_flags:  643
+        animation_sub:   8
+        model_size:      1
+        hitbox:         10
+      behaviors:
+        links: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   beehive_chip
+        - chance: uncommon
+          item:   pot_of_honey
+        - chance: rare
+          item:   insect_wing
+        - chance: very_rare
+          item:   giant_stinger
+      steal: pot_of_honey
+      despoil:
+        beehive_chip:  0
+        giant_stinger: 0
+        pot_of_honey:  0
+
+  Odqan:
+    id:            2945
+    species:       cluster
+    type:          [notorious]
+    skill_list_id: 68
+    attributes:
+      combat:
+        skill: axe
+      render:
+        look:
+          type:  standard
+          model: 290
+        entity_flags:  1181
+        animation_sub:    4
+        name_prefix:     32
+        model_size:       2
+        hitbox:          43
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 7200
+      stats:
+        hp: 4900
+    loot:
+      drops:
+        - chance: always
+          item:   cluster_core
+        - chance: common
+          item:   atlauas_ring
+        - chance: uncommon
+          item:   pinch_of_cluster_ash
+        - chance: rare
+          item:   bravos_subligar
+
+  Okyupete:
+    id:            5773
+    species:       roc
+    type:          [notorious]
+    skill_list_id: 125
+    attributes:
+      combat:
+        skill: club
+      resists:
+        immune_status: [gravity, bind, light_sleep, dark_sleep]
+      render:
+        look:
+          type:  standard
+          model: 336
+        entity_flags: 1171
+        name_prefix:    32
+        model_size:      1
+        hitbox:         32
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [lottery]
+      stats:
+        hp: 5550
+    loot:
+      drops:
+        - chance: rare
+          item:   shepherds_chain
+    content: wotg
+
+  Orcish_Bowshooter_MC:
+    id:            6277
+    species:       orc
+    skill_list_id: 189
+    attributes:
+      combat:
+        skill: axe
+      jobs: [rng, war]
+      render:
+        look:
+          type:  standard
+          model: 623
+        entity_flags: 1155
+        model_size:      1
+        hitbox:         15
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: rare
+          item:   tavnazian_sheep_liver
+      steal: [bulb_of_misareaux_garlic, silver_beastcoin] # audit needed
+      despoil:
+        strip_of_meat_jerky:    0
+        dhalmel_steak:          0
+        strip_of_buffalo_jerky: 0
+
+  Orcish_Footsoldier_MC:
+    id:            6279
+    species:       orc
+    skill_list_id: 189
+    attributes:
+      combat:
+        skill: dagger
+      render:
+        look:
+          type:  standard
+          model: 627
+        entity_flags: 1155
+        model_size:      1
+        hitbox:         15
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      steal: silver_beastcoin
+      despoil:
+        strip_of_meat_jerky:    0
+        dhalmel_steak:          0
+        strip_of_buffalo_jerky: 0
+
+  Orcish_Gladiator_MC:
+    id:            6281
+    species:       orc
+    skill_list_id: 189
+    attributes:
+      combat:
+        skill: hand_to_hand
+        delay: 380
+      jobs: [mnk, war]
+      render:
+        look:
+          type:  standard
+          model: 633
+        entity_flags: 1155
+        model_size:      1
+        hitbox:         15
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      steal: [bulb_of_misareaux_garlic, silver_beastcoin] # audit needed
+      despoil:
+        strip_of_meat_jerky:    0
+        dhalmel_steak:          0
+        strip_of_buffalo_jerky: 0
+
+  Orcish_Stonelauncher:
+    id:            3034
+    species:       orcish_warmachine
+    skill_list_id: 190
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 428
+        entity_flags: 1155
+        model_size:      1
+        hitbox:         25
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: very_rare
+          item:   long_boomerang
+      despoil:
+        strip_of_meat_jerky:    0
+        dhalmel_steak:          0
+        strip_of_buffalo_jerky: 0
+
+  Orcish_Trooper_MC:
+    id:            6283
+    species:       orc
+    spell_list_id: 4
+    skill_list_id: 189
+    attributes:
+      combat:
+        skill: sword
+      jobs: [pld, war]
+      render:
+        look:
+          type:  standard
+          model: 635
+        entity_flags: 1155
+        model_size:      1
+        hitbox:         15
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      steal: [bulb_of_misareaux_garlic, silver_beastcoin] # audit needed
+      despoil:
+        strip_of_meat_jerky:    0
+        dhalmel_steak:          0
+        strip_of_buffalo_jerky: 0
+
+  Overgrown_Rose_MC:
+    id:            3112
+    display_name:  Overgrown_Rose
+    species:       morbol
+    skill_list_id: 186
+    attributes:
+      combat:
+        skill: scythe
+        delay: 200
+      render:
+        look:
+          type:  standard
+          model: 380
+        entity_flags:  1667
+        animation_sub:    8
+        model_size:       1
+        hitbox:          32
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   malboro_vine
+        - chance: common
+          item:   malboro_vine
+        - chance: uncommon
+          item:   malboro_vine
+      steal: malboro_vine
+
+  Seaboard_Vulture:
+    id:            6028
+    species:       bird
+    skill_list_id: 2089
+    attributes:
+      combat:
+        skill: dagger
+      render:
+        look:
+          type:  standard
+          model: 445
+        entity_flags:  131
+        animation_sub:   8
+        model_size:      1
+        hitbox:         20
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   bird_feather
+        - chance: uncommon
+          item:   bird_egg
+      steal: bird_feather
+      despoil:
+        bird_feather: 0
+        bird_egg:     0
+    content: abyssea
+
+  Tavnazian_Sheep:
+    id:            3854
+    species:       sheep
+    skill_list_id: 226
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 340
+        entity_flags:  131
+        animation_sub:  16
+        model_size:      1
+        hitbox:         24
+      behaviors:
+        links: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   slice_of_giant_sheep_meat
+        - chance: common
+          item:   sheepskin
+        - chance: rare
+          item:   jug_of_selbina_milk
+        - chance: rare
+          item:   sheep_tooth
+        - chance: very_rare
+          item:   tavnazian_sheep_liver
+      steal: clump_of_sheep_wool
+      despoil:
+        sheep_tooth: 0
+
+  Thunder_Elemental:
+    id:            3912
+    species:       thunder_elemental
+    spell_list_id: 16
+    skill_list_id: 105
+    attributes:
+      combat:
+        skill: staff
+      jobs: [blm, rdm]
+      resists:
+        immune_status: [stun, poison]
+      render:
+        look:
+          type:  standard
+          model: 441
+        entity_flags:  131
+        animation_sub:  16
+        model_size:      1
+        hitbox:          3
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+        type:    [weather]
+    loot:
+      drops:
+        - chance: always
+          item:   lightning_cluster
+        - chance: common
+          item:   lightning_cluster
+        - chance: common
+          item:   lightning_cluster
+
+  Tiyanak:
+    id:            6741
+    species:       bat
+    skill_list_id: 46
+    attributes:
+      combat:
+        skill: club
+      render:
+        look:
+          type:  standard
+          model: 257
+        entity_flags: 133
+        name_prefix:   32
+        model_size:     2
+        hitbox:        14
+      behaviors:
+        links: true
+      spawn:
+        type: [scripted]
+
+  Tsui-Goab:
+    id:            6739
+    species:       golden_mantid
+    type:          [notorious]
+    skill_list_id: 340
+    attributes:
+      combat:
+        skill: polearm
+      resists:
+        rank_element:
+          ice:   -1
+          wind:   4
+          earth:  4
+          water: -2
+        rank_status:
+          paralyze: -1
+          bind:     -1
+          silence:   4
+          slow:      4
+          poison:   -2
+      render:
+        look:
+          type:  standard
+          model: 2095
+        entity_flags: 671
+        name_prefix:   32
+        model_size:     3
+        hitbox:        27
+      behaviors:
+        aggressive:     true
+        true_detection: true
+      spawn:
+        type: [scripted]
+
+  Upyri:
+    id:            4105
+    species:       bat
+    type:          [notorious]
+    skill_list_id: 224
+    attributes:
+      combat:
+        skill: great_axe
+      render:
+        look:
+          type:  standard
+          model: 257
+        entity_flags:  1669
+        animation_sub:    8
+        model_size:       2
+        hitbox:          14
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 86400
+      stats:
+        hp: 5000
+    loot:
+      drops:
+        - chance: always
+          item:   vampire_cloak
+        - chance: common
+          item:   vampire_mask
+        - chance: common
+          item:   vampire_boots
+        - chance: rare
+          item:   vampire_earring
+
+  Vampire_Bat_Misareaux_Coast:
+    id:            7333
+    display_name:  Vampire_Bat
+    species:       bat
+    skill_list_id: 224
+    attributes:
+      combat:
+        skill: club
+      render:
+        look:
+          type:  standard
+          model: 256
+        entity_flags:  643
+        animation_sub:   8
+        model_size:      1
+        hitbox:         12
+      behaviors:
+        links: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   bat_wing
+        - chance: uncommon
+          item:   bat_fang
+        - chance: very_rare
+          item:   vial_of_fiend_blood
+      despoil:
+        bat_wing: 0
+
+  Volatile_Cluster:
+    id:            6742
+    species:       cluster
+    type:          [notorious]
+    skill_list_id: 883
+    attributes:
+      combat:
+        skill: staff
+      render:
+        look:
+          type:  standard
+          model: 290
+        entity_flags:  133
+        animation_sub:   4
+        model_size:      2
+        hitbox:         43
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+
+  Warder_Aglaia:
+    id:            4291
+    species:       spheroid
+    type:          [notorious, event]
+    skill_list_id: 1170
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 778
+        entity_flags:  645
+        animation_sub:   8
+        model_size:      2
+        hitbox:         10
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 5000
+
+  Warder_Euphrosyne:
+    id:            4292
+    species:       spheroid
+    type:          [notorious, event]
+    skill_list_id: 1170
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 778
+        entity_flags:  645
+        animation_sub:   8
+        model_size:      2
+        hitbox:         10
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 5000
+
+  Warder_Thalia:
+    id:            4293
+    species:       spheroid
+    type:          [notorious, event]
+    skill_list_id: 1170
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 778
+        entity_flags:  645
+        animation_sub:   8
+        model_size:      2
+        hitbox:         10
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 5000
+
+  Wingrats_Misareaux_Coast:
+    id:            7344
+    display_name:  Wingrats
+    species:       flock_bat
+    skill_list_id: 2015
+    attributes:
+      combat:
+        skill: club
+      render:
+        look:
+          type:  standard
+          model: 260
+        entity_flags:  131
+        animation_sub:   8
+        name_prefix:    64
+        model_size:      1
+        hitbox:         16
+      behaviors:
+        links: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   bat_wing
+        - chance: uncommon
+          item:   bat_fang
+        - chance: very_rare
+          item:   vial_of_fiend_blood
+      despoil:
+        bat_wing: 0
+
+  Ziphius:
+    id:            4505
+    species:       pugil
+    type:          [notorious]
+    skill_list_id: 197
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 348
+        entity_flags: 153
+        name_prefix:   32
+        model_size:     1
+        hitbox:        27
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 9000
+    loot:
+      drops:
+        - chance: common
+          item:   hospitaler_earring
+
+
+  Beta_shee_Tavnazian_Sheep:
+    id:            40046
+    species:       sheep
+    skill_list_id: 226
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 2960
+        entity_flags:  131
+        animation_sub:  16
+        model_size:      1
+        hitbox:         24
+      behaviors:
+        links: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: rare
+          item:   beta_10378
+        - chance: uncommon
+          item:   beta_48
+        - chance: uncommon
+          item:   beta_3759
+        - chance: uncommon
+          item:   beta_6722
+        - chance: uncommon
+          item:   beta_6872
+        - chance: common
+          item:   slice_of_giant_sheep_meat
+        - chance: common
+          item:   sheepskin
+        - chance: rare
+          item:   jug_of_selbina_milk
+        - chance: rare
+          item:   sheep_tooth
+        - chance: very_rare
+          item:   tavnazian_sheep_liver
+      steal: clump_of_sheep_wool
+      despoil:
+        sheep_tooth: 0
+
+spawns:
+  16879617:
+    template: Clipper_fished
+    script:   Clipper
+    at:       [1.000, 1.000, 1.000]
+    level:    [30, 34]
+  16879618:
+    template: Grindylow
+    at:       [1.000, 1.000, 1.000]
+    level:    [30, 34]
+  16879619:
+    template: Greater_Pugil_fished
+    script:   Greater_Pugil
+    at:       [1.000, 1.000, 1.000]
+    level:    [35, 39]
+  16879620:
+    template: Greater_Pugil_fished
+    script:   Greater_Pugil
+    at:       [1.000, 1.000, 1.000]
+    level:    [35, 39]
+  16879621:
+    template: Mantrap_fished
+    script:   Mantrap
+    at:       [1.000, 1.000, 1.000]
+    level:    [45, 49]
+  16879622:
+    template: Miner_Bee
+    region:   se_6
+    level:    [31, 34]
+  16879623:
+    template: Miner_Bee
+    region:   se_6
+    level:    [31, 34]
+  16879624:
+    template: Tavnazian_Sheep
+    region:   se_6
+    level:    [33, 37]
+  16879625:
+    template: Tavnazian_Sheep
+    region:   se_6
+    level:    [33, 37]
+  16879626:
+    template: Miner_Bee
+    region:   se_10
+    level:    [31, 34]
+  16879627:
+    template: Miner_Bee
+    region:   se_10
+    level:    [31, 34]
+  16879628:
+    template: Bugard
+    region:   se_10
+    level:    [34, 37]
+  16879629:
+    template: Tavnazian_Sheep
+    region:   se_10
+    level:    [33, 37]
+  16879630:
+    template: Tavnazian_Sheep
+    region:   se_10
+    level:    [33, 37]
+  16879631:
+    template: Miner_Bee
+    region:   se_15
+    level:    [31, 34]
+  16879632:
+    template: Miner_Bee
+    region:   se_15
+    level:    [31, 34]
+  16879633:
+    template: Bugard
+    region:   se_15
+    level:    [34, 37]
+  16879634:
+    template: Tavnazian_Sheep
+    region:   se_15
+    level:    [33, 37]
+  16879635:
+    template: Tavnazian_Sheep
+    region:   se_15
+    level:    [33, 37]
+  16879636:
+    template: Miner_Bee
+    region:   s_20
+    level:    [31, 34]
+  16879637:
+    template: Miner_Bee
+    region:   s_20
+    level:    [31, 34]
+  16879638:
+    template: Bugard
+    region:   s_20
+    level:    [34, 37]
+  16879639:
+    template: Tavnazian_Sheep
+    region:   s_20
+    level:    [33, 37]
+  16879640:
+    template: Miner_Bee
+    region:   se_24
+    level:    [31, 34]
+  16879641:
+    template: Bugard
+    region:   se_24
+    level:    [34, 37]
+  16879642:
+    template: Tavnazian_Sheep
+    region:   se_24
+    level:    [33, 37]
+  16879643:
+    template: Miner_Bee
+    region:   se_27
+    level:    [31, 34]
+  16879644:
+    template: Bugard
+    region:   se_24
+    level:    [34, 37]
+  16879645:
+    template: Tavnazian_Sheep
+    region:   se_27
+    level:    [33, 37]
+  16879646:
+    template: Miner_Bee
+    region:   s_30
+    level:    [31, 34]
+  16879647:
+    template: Bugard
+    region:   s_30
+    level:    [34, 37]
+  16879648:
+    template: Tavnazian_Sheep
+    region:   s_30
+    level:    [33, 37]
+  16879649:
+    template: Miner_Bee
+    region:   s_33
+    level:    [31, 34]
+  16879650:
+    template: Miner_Bee
+    region:   s_34
+    level:    [31, 34]
+  16879651:
+    template: Miner_Bee
+    region:   s_34
+    level:    [31, 34]
+  16879652:
+    template: Miner_Bee
+    region:   s_34
+    level:    [31, 34]
+  16879653:
+    template: Bugard
+    region:   s_34
+    level:    [34, 37]
+  16879654:
+    template: Bugard
+    region:   s_34
+    level:    [34, 37]
+  16879655:
+    template: Tavnazian_Sheep
+    region:   s_34
+    level:    [33, 37]
+  16879656:
+    template: Tavnazian_Sheep
+    region:   s_34
+    level:    [33, 37]
+  16879657:
+    template: Thunder_Elemental
+    region:   s_34
+    level:    [42, 44]
+  16879658:
+    template: Miner_Bee
+    region:   se_42
+    level:    [31, 34]
+  16879659:
+    template: Miner_Bee
+    region:   se_42
+    level:    [31, 34]
+  16879660:
+    template: Bugard
+    region:   se_44
+    level:    [34, 37]
+  16879661:
+    template: Bugard
+    region:   se_44
+    level:    [34, 37]
+  16879662:
+    template: Bugard
+    region:   se_44
+    level:    [34, 37]
+  16879663:
+    template: Tavnazian_Sheep
+    region:   se_44
+    level:    [33, 37]
+  16879664:
+    template: Tavnazian_Sheep
+    region:   se_44
+    level:    [33, 37]
+  16879665:
+    template: Goaftrap
+    region:   se_44
+    level:    [50, 51]
+  16879666:
+    template: Fomor_Monk
+    at:       [747.299, -7.765, -490.100, 96]
+    level:    [36, 38]
+  16879667:
+    template: Fomor_Samurai
+    at:       [747.950, -7.765, -487.049, 160]
+    level:    [35, 37]
+  16879668:
+    template: Fomor_Warrior
+    at:       [750.400, -7.765, -490.250, 32]
+    level:    [35, 37]
+  16879669:
+    template: Fomor_Thief
+    at:       [750.799, -7.765, -487.299, 224]
+    level:    [35, 37]
+  16879670:
+    template: Air_Elemental
+    region:   se_54
+    level:    [49, 51]
+  16879671:
+    template: Crimson_Knight_Crab
+    region:   se_55
+    level:    [33, 36]
+  16879672:
+    template: Crimson_Knight_Crab
+    region:   se_55
+    level:    [33, 36]
+  16879673:
+    template: Crimson_Knight_Crab
+    region:   se_55
+    level:    [33, 36]
+  16879674:
+    template: Crimson_Knight_Crab
+    region:   se_55
+    level:    [33, 36]
+  16879675:
+    template: Dark_Elemental
+    region:   se_59
+    level:    [42, 44]
+  16879676:
+    template: Fomor_Monk
+    at:       [451.611, 24.164, -346.406, 60]
+    level:    [36, 38]
+  16879677:
+    template: Fomor_Black_Mage
+    at:       [451.672, 24.248, -345.027, 61]
+    level:    [35, 37]
+  16879678:
+    template: Fomor_Ranger
+    region:   se_59
+    level:    [36, 38]
+  16879679:
+    template: Fomor_Samurai
+    region:   se_59
+    level:    [35, 37]
+  16879680:
+    template: Fomor_Dark_Knight
+    region:   se_59
+    level:    [36, 38]
+  16879681:
+    template: Fomor_Ninja
+    region:   se_59
+    level:    [35, 37]
+  16879682:
+    template: Fomor_Paladin
+    region:   se_59
+    level:    [36, 38]
+  16879683:
+    template: Fomor_Bard
+    region:   se_59
+    level:    [35, 37]
+  16879684:
+    template: Miner_Bee
+    region:   s_68
+    level:    [31, 34]
+  16879685:
+    template: Miner_Bee
+    region:   s_69
+    level:    [31, 34]
+  16879686:
+    template: Vampire_Bat_Misareaux_Coast
+    script:   Vampire_Bat
+    region:   s_70
+    level:    [42, 44]
+  16879687:
+    template: Vampire_Bat_Misareaux_Coast
+    script:   Vampire_Bat
+    region:   s_70
+    level:    [42, 44]
+  16879688:
+    template: Wingrats_Misareaux_Coast
+    script:   Wingrats
+    region:   s_70
+    level:    [41, 44]
+  16879689:
+    template: Wingrats_Misareaux_Coast
+    script:   Wingrats
+    region:   s_70
+    level:    [41, 44]
+  16879690:
+    template: Gigantobugard
+    region:   s_74
+    level:    [40, 43]
+  16879691:
+    template: Seaboard_Vulture
+    region:   e_75
+    level:    [83, 84]
+  16879692:
+    template: Seaboard_Vulture
+    region:   e_75
+    level:    [83, 84]
+  16879693:
+    template: Seaboard_Vulture
+    region:   e_75
+    level:    [83, 84]
+  16879694:
+    template: Seaboard_Vulture
+    region:   e_75
+    level:    [83, 84]
+  16879695:
+    template: Seaboard_Vulture
+    region:   e_75
+    level:    [83, 84]
+  16879696:
+    template: Seaboard_Vulture
+    region:   e_80
+    level:    [83, 84]
+  16879697:
+    template: Seaboard_Vulture
+    region:   e_80
+    level:    [83, 84]
+  16879698:
+    template: Seaboard_Vulture
+    region:   e_80
+    level:    [83, 84]
+  16879699:
+    template: Seaboard_Vulture
+    region:   e_80
+    level:    [83, 84]
+  16879700:
+    template: Seaboard_Vulture
+    region:   e_80
+    level:    [83, 84]
+  16879701:
+    template: Gigantobugard
+    region:   e_85
+    level:    [40, 43]
+  16879702:
+    template: Gigantobugard
+    region:   e_85
+    level:    [40, 43]
+  16879703:
+    template: Gigas_Braver
+    region:   e_85
+    level:    [41, 44]
+  16879704:
+    template: Gigas_Martialist
+    region:   e_85
+    level:    [41, 44]
+  16879705:
+    template: Orcish_Stonelauncher
+    region:   e_85
+    level:    [43, 46]
+  16879706:
+    template: Orcish_Trooper_MC
+    script:   Orcish_Trooper
+    region:   e_85
+    level:    [41, 44]
+  16879707:
+    template: Orcish_Bowshooter_MC
+    script:   Orcish_Bowshooter
+    region:   e_85
+    level:    [41, 44]
+  16879708:
+    template: Gigantobugard
+    region:   e_92
+    level:    [40, 43]
+  16879709:
+    template: Seaboard_Vulture
+    region:   e_93
+    level:    [83, 84]
+  16879710:
+    template: Seaboard_Vulture
+    region:   e_93
+    level:    [83, 84]
+  16879711:
+    template: Seaboard_Vulture
+    region:   e_93
+    level:    [83, 84]
+  16879712:
+    template: Seaboard_Vulture
+    region:   e_93
+    level:    [83, 84]
+  16879713:
+    template: Seaboard_Vulture
+    region:   e_93
+    level:    [83, 84]
+  16879714:
+    template: Seaboard_Vulture
+    region:   e_93
+    level:    [83, 84]
+  16879715:
+    template: Seaboard_Vulture
+    region:   ne_99
+    level:    [83, 84]
+  16879716:
+    template: Seaboard_Vulture
+    region:   ne_99
+    level:    [83, 84]
+  16879717:
+    template: Seaboard_Vulture
+    region:   ne_99
+    level:    [83, 84]
+  16879718:
+    template: Seaboard_Vulture
+    region:   ne_99
+    level:    [83, 84]
+  16879719:
+    template: Seaboard_Vulture
+    region:   ne_99
+    level:    [83, 84]
+  16879720:
+    template: Death_Jacket_LM_MC
+    script:   Death_Jacket
+    region:   c_104
+    level:    [37, 40]
+  16879721:
+    template: Death_Jacket_LM_MC
+    script:   Death_Jacket
+    region:   c_104
+    level:    [37, 40]
+  16879722:
+    template: Atomic_Cluster
+    region:   c_107
+    level:    [44, 46]
+  16879723:
+    template: Gigantobugard
+    region:   c_107
+    level:    [40, 43]
+  16879724:
+    template: Gigantobugard
+    region:   c_107
+    level:    [40, 43]
+  16879725:
+    template: Gigantobugard
+    region:   c_107
+    level:    [40, 43]
+  16879726:
+    template: Gigas_Braver
+    region:   c_107
+    level:    [41, 44]
+  16879727:
+    template: Gigas_Warwolf
+    region:   c_107
+    level:    [41, 44]
+  16879728:
+    template: Gigas_Catapulter
+    region:   c_107
+    level:    [41, 44]
+  16879729:
+    template: Orcish_Stonelauncher
+    region:   c_107
+    level:    [43, 46]
+  16879730:
+    template: Orcish_Footsoldier_MC
+    script:   Orcish_Footsoldier
+    region:   c_107
+    level:    [41, 44]
+  16879731:
+    template: Orcish_Trooper_MC
+    script:   Orcish_Trooper
+    region:   c_107
+    level:    [41, 44]
+  16879732:
+    template: Orcish_Bowshooter_MC
+    script:   Orcish_Bowshooter
+    region:   c_107
+    level:    [41, 44]
+  16879733:
+    template: Gigass_Sheep
+    at:       [241.574, -16.337, 161.877, 97]
+    level:    [34, 36]
+  16879734:
+    template: Gigas_Martialist
+    region:   c_119
+    level:    [41, 44]
+  16879735:
+    template: Orcish_Gladiator_MC
+    script:   Orcish_Gladiator
+    region:   c_119
+    level:    [41, 44]
+  16879736:
+    template: Gigantobugard
+    region:   c_120
+    level:    [40, 43]
+  16879737:
+    template: Odqan
+    region:   n_122
+    level:    [49, 51]
+  16879738:
+    template: Gigantobugard
+    region:   n_122
+    level:    [40, 43]
+  16879739:
+    template: Gigas_Braver
+    region:   n_122
+    level:    [41, 44]
+  16879740:
+    template: Gigas_Warwolf
+    region:   n_122
+    level:    [41, 44]
+  16879741:
+    template: Gigas_Catapulter
+    region:   n_122
+    level:    [41, 44]
+  16879742:
+    template: Orcish_Footsoldier_MC
+    script:   Orcish_Footsoldier
+    region:   n_122
+    level:    [41, 44]
+  16879743:
+    template: Orcish_Trooper_MC
+    script:   Orcish_Trooper
+    region:   n_122
+    level:    [41, 44]
+  16879744:
+    template: Orcish_Bowshooter_MC
+    script:   Orcish_Bowshooter
+    region:   n_122
+    level:    [41, 44]
+  16879745:
+    template: Gigass_Sheep
+    at:       [251.492, -23.994, 314.731, 142]
+    level:    [34, 36]
+  16879746:
+    template: Gigantobugard
+    region:   n_130
+    level:    [40, 43]
+  16879747:
+    template: Death_Jacket_LM_MC
+    script:   Death_Jacket
+    region:   c_131
+    level:    [37, 40]
+  16879748:
+    template: Death_Jacket_LM_MC
+    script:   Death_Jacket
+    region:   c_131
+    level:    [37, 40]
+  16879749:
+    template: Death_Jacket_LM_MC
+    script:   Death_Jacket
+    region:   n_133
+    level:    [37, 40]
+  16879750:
+    template: Death_Jacket_LM_MC
+    script:   Death_Jacket
+    region:   n_133
+    level:    [37, 40]
+  16879751:
+    template: Gigantobugard
+    region:   c_135
+    level:    [40, 43]
+  16879752:
+    template: Gigantobugard
+    region:   c_135
+    level:    [40, 43]
+  16879753:
+    template: Gigas_Braver
+    region:   c_143
+    level:    [41, 44]
+  16879754:
+    template: Gigas_Catapulter
+    region:   c_135
+    level:    [41, 44]
+  16879755:
+    template: Orcish_Footsoldier_MC
+    script:   Orcish_Footsoldier
+    region:   c_135
+    level:    [41, 44]
+  16879756:
+    template: Orcish_Gladiator_MC
+    script:   Orcish_Gladiator
+    region:   c_135
+    level:    [41, 44]
+  16879757:
+    template: Orcish_Bowshooter_MC
+    script:   Orcish_Bowshooter
+    region:   c_135
+    level:    [41, 44]
+  16879758:
+    template: Odqan
+    region:   c_143
+    level:    [49, 51]
+  16879759:
+    template: Gigantobugard
+    region:   c_143
+    level:    [40, 43]
+  16879760:
+    template: Gigantobugard
+    region:   c_135
+    level:    [40, 43]
+  16879761:
+    template: Gigas_Martialist
+    region:   c_143
+    level:    [41, 44]
+  16879762:
+    template: Gigas_Warwolf
+    region:   c_143
+    level:    [41, 44]
+  16879763:
+    template: Orcish_Trooper_MC
+    script:   Orcish_Trooper
+    region:   c_143
+    level:    [41, 44]
+  16879764:
+    template: Gigass_Sheep
+    at:       [84.498, -7.833, -61.679, 214]
+    level:    [34, 36]
+  16879765:
+    template: Gigantobugard
+    region:   w_149
+    level:    [40, 43]
+  16879766:
+    template: Gigantobugard
+    region:   w_149
+    level:    [40, 43]
+  16879767:
+    template: Gigantobugard
+    region:   w_149
+    level:    [40, 43]
+  16879768:
+    template: Gigas_Braver
+    region:   w_149
+    level:    [41, 44]
+  16879769:
+    template: Gigas_Martialist
+    region:   w_149
+    level:    [41, 44]
+  16879770:
+    template: Gigas_Warwolf
+    region:   w_149
+    level:    [41, 44]
+  16879771:
+    template: Gigas_Catapulter
+    region:   w_149
+    level:    [41, 44]
+  16879772:
+    template: Orcish_Footsoldier_MC
+    script:   Orcish_Footsoldier
+    region:   w_149
+    level:    [41, 44]
+  16879773:
+    template: Orcish_Gladiator_MC
+    script:   Orcish_Gladiator
+    region:   w_149
+    level:    [41, 44]
+  16879774:
+    template: Orcish_Trooper_MC
+    script:   Orcish_Trooper
+    region:   w_149
+    level:    [41, 44]
+  16879775:
+    template: Orcish_Bowshooter_MC
+    script:   Orcish_Bowshooter
+    region:   w_149
+    level:    [41, 44]
+  16879776:
+    template: Gigass_Sheep
+    at:       [-6.149, -16.175, 4.298, 63]
+    level:    [34, 36]
+  16879777:
+    template: Atomic_Cluster
+    region:   c_162
+    level:    [44, 46]
+  16879778:
+    template: Gigantobugard
+    region:   c_162
+    level:    [40, 43]
+  16879779:
+    template: Gigantobugard
+    region:   c_162
+    level:    [40, 43]
+  16879780:
+    template: Gigantobugard
+    region:   w_149
+    level:    [40, 43]
+  16879781:
+    template: Gigas_Braver
+    region:   c_162
+    level:    [41, 44]
+  16879782:
+    template: Gigas_Martialist
+    region:   c_162
+    level:    [41, 44]
+  16879783:
+    template: Gigas_Warwolf
+    region:   c_162
+    level:    [41, 44]
+  16879784:
+    template: Gigas_Catapulter
+    region:   c_162
+    level:    [41, 44]
+  16879785:
+    template: Orcish_Footsoldier_MC
+    script:   Orcish_Footsoldier
+    region:   c_162
+    level:    [41, 44]
+  16879786:
+    template: Orcish_Gladiator_MC
+    script:   Orcish_Gladiator
+    region:   c_162
+    level:    [41, 44]
+  16879787:
+    template: Orcish_Trooper_MC
+    script:   Orcish_Trooper
+    region:   c_162
+    level:    [41, 44]
+  16879788:
+    template: Orcish_Bowshooter_MC
+    script:   Orcish_Bowshooter
+    region:   c_162
+    level:    [41, 44]
+  16879789:
+    template: Gigass_Sheep
+    at:       [113.085, -16.176, 75.873, 69]
+    level:    [34, 36]
+  16879790:
+    template: Orcish_Stonelauncher
+    region:   w_174
+    level:    [43, 46]
+  16879791:
+    template: Death_Jacket_LM_MC
+    script:   Death_Jacket
+    region:   w_175
+    level:    [37, 40]
+  16879792:
+    template: Mantrap
+    region:   w_176
+    level:    [45, 49]
+  16879793:
+    template: Mantrap
+    region:   w_176
+    level:    [45, 49]
+  16879794:
+    template: Mantrap
+    region:   w_176
+    level:    [45, 49]
+  16879795:
+    template: Mantrap
+    region:   w_176
+    level:    [45, 49]
+  16879796:
+    template: Mantrap
+    region:   w_176
+    level:    [45, 49]
+  16879797:
+    template: Overgrown_Rose_MC
+    script:   Overgrown_Rose
+    region:   w_176
+    level:    [47, 50]
+  16879798:
+    template: Overgrown_Rose_MC
+    script:   Overgrown_Rose
+    region:   w_176
+    level:    [47, 50]
+  16879799:
+    template: Thunder_Elemental
+    region:   w_176
+    level:    [54, 56]
+  16879800:
+    template: Mantrap
+    region:   w_184
+    level:    [45, 49]
+  16879801:
+    template: Mantrap
+    region:   w_184
+    level:    [45, 49]
+  16879802:
+    template: Mantrap
+    region:   w_184
+    level:    [45, 49]
+  16879803:
+    template: Mantrap
+    region:   w_184
+    level:    [45, 49]
+  16879804:
+    template: Mantrap
+    region:   w_184
+    level:    [45, 49]
+  16879805:
+    template: Mantrap
+    region:   w_184
+    level:    [45, 49]
+  16879806:
+    template: Overgrown_Rose_MC
+    script:   Overgrown_Rose
+    region:   w_184
+    level:    [47, 50]
+  16879807:
+    template: Overgrown_Rose_MC
+    script:   Overgrown_Rose
+    region:   w_176
+    level:    [47, 50]
+  16879808:
+    template: Thunder_Elemental
+    region:   w_184
+    level:    [54, 55]
+  16879809:
+    template: Dark_Elemental
+    region:   region_60
+    level:    [54, 56]
+  16879810:
+    template: Upyri
+    region:   w_194
+    level:    [45, 45]
+  16879811:
+    template: Fomor_Red_Mage
+    region:   w_194
+    level:    [49, 51]
+  16879812:
+    template: Fomor_Ranger_Large
+    script:   Fomor_Ranger
+    region:   w_194
+    level:    [48, 50]
+  16879813:
+    template: Fomor_Paladin
+    at:       [-302.500, -32.145, 175.850]
+    level:    [49, 51]
+  16879814:
+    template: Fomor_Dark_Knight
+    at:       [-300.799, -32.248, 173.000, 208]
+    level:    [48, 50]
+  16879815:
+    template: Fomor_Thief
+    at:       [-300.399, -32.125, 178.199, 56]
+    level:    [48, 50]
+  16879816:
+    template: Fomor_Ranger
+    at:       [-297.600, -32.222, 173.800, 160]
+    level:    [49, 51]
+  16879817:
+    template: Fomor_Paladin
+    at:       [-302.500, -32.145, 175.850]
+    level:    [49, 51]
+  16879818:
+    template: Fomor_Summoner
+    at:       [-300.399, -32.125, 178.199, 56]
+    level:    [48, 50]
+  16879819:
+    template: Fomor_Monk
+    at:       [-300.799, -32.248, 173.000, 208]
+    level:    [49, 51]
+  16879820:
+    template: Fomors_Elemental
+    at:       [-300.398, -32.125, 178.199, 56]
+    level:    [42, 43]
+  16879821:
+    template: Fomor_Paladin
+    at:       [-302.500, -32.145, 175.850]
+    level:    [49, 51]
+  16879822:
+    template: Fomor_Ninja
+    at:       [-300.799, -32.248, 173.000, 208]
+    level:    [48, 50]
+  16879823:
+    template: Seaboard_Vulture
+    region:   nw_207
+    level:    [83, 84]
+  16879824:
+    template: Seaboard_Vulture
+    region:   nw_207
+    level:    [83, 84]
+  16879825:
+    template: Seaboard_Vulture
+    region:   nw_207
+    level:    [83, 84]
+  16879826:
+    template: Seaboard_Vulture
+    region:   nw_207
+    level:    [83, 84]
+  16879827:
+    template: Seaboard_Vulture
+    region:   nw_207
+    level:    [83, 84]
+  16879828:
+    template: Seaboard_Vulture
+    region:   w_212
+    level:    [83, 84]
+  16879829:
+    template: Seaboard_Vulture
+    region:   w_212
+    level:    [83, 84]
+  16879830:
+    template: Seaboard_Vulture
+    region:   w_212
+    level:    [83, 84]
+  16879831:
+    template: Seaboard_Vulture
+    region:   w_212
+    level:    [83, 84]
+  16879832:
+    template: Seaboard_Vulture
+    region:   w_212
+    level:    [83, 84]
+  16879833:
+    template: Atomic_Cluster
+    region:   nw_218
+    level:    [44, 46]
+  16879834:
+    template: Gigantobugard
+    region:   nw_218
+    level:    [40, 43]
+  16879835:
+    template: Gigantobugard
+    region:   nw_218
+    level:    [40, 43]
+  16879836:
+    template: Gigas_Catapulter
+    region:   nw_218
+    level:    [41, 44]
+  16879837:
+    template: Orcish_Stonelauncher
+    region:   nw_218
+    level:    [43, 46]
+  16879838:
+    template: Orcish_Bowshooter_MC
+    script:   Orcish_Bowshooter
+    region:   nw_218
+    level:    [41, 44]
+  16879839:
+    template: Diatryma_MC
+    script:   Diatryma
+    region:   nw_223
+    level:    [47, 51]
+  16879840:
+    template: Diatryma_MC
+    script:   Diatryma
+    region:   nw_223
+    level:    [47, 51]
+  16879841:
+    template: Diatryma_MC
+    script:   Diatryma
+    region:   nw_223
+    level:    [47, 51]
+  16879842:
+    template: Diatryma_MC
+    script:   Diatryma
+    region:   nw_223
+    level:    [47, 51]
+  16879843:
+    template: Mantrap
+    region:   nw_223
+    level:    [45, 49]
+  16879844:
+    template: Mantrap
+    region:   nw_223
+    level:    [45, 49]
+  16879845:
+    template: Mantrap
+    region:   nw_223
+    level:    [45, 49]
+  16879846:
+    template: Mantrap
+    region:   nw_230
+    level:    [45, 49]
+  16879847:
+    template: Okyupete
+    region:   nw_223
+    level:    [57, 60]
+  16879848:
+    template: Air_Elemental
+    region:   nw_232
+    level:    [49, 51]
+  16879849:
+    template: Diatryma_MC
+    script:   Diatryma
+    region:   nw_232
+    level:    [47, 51]
+  16879850:
+    template: Bigclaw_noaggro_MC
+    script:   Bigclaw
+    region:   n_234
+    level:    [45, 49]
+  16879851:
+    template: Bigclaw_noaggro_MC
+    script:   Bigclaw
+    region:   n_234
+    level:    [45, 49]
+  16879852:
+    template: Bigclaw_noaggro_MC
+    script:   Bigclaw
+    region:   n_236
+    level:    [45, 49]
+  16879853:
+    template: Bigclaw_noaggro_MC
+    script:   Bigclaw
+    region:   n_236
+    level:    [45, 49]
+  16879854:
+    template: Makara
+    region:   n_236
+    level:    [46, 49]
+  16879855:
+    template: Makara
+    region:   n_236
+    level:    [46, 49]
+  16879856:
+    template: Bigclaw_noaggro_MC
+    script:   Bigclaw
+    region:   n_240
+    level:    [45, 49]
+  16879857:
+    template: Bigclaw_noaggro_MC
+    script:   Bigclaw
+    region:   n_240
+    level:    [45, 49]
+  16879858:
+    template: Bigclaw_noaggro_MC
+    script:   Bigclaw
+    region:   n_240
+    level:    [45, 49]
+  16879859:
+    template: Makara
+    region:   n_240
+    level:    [46, 49]
+  16879860:
+    template: Makara
+    region:   n_240
+    level:    [46, 49]
+  16879861:
+    template: Makara
+    region:   n_240
+    level:    [46, 49]
+  16879862:
+    template: Makara
+    region:   n_240
+    level:    [46, 49]
+  16879863:
+    template: Bigclaw_noaggro_MC
+    script:   Bigclaw
+    region:   n_247
+    level:    [45, 49]
+  16879864:
+    template: Bigclaw_noaggro_MC
+    script:   Bigclaw
+    region:   n_247
+    level:    [45, 49]
+  16879865:
+    template: Bigclaw_noaggro_MC
+    script:   Bigclaw
+    region:   n_247
+    level:    [45, 49]
+  16879866:
+    template: Makara
+    region:   n_247
+    level:    [46, 49]
+  16879867:
+    template: Makara
+    region:   n_247
+    level:    [46, 49]
+  16879868:
+    template: Diatryma_MC
+    script:   Diatryma
+    region:   nw_252
+    level:    [47, 51]
+  16879869:
+    template: Bigclaw_noaggro_MC
+    script:   Bigclaw
+    at:       [-30.833, -16.171, 600.278, 66]
+    level:    [45, 49]
+  16879870:
+    template: Bigclaw_noaggro_MC
+    script:   Bigclaw
+    region:   nw_252
+    level:    [45, 49]
+  16879871:
+    template: Makara
+    region:   nw_252
+    level:    [46, 49]
+  16879872:
+    template: Mantrap
+    region:   nw_252
+    level:    [45, 49]
+  16879873:
+    template: Diatryma_MC
+    script:   Diatryma
+    region:   nw_257
+    level:    [47, 51]
+  16879874:
+    template: Bigclaw_noaggro_MC
+    script:   Bigclaw
+    region:   nw_257
+    level:    [45, 49]
+  16879875:
+    template: Bigclaw_noaggro_MC
+    script:   Bigclaw
+    region:   nw_257
+    level:    [45, 49]
+  16879876:
+    template: Makara
+    region:   nw_257
+    level:    [46, 49]
+  16879877:
+    template: Mantrap
+    region:   nw_257
+    level:    [45, 49]
+  16879878:
+    template: Bigclaw_noaggro_MC
+    script:   Bigclaw
+    region:   nw_262
+    level:    [45, 49]
+  16879879:
+    template: Bigclaw_noaggro_MC
+    script:   Bigclaw
+    region:   nw_262
+    level:    [45, 49]
+  16879880:
+    template: Makara
+    region:   nw_262
+    level:    [46, 49]
+  16879881:
+    template: Diatryma_MC
+    script:   Diatryma
+    region:   nw_265
+    level:    [47, 51]
+  16879882:
+    template: Makara
+    region:   nw_265
+    level:    [46, 49]
+  16879883:
+    template: Diatryma_MC
+    script:   Diatryma
+    region:   nw_267
+    level:    [47, 51]
+  16879884:
+    template: Mantrap
+    region:   nw_267
+    level:    [45, 49]
+  16879885:
+    template: Mantrap
+    region:   nw_267
+    level:    [45, 49]
+  16879886:
+    template: Fomor_Dragoon
+    region:   nw_267
+    level:    [49, 51]
+  16879887:
+    template: Fomors_Wyvern
+    region:   nw_267
+    level:    [42, 44]
+  16879888:
+    template: Fomor_Bard
+    region:   nw_267
+    level:    [48, 50]
+  16879889:
+    template: Fomor_Ranger
+    region:   nw_267
+    level:    [49, 51]
+  16879890:
+    template: Mantrap
+    region:   nw_274
+    level:    [45, 49]
+  16879891:
+    template: Diatryma_MC
+    script:   Diatryma
+    region:   nw_275
+    level:    [47, 51]
+  16879892:
+    template: Mantrap
+    region:   nw_275
+    level:    [45, 49]
+  16879893:
+    template: Warder_Aglaia
+    at:       [260.000, 9.292, -438.500, 189]
+    level:    [62, 63]
+  16879894:
+    template: Warder_Euphrosyne
+    at:       [259.149, 9.308, -437.845, 206]
+    level:    [62, 63]
+  16879895:
+    template: Warder_Thalia
+    at:       [260.834, 9.525, -437.238, 185]
+    level:    [62, 63]
+  16879896:
+    template: Bloody_Coffin
+    at:       [638.262, -0.608, -518.056, 84]
+    level:    [50, 52]
+  16879897:
+    template: Boggelmann
+    at:       [-310.079, -32.877, 181.822, 163]
+    level:    [70, 70]
+  16879898:
+    template: Alsha
+    at:       [-155.804, -16.191, 644.617, 195]
+    level:    [55, 55]
+  16879899:
+    template: Gration
+    at:       [111.363, -17.000, 30.344, 141]
+    level:    [85, 85]
+  16879900:
+    template: Ziphius
+    at:       [148.401, -16.018, 520.438, 224]
+    level:    [55, 55]
+  16879901:
+    template: Tsui-Goab
+    at:       [441.191, -16.321, 126.181, 250]
+    level:    [65, 65]
+  16879902:
+    template: Bloodswiller_Fly
+    at:       [442.637, -15.658, 126.849, 156]
+  16879903:
+    template: Bloodswiller_Fly
+    at:       [443.693, -15.680, 127.950, 131]
+  16879904:
+    template: Tsui-Goab
+    at:       [265.364, -15.844, 224.994, 241]
+    level:    [65, 65]
+  16879905:
+    template: Bloodswiller_Fly
+    at:       [264.706, -15.413, 226.069]
+  16879906:
+    template: Bloodswiller_Fly
+    at:       [265.805, -15.474, 223.385, 221]
+  16879907:
+    template: Tsui-Goab
+    at:       [517.888, 15.569, -312.496, 208]
+    level:    [65, 65]
+  16879908:
+    template: Bloodswiller_Fly
+    at:       [520.124, 15.639, -311.169, 59]
+  16879909:
+    template: Bloodswiller_Fly
+    at:       [518.749, 15.621, -311.517, 32]
+  16879910:
+    template: Tiyanak
+  16879911:
+    template: Tiyanak
+    at:       [-223.471, -31.673, 118.848, 166]
+  16879912:
+    template: Tiyanak
+  16879913:
+    template: Volatile_Cluster
+  16879914:
+    template: Volatile_Cluster
+    at:       [-229.015, -32.239, 115.628, 225]
+  16879915:
+    template: Volatile_Cluster
+
+  16880016:
+    template: Beta_shee_Tavnazian_Sheep
+    region:   se_6
+    level:    [33, 37]
+  16880017:
+    template: Beta_shee_Tavnazian_Sheep
+    region:   se_6
+    level:    [33, 37]
+slots:
+  - members:
+      16879638: {} # Bugard
+      16879639: {} # Tavnazian_Sheep
+  - members:
+      16879641: {} # Bugard
+      16879644: {} # Bugard
+  - members:
+      16879662: {} # Bugard
+      16879664: {} # Tavnazian_Sheep
+  - members:
+      16879687: {} # Vampire_Bat
+      16879689: {} # Wingrats
+  - members:
+      16879703: {} # Gigas_Braver
+      16879704: {} # Gigas_Martialist
+  - members:
+      16879706: {} # Orcish_Trooper
+      16879707: {} # Orcish_Bowshooter
+  - members:
+      16879727: {} # Gigas_Warwolf
+      16879728: {} # Gigas_Catapulter
+  - members:
+      16879730: {} # Orcish_Footsoldier
+      16879732: {} # Orcish_Bowshooter
+  - members:
+      16879734: {} # Gigas_Martialist
+      16879735: {} # Orcish_Gladiator
+  - members:
+      16879739: {} # Gigas_Braver
+      16879742: {} # Orcish_Footsoldier
+  - members:
+      16879740: {} # Gigas_Warwolf
+      16879741: {} # Gigas_Catapulter
+  - members:
+      16879743: {} # Orcish_Trooper
+      16879744: {} # Orcish_Bowshooter
+  - members:
+      16879752: {} # Gigantobugard
+      16879760: {} # Gigantobugard
+  - members:
+      16879753: {} # Gigas_Braver
+      16879761: {} # Gigas_Martialist
+  - members:
+      16879754: {} # Gigas_Catapulter
+      16879757: {} # Orcish_Bowshooter
+  - members:
+      16879755: {} # Orcish_Footsoldier
+      16879756: {} # Orcish_Gladiator
+  - members:
+      16879762: {} # Gigas_Warwolf
+      16879763: {} # Orcish_Trooper
+  - members:
+      16879767: {} # Gigantobugard
+      16879780: {} # Gigantobugard
+  - members:
+      16879768: {} # Gigas_Braver
+      16879769: {} # Gigas_Martialist
+  - members:
+      16879770: {} # Gigas_Warwolf
+      16879775: {} # Orcish_Bowshooter
+  - members:
+      16879771: {} # Gigas_Catapulter
+      16879774: {} # Orcish_Trooper
+  - members:
+      16879772: {} # Orcish_Footsoldier
+      16879773: {} # Orcish_Gladiator
+  - members:
+      16879782: {} # Gigas_Martialist
+      16879784: {} # Gigas_Catapulter
+  - members:
+      16879785: {} # Orcish_Footsoldier
+      16879788: {} # Orcish_Bowshooter
+  - members:
+      16879786: {} # Orcish_Gladiator
+      16879787: {} # Orcish_Trooper
+  - members:
+      16879798: {} # Overgrown_Rose
+      16879807: {} # Overgrown_Rose
+  - members:
+      16879799: {} # Thunder_Elemental
+      16879808: {} # Thunder_Elemental
+  - members:
+      16879836: {} # Gigas_Catapulter
+      16879838: {} # Orcish_Bowshooter
+  - members:
+      16879865: {} # Bigclaw
+      16879867: {} # Makara
+  - members:
+      16879870: {} # Bigclaw
+      16879871: {} # Makara

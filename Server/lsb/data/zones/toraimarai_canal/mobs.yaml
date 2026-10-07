@@ -1,0 +1,2819 @@
+# yaml-language-server: $schema=../../schemas/mobs.schema.json
+
+templates:
+
+  Bigclaw_aggro:
+    id:            413
+    display_name:  Bigclaw
+    species:       crab
+    skill_list_id: 77
+    attributes:
+      combat:
+        skill: great_sword
+      jobs: [pld, pld]
+      render:
+        look:
+          type:  standard
+          model: 356
+        entity_flags: 131
+        model_size:     1
+        hitbox:        13
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: always
+          item:   chunk_of_rock_salt
+        - chance: common
+          item:   slice_of_land_crab_meat
+        - chance: common
+          item:   slice_of_land_crab_meat
+        - chance: common
+          item:   crab_shell
+      despoil:
+        slice_of_land_crab_meat: 0
+        crab_shell:              0
+
+  Bigclaw_fished:
+    id:            1268
+    display_name:  Bigclaw
+    species:       crab
+    type:          [fished]
+    skill_list_id: 77
+    attributes:
+      combat:
+        skill: great_sword
+      jobs: [pld, pld]
+      render:
+        look:
+          type:  standard
+          model: 356
+        entity_flags: 131
+        model_size:     1
+        hitbox:        13
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: always
+          item:   chunk_of_rock_salt
+        - chance: common
+          item:   slice_of_land_crab_meat
+        - chance: common
+          item:   slice_of_land_crab_meat
+        - chance: common
+          item:   crab_shell
+      despoil:
+        slice_of_land_crab_meat: 0
+        crab_shell:              0
+
+  Blackwater_Pugil:
+    id:            619
+    species:       pugil
+    skill_list_id: 197
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 348
+        entity_flags: 133
+        model_size:     2
+        hitbox:        32
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: rare
+          item:   fossilized_bone
+        - chance: uncommon
+          item:   handful_of_pugil_scales
+      despoil:
+        handful_of_pugil_scales: 0
+        handful_of_fish_scales:  0
+    content: abyssea
+
+  Bloodsucker_TC:
+    id:            6394
+    display_name:  Bloodsucker
+    species:       leech
+    skill_list_id: 172
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 276
+        entity_flags: 131
+        model_size:     1
+        hitbox:        11
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   vial_of_fiend_blood
+        - chance: very_rare
+          item:   carbuncles_ruby
+      despoil:
+        vial_of_fiend_blood:    0
+        vial_of_beastman_blood: 0
+        vial_of_bird_blood:     0
+
+  Bloodsucker_fished:
+    id:            6770
+    display_name:  Bloodsucker
+    species:       leech
+    type:          [fished]
+    skill_list_id: 172
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 276
+        entity_flags: 641
+        model_size:     2
+        hitbox:        12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: uncommon
+          item:   vial_of_fiend_blood
+        - chance: very_rare
+          item:   carbuncles_ruby
+      despoil:
+        vial_of_fiend_blood:    0
+        vial_of_beastman_blood: 0
+        vial_of_bird_blood:     0
+
+  Bouncing_Ball:
+    id:            514
+    species:       leech
+    skill_list_id: 172
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 276
+        entity_flags: 645
+        model_size:     2
+        hitbox:        12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   vial_of_fiend_blood
+        - chance: very_rare
+          item:   toraimarai_coffer_key
+        - chance: very_rare
+          item:   carbuncles_ruby
+        - chance: rare
+          item:   vial_of_beastman_blood
+      despoil:
+        vial_of_fiend_blood:    0
+        vial_of_beastman_blood: 0
+        vial_of_bird_blood:     0
+
+  Brazen_Bones:
+    id:      5757
+    species: skeleton
+    type:    [notorious]
+    attributes:
+      combat:
+        skill: club
+        delay: 288
+      render:
+        look:
+          type:  standard
+          model: 572
+        entity_flags: 133
+        model_size:     2
+        hitbox:        13
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 28800
+      stats:
+        hp: 20000
+    loot:
+      drops:
+        - chance: common
+          item:   larans_pendant
+    content: wotg
+
+  Canal_Bats_TC:
+    id:            617
+    species:       flock_bat
+    skill_list_id: 47
+    attributes:
+      combat:
+        skill: club
+      render:
+        look:
+          type:  standard
+          model: 260
+        entity_flags:  643
+        animation_sub:   8
+        name_prefix:    64
+        model_size:      1
+        hitbox:         16
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   bat_wing
+        - chance: common
+          item:   bat_fang
+        - chance: common
+          item:   bat_fang
+      despoil:
+        bat_wing: 0
+
+  Canal_Leech:
+    id:            618
+    species:       leech
+    type:          [fished]
+    skill_list_id: 172
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 277
+        entity_flags: 3
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+
+  Canal_Moocher:
+    id:            5859
+    species:       leech
+    type:          [notorious]
+    skill_list_id: 172
+    attributes:
+      combat:
+        skill: scythe
+      resists:
+        immune_status: [gravity, bind, light_sleep, dark_sleep]
+      render:
+        look:
+          type:  standard
+          model: 276
+        entity_flags:  3
+        model_size:    2
+        hitbox:       12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [lottery]
+      stats:
+        hp: 9500
+    loot:
+      drops:
+        - chance: uncommon
+          item:   aptant_of_pera
+        - chance: uncommon
+          item:   aptant_of_geoc
+    content: abyssea
+
+  Dark_Aspic:
+    id:            908
+    species:       slime
+    skill_list_id: 229
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 292
+        entity_flags: 131
+        model_size:     1
+        hitbox:        24
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: very_common
+          item:   vial_of_slime_oil
+        - chance: very_common
+          item:   vial_of_slime_oil
+        - chance: uncommon
+          item:   vial_of_slime_oil
+      despoil:
+        vial_of_slime_oil: 0
+
+  Deviling_Bats:
+    id:            6426
+    display_name:  Impish_Bats
+    species:       flock_bat
+    skill_list_id: 47
+    attributes:
+      combat:
+        skill: club
+      render:
+        look:
+          type:  standard
+          model: 260
+        entity_flags:  643
+        animation_sub:   8
+        name_prefix:    64
+        model_size:      1
+        hitbox:         16
+      behaviors:
+        links: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   bat_wing
+        - chance: rare
+          item:   fossilized_bone
+        - chance: rare
+          item:   seasoning_stone
+      despoil:
+        bat_wing: 0
+    content: abyssea
+
+  Dire_Bat_UDT_TC_SSG:
+    id:            6456
+    species:       bat
+    skill_list_id: 46
+    attributes:
+      combat:
+        skill: club
+      render:
+        look:
+          type:  standard
+          model: 256
+        entity_flags:  645
+        animation_sub:   8
+        model_size:      2
+        hitbox:         14
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   bat_wing
+        - chance: uncommon
+          item:   bat_fang
+        - chance: rare
+          item:   vial_of_fiend_blood
+        - chance: rare
+          item:   toraimarai_coffer_key
+        - chance: very_rare
+          item:   vial_of_beastman_blood
+      despoil:
+        bat_wing: 0
+
+  Doom_Mage_TC:
+    id:            6539
+    species:       skeleton
+    spell_list_id: 28
+    skill_list_id: 227
+    attributes:
+      combat:
+        skill: great_katana
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 564
+        entity_flags: 133
+        model_size:     2
+        hitbox:        13
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   bone_chip
+        - chance: uncommon
+          item:   revival_tree_root
+        - chance: very_rare
+          item:   toraimarai_coffer_key
+        - chance: rare
+          item:   scroll_of_blizzard_iii
+      steal: bone_chip
+      despoil:
+        bone_chip: 0
+
+  Doom_Soldier_TC:
+    id:            6540
+    species:       skeleton
+    spell_list_id: 5
+    skill_list_id: 227
+    attributes:
+      combat:
+        skill: polearm
+      jobs: [drk, drk]
+      render:
+        look:
+          type:  standard
+          model: 572
+        entity_flags: 133
+        model_size:     2
+        hitbox:        13
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   bone_chip
+        - chance: uncommon
+          item:   dark_knights_testimony
+        - chance: uncommon
+          item:   revival_tree_root
+        - chance: very_rare
+          item:   toraimarai_coffer_key
+      steal: bone_chip
+      despoil:
+        bone_chip: 0
+
+  Drowned_Bones:
+    id:            6534
+    species:       skeleton
+    spell_list_id: 28
+    skill_list_id: 227
+    attributes:
+      combat:
+        skill: great_katana
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 564
+        entity_flags:  131
+        animation_sub:   8
+        model_size:      1
+        hitbox:         12
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   seasoning_stone
+        - chance: common
+          item:   bone_chip
+      despoil:
+        bone_chip: 0
+    content: abyssea
+
+  Fallen_Knight:
+    id:            1287
+    species:       skeleton
+    spell_list_id: 5
+    skill_list_id: 227
+    attributes:
+      combat:
+        skill: polearm
+      jobs: [drk, drk]
+      render:
+        look:
+          type:  standard
+          model: 572
+        entity_flags: 131
+        model_size:     1
+        hitbox:        12
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   bone_chip
+        - chance: very_rare
+          item:   scroll_of_absorb-vit
+        - chance: very_rare
+          item:   scroll_of_absorb-agi
+        - chance: very_rare
+          item:   scroll_of_absorb-int
+      steal: bone_chip
+      despoil:
+        bone_chip: 0
+
+  Fleshcraver:
+    id:            1366
+    species:       skeleton
+    skill_list_id: 227
+    attributes:
+      combat:
+        skill: axe
+      render:
+        look:
+          type:  standard
+          model: 572
+        entity_flags: 133
+        model_size:     2
+        hitbox:        13
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   bone_chip
+        - chance: uncommon
+          item:   revival_tree_root
+        - chance: rare
+          item:   toraimarai_coffer_key
+      steal: bone_chip
+      despoil:
+        bone_chip: 0
+
+  Flume_Toad:
+    id:      6378
+    species: toad
+    attributes:
+      combat:
+        skill: scythe
+        delay: 150
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 2239
+        entity_flags:  133
+        animation_sub:   8
+        model_size:      2
+        hitbox:          9
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: rare
+          item:   fossilized_bone
+      despoil:
+        poroggo_hat: 0
+    content: abyssea
+
+  Girtab:
+    id:            1606
+    species:       scorpion
+    skill_list_id: 217
+    attributes:
+      combat:
+        skill: scythe
+        delay: 280
+      render:
+        look:
+          type:  standard
+          model: 284
+        entity_flags: 131
+        model_size:     1
+        hitbox:        27
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 420
+    loot:
+      drops:
+        - chance: always
+          item:   scorpion_shell
+        - chance: always
+          item:   scorpion_claw
+        - chance: always
+          item:   scorpion_claw
+        - chance: rare
+          item:   viking_axe
+        - chance: rare
+          item:   toraimarai_coffer_key
+      despoil:
+        scorpion_shell: 0
+        scorpion_claw:  0
+
+  Hell_Bat_TC:
+    id:            5130
+    species:       bat
+    skill_list_id: 46
+    attributes:
+      combat:
+        skill: club
+      render:
+        look:
+          type:  standard
+          model: 256
+        entity_flags:  643
+        animation_sub:   8
+        model_size:      1
+        hitbox:         12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   bat_wing
+        - chance: uncommon
+          item:   bat_fang
+        - chance: very_rare
+          item:   vial_of_fiend_blood
+      despoil:
+        bat_wing: 0
+
+  Hinge_Oil:
+    id:            1958
+    species:       slime
+    skill_list_id: 229
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 292
+        entity_flags: 1157
+        model_size:      2
+        hitbox:         27
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 900
+      stats:
+        hp: 5800
+
+  Impish_Bats:
+    id:            2070
+    species:       flock_bat
+    skill_list_id: 47
+    attributes:
+      combat:
+        skill: club
+      render:
+        look:
+          type:  standard
+          model: 260
+        entity_flags:  1669
+        animation_sub:    8
+        name_prefix:     64
+        model_size:       2
+        hitbox:          18
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: rare
+          item:   toraimarai_coffer_key
+        - chance: very_common
+          item:   bat_wing
+        - chance: uncommon
+          item:   bat_fang
+        - chance: rare
+          item:   vial_of_fiend_blood
+        - chance: very_rare
+          item:   vial_of_beastman_blood
+      despoil:
+        bat_wing: 0
+
+  Konjac:
+    id:            5552
+    species:       slime
+    type:          [notorious]
+    skill_list_id: 111
+    attributes:
+      combat:
+        skill: scythe
+      resists:
+        immune_status: [gravity, bind, light_sleep, dark_sleep]
+      render:
+        look:
+          type:  standard
+          model: 292
+        entity_flags: 133
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [lottery]
+    loot:
+      drops:
+        - chance: common
+          item:   aptant_of_aecus
+        - chance: common
+          item:   aptant_of_durus
+    content: abyssea
+
+  Lich:
+    id:            2407
+    species:       skeleton
+    spell_list_id: 28
+    skill_list_id: 227
+    attributes:
+      combat:
+        skill: great_katana
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 564
+        entity_flags: 131
+        model_size:     1
+        hitbox:        12
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   bone_chip
+        - chance: rare
+          item:   revival_tree_root
+      steal: bone_chip
+      despoil:
+        bone_chip: 0
+
+  Magic_Sludge:
+    id:            2482
+    species:       dark_elemental
+    type:          [notorious]
+    spell_list_id: 18
+    skill_list_id: 100
+    attributes:
+      combat:
+        skill: club
+        delay: 180
+      jobs: [drk, drk]
+      render:
+        look:
+          type:  standard
+          model: 443
+        entity_flags:  131
+        animation_sub:  16
+        model_size:      1
+        hitbox:          3
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 3000
+        mp: 6000
+
+  Makara:
+    id:            2491
+    species:       pugil
+    skill_list_id: 197
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 348
+        entity_flags: 131
+        model_size:     1
+        hitbox:        27
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   handful_of_pugil_scales
+      steal: handful_of_fish_scales
+      despoil:
+        handful_of_pugil_scales: 0
+        handful_of_fish_scales:  0
+
+  Mimic:
+    id:            2664
+    species:       mimic
+    type:          [notorious]
+    skill_list_id: 183
+    attributes:
+      combat:
+        skill: scythe
+        delay: 170
+      resists:
+        dmg_physical:
+          slashing: -5000
+          piercing: -5000
+          blunt:    -5000
+          h2h:      -5000
+      render:
+        look:
+          type:  standard
+          model: 259
+        entity_flags:  131
+        animation_sub:  13
+        model_size:      1
+        hitbox:         12
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: always
+          item:   toraimarai_coffer_key
+
+  Mindcraver:
+    id:            2667
+    species:       skeleton
+    spell_list_id: 28
+    skill_list_id: 227
+    attributes:
+      combat:
+        skill: great_katana
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 564
+        entity_flags: 133
+        model_size:     2
+        hitbox:        13
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: rare
+          item:   toraimarai_coffer_key
+        - chance: common
+          item:   bone_chip
+        - chance: uncommon
+          item:   revival_tree_root
+        - chance: rare
+          item:   scroll_of_blizzard_iii
+      steal: bone_chip
+      despoil:
+        bone_chip: 0
+
+  Mousse_SSG:
+    id:            2764
+    display_name:  Mousse
+    species:       slime
+    skill_list_id: 229
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 292
+        entity_flags: 645
+        model_size:     2
+        hitbox:        27
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: rare
+          item:   toraimarai_coffer_key
+        - chance: very_common
+          item:   vial_of_slime_oil
+        - chance: common
+          item:   vial_of_slime_oil
+      despoil:
+        vial_of_slime_oil: 0
+
+  Mousse_fished:
+    id:            6784
+    display_name:  Mousse
+    species:       slime
+    type:          [fished]
+    skill_list_id: 229
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 292
+        entity_flags: 645
+        model_size:     2
+        hitbox:        27
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: rare
+          item:   toraimarai_coffer_key
+        - chance: very_common
+          item:   vial_of_slime_oil
+        - chance: common
+          item:   vial_of_slime_oil
+      despoil:
+        vial_of_slime_oil: 0
+
+  Oni_Carcass:
+    id:            2982
+    species:       doomed
+    type:          [notorious]
+    skill_list_id: 86
+    attributes:
+      combat:
+        skill: axe
+      resists:
+        dmg_physical:
+          slashing:  1250
+          blunt:    -1250
+          h2h:      -1250
+      render:
+        look:
+          type:  standard
+          model: 320
+        entity_flags: 1669
+        model_size:      2
+        hitbox:         34
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 86400
+      stats:
+        hp: 32700
+    loot:
+      drops:
+        - chance: always
+          item:   undead_skin
+        - chance: very_common
+          item:   undead_skin
+        - chance: very_common
+          item:   undead_skin
+        - chance: common
+          item:   onikiri
+        - chance: very_rare
+          item:   revival_tree_root
+
+  Plunderer_Crab:
+    id:            6366
+    species:       crab
+    skill_list_id: 77
+    attributes:
+      combat:
+        skill: great_sword
+      jobs: [pld, pld]
+      render:
+        look:
+          type:  standard
+          model: 356
+        entity_flags:  131
+        animation_sub:   8
+        model_size:      1
+        hitbox:         13
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: rare
+          item:   seasoning_stone
+        - chance: rare
+          item:   fossilized_bone
+        - chance: common
+          item:   chunk_of_rock_salt
+        - chance: uncommon
+          item:   slice_of_land_crab_meat
+        - chance: very_rare
+          item:   crab_shell
+      despoil:
+        slice_of_land_crab_meat: 0
+        crab_shell:              0
+    content: abyssea
+
+  Poroggo_Excavator:
+    id:            6377
+    species:       green_poroggo
+    spell_list_id: 21
+    skill_list_id: 196
+    attributes:
+      combat:
+        skill: axe
+        delay: 150
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 2238
+        entity_flags: 133
+        model_size:     2
+        hitbox:         9
+      behaviors:
+        links: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   seasoning_stone
+        - chance: rare
+          item:   fossilized_bone
+      despoil:
+        poroggo_hat: 0
+    content: abyssea
+
+  Rapier_Scorpion:
+    id:            6335
+    species:       scorpion
+    skill_list_id: 217
+    attributes:
+      combat:
+        skill: scythe
+        delay: 280
+      render:
+        look:
+          type:  standard
+          model: 284
+        entity_flags: 131
+        model_size:     1
+        hitbox:        27
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   seasoning_stone
+        - chance: rare
+          item:   fossilized_bone
+        - chance: common
+          item:   scorpion_claw
+        - chance: uncommon
+          item:   scorpion_shell
+        - chance: very_rare
+          item:   high-quality_scorpion_shell
+      despoil:
+        scorpion_shell: 0
+        scorpion_claw:  0
+    content: abyssea
+
+  Rock_Crab_fished:
+    id:            6777
+    display_name:  Rock_Crab
+    species:       crab
+    type:          [fished]
+    skill_list_id: 77
+    attributes:
+      combat:
+        skill: great_sword
+      jobs: [pld, pld]
+      render:
+        look:
+          type:  standard
+          model: 356
+        entity_flags:  133
+        animation_sub:   8
+        model_size:      2
+        hitbox:         16
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: common
+          item:   chunk_of_rock_salt
+        - chance: uncommon
+          item:   slice_of_land_crab_meat
+        - chance: very_rare
+          item:   crab_shell
+      despoil:
+        slice_of_land_crab_meat: 0
+        crab_shell:              0
+
+  Rotten_Sod:
+    id:            3396
+    species:       doomed
+    skill_list_id: 86
+    attributes:
+      combat:
+        skill: sword
+        delay: 270
+      render:
+        look:
+          type:  standard
+          model: 320
+        entity_flags: 131
+        model_size:     1
+        hitbox:        30
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   revival_tree_root
+        - chance: uncommon
+          item:   undead_skin
+        - chance: rare
+          item:   toraimarai_coffer_key
+
+  Scavenger_Crab:
+    id:            3496
+    species:       crab
+    skill_list_id: 77
+    attributes:
+      combat:
+        skill: great_sword
+      jobs: [pld, pld]
+      render:
+        look:
+          type:  standard
+          model: 356
+        entity_flags:  133
+        animation_sub:   8
+        model_size:      2
+        hitbox:         16
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   slice_of_land_crab_meat
+        - chance: uncommon
+          item:   crab_shell
+        - chance: rare
+          item:   toraimarai_coffer_key
+        - chance: very_rare
+          item:   high-quality_crab_shell
+      steal: chunk_of_rock_salt
+      despoil:
+        slice_of_land_crab_meat: 0
+        crab_shell:              0
+
+  Sodden_Bones:
+    id:            6541
+    species:       skeleton
+    skill_list_id: 227
+    attributes:
+      combat:
+        skill: polearm
+      render:
+        look:
+          type:  standard
+          model: 572
+        entity_flags:  131
+        animation_sub:   8
+        model_size:      1
+        hitbox:         12
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   seasoning_stone
+        - chance: common
+          item:   bone_chip
+        - chance: uncommon
+          item:   revival_tree_root
+      despoil:
+        bone_chip: 0
+    content: abyssea
+
+  Starborer:
+    id:            6073
+    species:       beetle
+    skill_list_id: 49
+    attributes:
+      combat:
+        skill: polearm
+      jobs: [pld, pld]
+      render:
+        look:
+          type:  standard
+          model: 408
+        entity_flags: 133
+        model_size:     2
+        hitbox:        14
+      behaviors:
+        links: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   insect_wing
+        - chance: uncommon
+          item:   beetle_shell
+        - chance: rare
+          item:   beetle_jaw
+        - chance: uncommon
+          item:   fossilized_bone
+        - chance: rare
+          item:   seasoning_stone
+    content: abyssea
+
+  Starmite:
+    id:            3755
+    species:       beetle
+    skill_list_id: 49
+    attributes:
+      combat:
+        skill: polearm
+      jobs: [pld, pld]
+      render:
+        look:
+          type:  standard
+          model: 408
+        entity_flags: 645
+        model_size:     2
+        hitbox:        14
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: very_common
+          item:   insect_wing
+        - chance: uncommon
+          item:   starmite_shell
+        - chance: rare
+          item:   beetle_jaw
+        - chance: very_rare
+          item:   toraimarai_coffer_key
+      despoil:
+        insect_wing:  0
+        beetle_shell: 0
+        beetle_jaw:   0
+
+  Stygian_Pugil:
+    id:            3803
+    species:       pugil
+    skill_list_id: 197
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 348
+        entity_flags: 133
+        model_size:     2
+        hitbox:        32
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: rare
+          item:   toraimarai_coffer_key
+        - chance: uncommon
+          item:   handful_of_pugil_scales
+      steal: handful_of_fish_scales
+      despoil:
+        handful_of_pugil_scales: 0
+        handful_of_fish_scales:  0
+
+
+  Beta_slim_Hinge_Oil:
+    id:            40092
+    species:       slime
+    skill_list_id: 229
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 2954
+        entity_flags: 1157
+        model_size:      2
+        hitbox:         27
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 900
+      stats:
+        hp: 5800
+    loot:
+      drops:
+        - chance: rare
+          item:   beta_10388
+        - chance: uncommon
+          item:   beta_94
+        - chance: uncommon
+          item:   beta_4640
+        - chance: uncommon
+          item:   beta_6750
+        - chance: uncommon
+          item:   beta_6900
+
+spawns:
+  17469441:
+    template: Bigclaw_fished
+    script:   Bigclaw
+    at:       [1.000, 1.000, 1.000]
+    level:    [49, 52]
+  17469442:
+    template: Canal_Leech
+    at:       [1.000, 1.000, 1.000]
+    level:    [45, 47]
+  17469443:
+    template: Rock_Crab_fished
+    script:   Rock_Crab
+    at:       [1.000, 1.000, 1.000]
+    level:    [52, 54]
+  17469444:
+    template: Bloodsucker_fished
+    script:   Bloodsucker
+    at:       [1.000, 1.000, 1.000]
+    level:    [54, 57]
+  17469445:
+    template: Mousse_fished
+    script:   Mousse
+    at:       [1.000, 1.000, 1.000]
+    level:    [63, 65]
+  17469446:
+    template: Canal_Bats_TC
+    script:   Canal_Bats
+    region:   nw_6
+    level:    [45, 47]
+  17469447:
+    template: Canal_Bats_TC
+    script:   Canal_Bats
+    region:   nw_6
+    level:    [45, 47]
+  17469448:
+    template: Canal_Bats_TC
+    script:   Canal_Bats
+    region:   nw_8
+    level:    [45, 47]
+  17469449:
+    template: Canal_Bats_TC
+    script:   Canal_Bats
+    region:   nw_8
+    level:    [45, 47]
+  17469450:
+    template: Hell_Bat_TC
+    script:   Hell_Bat
+    region:   nw_8
+    level:    [47, 49]
+  17469451:
+    template: Hell_Bat_TC
+    script:   Hell_Bat
+    region:   nw_8
+    level:    [47, 49]
+  17469452:
+    template: Bigclaw_aggro
+    script:   Bigclaw
+    region:   nw_16
+    level:    [49, 52]
+  17469453:
+    template: Bigclaw_aggro
+    script:   Bigclaw
+    region:   nw_8
+    level:    [49, 52]
+  17469454:
+    template: Fallen_Knight
+    region:   nw_8
+    level:    [52, 55]
+  17469455:
+    template: Canal_Bats_TC
+    script:   Canal_Bats
+    region:   nw_16
+    level:    [45, 47]
+  17469456:
+    template: Canal_Bats_TC
+    script:   Canal_Bats
+    region:   nw_16
+    level:    [45, 47]
+  17469457:
+    template: Hell_Bat_TC
+    script:   Hell_Bat
+    region:   nw_16
+    level:    [47, 49]
+  17469458:
+    template: Hell_Bat_TC
+    script:   Hell_Bat
+    region:   nw_16
+    level:    [47, 49]
+  17469459:
+    template: Bigclaw_aggro
+    script:   Bigclaw
+    region:   nw_16
+    level:    [49, 52]
+  17469460:
+    template: Fallen_Knight
+    region:   nw_8
+    level:    [52, 55]
+  17469461:
+    template: Canal_Bats_TC
+    script:   Canal_Bats
+    region:   n_22
+    level:    [45, 47]
+  17469462:
+    template: Canal_Bats_TC
+    script:   Canal_Bats
+    region:   n_22
+    level:    [45, 47]
+  17469463:
+    template: Hell_Bat_TC
+    script:   Hell_Bat
+    region:   n_22
+    level:    [47, 49]
+  17469464:
+    template: Hell_Bat_TC
+    script:   Hell_Bat
+    region:   n_22
+    level:    [47, 49]
+  17469465:
+    template: Bigclaw_aggro
+    script:   Bigclaw
+    region:   n_22
+    level:    [49, 52]
+  17469466:
+    template: Fallen_Knight
+    region:   n_22
+    level:    [52, 55]
+  17469467:
+    template: Canal_Bats_TC
+    script:   Canal_Bats
+    region:   n_27
+    level:    [45, 47]
+  17469468:
+    template: Canal_Bats_TC
+    script:   Canal_Bats
+    region:   n_27
+    level:    [45, 47]
+  17469469:
+    template: Hell_Bat_TC
+    script:   Hell_Bat
+    region:   n_27
+    level:    [47, 49]
+  17469470:
+    template: Hell_Bat_TC
+    script:   Hell_Bat
+    region:   n_27
+    level:    [47, 49]
+  17469471:
+    template: Bigclaw_aggro
+    script:   Bigclaw
+    region:   n_27
+    level:    [49, 52]
+  17469472:
+    template: Bigclaw_aggro
+    script:   Bigclaw
+    region:   n_27
+    level:    [49, 52]
+  17469473:
+    template: Fallen_Knight
+    region:   n_27
+    level:    [52, 55]
+  17469474:
+    template: Fallen_Knight
+    region:   n_27
+    level:    [52, 55]
+  17469475:
+    template: Lich
+    region:   n_27
+    level:    [54, 57]
+  17469476:
+    template: Lich
+    region:   n_27
+    level:    [54, 57]
+  17469477:
+    template: Canal_Bats_TC
+    script:   Canal_Bats
+    region:   c_38
+    level:    [45, 47]
+  17469478:
+    template: Canal_Bats_TC
+    script:   Canal_Bats
+    region:   c_38
+    level:    [45, 47]
+  17469479:
+    template: Hell_Bat_TC
+    script:   Hell_Bat
+    region:   c_38
+    level:    [47, 49]
+  17469480:
+    template: Hell_Bat_TC
+    script:   Hell_Bat
+    region:   c_38
+    level:    [47, 49]
+  17469481:
+    template: Bigclaw_aggro
+    script:   Bigclaw
+    region:   c_38
+    level:    [49, 52]
+  17469482:
+    template: Bigclaw_aggro
+    script:   Bigclaw
+    region:   c_38
+    level:    [49, 52]
+  17469483:
+    template: Fallen_Knight
+    region:   c_38
+    level:    [52, 55]
+  17469484:
+    template: Canal_Bats_TC
+    script:   Canal_Bats
+    region:   c_45
+    level:    [45, 47]
+  17469485:
+    template: Canal_Bats_TC
+    script:   Canal_Bats
+    region:   c_45
+    level:    [45, 47]
+  17469486:
+    template: Hell_Bat_TC
+    script:   Hell_Bat
+    region:   c_45
+    level:    [47, 49]
+  17469487:
+    template: Hell_Bat_TC
+    script:   Hell_Bat
+    region:   c_45
+    level:    [47, 49]
+  17469488:
+    template: Bigclaw_aggro
+    script:   Bigclaw
+    region:   c_45
+    level:    [49, 52]
+  17469489:
+    template: Bigclaw_aggro
+    script:   Bigclaw
+    region:   c_45
+    level:    [49, 52]
+  17469490:
+    template: Fallen_Knight
+    region:   c_45
+    level:    [52, 55]
+  17469491:
+    template: Canal_Bats_TC
+    script:   Canal_Bats
+    region:   n_52
+    level:    [45, 47]
+  17469492:
+    template: Canal_Bats_TC
+    script:   Canal_Bats
+    region:   n_52
+    level:    [45, 47]
+  17469493:
+    template: Hell_Bat_TC
+    script:   Hell_Bat
+    region:   n_52
+    level:    [47, 49]
+  17469494:
+    template: Hell_Bat_TC
+    script:   Hell_Bat
+    region:   n_52
+    level:    [47, 49]
+  17469495:
+    template: Bigclaw_aggro
+    script:   Bigclaw
+    region:   n_52
+    level:    [49, 52]
+  17469496:
+    template: Bigclaw_aggro
+    script:   Bigclaw
+    region:   n_52
+    level:    [49, 52]
+  17469497:
+    template: Fallen_Knight
+    region:   n_52
+    level:    [52, 55]
+  17469498:
+    template: Canal_Bats_TC
+    script:   Canal_Bats
+    region:   n_59
+    level:    [45, 47]
+  17469499:
+    template: Hell_Bat_TC
+    script:   Hell_Bat
+    region:   n_59
+    level:    [47, 49]
+  17469500:
+    template: Bigclaw_aggro
+    script:   Bigclaw
+    region:   n_59
+    level:    [49, 52]
+  17469501:
+    template: Bigclaw_aggro
+    script:   Bigclaw
+    region:   n_59
+    level:    [49, 52]
+  17469502:
+    template: Fallen_Knight
+    region:   n_59
+    level:    [52, 55]
+  17469503:
+    template: Dark_Aspic
+    region:   region_92
+    level:    [53, 55]
+  17469504:
+    template: Dark_Aspic
+    region:   region_91
+    level:    [53, 55]
+  17469505:
+    template: Dark_Aspic
+    region:   region_90
+    level:    [53, 55]
+  17469506:
+    template: Dark_Aspic
+    region:   region_90
+    level:    [53, 55]
+  17469507:
+    template: Dark_Aspic
+    region:   region_93
+    level:    [53, 55]
+  17469508:
+    template: Dark_Aspic
+    region:   region_94
+    level:    [53, 55]
+  17469509:
+    template: Bloodsucker_TC
+    script:   Bloodsucker
+    region:   c_69
+    level:    [54, 57]
+  17469510:
+    template: Bloodsucker_TC
+    script:   Bloodsucker
+    region:   c_69
+    level:    [54, 57]
+  17469511:
+    template: Fallen_Knight
+    region:   c_71
+    level:    [52, 55]
+  17469512:
+    template: Fallen_Knight
+    region:   c_71
+    level:    [52, 55]
+  17469513:
+    template: Lich
+    region:   c_71
+    level:    [54, 57]
+  17469514:
+    template: Lich
+    region:   c_71
+    level:    [54, 57]
+  17469515:
+    template: Girtab
+    region:   c_71
+    level:    [58, 60]
+  17469516:
+    template: Magic_Sludge
+    at:       [19.875, 16.500, 53.602, 203]
+    level:    [64, 64]
+  17469517:
+    template: Hell_Bat_TC
+    script:   Hell_Bat
+    region:   c_77
+    level:    [47, 49]
+  17469518:
+    template: Hell_Bat_TC
+    script:   Hell_Bat
+    region:   c_77
+    level:    [47, 49]
+  17469519:
+    template: Hell_Bat_TC
+    script:   Hell_Bat
+    region:   w_79
+    level:    [47, 49]
+  17469520:
+    template: Hell_Bat_TC
+    script:   Hell_Bat
+    region:   w_79
+    level:    [47, 49]
+  17469521:
+    template: Hell_Bat_TC
+    script:   Hell_Bat
+    region:   w_79
+    level:    [47, 49]
+  17469522:
+    template: Bigclaw_aggro
+    script:   Bigclaw
+    region:   w_79
+    level:    [49, 52]
+  17469523:
+    template: Bigclaw_aggro
+    script:   Bigclaw
+    region:   w_79
+    level:    [49, 52]
+  17469524:
+    template: Fallen_Knight
+    region:   w_79
+    level:    [52, 55]
+  17469525:
+    template: Hell_Bat_TC
+    script:   Hell_Bat
+    region:   w_85
+    level:    [47, 49]
+  17469526:
+    template: Hell_Bat_TC
+    script:   Hell_Bat
+    region:   w_85
+    level:    [47, 49]
+  17469527:
+    template: Hell_Bat_TC
+    script:   Hell_Bat
+    region:   w_85
+    level:    [47, 49]
+  17469528:
+    template: Bigclaw_aggro
+    script:   Bigclaw
+    region:   w_85
+    level:    [49, 52]
+  17469529:
+    template: Bigclaw_aggro
+    script:   Bigclaw
+    region:   w_85
+    level:    [49, 52]
+  17469530:
+    template: Fallen_Knight
+    region:   w_79
+    level:    [52, 55]
+  17469531:
+    template: Hell_Bat_TC
+    script:   Hell_Bat
+    region:   w_91
+    level:    [47, 49]
+  17469532:
+    template: Hell_Bat_TC
+    script:   Hell_Bat
+    region:   w_91
+    level:    [47, 49]
+  17469533:
+    template: Bigclaw_aggro
+    script:   Bigclaw
+    region:   w_91
+    level:    [49, 52]
+  17469534:
+    template: Fallen_Knight
+    region:   w_91
+    level:    [52, 55]
+  17469535:
+    template: Dark_Aspic
+    region:   c_95
+    level:    [53, 55]
+  17469536:
+    template: Bloodsucker_TC
+    script:   Bloodsucker
+    region:   c_95
+    level:    [54, 57]
+  17469537:
+    template: Bloodsucker_TC
+    script:   Bloodsucker
+    region:   c_95
+    level:    [54, 57]
+  17469538:
+    template: Hell_Bat_TC
+    script:   Hell_Bat
+    region:   w_98
+    level:    [47, 49]
+  17469539:
+    template: Hell_Bat_TC
+    script:   Hell_Bat
+    region:   w_98
+    level:    [47, 49]
+  17469540:
+    template: Girtab
+    region:   w_100
+    level:    [58, 60]
+  17469541:
+    template: Scavenger_Crab
+    region:   w_100
+    level:    [60, 62]
+  17469542:
+    template: Scavenger_Crab
+    region:   w_100
+    level:    [60, 62]
+  17469543:
+    template: Scavenger_Crab
+    region:   w_100
+    level:    [60, 62]
+  17469544:
+    template: Scavenger_Crab
+    region:   w_100
+    level:    [60, 62]
+  17469545:
+    template: Scavenger_Crab
+    region:   w_100
+    level:    [60, 62]
+  17469546:
+    template: Scavenger_Crab
+    region:   w_100
+    level:    [60, 62]
+  17469547:
+    template: Fleshcraver
+    region:   w_107
+    level:    [60, 62]
+  17469548:
+    template: Mindcraver
+    region:   w_107
+    level:    [60, 62]
+  17469549:
+    template: Fleshcraver
+    region:   w_109
+    level:    [60, 62]
+  17469550:
+    template: Fleshcraver
+    region:   w_109
+    level:    [60, 62]
+  17469551:
+    template: Mindcraver
+    region:   w_109
+    level:    [60, 62]
+  17469552:
+    template: Mindcraver
+    region:   w_109
+    level:    [60, 62]
+  17469553:
+    template: Rotten_Sod
+    region:   w_109
+    level:    [58, 60]
+  17469554:
+    template: Makara
+    region:   nw_114
+    level:    [50, 51]
+  17469555:
+    template: Makara
+    region:   nw_114
+    level:    [49, 52]
+  17469556:
+    template: Makara
+    region:   nw_114
+    level:    [49, 52]
+  17469557:
+    template: Makara
+    region:   nw_114
+    level:    [49, 52]
+  17469558:
+    template: Makara
+    region:   n_118
+    level:    [49, 52]
+  17469559:
+    template: Makara
+    region:   n_118
+    level:    [49, 52]
+  17469560:
+    template: Makara
+    region:   n_118
+    level:    [49, 52]
+  17469561:
+    template: Makara
+    region:   n_118
+    level:    [49, 52]
+  17469562:
+    template: Makara
+    region:   c_122
+    level:    [49, 52]
+  17469563:
+    template: Makara
+    region:   c_122
+    level:    [49, 52]
+  17469564:
+    template: Makara
+    region:   c_122
+    level:    [49, 52]
+  17469565:
+    template: Makara
+    region:   c_122
+    level:    [49, 52]
+  17469566:
+    template: Makara
+    region:   c_122
+    level:    [49, 52]
+  17469567:
+    template: Makara
+    region:   w_127
+    level:    [49, 52]
+  17469568:
+    template: Makara
+    region:   w_127
+    level:    [49, 52]
+  17469569:
+    template: Makara
+    region:   w_127
+    level:    [49, 52]
+  17469570:
+    template: Makara
+    region:   w_127
+    level:    [49, 52]
+  17469571:
+    template: Makara
+    region:   w_131
+    level:    [49, 52]
+  17469572:
+    template: Makara
+    region:   w_131
+    level:    [49, 52]
+  17469573:
+    template: Makara
+    region:   w_133
+    level:    [49, 52]
+  17469574:
+    template: Makara
+    region:   w_133
+    level:    [49, 52]
+  17469575:
+    template: Bouncing_Ball
+    region:   c_136
+    level:    [64, 67]
+  17469576:
+    template: Bouncing_Ball
+    region:   c_136
+    level:    [64, 67]
+  17469577:
+    template: Bouncing_Ball
+    region:   c_136
+    level:    [64, 67]
+  17469578:
+    template: Canal_Moocher
+    region:   c_136
+    level:    [73, 74]
+  17469579:
+    template: Stygian_Pugil
+    region:   w_139
+    level:    [63, 65]
+  17469580:
+    template: Stygian_Pugil
+    region:   w_140
+    level:    [63, 65]
+  17469581:
+    template: Stygian_Pugil
+    region:   w_141
+    level:    [63, 65]
+  17469582:
+    template: Stygian_Pugil
+    region:   w_142
+    level:    [63, 65]
+  17469583:
+    template: Stygian_Pugil
+    region:   region_95
+    level:    [63, 65]
+  17469584:
+    template: Stygian_Pugil
+    region:   region_95
+    level:    [63, 65]
+  17469585:
+    template: Stygian_Pugil
+    region:   region_96
+    level:    [63, 65]
+  17469586:
+    template: Stygian_Pugil
+    region:   region_96
+    level:    [63, 65]
+  17469587:
+    template: Oni_Carcass
+    region:   w_147
+    level:    [68, 70]
+  17469588:
+    template: Makara
+    region:   c_148
+    level:    [49, 52]
+  17469589:
+    template: Makara
+    region:   c_148
+    level:    [49, 52]
+  17469590:
+    template: Makara
+    region:   c_148
+    level:    [49, 52]
+  17469591:
+    template: Makara
+    region:   c_148
+    level:    [49, 52]
+  17469592:
+    template: Bloodsucker_TC
+    script:   Bloodsucker
+    region:   c_152
+    level:    [54, 57]
+  17469593:
+    template: Bloodsucker_TC
+    script:   Bloodsucker
+    region:   c_152
+    level:    [54, 57]
+  17469594:
+    template: Bloodsucker_TC
+    script:   Bloodsucker
+    region:   c_152
+    level:    [54, 57]
+  17469595:
+    template: Bloodsucker_TC
+    script:   Bloodsucker
+    region:   c_152
+    level:    [54, 57]
+  17469596:
+    template: Blackwater_Pugil
+    region:   s_156
+    level:    [96, 97]
+  17469597:
+    template: Blackwater_Pugil
+    region:   s_156
+    level:    [96, 97]
+  17469598:
+    template: Blackwater_Pugil
+    region:   s_158
+    level:    [96, 97]
+  17469599:
+    template: Blackwater_Pugil
+    region:   s_158
+    level:    [96, 97]
+  17469600:
+    template: Blackwater_Pugil
+    region:   s_160
+    level:    [96, 97]
+  17469601:
+    template: Blackwater_Pugil
+    region:   s_160
+    level:    [96, 97]
+  17469602:
+    template: Blackwater_Pugil
+    region:   s_160
+    level:    [96, 97]
+  17469603:
+    template: Blackwater_Pugil
+    region:   s_163
+    level:    [96, 97]
+  17469604:
+    template: Plunderer_Crab
+    region:   sw_164
+    level:    [95, 97]
+  17469605:
+    template: Plunderer_Crab
+    region:   sw_164
+    level:    [95, 97]
+  17469606:
+    template: Plunderer_Crab
+    region:   sw_164
+    level:    [95, 97]
+  17469607:
+    template: Plunderer_Crab
+    region:   sw_167
+    level:    [95, 97]
+  17469608:
+    template: Plunderer_Crab
+    region:   sw_167
+    level:    [95, 97]
+  17469609:
+    template: Plunderer_Crab
+    region:   sw_167
+    level:    [95, 97]
+  17469610:
+    template: Plunderer_Crab
+    region:   s_170
+    level:    [95, 97]
+  17469611:
+    template: Plunderer_Crab
+    region:   s_170
+    level:    [95, 97]
+  17469612:
+    template: Plunderer_Crab
+    region:   s_170
+    level:    [95, 97]
+  17469613:
+    template: Blackwater_Pugil
+    region:   s_173
+    level:    [96, 97]
+  17469614:
+    template: Blackwater_Pugil
+    region:   s_174
+    level:    [96, 97]
+  17469615:
+    template: Blackwater_Pugil
+    region:   s_175
+    level:    [96, 97]
+  17469616:
+    template: Blackwater_Pugil
+    region:   s_176
+    level:    [96, 97]
+  17469617:
+    template: Blackwater_Pugil
+    region:   region_97
+    level:    [96, 97]
+  17469618:
+    template: Blackwater_Pugil
+    region:   region_97
+    level:    [96, 97]
+  17469619:
+    template: Blackwater_Pugil
+    region:   region_98
+    level:    [96, 97]
+  17469620:
+    template: Blackwater_Pugil
+    region:   region_98
+    level:    [96, 97]
+  17469621:
+    template: Plunderer_Crab
+    region:   se_181
+    level:    [95, 97]
+  17469622:
+    template: Plunderer_Crab
+    region:   se_181
+    level:    [95, 97]
+  17469623:
+    template: Plunderer_Crab
+    region:   se_181
+    level:    [95, 97]
+  17469624:
+    template: Plunderer_Crab
+    region:   se_181
+    level:    [95, 97]
+  17469625:
+    template: Blackwater_Pugil
+    region:   c_185
+    level:    [96, 97]
+  17469626:
+    template: Blackwater_Pugil
+    region:   c_185
+    level:    [96, 97]
+  17469627:
+    template: Blackwater_Pugil
+    region:   c_185
+    level:    [96, 97]
+  17469628:
+    template: Blackwater_Pugil
+    region:   c_185
+    level:    [96, 97]
+  17469629:
+    template: Mousse_SSG
+    script:   Mousse
+    region:   n_189
+    level:    [63, 65]
+  17469630:
+    template: Mousse_SSG
+    script:   Mousse
+    region:   n_189
+    level:    [63, 65]
+  17469631:
+    template: Mousse_SSG
+    script:   Mousse
+    region:   n_189
+    level:    [63, 65]
+  17469632:
+    template: Konjac
+    region:   n_189
+    level:    [78, 78]
+  17469633:
+    template: Blackwater_Pugil
+    region:   c_193
+    level:    [96, 97]
+  17469634:
+    template: Blackwater_Pugil
+    region:   c_193
+    level:    [96, 97]
+  17469635:
+    template: Blackwater_Pugil
+    region:   c_195
+    level:    [96, 97]
+  17469636:
+    template: Blackwater_Pugil
+    region:   c_195
+    level:    [96, 97]
+  17469637:
+    template: Deviling_Bats
+    region:   c_197
+    level:    [95, 97]
+  17469638:
+    template: Deviling_Bats
+    region:   c_197
+    level:    [95, 97]
+  17469639:
+    template: Sodden_Bones
+    region:   c_197
+    level:    [96, 98]
+  17469640:
+    template: Sodden_Bones
+    region:   c_197
+    level:    [96, 98]
+  17469641:
+    template: Drowned_Bones
+    region:   c_197
+    level:    [96, 98]
+  17469642:
+    template: Drowned_Bones
+    region:   c_197
+    level:    [96, 98]
+  17469643:
+    template: Starborer
+    region:   s_203
+    level:    [96, 97]
+  17469644:
+    template: Starborer
+    region:   s_203
+    level:    [96, 97]
+  17469645:
+    template: Starborer
+    region:   s_203
+    level:    [96, 97]
+  17469646:
+    template: Starborer
+    region:   s_203
+    level:    [96, 97]
+  17469647:
+    template: Starborer
+    region:   s_203
+    level:    [96, 97]
+  17469648:
+    template: Starborer
+    region:   s_203
+    level:    [96, 97]
+  17469649:
+    template: Starborer
+    region:   s_203
+    level:    [96, 97]
+  17469650:
+    template: Deviling_Bats
+    region:   se_210
+    level:    [95, 97]
+  17469651:
+    template: Deviling_Bats
+    region:   se_210
+    level:    [95, 97]
+  17469652:
+    template: Sodden_Bones
+    region:   se_210
+    level:    [96, 98]
+  17469653:
+    template: Sodden_Bones
+    region:   se_210
+    level:    [96, 98]
+  17469654:
+    template: Drowned_Bones
+    region:   se_210
+    level:    [96, 98]
+  17469655:
+    template: Drowned_Bones
+    region:   se_210
+    level:    [96, 98]
+  17469656:
+    template: Sodden_Bones
+    region:   se_216
+    level:    [96, 98]
+  17469657:
+    template: Sodden_Bones
+    region:   se_216
+    level:    [96, 98]
+  17469658:
+    template: Drowned_Bones
+    region:   se_216
+    level:    [96, 98]
+  17469659:
+    template: Drowned_Bones
+    region:   se_216
+    level:    [96, 98]
+  17469660:
+    template: Rapier_Scorpion
+    region:   se_216
+    level:    [96, 98]
+  17469661:
+    template: Impish_Bats
+    region:   c_221
+    level:    [58, 60]
+  17469662:
+    template: Impish_Bats
+    region:   c_221
+    level:    [58, 60]
+  17469663:
+    template: Impish_Bats
+    region:   c_223
+    level:    [58, 60]
+  17469664:
+    template: Impish_Bats
+    region:   c_223
+    level:    [58, 60]
+  17469665:
+    template: Impish_Bats
+    region:   c_223
+    level:    [58, 60]
+  17469666:
+    template: Hinge_Oil
+    region:   c_226
+    level:    [65, 65]
+  17469667:
+    template: Hinge_Oil
+    region:   c_227
+    level:    [65, 65]
+  17469668:
+    template: Hinge_Oil
+    region:   c_228
+    level:    [65, 65]
+  17469669:
+    template: Hinge_Oil
+    region:   c_229
+    level:    [65, 65]
+  17469670:
+    template: Deviling_Bats
+    region:   e_230
+    level:    [95, 97]
+  17469671:
+    template: Deviling_Bats
+    region:   e_230
+    level:    [95, 97]
+  17469672:
+    template: Sodden_Bones
+    region:   e_230
+    level:    [96, 98]
+  17469673:
+    template: Sodden_Bones
+    region:   e_230
+    level:    [96, 98]
+  17469674:
+    template: Drowned_Bones
+    region:   e_230
+    level:    [96, 98]
+  17469675:
+    template: Drowned_Bones
+    region:   e_230
+    level:    [96, 98]
+  17469676:
+    template: Sodden_Bones
+    region:   e_236
+    level:    [96, 98]
+  17469677:
+    template: Sodden_Bones
+    region:   e_236
+    level:    [96, 98]
+  17469678:
+    template: Drowned_Bones
+    region:   e_236
+    level:    [96, 98]
+  17469679:
+    template: Drowned_Bones
+    region:   e_236
+    level:    [96, 98]
+  17469680:
+    template: Rapier_Scorpion
+    region:   e_236
+    level:    [96, 98]
+  17469681:
+    template: Deviling_Bats
+    region:   e_241
+    level:    [95, 97]
+  17469682:
+    template: Deviling_Bats
+    region:   e_241
+    level:    [95, 97]
+  17469683:
+    template: Deviling_Bats
+    region:   e_241
+    level:    [95, 97]
+  17469684:
+    template: Deviling_Bats
+    region:   e_244
+    level:    [95, 97]
+  17469685:
+    template: Deviling_Bats
+    region:   e_244
+    level:    [95, 97]
+  17469686:
+    template: Sodden_Bones
+    region:   e_244
+    level:    [96, 98]
+  17469687:
+    template: Sodden_Bones
+    region:   e_244
+    level:    [96, 98]
+  17469688:
+    template: Drowned_Bones
+    region:   e_244
+    level:    [96, 98]
+  17469689:
+    template: Drowned_Bones
+    region:   e_244
+    level:    [96, 98]
+  17469690:
+    template: Starborer
+    region:   e_250
+    level:    [96, 97]
+  17469691:
+    template: Starborer
+    region:   e_250
+    level:    [96, 97]
+  17469692:
+    template: Starborer
+    region:   e_250
+    level:    [96, 97]
+  17469693:
+    template: Starborer
+    region:   e_250
+    level:    [96, 97]
+  17469694:
+    template: Starborer
+    region:   e_250
+    level:    [96, 97]
+  17469695:
+    template: Starborer
+    region:   e_250
+    level:    [96, 97]
+  17469696:
+    template: Starborer
+    region:   e_250
+    level:    [96, 97]
+  17469697:
+    template: Blackwater_Pugil
+    region:   e_257
+    level:    [96, 97]
+  17469698:
+    template: Blackwater_Pugil
+    region:   e_257
+    level:    [96, 97]
+  17469699:
+    template: Blackwater_Pugil
+    region:   e_257
+    level:    [96, 97]
+  17469700:
+    template: Blackwater_Pugil
+    region:   e_257
+    level:    [96, 97]
+  17469701:
+    template: Blackwater_Pugil
+    region:   region_99
+    level:    [96, 97]
+  17469702:
+    template: Blackwater_Pugil
+    region:   region_99
+    level:    [96, 97]
+  17469703:
+    template: Blackwater_Pugil
+    region:   e_263
+    level:    [96, 97]
+  17469704:
+    template: Blackwater_Pugil
+    region:   e_264
+    level:    [96, 97]
+  17469705:
+    template: Blackwater_Pugil
+    region:   region_100
+    level:    [96, 97]
+  17469706:
+    template: Blackwater_Pugil
+    region:   region_100
+    level:    [96, 97]
+  17469707:
+    template: Blackwater_Pugil
+    region:   e_267
+    level:    [96, 97]
+  17469708:
+    template: Blackwater_Pugil
+    region:   e_268
+    level:    [96, 97]
+  17469709:
+    template: Poroggo_Excavator
+    region:   se_269
+    level:    [98, 99]
+  17469710:
+    template: Flume_Toad
+    region:   se_270
+    level:    [94, 96]
+  17469711:
+    template: Flume_Toad
+    region:   se_270
+    level:    [94, 96]
+  17469712:
+    template: Flume_Toad
+    region:   se_270
+    level:    [94, 96]
+  17469713:
+    template: Flume_Toad
+    region:   se_270
+    level:    [94, 96]
+  17469714:
+    template: Flume_Toad
+    region:   se_270
+    level:    [94, 96]
+  17469715:
+    template: Flume_Toad
+    region:   se_275
+    level:    [94, 96]
+  17469716:
+    template: Flume_Toad
+    region:   se_275
+    level:    [94, 96]
+  17469717:
+    template: Flume_Toad
+    region:   se_275
+    level:    [94, 96]
+  17469718:
+    template: Poroggo_Excavator
+    region:   se_278
+    level:    [98, 99]
+  17469719:
+    template: Flume_Toad
+    region:   se_278
+    level:    [94, 96]
+  17469720:
+    template: Flume_Toad
+    region:   se_278
+    level:    [94, 96]
+  17469721:
+    template: Flume_Toad
+    region:   se_278
+    level:    [94, 96]
+  17469722:
+    template: Poroggo_Excavator
+    region:   se_282
+    level:    [98, 99]
+  17469723:
+    template: Flume_Toad
+    region:   se_283
+    level:    [94, 96]
+  17469724:
+    template: Flume_Toad
+    region:   se_283
+    level:    [94, 96]
+  17469725:
+    template: Flume_Toad
+    region:   se_285
+    level:    [94, 96]
+  17469726:
+    template: Flume_Toad
+    region:   se_285
+    level:    [94, 96]
+  17469727:
+    template: Flume_Toad
+    region:   se_287
+    level:    [94, 96]
+  17469728:
+    template: Flume_Toad
+    region:   se_287
+    level:    [94, 96]
+  17469729:
+    template: Flume_Toad
+    region:   se_287
+    level:    [94, 96]
+  17469730:
+    template: Flume_Toad
+    region:   se_287
+    level:    [94, 96]
+  17469731:
+    template: Poroggo_Excavator
+    region:   se_291
+    level:    [98, 99]
+  17469732:
+    template: Flume_Toad
+    region:   se_291
+    level:    [94, 96]
+  17469733:
+    template: Flume_Toad
+    region:   se_291
+    level:    [94, 96]
+  17469734:
+    template: Flume_Toad
+    region:   se_291
+    level:    [94, 96]
+  17469735:
+    template: Stygian_Pugil
+    region:   se_295
+    level:    [63, 65]
+  17469736:
+    template: Stygian_Pugil
+    region:   se_295
+    level:    [63, 65]
+  17469737:
+    template: Dire_Bat_UDT_TC_SSG
+    script:   Dire_Bat
+    region:   se_297
+    level:    [62, 64]
+  17469738:
+    template: Dire_Bat_UDT_TC_SSG
+    script:   Dire_Bat
+    region:   se_297
+    level:    [62, 64]
+  17469739:
+    template: Doom_Mage_TC
+    script:   Doom_Mage
+    region:   se_297
+    level:    [65, 67]
+  17469740:
+    template: Doom_Mage_TC
+    script:   Doom_Mage
+    region:   se_297
+    level:    [65, 67]
+  17469741:
+    template: Doom_Soldier_TC
+    script:   Doom_Soldier
+    region:   se_297
+    level:    [65, 67]
+  17469742:
+    template: Doom_Soldier_TC
+    script:   Doom_Soldier
+    region:   se_297
+    level:    [65, 67]
+  17469743:
+    template: Doom_Mage_TC
+    script:   Doom_Mage
+    region:   se_303
+    level:    [65, 67]
+  17469744:
+    template: Doom_Mage_TC
+    script:   Doom_Mage
+    region:   se_303
+    level:    [65, 67]
+  17469745:
+    template: Doom_Soldier_TC
+    script:   Doom_Soldier
+    region:   se_303
+    level:    [65, 67]
+  17469746:
+    template: Doom_Soldier_TC
+    script:   Doom_Soldier
+    region:   se_303
+    level:    [65, 67]
+  17469747:
+    template: Brazen_Bones
+    region:   se_303
+    level:    [82, 83]
+  17469748:
+    template: Bouncing_Ball
+    region:   se_308
+    level:    [64, 67]
+  17469749:
+    template: Bouncing_Ball
+    region:   se_309
+    level:    [64, 67]
+  17469750:
+    template: Bouncing_Ball
+    region:   se_310
+    level:    [64, 67]
+  17469751:
+    template: Bouncing_Ball
+    region:   se_311
+    level:    [64, 67]
+  17469752:
+    template: Dire_Bat_UDT_TC_SSG
+    script:   Dire_Bat
+    region:   e_312
+    level:    [62, 64]
+  17469753:
+    template: Dire_Bat_UDT_TC_SSG
+    script:   Dire_Bat
+    region:   e_312
+    level:    [62, 64]
+  17469754:
+    template: Dire_Bat_UDT_TC_SSG
+    script:   Dire_Bat
+    region:   se_314
+    level:    [62, 64]
+  17469755:
+    template: Dire_Bat_UDT_TC_SSG
+    script:   Dire_Bat
+    region:   se_314
+    level:    [62, 64]
+  17469756:
+    template: Starmite
+    region:   e_316
+    level:    [65, 67]
+  17469757:
+    template: Starmite
+    region:   e_316
+    level:    [65, 67]
+  17469758:
+    template: Starmite
+    region:   e_316
+    level:    [65, 67]
+  17469759:
+    template: Starmite
+    region:   e_316
+    level:    [65, 67]
+  17469760:
+    template: Starmite
+    region:   e_316
+    level:    [65, 67]
+  17469761:
+    template: Mimic
+    at:       [1.000, 1.000, 1.000]
+    level:    [60, 60]
+
+  17469862:
+    template: Beta_slim_Hinge_Oil
+    region:   c_226
+    level:    [65, 65]
+  17469863:
+    template: Beta_slim_Hinge_Oil
+    region:   c_226
+    level:    [65, 65]
+slots:
+  - members:
+      17469448: {} # Canal_Bats
+      17469450: {} # Hell_Bat
+  - members:
+      17469452: {} # Bigclaw
+      17469459: {} # Bigclaw
+  - members:
+      17469454: {} # Fallen_Knight
+      17469460: {} # Fallen_Knight
+  - members:
+      17469455: {} # Canal_Bats
+      17469457: {} # Hell_Bat
+  - members:
+      17469461: {} # Canal_Bats
+      17469463: {} # Hell_Bat
+  - members:
+      17469465: {} # Bigclaw
+      17469466: {} # Fallen_Knight
+  - members:
+      17469473: {} # Fallen_Knight
+      17469475: {} # Lich
+  - members:
+      17469474: {} # Fallen_Knight
+      17469476: {} # Lich
+  - members:
+      17469477: {} # Canal_Bats
+      17469479: {} # Hell_Bat
+  - members:
+      17469481: {} # Bigclaw
+      17469483: {} # Fallen_Knight
+  - members:
+      17469484: {} # Canal_Bats
+      17469486: {} # Hell_Bat
+  - members:
+      17469488: {} # Bigclaw
+      17469490: {} # Fallen_Knight
+  - members:
+      17469491: {} # Canal_Bats
+      17469493: {} # Hell_Bat
+  - members:
+      17469495: {} # Bigclaw
+      17469497: {} # Fallen_Knight
+  - members:
+      17469498: {} # Canal_Bats
+      17469499: {} # Hell_Bat
+  - members:
+      17469500: {} # Bigclaw
+      17469502: {} # Fallen_Knight
+  - members:
+      17469503: {} # Dark_Aspic
+      17469504: {} # Dark_Aspic
+  - members:
+      17469505: {} # Dark_Aspic
+      17469506: {} # Dark_Aspic
+  - members:
+      17469507: {} # Dark_Aspic
+      17469508: {} # Dark_Aspic
+  - members:
+      17469511: {} # Fallen_Knight
+      17469513: {} # Lich
+  - members:
+      17469524: {} # Fallen_Knight
+      17469530: {} # Fallen_Knight
+  - members:
+      17469527: {} # Hell_Bat
+      17469528: {} # Bigclaw
+  - members:
+      17469532: {} # Hell_Bat
+      17469534: {} # Fallen_Knight
+  - members:
+      17469549: {} # Fleshcraver
+      17469553: {} # Rotten_Sod
+  - members:
+      17469629: {} # Mousse
+      17469632: {} # Konjac

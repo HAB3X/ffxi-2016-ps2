@@ -1,0 +1,45 @@
+name: Report a bug
+description: Tell us what went wrong. You can add screenshots or photos.
+title: "Bug: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping. Please check it isn't one of these first.
+
+        **Known bugs**
+        1. Burning Circles can't be targeted, so orb battles can't be entered.
+        2. Floor textures flash and pop in and out in certain areas.
+        3. Scrolling quickly through long lists causes large dips in framerate.
+        4. If signing in can't reach the server, the game doesn't go back to the sign in page. You have to restart the disc.
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened?
+      placeholder: The screen went black when I opened the Auction House.
+    validations:
+      required: true
+  - type: input
+    id: where
+    attributes:
+      label: Where were you?
+      placeholder: Lower Jeuno, the Create Character screen, the Server App...
+  - type: textarea
+    id: steps
+    attributes:
+      label: What were you doing just before?
+  - type: textarea
+    id: shots
+    attributes:
+      label: Screenshots or photos
+      description: Drag your pictures into this box, or paste them in.
+  - type: dropdown
+    id: playing
+    attributes:
+      label: What are you playing on?
+      options:
+        - PCSX2 on Mac
+        - PCSX2 on Windows
+        - PCSX2 on Linux
+        - A real PS2

@@ -1,0 +1,40 @@
+-----------------------------------
+-- Era fame rank thresholds
+-- Points required per fame rank before the February 18th 2014 relaxation, at the 10x retail scale used by this server (fame cap 2500).
+-- https://wiki.ffo.jp/html/2683.html
+-----------------------------------
+require('modules/module_utils')
+-----------------------------------
+local m = Module:new('old_fame_rank_points', xi.pre(xi.expansion.ROV))
+
+m:addOverride('xi.server.onServerStart', function()
+    super()
+
+    xi.data.fame.rankPoints =
+    {
+        [1] = 0,
+        [2] = 200,
+        [3] = 500,
+        [4] = 900,
+        [5] = 1300,
+        [6] = 1700,
+        [7] = 1950,
+        [8] = 2200,
+        [9] = 2450,
+    }
+
+    -- Namonutice event 31 and Mendi event 82 are special cases
+    -- For whatever reason the fame values are baked into the client, don't ask
+    xi.data.fame.fameConversionPoints =
+    {
+        [1] = 0,
+        [2] = 50,
+        [3] = 125,
+        [4] = 225,
+        [5] = 325,
+        [6] = 425,
+        [7] = 488,
+        [8] = 550,
+        [9] = 613,
+    }
+end)

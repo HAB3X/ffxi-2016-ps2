@@ -1,0 +1,3299 @@
+# yaml-language-server: $schema=../../schemas/mobs.schema.json
+
+templates:
+
+  Antican_Eques:
+    id:            171
+    species:       antica
+    spell_list_id: 4
+    skill_list_id: 25
+    attributes:
+      combat:
+        skill: sword
+        delay: 265
+      jobs: [pld, pld]
+      render:
+        look:
+          type:  standard
+          model: 1288
+        entity_flags: 1155
+        model_size:      1
+        hitbox:         12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   piece_of_rotten_meat
+        - chance: uncommon
+          item:   antican_pauldron
+        - chance: rare
+          item:   scroll_of_flash
+        - chance: very_rare
+          item:   chunk_of_iron_ore
+      steal: mythril_beastcoin
+      despoil:
+        chunk_of_iron_ore: 0
+
+  Antican_Essedarius:
+    id:            172
+    species:       antica
+    skill_list_id: 25
+    attributes:
+      combat:
+        skill: dagger
+        delay: 265
+      jobs: [rng, rng]
+      render:
+        look:
+          type:  standard
+          model: 1272
+        entity_flags: 1155
+        model_size:      1
+        hitbox:         12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   piece_of_rotten_meat
+        - chance: uncommon
+          item:   antican_robe
+        - chance: rare
+          item:   iron_arrow
+        - chance: very_rare
+          item:   chunk_of_iron_ore
+      steal: mythril_beastcoin
+      despoil:
+        chunk_of_iron_ore: 0
+
+  Antican_Hoplomachus:
+    id:            176
+    species:       antica
+    spell_list_id: 4
+    skill_list_id: 25
+    attributes:
+      combat:
+        skill: sword
+        delay: 265
+      jobs: [pld, pld]
+      render:
+        look:
+          type:  standard
+          model: 1296
+        entity_flags: 1155
+        model_size:      1
+        hitbox:         12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: rare
+          item:   piece_of_rotten_meat
+        - chance: rare
+          item:   antican_pauldron
+        - chance: very_rare
+          item:   xhifhut_bow
+        - chance: very_rare
+          item:   chunk_of_mythril_ore
+      steal: mythril_beastcoin
+      despoil:
+        chunk_of_iron_ore: 0
+
+  Antican_Lanista:
+    id:            177
+    species:       antica
+    spell_list_id: 21
+    skill_list_id: 25
+    attributes:
+      combat:
+        skill: staff
+        delay: 265
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 1279
+        entity_flags: 1155
+        model_size:      1
+        hitbox:         12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   jar_of_antican_acid
+        - chance: uncommon
+          item:   piece_of_rotten_meat
+        - chance: rare
+          item:   antican_robe
+        - chance: very_rare
+          item:   chunk_of_mythril_ore
+      steal: mythril_beastcoin
+      despoil:
+        chunk_of_iron_ore: 0
+
+  Antican_Retiarius:
+    id:            185
+    species:       antica
+    spell_list_id: 21
+    skill_list_id: 25
+    attributes:
+      combat:
+        skill: staff
+        delay: 265
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 1278
+        entity_flags: 1155
+        model_size:      1
+        hitbox:         12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   piece_of_rotten_meat
+        - chance: uncommon
+          item:   antican_robe
+        - chance: very_rare
+          item:   chunk_of_iron_ore
+      steal: mythril_beastcoin
+      despoil:
+        chunk_of_iron_ore: 0
+
+  Antican_Secutor:
+    id:            187
+    species:       antica
+    skill_list_id: 25
+    attributes:
+      combat:
+        skill: axe
+        delay: 265
+      render:
+        look:
+          type:  standard
+          model: 1265
+        entity_flags: 1155
+        model_size:      1
+        hitbox:         12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   piece_of_rotten_meat
+        - chance: uncommon
+          item:   antican_pauldron
+        - chance: rare
+          item:   dhalmel_leather_missive
+        - chance: very_rare
+          item:   chunk_of_mythril_ore
+      steal: mythril_beastcoin
+      despoil:
+        chunk_of_iron_ore: 0
+
+  Apsaras:
+    id:            204
+    species:       pugil
+    type:          [fished]
+    skill_list_id: 197
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 348
+        entity_flags:  3
+        model_size:    1
+        hitbox:       27
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+    loot:
+      steal: handful_of_fish_scales
+      despoil:
+        handful_of_pugil_scales: 0
+        handful_of_fish_scales:  0
+
+  Awoken_Dendainsonne:
+    id:            6105
+    species:       behemoth
+    type:          [notorious]
+    spell_list_id: 1
+    skill_list_id: 51
+    attributes:
+      combat:
+        skill: great_axe
+        delay: 180
+      jobs: [war, thf]
+      render:
+        look:
+          type:  standard
+          model: 3602
+        entity_flags:  3
+        model_size:    2
+        hitbox:       51
+      behaviors:
+        flags:          [no_turn]
+        links:          true
+        true_detection: true
+      spawn:
+        type: [scripted]
+
+  Bigclaw_fished:
+    id:            1268
+    display_name:  Bigclaw
+    species:       crab
+    type:          [fished]
+    skill_list_id: 77
+    attributes:
+      combat:
+        skill: great_sword
+      jobs: [pld, pld]
+      render:
+        look:
+          type:  standard
+          model: 356
+        entity_flags: 131
+        model_size:     1
+        hitbox:        13
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: always
+          item:   chunk_of_rock_salt
+        - chance: common
+          item:   slice_of_land_crab_meat
+        - chance: uncommon
+          item:   crab_shell
+      steal: chunk_of_rock_salt
+
+  Cactuar:
+    id:            596
+    species:       sabotender
+    skill_list_id: 212
+    attributes:
+      combat:
+        skill: scythe
+        delay: 360
+      jobs: [mnk, mnk]
+      render:
+        look:
+          type:  standard
+          model: 372
+        entity_flags: 131
+        model_size:     1
+        hitbox:         8
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: very_common
+          item:   flask_of_distilled_water
+        - chance: very_common
+          item:   cactus_arm
+        - chance: uncommon
+          item:   cactuar_needle
+        - chance: uncommon
+          item:   arnica_root
+      despoil:
+        cactuar_needle: 0
+
+  Cactuar_Cantautor:
+    id:            597
+    species:       sabotender
+    type:          [notorious]
+    skill_list_id: 212
+    attributes:
+      combat:
+        skill: scythe
+        delay: 360
+      jobs: [mnk, mnk]
+      render:
+        look:
+          type:  standard
+          model: 372
+        entity_flags: 133
+        model_size:     2
+        hitbox:         9
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [lottery]
+      stats:
+        hp: 6000
+    loot:
+      drops:
+        - chance: always
+          item:   cactuar_needle
+        - chance: always
+          item:   bag_of_cactus_stems
+        - chance: always
+          item:   cactuar_needle
+        - chance: uncommon
+          item:   kung_fu_shoes
+
+  Calchas:
+    id:            5862
+    species:       scorpion
+    type:          [notorious]
+    skill_list_id: 934
+    attributes:
+      combat:
+        skill: scythe
+        delay: 280
+      jobs: [thf, war]
+      render:
+        look:
+          type:  standard
+          model: 284
+        entity_flags: 131
+        model_size:     1
+        hitbox:        27
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [lottery]
+      stats:
+        hp: 9000
+    loot:
+      drops:
+        - chance: uncommon
+          item:   fuchingiri
+    content: wotg
+
+  Celphie:
+    id:            670
+    species:       dhalmel
+    type:          [notorious]
+    skill_list_id: 80
+    attributes:
+      combat:
+        skill: hand_to_hand
+        delay: 480
+      jobs: [mnk, war]
+      render:
+        look:
+          type:  standard
+          model: 332
+        entity_flags: 155
+        name_prefix:   32
+        model_size:     1
+        hitbox:        37
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [lottery]
+      stats:
+        hp: 2000
+    loot:
+      drops:
+        - chance: uncommon
+          item:   giant_femur
+        - chance: common
+          item:   dhalmel_whistle
+        - chance: very_common
+          item:   slice_of_dhalmel_meat
+        - chance: very_rare
+          item:   sprig_of_papaka_grass
+
+  Dahu:
+    id:            6849
+    species:       manticore
+    type:          [notorious]
+    skill_list_id: 419
+    attributes:
+      combat:
+        skill: scythe
+        delay: 360
+      render:
+        look:
+          type:  standard
+          model: 402
+        entity_flags: 129
+        hitbox:        27
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 5800
+    loot:
+      drops:
+        - chance: uncommon
+          item:   lock_of_dahu_hair
+    content: wotg
+
+  Desert_Beetle:
+    id:            1004
+    species:       beetle
+    skill_list_id: 49
+    attributes:
+      combat:
+        skill: polearm
+      jobs: [pld, pld]
+      render:
+        look:
+          type:  standard
+          model: 409
+        entity_flags: 131
+        model_size:     1
+        hitbox:        12
+      behaviors:
+        links: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   insect_wing
+        - chance: uncommon
+          item:   beetle_shell
+        - chance: rare
+          item:   beetle_jaw
+      despoil:
+        insect_wing:  0
+        beetle_shell: 0
+        beetle_jaw:   0
+
+  Desert_Dhalmel:
+    id:            1006
+    species:       dhalmel
+    skill_list_id: 80
+    attributes:
+      combat:
+        skill: staff
+      render:
+        look:
+          type:  standard
+          model: 332
+        entity_flags: 131
+        model_size:     1
+        hitbox:        37
+      behaviors:
+        links: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: very_common
+          item:   slice_of_dhalmel_meat
+        - chance: uncommon
+          item:   dhalmel_hide
+        - chance: rare
+          item:   dhalmel_hide
+        - chance: very_common
+          item:   slice_of_dhalmel_meat
+        - chance: rare
+          item:   dhalmel_hide
+        - chance: uncommon
+          item:   giant_femur
+        - chance: rare
+          item:   sprig_of_papaka_grass
+      despoil:
+        slice_of_dhalmel_meat: 0
+        dhalmel_hide:          0
+        giant_femur:           0
+
+  Desert_Manticore:
+    id:            1007
+    species:       manticore
+    skill_list_id: 179
+    attributes:
+      combat:
+        skill: scythe
+        delay: 360
+      render:
+        look:
+          type:  standard
+          model: 402
+        entity_flags: 129
+        hitbox:        27
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   lock_of_manticore_hair
+        - chance: uncommon
+          item:   manticore_hide
+        - chance: rare
+          item:   manticore_fang
+      despoil:
+        manticore_hide:         0
+        lock_of_manticore_hair: 0
+
+  Desert_Spider:
+    id:            1009
+    species:       spider
+    skill_list_id: 236
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 310
+        entity_flags:  643
+        animation_sub:   8
+        model_size:      1
+        hitbox:         13
+      behaviors:
+        links: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: rare
+          item:   spider_web
+      steal: spider_web
+      despoil:
+        spool_of_rainbow_thread: 0
+        spider_web:              0
+
+  Desert_Worm:
+    id:            1010
+    species:       worm
+    roam:          [worm]
+    spell_list_id: 9
+    skill_list_id: 258
+    attributes:
+      combat:
+        skill: scythe
+      jobs: [blm, rdm]
+      render:
+        look:
+          type:  standard
+          model: 424
+        entity_flags: 131
+        model_size:     1
+        hitbox:        12
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+        type:    [at_evening]
+    loot:
+      drops:
+        - chance: common
+          item:   flint_stone
+        - chance: uncommon
+          item:   chunk_of_copper_ore
+        - chance: rare
+          item:   chunk_of_zinc_ore
+        - chance: very_rare
+          item:   chunk_of_iron_ore
+      steal: pebble
+      despoil:
+        chunk_of_copper_ore: 0
+        chunk_of_iron_ore:   0
+        chunk_of_silver_ore: 0
+        chunk_of_zinc_ore:   0
+
+  Earth_Elemental:
+    id:            1160
+    species:       earth_elemental
+    spell_list_id: 13
+    skill_list_id: 101
+    attributes:
+      combat:
+        skill: staff
+      jobs: [blm, rdm]
+      resists:
+        immune_status: [stun, slow, elegy]
+      render:
+        look:
+          type:  standard
+          model: 439
+        entity_flags:  1155
+        animation_sub:   16
+        model_size:       1
+        hitbox:           3
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+        type:    [weather]
+    loot:
+      drops:
+        - chance: always
+          item:   earth_cluster
+        - chance: common
+          item:   earth_cluster
+        - chance: common
+          item:   earth_cluster
+
+  Eastern_Sphinx:
+    id:            1165
+    species:       manticore
+    type:          [notorious, event]
+    spell_list_id: 44
+    skill_list_id: 179
+    attributes:
+      combat:
+        skill: scythe
+        delay: 360
+      jobs: [war, blm]
+      render:
+        look:
+          type:  standard
+          model: 402
+        entity_flags:  1157
+        animation_sub:    8
+        model_size:       2
+        hitbox:          36
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 6400
+
+  Fallen_Knight:
+    id:            1287
+    species:       skeleton
+    spell_list_id: 5
+    skill_list_id: 227
+    attributes:
+      combat:
+        skill: polearm
+      jobs: [drk, drk]
+      render:
+        look:
+          type:  standard
+          model: 572
+        entity_flags: 131
+        model_size:     1
+        hitbox:        12
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+        type:    [at_night]
+    loot:
+      drops:
+        - chance: common
+          item:   bone_chip
+        - chance: very_rare
+          item:   scroll_of_stun
+        - chance: very_rare
+          item:   scroll_of_absorb-int
+        - chance: very_rare
+          item:   scroll_of_absorb-vit
+        - chance: very_rare
+          item:   scroll_of_absorb-agi
+        - chance: rare
+          item:   revival_tree_root
+      steal: bone_chip
+      despoil:
+        bone_chip: 0
+
+  Fire_Elemental:
+    id:            1341
+    species:       fire_elemental
+    spell_list_id: 17
+    skill_list_id: 102
+    attributes:
+      combat:
+        skill: staff
+      jobs: [blm, rdm]
+      resists:
+        immune_status: [bind, paralyze]
+      render:
+        look:
+          type:  standard
+          model: 436
+        entity_flags:  131
+        animation_sub:  16
+        model_size:      1
+        hitbox:          3
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+        type:    [weather]
+    loot:
+      drops:
+        - chance: always
+          item:   fire_cluster
+        - chance: common
+          item:   fire_cluster
+        - chance: common
+          item:   fire_cluster
+
+  Goblin_Bouncer:
+    id:            1641
+    species:       goblin
+    skill_list_id: 133
+    attributes:
+      combat:
+        skill: axe
+      render:
+        look:
+          type:  standard
+          model: 503
+        entity_flags: 131
+        model_size:     1
+        hitbox:        12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: rare
+          item:   goblin_helm
+        - chance: very_rare
+          item:   goblin_mail
+        - chance: very_rare
+          item:   gold_beastcoin
+      steal: mythril_beastcoin
+      despoil:
+        loaf_of_goblin_bread:      0
+        chunk_of_goblin_chocolate: 0
+        bowl_of_goblin_stew:       0
+        goblin_mushpot:            0
+
+  Goblin_Digger_far:
+    id:            6658
+    display_name:  Goblin_Digger
+    species:       goblin
+    skill_list_id: 133
+    attributes:
+      combat:
+        skill: dagger
+      jobs: [thf, thf]
+      render:
+        look:
+          type:  standard
+          model: 484
+        entity_flags: 131
+        model_size:     1
+        hitbox:        12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: rare
+          item:   goblin_mask
+        - chance: very_rare
+          item:   goblin_armor
+      steal: [pickaxe, mythril_beastcoin] # audit needed
+      despoil:
+        loaf_of_goblin_bread:      0
+        chunk_of_goblin_chocolate: 0
+        bowl_of_goblin_stew:       0
+        goblin_mushpot:            0
+
+  Goblin_Enchanter:
+    id:            1654
+    species:       goblin
+    spell_list_id: 3
+    skill_list_id: 133
+    attributes:
+      combat:
+        skill: sword
+      jobs: [rdm, rdm]
+      render:
+        look:
+          type:  standard
+          model: 504
+        entity_flags: 131
+        model_size:     1
+        hitbox:        12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: rare
+          item:   goblin_mask
+        - chance: very_rare
+          item:   goblin_armor
+        - chance: very_rare
+          item:   brass_ingot
+        - chance: very_rare
+          item:   silver_ingot
+        - chance: super_rare
+          item:   gold_ingot
+        - chance: super_rare
+          item:   platinum_ingot
+      steal: mythril_beastcoin
+      despoil:
+        loaf_of_goblin_bread:      0
+        chunk_of_goblin_chocolate: 0
+        bowl_of_goblin_stew:       0
+        goblin_mushpot:            0
+
+  Goblin_Hunter:
+    id:            1677
+    species:       goblin
+    skill_list_id: 133
+    attributes:
+      combat:
+        skill: dagger
+      jobs: [rng, rng]
+      render:
+        look:
+          type:  standard
+          model: 499
+        entity_flags: 131
+        model_size:     1
+        hitbox:        12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: rare
+          item:   goblin_mask
+        - chance: very_rare
+          item:   goblin_armor
+        - chance: very_rare
+          item:   gold_beastcoin
+      steal: crossbow_bolt
+      despoil:
+        loaf_of_goblin_bread:      0
+        chunk_of_goblin_chocolate: 0
+        bowl_of_goblin_stew:       0
+        goblin_mushpot:            0
+
+  Goblin_Welldigger:
+    id:            1745
+    species:       goblin
+    skill_list_id: 133
+    attributes:
+      combat:
+        skill: dagger
+      jobs: [thf, thf]
+      render:
+        look:
+          type:  standard
+          model: 502
+        entity_flags: 131
+        model_size:     1
+        hitbox:        12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   flask_of_distilled_water
+        - chance: uncommon
+          item:   pickaxe
+        - chance: rare
+          item:   goblin_mask
+        - chance: very_rare
+          item:   goblin_armor
+        - chance: rare
+          item:   strip_of_sheep_jerky
+      steal: beastcoin
+      despoil:
+        loaf_of_goblin_bread:      0
+        chunk_of_goblin_chocolate: 0
+        bowl_of_goblin_stew:       0
+        goblin_mushpot:            0
+
+  Ironshell_fished:
+    id:            5865
+    display_name:  Ironshell
+    species:       crab
+    type:          [fished]
+    skill_list_id: 77
+    attributes:
+      combat:
+        skill: great_sword
+      jobs: [pld, pld]
+      render:
+        look:
+          type:  standard
+          model: 356
+        entity_flags:  3
+        model_size:    1
+        hitbox:       13
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: common
+          item:   chunk_of_rock_salt
+        - chance: rare
+          item:   slice_of_land_crab_meat
+        - chance: very_rare
+          item:   crab_shell
+      steal: chunk_of_rock_salt
+      despoil:
+        slice_of_land_crab_meat: 0
+        crab_shell:              0
+
+  King_Uropygid:
+    id:            6853
+    species:       scorpion
+    type:          [notorious]
+    skill_list_id: 217
+    attributes:
+      combat:
+        skill: scythe
+        delay: 280
+      render:
+        look:
+          type:  standard
+          model: 284
+        entity_flags: 135
+        name_prefix:   32
+        model_size:     3
+        hitbox:        39
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+
+  King_Vinegarroon:
+    id:            2262
+    species:       great_scorpion
+    type:          [notorious]
+    skill_list_id: 274
+    attributes:
+      combat:
+        skill:    scythe
+        delay:    280
+        dmg_mult: 125
+      render:
+        look:
+          type:  standard
+          model: 284
+        entity_flags: 159
+        name_prefix:   32
+        model_size:     3
+        hitbox:        39
+      mods:
+        regen: 125
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 25000
+    loot:
+      drops:
+        - chance: common
+          item:   aces_helm
+        - chance: uncommon
+          item:   venomous_claw
+        - chance: uncommon
+          item:   heavy_shell
+
+  Lich:
+    id:            2407
+    species:       skeleton
+    spell_list_id: 28
+    skill_list_id: 227
+    attributes:
+      combat:
+        skill: great_katana
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 564
+        entity_flags: 131
+        model_size:     1
+        hitbox:        12
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+        type:    [at_night]
+    loot:
+      drops:
+        - chance: common
+          item:   bone_chip
+        - chance: uncommon
+          item:   revival_tree_root
+      steal: bone_chip
+      despoil:
+        bone_chip: 0
+
+  Maharaja:
+    id:            2487
+    species:       tiger
+    type:          [notorious]
+    skill_list_id: 242
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 308
+        entity_flags: 131
+        model_size:     1
+        hitbox:        25
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 9000
+
+  Monarca_de_Altepa:
+    id:            2731
+    species:       sabotender
+    skill_list_id: 212
+    attributes:
+      combat:
+        delay: 190
+      render:
+        look:
+          type:  standard
+          model: 372
+        model_size: 2
+        hitbox:     9
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+
+  Phorusrhacos:
+    id:            3133
+    species:       roc
+    skill_list_id: 125
+    attributes:
+      combat:
+        skill: club
+      render:
+        look:
+          type:  standard
+          model: 336
+        entity_flags: 131
+        model_size:     1
+        hitbox:        32
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   giant_bird_feather
+        - chance: rare
+          item:   giant_bird_plume
+      despoil:
+        giant_bird_feather: 0
+
+  Picolaton:
+    id:            6850
+    species:       roc
+    type:          [notorious]
+    skill_list_id: 418
+    attributes:
+      combat:
+        skill: club
+      render:
+        look:
+          type:  standard
+          model: 336
+        entity_flags: 131
+        model_size:     1
+        hitbox:        32
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [lottery]
+      stats:
+        hp: 6900
+    loot:
+      drops:
+        - chance: common
+          item:   thrakon_breastplate
+    content: wotg
+
+  Razorjaw_Pugil_fished:
+    id:            6776
+    display_name:  Razorjaw_Pugil
+    species:       pugil
+    type:          [fished]
+    skill_list_id: 197
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 348
+        entity_flags: 133
+        model_size:     2
+        hitbox:        32
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+    loot:
+      steal: handful_of_fish_scales
+      despoil:
+        handful_of_pugil_scales: 0
+        handful_of_fish_scales:  0
+
+  Sabotender_Campeador:
+    id:            6851
+    species:       sabotender_florido
+    type:          [notorious]
+    skill_list_id: 212
+    attributes:
+      combat:
+        skill: scythe
+      jobs: [sam, sam]
+      render:
+        look:
+          type:  standard
+          model: 374
+        entity_flags: 135
+        model_size:     3
+        hitbox:        11
+      behaviors:
+        aggressive:     true
+        true_detection: true
+      spawn:
+        type: [scripted]
+
+  Sabotender_Enamorado:
+    id:            3430
+    species:       sabotender
+    type:          [notorious]
+    skill_list_id: 212
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 372
+        entity_flags: 133
+        model_size:     2
+        hitbox:         9
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 13500
+
+  Sabotender_Mercenario:
+    id:            6852
+    species:       sabotender
+    type:          [notorious]
+    skill_list_id: 212
+    attributes:
+      combat:
+        skill: scythe
+        delay: 360
+      jobs: [mnk, mnk]
+      render:
+        look:
+          type:  standard
+          model: 372
+        entity_flags: 129
+        hitbox:         6
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+
+  Tulwar_Scorpion:
+    id:            4048
+    species:       scorpion
+    skill_list_id: 217
+    attributes:
+      combat:
+        skill: scythe
+        delay: 280
+      render:
+        look:
+          type:  standard
+          model: 284
+        entity_flags: 131
+        model_size:     1
+        hitbox:        27
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   scorpion_claw
+        - chance: uncommon
+          item:   scorpion_shell
+        - chance: rare
+          item:   vial_of_desert_venom
+      despoil:
+        scorpion_shell: 0
+        scorpion_claw:  0
+
+  Western_Sphinx:
+    id:            4324
+    species:       manticore
+    type:          [notorious, event]
+    spell_list_id: 43
+    skill_list_id: 179
+    attributes:
+      combat:
+        skill: scythe
+        delay: 360
+      jobs: [war, blm]
+      render:
+        look:
+          type:  standard
+          model: 402
+        entity_flags:  1153
+        animation_sub:    8
+        hitbox:          27
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 6400
+
+
+  Beta_beet_Desert_Beetle:
+    id:            40071
+    species:       beetle
+    skill_list_id: 49
+    attributes:
+      combat:
+        skill: polearm
+      jobs: [pld, pld]
+      render:
+        look:
+          type:  standard
+          model: 2971
+        entity_flags: 131
+        model_size:     1
+        hitbox:        12
+      behaviors:
+        links: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: rare
+          item:   beta_10861
+        - chance: uncommon
+          item:   beta_83
+        - chance: uncommon
+          item:   beta_4634
+        - chance: uncommon
+          item:   beta_6747
+        - chance: uncommon
+          item:   beta_6897
+        - chance: common
+          item:   insect_wing
+        - chance: uncommon
+          item:   beetle_shell
+        - chance: rare
+          item:   beetle_jaw
+      despoil:
+        insect_wing:  0
+        beetle_shell: 0
+        beetle_jaw:   0
+
+  Beta_sabo_Cactuar:
+    id:            40072
+    species:       sabotender
+    skill_list_id: 212
+    attributes:
+      combat:
+        skill: scythe
+        delay: 360
+      jobs: [mnk, mnk]
+      render:
+        look:
+          type:  standard
+          model: 2966
+        entity_flags: 131
+        model_size:     1
+        hitbox:         8
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: rare
+          item:   beta_10379
+        - chance: uncommon
+          item:   beta_242
+        - chance: uncommon
+          item:   beta_4910
+        - chance: uncommon
+          item:   beta_6790
+        - chance: very_common
+          item:   flask_of_distilled_water
+        - chance: very_common
+          item:   cactus_arm
+        - chance: uncommon
+          item:   cactuar_needle
+        - chance: uncommon
+          item:   arnica_root
+      despoil:
+        cactuar_needle: 0
+
+spawns:
+  17289217:
+    template: Ironshell_fished
+    script:   Ironshell
+    at:       [1.000, 1.000, 1.000]
+    level:    [41, 42]
+  17289218:
+    template: Apsaras
+    at:       [1.000, 1.000, 1.000]
+    level:    [40, 42]
+  17289219:
+    template: Bigclaw_fished
+    script:   Bigclaw
+    at:       [1.000, 1.000, 1.000]
+    level:    [45, 47]
+  17289220:
+    template: Bigclaw_fished
+    script:   Bigclaw
+    at:       [1.000, 1.000, 1.000]
+    level:    [45, 47]
+  17289221:
+    template: Razorjaw_Pugil_fished
+    script:   Razorjaw_Pugil
+    at:       [1.000, 1.000, 1.000]
+    level:    [50, 52]
+  17289222:
+    template: Desert_Spider
+    region:   e_6
+    level:    [40, 44]
+  17289223:
+    template: Desert_Spider
+    region:   e_6
+    level:    [40, 44]
+  17289224:
+    template: Desert_Spider
+    region:   e_6
+    level:    [40, 44]
+  17289225:
+    template: Desert_Spider
+    region:   e_6
+    level:    [40, 44]
+  17289226:
+    template: Desert_Dhalmel
+    region:   e_6
+    level:    [44, 48]
+  17289227:
+    template: Desert_Worm
+    region:   e_6
+    level:    [43, 47]
+  17289228:
+    template: Desert_Spider
+    region:   e_12
+    level:    [40, 44]
+  17289229:
+    template: Desert_Spider
+    region:   e_12
+    level:    [40, 44]
+  17289230:
+    template: Desert_Spider
+    region:   e_12
+    level:    [40, 44]
+  17289231:
+    template: Desert_Spider
+    region:   e_12
+    level:    [40, 44]
+  17289232:
+    template: Desert_Dhalmel
+    region:   e_6
+    level:    [44, 48]
+  17289233:
+    template: Desert_Worm
+    region:   e_12
+    level:    [43, 47]
+  17289234:
+    template: Desert_Spider
+    region:   ne_18
+    level:    [40, 44]
+  17289235:
+    template: Desert_Spider
+    region:   ne_18
+    level:    [40, 44]
+  17289236:
+    template: Desert_Spider
+    region:   ne_18
+    level:    [40, 44]
+  17289237:
+    template: Desert_Spider
+    region:   ne_18
+    level:    [40, 44]
+  17289238:
+    template: Desert_Dhalmel
+    region:   ne_18
+    level:    [44, 48]
+  17289239:
+    template: Antican_Essedarius
+    region:   ne_18
+    level:    [41, 45]
+  17289240:
+    template: Desert_Worm
+    region:   ne_18
+    level:    [43, 47]
+  17289241:
+    template: Earth_Elemental
+    region:   ne_18
+    level:    [56, 58]
+  17289242:
+    template: Desert_Spider
+    region:   ne_26
+    level:    [40, 44]
+  17289243:
+    template: Desert_Spider
+    region:   ne_26
+    level:    [40, 44]
+  17289244:
+    template: Desert_Spider
+    region:   ne_26
+    level:    [40, 44]
+  17289245:
+    template: Desert_Spider
+    region:   ne_26
+    level:    [40, 44]
+  17289246:
+    template: Desert_Dhalmel
+    region:   ne_26
+    level:    [44, 48]
+  17289247:
+    template: Antican_Essedarius
+    region:   ne_26
+    level:    [41, 45]
+  17289248:
+    template: Desert_Worm
+    region:   ne_26
+    level:    [43, 47]
+  17289249:
+    template: Desert_Spider
+    region:   ne_33
+    level:    [40, 44]
+  17289250:
+    template: Desert_Spider
+    region:   ne_33
+    level:    [40, 44]
+  17289251:
+    template: Desert_Spider
+    region:   ne_33
+    level:    [40, 44]
+  17289252:
+    template: Desert_Dhalmel
+    region:   ne_33
+    level:    [44, 48]
+  17289253:
+    template: Antican_Essedarius
+    region:   ne_33
+    level:    [41, 45]
+  17289254:
+    template: Cactuar
+    region:   ne_33
+    level:    [48, 52]
+  17289255:
+    template: Desert_Worm
+    region:   ne_33
+    level:    [43, 47]
+  17289256:
+    template: Tulwar_Scorpion
+    region:   ne_33
+    level:    [53, 56]
+  17289257:
+    template: Earth_Elemental
+    region:   ne_18
+    level:    [56, 58]
+  17289258:
+    template: Desert_Spider
+    region:   ne_42
+    level:    [40, 44]
+  17289259:
+    template: Desert_Spider
+    region:   ne_42
+    level:    [40, 44]
+  17289260:
+    template: Desert_Spider
+    region:   ne_42
+    level:    [40, 44]
+  17289261:
+    template: Desert_Dhalmel
+    region:   ne_42
+    level:    [44, 48]
+  17289262:
+    template: Desert_Dhalmel
+    region:   ne_42
+    level:    [44, 48]
+  17289263:
+    template: Antican_Essedarius
+    region:   ne_42
+    level:    [41, 45]
+  17289264:
+    template: Cactuar
+    region:   ne_33
+    level:    [48, 52]
+  17289265:
+    template: Desert_Worm
+    region:   ne_42
+    level:    [43, 47]
+  17289266:
+    template: Tulwar_Scorpion
+    region:   ne_42
+    level:    [53, 56]
+  17289267:
+    template: Desert_Spider
+    region:   ne_51
+    level:    [40, 44]
+  17289268:
+    template: Desert_Spider
+    region:   ne_51
+    level:    [40, 44]
+  17289269:
+    template: Desert_Spider
+    region:   ne_51
+    level:    [40, 44]
+  17289270:
+    template: Antican_Essedarius
+    region:   ne_51
+    level:    [41, 45]
+  17289271:
+    template: Cactuar
+    region:   ne_57
+    level:    [48, 52]
+  17289272:
+    template: Desert_Worm
+    region:   ne_51
+    level:    [43, 47]
+  17289273:
+    template: Desert_Spider
+    region:   ne_57
+    level:    [40, 44]
+  17289274:
+    template: Desert_Spider
+    region:   ne_57
+    level:    [40, 44]
+  17289275:
+    template: Desert_Spider
+    region:   ne_57
+    level:    [40, 44]
+  17289276:
+    template: Desert_Dhalmel
+    region:   ne_57
+    level:    [44, 48]
+  17289277:
+    template: Desert_Dhalmel
+    region:   ne_57
+    level:    [44, 48]
+  17289278:
+    template: Antican_Essedarius
+    region:   ne_57
+    level:    [41, 45]
+  17289279:
+    template: Antican_Essedarius
+    region:   ne_57
+    level:    [41, 45]
+  17289280:
+    template: Cactuar
+    region:   ne_57
+    level:    [48, 52]
+  17289281:
+    template: Desert_Worm
+    region:   ne_57
+    level:    [43, 47]
+  17289282:
+    template: Desert_Worm
+    region:   ne_57
+    level:    [43, 47]
+  17289283:
+    template: Desert_Beetle
+    region:   n_67
+    level:    [47, 51]
+  17289284:
+    template: Desert_Beetle
+    region:   n_67
+    level:    [47, 51]
+  17289285:
+    template: Desert_Beetle
+    region:   n_67
+    level:    [47, 51]
+  17289286:
+    template: Desert_Dhalmel
+    region:   n_67
+    level:    [44, 48]
+  17289287:
+    template: Antican_Retiarius
+    region:   n_67
+    level:    [45, 49]
+  17289288:
+    template: Antican_Secutor
+    region:   n_67
+    level:    [54, 58]
+  17289289:
+    template: Tulwar_Scorpion
+    region:   n_67
+    level:    [53, 56]
+  17289290:
+    template: Cactuar
+    region:   n_67
+    level:    [48, 52]
+  17289291:
+    template: Cactuar
+    region:   n_67
+    level:    [48, 52]
+  17289292:
+    template: Desert_Beetle
+    region:   n_76
+    level:    [47, 51]
+  17289293:
+    template: Desert_Beetle
+    region:   n_76
+    level:    [47, 51]
+  17289294:
+    template: Antican_Secutor
+    region:   n_76
+    level:    [54, 58]
+  17289295:
+    template: Antican_Lanista
+    region:   n_76
+    level:    [54, 58]
+  17289296:
+    template: Cactuar
+    region:   n_76
+    level:    [48, 52]
+  17289297:
+    template: Cactuar
+    region:   n_67
+    level:    [48, 52]
+  17289298:
+    template: Desert_Manticore
+    region:   n_76
+    level:    [53, 57]
+  17289299:
+    template: Antican_Hoplomachus
+    region:   n_83
+    level:    [54, 58]
+  17289300:
+    template: Antican_Lanista
+    region:   n_83
+    level:    [54, 58]
+  17289301:
+    template: Cactuar
+    region:   n_83
+    level:    [48, 52]
+  17289302:
+    template: Cactuar
+    region:   n_83
+    level:    [48, 52]
+  17289303:
+    template: Desert_Manticore
+    region:   n_83
+    level:    [53, 57]
+  17289304:
+    template: Desert_Manticore
+    region:   n_83
+    level:    [53, 57]
+  17289305:
+    template: Desert_Beetle
+    region:   n_90
+    level:    [47, 51]
+  17289306:
+    template: Desert_Beetle
+    region:   n_90
+    level:    [47, 51]
+  17289307:
+    template: Antican_Lanista
+    region:   n_90
+    level:    [54, 58]
+  17289308:
+    template: Antican_Hoplomachus
+    region:   n_90
+    level:    [54, 58]
+  17289309:
+    template: Antican_Hoplomachus
+    region:   n_90
+    level:    [54, 58]
+  17289310:
+    template: Cactuar
+    region:   n_90
+    level:    [49, 53]
+  17289311:
+    template: Cactuar
+    region:   n_83
+    level:    [48, 52]
+  17289312:
+    template: Desert_Manticore
+    region:   n_90
+    level:    [53, 57]
+  17289313:
+    template: Desert_Manticore
+    region:   n_90
+    level:    [53, 57]
+  17289314:
+    template: Desert_Manticore
+    region:   n_90
+    level:    [53, 57]
+  17289315:
+    template: Desert_Beetle
+    region:   nw_99
+    level:    [47, 51]
+  17289316:
+    template: Desert_Beetle
+    region:   nw_99
+    level:    [47, 51]
+  17289317:
+    template: Antican_Lanista
+    region:   nw_99
+    level:    [54, 58]
+  17289318:
+    template: Antican_Lanista
+    region:   nw_99
+    level:    [54, 58]
+  17289319:
+    template: Cactuar
+    region:   nw_99
+    level:    [49, 53]
+  17289320:
+    template: Cactuar
+    region:   nw_99
+    level:    [49, 53]
+  17289321:
+    template: Desert_Manticore
+    region:   nw_99
+    level:    [53, 57]
+  17289322:
+    template: Desert_Manticore
+    region:   n_90
+    level:    [53, 57]
+  17289323:
+    template: Dahu
+    region:   nw_99
+    level:    [57, 57]
+  17289324:
+    template: Antican_Lanista
+    region:   n_108
+    level:    [54, 58]
+  17289325:
+    template: Antican_Lanista
+    region:   n_108
+    level:    [54, 58]
+  17289326:
+    template: Antican_Hoplomachus
+    region:   n_110
+    level:    [54, 58]
+  17289327:
+    template: Antican_Hoplomachus
+    region:   n_110
+    level:    [54, 58]
+  17289328:
+    template: Antican_Lanista
+    region:   n_112
+    level:    [54, 58]
+  17289329:
+    template: Desert_Beetle
+    region:   n_113
+    level:    [47, 51]
+  17289330:
+    template: Desert_Beetle
+    region:   n_113
+    level:    [47, 51]
+  17289331:
+    template: Desert_Beetle
+    region:   n_113
+    level:    [47, 51]
+  17289332:
+    template: Antican_Hoplomachus
+    region:   n_113
+    level:    [54, 58]
+  17289333:
+    template: Antican_Lanista
+    region:   n_113
+    level:    [54, 58]
+  17289334:
+    template: Cactuar
+    region:   n_113
+    level:    [48, 52]
+  17289335:
+    template: Tulwar_Scorpion
+    region:   n_113
+    level:    [53, 56]
+  17289336:
+    template: Desert_Manticore
+    region:   n_113
+    level:    [53, 57]
+  17289337:
+    template: Desert_Manticore
+    region:   n_113
+    level:    [53, 57]
+  17289338:
+    template: Desert_Beetle
+    region:   nw_123
+    level:    [47, 51]
+  17289339:
+    template: Desert_Beetle
+    region:   nw_123
+    level:    [47, 51]
+  17289340:
+    template: Desert_Beetle
+    region:   nw_123
+    level:    [47, 51]
+  17289341:
+    template: Antican_Hoplomachus
+    region:   nw_123
+    level:    [54, 58]
+  17289342:
+    template: Antican_Lanista
+    region:   nw_123
+    level:    [54, 58]
+  17289343:
+    template: Antican_Lanista
+    region:   nw_123
+    level:    [54, 58]
+  17289344:
+    template: Desert_Manticore
+    region:   nw_123
+    level:    [53, 57]
+  17289345:
+    template: Desert_Manticore
+    region:   nw_123
+    level:    [53, 57]
+  17289346:
+    template: Desert_Manticore
+    region:   n_113
+    level:    [53, 57]
+  17289347:
+    template: Antican_Hoplomachus
+    region:   nw_131
+    level:    [54, 58]
+  17289348:
+    template: Antican_Lanista
+    region:   nw_131
+    level:    [54, 58]
+  17289349:
+    template: Antican_Lanista
+    region:   nw_131
+    level:    [54, 58]
+  17289350:
+    template: Fire_Elemental
+    region:   nw_131
+    level:    [56, 58]
+  17289351:
+    template: Antican_Hoplomachus
+    region:   nw_135
+    level:    [54, 58]
+  17289352:
+    template: Antican_Hoplomachus
+    region:   nw_135
+    level:    [54, 58]
+  17289353:
+    template: Antican_Lanista
+    region:   nw_135
+    level:    [54, 58]
+  17289354:
+    template: Fire_Elemental
+    region:   nw_135
+    level:    [56, 58]
+  17289355:
+    template: Desert_Beetle
+    region:   nw_139
+    level:    [47, 51]
+  17289356:
+    template: Desert_Beetle
+    region:   nw_139
+    level:    [47, 51]
+  17289357:
+    template: Desert_Beetle
+    region:   nw_139
+    level:    [47, 51]
+  17289358:
+    template: Antican_Lanista
+    region:   nw_139
+    level:    [54, 58]
+  17289359:
+    template: Cactuar
+    region:   nw_139
+    level:    [49, 53]
+  17289360:
+    template: Cactuar
+    region:   nw_139
+    level:    [49, 53]
+  17289361:
+    template: Tulwar_Scorpion
+    region:   nw_139
+    level:    [53, 56]
+  17289362:
+    template: Tulwar_Scorpion
+    region:   nw_139
+    level:    [53, 56]
+  17289363:
+    template: Tulwar_Scorpion
+    region:   nw_139
+    level:    [53, 56]
+  17289364:
+    template: Phorusrhacos
+    region:   w_149
+    level:    [57, 60]
+  17289365:
+    template: Desert_Beetle
+    region:   w_149
+    level:    [47, 51]
+  17289366:
+    template: Desert_Beetle
+    region:   w_149
+    level:    [47, 51]
+  17289367:
+    template: Antican_Lanista
+    region:   w_149
+    level:    [54, 58]
+  17289368:
+    template: Antican_Lanista
+    region:   w_149
+    level:    [54, 58]
+  17289369:
+    template: Cactuar
+    region:   w_149
+    level:    [49, 53]
+  17289370:
+    template: Tulwar_Scorpion
+    region:   w_149
+    level:    [53, 56]
+  17289371:
+    template: Tulwar_Scorpion
+    region:   w_149
+    level:    [53, 56]
+  17289372:
+    template: Tulwar_Scorpion
+    region:   w_149
+    level:    [53, 56]
+  17289373:
+    template: Phorusrhacos
+    region:   w_149
+    level:    [57, 60]
+  17289374:
+    template: Phorusrhacos
+    region:   w_149
+    level:    [57, 60]
+  17289375:
+    template: Desert_Beetle
+    region:   c_159
+    level:    [47, 51]
+  17289376:
+    template: Desert_Beetle
+    region:   c_159
+    level:    [47, 51]
+  17289377:
+    template: Antican_Secutor
+    region:   c_159
+    level:    [54, 58]
+  17289378:
+    template: Antican_Lanista
+    region:   c_159
+    level:    [54, 58]
+  17289379:
+    template: Cactuar
+    region:   c_159
+    level:    [48, 52]
+  17289380:
+    template: Cactuar
+    region:   c_159
+    level:    [49, 53]
+  17289381:
+    template: Tulwar_Scorpion
+    region:   c_159
+    level:    [53, 56]
+  17289382:
+    template: Tulwar_Scorpion
+    region:   c_159
+    level:    [53, 56]
+  17289383:
+    template: Tulwar_Scorpion
+    region:   c_159
+    level:    [53, 56]
+  17289384:
+    template: Phorusrhacos
+    region:   w_149
+    level:    [57, 60]
+  17289385:
+    template: Desert_Beetle
+    region:   c_169
+    level:    [47, 51]
+  17289386:
+    template: Desert_Beetle
+    region:   c_169
+    level:    [47, 51]
+  17289387:
+    template: Antican_Secutor
+    region:   c_169
+    level:    [54, 58]
+  17289388:
+    template: Antican_Retiarius
+    region:   c_169
+    level:    [45, 49]
+  17289389:
+    template: Antican_Eques
+    region:   c_169
+    level:    [45, 49]
+  17289390:
+    template: Cactuar
+    region:   c_169
+    level:    [48, 52]
+  17289391:
+    template: Desert_Worm
+    region:   c_169
+    level:    [43, 47]
+  17289392:
+    template: Desert_Worm
+    region:   c_169
+    level:    [43, 47]
+  17289393:
+    template: Antican_Hoplomachus
+    region:   c_177
+    level:    [54, 58]
+  17289394:
+    template: Antican_Hoplomachus
+    region:   c_177
+    level:    [54, 58]
+  17289395:
+    template: Antican_Lanista
+    region:   c_177
+    level:    [54, 58]
+  17289396:
+    template: Antican_Hoplomachus
+    region:   c_180
+    level:    [54, 58]
+  17289397:
+    template: Antican_Hoplomachus
+    region:   c_180
+    level:    [54, 58]
+  17289398:
+    template: Antican_Lanista
+    region:   c_180
+    level:    [54, 58]
+  17289399:
+    template: Antican_Hoplomachus
+    region:   c_183
+    level:    [54, 58]
+  17289400:
+    template: Antican_Hoplomachus
+    region:   c_184
+    level:    [54, 58]
+  17289401:
+    template: Antican_Lanista
+    region:   c_184
+    level:    [54, 58]
+  17289402:
+    template: Antican_Lanista
+    region:   c_186
+    level:    [54, 58]
+  17289403:
+    template: Antican_Hoplomachus
+    region:   c_187
+    level:    [54, 58]
+  17289404:
+    template: Antican_Lanista
+    region:   c_187
+    level:    [54, 58]
+  17289405:
+    template: Antican_Lanista
+    region:   c_187
+    level:    [54, 58]
+  17289406:
+    template: Desert_Dhalmel
+    region:   c_190
+    level:    [44, 48]
+  17289407:
+    template: Desert_Dhalmel
+    region:   c_190
+    level:    [44, 48]
+  17289408:
+    template: Desert_Beetle
+    region:   c_190
+    level:    [47, 51]
+  17289409:
+    template: Desert_Beetle
+    region:   c_190
+    level:    [47, 51]
+  17289410:
+    template: Antican_Retiarius
+    region:   c_190
+    level:    [45, 49]
+  17289411:
+    template: Antican_Eques
+    region:   c_190
+    level:    [45, 49]
+  17289412:
+    template: Desert_Worm
+    region:   c_190
+    level:    [43, 47]
+  17289413:
+    template: Desert_Worm
+    region:   c_190
+    level:    [43, 47]
+  17289414:
+    template: Fire_Elemental
+    region:   c_190
+    level:    [56, 58]
+  17289415:
+    template: Desert_Dhalmel
+    region:   c_199
+    level:    [44, 48]
+  17289416:
+    template: Desert_Dhalmel
+    region:   c_199
+    level:    [44, 48]
+  17289417:
+    template: Desert_Beetle
+    region:   c_199
+    level:    [47, 51]
+  17289418:
+    template: Desert_Beetle
+    region:   c_199
+    level:    [47, 51]
+  17289419:
+    template: Antican_Eques
+    region:   c_199
+    level:    [45, 49]
+  17289420:
+    template: Antican_Retiarius
+    region:   c_199
+    level:    [45, 49]
+  17289421:
+    template: Desert_Worm
+    region:   c_199
+    level:    [43, 47]
+  17289422:
+    template: Desert_Worm
+    region:   c_199
+    level:    [43, 47]
+  17289423:
+    template: Fire_Elemental
+    region:   c_199
+    level:    [56, 58]
+  17289424:
+    template: Desert_Dhalmel
+    region:   c_208
+    level:    [44, 48]
+  17289425:
+    template: Desert_Dhalmel
+    region:   c_208
+    level:    [44, 48]
+  17289426:
+    template: Desert_Beetle
+    region:   c_208
+    level:    [47, 51]
+  17289427:
+    template: Desert_Beetle
+    region:   c_208
+    level:    [47, 51]
+  17289428:
+    template: Desert_Beetle
+    region:   region_93
+    level:    [47, 51]
+  17289429:
+    template: Antican_Retiarius
+    region:   c_208
+    level:    [45, 49]
+  17289430:
+    template: Antican_Eques
+    region:   c_208
+    level:    [45, 49]
+  17289431:
+    template: Desert_Worm
+    region:   c_208
+    level:    [43, 47]
+  17289432:
+    template: Desert_Worm
+    region:   c_208
+    level:    [43, 47]
+  17289433:
+    template: Antican_Hoplomachus
+    region:   c_217
+    level:    [54, 58]
+  17289434:
+    template: Antican_Lanista
+    region:   c_217
+    level:    [54, 58]
+  17289435:
+    template: Antican_Lanista
+    region:   c_217
+    level:    [54, 58]
+  17289436:
+    template: Antican_Hoplomachus
+    region:   c_220
+    level:    [54, 58]
+  17289437:
+    template: Desert_Dhalmel
+    region:   c_221
+    level:    [44, 48]
+  17289438:
+    template: Desert_Dhalmel
+    region:   c_221
+    level:    [44, 48]
+  17289439:
+    template: Desert_Beetle
+    region:   c_221
+    level:    [47, 51]
+  17289440:
+    template: Desert_Beetle
+    region:   c_221
+    level:    [47, 51]
+  17289441:
+    template: Antican_Secutor
+    region:   c_221
+    level:    [54, 58]
+  17289442:
+    template: Antican_Retiarius
+    region:   c_221
+    level:    [45, 49]
+  17289443:
+    template: Antican_Retiarius
+    region:   c_221
+    level:    [45, 49]
+  17289444:
+    template: Desert_Worm
+    region:   c_221
+    level:    [43, 47]
+  17289445:
+    template: Desert_Worm
+    region:   c_221
+    level:    [43, 47]
+  17289446:
+    template: Antican_Secutor
+    region:   e_230
+    level:    [54, 58]
+  17289447:
+    template: Antican_Secutor
+    region:   e_230
+    level:    [54, 58]
+  17289448:
+    template: Desert_Spider
+    region:   c_232
+    level:    [40, 44]
+  17289449:
+    template: Desert_Beetle
+    region:   c_232
+    level:    [47, 51]
+  17289450:
+    template: Desert_Dhalmel
+    region:   c_232
+    level:    [44, 48]
+  17289451:
+    template: Desert_Dhalmel
+    region:   c_232
+    level:    [44, 48]
+  17289452:
+    template: Desert_Dhalmel
+    region:   c_232
+    level:    [44, 48]
+  17289453:
+    template: Celphie
+    region:   c_232
+    level:    [47, 50]
+  17289454:
+    template: Antican_Retiarius
+    region:   c_232
+    level:    [45, 49]
+  17289455:
+    template: Antican_Retiarius
+    region:   c_232
+    level:    [45, 49]
+  17289456:
+    template: Desert_Worm
+    region:   c_232
+    level:    [43, 47]
+  17289457:
+    template: Desert_Worm
+    region:   c_232
+    level:    [43, 47]
+  17289458:
+    template: Desert_Beetle
+    region:   n_242
+    level:    [47, 51]
+  17289459:
+    template: Desert_Beetle
+    region:   n_242
+    level:    [47, 51]
+  17289460:
+    template: Antican_Secutor
+    region:   n_242
+    level:    [54, 58]
+  17289461:
+    template: Antican_Secutor
+    region:   n_242
+    level:    [54, 58]
+  17289462:
+    template: Antican_Eques
+    region:   n_242
+    level:    [45, 49]
+  17289463:
+    template: Desert_Worm
+    region:   n_242
+    level:    [43, 47]
+  17289464:
+    template: Antican_Hoplomachus
+    region:   c_248
+    level:    [54, 58]
+  17289465:
+    template: Antican_Hoplomachus
+    region:   c_248
+    level:    [54, 58]
+  17289466:
+    template: Antican_Lanista
+    region:   c_248
+    level:    [54, 58]
+  17289467:
+    template: Earth_Elemental
+    region:   c_248
+    level:    [56, 58]
+  17289468:
+    template: Antican_Hoplomachus
+    region:   n_252
+    level:    [54, 58]
+  17289469:
+    template: Antican_Hoplomachus
+    region:   n_252
+    level:    [54, 58]
+  17289470:
+    template: Earth_Elemental
+    region:   n_252
+    level:    [56, 58]
+  17289471:
+    template: Antican_Hoplomachus
+    region:   n_255
+    level:    [54, 58]
+  17289472:
+    template: Desert_Spider
+    region:   n_256
+    level:    [40, 44]
+  17289473:
+    template: Desert_Dhalmel
+    region:   n_256
+    level:    [44, 48]
+  17289474:
+    template: Desert_Dhalmel
+    region:   n_256
+    level:    [44, 48]
+  17289475:
+    template: Antican_Essedarius
+    region:   n_256
+    level:    [41, 45]
+  17289476:
+    template: Antican_Retiarius
+    region:   n_256
+    level:    [45, 49]
+  17289477:
+    template: Cactuar
+    region:   n_256
+    level:    [48, 52]
+  17289478:
+    template: Desert_Worm
+    region:   n_256
+    level:    [43, 47]
+  17289479:
+    template: Desert_Worm
+    region:   n_256
+    level:    [43, 47]
+  17289480:
+    template: Tulwar_Scorpion
+    region:   n_256
+    level:    [53, 56]
+  17289481:
+    template: Desert_Beetle
+    region:   n_265
+    level:    [47, 51]
+  17289482:
+    template: Desert_Beetle
+    region:   n_265
+    level:    [47, 51]
+  17289483:
+    template: Desert_Beetle
+    region:   n_267
+    level:    [47, 51]
+  17289484:
+    template: Desert_Beetle
+    region:   n_267
+    level:    [47, 51]
+  17289485:
+    template: Desert_Beetle
+    region:   n_269
+    level:    [47, 51]
+  17289486:
+    template: Desert_Beetle
+    region:   n_269
+    level:    [47, 51]
+  17289487:
+    template: Desert_Beetle
+    region:   n_271
+    level:    [47, 51]
+  17289488:
+    template: Desert_Beetle
+    region:   n_271
+    level:    [47, 51]
+  17289489:
+    template: Desert_Beetle
+    region:   n_273
+    level:    [47, 51]
+  17289490:
+    template: Desert_Beetle
+    region:   n_274
+    level:    [47, 51]
+  17289491:
+    template: Desert_Beetle
+    region:   n_274
+    level:    [47, 51]
+  17289492:
+    template: Cactuar
+    region:   n_276
+    level:    [48, 52]
+  17289493:
+    template: Cactuar
+    region:   n_279
+    level:    [48, 52]
+  17289494:
+    template: Cactuar
+    region:   n_113
+    level:    [48, 52]
+  17289495:
+    template: Cactuar
+    region:   n_279
+    level:    [48, 52]
+  17289496:
+    template: Desert_Beetle
+    region:   c_280
+    level:    [47, 51]
+  17289497:
+    template: Desert_Beetle
+    region:   c_280
+    level:    [47, 51]
+  17289498:
+    template: Desert_Beetle
+    region:   c_282
+    level:    [47, 51]
+  17289499:
+    template: Desert_Beetle
+    region:   c_282
+    level:    [47, 51]
+  17289500:
+    template: Desert_Beetle
+    region:   c_284
+    level:    [47, 51]
+  17289501:
+    template: Desert_Beetle
+    region:   c_284
+    level:    [47, 51]
+  17289502:
+    template: Desert_Beetle
+    region:   c_286
+    level:    [47, 51]
+  17289503:
+    template: Desert_Beetle
+    region:   c_286
+    level:    [47, 51]
+  17289504:
+    template: Desert_Beetle
+    region:   c_288
+    level:    [47, 51]
+  17289505:
+    template: Desert_Beetle
+    region:   c_289
+    level:    [47, 51]
+  17289506:
+    template: Desert_Beetle
+    region:   c_289
+    level:    [47, 51]
+  17289507:
+    template: Desert_Beetle
+    region:   c_291
+    level:    [47, 51]
+  17289508:
+    template: Desert_Beetle
+    region:   c_291
+    level:    [47, 51]
+  17289509:
+    template: Desert_Beetle
+    region:   c_293
+    level:    [47, 51]
+  17289510:
+    template: Desert_Beetle
+    region:   c_293
+    level:    [47, 51]
+  17289511:
+    template: Desert_Beetle
+    region:   c_295
+    level:    [47, 51]
+  17289512:
+    template: Desert_Beetle
+    region:   c_296
+    level:    [47, 51]
+  17289513:
+    template: Desert_Beetle
+    region:   c_296
+    level:    [47, 51]
+  17289514:
+    template: Antican_Secutor
+    region:   c_296
+    level:    [54, 58]
+  17289515:
+    template: Antican_Secutor
+    region:   c_296
+    level:    [54, 58]
+  17289516:
+    template: Antican_Retiarius
+    region:   c_296
+    level:    [45, 49]
+  17289517:
+    template: Antican_Retiarius
+    region:   c_296
+    level:    [45, 49]
+  17289518:
+    template: Desert_Beetle
+    region:   s_302
+    level:    [47, 51]
+  17289519:
+    template: Desert_Beetle
+    region:   s_302
+    level:    [47, 51]
+  17289520:
+    template: Desert_Beetle
+    region:   region_88
+    level:    [47, 51]
+  17289521:
+    template: Antican_Secutor
+    region:   s_302
+    level:    [54, 58]
+  17289522:
+    template: Antican_Secutor
+    region:   s_302
+    level:    [54, 58]
+  17289523:
+    template: Desert_Beetle
+    region:   region_88
+    level:    [47, 51]
+  17289524:
+    template: Desert_Beetle
+    region:   region_88
+    level:    [47, 51]
+  17289525:
+    template: Desert_Beetle
+    region:   region_88
+    level:    [47, 51]
+  17289526:
+    template: Antican_Secutor
+    region:   c_296
+    level:    [54, 58]
+  17289527:
+    template: Antican_Lanista
+    region:   c_312
+    level:    [54, 58]
+  17289528:
+    template: Antican_Secutor
+    region:   c_312
+    level:    [54, 58]
+  17289529:
+    template: Antican_Secutor
+    region:   c_312
+    level:    [54, 58]
+  17289530:
+    template: Desert_Beetle
+    region:   c_312
+    level:    [47, 51]
+  17289531:
+    template: Antican_Secutor
+    region:   c_315
+    level:    [54, 58]
+  17289532:
+    template: Antican_Secutor
+    region:   s_316
+    level:    [54, 58]
+  17289533:
+    template: Antican_Secutor
+    region:   s_316
+    level:    [54, 58]
+  17289534:
+    template: Desert_Beetle
+    region:   s_316
+    level:    [47, 51]
+  17289535:
+    template: Desert_Beetle
+    region:   s_319
+    level:    [47, 51]
+  17289536:
+    template: Desert_Beetle
+    region:   s_319
+    level:    [47, 51]
+  17289537:
+    template: Antican_Secutor
+    region:   s_319
+    level:    [54, 58]
+  17289538:
+    template: Antican_Secutor
+    region:   s_319
+    level:    [54, 58]
+  17289539:
+    template: Cactuar
+    region:   s_319
+    level:    [49, 53]
+  17289540:
+    template: Cactuar
+    region:   s_319
+    level:    [49, 53]
+  17289541:
+    template: Fallen_Knight
+    region:   s_319
+    level:    [50, 54]
+  17289542:
+    template: Desert_Beetle
+    region:   w_326
+    level:    [47, 51]
+  17289543:
+    template: Desert_Beetle
+    region:   w_326
+    level:    [47, 51]
+  17289544:
+    template: Cactuar
+    region:   w_326
+    level:    [49, 53]
+  17289545:
+    template: Tulwar_Scorpion
+    region:   w_326
+    level:    [53, 56]
+  17289546:
+    template: Tulwar_Scorpion
+    region:   w_326
+    level:    [53, 56]
+  17289547:
+    template: Calchas
+    region:   w_326
+    level:    [74, 75]
+  17289548:
+    template: Desert_Beetle
+    region:   s_332
+    level:    [47, 51]
+  17289549:
+    template: Desert_Beetle
+    region:   s_332
+    level:    [47, 51]
+  17289550:
+    template: Antican_Secutor
+    region:   s_332
+    level:    [54, 58]
+  17289551:
+    template: Antican_Secutor
+    region:   s_332
+    level:    [54, 58]
+  17289552:
+    template: Cactuar
+    region:   s_332
+    level:    [49, 53]
+  17289553:
+    template: Fallen_Knight
+    region:   s_332
+    level:    [50, 54]
+  17289554:
+    template: Tulwar_Scorpion
+    region:   w_326
+    level:    [53, 56]
+  17289555:
+    template: Desert_Beetle
+    region:   sw_339
+    level:    [47, 51]
+  17289556:
+    template: Desert_Beetle
+    region:   sw_339
+    level:    [47, 51]
+  17289557:
+    template: Desert_Beetle
+    region:   sw_339
+    level:    [47, 51]
+  17289558:
+    template: Cactuar
+    region:   sw_339
+    level:    [48, 52]
+  17289559:
+    template: Cactuar
+    region:   sw_339
+    level:    [48, 52]
+  17289560:
+    template: Cactuar_Cantautor
+    region:   sw_362
+    level:    [55, 59]
+  17289561:
+    template: Fallen_Knight
+    region:   sw_339
+    level:    [50, 54]
+  17289562:
+    template: Fallen_Knight
+    region:   sw_339
+    level:    [50, 54]
+  17289563:
+    template: Lich
+    region:   sw_339
+    level:    [49, 53]
+  17289564:
+    template: Lich
+    region:   sw_339
+    level:    [49, 53]
+  17289565:
+    template: Tulwar_Scorpion
+    region:   sw_339
+    level:    [53, 56]
+  17289566:
+    template: Earth_Elemental
+    region:   sw_339
+    level:    [57, 58]
+  17289567:
+    template: Desert_Beetle
+    region:   s_351
+    level:    [47, 51]
+  17289568:
+    template: Desert_Beetle
+    region:   s_351
+    level:    [47, 51]
+  17289569:
+    template: Desert_Beetle
+    region:   sw_362
+    level:    [47, 51]
+  17289570:
+    template: Cactuar
+    region:   s_351
+    level:    [49, 53]
+  17289571:
+    template: Fallen_Knight
+    region:   s_351
+    level:    [50, 54]
+  17289572:
+    template: Lich
+    region:   s_351
+    level:    [49, 53]
+  17289573:
+    template: Tulwar_Scorpion
+    region:   s_351
+    level:    [53, 56]
+  17289574:
+    template: Earth_Elemental
+    region:   sw_339
+    level:    [56, 58]
+  17289575:
+    template: King_Vinegarroon
+    region:   s_351
+    level:    [80, 80]
+  17289576:
+    template: Desert_Beetle
+    region:   sw_362
+    level:    [47, 51]
+  17289577:
+    template: Desert_Beetle
+    region:   sw_370
+    level:    [47, 51]
+  17289578:
+    template: Cactuar
+    region:   sw_362
+    level:    [49, 53]
+  17289579:
+    template: Fallen_Knight
+    region:   sw_362
+    level:    [50, 54]
+  17289580:
+    template: Fallen_Knight
+    region:   sw_362
+    level:    [50, 54]
+  17289581:
+    template: Lich
+    region:   sw_362
+    level:    [49, 53]
+  17289582:
+    template: Tulwar_Scorpion
+    region:   sw_362
+    level:    [53, 56]
+  17289583:
+    template: Tulwar_Scorpion
+    region:   sw_362
+    level:    [53, 56]
+  17289584:
+    template: Tulwar_Scorpion
+    region:   sw_368
+    level:    [53, 56]
+  17289585:
+    template: Tulwar_Scorpion
+    region:   sw_368
+    level:    [53, 56]
+  17289586:
+    template: Desert_Beetle
+    region:   sw_370
+    level:    [47, 51]
+  17289587:
+    template: Desert_Beetle
+    region:   sw_370
+    level:    [47, 51]
+  17289588:
+    template: Desert_Beetle
+    region:   sw_370
+    level:    [47, 51]
+  17289589:
+    template: Cactuar
+    region:   sw_370
+    level:    [49, 53]
+  17289590:
+    template: Goblin_Welldigger
+    region:   w_380
+    level:    [51, 55]
+  17289591:
+    template: Fallen_Knight
+    region:   sw_370
+    level:    [50, 54]
+  17289592:
+    template: Fallen_Knight
+    region:   sw_370
+    level:    [50, 54]
+  17289593:
+    template: Lich
+    region:   sw_370
+    level:    [49, 53]
+  17289594:
+    template: Lich
+    region:   sw_370
+    level:    [49, 53]
+  17289595:
+    template: Tulwar_Scorpion
+    region:   sw_370
+    level:    [53, 56]
+  17289596:
+    template: Goblin_Bouncer
+    region:   w_380
+    level:    [51, 55]
+  17289597:
+    template: Goblin_Bouncer
+    region:   w_380
+    level:    [51, 55]
+  17289598:
+    template: Goblin_Enchanter
+    region:   w_380
+    level:    [51, 55]
+  17289599:
+    template: Goblin_Welldigger
+    region:   w_380
+    level:    [51, 55]
+  17289600:
+    template: Goblin_Hunter
+    region:   w_386
+    level:    [51, 55]
+  17289601:
+    template: Goblin_Enchanter
+    region:   w_385
+    level:    [51, 55]
+  17289602:
+    template: Goblin_Hunter
+    region:   w_386
+    level:    [51, 55]
+  17289603:
+    template: Desert_Beetle
+    region:   sw_387
+    level:    [47, 51]
+  17289604:
+    template: Desert_Beetle
+    region:   sw_387
+    level:    [47, 51]
+  17289605:
+    template: Desert_Beetle
+    region:   sw_387
+    level:    [47, 51]
+  17289606:
+    template: Antican_Secutor
+    region:   sw_387
+    level:    [54, 58]
+  17289607:
+    template: Antican_Lanista
+    region:   sw_387
+    level:    [54, 58]
+  17289608:
+    template: Tulwar_Scorpion
+    region:   sw_399
+    level:    [53, 56]
+  17289609:
+    template: Phorusrhacos
+    region:   sw_399
+    level:    [57, 60]
+  17289610:
+    template: Antican_Hoplomachus
+    region:   sw_394
+    level:    [54, 58]
+  17289611:
+    template: Antican_Lanista
+    region:   sw_394
+    level:    [54, 58]
+  17289612:
+    template: Antican_Lanista
+    region:   sw_394
+    level:    [54, 58]
+  17289613:
+    template: Tulwar_Scorpion
+    region:   sw_394
+    level:    [53, 56]
+  17289614:
+    template: Tulwar_Scorpion
+    region:   sw_394
+    level:    [53, 56]
+  17289615:
+    template: Desert_Beetle
+    region:   sw_399
+    level:    [47, 51]
+  17289616:
+    template: Desert_Beetle
+    region:   sw_399
+    level:    [47, 51]
+  17289617:
+    template: Antican_Lanista
+    region:   sw_399
+    level:    [54, 58]
+  17289618:
+    template: Tulwar_Scorpion
+    region:   sw_399
+    level:    [53, 56]
+  17289619:
+    template: Phorusrhacos
+    region:   sw_399
+    level:    [57, 60]
+  17289620:
+    template: Desert_Beetle
+    region:   sw_404
+    level:    [47, 51]
+  17289621:
+    template: Desert_Beetle
+    region:   sw_416
+    level:    [47, 51]
+  17289622:
+    template: Antican_Lanista
+    region:   sw_404
+    level:    [54, 58]
+  17289623:
+    template: Tulwar_Scorpion
+    region:   sw_404
+    level:    [53, 56]
+  17289624:
+    template: Fire_Elemental
+    region:   sw_404
+    level:    [56, 58]
+  17289625:
+    template: Desert_Beetle
+    region:   sw_416
+    level:    [47, 51]
+  17289626:
+    template: Antican_Secutor
+    region:   sw_413
+    level:    [54, 58]
+  17289627:
+    template: Antican_Lanista
+    region:   sw_413
+    level:    [54, 58]
+  17289628:
+    template: Cactuar
+    region:   sw_416
+    level:    [49, 53]
+  17289629:
+    template: Tulwar_Scorpion
+    region:   sw_413
+    level:    [53, 56]
+  17289630:
+    template: Phorusrhacos
+    region:   sw_416
+    level:    [57, 60]
+  17289631:
+    template: Fire_Elemental
+    region:   sw_413
+    level:    [56, 58]
+  17289632:
+    template: Desert_Beetle
+    region:   sw_416
+    level:    [47, 51]
+  17289633:
+    template: Desert_Beetle
+    region:   sw_416
+    level:    [47, 51]
+  17289634:
+    template: Antican_Lanista
+    region:   sw_416
+    level:    [54, 58]
+  17289635:
+    template: Cactuar
+    region:   sw_416
+    level:    [49, 53]
+  17289636:
+    template: Tulwar_Scorpion
+    region:   sw_413
+    level:    [53, 56]
+  17289637:
+    template: Phorusrhacos
+    region:   sw_416
+    level:    [57, 60]
+  17289638:
+    template: Picolaton
+    region:   w_149
+    level:    [61, 64]
+  17289639:
+    template: Antican_Hoplomachus
+    region:   sw_423
+    level:    [54, 58]
+  17289640:
+    template: Antican_Lanista
+    region:   sw_423
+    level:    [54, 58]
+  17289641:
+    template: Antican_Lanista
+    region:   sw_423
+    level:    [54, 58]
+  17289642:
+    template: Desert_Manticore
+    region:   sw_426
+    level:    [53, 57]
+  17289643:
+    template: Desert_Manticore
+    region:   sw_426
+    level:    [53, 57]
+  17289644:
+    template: Desert_Manticore
+    region:   sw_426
+    level:    [53, 57]
+  17289645:
+    template: Antican_Lanista
+    region:   sw_426
+    level:    [54, 58]
+  17289646:
+    template: Antican_Lanista
+    region:   sw_426
+    level:    [54, 58]
+  17289647:
+    template: Phorusrhacos
+    region:   sw_416
+    level:    [57, 60]
+  17289648:
+    template: Antican_Lanista
+    region:   sw_432
+    level:    [54, 58]
+  17289649:
+    template: Antican_Hoplomachus
+    region:   sw_432
+    level:    [54, 58]
+  17289650:
+    template: Antican_Hoplomachus
+    region:   sw_432
+    level:    [54, 58]
+  17289651:
+    template: Antican_Hoplomachus
+    region:   sw_435
+    level:    [54, 58]
+  17289652:
+    template: Goblin_Digger_far
+    script:   Goblin_Digger
+    at:       [-406.759, 0.180, -540.065, 5]
+    level:    [51, 54]
+  17289653:
+    template: Sabotender_Enamorado
+    at:       [-262.568, -8.248, 51.540]
+    level:    [63, 63]
+  17289654:
+    template: Eastern_Sphinx
+    at:       [-327.799, -2.859, -114.501, 55]
+    level:    [62, 62]
+  17289655:
+    template: Western_Sphinx
+    at:       [-329.357, -4.004, -110.601, 175]
+    level:    [62, 62]
+  17289656:
+    template: Maharaja
+    at:       [-652.300, 0.200, -341.500, 141]
+    level:    [80, 80]
+  17289657:
+    template: Monarca_de_Altepa
+  17289658:
+    template: Sabotender_Campeador
+    at:       [551.088, -0.068, 257.063, 73]
+  17289659:
+    template: Sabotender_Mercenario
+    at:       [550.598, 0.390, 256.225, 46]
+  17289660:
+    template: Sabotender_Mercenario
+    at:       [551.559, 0.377, 256.414, 101]
+  17289661:
+    template: Sabotender_Mercenario
+    at:       [553.869, 0.386, 256.395, 13]
+  17289662:
+    template: Sabotender_Mercenario
+    at:       [554.194, 0.739, 256.976, 43]
+  17289663:
+    template: Sabotender_Mercenario
+    at:       [552.158, 0.440, 257.535, 104]
+  17289664:
+    template: Sabotender_Campeador
+  17289665:
+    template: Sabotender_Mercenario
+  17289666:
+    template: Sabotender_Mercenario
+  17289667:
+    template: Sabotender_Mercenario
+  17289668:
+    template: Sabotender_Mercenario
+  17289669:
+    template: Sabotender_Mercenario
+  17289670:
+    template: Sabotender_Campeador
+  17289671:
+    template: Sabotender_Mercenario
+  17289672:
+    template: Sabotender_Mercenario
+  17289673:
+    template: Sabotender_Mercenario
+  17289674:
+    template: Sabotender_Mercenario
+  17289675:
+    template: Sabotender_Mercenario
+  17289676:
+    template: King_Uropygid
+  17289677:
+    template: King_Uropygid
+  17289678:
+    template: King_Uropygid
+    at:       [148.509, -0.102, 251.419, 237]
+  17289711:
+    template: Awoken_Dendainsonne
+    at:       [-19.030, 0.100, 170.240, 59]
+    level:    [119, 119]
+
+  17289820:
+    template: Beta_beet_Desert_Beetle
+    region:   n_67
+    level:    [47, 51]
+  17289821:
+    template: Beta_beet_Desert_Beetle
+    region:   n_67
+    level:    [47, 51]
+  17289822:
+    template: Beta_sabo_Cactuar
+    region:   ne_33
+    level:    [48, 52]
+  17289823:
+    template: Beta_sabo_Cactuar
+    region:   ne_33
+    level:    [48, 52]
+slots:
+  - members:
+      17289226: {} # Desert_Dhalmel
+      17289232: {} # Desert_Dhalmel
+  - members:
+      17289241: {} # Earth_Elemental
+      17289257: {} # Earth_Elemental
+  - members:
+      17289254: {} # Cactuar
+      17289264: {} # Cactuar
+  - members:
+      17289271: {} # Cactuar
+      17289280: {} # Cactuar
+  - members:
+      17289291: {} # Cactuar
+      17289297: {} # Cactuar
+  - members:
+      17289302: {} # Cactuar
+      17289311: {} # Cactuar
+  - members:
+      17289314: {} # Desert_Manticore
+      17289322: {} # Desert_Manticore
+  - members:
+      17289334: {} # Cactuar
+      17289494: {} # Cactuar
+  - members:
+      17289337: {} # Desert_Manticore
+      17289346: {} # Desert_Manticore
+  - members:
+      17289350: {} # Fire_Elemental
+      17289354: {} # Fire_Elemental
+  - members:
+      17289364: {} # Phorusrhacos
+      17289374: {} # Phorusrhacos
+  - members:
+      17289373: {} # Phorusrhacos
+      17289384: {} # Phorusrhacos
+  - members:
+      17289414: {} # Fire_Elemental
+      17289423: {} # Fire_Elemental
+  - members:
+      17289467: {} # Earth_Elemental
+      17289470: {} # Earth_Elemental
+  - members:
+      17289493: {} # Cactuar
+      17289495: {} # Cactuar
+  - members:
+      17289546: {} # Tulwar_Scorpion
+      17289554: {} # Tulwar_Scorpion
+  - members:
+      17289566: {} # Earth_Elemental
+      17289574: {} # Earth_Elemental
+  - members:
+      17289590: {} # Goblin_Welldigger
+      17289599: {} # Goblin_Welldigger
+  - members:
+      17289600: {} # Goblin_Hunter
+      17289602: {} # Goblin_Hunter
+  - members:
+      17289608: {} # Tulwar_Scorpion
+      17289609: {} # Phorusrhacos
+      17289618: {} # Tulwar_Scorpion
+      17289619: {} # Phorusrhacos
+  - members:
+      17289624: {} # Fire_Elemental
+      17289631: {} # Fire_Elemental
+  - members:
+      17289628: {} # Cactuar
+      17289635: {} # Cactuar
+  - members:
+      17289629: {} # Tulwar_Scorpion
+      17289636: {} # Tulwar_Scorpion
+  - members:
+      17289630: {} # Phorusrhacos
+      17289637: {} # Phorusrhacos
+      17289647: {} # Phorusrhacos

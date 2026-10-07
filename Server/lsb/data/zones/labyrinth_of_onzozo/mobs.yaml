@@ -1,0 +1,2196 @@
+# yaml-language-server: $schema=../../schemas/mobs.schema.json
+
+templates:
+
+  Air_Elemental:
+    id:            71
+    species:       air_elemental
+    spell_list_id: 12
+    skill_list_id: 99
+    attributes:
+      combat:
+        skill: staff
+      jobs: [blm, rdm]
+      resists:
+        immune_status: [gravity, silence, slow, elegy]
+      render:
+        look:
+          type:  standard
+          model: 438
+        entity_flags:  1155
+        animation_sub:   16
+        model_size:       1
+        hitbox:           3
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 960
+        type:    [weather]
+    loot:
+      drops:
+        - chance: always
+          item:   wind_cluster
+        - chance: common
+          item:   wind_cluster
+        - chance: common
+          item:   wind_cluster
+
+  Babaulas:
+    id:            6542
+    species:       skeleton
+    skill_list_id: 227
+    attributes:
+      combat:
+        skill: polearm
+      render:
+        look:
+          type:  standard
+          model: 1176
+        entity_flags: 133
+        model_size:     2
+        hitbox:        11
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   seasoning_stone
+        - chance: rare
+          item:   fossilized_fang
+        - chance: common
+          item:   bone_chip
+        - chance: uncommon
+          item:   revival_tree_root
+      despoil:
+        bone_chip: 0
+    content: abyssea
+
+  Boribaba:
+    id:            6538
+    species:       skeleton
+    spell_list_id: 28
+    skill_list_id: 227
+    attributes:
+      combat:
+        skill: great_katana
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 570
+        entity_flags: 133
+        model_size:     2
+        hitbox:        13
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   seasoning_stone
+        - chance: rare
+          item:   fossilized_fang
+        - chance: common
+          item:   bone_chip
+        - chance: uncommon
+          item:   revival_tree_root
+      despoil:
+        bone_chip: 0
+    content: abyssea
+
+  Cockatrice:
+    id:            758
+    species:       cockatrice
+    skill_list_id: 70
+    attributes:
+      combat:
+        skill: club
+      render:
+        look:
+          type:  standard
+          model: 288
+        entity_flags:  131
+        animation_sub:   8
+        model_size:      1
+        hitbox:         37
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   slice_of_cockatrice_meat
+        - chance: uncommon
+          item:   cockatrice_skin
+        - chance: rare
+          item:   onzozo_chest_key
+      despoil:
+        giant_bird_feather: 0
+
+  Flying_Manta:
+    id:            1373
+    species:       sea_monk
+    skill_list_id: 218
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 352
+        entity_flags: 131
+        model_size:     1
+        hitbox:        17
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   manta_skin
+        - chance: uncommon
+          item:   seashell
+        - chance: rare
+          item:   shall_shell
+        - chance: very_rare
+          item:   onzozo_chest_key
+      despoil:
+        seashell: 0
+
+  Goblin_Alchemist:
+    id:            1634
+    species:       goblin
+    spell_list_id: 20
+    skill_list_id: 133
+    attributes:
+      combat:
+        skill: staff
+      jobs: [whm, whm]
+      render:
+        look:
+          type:  standard
+          model: 493
+        entity_flags: 133
+        model_size:     2
+        hitbox:        13
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   white_mages_testimony
+        - chance: uncommon
+          item:   scroll_of_sacrifice
+        - chance: rare
+          item:   scroll_of_regen_iii
+        - chance: very_rare
+          item:   scroll_of_cure_v
+        - chance: very_rare
+          item:   scroll_of_curaga_iv
+        - chance: rare
+          item:   scroll_of_shellra_iv
+        - chance: rare
+          item:   scroll_of_reraise_iii
+      steal: beastcoin
+      despoil:
+        loaf_of_goblin_bread:      0
+        chunk_of_goblin_chocolate: 0
+        bowl_of_goblin_stew:       0
+        goblin_mushpot:            0
+
+  Goblin_Bandit:
+    id:            1637
+    species:       goblin
+    skill_list_id: 133
+    attributes:
+      combat:
+        skill: dagger
+      jobs: [thf, thf]
+      render:
+        look:
+          type:  standard
+          model: 505
+        entity_flags: 133
+        model_size:     2
+        hitbox:        13
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: rare
+          item:   goblin_mask
+        - chance: very_rare
+          item:   goblin_armor
+        - chance: very_rare
+          item:   gold_beastcoin
+      steal: thiefs_testimony
+      despoil:
+        loaf_of_goblin_bread:      0
+        chunk_of_goblin_chocolate: 0
+        bowl_of_goblin_stew:       0
+        goblin_mushpot:            0
+
+  Goblin_Bouncer:
+    id:            1641
+    species:       goblin
+    skill_list_id: 133
+    attributes:
+      combat:
+        skill: axe
+      render:
+        look:
+          type:  standard
+          model: 503
+        entity_flags: 131
+        model_size:     1
+        hitbox:        12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: rare
+          item:   onzozo_chest_key
+        - chance: ultra_rare
+          item:   mythril_sallet
+        - chance: ultra_rare
+          item:   mythril_gauntlets
+        - chance: ultra_rare
+          item:   mythril_cuisses
+        - chance: ultra_rare
+          item:   mythril_leggings
+      steal: mythril_beastcoin
+      despoil:
+        loaf_of_goblin_bread:      0
+        chunk_of_goblin_chocolate: 0
+        bowl_of_goblin_stew:       0
+        goblin_mushpot:            0
+
+  Goblin_Enchanter:
+    id:            1654
+    species:       goblin
+    spell_list_id: 3
+    skill_list_id: 133
+    attributes:
+      combat:
+        skill: sword
+      jobs: [rdm, rdm]
+      render:
+        look:
+          type:  standard
+          model: 504
+        entity_flags: 131
+        model_size:     1
+        hitbox:        12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: rare
+          item:   onzozo_chest_key
+        - chance: very_rare
+          item:   brass_ingot
+        - chance: very_rare
+          item:   silver_ingot
+        - chance: super_rare
+          item:   gold_ingot
+        - chance: super_rare
+          item:   platinum_ingot
+        - chance: ultra_rare
+          item:   black_mitts
+        - chance: ultra_rare
+          item:   white_slacks
+        - chance: ultra_rare
+          item:   moccasins
+      steal: mythril_beastcoin
+      despoil:
+        loaf_of_goblin_bread:      0
+        chunk_of_goblin_chocolate: 0
+        bowl_of_goblin_stew:       0
+        goblin_mushpot:            0
+
+  Goblin_Hunter:
+    id:            1677
+    species:       goblin
+    skill_list_id: 133
+    attributes:
+      combat:
+        skill: dagger
+      jobs: [rng, rng]
+      render:
+        look:
+          type:  standard
+          model: 499
+        entity_flags: 131
+        model_size:     1
+        hitbox:        12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: rare
+          item:   onzozo_chest_key
+        - chance: ultra_rare
+          item:   raptor_helm
+        - chance: ultra_rare
+          item:   raptor_gloves
+        - chance: ultra_rare
+          item:   raptor_trousers
+        - chance: ultra_rare
+          item:   raptor_ledelsens
+      steal: crossbow_bolt
+      despoil:
+        loaf_of_goblin_bread:      0
+        chunk_of_goblin_chocolate: 0
+        bowl_of_goblin_stew:       0
+        goblin_mushpot:            0
+
+  Goblin_Mercenary:
+    id:            1687
+    species:       armored_goblin
+    skill_list_id: 133
+    attributes:
+      combat:
+        skill: axe
+      render:
+        look:
+          type:  standard
+          model: 508
+        entity_flags: 133
+        model_size:     2
+        hitbox:        13
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 900
+    loot:
+      drops:
+        - chance: rare
+          item:   warriors_testimony
+        - chance: rare
+          item:   goblin_helm
+        - chance: very_rare
+          item:   goblin_mail
+      steal: beastcoin
+      despoil:
+        loaf_of_goblin_bread:      0
+        chunk_of_goblin_chocolate: 0
+        bowl_of_goblin_stew:       0
+        goblin_mushpot:            0
+
+  Goblin_Miner:
+    id:            1689
+    species:       goblin
+    skill_list_id: 133
+    attributes:
+      combat:
+        skill: dagger
+      jobs: [thf, thf]
+      render:
+        look:
+          type:  standard
+          model: 502
+        entity_flags: 131
+        model_size:     1
+        hitbox:        12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   pickaxe
+        - chance: rare
+          item:   quake_grenade
+        - chance: rare
+          item:   onzozo_chest_key
+        - chance: very_rare
+          item:   chunk_of_gold_ore
+      steal: beastcoin
+      despoil:
+        loaf_of_goblin_bread:      0
+        chunk_of_goblin_chocolate: 0
+        bowl_of_goblin_stew:       0
+        goblin_mushpot:            0
+
+  Goblin_Poacher:
+    id:            1701
+    species:       goblin
+    skill_list_id: 133
+    attributes:
+      combat:
+        skill: dagger
+      jobs: [rng, rng]
+      render:
+        look:
+          type:  standard
+          model: 496
+        entity_flags: 131
+        model_size:     1
+        hitbox:        12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: super_rare
+          item:   cuir_bandana
+        - chance: super_rare
+          item:   cuir_gloves
+        - chance: super_rare
+          item:   cuir_trousers
+        - chance: super_rare
+          item:   cuir_highboots
+      steal: crossbow_bolt
+      despoil:
+        loaf_of_goblin_bread:      0
+        chunk_of_goblin_chocolate: 0
+        bowl_of_goblin_stew:       0
+        goblin_mushpot:            0
+
+  Goblin_Reaper:
+    id:            1705
+    species:       armored_goblin
+    spell_list_id: 5
+    skill_list_id: 133
+    attributes:
+      combat:
+        skill: sword
+      jobs: [drk, drk]
+      render:
+        look:
+          type:  standard
+          model: 501
+        entity_flags: 131
+        model_size:     1
+        hitbox:        12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: rare
+          item:   scroll_of_stun
+        - chance: very_rare
+          item:   scroll_of_absorb-vit
+        - chance: very_rare
+          item:   scroll_of_absorb-agi
+        - chance: very_rare
+          item:   scroll_of_absorb-int
+      steal: mythril_beastcoin
+      despoil:
+        loaf_of_goblin_bread:      0
+        chunk_of_goblin_chocolate: 0
+        bowl_of_goblin_stew:       0
+        goblin_mushpot:            0
+
+  Goblin_Robber:
+    id:            1709
+    species:       goblin
+    skill_list_id: 133
+    attributes:
+      combat:
+        skill: dagger
+      jobs: [thf, thf]
+      render:
+        look:
+          type:  standard
+          model: 500
+        entity_flags: 131
+        model_size:     1
+        hitbox:        12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: super_rare
+          item:   cuir_bandana
+        - chance: super_rare
+          item:   cuir_gloves
+        - chance: super_rare
+          item:   cuir_trousers
+        - chance: super_rare
+          item:   cuir_highboots
+      steal: mythril_beastcoin
+      despoil:
+        loaf_of_goblin_bread:      0
+        chunk_of_goblin_chocolate: 0
+        bowl_of_goblin_stew:       0
+        goblin_mushpot:            0
+
+  Goblin_Shepherd:
+    id:            1711
+    species:       goblin
+    skill_list_id: 133
+    attributes:
+      combat:
+        skill: axe
+      jobs: [bst, bst]
+      render:
+        look:
+          type:  standard
+          model: 506
+        entity_flags: 133
+        model_size:     2
+        hitbox:        13
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: very_common
+          item:   ash_staff
+        - chance: common
+          item:   ram_skin
+        - chance: uncommon
+          item:   beastmasters_testimony
+        - chance: rare
+          item:   jug_of_singing_herbal_broth
+      steal: mythril_beastcoin
+      despoil:
+        loaf_of_goblin_bread:      0
+        chunk_of_goblin_chocolate: 0
+        bowl_of_goblin_stew:       0
+        goblin_mushpot:            0
+
+  Goblin_Trader:
+    id:            1741
+    species:       goblin
+    skill_list_id: 133
+    attributes:
+      combat:
+        skill: axe
+      jobs: [bst, bst]
+      render:
+        look:
+          type:  standard
+          model: 498
+        entity_flags: 131
+        model_size:     1
+        hitbox:        12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: ultra_rare
+          item:   square_of_velvet_cloth
+        - chance: super_rare
+          item:   cuir_bandana
+        - chance: super_rare
+          item:   cuir_gloves
+        - chance: super_rare
+          item:   cuir_trousers
+        - chance: super_rare
+          item:   cuir_highboots
+      steal: mythril_beastcoin
+      despoil:
+        loaf_of_goblin_bread:      0
+        chunk_of_goblin_chocolate: 0
+        bowl_of_goblin_stew:       0
+        goblin_mushpot:            0
+
+  Goblins_Leech:
+    id:            1728
+    species:       leech
+    skill_list_id: 172
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 276
+        entity_flags: 643
+        model_size:     1
+        hitbox:        11
+      behaviors:
+        links: true
+      spawn:
+        type: [scripted]
+
+  Hellion:
+    id:            1920
+    species:       doomed
+    type:          [notorious]
+    skill_list_id: 86
+    attributes:
+      combat:
+        skill: axe
+      resists:
+        dmg_physical:
+          slashing:  1250
+          blunt:    -1250
+          h2h:      -1250
+      render:
+        look:
+          type:  standard
+          model: 320
+        entity_flags: 133
+        model_size:     2
+        hitbox:        34
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [lottery]
+      stats:
+        hp: 15600
+    loot:
+      drops:
+        - chance: always
+          item:   a_loutrance
+        - chance: very_common
+          item:   undead_skin
+        - chance: common
+          item:   revival_tree_root
+
+  Labyrinth_Leech:
+    id:            2310
+    species:       leech
+    skill_list_id: 172
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 276
+        entity_flags: 643
+        model_size:     1
+        hitbox:        11
+      behaviors:
+        links: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: very_common
+          item:   vial_of_bird_blood
+        - chance: common
+          item:   vial_of_bird_blood
+        - chance: common
+          item:   vial_of_bird_blood
+        - chance: very_rare
+          item:   carbuncles_ruby
+        - chance: very_rare
+          item:   vial_of_beastman_blood
+      despoil:
+        vial_of_fiend_blood:    0
+        vial_of_beastman_blood: 0
+        vial_of_bird_blood:     0
+
+  Labyrinth_Manticore:
+    id:            2312
+    species:       manticore
+    skill_list_id: 179
+    attributes:
+      combat:
+        skill: scythe
+        delay: 360
+      render:
+        look:
+          type:  standard
+          model: 402
+        entity_flags: 129
+        hitbox:        27
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: very_common
+          item:   lock_of_manticore_hair
+        - chance: uncommon
+          item:   manticore_hide
+        - chance: rare
+          item:   manticore_fang
+      despoil:
+        manticore_hide:         0
+        lock_of_manticore_hair: 0
+
+  Lord_of_Onzozo:
+    id:            2439
+    species:       sea_monk
+    type:          [notorious]
+    spell_list_id: 152
+    skill_list_id: 218
+    attributes:
+      combat:
+        skill: scythe
+      jobs: [war, blm]
+      resists:
+        immune_status: [silence, light_sleep, dark_sleep]
+      render:
+        look:
+          type:  standard
+          model: 352
+        entity_flags: 135
+        model_size:     3
+        hitbox:        25
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [lottery]
+      stats:
+        hp: 13500
+        mp: 13500
+    loot:
+      drops:
+        - chance: always
+          item:   shall_shell
+        - chance: common
+          item:   shall_shell
+        - chance: common
+          item:   shall_shell
+        - chance: rare
+          item:   octave_club
+
+  Megapod_Megalops:
+    id:            2612
+    species:       crab
+    type:          [notorious]
+    skill_list_id: 77
+    attributes:
+      combat:
+        skill: great_sword
+      jobs: [pld, pld]
+      render:
+        look:
+          type:  standard
+          model: 356
+        entity_flags: 133
+        model_size:     2
+        hitbox:        16
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 9800
+
+  Mushussu_LO:
+    id:            2775
+    species:       scorpion
+    skill_list_id: 217
+    attributes:
+      combat:
+        skill: scythe
+        delay: 280
+      render:
+        look:
+          type:  standard
+          model: 284
+        entity_flags: 131
+        model_size:     1
+        hitbox:        27
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   scorpion_claw
+        - chance: uncommon
+          item:   scorpion_shell
+        - chance: rare
+          item:   onzozo_chest_key
+      despoil:
+        scorpion_shell: 0
+        scorpion_claw:  0
+
+  Mysticmaker_Profblix:
+    id:            2790
+    species:       goblin
+    type:          [notorious]
+    spell_list_id: 21
+    skill_list_id: 133
+    attributes:
+      combat:
+        skill: dagger
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 507
+        entity_flags: 157
+        name_prefix:   32
+        model_size:     2
+        hitbox:        13
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 4500
+        mp: 4500
+    loot:
+      drops:
+        - chance: always
+          item:   goblin_armor
+        - chance: always
+          item:   goblin_mask
+        - chance: common
+          item:   moldavite_earring
+        - chance: always
+          one_of:
+            scroll_of_thunder_iii:  45
+            scroll_of_thundaga_iii: 25
+            scroll_of_thunder_iv:   20
+            scroll_of_burst:        10
+
+  Narasimha:
+    id:            2809
+    species:       manticore
+    type:          [notorious]
+    skill_list_id: 179
+    attributes:
+      combat:
+        skill: scythe
+        delay: 350
+      resists:
+        immune_status: [light_sleep, dark_sleep]
+      render:
+        look:
+          type:  standard
+          model: 402
+        entity_flags: 133
+        model_size:     2
+        hitbox:        36
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [lottery]
+      stats:
+        hp: 21000
+    loot:
+      drops:
+        - chance: very_common
+          item:   lock_of_manticore_hair
+        - chance: always
+          item:   narasimha_hide
+        - chance: common
+          item:   narasimha_hide
+        - chance: very_common
+          item:   manticore_fang
+        - chance: common
+          item:   lock_of_manticore_hair
+        - chance: common
+          item:   lock_of_manticore_hair
+        - chance: common
+          item:   lock_of_manticore_hair
+        - chance: common
+          item:   manticore_fang
+        - chance: uncommon
+          item:   lock_of_manticore_hair
+        - chance: uncommon
+          item:   lock_of_manticore_hair
+
+  Ose:
+    id:            3063
+    species:       coeurl
+    type:          [notorious]
+    skill_list_id: 71
+    attributes:
+      combat:
+        skill: great_axe
+      jobs: [war, thf]
+      render:
+        look:
+          type:  standard
+          model: 367
+        entity_flags: 1181
+        name_prefix:    32
+        model_size:      2
+        hitbox:         18
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [lottery]
+      stats:
+        hp: 9400
+    loot:
+      drops:
+        - chance: always
+          item:   ose_whisker
+        - chance: very_common
+          item:   high-quality_coeurl_hide
+        - chance: very_common
+          item:   slice_of_coeurl_meat
+        - chance: common
+          item:   assault_jerkin
+
+  Peg_Powler:
+    id:            3113
+    species:       sea_monk
+    type:          [notorious]
+    skill_list_id: 218
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 352
+        entity_flags: 133
+        model_size:     2
+        hitbox:        20
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [lottery]
+      stats:
+        hp: 10500
+    loot:
+      drops:
+        - chance: always
+          item:   schwarz_axt
+        - chance: common
+          item:   shall_shell
+        - chance: common
+          item:   shall_shell
+        - chance: common
+          item:   pearl
+
+  Soulstealer_Skullnix:
+    id:            3706
+    species:       goblin
+    type:          [notorious]
+    skill_list_id: 133
+    attributes:
+      combat:
+        skill: dagger
+      jobs: [thf, thf]
+      render:
+        look:
+          type:  standard
+          model: 505
+        entity_flags: 157
+        name_prefix:   32
+        model_size:     2
+        hitbox:        13
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [lottery]
+      stats:
+        hp: 8000
+    loot:
+      drops:
+        - chance: always
+          item:   goblin_armor
+        - chance: always
+          item:   goblin_mask
+        - chance: always
+          item:   gold_beastcoin
+        - chance: common
+          item:   kard
+
+  Tainted_Flesh_LoO:
+    id:            3835
+    species:       doomed
+    skill_list_id: 86
+    attributes:
+      combat:
+        skill: sword
+        delay: 270
+      render:
+        look:
+          type:  standard
+          model: 320
+        entity_flags: 131
+        model_size:     1
+        hitbox:        30
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   undead_skin
+      despoil:
+        undead_skin: 0
+
+  Torama:
+    id:            3976
+    species:       coeurl
+    skill_list_id: 71
+    attributes:
+      combat:
+        skill: dagger
+      render:
+        look:
+          type:  standard
+          model: 367
+        entity_flags: 131
+        model_size:     1
+        hitbox:        16
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   slice_of_coeurl_meat
+        - chance: rare
+          item:   coeurl_whisker
+        - chance: uncommon
+          item:   high-quality_coeurl_hide
+      steal: coeurl_whisker
+      despoil:
+        coeurl_hide:          0
+        slice_of_coeurl_meat: 0
+
+  Ubume:
+    id:            4074
+    species:       roc
+    type:          [notorious]
+    spell_list_id: 2
+    skill_list_id: 125
+    attributes:
+      combat:
+        skill: staff
+      jobs: [war, brd]
+      render:
+        look:
+          type:  standard
+          model: 336
+        entity_flags: 1153
+        hitbox:         27
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 5600
+
+  Voso:
+    id:            6907
+    species:       coeurl
+    type:          [notorious]
+    skill_list_id: 71
+    attributes:
+      combat:
+        skill: dagger
+      render:
+        look:
+          type:  standard
+          model: 367
+        entity_flags: 133
+        name_prefix:   32
+        model_size:     2
+        hitbox:        18
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+
+  Water_Elemental:
+    id:            4309
+    species:       water_elemental
+    spell_list_id: 15
+    skill_list_id: 106
+    attributes:
+      combat:
+        skill: staff
+      jobs: [blm, rdm]
+      resists:
+        immune_status: [poison]
+      render:
+        look:
+          type:  standard
+          model: 440
+        entity_flags:  131
+        animation_sub:  16
+        model_size:      1
+        hitbox:          3
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 960
+        type:    [weather]
+    loot:
+      drops:
+        - chance: always
+          item:   water_cluster
+        - chance: common
+          item:   water_cluster
+        - chance: common
+          item:   water_cluster
+
+  Wyvern:
+    id:            4389
+    species:       wyvern
+    skill_list_id: 266
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 398
+        entity_flags: 129
+        hitbox:        27
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: rare
+          item:   wyvern_wing
+        - chance: uncommon
+          item:   wyvern_skin
+      despoil:
+        handful_of_wyvern_scales: 0
+
+
+  Beta_coka_Cockatrice:
+    id:            40076
+    species:       cockatrice
+    skill_list_id: 70
+    attributes:
+      combat:
+        skill: club
+      render:
+        look:
+          type:  standard
+          model: 2953
+        entity_flags:  131
+        animation_sub:   8
+        model_size:      1
+        hitbox:         37
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: rare
+          item:   beta_19982
+        - chance: uncommon
+          item:   beta_299
+        - chance: uncommon
+          item:   beta_5026
+        - chance: uncommon
+          item:   beta_6812
+        - chance: common
+          item:   slice_of_cockatrice_meat
+        - chance: uncommon
+          item:   cockatrice_skin
+        - chance: rare
+          item:   onzozo_chest_key
+      despoil:
+        giant_bird_feather: 0
+
+  Beta_wyve_Wyvern:
+    id:            40105
+    species:       wyvern
+    skill_list_id: 266
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 2958
+        entity_flags: 129
+        hitbox:        27
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: rare
+          item:   beta_18837
+        - chance: uncommon
+          item:   beta_31
+        - chance: uncommon
+          item:   beta_3604
+        - chance: uncommon
+          item:   beta_6472
+        - chance: uncommon
+          item:   beta_6859
+        - chance: rare
+          item:   wyvern_wing
+        - chance: uncommon
+          item:   wyvern_skin
+      despoil:
+        handful_of_wyvern_scales: 0
+
+  Beta_drak_Wyvern:
+    id:            40106
+    species:       wyvern
+    skill_list_id: 266
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 2957
+        entity_flags: 129
+        hitbox:        27
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: rare
+          item:   beta_19976
+        - chance: uncommon
+          item:   beta_108
+        - chance: uncommon
+          item:   beta_4643
+        - chance: uncommon
+          item:   beta_6752
+        - chance: uncommon
+          item:   beta_6902
+        - chance: rare
+          item:   wyvern_wing
+        - chance: uncommon
+          item:   wyvern_skin
+      despoil:
+        handful_of_wyvern_scales: 0
+
+spawns:
+  17649665:
+    template: Goblin_Poacher
+    region:   s_1
+    level:    [46, 49]
+  17649666:
+    template: Goblin_Robber
+    region:   s_1
+    level:    [46, 49]
+  17649667:
+    template: Goblin_Reaper
+    region:   s_1
+    level:    [46, 49]
+  17649668:
+    template: Labyrinth_Leech
+    region:   s_4
+    level:    [45, 48]
+  17649669:
+    template: Labyrinth_Leech
+    region:   s_4
+    level:    [45, 48]
+  17649670:
+    template: Labyrinth_Leech
+    region:   s_4
+    level:    [45, 48]
+  17649671:
+    template: Air_Elemental
+    region:   s_4
+    level:    [60, 62]
+  17649672:
+    template: Labyrinth_Leech
+    region:   s_8
+    level:    [45, 48]
+  17649673:
+    template: Labyrinth_Leech
+    region:   s_8
+    level:    [45, 48]
+  17649674:
+    template: Cockatrice
+    region:   s_8
+    level:    [50, 53]
+  17649675:
+    template: Cockatrice
+    region:   s_8
+    level:    [50, 53]
+  17649676:
+    template: Goblin_Poacher
+    region:   s_8
+    level:    [46, 49]
+  17649677:
+    template: Goblin_Trader
+    region:   s_13
+    level:    [46, 49]
+  17649678:
+    template: Goblins_Leech
+    at:       [1.000, 1.000, 1.000]
+    level:    [33, 35]
+  17649679:
+    template: Goblin_Robber
+    region:   s_13
+    level:    [46, 49]
+  17649680:
+    template: Goblin_Reaper
+    region:   s_13
+    level:    [46, 49]
+  17649681:
+    template: Cockatrice
+    region:   s_13
+    level:    [50, 53]
+  17649682:
+    template: Cockatrice
+    region:   s_13
+    level:    [50, 53]
+  17649683:
+    template: Mushussu_LO
+    script:   Mushussu
+    region:   s_13
+    level:    [51, 54]
+  17649684:
+    template: Cockatrice
+    region:   s_20
+    level:    [50, 53]
+  17649685:
+    template: Cockatrice
+    region:   se_21
+    level:    [50, 53]
+  17649686:
+    template: Cockatrice
+    region:   se_21
+    level:    [50, 53]
+  17649687:
+    template: Cockatrice
+    region:   se_21
+    level:    [50, 53]
+  17649688:
+    template: Goblin_Miner
+    region:   se_25
+    level:    [51, 54]
+  17649689:
+    template: Goblin_Bouncer
+    region:   se_25
+    level:    [51, 54]
+  17649690:
+    template: Goblin_Hunter
+    region:   se_25
+    level:    [51, 54]
+  17649691:
+    template: Cockatrice
+    region:   se_25
+    level:    [50, 53]
+  17649692:
+    template: Cockatrice
+    region:   se_25
+    level:    [50, 53]
+  17649693:
+    template: Mysticmaker_Profblix
+    region:   se_25
+    level:    [50, 52]
+  17649694:
+    template: Goblin_Enchanter
+    region:   se_31
+    level:    [51, 54]
+  17649695:
+    template: Goblin_Hunter
+    region:   se_31
+    level:    [51, 54]
+  17649696:
+    template: Cockatrice
+    region:   se_31
+    level:    [50, 53]
+  17649697:
+    template: Cockatrice
+    region:   se_31
+    level:    [50, 53]
+  17649698:
+    template: Cockatrice
+    region:   se_31
+    level:    [50, 53]
+  17649699:
+    template: Cockatrice
+    region:   se_35
+    level:    [50, 53]
+  17649700:
+    template: Cockatrice
+    region:   region_57
+    level:    [50, 53]
+  17649701:
+    template: Mushussu_LO
+    script:   Mushussu
+    region:   w_79
+    level:    [52, 55]
+  17649702:
+    template: Cockatrice
+    region:   se_38
+    level:    [50, 53]
+  17649703:
+    template: Goblin_Miner
+    region:   c_39
+    level:    [51, 54]
+  17649704:
+    template: Goblin_Bouncer
+    region:   c_39
+    level:    [51, 54]
+  17649705:
+    template: Cockatrice
+    region:   c_39
+    level:    [50, 53]
+  17649706:
+    template: Goblin_Enchanter
+    region:   e_42
+    level:    [52, 55]
+  17649707:
+    template: Goblin_Hunter
+    region:   e_42
+    level:    [52, 55]
+  17649708:
+    template: Flying_Manta
+    region:   region_58
+    level:    [55, 59]
+  17649709:
+    template: Cockatrice
+    region:   region_58
+    level:    [50, 53]
+  17649710:
+    template: Goblin_Enchanter
+    region:   region_59
+    level:    [52, 55]
+  17649711:
+    template: Flying_Manta
+    region:   region_60
+    level:    [55, 59]
+  17649712:
+    template: Goblin_Miner
+    region:   e_48
+    level:    [52, 55]
+  17649713:
+    template: Air_Elemental
+    region:   e_48
+    level:    [60, 62]
+  17649714:
+    template: Mushussu_LO
+    script:   Mushussu
+    region:   e_50
+    level:    [52, 55]
+  17649715:
+    template: Mushussu_LO
+    script:   Mushussu
+    region:   e_50
+    level:    [52, 55]
+  17649716:
+    template: Goblin_Enchanter
+    region:   e_50
+    level:    [53, 56]
+  17649717:
+    template: Goblin_Hunter
+    region:   e_50
+    level:    [53, 56]
+  17649718:
+    template: Goblin_Miner
+    region:   c_56
+    level:    [53, 56]
+  17649719:
+    template: Goblin_Bouncer
+    region:   e_50
+    level:    [53, 56]
+  17649720:
+    template: Goblin_Enchanter
+    region:   c_56
+    level:    [53, 56]
+  17649721:
+    template: Goblin_Hunter
+    region:   e_50
+    level:    [53, 56]
+  17649722:
+    template: Goblin_Miner
+    region:   c_56
+    level:    [53, 56]
+  17649723:
+    template: Goblin_Bouncer
+    region:   c_56
+    level:    [53, 56]
+  17649724:
+    template: Goblin_Enchanter
+    region:   c_60
+    level:    [53, 56]
+  17649725:
+    template: Air_Elemental
+    region:   c_60
+    level:    [60, 62]
+  17649726:
+    template: Goblin_Miner
+    region:   c_62
+    level:    [53, 56]
+  17649727:
+    template: Goblin_Bouncer
+    region:   c_62
+    level:    [53, 56]
+  17649728:
+    template: Mushussu_LO
+    script:   Mushussu
+    region:   c_62
+    level:    [52, 55]
+  17649729:
+    template: Goblin_Miner
+    region:   c_65
+    level:    [53, 56]
+  17649730:
+    template: Flying_Manta
+    region:   region_61
+    level:    [55, 59]
+  17649731:
+    template: Lord_of_Onzozo
+    region:   region_61
+    level:    [74, 77]
+  17649732:
+    template: Goblin_Hunter
+    region:   region_62
+    level:    [53, 56]
+  17649733:
+    template: Goblin_Bouncer
+    region:   c_69
+    level:    [53, 56]
+  17649734:
+    template: Cockatrice
+    region:   s_70
+    level:    [50, 53]
+  17649735:
+    template: Mushussu_LO
+    script:   Mushussu
+    region:   s_70
+    level:    [51, 54]
+  17649736:
+    template: Cockatrice
+    region:   w_73
+    level:    [50, 53]
+  17649737:
+    template: Mushussu_LO
+    script:   Mushussu
+    region:   w_73
+    level:    [51, 54]
+  17649738:
+    template: Cockatrice
+    region:   w_73
+    level:    [50, 53]
+  17649739:
+    template: Mushussu_LO
+    script:   Mushussu
+    region:   w_73
+    level:    [51, 54]
+  17649740:
+    template: Cockatrice
+    region:   w_73
+    level:    [50, 53]
+  17649741:
+    template: Cockatrice
+    region:   w_73
+    level:    [50, 53]
+  17649742:
+    template: Mushussu_LO
+    script:   Mushussu
+    region:   w_73
+    level:    [51, 54]
+  17649743:
+    template: Mushussu_LO
+    script:   Mushussu
+    region:   w_79
+    level:    [51, 54]
+  17649744:
+    template: Mushussu_LO
+    script:   Mushussu
+    region:   w_79
+    level:    [51, 54]
+  17649745:
+    template: Mushussu_LO
+    script:   Mushussu
+    region:   w_79
+    level:    [51, 54]
+  17649746:
+    template: Mushussu_LO
+    script:   Mushussu
+    region:   w_79
+    level:    [51, 54]
+  17649747:
+    template: Cockatrice
+    region:   w_79
+    level:    [50, 53]
+  17649748:
+    template: Goblin_Bouncer
+    region:   w_84
+    level:    [53, 56]
+  17649749:
+    template: Air_Elemental
+    region:   w_84
+    level:    [60, 62]
+  17649750:
+    template: Goblin_Miner
+    region:   w_86
+    level:    [53, 56]
+  17649751:
+    template: Goblin_Hunter
+    region:   w_86
+    level:    [53, 56]
+  17649752:
+    template: Goblin_Enchanter
+    region:   w_86
+    level:    [53, 56]
+  17649753:
+    template: Goblin_Bouncer
+    region:   sw_89
+    level:    [53, 56]
+  17649754:
+    template: Goblin_Miner
+    region:   region_63
+    level:    [53, 56]
+  17649755:
+    template: Flying_Manta
+    region:   w_91
+    level:    [55, 59]
+  17649756:
+    template: Mushussu_LO
+    script:   Mushussu
+    region:   w_92
+    level:    [54, 57]
+  17649757:
+    template: Mushussu_LO
+    script:   Mushussu
+    region:   w_92
+    level:    [54, 57]
+  17649758:
+    template: Flying_Manta
+    region:   w_92
+    level:    [55, 59]
+  17649759:
+    template: Flying_Manta
+    region:   w_92
+    level:    [55, 59]
+  17649760:
+    template: Flying_Manta
+    region:   w_92
+    level:    [55, 59]
+  17649761:
+    template: Peg_Powler
+    region:   region_64
+    level:    [61, 62]
+  17649762:
+    template: Flying_Manta
+    region:   w_98
+    level:    [55, 59]
+  17649763:
+    template: Flying_Manta
+    region:   w_98
+    level:    [55, 59]
+  17649764:
+    template: Goblin_Hunter
+    region:   w_98
+    level:    [55, 58]
+  17649765:
+    template: Goblin_Bouncer
+    region:   w_98
+    level:    [55, 58]
+  17649766:
+    template: Flying_Manta
+    region:   w_102
+    level:    [55, 59]
+  17649767:
+    template: Goblin_Miner
+    region:   w_102
+    level:    [55, 58]
+  17649768:
+    template: Goblin_Enchanter
+    region:   w_102
+    level:    [55, 58]
+  17649769:
+    template: Flying_Manta
+    region:   c_105
+    level:    [55, 59]
+  17649770:
+    template: Flying_Manta
+    region:   c_105
+    level:    [55, 59]
+  17649771:
+    template: Goblin_Miner
+    region:   c_105
+    level:    [55, 58]
+  17649772:
+    template: Goblin_Enchanter
+    region:   c_105
+    level:    [55, 58]
+  17649773:
+    template: Flying_Manta
+    region:   c_109
+    level:    [55, 59]
+  17649774:
+    template: Flying_Manta
+    region:   c_109
+    level:    [55, 59]
+  17649775:
+    template: Goblin_Hunter
+    region:   c_109
+    level:    [55, 58]
+  17649776:
+    template: Goblin_Bouncer
+    region:   c_109
+    level:    [55, 58]
+  17649777:
+    template: Water_Elemental
+    region:   c_113
+    level:    [60, 62]
+  17649778:
+    template: Torama
+    region:   n_114
+    level:    [70, 73]
+  17649779:
+    template: Torama
+    region:   n_114
+    level:    [70, 73]
+  17649780:
+    template: Torama
+    region:   nw_116
+    level:    [70, 73]
+  17649781:
+    template: Air_Elemental
+    region:   nw_116
+    level:    [60, 62]
+  17649782:
+    template: Torama
+    region:   nw_118
+    level:    [70, 73]
+  17649783:
+    template: Labyrinth_Manticore
+    region:   nw_122
+    level:    [71, 74]
+  17649784:
+    template: Narasimha
+    region:   region_65
+    level:    [75, 77]
+  17649785:
+    template: Water_Elemental
+    region:   nw_118
+    level:    [60, 62]
+  17649786:
+    template: Torama
+    region:   nw_122
+    level:    [70, 73]
+  17649787:
+    template: Labyrinth_Manticore
+    region:   nw_122
+    level:    [71, 74]
+  17649788:
+    template: Air_Elemental
+    region:   nw_122
+    level:    [60, 62]
+  17649789:
+    template: Torama
+    region:   nw_122
+    level:    [70, 73]
+  17649790:
+    template: Labyrinth_Manticore
+    region:   region_66
+    level:    [71, 74]
+  17649791:
+    template: Goblin_Bouncer
+    region:   e_127
+    level:    [54, 57]
+  17649792:
+    template: Goblin_Hunter
+    region:   e_127
+    level:    [56, 58]
+  17649793:
+    template: Goblin_Hunter
+    region:   e_129
+    level:    [54, 57]
+  17649794:
+    template: Goblin_Miner
+    region:   e_129
+    level:    [54, 57]
+  17649795:
+    template: Hellion
+    region:   e_129
+    level:    [66, 66]
+  17649796:
+    template: Flying_Manta
+    region:   region_67
+    level:    [55, 59]
+  17649797:
+    template: Tainted_Flesh_LoO
+    script:   Tainted_Flesh
+    region:   region_68
+    level:    [60, 63]
+  17649798:
+    template: Goblin_Bouncer
+    region:   e_134
+    level:    [55, 58]
+  17649799:
+    template: Goblin_Enchanter
+    region:   e_134
+    level:    [54, 57]
+  17649800:
+    template: Goblin_Miner
+    region:   e_134
+    level:    [55, 58]
+  17649801:
+    template: Goblin_Miner
+    region:   ne_137
+    level:    [55, 58]
+  17649802:
+    template: Goblin_Enchanter
+    region:   ne_137
+    level:    [54, 57]
+  17649803:
+    template: Goblin_Bouncer
+    region:   ne_139
+    level:    [55, 58]
+  17649804:
+    template: Goblin_Enchanter
+    region:   ne_139
+    level:    [54, 57]
+  17649805:
+    template: Goblin_Hunter
+    region:   ne_139
+    level:    [54, 57]
+  17649806:
+    template: Goblin_Hunter
+    region:   ne_142
+    level:    [54, 57]
+  17649807:
+    template: Air_Elemental
+    region:   ne_142
+    level:    [60, 62]
+  17649808:
+    template: Flying_Manta
+    region:   region_69
+    level:    [55, 59]
+  17649809:
+    template: Water_Elemental
+    region:   region_69
+    level:    [60, 62]
+  17649810:
+    template: Tainted_Flesh_LoO
+    script:   Tainted_Flesh
+    region:   region_70
+    level:    [60, 63]
+  17649811:
+    template: Torama
+    region:   ne_147
+    level:    [70, 73]
+  17649812:
+    template: Torama
+    region:   ne_147
+    level:    [70, 73]
+  17649813:
+    template: Torama
+    region:   n_149
+    level:    [70, 73]
+  17649814:
+    template: Torama
+    region:   n_149
+    level:    [70, 73]
+  17649815:
+    template: Torama
+    region:   n_151
+    level:    [70, 73]
+  17649816:
+    template: Torama
+    region:   n_151
+    level:    [70, 73]
+  17649817:
+    template: Torama
+    region:   n_155
+    level:    [70, 73]
+  17649818:
+    template: Soulstealer_Skullnix
+    region:   region_71
+    level:    [69, 72]
+  17649819:
+    template: Torama
+    region:   n_155
+    level:    [70, 73]
+  17649820:
+    template: Torama
+    region:   n_155
+    level:    [70, 73]
+  17649821:
+    template: Labyrinth_Manticore
+    region:   n_155
+    level:    [71, 74]
+  17649822:
+    template: Ose
+    region:   region_71
+    level:    [74, 76]
+  17649823:
+    template: Torama
+    region:   n_159
+    level:    [70, 73]
+  17649824:
+    template: Torama
+    region:   n_159
+    level:    [70, 73]
+  17649825:
+    template: Goblin_Alchemist
+    region:   n_159
+    level:    [66, 69]
+  17649826:
+    template: Labyrinth_Manticore
+    region:   n_159
+    level:    [71, 74]
+  17649827:
+    template: Wyvern
+    region:   n_159
+    level:    [72, 75]
+  17649828:
+    template: Water_Elemental
+    region:   n_164
+    level:    [60, 62]
+  17649829:
+    template: Goblin_Alchemist
+    region:   n_164
+    level:    [66, 69]
+  17649830:
+    template: Water_Elemental
+    region:   n_166
+    level:    [60, 62]
+  17649831:
+    template: Goblin_Bandit
+    region:   n_167
+    level:    [66, 69]
+  17649832:
+    template: Goblin_Shepherd
+    region:   n_167
+    level:    [66, 69]
+  17649833:
+    template: Goblins_Leech
+    at:       [16.640, 5.467, 163.238, 133]
+    level:    [49, 50]
+  17649834:
+    template: Goblin_Mercenary
+    region:   n_167
+    level:    [66, 69]
+  17649835:
+    template: Water_Elemental
+    region:   n_167
+    level:    [60, 62]
+  17649836:
+    template: Goblin_Alchemist
+    region:   n_172
+    level:    [66, 69]
+  17649837:
+    template: Goblin_Bandit
+    region:   n_164
+    level:    [66, 69]
+  17649838:
+    template: Goblin_Shepherd
+    region:   n_172
+    level:    [66, 69]
+  17649839:
+    template: Goblins_Leech
+    at:       [1.000, 1.000, 1.000]
+    level:    [49, 50]
+  17649840:
+    template: Goblin_Mercenary
+    region:   n_172
+    level:    [66, 69]
+  17649841:
+    template: Water_Elemental
+    region:   n_172
+    level:    [60, 62]
+  17649842:
+    template: Goblin_Bandit
+    region:   n_159
+    level:    [66, 69]
+  17649843:
+    template: Goblin_Shepherd
+    region:   n_159
+    level:    [66, 69]
+  17649844:
+    template: Goblins_Leech
+    at:       [1.000, 1.000, 1.000]
+    level:    [49, 50]
+  17649845:
+    template: Goblin_Mercenary
+    region:   n_159
+    level:    [66, 69]
+  17649846:
+    template: Water_Elemental
+    region:   region_72
+    level:    [60, 62]
+  17649847:
+    template: Babaulas
+    region:   n_183
+    level:    [96, 98]
+  17649848:
+    template: Babaulas
+    region:   n_183
+    level:    [96, 98]
+  17649849:
+    template: Babaulas
+    region:   n_185
+    level:    [96, 98]
+  17649850:
+    template: Boribaba
+    region:   n_185
+    level:    [95, 97]
+  17649851:
+    template: Boribaba
+    at:       [39.000, 3.000, 280.000, 127]
+    level:    [95, 97]
+  17649852:
+    template: Babaulas
+    region:   n_188
+    level:    [96, 98]
+  17649853:
+    template: Babaulas
+    region:   n_188
+    level:    [96, 98]
+  17649854:
+    template: Babaulas
+    region:   n_188
+    level:    [96, 98]
+  17649855:
+    template: Babaulas
+    region:   n_191
+    level:    [96, 98]
+  17649856:
+    template: Boribaba
+    region:   n_191
+    level:    [95, 97]
+  17649857:
+    template: Boribaba
+    region:   n_191
+    level:    [95, 97]
+  17649858:
+    template: Air_Elemental
+    region:   n_191
+    level:    [60, 62]
+  17649859:
+    template: Water_Elemental
+    region:   n_195
+    level:    [60, 62]
+  17649860:
+    template: Ubume
+    at:       [-180.802, 9.323, -57.534, 25]
+    level:    [54, 54]
+  17649861:
+    template: Megapod_Megalops
+    at:       [115.000, 14.680, 164.100, 92]
+    level:    [80, 80]
+  17649862:
+    template: Voso
+    at:       [-124.003, -0.189, 126.307, 56]
+  17649863:
+    template: Voso
+    at:       [-29.863, 4.967, 55.237, 78]
+  17649864:
+    template: Voso
+    at:       [47.854, 4.500, 152.825, 66]
+
+  17649911:
+    template: Beta_coka_Cockatrice
+    region:   s_8
+    level:    [50, 53]
+  17649912:
+    template: Beta_coka_Cockatrice
+    region:   s_8
+    level:    [50, 53]
+  17649913:
+    template: Beta_wyve_Wyvern
+    region:   n_159
+    level:    [72, 75]
+  17649914:
+    template: Beta_wyve_Wyvern
+    region:   n_159
+    level:    [72, 75]
+  17649915:
+    template: Beta_drak_Wyvern
+    region:   n_159
+    level:    [72, 75]
+  17649916:
+    template: Beta_drak_Wyvern
+    region:   n_159
+    level:    [72, 75]
+slots:
+  - members:
+      17649682: {} # Cockatrice
+      17649683: {} # Mushussu
+  - members:
+      17649688: {} # Goblin_Miner
+      17649689: {} # Goblin_Bouncer
+  - members:
+      17649694: {} # Goblin_Enchanter
+      17649695: {} # Goblin_Hunter
+  - members:
+      17649700: {} # Cockatrice
+      17649701: {} # Mushussu
+  - members:
+      17649708: {} # Flying_Manta
+      17649709: {} # Cockatrice
+  - members:
+      17649717: {} # Goblin_Hunter
+      17649721: {} # Goblin_Hunter
+  - members:
+      17649718: {} # Goblin_Miner
+      17649722: {} # Goblin_Miner
+  - members:
+      17649736: {} # Cockatrice
+      17649737: {} # Mushussu
+  - members:
+      17649738: {} # Cockatrice
+      17649739: {} # Mushussu
+  - members:
+      17649783: {} # Labyrinth_Manticore
+      17649787: {} # Labyrinth_Manticore
+  - members:
+      17649789: {} # Torama
+      17649790: {} # Labyrinth_Manticore
+  - members:
+      17649817: {} # Torama
+      17649820: {} # Torama
+  - members:
+      17649824: {} # Torama
+      17649825: {} # Goblin_Alchemist
+  - members:
+      17649826: {} # Labyrinth_Manticore
+      17649827: {} # Wyvern
+  - members:
+      17649829: {} # Goblin_Alchemist
+      17649837: {} # Goblin_Bandit
+  - members:
+      17649831: {} # Goblin_Bandit
+      17649832: {} # Goblin_Shepherd
+      17649834: {} # Goblin_Mercenary
+  - members:
+      17649836: {} # Goblin_Alchemist
+      17649838: {} # Goblin_Shepherd
+      17649840: {} # Goblin_Mercenary
+  - members:
+      17649842: {} # Goblin_Bandit
+      17649843: {} # Goblin_Shepherd
+      17649845: {} # Goblin_Mercenary

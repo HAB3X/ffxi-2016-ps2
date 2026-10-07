@@ -1,0 +1,84 @@
+-- Text ids rebuilt for the 2007 PS2 client data tooling: PROFILE 2012 = the 2012 client data (report 28) by research/tools/lsb_textids_2007.py (42 changed, 7 not in the 2007 dialog DAT 6626 and left unchanged).
+-----------------------------------
+-- Area: QuBia_Arena
+-----------------------------------
+zones = zones or {}
+
+zones[xi.zone.QUBIA_ARENA] =
+{
+    text =
+    {
+        ITEM_CANNOT_BE_OBTAINED       = 6375, -- You cannot obtain the <item>. Come back after sorting your inventory.
+        ITEM_OBTAINED                 = 6378, -- Obtained: <item>.
+        GIL_OBTAINED                  = 6379, -- Obtained <number> gil.
+        KEYITEM_OBTAINED              = 6398, -- Obtained key item: <keyitem>.
+        LOST_KEYITEM                  = 6399, -- Lost key item: <keyitem>.
+        CARRIED_OVER_POINTS           = 7006, -- You have carried over <number> login point[/s].
+        LOGIN_CAMPAIGN_UNDERWAY       = 7007, -- The [/January/February/March/April/May/June/July/August/September/October/November/December] <number> Login Campaign is currently underway!
+        LOGIN_NUMBER                  = 7008, -- In celebration of your most recent login (login no. <number>), we have provided you with <number> points! You currently have a total of <number> points.
+        MEMBERS_LEVELS_ARE_RESTRICTED = 7028, -- Your party is unable to participate because certain members' levels are restricted.
+        CONQUEST_BASE                 = 6994, -- Tallying conquest results...
+        TIME_IN_THE_BATTLEFIELD_IS_UP = 7158, -- Your time in the battlefield is up! Now exiting...
+        CLEARED_BUT_MEMBERS_ENGAGED   = 7160, -- You are cleared to enter the battlefield, but you cannot while party members are engaged in combat.
+        PARTY_MEMBERS_ARE_ENGAGED     = 7171, -- The battlefield where your party members are engaged in combat is locked. Access is denied.
+        NO_BATTLEFIELD_ENTRY          = 7174, -- A mysterious force is sealing the platform.
+        TESTIMONY_IS_TORN             = 7213, -- Your <item> is torn...
+        TESTIMONY_WEARS               = 7214, -- Your <item> [/rips into shreds!/is on the verge of tearing apart.../is showing signs of wear...] (# [use remains/uses remain].)
+        MEMBERS_OF_YOUR_PARTY         = 7459, -- Currently, # members of your party (including yourself) have clearance to enter the battlefield.
+        MEMBERS_OF_YOUR_ALLIANCE      = 7460, -- Currently, # members of your alliance (including yourself) have clearance to enter the battlefield.
+        TIME_LIMIT_FOR_THIS_BATTLE_IS = 7462, -- The time limit for this battle is <number> minutes.
+        ORB_IS_CRACKED                = 7463, -- There is a crack in the %. It no longer contains a monster.
+        A_CRACK_HAS_FORMED            = 7464, -- A crack has formed on the <item>, and the beast inside has been unleashed!
+        PARTY_MEMBERS_HAVE_FALLEN     = 7498, -- All party members have fallen in battle. Now leaving the battlefield.
+        THE_PARTY_WILL_BE_REMOVED     = 7504, -- If all party members' HP are still zero after # minute[/s], the party will be removed from the battlefield.
+        ENTERING_THE_BATTLEFIELD_FOR  = 7516, -- Entering the battlefield for [The Rank 5 Mission/Come Into My Parlor/E-vase-ive Action/Infernal Swarm/The Heir to the Light/Shattering Stars (PLD)/Shattering Stars (DRK)/Shattering Stars (BRD)/Demolition Squad/Die by the Sword/Let Sleeping Dogs Die/Brothers D'Aurphe/Undying Promise/Factory Rejects/Idol Thoughts/An Awful Autopsy/Celery/Mirror Images/A Furious Finale/Clash of the Comrades/Those Who Lurk in Shadows/Beyond Infinity/★Factory Rejects/★Demolition Squad/★Brothers D'Aurphe/Mumor's Encore]!
+        FLAT_PREPARE                  = 7555, -- I am Trion, of San d'Oria!
+        FLAT_LAND                     = 7556, -- Feel the fire of my forefathers!
+        RLB_PREPARE                   = 7557, -- The darkness before me that shrouds the light of good...
+        RLB_LAND                      = 7558, -- ...Return to the hell you crawled out from!
+        SAVAGE_PREPARE                = 7559, -- The anger, the pain, and the will to survive... Let the spirit of San d'Oria converge within this blade.
+        SAVAGE_LAND                   = 7560, -- And with this blade I will return the glory to my kingdom's people!
+        YOU_DECIDED_TO_SHOW_UP        = 7561, -- So, you decided to show up. Now it's time to see what you're really made of, heh heh heh.
+        LOOKS_LIKE_YOU_WERENT_READY   = 7562, -- Looks like you weren't ready for me, were you? Now go home, wash your face, and come back when you think you've got what it takes.
+        YOUVE_COME_A_LONG_WAY         = 7563, -- Hm. That was a mighty fine display of skill there, <name>. You've come a long way...
+        TEACH_YOU_TO_RESPECT_ELDERS   = 7564, -- I'll teach you to respect your elders!
+        TAKE_THAT_YOU_WHIPPERSNAPPER  = 7565, -- Take that, you whippersnapper!
+        NOW_THAT_IM_WARMED_UP         = 7566, -- Now that I'm warmed up...
+        THAT_LL_HURT_IN_THE_MORNING   = 7567, -- Ungh... That'll hurt in the morning...
+        HAUNT_YOUR_SOUL               = 7589, -- I will haunt you until your soul rots to nothingness!
+        FALL_TO_ALTANA                = 7590, -- And once again, I fall to the sons of Altana...
+        ETERNAL_DAMNATION             = 7591, -- Death is only another step in the eternal damnation of the soul.
+        SPILLING_BLOOD                = 7592, -- The spilling of my ethereal blood serves only to kindle the malignant flame of hate in your diseased soul.
+        SOUL_GEM_REACTS               = 8015, -- The <keyitem> reacts to the <keyitem>, sending a jolt of energy through your veins!
+        PROMISE_ME_YOU_WONT_GO_DOWN   = 7937, -- Promise you won't go down too easy, okay?
+        IM_JUST_GETTING_WARMED_UP     = 7938, -- Haha! I'm just getting warmed up!
+        YOU_PACKED_MORE_OF_A_PUNCH    = 7939, -- Hah! You pack more of a punch than I thoughtaru. But I won't go down as easy as old Maat!
+        WHATS_THIS_STRANGE_FEELING    = 7940, -- What's this strange feeling...? It's not supposed to end...like...
+        HUH_IS_THAT_ALL               = 7941, -- Huh? Is that all? I haven't even broken a sweataru...
+        YIKEY_WIKEYS                  = 7942, -- Yikey-wikeys! Get that thing away from meee!
+        WHATS_THE_MATTARU             = 7943, -- <Pant, wheeze>... What's the mattaru, <name>? Too much of a pansy-wansy to fight fair?
+    },
+
+    mob =
+    {
+        ARCHLICH_TABERQUOAN      = GetFirstID('Archlich_Taberquoan'),
+        ATORI_TUTORI             = GetFirstID('Atori-Tutori_qm'),
+        CAPELTHWAITE             = GetFirstID('Capelthwaite'),
+        CHAHNAMEEDS_STOMACH      = GetFirstID('Chahnameeds_Stomach'),
+        DOLL_FACTORY             = GetFirstID('Doll_Factory'),
+        FIRE_POT                 = GetFirstID('Fire_Pot'),
+        GHUL_I_BEABAN            = GetFirstID('Ghul-I-Beaban_DRK'),
+        GLADIATORIAL_WEAPON      = GetFirstID('Gladiatorial_Weapon'),
+        MAAT                     = GetFirstID('Maat_pld'),
+        NEPHIYL_RAMPARTBREACHER  = GetFirstID('Nephiyl_Rampartbreacher'),
+        SEED_ORC                 = GetFirstID('Seed_Orc'),
+        VAICOLIAUX_B_DAURPHE     = GetFirstID('Vaicoliaux_B_DAurphe'),
+        WARLORD_ROJGNOJ          = GetFirstID('Warlord_Rojgnoj'),
+    },
+
+    npc =
+    {
+    },
+}
+
+return zones[xi.zone.QUBIA_ARENA]

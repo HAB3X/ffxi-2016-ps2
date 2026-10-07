@@ -1,0 +1,3160 @@
+# yaml-language-server: $schema=../../schemas/mobs.schema.json
+
+templates:
+
+  Digger_Wasp_aggro:
+    id:            6071
+    display_name:  Digger_Wasp
+    species:       yellow_bee
+    skill_list_id: 48
+    attributes:
+      combat:
+        skill: dagger
+      render:
+        look:
+          type:  standard
+          model: 273
+        entity_flags:  643
+        animation_sub:   8
+        model_size:      1
+        hitbox:         10
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 480
+    loot:
+      drops:
+        - chance: common
+          item:   beehive_chip
+        - chance: uncommon
+          item:   pot_of_honey
+        - chance: rare
+          item:   insect_wing
+        - chance: very_rare
+          item:   giant_stinger
+      steal: pot_of_honey
+      despoil:
+        beehive_chip:  0
+        giant_stinger: 0
+        pot_of_honey:  0
+
+  Dirt_Eater:
+    id:            1047
+    species:       worm
+    roam:          [worm]
+    spell_list_id: 9
+    skill_list_id: 258
+    attributes:
+      combat:
+        skill: scythe
+      jobs: [blm, rdm]
+      render:
+        look:
+          type:  standard
+          model: 425
+        entity_flags: 129
+        hitbox:        11
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 480
+    loot:
+      drops:
+        - chance: common
+          item:   flint_stone
+        - chance: uncommon
+          item:   chunk_of_copper_ore
+        - chance: rare
+          item:   chunk_of_zinc_ore
+        - chance: very_rare
+          item:   chunk_of_silver_ore
+      steal: pebble
+      despoil:
+        chunk_of_copper_ore: 0
+        chunk_of_iron_ore:   0
+        chunk_of_silver_ore: 0
+        chunk_of_zinc_ore:   0
+
+  Earth_Eater:
+    id:            1159
+    species:       worm
+    roam:          [worm]
+    spell_list_id: 9
+    skill_list_id: 258
+    attributes:
+      combat:
+        skill: scythe
+      jobs: [blm, rdm]
+      render:
+        look:
+          type:  standard
+          model: 425
+        entity_flags: 1155
+        model_size:      1
+        hitbox:         12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 480
+    loot:
+      drops:
+        - chance: common
+          item:   flint_stone
+        - chance: uncommon
+          item:   chunk_of_copper_ore
+        - chance: rare
+          item:   chunk_of_zinc_ore
+        - chance: very_rare
+          item:   chunk_of_silver_ore
+      steal: pebble
+      despoil:
+        chunk_of_copper_ore: 0
+        chunk_of_iron_ore:   0
+        chunk_of_silver_ore: 0
+        chunk_of_zinc_ore:   0
+
+  Eyy_Mon_the_Ironbreaker:
+    id:            1277
+    species:       yagudo
+    type:          [notorious]
+    spell_list_id: 7
+    skill_list_id: 360
+    attributes:
+      combat:
+        skill: dagger
+      jobs: [nin, nin]
+      render:
+        look:
+          type:  standard
+          model: 588
+        entity_flags: 1179
+        name_prefix:    32
+        model_size:      1
+        hitbox:         15
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+      stats:
+        hp: 310
+    loot:
+      drops:
+        - chance: always
+          item:   aspir_knife
+
+  Giant_Pugil:
+    id:            1535
+    species:       pugil
+    skill_list_id: 197
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 348
+        entity_flags: 131
+        model_size:     1
+        hitbox:        27
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 480
+    loot:
+      drops:
+        - chance: uncommon
+          item:   handful_of_pugil_scales
+      steal: handful_of_fish_scales
+      despoil:
+        handful_of_pugil_scales: 0
+        handful_of_fish_scales:  0
+
+  Giddeus_Bee:
+    id:            1543
+    species:       yellow_bee
+    skill_list_id: 48
+    attributes:
+      combat:
+        skill: dagger
+      render:
+        look:
+          type:  standard
+          model: 273
+        entity_flags: 641
+        hitbox:         8
+      behaviors:
+        links: true
+      spawn:
+        respawn: 480
+    loot:
+      drops:
+        - chance: common
+          item:   beehive_chip
+        - chance: uncommon
+          item:   pot_of_honey
+        - chance: rare
+          item:   insect_wing
+        - chance: very_rare
+          item:   giant_stinger
+      steal: pot_of_honey
+      despoil:
+        beehive_chip:  0
+        giant_stinger: 0
+        pot_of_honey:  0
+
+  Giddeus_Pugil:
+    id:            1544
+    species:       pugil
+    skill_list_id: 197
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 348
+        entity_flags: 129
+        hitbox:        23
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 480
+    loot:
+      drops:
+        - chance: uncommon
+          item:   handful_of_pugil_scales
+      steal: handful_of_fish_scales
+      despoil:
+        handful_of_pugil_scales: 0
+        handful_of_fish_scales:  0
+
+  Hoo_Mjuu_the_Torrent:
+    id:            1988
+    species:       yagudo
+    type:          [notorious]
+    spell_list_id: 20
+    skill_list_id: 360
+    attributes:
+      combat:
+        skill: great_axe
+        delay: 210
+      jobs: [whm, whm]
+      render:
+        look:
+          type:  standard
+          model: 1069
+        entity_flags: 155
+        name_prefix:   32
+        model_size:     1
+        hitbox:        15
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [lottery]
+      stats:
+        hp: 850
+    loot:
+      drops:
+        - chance: common
+          item:   zealots_mitts
+        - chance: common
+          item:   scroll_of_deodorize
+        - chance: rare
+          item:   monster_signa
+
+  Juu_Duzu_the_Whirlwind:
+    id:            2170
+    species:       yagudo
+    type:          [notorious]
+    spell_list_id: 7
+    skill_list_id: 360
+    attributes:
+      combat:
+        skill: dagger
+      jobs: [nin, nin]
+      render:
+        look:
+          type:  standard
+          model: 588
+        entity_flags: 155
+        name_prefix:   32
+        model_size:     1
+        hitbox:        15
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [lottery]
+      stats:
+        hp: 520
+    loot:
+      drops:
+        - chance: always
+          one_of:
+            light_soleas:    85
+            hunters_longbow: 15
+
+  Land_Pugil_fished:
+    id:            6764
+    display_name:  Land_Pugil
+    species:       pugil
+    type:          [fished]
+    skill_list_id: 197
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 348
+        entity_flags: 131
+        model_size:     1
+        hitbox:        27
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: uncommon
+          item:   handful_of_pugil_scales
+      steal: handful_of_fish_scales
+      despoil:
+        handful_of_pugil_scales: 0
+        handful_of_fish_scales:  0
+
+  Puffer_Pugil:
+    id:            3220
+    species:       pugil
+    type:          [fished]
+    skill_list_id: 197
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 348
+        entity_flags: 131
+        model_size:     1
+        hitbox:        27
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: uncommon
+          item:   handful_of_pugil_scales
+      steal: handful_of_fish_scales
+      despoil:
+        handful_of_pugil_scales: 0
+        handful_of_fish_scales:  0
+
+  Pug_Pugil_fished:
+    id:            6769
+    display_name:  Pug_Pugil
+    species:       pugil
+    type:          [fished]
+    skill_list_id: 197
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 348
+        entity_flags: 129
+        hitbox:        23
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: uncommon
+          item:   handful_of_pugil_scales
+      steal: handful_of_fish_scales
+      despoil:
+        handful_of_pugil_scales: 0
+        handful_of_fish_scales:  0
+
+  Pugil_fished:
+    id:            6773
+    display_name:  Pugil
+    species:       pugil
+    type:          [fished]
+    skill_list_id: 197
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 348
+        entity_flags: 129
+        hitbox:        23
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: uncommon
+          item:   handful_of_pugil_scales
+      steal: handful_of_fish_scales
+      despoil:
+        handful_of_pugil_scales: 0
+        handful_of_fish_scales:  0
+
+  Quu_Xijo_the_Illusory:
+    id:            5850
+    species:       yagudo
+    type:          [notorious]
+    spell_list_id: 7
+    skill_list_id: 360
+    attributes:
+      combat:
+        skill: dagger
+      jobs: [nin, nin]
+      resists:
+        immune_status: [silence, light_sleep, dark_sleep]
+      render:
+        look:
+          type:  standard
+          model: 588
+        entity_flags:  667
+        animation_sub:   8
+        name_prefix:    32
+        model_size:      1
+        hitbox:         15
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 3600
+      stats:
+        hp: 900
+    loot:
+      drops:
+        - chance: common
+          item:   square_of_ephemeral_cloth
+    content: wotg
+
+  Vaa_Huja_the_Erudite:
+    id:            4113
+    species:       yagudo
+    type:          [notorious]
+    spell_list_id: 21
+    skill_list_id: 360
+    attributes:
+      combat:
+        skill: axe
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 584
+        entity_flags: 155
+        name_prefix:   32
+        model_size:     1
+        hitbox:        15
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+
+  Vuu_Puqu_the_Beguiler:
+    id:            4267
+    species:       yagudo
+    type:          [notorious]
+    spell_list_id: 6
+    skill_list_id: 360
+    attributes:
+      combat:
+        skill: axe
+        delay: 210
+      jobs: [brd, brd]
+      render:
+        look:
+          type:  standard
+          model: 593
+        entity_flags: 155
+        name_prefix:   32
+        model_size:     1
+        hitbox:        15
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [lottery]
+      stats:
+        hp: 960
+    loot:
+      drops:
+        - chance: common
+          item:   scroll_of_mages_ballad
+        - chance: always
+          one_of:
+            bird_whistle:   90
+            bonzes_circlet: 10
+
+  Yagudo_Acolyte:
+    id:            4405
+    species:       yagudo
+    spell_list_id: 20
+    skill_list_id: 270
+    attributes:
+      combat:
+        skill: sword
+      jobs: [whm, whm]
+      render:
+        look:
+          type:  standard
+          model: 583
+        entity_flags: 129
+        hitbox:        12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 480
+    loot:
+      drops:
+        - chance: common
+          item:   yagudo_bead_necklace
+        - chance: very_rare
+          item:   scroll_of_paralyze
+        - chance: very_rare
+          item:   scroll_of_protectra
+        - chance: very_rare
+          item:   scroll_of_barsleep
+        - chance: very_rare
+          item:   scroll_of_sneak
+        - chance: very_rare
+          item:   circlet
+        - chance: very_rare
+          item:   cuffs
+        - chance: very_rare
+          item:   slops
+        - chance: rare
+          item:   ash_clogs
+      steal: beastcoin
+      despoil:
+        roast_carp:       0
+        roast_pipira:     0
+        boiled_tuna_head: 0
+
+  Yagudo_Initiate:
+    id:            4426
+    species:       yagudo
+    skill_list_id: 270
+    attributes:
+      combat:
+        skill: hand_to_hand
+        delay: 380
+      jobs: [mnk, mnk]
+      render:
+        look:
+          type:  standard
+          model: 580
+        entity_flags: 129
+        hitbox:        12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 480
+    loot:
+      drops:
+        - chance: common
+          item:   yagudo_bead_necklace
+        - chance: very_rare
+          item:   bronze_cap
+        - chance: very_rare
+          item:   bronze_mittens
+        - chance: very_rare
+          item:   bronze_subligar
+        - chance: very_rare
+          item:   bronze_leggings
+      steal: beastcoin
+      despoil:
+        roast_carp:       0
+        roast_pipira:     0
+        boiled_tuna_head: 0
+
+  Yagudo_Lookout:
+    id:            7499
+    species:       yagudo
+    type:          [notorious]
+    skill_list_id: 270
+    attributes:
+      combat:
+        skill: sword
+      render:
+        look:
+          type:  standard
+          model: 598
+        entity_flags: 131
+        model_size:     1
+        hitbox:        16
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+
+  Yagudo_Mendicant:
+    id:            4432
+    species:       yagudo
+    spell_list_id: 30
+    skill_list_id: 270
+    attributes:
+      combat:
+        skill: great_axe
+      jobs: [smn, smn]
+      render:
+        look:
+          type:  standard
+          model: 582
+        entity_flags: 131
+        model_size:     1
+        hitbox:        15
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 480
+    loot:
+      drops:
+        - chance: rare
+          item:   block_of_yagudo_caulk
+        - chance: common
+          item:   yagudo_bead_necklace
+        - chance: uncommon
+          item:   silver_beastcoin
+        - chance: very_rare
+          item:   mitts
+        - chance: very_rare
+          item:   slacks
+        - chance: very_rare
+          item:   solea
+      steal: beastcoin
+      despoil:
+        roast_carp:       0
+        roast_pipira:     0
+        boiled_tuna_head: 0
+
+  Yagudo_Persecutor:
+    id:            4439
+    species:       yagudo
+    skill_list_id: 270
+    attributes:
+      combat:
+        skill: great_katana
+      jobs: [sam, sam]
+      render:
+        look:
+          type:  standard
+          model: 598
+        entity_flags: 131
+        model_size:     1
+        hitbox:        15
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 480
+    loot:
+      drops:
+        - chance: rare
+          item:   block_of_yagudo_caulk
+        - chance: common
+          item:   yagudo_bead_necklace
+        - chance: uncommon
+          item:   silver_beastcoin
+        - chance: very_rare
+          item:   hachimaki
+        - chance: very_rare
+          item:   tekko
+        - chance: very_rare
+          item:   sitabaki
+        - chance: very_rare
+          item:   kyahan
+      steal: beastcoin
+      despoil:
+        roast_carp:       0
+        roast_pipira:     0
+        boiled_tuna_head: 0
+
+  Yagudo_Piper:
+    id:            4441
+    species:       yagudo
+    spell_list_id: 6
+    skill_list_id: 270
+    attributes:
+      combat:
+        skill: axe
+      jobs: [brd, brd]
+      render:
+        look:
+          type:  standard
+          model: 591
+        entity_flags: 131
+        model_size:     1
+        hitbox:        15
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 480
+    loot:
+      drops:
+        - chance: rare
+          item:   block_of_yagudo_caulk
+        - chance: common
+          item:   yagudo_bead_necklace
+        - chance: uncommon
+          item:   scroll_of_foe_lullaby
+        - chance: rare
+          item:   scroll_of_mages_ballad
+        - chance: very_rare
+          item:   circlet
+        - chance: very_rare
+          item:   slops
+        - chance: very_rare
+          item:   cuffs
+        - chance: very_rare
+          item:   ash_clogs
+      steal: beastcoin
+      despoil:
+        roast_carp:       0
+        roast_pipira:     0
+        boiled_tuna_head: 0
+
+  Yagudo_Priest:
+    id:            4444
+    species:       yagudo
+    spell_list_id: 20
+    skill_list_id: 270
+    attributes:
+      combat:
+        skill: sword
+      jobs: [whm, whm]
+      render:
+        look:
+          type:  standard
+          model: 597
+        entity_flags: 131
+        model_size:     1
+        hitbox:        15
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 600
+    loot:
+      drops:
+        - chance: rare
+          item:   block_of_yagudo_caulk
+        - chance: rare
+          item:   giddeus_chest_key
+        - chance: very_rare
+          item:   scroll_of_barpoisonra
+        - chance: very_rare
+          item:   scroll_of_invisible
+        - chance: very_rare
+          item:   scroll_of_deodorize
+        - chance: rare
+          item:   scroll_of_silence
+        - chance: very_rare
+          item:   poets_circlet
+        - chance: very_rare
+          item:   linen_cuffs
+        - chance: very_rare
+          item:   linen_slops
+        - chance: very_rare
+          item:   holly_clogs
+      steal: silver_beastcoin
+      despoil:
+        roast_carp:       0
+        roast_pipira:     0
+        boiled_tuna_head: 0
+
+  Yagudo_Scribe:
+    id:            4448
+    species:       yagudo
+    spell_list_id: 21
+    skill_list_id: 270
+    attributes:
+      combat:
+        skill: axe
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 584
+        entity_flags: 129
+        hitbox:        12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 480
+    loot:
+      drops:
+        - chance: common
+          item:   yagudo_bead_necklace
+        - chance: rare
+          item:   scroll_of_blind
+        - chance: rare
+          item:   scroll_of_bind
+        - chance: very_rare
+          item:   circlet
+        - chance: very_rare
+          item:   cuffs
+        - chance: very_rare
+          item:   slops
+        - chance: very_rare
+          item:   ash_clogs
+      steal: beastcoin
+      despoil:
+        roast_carp:       0
+        roast_pipira:     0
+        boiled_tuna_head: 0
+
+  Yagudo_Theologist:
+    id:            4456
+    species:       yagudo
+    spell_list_id: 21
+    skill_list_id: 270
+    attributes:
+      combat:
+        skill: axe
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 589
+        entity_flags: 131
+        model_size:     1
+        hitbox:        15
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 600
+    loot:
+      drops:
+        - chance: rare
+          item:   giddeus_chest_key
+        - chance: rare
+          item:   block_of_yagudo_caulk
+        - chance: very_rare
+          item:   poets_circlet
+        - chance: very_rare
+          item:   linen_cuffs
+        - chance: very_rare
+          item:   linen_slops
+        - chance: very_rare
+          item:   holly_clogs
+      steal: silver_beastcoin
+      despoil:
+        roast_carp:       0
+        roast_pipira:     0
+        boiled_tuna_head: 0
+
+  Yagudo_Votary:
+    id:            4459
+    species:       yagudo
+    skill_list_id: 270
+    attributes:
+      combat:
+        skill: hand_to_hand
+        delay: 380
+      jobs: [mnk, mnk]
+      render:
+        look:
+          type:  standard
+          model: 581
+        entity_flags: 131
+        model_size:     1
+        hitbox:        15
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 600
+    loot:
+      drops:
+        - chance: rare
+          item:   block_of_yagudo_caulk
+        - chance: rare
+          item:   giddeus_chest_key
+        - chance: rare
+          item:   seven-knot_quipu
+        - chance: common
+          item:   king_locust
+        - chance: super_rare
+          item:   cotton_hachimaki
+        - chance: super_rare
+          item:   cotton_tekko
+        - chance: super_rare
+          item:   cotton_sitabaki
+        - chance: super_rare
+          item:   cotton_kyahan
+      steal: silver_beastcoin
+      despoil:
+        roast_carp:       0
+        roast_pipira:     0
+        boiled_tuna_head: 0
+
+  Yagudos_Elemental:
+    id:            4454
+    species:       air_elemental
+    spell_list_id: 21
+    skill_list_id: 99
+    attributes:
+      combat:
+        skill: staff
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 10
+        entity_flags:  129
+        animation_sub:  16
+        model_size:      1
+        hitbox:          8
+      behaviors:
+        links: true
+      spawn:
+        type: [scripted]
+
+  Zhuu_Buxu_the_Silent:
+    id:            4502
+    species:       yagudo
+    type:          [notorious]
+    spell_list_id: 7
+    skill_list_id: 360
+    attributes:
+      combat:
+        skill: dagger
+      jobs: [nin, nin]
+      render:
+        look:
+          type:  standard
+          model: 588
+        entity_flags: 155
+        name_prefix:   32
+        model_size:     1
+        hitbox:        15
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+      stats:
+        hp: 300
+    loot:
+      drops:
+        - chance: always
+          item:   parana_shield
+
+spawns:
+  17371137:
+    template: Pugil_fished
+    script:   Pugil
+    at:       [1.000, 1.000, 1.000]
+    level:    [4, 5]
+  17371138:
+    template: Pugil_fished
+    script:   Pugil
+    at:       [1.000, 1.000, 1.000]
+    level:    [3, 5]
+  17371139:
+    template: Pug_Pugil_fished
+    script:   Pug_Pugil
+    at:       [1.000, 1.000, 1.000]
+    level:    [10, 10]
+  17371140:
+    template: Puffer_Pugil
+    at:       [1.000, 1.000, 1.000]
+    level:    [14, 14]
+  17371141:
+    template: Land_Pugil_fished
+    script:   Land_Pugil
+    at:       [1.000, 1.000, 1.000]
+    level:    [19, 19]
+  17371142:
+    template: Eyy_Mon_the_Ironbreaker
+    region:   n_6
+    level:    [16, 16]
+  17371143:
+    template: Zhuu_Buxu_the_Silent
+    region:   n_7
+    level:    [16, 16]
+  17371144:
+    template: Yagudo_Initiate
+    region:   nw_8
+    level:    [3, 4]
+  17371145:
+    template: Yagudo_Initiate
+    region:   nw_8
+    level:    [3, 4]
+  17371146:
+    template: Yagudo_Acolyte
+    region:   nw_8
+    level:    [3, 4]
+  17371147:
+    template: Yagudo_Scribe
+    region:   nw_8
+    level:    [3, 4]
+  17371148:
+    template: Giddeus_Bee
+    region:   nw_8
+    level:    [2, 4]
+  17371149:
+    template: Giddeus_Pugil
+    region:   nw_13
+    level:    [2, 4]
+  17371150:
+    template: Giddeus_Pugil
+    region:   nw_13
+    level:    [2, 4]
+  17371151:
+    template: Giddeus_Pugil
+    region:   nw_13
+    level:    [2, 4]
+  17371152:
+    template: Yagudo_Initiate
+    region:   n_16
+    level:    [3, 4]
+  17371153:
+    template: Yagudo_Initiate
+    region:   n_16
+    level:    [3, 4]
+  17371154:
+    template: Yagudo_Acolyte
+    region:   n_16
+    level:    [3, 4]
+  17371155:
+    template: Yagudo_Scribe
+    region:   n_16
+    level:    [3, 4]
+  17371156:
+    template: Giddeus_Bee
+    region:   n_16
+    level:    [2, 4]
+  17371157:
+    template: Giddeus_Bee
+    region:   n_16
+    level:    [2, 4]
+  17371158:
+    template: Giddeus_Bee
+    region:   n_16
+    level:    [2, 4]
+  17371159:
+    template: Yagudo_Initiate
+    region:   n_23
+    level:    [3, 5]
+  17371160:
+    template: Yagudo_Acolyte
+    region:   n_23
+    level:    [3, 5]
+  17371161:
+    template: Yagudo_Scribe
+    region:   n_23
+    level:    [3, 5]
+  17371162:
+    template: Giddeus_Bee
+    region:   n_23
+    level:    [2, 4]
+  17371163:
+    template: Giddeus_Bee
+    region:   n_23
+    level:    [2, 4]
+  17371164:
+    template: Giddeus_Bee
+    region:   n_23
+    level:    [2, 4]
+  17371165:
+    template: Yagudo_Initiate
+    region:   nw_29
+    level:    [3, 5]
+  17371166:
+    template: Yagudo_Acolyte
+    region:   nw_29
+    level:    [3, 5]
+  17371167:
+    template: Yagudo_Scribe
+    region:   n_34
+    level:    [3, 5]
+  17371168:
+    template: Giddeus_Bee
+    region:   nw_29
+    level:    [2, 4]
+  17371169:
+    template: Giddeus_Bee
+    region:   nw_29
+    level:    [2, 4]
+  17371170:
+    template: Yagudo_Initiate
+    region:   n_34
+    level:    [3, 5]
+  17371171:
+    template: Yagudo_Acolyte
+    region:   n_34
+    level:    [3, 5]
+  17371172:
+    template: Yagudo_Scribe
+    region:   n_34
+    level:    [3, 5]
+  17371173:
+    template: Giddeus_Bee
+    region:   n_34
+    level:    [2, 4]
+  17371174:
+    template: Giddeus_Bee
+    region:   n_34
+    level:    [2, 4]
+  17371175:
+    template: Yagudo_Initiate
+    region:   nw_40
+    level:    [5, 7]
+  17371176:
+    template: Yagudo_Acolyte
+    region:   nw_40
+    level:    [5, 7]
+  17371177:
+    template: Yagudo_Scribe
+    region:   nw_40
+    level:    [5, 7]
+  17371178:
+    template: Yagudo_Initiate
+    region:   nw_40
+    level:    [5, 7]
+  17371179:
+    template: Yagudo_Acolyte
+    region:   nw_40
+    level:    [5, 7]
+  17371180:
+    template: Yagudo_Scribe
+    region:   nw_40
+    level:    [5, 7]
+  17371181:
+    template: Giddeus_Bee
+    region:   nw_40
+    level:    [4, 5]
+  17371182:
+    template: Giddeus_Bee
+    region:   nw_40
+    level:    [4, 5]
+  17371183:
+    template: Yagudo_Initiate
+    region:   nw_49
+    level:    [5, 7]
+  17371184:
+    template: Yagudo_Acolyte
+    region:   nw_49
+    level:    [5, 7]
+  17371185:
+    template: Yagudo_Scribe
+    region:   nw_49
+    level:    [5, 7]
+  17371186:
+    template: Yagudo_Initiate
+    region:   nw_49
+    level:    [5, 7]
+  17371187:
+    template: Yagudo_Acolyte
+    region:   nw_49
+    level:    [5, 7]
+  17371188:
+    template: Yagudo_Scribe
+    region:   nw_49
+    level:    [5, 7]
+  17371189:
+    template: Giddeus_Bee
+    region:   nw_49
+    level:    [4, 5]
+  17371190:
+    template: Giddeus_Bee
+    region:   nw_49
+    level:    [4, 5]
+  17371191:
+    template: Giddeus_Pugil
+    region:   nw_55
+    level:    [4, 5]
+  17371192:
+    template: Giddeus_Pugil
+    region:   nw_55
+    level:    [4, 5]
+  17371193:
+    template: Giddeus_Pugil
+    region:   nw_55
+    level:    [4, 5]
+  17371194:
+    template: Yagudo_Initiate
+    region:   n_58
+    level:    [5, 7]
+  17371195:
+    template: Yagudo_Acolyte
+    region:   n_58
+    level:    [5, 7]
+  17371196:
+    template: Yagudo_Scribe
+    region:   n_58
+    level:    [5, 7]
+  17371197:
+    template: Yagudo_Initiate
+    region:   n_58
+    level:    [5, 7]
+  17371198:
+    template: Yagudo_Acolyte
+    region:   n_58
+    level:    [5, 7]
+  17371199:
+    template: Yagudo_Scribe
+    region:   n_58
+    level:    [5, 7]
+  17371200:
+    template: Giddeus_Bee
+    region:   n_58
+    level:    [4, 5]
+  17371201:
+    template: Giddeus_Bee
+    region:   n_58
+    level:    [4, 5]
+  17371202:
+    template: Yagudo_Initiate
+    region:   n_67
+    level:    [5, 7]
+  17371203:
+    template: Yagudo_Acolyte
+    region:   n_67
+    level:    [5, 7]
+  17371204:
+    template: Yagudo_Scribe
+    region:   n_67
+    level:    [5, 7]
+  17371205:
+    template: Yagudo_Initiate
+    region:   n_67
+    level:    [5, 7]
+  17371206:
+    template: Yagudo_Acolyte
+    region:   n_67
+    level:    [5, 7]
+  17371207:
+    template: Yagudo_Scribe
+    region:   n_67
+    level:    [5, 7]
+  17371208:
+    template: Giddeus_Bee
+    region:   n_67
+    level:    [4, 5]
+  17371209:
+    template: Giddeus_Bee
+    region:   n_67
+    level:    [4, 5]
+  17371210:
+    template: Giddeus_Pugil
+    region:   n_74
+    level:    [4, 5]
+  17371211:
+    template: Giddeus_Pugil
+    region:   n_74
+    level:    [4, 5]
+  17371212:
+    template: Giddeus_Pugil
+    region:   n_74
+    level:    [4, 5]
+  17371213:
+    template: Yagudo_Initiate
+    region:   nw_79
+    level:    [5, 7]
+  17371214:
+    template: Yagudo_Acolyte
+    region:   nw_79
+    level:    [5, 7]
+  17371215:
+    template: Yagudo_Scribe
+    region:   nw_79
+    level:    [5, 7]
+  17371216:
+    template: Dirt_Eater
+    region:   nw_79
+    level:    [3, 5]
+  17371217:
+    template: Dirt_Eater
+    region:   nw_79
+    level:    [3, 5]
+  17371218:
+    template: Dirt_Eater
+    region:   nw_79
+    level:    [3, 5]
+  17371219:
+    template: Yagudo_Initiate
+    region:   c_85
+    level:    [5, 7]
+  17371220:
+    template: Yagudo_Acolyte
+    region:   c_85
+    level:    [5, 7]
+  17371221:
+    template: Yagudo_Scribe
+    region:   c_85
+    level:    [5, 7]
+  17371222:
+    template: Dirt_Eater
+    region:   c_85
+    level:    [3, 5]
+  17371223:
+    template: Dirt_Eater
+    region:   c_85
+    level:    [3, 5]
+  17371224:
+    template: Yagudo_Initiate
+    region:   n_88
+    level:    [7, 10]
+  17371225:
+    template: Yagudo_Acolyte
+    region:   n_88
+    level:    [7, 10]
+  17371226:
+    template: Yagudo_Scribe
+    region:   n_88
+    level:    [7, 10]
+  17371227:
+    template: Dirt_Eater
+    region:   n_88
+    level:    [3, 5]
+  17371228:
+    template: Dirt_Eater
+    region:   n_88
+    level:    [3, 5]
+  17371229:
+    template: Yagudo_Initiate
+    region:   w_93
+    level:    [5, 7]
+  17371230:
+    template: Yagudo_Acolyte
+    region:   w_93
+    level:    [5, 7]
+  17371231:
+    template: Yagudo_Scribe
+    region:   w_93
+    level:    [5, 7]
+  17371232:
+    template: Dirt_Eater
+    region:   w_93
+    level:    [3, 5]
+  17371233:
+    template: Yagudo_Initiate
+    region:   w_97
+    level:    [5, 7]
+  17371234:
+    template: Yagudo_Acolyte
+    region:   w_97
+    level:    [5, 7]
+  17371235:
+    template: Yagudo_Scribe
+    region:   w_97
+    level:    [5, 7]
+  17371236:
+    template: Yagudo_Initiate
+    region:   w_97
+    level:    [5, 7]
+  17371237:
+    template: Yagudo_Acolyte
+    region:   w_97
+    level:    [5, 7]
+  17371238:
+    template: Yagudo_Scribe
+    region:   w_97
+    level:    [5, 7]
+  17371239:
+    template: Dirt_Eater
+    region:   w_97
+    level:    [3, 5]
+  17371240:
+    template: Dirt_Eater
+    region:   w_104
+    level:    [3, 5]
+  17371241:
+    template: Dirt_Eater
+    region:   w_97
+    level:    [3, 5]
+  17371242:
+    template: Yagudo_Initiate
+    region:   n_106
+    level:    [5, 7]
+  17371243:
+    template: Yagudo_Acolyte
+    region:   n_106
+    level:    [5, 7]
+  17371244:
+    template: Yagudo_Scribe
+    region:   n_106
+    level:    [5, 7]
+  17371245:
+    template: Dirt_Eater
+    region:   n_106
+    level:    [3, 5]
+  17371246:
+    template: Dirt_Eater
+    region:   n_106
+    level:    [3, 5]
+  17371247:
+    template: Dirt_Eater
+    region:   n_106
+    level:    [3, 5]
+  17371248:
+    template: Yagudo_Initiate
+    region:   c_112
+    level:    [5, 7]
+  17371249:
+    template: Yagudo_Acolyte
+    region:   c_112
+    level:    [5, 7]
+  17371250:
+    template: Yagudo_Scribe
+    region:   c_112
+    level:    [5, 7]
+  17371251:
+    template: Dirt_Eater
+    region:   c_112
+    level:    [3, 5]
+  17371252:
+    template: Dirt_Eater
+    region:   c_112
+    level:    [3, 5]
+  17371253:
+    template: Yagudo_Initiate
+    region:   c_117
+    level:    [5, 7]
+  17371254:
+    template: Yagudo_Acolyte
+    region:   c_117
+    level:    [5, 7]
+  17371255:
+    template: Yagudo_Scribe
+    region:   c_117
+    level:    [5, 7]
+  17371256:
+    template: Dirt_Eater
+    region:   c_117
+    level:    [3, 5]
+  17371257:
+    template: Yagudo_Initiate
+    region:   c_122
+    level:    [5, 7]
+  17371258:
+    template: Yagudo_Acolyte
+    region:   c_122
+    level:    [5, 7]
+  17371259:
+    template: Yagudo_Scribe
+    region:   c_122
+    level:    [5, 7]
+  17371260:
+    template: Yagudo_Initiate
+    region:   c_122
+    level:    [5, 7]
+  17371261:
+    template: Yagudo_Acolyte
+    region:   c_122
+    level:    [5, 7]
+  17371262:
+    template: Yagudo_Scribe
+    region:   c_122
+    level:    [5, 7]
+  17371263:
+    template: Dirt_Eater
+    region:   c_122
+    level:    [3, 5]
+  17371264:
+    template: Dirt_Eater
+    region:   c_122
+    level:    [3, 5]
+  17371265:
+    template: Yagudo_Initiate
+    region:   e_129
+    level:    [7, 10]
+  17371266:
+    template: Yagudo_Acolyte
+    region:   e_129
+    level:    [7, 10]
+  17371267:
+    template: Yagudo_Scribe
+    region:   e_129
+    level:    [7, 10]
+  17371268:
+    template: Yagudo_Initiate
+    region:   e_129
+    level:    [7, 10]
+  17371269:
+    template: Yagudo_Acolyte
+    region:   e_129
+    level:    [7, 10]
+  17371270:
+    template: Yagudo_Scribe
+    region:   e_129
+    level:    [7, 10]
+  17371271:
+    template: Yagudo_Initiate
+    region:   e_136
+    level:    [7, 10]
+  17371272:
+    template: Yagudo_Acolyte
+    region:   e_136
+    level:    [7, 10]
+  17371273:
+    template: Yagudo_Scribe
+    region:   e_136
+    level:    [7, 10]
+  17371274:
+    template: Yagudo_Initiate
+    region:   e_136
+    level:    [7, 10]
+  17371275:
+    template: Yagudo_Acolyte
+    region:   e_136
+    level:    [7, 10]
+  17371276:
+    template: Yagudo_Scribe
+    region:   e_136
+    level:    [7, 10]
+  17371277:
+    template: Yagudo_Mendicant
+    region:   e_136
+    level:    [11, 13]
+  17371278:
+    template: Yagudos_Elemental
+    at:       [1.000, 1.000, 1.000, 127]
+    level:    [4, 6]
+  17371279:
+    template: Yagudo_Piper
+    region:   e_136
+    level:    [11, 13]
+  17371280:
+    template: Yagudo_Persecutor
+    region:   e_136
+    level:    [11, 13]
+  17371281:
+    template: Digger_Wasp_aggro
+    script:   Digger_Wasp
+    region:   e_145
+    level:    [11, 13]
+  17371282:
+    template: Digger_Wasp_aggro
+    script:   Digger_Wasp
+    region:   e_146
+    level:    [11, 13]
+  17371283:
+    template: Digger_Wasp_aggro
+    script:   Digger_Wasp
+    region:   e_146
+    level:    [11, 13]
+  17371284:
+    template: Yagudo_Mendicant
+    region:   se_148
+    level:    [11, 13]
+  17371285:
+    template: Yagudos_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [4, 6]
+  17371286:
+    template: Yagudo_Piper
+    region:   se_148
+    level:    [11, 13]
+  17371287:
+    template: Yagudo_Persecutor
+    region:   se_148
+    level:    [11, 13]
+  17371288:
+    template: Yagudo_Mendicant
+    region:   se_148
+    level:    [11, 13]
+  17371289:
+    template: Yagudos_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [4, 6]
+  17371290:
+    template: Yagudo_Piper
+    region:   se_148
+    level:    [11, 13]
+  17371291:
+    template: Yagudo_Persecutor
+    region:   se_148
+    level:    [11, 13]
+  17371292:
+    template: Digger_Wasp_aggro
+    script:   Digger_Wasp
+    region:   se_148
+    level:    [11, 13]
+  17371293:
+    template: Yagudo_Mendicant
+    region:   se_159
+    level:    [11, 13]
+  17371294:
+    template: Yagudos_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [4, 6]
+  17371295:
+    template: Yagudo_Piper
+    region:   se_159
+    level:    [11, 13]
+  17371296:
+    template: Yagudo_Persecutor
+    region:   se_159
+    level:    [11, 13]
+  17371297:
+    template: Yagudo_Piper
+    region:   se_159
+    level:    [11, 13]
+  17371298:
+    template: Yagudo_Persecutor
+    region:   se_159
+    level:    [11, 13]
+  17371299:
+    template: Digger_Wasp_aggro
+    script:   Digger_Wasp
+    region:   se_159
+    level:    [11, 13]
+  17371300:
+    template: Juu_Duzu_the_Whirlwind
+    region:   se_397
+    level:    [13, 13]
+  17371301:
+    template: Digger_Wasp_aggro
+    script:   Digger_Wasp
+    region:   se_165
+    level:    [11, 13]
+  17371302:
+    template: Yagudo_Mendicant
+    region:   se_168
+    level:    [12, 15]
+  17371303:
+    template: Yagudos_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [4, 6]
+  17371304:
+    template: Yagudo_Piper
+    region:   se_168
+    level:    [12, 15]
+  17371305:
+    template: Yagudo_Persecutor
+    region:   se_168
+    level:    [12, 15]
+  17371306:
+    template: Yagudo_Mendicant
+    region:   se_168
+    level:    [12, 15]
+  17371307:
+    template: Yagudos_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [4, 6]
+  17371308:
+    template: Yagudo_Piper
+    region:   se_168
+    level:    [12, 15]
+  17371309:
+    template: Yagudo_Persecutor
+    region:   se_168
+    level:    [12, 15]
+  17371310:
+    template: Digger_Wasp_aggro
+    script:   Digger_Wasp
+    region:   se_168
+    level:    [11, 13]
+  17371311:
+    template: Yagudo_Mendicant
+    region:   se_177
+    level:    [12, 15]
+  17371312:
+    template: Yagudos_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [4, 6]
+  17371313:
+    template: Yagudo_Piper
+    region:   se_177
+    level:    [12, 15]
+  17371314:
+    template: Yagudo_Persecutor
+    region:   se_177
+    level:    [12, 15]
+  17371315:
+    template: Yagudo_Mendicant
+    region:   se_177
+    level:    [12, 15]
+  17371316:
+    template: Yagudos_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [4, 6]
+  17371317:
+    template: Yagudo_Piper
+    region:   se_177
+    level:    [12, 15]
+  17371318:
+    template: Yagudo_Persecutor
+    region:   se_177
+    level:    [12, 15]
+  17371319:
+    template: Digger_Wasp_aggro
+    script:   Digger_Wasp
+    region:   se_177
+    level:    [11, 13]
+  17371320:
+    template: Digger_Wasp_aggro
+    script:   Digger_Wasp
+    region:   se_184
+    level:    [11, 13]
+  17371321:
+    template: Digger_Wasp_aggro
+    script:   Digger_Wasp
+    region:   se_184
+    level:    [11, 13]
+  17371322:
+    template: Digger_Wasp_aggro
+    script:   Digger_Wasp
+    region:   se_184
+    level:    [11, 13]
+  17371323:
+    template: Yagudo_Mendicant
+    region:   se_189
+    level:    [14, 18]
+  17371324:
+    template: Yagudos_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [4, 6]
+  17371325:
+    template: Yagudo_Piper
+    region:   se_189
+    level:    [14, 18]
+  17371326:
+    template: Yagudo_Persecutor
+    region:   se_189
+    level:    [14, 18]
+  17371327:
+    template: Yagudo_Initiate
+    region:   w_191
+    level:    [7, 10]
+  17371328:
+    template: Yagudo_Acolyte
+    region:   w_191
+    level:    [7, 10]
+  17371329:
+    template: Yagudo_Scribe
+    region:   w_191
+    level:    [7, 10]
+  17371330:
+    template: Yagudo_Initiate
+    region:   w_191
+    level:    [7, 10]
+  17371331:
+    template: Yagudo_Acolyte
+    region:   w_191
+    level:    [7, 10]
+  17371332:
+    template: Yagudo_Scribe
+    region:   w_191
+    level:    [7, 10]
+  17371333:
+    template: Yagudo_Mendicant
+    region:   w_199
+    level:    [11, 13]
+  17371334:
+    template: Yagudos_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [4, 6]
+  17371335:
+    template: Yagudo_Piper
+    region:   w_199
+    level:    [11, 13]
+  17371336:
+    template: Yagudo_Persecutor
+    region:   w_199
+    level:    [11, 13]
+  17371337:
+    template: Yagudo_Mendicant
+    region:   w_199
+    level:    [11, 13]
+  17371338:
+    template: Yagudos_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [4, 6]
+  17371339:
+    template: Yagudo_Piper
+    region:   w_199
+    level:    [11, 13]
+  17371340:
+    template: Yagudo_Persecutor
+    region:   w_199
+    level:    [11, 13]
+  17371341:
+    template: Giant_Pugil
+    region:   w_205
+    level:    [9, 11]
+  17371342:
+    template: Giant_Pugil
+    region:   w_205
+    level:    [9, 11]
+  17371343:
+    template: Giant_Pugil
+    region:   w_205
+    level:    [8, 11]
+  17371344:
+    template: Yagudo_Initiate
+    region:   c_209
+    level:    [7, 10]
+  17371345:
+    template: Yagudo_Acolyte
+    region:   c_209
+    level:    [7, 10]
+  17371346:
+    template: Yagudo_Scribe
+    region:   c_209
+    level:    [7, 10]
+  17371347:
+    template: Yagudo_Initiate
+    region:   c_209
+    level:    [7, 10]
+  17371348:
+    template: Yagudo_Acolyte
+    region:   c_209
+    level:    [7, 10]
+  17371349:
+    template: Yagudo_Scribe
+    region:   c_209
+    level:    [7, 10]
+  17371350:
+    template: Yagudo_Mendicant
+    region:   c_209
+    level:    [11, 13]
+  17371351:
+    template: Yagudos_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [4, 6]
+  17371352:
+    template: Yagudo_Piper
+    region:   c_209
+    level:    [11, 13]
+  17371353:
+    template: Yagudo_Persecutor
+    region:   c_209
+    level:    [11, 13]
+  17371354:
+    template: Yagudo_Initiate
+    region:   c_219
+    level:    [7, 10]
+  17371355:
+    template: Yagudo_Acolyte
+    region:   c_219
+    level:    [7, 10]
+  17371356:
+    template: Yagudo_Scribe
+    region:   c_219
+    level:    [7, 10]
+  17371357:
+    template: Yagudo_Initiate
+    region:   c_219
+    level:    [7, 10]
+  17371358:
+    template: Yagudo_Acolyte
+    region:   c_219
+    level:    [7, 10]
+  17371359:
+    template: Yagudo_Scribe
+    region:   c_219
+    level:    [7, 10]
+  17371360:
+    template: Yagudo_Mendicant
+    region:   c_219
+    level:    [11, 13]
+  17371361:
+    template: Yagudos_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [4, 6]
+  17371362:
+    template: Yagudo_Piper
+    region:   c_219
+    level:    [11, 13]
+  17371363:
+    template: Yagudo_Persecutor
+    region:   c_219
+    level:    [11, 13]
+  17371364:
+    template: Yagudo_Mendicant
+    region:   w_230
+    level:    [11, 13]
+  17371365:
+    template: Yagudos_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [4, 6]
+  17371366:
+    template: Yagudo_Piper
+    region:   w_230
+    level:    [11, 13]
+  17371367:
+    template: Yagudo_Persecutor
+    region:   w_230
+    level:    [11, 13]
+  17371368:
+    template: Digger_Wasp_aggro
+    script:   Digger_Wasp
+    region:   w_230
+    level:    [11, 13]
+  17371369:
+    template: Digger_Wasp_aggro
+    script:   Digger_Wasp
+    region:   w_230
+    level:    [11, 13]
+  17371370:
+    template: Yagudo_Mendicant
+    region:   sw_234
+    level:    [12, 15]
+  17371371:
+    template: Yagudos_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [4, 6]
+  17371372:
+    template: Yagudo_Piper
+    region:   sw_234
+    level:    [12, 15]
+  17371373:
+    template: Yagudo_Persecutor
+    region:   sw_234
+    level:    [12, 15]
+  17371374:
+    template: Yagudo_Mendicant
+    region:   sw_234
+    level:    [12, 15]
+  17371375:
+    template: Yagudos_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [4, 6]
+  17371376:
+    template: Yagudo_Piper
+    region:   sw_234
+    level:    [12, 15]
+  17371377:
+    template: Yagudo_Persecutor
+    region:   sw_234
+    level:    [12, 15]
+  17371378:
+    template: Digger_Wasp_aggro
+    script:   Digger_Wasp
+    region:   sw_242
+    level:    [11, 13]
+  17371379:
+    template: Digger_Wasp_aggro
+    script:   Digger_Wasp
+    region:   sw_242
+    level:    [11, 13]
+  17371380:
+    template: Yagudo_Mendicant
+    region:   sw_244
+    level:    [14, 18]
+  17371381:
+    template: Yagudos_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [4, 6]
+  17371382:
+    template: Yagudo_Piper
+    region:   sw_244
+    level:    [14, 18]
+  17371383:
+    template: Yagudo_Persecutor
+    region:   sw_244
+    level:    [14, 18]
+  17371384:
+    template: Yagudo_Mendicant
+    region:   sw_250
+    level:    [11, 13]
+  17371385:
+    template: Yagudos_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [4, 6]
+  17371386:
+    template: Yagudo_Piper
+    region:   sw_250
+    level:    [11, 13]
+  17371387:
+    template: Yagudo_Persecutor
+    region:   sw_250
+    level:    [11, 13]
+  17371388:
+    template: Digger_Wasp_aggro
+    script:   Digger_Wasp
+    region:   sw_250
+    level:    [11, 13]
+  17371389:
+    template: Digger_Wasp_aggro
+    script:   Digger_Wasp
+    region:   sw_250
+    level:    [11, 13]
+  17371390:
+    template: Yagudo_Mendicant
+    region:   sw_256
+    level:    [12, 15]
+  17371391:
+    template: Yagudos_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [4, 6]
+  17371392:
+    template: Yagudo_Piper
+    region:   sw_256
+    level:    [12, 15]
+  17371393:
+    template: Yagudo_Persecutor
+    region:   sw_256
+    level:    [12, 15]
+  17371394:
+    template: Yagudo_Mendicant
+    region:   sw_256
+    level:    [12, 15]
+  17371395:
+    template: Yagudos_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [4, 6]
+  17371396:
+    template: Yagudo_Piper
+    region:   sw_256
+    level:    [12, 15]
+  17371397:
+    template: Yagudo_Persecutor
+    region:   sw_256
+    level:    [12, 15]
+  17371398:
+    template: Digger_Wasp_aggro
+    script:   Digger_Wasp
+    region:   sw_256
+    level:    [11, 13]
+  17371399:
+    template: Quu_Xijo_the_Illusory
+    region:   sw_256
+    level:    [24, 25]
+  17371400:
+    template: Yagudo_Mendicant
+    region:   sw_266
+    level:    [12, 15]
+  17371401:
+    template: Yagudos_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [4, 6]
+  17371402:
+    template: Yagudo_Piper
+    region:   sw_266
+    level:    [12, 15]
+  17371403:
+    template: Yagudo_Persecutor
+    region:   sw_266
+    level:    [12, 15]
+  17371404:
+    template: Yagudo_Mendicant
+    region:   sw_266
+    level:    [12, 15]
+  17371405:
+    template: Yagudos_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [4, 6]
+  17371406:
+    template: Yagudo_Piper
+    region:   sw_266
+    level:    [12, 15]
+  17371407:
+    template: Yagudo_Persecutor
+    region:   sw_266
+    level:    [12, 15]
+  17371408:
+    template: Digger_Wasp_aggro
+    script:   Digger_Wasp
+    region:   sw_266
+    level:    [11, 13]
+  17371409:
+    template: Yagudo_Mendicant
+    region:   s_275
+    level:    [12, 15]
+  17371410:
+    template: Yagudos_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [4, 6]
+  17371411:
+    template: Yagudo_Piper
+    region:   s_275
+    level:    [12, 15]
+  17371412:
+    template: Yagudo_Persecutor
+    region:   s_275
+    level:    [12, 15]
+  17371413:
+    template: Digger_Wasp_aggro
+    script:   Digger_Wasp
+    region:   s_277
+    level:    [11, 13]
+  17371414:
+    template: Digger_Wasp_aggro
+    script:   Digger_Wasp
+    region:   s_277
+    level:    [11, 13]
+  17371415:
+    template: Yagudo_Votary
+    region:   region_72
+    level:    [21, 23]
+  17371416:
+    template: Yagudo_Mendicant
+    region:   w_280
+    level:    [11, 13]
+  17371417:
+    template: Yagudos_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [4, 6]
+  17371418:
+    template: Yagudo_Piper
+    region:   w_280
+    level:    [11, 13]
+  17371419:
+    template: Yagudo_Persecutor
+    region:   w_280
+    level:    [11, 13]
+  17371420:
+    template: Yagudo_Mendicant
+    region:   w_280
+    level:    [11, 13]
+  17371421:
+    template: Yagudos_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [4, 6]
+  17371422:
+    template: Yagudo_Piper
+    region:   w_280
+    level:    [11, 13]
+  17371423:
+    template: Yagudo_Persecutor
+    region:   w_280
+    level:    [11, 13]
+  17371424:
+    template: Yagudo_Mendicant
+    region:   w_288
+    level:    [11, 13]
+  17371425:
+    template: Yagudos_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [4, 6]
+  17371426:
+    template: Yagudo_Piper
+    region:   w_288
+    level:    [11, 13]
+  17371427:
+    template: Yagudo_Persecutor
+    region:   w_288
+    level:    [11, 13]
+  17371428:
+    template: Earth_Eater
+    region:   w_288
+    level:    [10, 12]
+  17371429:
+    template: Earth_Eater
+    region:   w_288
+    level:    [10, 12]
+  17371430:
+    template: Yagudo_Mendicant
+    region:   nw_294
+    level:    [11, 13]
+  17371431:
+    template: Yagudos_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [4, 6]
+  17371432:
+    template: Yagudo_Piper
+    region:   nw_294
+    level:    [11, 13]
+  17371433:
+    template: Yagudo_Persecutor
+    region:   nw_294
+    level:    [11, 13]
+  17371434:
+    template: Yagudo_Mendicant
+    region:   n_6
+    level:    [12, 15]
+  17371435:
+    template: Yagudos_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [4, 6]
+  17371436:
+    template: Yagudo_Piper
+    region:   n_6
+    level:    [12, 15]
+  17371437:
+    template: Yagudo_Persecutor
+    region:   n_6
+    level:    [12, 15]
+  17371438:
+    template: Earth_Eater
+    region:   n_6
+    level:    [10, 12]
+  17371439:
+    template: Earth_Eater
+    region:   n_6
+    level:    [10, 12]
+  17371440:
+    template: Yagudo_Mendicant
+    region:   nw_304
+    level:    [12, 15]
+  17371441:
+    template: Yagudos_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [4, 6]
+  17371442:
+    template: Yagudo_Piper
+    region:   nw_304
+    level:    [12, 15]
+  17371443:
+    template: Yagudo_Persecutor
+    region:   nw_304
+    level:    [12, 15]
+  17371444:
+    template: Earth_Eater
+    region:   n_308
+    level:    [10, 12]
+  17371445:
+    template: Earth_Eater
+    region:   n_308
+    level:    [10, 12]
+  17371446:
+    template: Earth_Eater
+    region:   n_308
+    level:    [10, 12]
+  17371447:
+    template: Yagudo_Mendicant
+    region:   n_7
+    level:    [13, 14]
+  17371448:
+    template: Yagudos_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [4, 6]
+  17371449:
+    template: Yagudo_Piper
+    region:   n_7
+    level:    [12, 13]
+  17371450:
+    template: Yagudo_Persecutor
+    region:   n_7
+    level:    [12, 15]
+  17371451:
+    template: Earth_Eater
+    region:   n_7
+    level:    [10, 12]
+  17371452:
+    template: Earth_Eater
+    region:   n_7
+    level:    [10, 12]
+  17371453:
+    template: Yagudo_Mendicant
+    region:   ne_319
+    level:    [11, 13]
+  17371454:
+    template: Yagudos_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [4, 6]
+  17371455:
+    template: Yagudo_Piper
+    region:   ne_319
+    level:    [11, 13]
+  17371456:
+    template: Yagudo_Persecutor
+    region:   ne_319
+    level:    [11, 13]
+  17371457:
+    template: Yagudo_Mendicant
+    region:   ne_319
+    level:    [11, 13]
+  17371458:
+    template: Yagudos_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [4, 6]
+  17371459:
+    template: Yagudo_Piper
+    region:   ne_319
+    level:    [11, 12]
+  17371460:
+    template: Yagudo_Persecutor
+    region:   ne_319
+    level:    [11, 13]
+  17371461:
+    template: Yagudo_Mendicant
+    region:   region_75
+    level:    [11, 13]
+  17371462:
+    template: Yagudos_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [4, 6]
+  17371463:
+    template: Yagudo_Piper
+    region:   region_75
+    level:    [11, 13]
+  17371464:
+    template: Yagudo_Persecutor
+    region:   region_75
+    level:    [11, 13]
+  17371465:
+    template: Yagudo_Mendicant
+    region:   region_75
+    level:    [11, 13]
+  17371466:
+    template: Yagudos_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [4, 6]
+  17371467:
+    template: Yagudo_Piper
+    region:   region_75
+    level:    [11, 13]
+  17371468:
+    template: Yagudo_Persecutor
+    region:   region_75
+    level:    [11, 13]
+  17371469:
+    template: Yagudo_Mendicant
+    region:   c_335
+    level:    [11, 13]
+  17371470:
+    template: Yagudos_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [4, 6]
+  17371471:
+    template: Yagudo_Piper
+    region:   c_335
+    level:    [12, 15]
+  17371472:
+    template: Yagudo_Persecutor
+    region:   c_335
+    level:    [12, 15]
+  17371473:
+    template: Earth_Eater
+    region:   c_335
+    level:    [10, 12]
+  17371474:
+    template: Earth_Eater
+    region:   c_335
+    level:    [10, 12]
+  17371475:
+    template: Yagudo_Mendicant
+    region:   n_342
+    level:    [12, 15]
+  17371476:
+    template: Yagudos_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [4, 6]
+  17371477:
+    template: Yagudo_Piper
+    region:   n_342
+    level:    [12, 15]
+  17371478:
+    template: Yagudo_Persecutor
+    region:   n_342
+    level:    [12, 15]
+  17371479:
+    template: Earth_Eater
+    region:   n_342
+    level:    [10, 12]
+  17371480:
+    template: Earth_Eater
+    region:   n_342
+    level:    [10, 12]
+  17371481:
+    template: Earth_Eater
+    region:   n_342
+    level:    [10, 12]
+  17371482:
+    template: Yagudo_Mendicant
+    region:   c_348
+    level:    [12, 15]
+  17371483:
+    template: Yagudos_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [4, 6]
+  17371484:
+    template: Yagudo_Piper
+    region:   c_348
+    level:    [12, 15]
+  17371485:
+    template: Yagudo_Persecutor
+    region:   c_348
+    level:    [12, 15]
+  17371486:
+    template: Yagudo_Mendicant
+    region:   c_348
+    level:    [12, 15]
+  17371487:
+    template: Yagudos_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [4, 6]
+  17371488:
+    template: Yagudo_Piper
+    region:   c_348
+    level:    [12, 15]
+  17371489:
+    template: Yagudo_Persecutor
+    region:   c_348
+    level:    [12, 15]
+  17371490:
+    template: Yagudo_Mendicant
+    region:   c_377
+    level:    [12, 15]
+  17371491:
+    template: Yagudos_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [4, 6]
+  17371492:
+    template: Yagudo_Piper
+    region:   c_377
+    level:    [12, 15]
+  17371493:
+    template: Yagudo_Persecutor
+    region:   c_377
+    level:    [12, 15]
+  17371494:
+    template: Yagudo_Piper
+    region:   c_377
+    level:    [12, 15]
+  17371495:
+    template: Yagudo_Persecutor
+    region:   c_377
+    level:    [12, 15]
+  17371496:
+    template: Digger_Wasp_aggro
+    script:   Digger_Wasp
+    region:   c_377
+    level:    [11, 13]
+  17371497:
+    template: Digger_Wasp_aggro
+    script:   Digger_Wasp
+    region:   c_377
+    level:    [11, 13]
+  17371498:
+    template: Yagudo_Mendicant
+    region:   c_365
+    level:    [12, 15]
+  17371499:
+    template: Yagudos_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [4, 6]
+  17371500:
+    template: Yagudo_Piper
+    region:   c_365
+    level:    [12, 15]
+  17371501:
+    template: Yagudo_Persecutor
+    region:   c_365
+    level:    [12, 15]
+  17371502:
+    template: Yagudo_Persecutor
+    region:   c_365
+    level:    [12, 15]
+  17371503:
+    template: Digger_Wasp_aggro
+    script:   Digger_Wasp
+    region:   c_365
+    level:    [11, 13]
+  17371504:
+    template: Yagudo_Mendicant
+    region:   c_370
+    level:    [14, 18]
+  17371505:
+    template: Yagudos_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [4, 6]
+  17371506:
+    template: Yagudo_Piper
+    region:   c_370
+    level:    [14, 18]
+  17371507:
+    template: Yagudo_Persecutor
+    region:   c_370
+    level:    [14, 18]
+  17371508:
+    template: Yagudo_Mendicant
+    region:   c_370
+    level:    [14, 18]
+  17371509:
+    template: Yagudos_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [4, 6]
+  17371510:
+    template: Yagudo_Piper
+    region:   c_370
+    level:    [14, 18]
+  17371511:
+    template: Digger_Wasp_aggro
+    script:   Digger_Wasp
+    region:   c_370
+    level:    [11, 13]
+  17371512:
+    template: Digger_Wasp_aggro
+    script:   Digger_Wasp
+    region:   c_370
+    level:    [11, 13]
+  17371513:
+    template: Yagudo_Mendicant
+    region:   c_377
+    level:    [12, 15]
+  17371514:
+    template: Yagudos_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [4, 6]
+  17371515:
+    template: Hoo_Mjuu_the_Torrent
+    region:   region_74
+    level:    [16, 17]
+  17371516:
+    template: Yagudo_Mendicant
+    region:   c_405
+    level:    [14, 18]
+  17371517:
+    template: Yagudos_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [4, 6]
+  17371518:
+    template: Yagudo_Piper
+    region:   c_405
+    level:    [14, 18]
+  17371519:
+    template: Yagudo_Persecutor
+    region:   c_405
+    level:    [14, 18]
+  17371520:
+    template: Digger_Wasp_aggro
+    script:   Digger_Wasp
+    region:   c_405
+    level:    [11, 13]
+  17371521:
+    template: Digger_Wasp_aggro
+    script:   Digger_Wasp
+    region:   c_405
+    level:    [11, 13]
+  17371522:
+    template: Yagudo_Mendicant
+    region:   se_397
+    level:    [14, 18]
+  17371523:
+    template: Yagudos_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [4, 6]
+  17371524:
+    template: Yagudo_Piper
+    region:   se_393
+    level:    [14, 18]
+  17371525:
+    template: Yagudo_Persecutor
+    region:   se_393
+    level:    [14, 18]
+  17371526:
+    template: Yagudo_Mendicant
+    region:   se_393
+    level:    [14, 18]
+  17371527:
+    template: Yagudos_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [4, 6]
+  17371528:
+    template: Yagudo_Piper
+    region:   se_393
+    level:    [14, 18]
+  17371529:
+    template: Yagudo_Persecutor
+    region:   se_393
+    level:    [14, 18]
+  17371530:
+    template: Yagudo_Mendicant
+    region:   se_397
+    level:    [14, 18]
+  17371531:
+    template: Yagudos_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [4, 6]
+  17371532:
+    template: Yagudo_Piper
+    region:   se_393
+    level:    [14, 18]
+  17371533:
+    template: Yagudo_Persecutor
+    region:   se_397
+    level:    [14, 18]
+  17371534:
+    template: Yagudo_Piper
+    region:   se_397
+    level:    [14, 18]
+  17371535:
+    template: Yagudo_Theologist
+    region:   se_397
+    level:    [21, 23]
+  17371536:
+    template: Yagudo_Priest
+    region:   se_397
+    level:    [21, 23]
+  17371537:
+    template: Yagudo_Votary
+    region:   s_403
+    level:    [21, 23]
+  17371538:
+    template: Yagudo_Votary
+    region:   s_403
+    level:    [21, 23]
+  17371539:
+    template: Yagudo_Theologist
+    region:   s_403
+    level:    [21, 23]
+  17371540:
+    template: Yagudo_Priest
+    region:   s_403
+    level:    [21, 23]
+  17371541:
+    template: Digger_Wasp_aggro
+    script:   Digger_Wasp
+    region:   c_405
+    level:    [11, 13]
+  17371542:
+    template: Digger_Wasp_aggro
+    script:   Digger_Wasp
+    region:   c_405
+    level:    [11, 13]
+  17371543:
+    template: Yagudo_Votary
+    region:   s_407
+    level:    [21, 23]
+  17371544:
+    template: Yagudo_Theologist
+    region:   s_407
+    level:    [21, 23]
+  17371545:
+    template: Yagudo_Priest
+    region:   s_407
+    level:    [21, 23]
+  17371546:
+    template: Digger_Wasp_aggro
+    script:   Digger_Wasp
+    region:   s_407
+    level:    [11, 13]
+  17371547:
+    template: Digger_Wasp_aggro
+    script:   Digger_Wasp
+    region:   s_411
+    level:    [11, 13]
+  17371548:
+    template: Digger_Wasp_aggro
+    script:   Digger_Wasp
+    region:   s_411
+    level:    [11, 13]
+  17371549:
+    template: Yagudo_Votary
+    region:   s_441
+    level:    [21, 23]
+  17371550:
+    template: Yagudo_Theologist
+    region:   s_441
+    level:    [21, 23]
+  17371551:
+    template: Yagudo_Priest
+    region:   s_441
+    level:    [21, 23]
+  17371552:
+    template: Yagudo_Votary
+    region:   s_441
+    level:    [21, 23]
+  17371553:
+    template: Yagudo_Theologist
+    region:   s_441
+    level:    [21, 23]
+  17371554:
+    template: Yagudo_Priest
+    region:   s_441
+    level:    [21, 23]
+  17371555:
+    template: Digger_Wasp_aggro
+    script:   Digger_Wasp
+    region:   s_441
+    level:    [11, 13]
+  17371556:
+    template: Yagudo_Votary
+    region:   s_441
+    level:    [21, 23]
+  17371557:
+    template: Yagudo_Theologist
+    region:   s_441
+    level:    [21, 23]
+  17371558:
+    template: Yagudo_Priest
+    region:   s_423
+    level:    [21, 23]
+  17371559:
+    template: Yagudo_Votary
+    region:   s_423
+    level:    [21, 23]
+  17371560:
+    template: Yagudo_Theologist
+    region:   s_423
+    level:    [21, 23]
+  17371561:
+    template: Yagudo_Priest
+    region:   s_423
+    level:    [21, 23]
+  17371562:
+    template: Digger_Wasp_aggro
+    script:   Digger_Wasp
+    region:   s_423
+    level:    [11, 13]
+  17371563:
+    template: Yagudo_Votary
+    region:   s_428
+    level:    [21, 23]
+  17371564:
+    template: Yagudo_Theologist
+    region:   s_428
+    level:    [21, 23]
+  17371565:
+    template: Yagudo_Priest
+    region:   s_428
+    level:    [21, 23]
+  17371566:
+    template: Yagudo_Votary
+    region:   s_428
+    level:    [21, 23]
+  17371567:
+    template: Yagudo_Theologist
+    region:   s_428
+    level:    [21, 23]
+  17371568:
+    template: Yagudo_Priest
+    region:   s_428
+    level:    [21, 23]
+  17371569:
+    template: Digger_Wasp_aggro
+    script:   Digger_Wasp
+    region:   s_428
+    level:    [11, 13]
+  17371570:
+    template: Yagudo_Votary
+    region:   s_434
+    level:    [21, 23]
+  17371571:
+    template: Yagudo_Theologist
+    region:   s_434
+    level:    [21, 23]
+  17371572:
+    template: Yagudo_Priest
+    region:   s_434
+    level:    [21, 23]
+  17371573:
+    template: Yagudo_Votary
+    region:   s_434
+    level:    [21, 23]
+  17371574:
+    template: Yagudo_Theologist
+    region:   s_434
+    level:    [21, 23]
+  17371575:
+    template: Yagudo_Priest
+    region:   s_434
+    level:    [21, 23]
+  17371576:
+    template: Digger_Wasp_aggro
+    script:   Digger_Wasp
+    region:   s_434
+    level:    [11, 13]
+  17371577:
+    template: Yagudo_Piper
+    region:   s_441
+    level:    [14, 18]
+  17371578:
+    template: Vuu_Puqu_the_Beguiler
+    region:   s_441
+    level:    [21, 22]
+  17371579:
+    template: Vaa_Huja_the_Erudite
+    at:       [-58.000, -1.000, -448.000, 13]
+    level:    [45, 45]
+  17371580:
+    template: Yagudo_Lookout
+    at:       [-173.797, 16.500, 179.653, 104]
+    level:    [139, 139]
+
+slots:
+  - members:
+      17371145: {} # Yagudo_Initiate
+      17371146: {} # Yagudo_Acolyte
+      17371147: {} # Yagudo_Scribe
+  - members:
+      17371153: {} # Yagudo_Initiate
+      17371154: {} # Yagudo_Acolyte
+      17371155: {} # Yagudo_Scribe
+  - members:
+      17371160: {} # Yagudo_Acolyte
+      17371161: {} # Yagudo_Scribe
+  - members:
+      17371166: {} # Yagudo_Acolyte
+  - members:
+      17371167: {} # Yagudo_Scribe
+      17371171: {} # Yagudo_Acolyte
+      17371172: {} # Yagudo_Scribe
+  - members:
+      17371175: {} # Yagudo_Initiate
+      17371176: {} # Yagudo_Acolyte
+      17371177: {} # Yagudo_Scribe
+  - members:
+      17371178: {} # Yagudo_Initiate
+      17371179: {} # Yagudo_Acolyte
+      17371180: {} # Yagudo_Scribe
+  - members:
+      17371183: {} # Yagudo_Initiate
+      17371184: {} # Yagudo_Acolyte
+      17371185: {} # Yagudo_Scribe
+  - members:
+      17371186: {} # Yagudo_Initiate
+      17371187: {} # Yagudo_Acolyte
+      17371188: {} # Yagudo_Scribe
+  - members:
+      17371194: {} # Yagudo_Initiate
+      17371195: {} # Yagudo_Acolyte
+      17371196: {} # Yagudo_Scribe
+  - members:
+      17371197: {} # Yagudo_Initiate
+      17371198: {} # Yagudo_Acolyte
+      17371199: {} # Yagudo_Scribe
+  - members:
+      17371202: {} # Yagudo_Initiate
+      17371203: {} # Yagudo_Acolyte
+      17371204: {} # Yagudo_Scribe
+  - members:
+      17371205: {} # Yagudo_Initiate
+      17371206: {} # Yagudo_Acolyte
+      17371207: {} # Yagudo_Scribe
+  - members:
+      17371213: {} # Yagudo_Initiate
+      17371214: {} # Yagudo_Acolyte
+      17371215: {} # Yagudo_Scribe
+  - members:
+      17371219: {} # Yagudo_Initiate
+      17371220: {} # Yagudo_Acolyte
+      17371221: {} # Yagudo_Scribe
+  - members:
+      17371224: {} # Yagudo_Initiate
+      17371225: {} # Yagudo_Acolyte
+      17371226: {} # Yagudo_Scribe
+  - members:
+      17371230: {} # Yagudo_Acolyte
+      17371231: {} # Yagudo_Scribe
+  - members:
+      17371233: {} # Yagudo_Initiate
+      17371234: {} # Yagudo_Acolyte
+  - members:
+      17371235: {} # Yagudo_Scribe
+      17371236: {} # Yagudo_Initiate
+  - members:
+      17371237: {} # Yagudo_Acolyte
+      17371238: {} # Yagudo_Scribe
+  - members:
+      17371242: {} # Yagudo_Initiate
+      17371243: {} # Yagudo_Acolyte
+      17371244: {} # Yagudo_Scribe
+  - members:
+      17371248: {} # Yagudo_Initiate
+      17371249: {} # Yagudo_Acolyte
+      17371250: {} # Yagudo_Scribe
+  - members:
+      17371254: {} # Yagudo_Acolyte
+      17371255: {} # Yagudo_Scribe
+  - members:
+      17371257: {} # Yagudo_Initiate
+      17371258: {} # Yagudo_Acolyte
+      17371259: {} # Yagudo_Scribe
+  - members:
+      17371260: {} # Yagudo_Initiate
+      17371261: {} # Yagudo_Acolyte
+      17371262: {} # Yagudo_Scribe
+  - members:
+      17371265: {} # Yagudo_Initiate
+      17371266: {} # Yagudo_Acolyte
+  - members:
+      17371267: {} # Yagudo_Scribe
+      17371268: {} # Yagudo_Initiate
+  - members:
+      17371269: {} # Yagudo_Acolyte
+      17371270: {} # Yagudo_Scribe
+  - members:
+      17371271: {} # Yagudo_Initiate
+      17371272: {} # Yagudo_Acolyte
+  - members:
+      17371273: {} # Yagudo_Scribe
+      17371274: {} # Yagudo_Initiate
+  - members:
+      17371275: {} # Yagudo_Acolyte
+      17371276: {} # Yagudo_Scribe
+  - members:
+      17371277: {} # Yagudo_Mendicant
+      17371279: {} # Yagudo_Piper
+      17371280: {} # Yagudo_Persecutor
+  - members:
+      17371284: {} # Yagudo_Mendicant
+      17371286: {} # Yagudo_Piper
+  - members:
+      17371287: {} # Yagudo_Persecutor
+      17371288: {} # Yagudo_Mendicant
+  - members:
+      17371290: {} # Yagudo_Piper
+      17371291: {} # Yagudo_Persecutor
+  - members:
+      17371293: {} # Yagudo_Mendicant
+      17371295: {} # Yagudo_Piper
+  - members:
+      17371297: {} # Yagudo_Piper
+      17371298: {} # Yagudo_Persecutor
+  - members:
+      17371302: {} # Yagudo_Mendicant
+      17371304: {} # Yagudo_Piper
+  - members:
+      17371305: {} # Yagudo_Persecutor
+      17371306: {} # Yagudo_Mendicant
+  - members:
+      17371308: {} # Yagudo_Piper
+      17371309: {} # Yagudo_Persecutor
+  - members:
+      17371311: {} # Yagudo_Mendicant
+      17371313: {} # Yagudo_Piper
+  - members:
+      17371314: {} # Yagudo_Persecutor
+      17371315: {} # Yagudo_Mendicant
+  - members:
+      17371317: {} # Yagudo_Piper
+      17371318: {} # Yagudo_Persecutor
+  - members:
+      17371323: {} # Yagudo_Mendicant
+      17371325: {} # Yagudo_Piper
+  - members:
+      17371327: {} # Yagudo_Initiate
+      17371328: {} # Yagudo_Acolyte
+  - members:
+      17371329: {} # Yagudo_Scribe
+      17371330: {} # Yagudo_Initiate
+  - members:
+      17371331: {} # Yagudo_Acolyte
+      17371332: {} # Yagudo_Scribe
+  - members:
+      17371333: {} # Yagudo_Mendicant
+      17371335: {} # Yagudo_Piper
+  - members:
+      17371336: {} # Yagudo_Persecutor
+      17371337: {} # Yagudo_Mendicant
+  - members:
+      17371339: {} # Yagudo_Piper
+      17371340: {} # Yagudo_Persecutor
+  - members:
+      17371344: {} # Yagudo_Initiate
+      17371345: {} # Yagudo_Acolyte
+  - members:
+      17371346: {} # Yagudo_Scribe
+      17371347: {} # Yagudo_Initiate
+  - members:
+      17371348: {} # Yagudo_Acolyte
+      17371349: {} # Yagudo_Scribe
+  - members:
+      17371350: {} # Yagudo_Mendicant
+      17371352: {} # Yagudo_Piper
+      17371353: {} # Yagudo_Persecutor
+  - members:
+      17371354: {} # Yagudo_Initiate
+      17371355: {} # Yagudo_Acolyte
+  - members:
+      17371356: {} # Yagudo_Scribe
+      17371357: {} # Yagudo_Initiate
+  - members:
+      17371358: {} # Yagudo_Acolyte
+      17371359: {} # Yagudo_Scribe
+  - members:
+      17371360: {} # Yagudo_Mendicant
+      17371362: {} # Yagudo_Piper
+      17371363: {} # Yagudo_Persecutor
+  - members:
+      17371364: {} # Yagudo_Mendicant
+      17371366: {} # Yagudo_Piper
+      17371367: {} # Yagudo_Persecutor
+  - members:
+      17371370: {} # Yagudo_Mendicant
+      17371372: {} # Yagudo_Piper
+  - members:
+      17371373: {} # Yagudo_Persecutor
+      17371374: {} # Yagudo_Mendicant
+  - members:
+      17371376: {} # Yagudo_Piper
+      17371377: {} # Yagudo_Persecutor
+  - members:
+      17371380: {} # Yagudo_Mendicant
+      17371383: {} # Yagudo_Persecutor
+  - members:
+      17371384: {} # Yagudo_Mendicant
+      17371386: {} # Yagudo_Piper
+      17371387: {} # Yagudo_Persecutor
+  - members:
+      17371390: {} # Yagudo_Mendicant
+      17371392: {} # Yagudo_Piper
+  - members:
+      17371393: {} # Yagudo_Persecutor
+      17371394: {} # Yagudo_Mendicant
+  - members:
+      17371396: {} # Yagudo_Piper
+      17371397: {} # Yagudo_Persecutor
+  - members:
+      17371400: {} # Yagudo_Mendicant
+      17371402: {} # Yagudo_Piper
+  - members:
+      17371403: {} # Yagudo_Persecutor
+      17371404: {} # Yagudo_Mendicant
+  - members:
+      17371406: {} # Yagudo_Piper
+      17371407: {} # Yagudo_Persecutor
+  - members:
+      17371409: {} # Yagudo_Mendicant
+      17371411: {} # Yagudo_Piper
+      17371412: {} # Yagudo_Persecutor
+  - members:
+      17371416: {} # Yagudo_Mendicant
+      17371418: {} # Yagudo_Piper
+  - members:
+      17371419: {} # Yagudo_Persecutor
+      17371420: {} # Yagudo_Mendicant
+  - members:
+      17371422: {} # Yagudo_Piper
+      17371423: {} # Yagudo_Persecutor
+  - members:
+      17371424: {} # Yagudo_Mendicant
+      17371426: {} # Yagudo_Piper
+      17371427: {} # Yagudo_Persecutor
+  - members:
+      17371432: {} # Yagudo_Piper
+      17371433: {} # Yagudo_Persecutor
+  - members:
+      17371434: {} # Yagudo_Mendicant
+      17371437: {} # Yagudo_Persecutor
+  - members:
+      17371440: {} # Yagudo_Mendicant
+      17371442: {} # Yagudo_Piper
+      17371443: {} # Yagudo_Persecutor
+  - members:
+      17371447: {} # Yagudo_Mendicant
+      17371449: {} # Yagudo_Piper
+  - members:
+      17371453: {} # Yagudo_Mendicant
+      17371455: {} # Yagudo_Piper
+  - members:
+      17371456: {} # Yagudo_Persecutor
+      17371457: {} # Yagudo_Mendicant
+  - members:
+      17371459: {} # Yagudo_Piper
+      17371460: {} # Yagudo_Persecutor
+  - members:
+      17371461: {} # Yagudo_Mendicant
+      17371463: {} # Yagudo_Piper
+  - members:
+      17371464: {} # Yagudo_Persecutor
+      17371465: {} # Yagudo_Mendicant
+  - members:
+      17371467: {} # Yagudo_Piper
+      17371468: {} # Yagudo_Persecutor
+  - members:
+      17371469: {} # Yagudo_Mendicant
+      17371471: {} # Yagudo_Piper
+      17371472: {} # Yagudo_Persecutor
+  - members:
+      17371475: {} # Yagudo_Mendicant
+      17371477: {} # Yagudo_Piper
+      17371478: {} # Yagudo_Persecutor
+  - members:
+      17371482: {} # Yagudo_Mendicant
+      17371484: {} # Yagudo_Piper
+  - members:
+      17371485: {} # Yagudo_Persecutor
+      17371486: {} # Yagudo_Mendicant
+  - members:
+      17371488: {} # Yagudo_Piper
+      17371489: {} # Yagudo_Persecutor
+  - members:
+      17371490: {} # Yagudo_Mendicant
+      17371492: {} # Yagudo_Piper
+      17371493: {} # Yagudo_Persecutor
+  - members:
+      17371498: {} # Yagudo_Mendicant
+      17371500: {} # Yagudo_Piper
+      17371501: {} # Yagudo_Persecutor
+  - members:
+      17371504: {} # Yagudo_Mendicant
+      17371506: {} # Yagudo_Piper
+      17371507: {} # Yagudo_Persecutor
+  - members:
+      17371516: {} # Yagudo_Mendicant
+      17371518: {} # Yagudo_Piper
+      17371519: {} # Yagudo_Persecutor
+  - members:
+      17371522: {} # Yagudo_Mendicant
+      17371524: {} # Yagudo_Piper
+  - members:
+      17371525: {} # Yagudo_Persecutor
+      17371526: {} # Yagudo_Mendicant
+  - members:
+      17371528: {} # Yagudo_Piper
+      17371529: {} # Yagudo_Persecutor
+  - members:
+      17371530: {} # Yagudo_Mendicant
+      17371532: {} # Yagudo_Piper
+  - members:
+      17371533: {} # Yagudo_Persecutor
+      17371534: {} # Yagudo_Piper
+  - members:
+      17371535: {} # Yagudo_Theologist
+      17371536: {} # Yagudo_Priest
+  - members:
+      17371537: {} # Yagudo_Votary
+      17371538: {} # Yagudo_Votary
+      17371539: {} # Yagudo_Theologist
+      17371540: {} # Yagudo_Priest
+  - members:
+      17371549: {} # Yagudo_Votary
+      17371550: {} # Yagudo_Theologist
+  - members:
+      17371551: {} # Yagudo_Priest
+      17371552: {} # Yagudo_Votary
+  - members:
+      17371553: {} # Yagudo_Theologist
+      17371554: {} # Yagudo_Priest
+  - members:
+      17371556: {} # Yagudo_Votary
+      17371557: {} # Yagudo_Theologist
+  - members:
+      17371558: {} # Yagudo_Priest
+      17371559: {} # Yagudo_Votary
+  - members:
+      17371560: {} # Yagudo_Theologist
+      17371561: {} # Yagudo_Priest
+  - members:
+      17371563: {} # Yagudo_Votary
+      17371564: {} # Yagudo_Theologist
+  - members:
+      17371565: {} # Yagudo_Priest
+      17371566: {} # Yagudo_Votary
+  - members:
+      17371567: {} # Yagudo_Theologist
+      17371568: {} # Yagudo_Priest
+  - members:
+      17371570: {} # Yagudo_Votary
+      17371571: {} # Yagudo_Theologist
+  - members:
+      17371572: {} # Yagudo_Priest
+      17371573: {} # Yagudo_Votary
+  - members:
+      17371574: {} # Yagudo_Theologist
+      17371575: {} # Yagudo_Priest

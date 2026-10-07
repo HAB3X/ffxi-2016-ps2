@@ -1,0 +1,40 @@
+-- Text ids rebuilt for the 2007 PS2 client data tooling: PROFILE 2012 = the 2012 client data (report 28) by research/tools/lsb_textids_2007.py (5 changed, 5 not in the 2007 dialog DAT 6572 and left unchanged).
+-----------------------------------
+-- Area: Altar_Room
+-----------------------------------
+zones = zones or {}
+
+zones[xi.zone.ALTAR_ROOM] =
+{
+    text =
+    {
+        ITEM_CANNOT_BE_OBTAINED       = 6375, -- You cannot obtain the <item>. Come back after sorting your inventory.
+        ITEM_OBTAINED                 = 6378, -- Obtained: <item>.
+        GIL_OBTAINED                  = 6379, -- Obtained <number> gil.
+        KEYITEM_OBTAINED              = 6398, -- Obtained key item: <keyitem>.
+        CARRIED_OVER_POINTS           = 7006, -- You have carried over <number> login point[/s].
+        LOGIN_CAMPAIGN_UNDERWAY       = 7007, -- The [/January/February/March/April/May/June/July/August/September/October/November/December] <number> Login Campaign is currently underway!
+        LOGIN_NUMBER                  = 7008, -- In celebration of your most recent login (login no. <number>), we have provided you with <number> points! You currently have a total of <number> points.
+        MEMBERS_LEVELS_ARE_RESTRICTED = 7028, -- Your party is unable to participate because certain members' levels are restricted.
+        THE_MAGICITE_GLOWS_OMINOUSLY  = 7047, -- The magicite glows ominously.
+        CONQUEST_BASE                 = 7048, -- Tallying conquest results...
+    },
+    mob =
+    {
+        YAGUDO_AVATAR           = GetFirstID('Yagudo_Avatar'),
+        YAGUDOS_ELEMENTAL       = GetFirstID('Yagudos_Elemental'),
+        YAGUDOS_AVATAR          = GetFirstID('Yagudos_Avatar'),
+        LAA_YAKU_THE_AUSTERE    = GetFirstID('Laa_Yaku_the_Austere'),
+        DUU_MASA_THE_ONECUT     = GetFirstID('Duu_Masa_the_Onecut'),
+        FEE_JUGE_THE_RAMFIST    = GetFirstID('Fee_Jugu_the_Ramfist'),
+        POO_YOZO_THE_BABBLER    = GetFirstID('Poo_Yozo_the_Babbler'),
+        KEE_TAW_THE_NIGHTINGALE = GetFirstID('Kee_Taw_the_Nightingale'),
+        GOO_PAKE_THE_BLOODHOUND = GetFirstID('Goo_Pake_the_Bloodhound'),
+    },
+    npc =
+    {
+        STONE_LID = GetFirstID('Stone_Lid'),
+    },
+}
+
+return zones[xi.zone.ALTAR_ROOM]

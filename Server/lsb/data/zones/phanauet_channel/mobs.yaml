@@ -1,0 +1,508 @@
+# yaml-language-server: $schema=../../schemas/mobs.schema.json
+
+templates:
+
+  Aipaloovik:
+    id:            69
+    species:       pugil
+    type:          [notorious, fished]
+    skill_list_id: 197
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 348
+        entity_flags: 3
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: uncommon
+          item:   handful_of_pugil_scales
+      steal: handful_of_fish_scales
+      despoil:
+        handful_of_pugil_scales: 0
+        handful_of_fish_scales:  0
+
+  Big_Jaw_fished:
+    id:            417
+    display_name:  Big_Jaw
+    species:       pugil
+    type:          [fished]
+    skill_list_id: 197
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 348
+        entity_flags: 131
+        model_size:     1
+        hitbox:        27
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+    loot:
+      steal: handful_of_fish_scales
+      despoil:
+        handful_of_pugil_scales: 0
+        handful_of_fish_scales:  0
+
+  Fishtrap:
+    id:            1347
+    species:       flytrap
+    type:          [fished]
+    skill_list_id: 114
+    attributes:
+      combat:
+        skill: polearm
+        delay: 200
+      render:
+        look:
+          type:  standard
+          model: 1345
+        entity_flags: 131
+        model_size:     1
+        hitbox:        12
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: uncommon
+          item:   piece_of_garhada_teak_lumber
+        - chance: very_rare
+          item:   flytrap_leaf
+
+  Flytrap:
+    id:            1375
+    species:       flytrap
+    skill_list_id: 114
+    attributes:
+      combat:
+        skill: polearm
+        delay: 200
+      render:
+        look:
+          type:  standard
+          model: 1345
+        entity_flags:  131
+        animation_sub:   8
+        model_size:      1
+        hitbox:         12
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: rare
+          item:   flytrap_leaf
+      despoil:
+        flytrap_leaf: 0
+
+  Giant_Pugil:
+    id:            1535
+    species:       pugil
+    skill_list_id: 197
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 348
+        entity_flags: 131
+        model_size:     1
+        hitbox:        27
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: uncommon
+          item:   piece_of_garhada_teak_lumber
+        - chance: rare
+          item:   shall_shell
+      steal: handful_of_fish_scales
+      despoil:
+        handful_of_pugil_scales: 0
+        handful_of_fish_scales:  0
+
+  Ooze:
+    id:            2987
+    species:       slime
+    skill_list_id: 229
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 292
+        entity_flags: 1155
+        model_size:      1
+        hitbox:         24
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: uncommon
+          item:   piece_of_garhada_teak_lumber
+        - chance: rare
+          item:   vial_of_slime_oil
+      despoil:
+        vial_of_slime_oil: 0
+
+  Orcs_Wyvern:
+    id:            3048
+    species:       blue_wyvern
+    type:          [battlefield]
+    spell_list_id: 1
+    skill_list_id: 714
+    attributes:
+      combat:
+        skill: scythe
+        delay: 200
+      render:
+        look:
+          type:  standard
+          model: 24
+        entity_flags: 131
+        model_size:     1
+        hitbox:         8
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 450
+
+  Protozoan_fished:
+    id:            5867
+    display_name:  Protozoan
+    species:       slime
+    type:          [fished]
+    skill_list_id: 229
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 292
+        entity_flags: 131
+        model_size:     1
+        hitbox:        24
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: uncommon
+          item:   piece_of_garhada_teak_lumber
+        - chance: rare
+          item:   vial_of_slime_oil
+      despoil:
+        vial_of_slime_oil: 0
+
+  Snipper_fished:
+    id:            3682
+    display_name:  Snipper
+    species:       crab
+    type:          [fished]
+    skill_list_id: 77
+    attributes:
+      combat:
+        skill: great_sword
+      jobs: [pld, pld]
+      render:
+        look:
+          type:  standard
+          model: 356
+        entity_flags: 131
+        model_size:     1
+        hitbox:        13
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: common
+          item:   chunk_of_rock_salt
+        - chance: rare
+          item:   slice_of_land_crab_meat
+        - chance: very_rare
+          item:   crab_shell
+      steal: chunk_of_rock_salt
+      despoil:
+        slice_of_land_crab_meat: 0
+        crab_shell:              0
+
+  Stubborn_Dredvodd:
+    id:            3796
+    species:       orc
+    type:          [notorious]
+    spell_list_id: 1
+    skill_list_id: 713
+    attributes:
+      combat:
+        skill: polearm
+        delay: 290
+      jobs: [drg, whm]
+      render:
+        look:
+          type:  standard
+          model: 641
+        entity_flags:  2203
+        animation_sub:    4
+        name_prefix:     32
+        model_size:       1
+        hitbox:          15
+      behaviors:
+        aggressive: true
+        links:      true
+      mob_mods:
+        pet_spell_list: 97
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 2300
+    loot:
+      drops:
+        - chance: always
+          item:   tathlum_belt
+        - chance: uncommon
+          item:   carect_ring
+        - chance: common
+          item:   gargoyle_boots
+
+  Thickshell_fished:
+    id:            6774
+    display_name:  Thickshell
+    species:       crab
+    type:          [fished]
+    skill_list_id: 77
+    attributes:
+      combat:
+        skill: great_sword
+      jobs: [pld, pld]
+      render:
+        look:
+          type:  standard
+          model: 356
+        entity_flags:  131
+        animation_sub:   8
+        model_size:      1
+        hitbox:         13
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: common
+          item:   chunk_of_rock_salt
+        - chance: very_rare
+          item:   slice_of_land_crab_meat
+      steal: chunk_of_rock_salt
+      despoil:
+        slice_of_land_crab_meat: 0
+        crab_shell:              0
+
+  Thunder_Elemental:
+    id:            3912
+    species:       thunder_elemental
+    spell_list_id: 16
+    skill_list_id: 105
+    attributes:
+      combat:
+        skill: staff
+      jobs: [blm, rdm]
+      resists:
+        immune_status: [stun, poison]
+      render:
+        look:
+          type:  standard
+          model: 441
+        entity_flags:  131
+        animation_sub:  16
+        model_size:      1
+        hitbox:          3
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+        type:    [weather]
+    loot:
+      drops:
+        - chance: always
+          item:   lightning_cluster
+        - chance: common
+          item:   lightning_cluster
+        - chance: common
+          item:   lightning_cluster
+
+  Vodyanoi:
+    id:            4242
+    species:       doomed
+    type:          [notorious]
+    spell_list_id: 5
+    skill_list_id: 86
+    attributes:
+      combat:
+        skill: axe
+        delay: 270
+      jobs: [drk, drk]
+      resists:
+        dmg_physical:
+          slashing:  1250
+          blunt:    -1250
+          h2h:      -1250
+      render:
+        look:
+          type:  standard
+          model: 320
+        entity_flags: 155
+        name_prefix:   32
+        model_size:     1
+        hitbox:        30
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 3870
+    loot:
+      drops:
+        - chance: common
+          item:   nokizaru_hakama
+        - chance: uncommon
+          item:   war_hose
+
+  Water_Elemental:
+    id:            4309
+    species:       water_elemental
+    spell_list_id: 15
+    skill_list_id: 106
+    attributes:
+      combat:
+        skill: staff
+      jobs: [blm, rdm]
+      resists:
+        immune_status: [poison]
+      render:
+        look:
+          type:  standard
+          model: 440
+        entity_flags:  131
+        animation_sub:  16
+        model_size:      1
+        hitbox:          3
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+        type:    [weather]
+    loot:
+      drops:
+        - chance: always
+          item:   water_cluster
+        - chance: common
+          item:   water_cluster
+        - chance: common
+          item:   water_cluster
+
+spawns:
+  16781313:
+    template: Snipper_fished
+    script:   Snipper
+    at:       [1.000, 1.000, 1.000]
+    level:    [15, 19]
+  16781314:
+    template: Snipper_fished
+    script:   Snipper
+    at:       [1.000, 1.000, 1.000]
+    level:    [15, 19]
+  16781315:
+    template: Big_Jaw_fished
+    script:   Big_Jaw
+    at:       [1.000, 1.000, 1.000]
+    level:    [20, 24]
+  16781316:
+    template: Fishtrap
+    at:       [1.000, 1.000, 1.000]
+    level:    [25, 27]
+  16781317:
+    template: Protozoan_fished
+    script:   Protozoan
+    at:       [1.000, 1.000, 1.000]
+    level:    [29, 31]
+  16781318:
+    template: Aipaloovik
+    at:       [1.000, 1.000, 1.000]
+    level:    [34, 36]
+  16781319:
+    template: Thickshell_fished
+    script:   Thickshell
+    at:       [1.000, 1.000, 1.000]
+    level:    [10, 20]
+  16781320:
+    template: Giant_Pugil
+    region:   region_1
+    level:    [10, 20]
+  16781321:
+    template: Flytrap
+    region:   region_1
+    level:    [15, 25]
+  16781322:
+    template: Flytrap
+    region:   region_2
+    level:    [15, 25]
+  16781323:
+    template: Ooze
+    region:   region_1
+    level:    [25, 29]
+  16781324:
+    template: Thunder_Elemental
+    region:   region_1
+    level:    [27, 29]
+  16781325:
+    template: Water_Elemental
+    region:   region_1
+    level:    [27, 29]
+  16781326:
+    template: Vodyanoi
+    region:   region_1
+    level:    [45, 47]
+    attributes:
+      spawn:
+        window:
+          start: 20
+          end:    4
+  16781327:
+    template: Stubborn_Dredvodd
+    at:       [-12.295, -2.500, 0.140]
+    level:    [33, 33]
+    attributes:
+      spawn:
+        window:
+          start: 10
+          end:   16
+  16781328:
+    template: Orcs_Wyvern
+    at:       [-7.120, -2.500, -2.167, 46]
+    level:    [28, 28]
+    attributes:
+      spawn:
+        window:
+          start: 10
+          end:   16

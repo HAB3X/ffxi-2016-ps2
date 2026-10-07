@@ -1,0 +1,3513 @@
+# yaml-language-server: $schema=../../schemas/mobs.schema.json
+
+templates:
+
+  Archaic_Chest:
+    id:            217
+    species:       mimic
+    skill_list_id: 183
+    attributes:
+      combat:
+        skill: scythe
+        delay: 170
+      render:
+        look:
+          type:  standard
+          model: 258
+        entity_flags:  5251
+        animation_sub:   12
+        model_size:       1
+        hitbox:          12
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: very_common
+          item:   cyan_chip
+
+  Avalanche:
+    id:            292
+    species:       snoll
+    skill_list_id: 232
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 278
+        entity_flags: 1157
+        model_size:      2
+        hitbox:         12
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: common
+          item:   snoll_arm
+
+  Blubber_Eyes_PX:
+    id:            6386
+    species:       hecteye
+    spell_list_id: 10
+    skill_list_id: 2091
+    attributes:
+      combat:
+        skill: staff
+        delay: 280
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 384
+        entity_flags: 129
+        hitbox:        10
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: rare
+          item:   hecteyes_eye
+        - chance: rare
+          item:   psoxja_chest_key
+        - chance: common
+          item:   vial_of_mercury
+      despoil:
+        hecteyes_eye: 0
+
+  Camazotz_PX:
+    id:            614
+    species:       bat
+    skill_list_id: 224
+    attributes:
+      combat:
+        skill: club
+      render:
+        look:
+          type:  standard
+          model: 256
+        entity_flags: 131
+        model_size:     1
+        hitbox:        12
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: rare
+          item:   florid_stone
+        - chance: common
+          item:   bat_wing
+        - chance: uncommon
+          item:   bat_fang
+        - chance: rare
+          item:   psoxja_chest_key
+        - chance: very_rare
+          item:   vial_of_beastman_blood
+      despoil:
+        bat_wing: 0
+
+  Cryptonberry_Cutter:
+    id:            849
+    species:       tonberry
+    spell_list_id: 7
+    skill_list_id: 500
+    attributes:
+      combat:
+        skill: dagger
+      jobs: [nin, nin]
+      render:
+        look:
+          type:  standard
+          model: 1196
+        entity_flags: 131
+        model_size:     1
+        hitbox:        10
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: common
+          item:   tonberry_coat
+        - chance: rare
+          item:   psoxja_chest_key
+        - chance: uncommon
+          item:   flask_of_vitriol
+        - chance: very_rare
+          item:   manji_shuriken
+        - chance: very_rare
+          item:   scroll_of_tonko_ni
+        - chance: super_rare
+          item:   scroll_of_kurayami_ni
+        - chance: super_rare
+          item:   scroll_of_hojo_ni
+      steal: mythril_beastcoin
+      despoil:
+        pinch_of_poison_dust: 0
+        pinch_of_venom_dust:  0
+        bag_of_poison_flour:  0
+
+  Cryptonberry_Harrier:
+    id:            852
+    species:       tonberry
+    spell_list_id: 32
+    skill_list_id: 500
+    attributes:
+      combat:
+        skill: great_axe
+      jobs: [smn, smn]
+      render:
+        look:
+          type:  standard
+          model: 1192
+        entity_flags: 131
+        model_size:     1
+        hitbox:        10
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: common
+          item:   tonberry_coat
+        - chance: rare
+          item:   psoxja_chest_key
+        - chance: uncommon
+          item:   flask_of_vitriol
+        - chance: very_rare
+          item:   water_spirit_pact
+      steal: mythril_beastcoin
+      despoil:
+        pinch_of_poison_dust: 0
+        pinch_of_venom_dust:  0
+        bag_of_poison_flour:  0
+
+  Cryptonberry_Plaguer:
+    id:            854
+    species:       cryptonberry
+    spell_list_id: 21
+    skill_list_id: 500
+    attributes:
+      combat:
+        skill: great_axe
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 1190
+        entity_flags: 131
+        model_size:     1
+        hitbox:        10
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: common
+          item:   tonberry_coat
+        - chance: rare
+          item:   chunk_of_ordrynite
+        - chance: uncommon
+          item:   flask_of_vitriol
+        - chance: very_rare
+          item:   psoxja_chest_key
+      steal: mythril_beastcoin
+      despoil:
+        pinch_of_poison_dust: 0
+        pinch_of_venom_dust:  0
+        bag_of_poison_flour:  0
+
+  Cryptonberry_Stalker:
+    id:            856
+    species:       tonberry
+    skill_list_id: 500
+    attributes:
+      combat:
+        skill: dagger
+        delay: 200
+      jobs: [thf, thf]
+      render:
+        look:
+          type:  standard
+          model: 1195
+        entity_flags: 131
+        model_size:     1
+        hitbox:        10
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: common
+          item:   tonberry_coat
+        - chance: rare
+          item:   chunk_of_ordrynite
+        - chance: rare
+          item:   piece_of_magnolia_lumber
+        - chance: rare
+          item:   psoxja_chest_key
+        - chance: very_rare
+          item:   flask_of_vitriol
+      steal: mythril_beastcoin
+      despoil:
+        pinch_of_poison_dust: 0
+        pinch_of_venom_dust:  0
+        bag_of_poison_flour:  0
+
+  Dark_Elemental:
+    id:            913
+    species:       dark_elemental
+    spell_list_id: 18
+    skill_list_id: 100
+    attributes:
+      combat:
+        skill: club
+      jobs: [drk, drk]
+      resists:
+        immune_status: [blind, light_sleep, dark_sleep]
+      render:
+        look:
+          type:  standard
+          model: 443
+        entity_flags:  131
+        animation_sub:  16
+        model_size:      1
+        hitbox:          3
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 960
+        type:    [weather]
+    loot:
+      drops:
+        - chance: always
+          item:   dark_cluster
+        - chance: common
+          item:   dark_cluster
+        - chance: common
+          item:   dark_cluster
+
+  Demonic_Millstone:
+    id:            975
+    species:       magic_pot
+    spell_list_id: 36
+    skill_list_id: 175
+    attributes:
+      combat:
+        skill: scythe
+      jobs: [rdm, war]
+      render:
+        look:
+          type:  standard
+          model: 413
+        entity_flags: 133
+        model_size:     2
+        hitbox:        43
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: common
+          item:   magic_pot_shard
+        - chance: uncommon
+          item:   vial_of_mercury
+      despoil:
+        magic_pot_shard: 0
+
+  Dire_Bat_PsoXja:
+    id:            7318
+    display_name:  Dire_Bat
+    species:       bat
+    skill_list_id: 224
+    attributes:
+      combat:
+        skill: club
+      render:
+        look:
+          type:  standard
+          model: 256
+        entity_flags:  643
+        animation_sub:   8
+        model_size:      1
+        hitbox:         12
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: very_rare
+          item:   florid_stone
+        - chance: common
+          item:   bat_wing
+        - chance: uncommon
+          item:   bat_fang
+        - chance: very_rare
+          item:   vial_of_beastman_blood
+      despoil:
+        bat_wing: 0
+
+  Diremite:
+    id:            1040
+    species:       diremite
+    skill_list_id: 81
+    attributes:
+      combat:
+        skill: axe
+        delay: 210
+      jobs: [drk, drk]
+      render:
+        look:
+          type:  standard
+          model: 1353
+        entity_flags:  643
+        animation_sub:   8
+        model_size:      1
+        hitbox:         12
+      spawn:
+        respawn: 900
+    loot:
+      drops:
+        - chance: very_common
+          item:   vial_of_lizard_blood
+        - chance: very_common
+          item:   vial_of_lizard_blood
+        - chance: common
+          item:   florid_stone
+        - chance: uncommon
+          item:   gray_chip
+        - chance: rare
+          item:   bottle_of_avatar_blood
+      steal: vial_of_fiend_blood
+      despoil:
+        bottle_of_avatar_blood: 0
+        spool_of_bloodthread:   0
+
+  Diremite_Assaulter:
+    id:            1041
+    species:       diremite
+    skill_list_id: 81
+    attributes:
+      combat:
+        skill: axe
+        delay: 210
+      jobs: [drk, drk]
+      render:
+        look:
+          type:  standard
+          model: 1353
+        entity_flags:  643
+        animation_sub:   8
+        model_size:      1
+        hitbox:         12
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 900
+    loot:
+      drops:
+        - chance: common
+          item:   gray_chip
+        - chance: common
+          item:   florid_stone
+        - chance: uncommon
+          item:   bottle_of_avatar_blood
+      steal: vial_of_fiend_blood
+      despoil:
+        bottle_of_avatar_blood: 0
+        spool_of_bloodthread:   0
+
+  Diremite_Dominator:
+    id:            1042
+    species:       diremite
+    skill_list_id: 81
+    attributes:
+      combat:
+        skill: axe
+        delay: 210
+      jobs: [drk, drk]
+      render:
+        look:
+          type:  standard
+          model: 1353
+        entity_flags:  645
+        animation_sub:   8
+        model_size:      2
+        hitbox:         13
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 900
+    loot:
+      drops:
+        - chance: common
+          item:   gray_chip
+        - chance: common
+          item:   florid_stone
+        - chance: uncommon
+          item:   bottle_of_avatar_blood
+      steal: vial_of_fiend_blood
+      despoil:
+        bottle_of_avatar_blood: 0
+        spool_of_bloodthread:   0
+
+  Diremite_Stalker:
+    id:            1043
+    species:       diremite
+    skill_list_id: 81
+    attributes:
+      combat:
+        skill: axe
+        delay: 210
+      jobs: [drk, drk]
+      render:
+        look:
+          type:  standard
+          model: 1353
+        entity_flags:  643
+        animation_sub:   8
+        model_size:      1
+        hitbox:         12
+      spawn:
+        respawn: 900
+    loot:
+      drops:
+        - chance: uncommon
+          item:   florid_stone
+        - chance: common
+          item:   spool_of_bloodthread
+        - chance: uncommon
+          item:   gray_chip
+        - chance: rare
+          item:   bottle_of_avatar_blood
+      steal: vial_of_fiend_blood
+
+  Frost_Lizard:
+    id:            1432
+    species:       snow_lizard
+    skill_list_id: 97
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 329
+        entity_flags: 133
+        model_size:     2
+        hitbox:        18
+      behaviors:
+        links: true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: common
+          item:   carmine_chip
+        - chance: rare
+          item:   lizard_skin
+        - chance: uncommon
+          item:   lizard_egg
+      steal: lizard_egg
+      despoil:
+        lizard_skin: 0
+        lizard_tail: 0
+        lizard_egg:  0
+
+  Gargoyle-Iota:
+    id:            1464
+    species:       gargoyles
+    type:          [notorious]
+    spell_list_id: 4
+    skill_list_id: 83
+    attributes:
+      combat:
+        skill: staff
+      jobs: [pld, pld]
+      render:
+        look:
+          type:  standard
+          model: 305
+        entity_flags:  133
+        animation_sub:   4
+        model_size:      2
+        hitbox:         34
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+
+  Gargoyle-Kappa:
+    id:            1465
+    species:       gargoyles
+    type:          [notorious]
+    spell_list_id: 4
+    skill_list_id: 83
+    attributes:
+      combat:
+        skill: staff
+      jobs: [pld, pld]
+      render:
+        look:
+          type:  standard
+          model: 305
+        entity_flags:  133
+        animation_sub:   4
+        model_size:      2
+        hitbox:         34
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+
+  Gargoyle-Lambda:
+    id:            1466
+    species:       gargoyles
+    type:          [notorious]
+    spell_list_id: 4
+    skill_list_id: 84
+    attributes:
+      combat:
+        skill: staff
+      jobs: [pld, rdm]
+      render:
+        look:
+          type:  standard
+          model: 305
+        entity_flags:  133
+        animation_sub:   4
+        model_size:      2
+        hitbox:         34
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+
+  Gargoyle-Mu:
+    id:            1467
+    species:       gargoyles
+    type:          [notorious]
+    spell_list_id: 4
+    skill_list_id: 84
+    attributes:
+      combat:
+        skill: staff
+      jobs: [pld, rdm]
+      render:
+        look:
+          type:  standard
+          model: 305
+        entity_flags:  133
+        animation_sub:   4
+        model_size:      2
+        hitbox:         34
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+
+  Gargoyle_1463:
+    id:            1463
+    display_name:  Gargoyle
+    species:       gargoyles
+    skill_list_id: 85
+    attributes:
+      combat:
+        skill: staff
+      render:
+        look:
+          type:  standard
+          model: 305
+        entity_flags:  131
+        animation_sub:   4
+        model_size:      1
+        hitbox:         30
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: rare
+          item:   psoxja_chest_key
+        - chance: rare
+          item:   doll_shard
+        - chance: uncommon
+          item:   vial_of_mercury
+
+  Gargoyle_5158:
+    id:            5158
+    display_name:  Gargoyle
+    species:       doll
+    type:          [notorious, event]
+    skill_list_id: 85
+    attributes:
+      combat:
+        skill: staff
+      render:
+        look:
+          type:  standard
+          model: 305
+        entity_flags:  131
+        animation_sub:   4
+        model_size:      1
+        hitbox:         30
+      behaviors:
+        aggressive:     true
+        true_detection: true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 2700
+
+  Gargoyle_5158_10:
+    id:            5158
+    display_name:  Gargoyle
+    species:       doll
+    type:          [notorious, event]
+    skill_list_id: 85
+    attributes:
+      combat:
+        skill: staff
+      render:
+        look:
+          type:  standard
+          model: 305
+        entity_flags:  131
+        animation_sub:   4
+        model_size:      1
+        hitbox:         30
+      behaviors:
+        aggressive:     true
+        true_detection: true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 3600
+
+  Gargoyle_5158_11:
+    id:            5158
+    display_name:  Gargoyle
+    species:       doll
+    type:          [notorious, event]
+    skill_list_id: 85
+    attributes:
+      combat:
+        skill: staff
+      render:
+        look:
+          type:  standard
+          model: 305
+        entity_flags:  131
+        animation_sub:   4
+        model_size:      1
+        hitbox:         30
+      behaviors:
+        aggressive:     true
+        true_detection: true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 3700
+
+  Gargoyle_5158_12:
+    id:            5158
+    display_name:  Gargoyle
+    species:       doll
+    type:          [notorious, event]
+    skill_list_id: 85
+    attributes:
+      combat:
+        skill: staff
+      render:
+        look:
+          type:  standard
+          model: 305
+        entity_flags:  131
+        animation_sub:   4
+        model_size:      1
+        hitbox:         30
+      behaviors:
+        aggressive:     true
+        true_detection: true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 3800
+
+  Gargoyle_5158_13:
+    id:            5158
+    display_name:  Gargoyle
+    species:       doll
+    type:          [notorious, event]
+    skill_list_id: 85
+    attributes:
+      combat:
+        skill: staff
+      render:
+        look:
+          type:  standard
+          model: 305
+        entity_flags:  131
+        animation_sub:   4
+        model_size:      1
+        hitbox:         30
+      behaviors:
+        aggressive:     true
+        true_detection: true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 3900
+
+  Gargoyle_5158_14:
+    id:            5158
+    display_name:  Gargoyle
+    species:       doll
+    type:          [notorious, event]
+    skill_list_id: 85
+    attributes:
+      combat:
+        skill: staff
+      render:
+        look:
+          type:  standard
+          model: 305
+        entity_flags:  131
+        animation_sub:   4
+        model_size:      1
+        hitbox:         30
+      behaviors:
+        aggressive:     true
+        true_detection: true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 4000
+
+  Gargoyle_5158_15:
+    id:            5158
+    display_name:  Gargoyle
+    species:       doll
+    type:          [notorious, event]
+    skill_list_id: 85
+    attributes:
+      combat:
+        skill: staff
+      render:
+        look:
+          type:  standard
+          model: 305
+        entity_flags:  131
+        animation_sub:   4
+        model_size:      1
+        hitbox:         30
+      behaviors:
+        aggressive:     true
+        true_detection: true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 4100
+
+  Gargoyle_5158_16:
+    id:            5158
+    display_name:  Gargoyle
+    species:       doll
+    type:          [notorious, event]
+    skill_list_id: 85
+    attributes:
+      combat:
+        skill: staff
+      render:
+        look:
+          type:  standard
+          model: 305
+        entity_flags:  131
+        animation_sub:   4
+        model_size:      1
+        hitbox:         30
+      behaviors:
+        aggressive:     true
+        true_detection: true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 4200
+
+  Gargoyle_5158_2:
+    id:            5158
+    display_name:  Gargoyle
+    species:       doll
+    type:          [notorious, event]
+    skill_list_id: 85
+    attributes:
+      combat:
+        skill: staff
+      render:
+        look:
+          type:  standard
+          model: 305
+        entity_flags:  131
+        animation_sub:   4
+        model_size:      1
+        hitbox:         30
+      behaviors:
+        aggressive:     true
+        true_detection: true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 2800
+
+  Gargoyle_5158_3:
+    id:            5158
+    display_name:  Gargoyle
+    species:       doll
+    type:          [notorious, event]
+    skill_list_id: 85
+    attributes:
+      combat:
+        skill: staff
+      render:
+        look:
+          type:  standard
+          model: 305
+        entity_flags:  131
+        animation_sub:   4
+        model_size:      1
+        hitbox:         30
+      behaviors:
+        aggressive:     true
+        true_detection: true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 2900
+
+  Gargoyle_5158_4:
+    id:            5158
+    display_name:  Gargoyle
+    species:       doll
+    type:          [notorious, event]
+    skill_list_id: 85
+    attributes:
+      combat:
+        skill: staff
+      render:
+        look:
+          type:  standard
+          model: 305
+        entity_flags:  131
+        animation_sub:   4
+        model_size:      1
+        hitbox:         30
+      behaviors:
+        aggressive:     true
+        true_detection: true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 3000
+
+  Gargoyle_5158_5:
+    id:            5158
+    display_name:  Gargoyle
+    species:       doll
+    type:          [notorious, event]
+    skill_list_id: 85
+    attributes:
+      combat:
+        skill: staff
+      render:
+        look:
+          type:  standard
+          model: 305
+        entity_flags:  131
+        animation_sub:   4
+        model_size:      1
+        hitbox:         30
+      behaviors:
+        aggressive:     true
+        true_detection: true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 3100
+
+  Gargoyle_5158_6:
+    id:            5158
+    display_name:  Gargoyle
+    species:       doll
+    type:          [notorious, event]
+    skill_list_id: 85
+    attributes:
+      combat:
+        skill: staff
+      render:
+        look:
+          type:  standard
+          model: 305
+        entity_flags:  131
+        animation_sub:   4
+        model_size:      1
+        hitbox:         30
+      behaviors:
+        aggressive:     true
+        true_detection: true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 3200
+
+  Gargoyle_5158_7:
+    id:            5158
+    display_name:  Gargoyle
+    species:       doll
+    type:          [notorious, event]
+    skill_list_id: 85
+    attributes:
+      combat:
+        skill: staff
+      render:
+        look:
+          type:  standard
+          model: 305
+        entity_flags:  131
+        animation_sub:   4
+        model_size:      1
+        hitbox:         30
+      behaviors:
+        aggressive:     true
+        true_detection: true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 3300
+
+  Gargoyle_5158_8:
+    id:            5158
+    display_name:  Gargoyle
+    species:       doll
+    type:          [notorious, event]
+    skill_list_id: 85
+    attributes:
+      combat:
+        skill: staff
+      render:
+        look:
+          type:  standard
+          model: 305
+        entity_flags:  131
+        animation_sub:   4
+        model_size:      1
+        hitbox:         30
+      behaviors:
+        aggressive:     true
+        true_detection: true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 3400
+
+  Gargoyle_5158_9:
+    id:            5158
+    display_name:  Gargoyle
+    species:       doll
+    type:          [notorious, event]
+    skill_list_id: 85
+    attributes:
+      combat:
+        skill: staff
+      render:
+        look:
+          type:  standard
+          model: 305
+        entity_flags:  131
+        animation_sub:   4
+        model_size:      1
+        hitbox:         30
+      behaviors:
+        aggressive:     true
+        true_detection: true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 3500
+
+  Gazer_PX:
+    id:            6387
+    species:       hecteye
+    spell_list_id: 10
+    skill_list_id: 2091
+    attributes:
+      combat:
+        skill: staff
+        delay: 280
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 384
+        entity_flags: 129
+        hitbox:        10
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 900
+    loot:
+      drops:
+        - chance: rare
+          item:   hecteyes_eye
+        - chance: common
+          item:   vial_of_mercury
+      despoil:
+        hecteyes_eye: 0
+
+  Goblin_Alchemist:
+    id:            1634
+    species:       goblin
+    spell_list_id: 20
+    skill_list_id: 133
+    attributes:
+      combat:
+        skill: staff
+      jobs: [whm, whm]
+      render:
+        look:
+          type:  standard
+          model: 493
+        entity_flags: 133
+        model_size:     2
+        hitbox:        13
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: uncommon
+          item:   white_mages_testimony
+        - chance: uncommon
+          item:   scroll_of_sacrifice
+        - chance: rare
+          item:   scroll_of_regen_iii
+        - chance: very_rare
+          item:   scroll_of_cure_v
+        - chance: very_rare
+          item:   scroll_of_curaga_iv
+        - chance: rare
+          item:   scroll_of_shellra_iv
+        - chance: rare
+          item:   scroll_of_reraise_iii
+      steal: beastcoin
+      despoil:
+        loaf_of_goblin_bread:      0
+        chunk_of_goblin_chocolate: 0
+        bowl_of_goblin_stew:       0
+        goblin_mushpot:            0
+
+  Goblin_Bandit:
+    id:            1637
+    species:       goblin
+    skill_list_id: 133
+    attributes:
+      combat:
+        skill: dagger
+      jobs: [thf, thf]
+      render:
+        look:
+          type:  standard
+          model: 505
+        entity_flags: 133
+        model_size:     2
+        hitbox:        13
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: rare
+          item:   goblin_mask
+        - chance: very_rare
+          item:   goblin_armor
+        - chance: very_rare
+          item:   gold_beastcoin
+      steal: thiefs_testimony
+      despoil:
+        loaf_of_goblin_bread:      0
+        chunk_of_goblin_chocolate: 0
+        bowl_of_goblin_stew:       0
+        goblin_mushpot:            0
+
+  Goblin_Bouncer:
+    id:            1641
+    species:       goblin
+    skill_list_id: 133
+    attributes:
+      combat:
+        skill: axe
+      render:
+        look:
+          type:  standard
+          model: 503
+        entity_flags: 131
+        model_size:     1
+        hitbox:        12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: rare
+          item:   goblin_helm
+        - chance: very_rare
+          item:   goblin_mail
+        - chance: very_rare
+          item:   gold_beastcoin
+      steal: mythril_beastcoin
+      despoil:
+        loaf_of_goblin_bread:      0
+        chunk_of_goblin_chocolate: 0
+        bowl_of_goblin_stew:       0
+        goblin_mushpot:            0
+
+  Goblin_Enchanter:
+    id:            1654
+    species:       goblin
+    spell_list_id: 3
+    skill_list_id: 133
+    attributes:
+      combat:
+        skill: sword
+      jobs: [rdm, rdm]
+      render:
+        look:
+          type:  standard
+          model: 504
+        entity_flags: 131
+        model_size:     1
+        hitbox:        12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: rare
+          item:   goblin_mask
+        - chance: very_rare
+          item:   goblin_armor
+        - chance: very_rare
+          item:   brass_ingot
+        - chance: very_rare
+          item:   silver_ingot
+        - chance: super_rare
+          item:   gold_ingot
+        - chance: super_rare
+          item:   platinum_ingot
+      steal: mythril_beastcoin
+      despoil:
+        loaf_of_goblin_bread:      0
+        chunk_of_goblin_chocolate: 0
+        bowl_of_goblin_stew:       0
+        goblin_mushpot:            0
+
+  Goblin_Hunter:
+    id:            1677
+    species:       goblin
+    skill_list_id: 133
+    attributes:
+      combat:
+        skill: dagger
+      jobs: [rng, rng]
+      render:
+        look:
+          type:  standard
+          model: 499
+        entity_flags: 131
+        model_size:     1
+        hitbox:        12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: rare
+          item:   goblin_mask
+        - chance: very_rare
+          item:   goblin_armor
+        - chance: very_rare
+          item:   gold_beastcoin
+      steal: crossbow_bolt
+      despoil:
+        loaf_of_goblin_bread:      0
+        chunk_of_goblin_chocolate: 0
+        bowl_of_goblin_stew:       0
+        goblin_mushpot:            0
+
+  Goblin_Jeweler:
+    id:            1679
+    species:       goblin
+    skill_list_id: 133
+    attributes:
+      combat:
+        skill: dagger
+      jobs: [thf, thf]
+      render:
+        look:
+          type:  standard
+          model: 502
+        entity_flags: 131
+        model_size:     1
+        hitbox:        12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: common
+          item:   flask_of_distilled_water
+        - chance: uncommon
+          item:   pickaxe
+        - chance: rare
+          item:   goblin_mask
+        - chance: very_rare
+          item:   goblin_armor
+        - chance: rare
+          item:   strip_of_sheep_jerky
+      steal: beastcoin
+      despoil:
+        loaf_of_goblin_bread:      0
+        chunk_of_goblin_chocolate: 0
+        bowl_of_goblin_stew:       0
+        goblin_mushpot:            0
+
+  Goblin_Mercenary:
+    id:            1687
+    species:       armored_goblin
+    skill_list_id: 133
+    attributes:
+      combat:
+        skill: axe
+      render:
+        look:
+          type:  standard
+          model: 508
+        entity_flags: 133
+        model_size:     2
+        hitbox:        13
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: rare
+          item:   warriors_testimony
+        - chance: rare
+          item:   goblin_helm
+        - chance: very_rare
+          item:   goblin_mail
+        - chance: very_rare
+          item:   gold_beastcoin
+      steal: beastcoin
+      despoil:
+        loaf_of_goblin_bread:      0
+        chunk_of_goblin_chocolate: 0
+        bowl_of_goblin_stew:       0
+        goblin_mushpot:            0
+
+  Goblin_Veterinarian:
+    id:            1742
+    species:       goblin
+    skill_list_id: 133
+    attributes:
+      combat:
+        skill: axe
+      jobs: [bst, bst]
+      render:
+        look:
+          type:  standard
+          model: 506
+        entity_flags: 133
+        model_size:     2
+        hitbox:        13
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: very_common
+          item:   ash_staff
+        - chance: common
+          item:   ram_skin
+        - chance: uncommon
+          item:   beastmasters_testimony
+        - chance: rare
+          item:   jug_of_singing_herbal_broth
+      steal: mythril_beastcoin
+      despoil:
+        loaf_of_goblin_bread:      0
+        chunk_of_goblin_chocolate: 0
+        bowl_of_goblin_stew:       0
+        goblin_mushpot:            0
+
+  Goblins_Bat_PsoXja:
+    id:            7324
+    display_name:  Goblins_Bat
+    species:       bat
+    skill_list_id: 224
+    attributes:
+      combat:
+        skill: club
+      render:
+        look:
+          type:  standard
+          model: 256
+        entity_flags:  643
+        animation_sub:   8
+        model_size:      1
+        hitbox:         12
+      behaviors:
+        links: true
+      spawn:
+        type: [scripted]
+
+  Golden-Tongued_Culberry:
+    id:            1750
+    species:       tonberry
+    type:          [notorious]
+    spell_list_id: 2
+    skill_list_id: 243
+    attributes:
+      combat:
+        skill: club
+      jobs: [blm, whm]
+      render:
+        look:
+          type:  standard
+          model: 1262
+        entity_flags: 159
+        name_prefix:   32
+        model_size:     3
+        hitbox:        16
+      behaviors:
+        aggressive: true
+        links:      true
+      mob_mods:
+        hp_standback: 1
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 30000
+        mp: 30000
+
+  Gyre-Carlin_PX:
+    id:            6963
+    display_name:  Gyre-Carlin
+    species:       diremite
+    type:          [notorious]
+    skill_list_id: 81
+    attributes:
+      combat:
+        skill: axe
+        delay: 210
+      jobs: [drk, drk]
+      render:
+        look:
+          type:  standard
+          model: 1353
+        entity_flags: 669
+        name_prefix:   32
+        model_size:     2
+        hitbox:        13
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [lottery]
+      stats:
+        hp: 4883
+    loot:
+      drops:
+        - chance: common
+          item:   florid_stone
+        - chance: uncommon
+          item:   concealing_cuffs
+        - chance: uncommon
+          item:   rikonodo
+        - chance: uncommon
+          item:   bottle_of_avatar_blood
+
+  Ice_Elemental:
+    id:            2043
+    species:       ice_elemental
+    spell_list_id: 14
+    skill_list_id: 103
+    attributes:
+      combat:
+        skill: staff
+      jobs: [blm, rdm]
+      resists:
+        immune_status: [gravity, bind, silence, paralyze]
+      render:
+        look:
+          type:  standard
+          model: 437
+        entity_flags:  1155
+        animation_sub:   16
+        model_size:       1
+        hitbox:           3
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 960
+        type:    [weather]
+    loot:
+      drops:
+        - chance: always
+          item:   ice_cluster
+        - chance: common
+          item:   ice_cluster
+        - chance: common
+          item:   ice_cluster
+
+  Labyrinth_Lizard_PX:
+    id:            5548
+    display_name:  Labyrinth_Lizard
+    species:       hill_lizard
+    skill_list_id: 97
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 329
+        entity_flags: 131
+        model_size:     1
+        hitbox:        16
+      behaviors:
+        links: true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: very_rare
+          item:   psoxja_chest_key
+        - chance: common
+          item:   lizard_tail
+        - chance: uncommon
+          item:   lizard_egg
+        - chance: rare
+          item:   lizard_skin
+      steal: lizard_egg
+      despoil:
+        lizard_skin: 0
+        lizard_tail: 0
+        lizard_egg:  0
+
+  Magic_Millstone:
+    id:            2479
+    species:       magic_pot
+    spell_list_id: 36
+    skill_list_id: 175
+    attributes:
+      combat:
+        skill: scythe
+      jobs: [rdm, war]
+      render:
+        look:
+          type:  standard
+          model: 413
+        entity_flags: 129
+        hitbox:        32
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: common
+          item:   magic_pot_shard
+        - chance: uncommon
+          item:   vial_of_mercury
+        - chance: very_rare
+          item:   psoxja_chest_key
+      despoil:
+        magic_pot_shard: 0
+
+  Maledict_Millstone:
+    id:            2495
+    species:       magic_pot
+    spell_list_id: 36
+    skill_list_id: 175
+    attributes:
+      combat:
+        skill: scythe
+      jobs: [rdm, war]
+      render:
+        look:
+          type:  standard
+          model: 413
+        entity_flags: 131
+        model_size:     1
+        hitbox:        37
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: common
+          item:   magic_pot_shard
+        - chance: common
+          item:   magic_pot_shard
+        - chance: rare
+          item:   vial_of_mercury
+      despoil:
+        magic_pot_shard: 0
+
+  Maze_Lizard:
+    id:            5547
+    species:       snow_lizard
+    skill_list_id: 97
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 329
+        entity_flags: 131
+        model_size:     1
+        hitbox:        16
+      behaviors:
+        links: true
+      spawn:
+        respawn: 900
+    loot:
+      drops:
+        - chance: common
+          item:   lizard_tail
+        - chance: uncommon
+          item:   lizard_egg
+        - chance: rare
+          item:   lizard_skin
+      despoil:
+        lizard_skin: 0
+        lizard_tail: 0
+        lizard_egg:  0
+
+  Million_Eyes_PX:
+    id:            6389
+    species:       hecteye
+    spell_list_id: 10
+    skill_list_id: 2091
+    attributes:
+      combat:
+        skill: staff
+        delay: 280
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 384
+        entity_flags: 133
+        model_size:     2
+        hitbox:        13
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: rare
+          item:   hecteyes_eye
+        - chance: common
+          item:   vial_of_mercury
+      despoil:
+        hecteyes_eye: 0
+
+  Morozko:
+    id:            2750
+    species:       snoll
+    skill_list_id: 232
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 278
+        entity_flags: 131
+        model_size:     1
+        hitbox:        11
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: common
+          item:   snoll_arm
+
+  Nunyunuwi:
+    id:            2922
+    species:       golem
+    type:          [notorious]
+    spell_list_id: 105
+    skill_list_id: 135
+    attributes:
+      combat:
+        skill: club
+        delay: 320
+      render:
+        look:
+          type:  standard
+          model: 432
+        entity_flags: 159
+        name_prefix:   32
+        model_size:     3
+        hitbox:        27
+      behaviors:
+        aggressive: true
+        links:      true
+      mods:
+        regen: 100
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 3500
+
+  Purgatory_Bat_PsoXja:
+    id:            7329
+    display_name:  Purgatory_Bat
+    species:       bat
+    skill_list_id: 224
+    attributes:
+      combat:
+        skill: club
+      render:
+        look:
+          type:  standard
+          model: 256
+        entity_flags:  645
+        animation_sub:   8
+        model_size:      2
+        hitbox:         14
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: very_rare
+          item:   florid_stone
+        - chance: common
+          item:   bat_wing
+        - chance: uncommon
+          item:   bat_fang
+        - chance: very_rare
+          item:   vial_of_beastman_blood
+      despoil:
+        bat_wing: 0
+
+  Snoll:
+    id:            3683
+    species:       snoll
+    skill_list_id: 232
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 278
+        entity_flags: 131
+        model_size:     1
+        hitbox:        11
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: rare
+          item:   snoll_arm
+      despoil:
+        snoll_arm: 0
+
+  Snow_Lizard:
+    id:            3689
+    species:       snow_lizard
+    skill_list_id: 97
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 329
+        entity_flags: 131
+        model_size:     1
+        hitbox:        16
+      behaviors:
+        links: true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: common
+          item:   carmine_chip
+        - chance: rare
+          item:   lizard_skin
+        - chance: uncommon
+          item:   lizard_egg
+      steal: lizard_egg
+      despoil:
+        lizard_skin: 0
+        lizard_tail: 0
+        lizard_egg:  0
+
+  Snowball:
+    id:            3685
+    species:       snoll
+    skill_list_id: 232
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 278
+        entity_flags: 643
+        model_size:     1
+        hitbox:        11
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 900
+    loot:
+      drops:
+        - chance: common
+          item:   snoll_arm
+        - chance: very_rare
+          item:   psoxja_chest_key
+      despoil:
+        snoll_arm: 0
+
+  Thousand_Eyes_PX:
+    id:            3900
+    species:       hecteye
+    spell_list_id: 10
+    skill_list_id: 2091
+    attributes:
+      combat:
+        skill: staff
+        delay: 280
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 384
+        entity_flags: 131
+        model_size:     1
+        hitbox:        12
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: common
+          item:   vial_of_mercury
+        - chance: uncommon
+          item:   vial_of_mercury
+        - chance: rare
+          item:   hecteyes_eye
+      despoil:
+        hecteyes_eye: 0
+
+  Tonberrys_Elemental:
+    id:            3971
+    species:       fire_elemental
+    type:          [called]
+    spell_list_id: 21
+    skill_list_id: 102
+    attributes:
+      combat:
+        skill: staff
+      jobs: [blm, rdm]
+      render:
+        look:
+          type:  standard
+          model: 8
+        entity_flags:  1155
+        animation_sub:   16
+        model_size:       1
+        hitbox:           8
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+
+  Treasure_Chest:
+    id:            3992
+    species:       mimic
+    skill_list_id: 183
+    attributes:
+      combat:
+        skill: scythe
+        delay: 170
+      render:
+        look:
+          type:  standard
+          model: 258
+        entity_flags:  4227
+        animation_sub:   12
+        model_size:       1
+        hitbox:          12
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+
+  Vampire_Bat_PsoXja:
+    id:            7335
+    display_name:  Vampire_Bat
+    species:       bat
+    skill_list_id: 224
+    attributes:
+      combat:
+        skill: club
+      render:
+        look:
+          type:  standard
+          model: 256
+        entity_flags:  643
+        animation_sub:   8
+        model_size:      1
+        hitbox:         12
+      behaviors:
+        links: true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: very_rare
+          item:   florid_stone
+        - chance: common
+          item:   bat_wing
+        - chance: uncommon
+          item:   bat_fang
+        - chance: very_rare
+          item:   vial_of_beastman_blood
+      despoil:
+        bat_wing: 0
+
+spawns:
+  16814081:
+    template: Gargoyle_5158
+    script:   Gargoyle
+    at:       [339.493, -0.500, -47.472, 51]
+    level:    [51, 52]
+  16814082:
+    template: Gargoyle_5158_2
+    script:   Gargoyle
+    at:       [352.519, -0.500, -59.527, 123]
+    level:    [51, 52]
+  16814083:
+    template: Gargoyle_5158_3
+    script:   Gargoyle
+    at:       [340.455, -0.500, -72.481, 195]
+    level:    [52, 53]
+  16814084:
+    template: Gargoyle_5158_4
+    script:   Gargoyle
+    at:       [323.476, -0.500, -72.625, 194]
+    level:    [52, 53]
+  16814085:
+    template: Gargoyle_5158_5
+    script:   Gargoyle
+    at:       [312.518, -0.500, -99.569, 129]
+    level:    [53, 54]
+  16814086:
+    template: Gargoyle_5158_6
+    script:   Gargoyle
+    at:       [300.425, -0.500, -112.556, 189]
+    level:    [53, 54]
+  16814087:
+    template: Gargoyle_5158_7
+    script:   Gargoyle
+    at:       [287.528, -0.500, -100.483, 247]
+    level:    [54, 55]
+  16814088:
+    template: Gargoyle_5158_8
+    script:   Gargoyle
+    at:       [287.519, -0.500, -83.510, 245]
+    level:    [54, 55]
+  16814089:
+    template: Gargoyle_5158_9
+    script:   Gargoyle
+    at:       [260.473, -0.500, -72.519, 187]
+    level:    [55, 56]
+  16814090:
+    template: Gargoyle_5158_10
+    script:   Gargoyle
+    at:       [247.554, -0.500, -60.581, 246]
+    level:    [55, 56]
+  16814091:
+    template: Gargoyle_5158_11
+    script:   Gargoyle
+    at:       [259.498, -0.500, -47.526, 67]
+    level:    [56, 57]
+  16814092:
+    template: Gargoyle_5158_12
+    script:   Gargoyle
+    at:       [276.481, -0.500, -47.534, 43]
+    level:    [56, 57]
+  16814093:
+    template: Gargoyle_5158_13
+    script:   Gargoyle
+    at:       [287.458, -0.500, -20.448]
+    level:    [57, 58]
+  16814094:
+    template: Gargoyle_5158_14
+    script:   Gargoyle
+    at:       [299.553, -0.500, -7.473, 53]
+    level:    [57, 58]
+  16814095:
+    template: Gargoyle_5158_15
+    script:   Gargoyle
+    at:       [312.536, -0.500, -19.533, 117]
+    level:    [58, 59]
+  16814096:
+    template: Gargoyle_5158_16
+    script:   Gargoyle
+    at:       [312.470, -0.500, -36.500, 110]
+    level:    [58, 59]
+  16814097:
+    template: Vampire_Bat_PsoXja
+    script:   Vampire_Bat
+    region:   e_17
+    level:    [45, 47]
+  16814098:
+    template: Vampire_Bat_PsoXja
+    script:   Vampire_Bat
+    region:   e_17
+    level:    [45, 47]
+  16814099:
+    template: Maze_Lizard
+    region:   e_17
+    level:    [45, 47]
+  16814100:
+    template: Maze_Lizard
+    region:   e_17
+    level:    [45, 47]
+  16814101:
+    template: Maze_Lizard
+    region:   e_21
+    level:    [45, 47]
+  16814102:
+    template: Maze_Lizard
+    region:   e_21
+    level:    [45, 47]
+  16814103:
+    template: Maze_Lizard
+    region:   e_23
+    level:    [45, 47]
+  16814104:
+    template: Maze_Lizard
+    region:   e_23
+    level:    [45, 47]
+  16814105:
+    template: Blubber_Eyes_PX
+    script:   Blubber_Eyes
+    region:   e_25
+    level:    [53, 55]
+  16814106:
+    template: Cryptonberry_Plaguer
+    region:   e_25
+    level:    [54, 56]
+  16814107:
+    template: Cryptonberry_Plaguer
+    region:   e_25
+    level:    [54, 56]
+  16814108:
+    template: Blubber_Eyes_PX
+    script:   Blubber_Eyes
+    region:   e_28
+    level:    [53, 55]
+  16814109:
+    template: Blubber_Eyes_PX
+    script:   Blubber_Eyes
+    region:   e_29
+    level:    [53, 55]
+  16814110:
+    template: Cryptonberry_Cutter
+    region:   e_31
+    level:    [54, 56]
+  16814111:
+    template: Cryptonberry_Cutter
+    region:   e_31
+    level:    [54, 56]
+  16814112:
+    template: Blubber_Eyes_PX
+    script:   Blubber_Eyes
+    region:   e_31
+    level:    [53, 55]
+  16814113:
+    template: Camazotz_PX
+    script:   Camazotz
+    region:   e_33
+    level:    [54, 57]
+  16814114:
+    template: Camazotz_PX
+    script:   Camazotz
+    region:   e_33
+    level:    [54, 57]
+  16814115:
+    template: Magic_Millstone
+    region:   e_35
+    level:    [54, 56]
+  16814116:
+    template: Magic_Millstone
+    region:   e_37
+    level:    [54, 56]
+  16814117:
+    template: Snoll
+    region:   e_37
+    level:    [56, 59]
+  16814118:
+    template: Cryptonberry_Plaguer
+    region:   e_38
+    level:    [54, 56]
+  16814119:
+    template: Cryptonberry_Harrier
+    region:   e_39
+    level:    [54, 56]
+  16814120:
+    template: Tonberrys_Elemental
+    at:       [291.087, -0.352, -4.973, 254]
+    level:    [49, 53]
+  16814121:
+    template: Cryptonberry_Stalker
+    region:   e_39
+    level:    [54, 56]
+  16814122:
+    template: Cryptonberry_Harrier
+    region:   e_44
+    level:    [54, 56]
+  16814123:
+    template: Tonberrys_Elemental
+    at:       [305.394, -0.352, -8.821, 188]
+    level:    [49, 53]
+  16814124:
+    template: Cryptonberry_Stalker
+    region:   e_44
+    level:    [54, 56]
+  16814125:
+    template: Cryptonberry_Cutter
+    region:   e_45
+    level:    [54, 56]
+  16814126:
+    template: Diremite_Stalker
+    region:   e_46
+    level:    [56, 59]
+  16814127:
+    template: Diremite_Stalker
+    region:   e_46
+    level:    [56, 59]
+  16814128:
+    template: Diremite_Stalker
+    region:   e_46
+    level:    [56, 59]
+  16814129:
+    template: Diremite_Stalker
+    region:   e_46
+    level:    [56, 59]
+  16814130:
+    template: Ice_Elemental
+    region:   e_50
+    level:    [65, 65]
+  16814131:
+    template: Cryptonberry_Plaguer
+    region:   e_51
+    level:    [56, 58]
+  16814132:
+    template: Cryptonberry_Plaguer
+    region:   e_51
+    level:    [56, 58]
+  16814133:
+    template: Cryptonberry_Harrier
+    region:   e_51
+    level:    [56, 58]
+  16814134:
+    template: Tonberrys_Elemental
+    at:       [336.624, 31.416, -59.555, 105]
+    level:    [49, 53]
+  16814135:
+    template: Cryptonberry_Stalker
+    region:   e_51
+    level:    [56, 58]
+  16814136:
+    template: Cryptonberry_Cutter
+    region:   e_51
+    level:    [56, 58]
+  16814137:
+    template: Blubber_Eyes_PX
+    script:   Blubber_Eyes
+    region:   region_137
+    level:    [56, 58]
+  16814138:
+    template: Snoll
+    region:   region_138
+    level:    [56, 59]
+  16814139:
+    template: Goblin_Hunter
+    region:   region_139
+    level:    [56, 58]
+  16814140:
+    template: Goblin_Enchanter
+    region:   region_139
+    level:    [56, 58]
+  16814141:
+    template: Magic_Millstone
+    region:   se_61
+    level:    [54, 56]
+  16814142:
+    template: Goblin_Jeweler
+    region:   se_62
+    level:    [56, 58]
+  16814143:
+    template: Goblin_Bouncer
+    region:   se_63
+    level:    [56, 58]
+  16814144:
+    template: Goblin_Mercenary
+    region:   region_140
+    level:    [63, 66]
+  16814145:
+    template: Goblin_Alchemist
+    region:   region_140
+    level:    [62, 65]
+  16814146:
+    template: Goblin_Bandit
+    region:   region_140
+    level:    [62, 65]
+  16814147:
+    template: Maledict_Millstone
+    region:   s_67
+    level:    [64, 66]
+  16814148:
+    template: Dire_Bat_PsoXja
+    script:   Dire_Bat
+    region:   s_68
+    level:    [65, 68]
+  16814149:
+    template: Dire_Bat_PsoXja
+    script:   Dire_Bat
+    region:   s_68
+    level:    [65, 68]
+  16814150:
+    template: Maledict_Millstone
+    region:   s_70
+    level:    [64, 66]
+  16814151:
+    template: Diremite_Assaulter
+    region:   se_71
+    level:    [65, 68]
+  16814152:
+    template: Diremite_Assaulter
+    region:   se_71
+    level:    [65, 68]
+  16814153:
+    template: Dire_Bat_PsoXja
+    script:   Dire_Bat
+    region:   se_71
+    level:    [65, 68]
+  16814154:
+    template: Diremite_Assaulter
+    region:   se_74
+    level:    [65, 68]
+  16814155:
+    template: Diremite_Assaulter
+    region:   se_74
+    level:    [65, 68]
+  16814156:
+    template: Dire_Bat_PsoXja
+    script:   Dire_Bat
+    region:   se_74
+    level:    [65, 68]
+  16814157:
+    template: Diremite_Assaulter
+    region:   s_77
+    level:    [65, 68]
+  16814158:
+    template: Diremite_Assaulter
+    region:   s_77
+    level:    [65, 68]
+  16814159:
+    template: Thousand_Eyes_PX
+    script:   Thousand_Eyes
+    region:   s_77
+    level:    [64, 66]
+  16814160:
+    template: Diremite_Assaulter
+    region:   s_80
+    level:    [65, 68]
+  16814161:
+    template: Diremite_Assaulter
+    region:   s_80
+    level:    [65, 68]
+  16814162:
+    template: Thousand_Eyes_PX
+    script:   Thousand_Eyes
+    region:   s_80
+    level:    [64, 66]
+  16814163:
+    template: Goblin_Mercenary
+    region:   region_141
+    level:    [63, 66]
+  16814164:
+    template: Goblin_Alchemist
+    region:   region_141
+    level:    [65, 67]
+  16814165:
+    template: Goblin_Bandit
+    region:   region_141
+    level:    [65, 67]
+  16814166:
+    template: Goblin_Alchemist
+    region:   se_86
+    level:    [65, 67]
+  16814167:
+    template: Thousand_Eyes_PX
+    script:   Thousand_Eyes
+    region:   se_87
+    level:    [64, 66]
+  16814168:
+    template: Goblin_Bandit
+    region:   se_88
+    level:    [65, 67]
+  16814169:
+    template: Thousand_Eyes_PX
+    script:   Thousand_Eyes
+    region:   region_142
+    level:    [64, 66]
+  16814170:
+    template: Goblin_Alchemist
+    region:   se_92
+    level:    [66, 68]
+  16814171:
+    template: Thousand_Eyes_PX
+    script:   Thousand_Eyes
+    region:   se_91
+    level:    [64, 66]
+  16814172:
+    template: Goblin_Bandit
+    region:   se_92
+    level:    [66, 67]
+  16814173:
+    template: Thousand_Eyes_PX
+    script:   Thousand_Eyes
+    region:   se_93
+    level:    [64, 66]
+  16814174:
+    template: Goblin_Veterinarian
+    region:   se_94
+    level:    [63, 66]
+  16814175:
+    template: Goblins_Bat_PsoXja
+    script:   Goblins_Bat
+    at:       [171.377, 15.647, -354.418, 126]
+    level:    [57, 61]
+  16814176:
+    template: Diremite_Assaulter
+    region:   s_96
+    level:    [65, 68]
+  16814177:
+    template: Maledict_Millstone
+    region:   se_97
+    level:    [64, 66]
+  16814178:
+    template: Maledict_Millstone
+    region:   se_97
+    level:    [64, 66]
+  16814179:
+    template: Maledict_Millstone
+    region:   se_97
+    level:    [64, 66]
+  16814180:
+    template: Goblin_Veterinarian
+    region:   se_97
+    level:    [66, 68]
+  16814181:
+    template: Goblins_Bat_PsoXja
+    script:   Goblins_Bat
+    at:       [1.000, 1.000, 1.000, 255]
+    level:    [57, 61]
+  16814182:
+    template: Goblin_Mercenary
+    region:   se_102
+    level:    [66, 68]
+  16814183:
+    template: Goblin_Mercenary
+    region:   se_102
+    level:    [66, 68]
+  16814184:
+    template: Goblin_Alchemist
+    region:   se_102
+    level:    [66, 68]
+  16814185:
+    template: Goblin_Bandit
+    region:   se_102
+    level:    [66, 67]
+  16814186:
+    template: Goblin_Veterinarian
+    region:   se_102
+    level:    [66, 68]
+  16814187:
+    template: Goblins_Bat_PsoXja
+    script:   Goblins_Bat
+    at:       [1.000, 1.000, 1.000, 2]
+    level:    [57, 61]
+  16814188:
+    template: Thousand_Eyes_PX
+    script:   Thousand_Eyes
+    region:   region_143
+    level:    [64, 66]
+  16814189:
+    template: Thousand_Eyes_PX
+    script:   Thousand_Eyes
+    region:   region_143
+    level:    [64, 66]
+  16814190:
+    template: Morozko
+    region:   region_144
+    level:    [65, 65]
+  16814191:
+    template: Snoll
+    region:   ne_111
+    level:    [56, 59]
+  16814192:
+    template: Snoll
+    region:   ne_111
+    level:    [56, 59]
+  16814193:
+    template: Labyrinth_Lizard_PX
+    script:   Labyrinth_Lizard
+    region:   ne_113
+    level:    [56, 58]
+  16814194:
+    template: Snoll
+    region:   ne_114
+    level:    [56, 59]
+  16814195:
+    template: Labyrinth_Lizard_PX
+    script:   Labyrinth_Lizard
+    region:   ne_115
+    level:    [56, 58]
+  16814196:
+    template: Cryptonberry_Plaguer
+    region:   ne_116
+    level:    [54, 57]
+  16814197:
+    template: Cryptonberry_Cutter
+    region:   ne_116
+    level:    [54, 57]
+  16814198:
+    template: Labyrinth_Lizard_PX
+    script:   Labyrinth_Lizard
+    region:   ne_118
+    level:    [56, 58]
+  16814199:
+    template: Snoll
+    region:   ne_119
+    level:    [56, 59]
+  16814200:
+    template: Labyrinth_Lizard_PX
+    script:   Labyrinth_Lizard
+    region:   ne_120
+    level:    [56, 58]
+  16814201:
+    template: Snoll
+    region:   ne_121
+    level:    [56, 59]
+  16814202:
+    template: Labyrinth_Lizard_PX
+    script:   Labyrinth_Lizard
+    region:   ne_122
+    level:    [56, 58]
+  16814203:
+    template: Snoll
+    region:   ne_123
+    level:    [56, 59]
+  16814204:
+    template: Cryptonberry_Stalker
+    region:   ne_124
+    level:    [57, 59]
+  16814205:
+    template: Morozko
+    region:   ne_125
+    level:    [65, 65]
+  16814206:
+    template: Cryptonberry_Harrier
+    region:   ne_126
+    level:    [57, 59]
+  16814207:
+    template: Tonberrys_Elemental
+    at:       [235.660, 15.647, 291.072, 187]
+    level:    [49, 53]
+  16814208:
+    template: Snow_Lizard
+    region:   ne_128
+    level:    [63, 65]
+  16814209:
+    template: Snow_Lizard
+    region:   ne_129
+    level:    [63, 65]
+  16814210:
+    template: Dark_Elemental
+    region:   ne_130
+    level:    [63, 63]
+  16814211:
+    template: Ice_Elemental
+    region:   ne_130
+    level:    [65, 65]
+  16814212:
+    template: Dark_Elemental
+    region:   ne_132
+    level:    [63, 63]
+  16814213:
+    template: Ice_Elemental
+    region:   ne_132
+    level:    [65, 65]
+  16814214:
+    template: Cryptonberry_Plaguer
+    region:   ne_134
+    level:    [57, 59]
+  16814215:
+    template: Cryptonberry_Stalker
+    region:   region_160
+    level:    [59, 60]
+  16814216:
+    template: Snow_Lizard
+    region:   ne_136
+    level:    [63, 65]
+  16814217:
+    template: Dark_Elemental
+    region:   ne_137
+    level:    [63, 63]
+  16814218:
+    template: Ice_Elemental
+    region:   ne_137
+    level:    [65, 65]
+  16814219:
+    template: Snow_Lizard
+    region:   ne_139
+    level:    [63, 65]
+  16814220:
+    template: Maledict_Millstone
+    region:   ne_140
+    level:    [66, 68]
+  16814221:
+    template: Maledict_Millstone
+    region:   ne_140
+    level:    [66, 68]
+  16814222:
+    template: Maledict_Millstone
+    region:   ne_140
+    level:    [66, 68]
+  16814223:
+    template: Cryptonberry_Harrier
+    region:   ne_140
+    level:    [59, 60]
+  16814224:
+    template: Tonberrys_Elemental
+    at:       [1.000, 1.000, 1.000, 58]
+    level:    [49, 53]
+  16814225:
+    template: Diremite_Assaulter
+    region:   ne_145
+    level:    [66, 68]
+  16814226:
+    template: Diremite_Assaulter
+    region:   ne_145
+    level:    [66, 68]
+  16814227:
+    template: Diremite_Assaulter
+    region:   ne_145
+    level:    [66, 68]
+  16814228:
+    template: Thousand_Eyes_PX
+    script:   Thousand_Eyes
+    region:   region_145
+    level:    [66, 68]
+  16814229:
+    template: Thousand_Eyes_PX
+    script:   Thousand_Eyes
+    region:   region_157
+    level:    [66, 68]
+  16814230:
+    template: Morozko
+    region:   ne_150
+    level:    [65, 65]
+  16814231:
+    template: Gargoyle-Iota
+    at:       [-289.539, -0.500, -209.015, 3]
+    level:    [52, 52]
+  16814232:
+    template: Gargoyle-Kappa
+    at:       [-289.310, -0.744, -211.210, 213]
+    level:    [52, 52]
+  16814233:
+    template: Gargoyle-Lambda
+    at:       [-334.062, 31.689, -173.074, 228]
+    level:    [53, 53]
+  16814234:
+    template: Gargoyle-Mu
+    at:       [-325.948, 31.687, -173.059, 157]
+    level:    [54, 54]
+  16814235:
+    template: Cryptonberry_Harrier
+    region:   sw_155
+    level:    [53, 56]
+  16814236:
+    template: Tonberrys_Elemental
+    at:       [-302.628, 15.399, -260.958, 253]
+    level:    [49, 53]
+  16814237:
+    template: Cryptonberry_Stalker
+    region:   sw_155
+    level:    [53, 56]
+  16814238:
+    template: Cryptonberry_Cutter
+    region:   sw_158
+    level:    [53, 56]
+  16814239:
+    template: Cryptonberry_Plaguer
+    region:   sw_158
+    level:    [53, 56]
+  16814240:
+    template: Labyrinth_Lizard_PX
+    script:   Labyrinth_Lizard
+    region:   sw_158
+    level:    [53, 55]
+  16814241:
+    template: Labyrinth_Lizard_PX
+    script:   Labyrinth_Lizard
+    region:   sw_158
+    level:    [53, 55]
+  16814242:
+    template: Gargoyle_1463
+    script:   Gargoyle
+    region:   sw_163
+    level:    [53, 55]
+  16814243:
+    template: Gargoyle_1463
+    script:   Gargoyle
+    region:   sw_163
+    level:    [53, 55]
+  16814244:
+    template: Labyrinth_Lizard_PX
+    script:   Labyrinth_Lizard
+    region:   sw_164
+    level:    [53, 55]
+  16814245:
+    template: Labyrinth_Lizard_PX
+    script:   Labyrinth_Lizard
+    region:   sw_165
+    level:    [53, 55]
+  16814246:
+    template: Cryptonberry_Stalker
+    region:   region_159
+    level:    [53, 56]
+  16814247:
+    template: Treasure_Chest
+    at:       [-328.000, -0.252, -272.000, 192]
+    level:    [55, 60]
+  16814248:
+    template: Labyrinth_Lizard_PX
+    script:   Labyrinth_Lizard
+    region:   sw_168
+    level:    [53, 55]
+  16814249:
+    template: Magic_Millstone
+    region:   sw_169
+    level:    [54, 56]
+  16814250:
+    template: Magic_Millstone
+    region:   sw_169
+    level:    [54, 56]
+  16814251:
+    template: Camazotz_PX
+    script:   Camazotz
+    region:   sw_171
+    level:    [52, 54]
+  16814252:
+    template: Cryptonberry_Plaguer
+    region:   sw_172
+    level:    [53, 56]
+  16814253:
+    template: Cryptonberry_Harrier
+    region:   sw_172
+    level:    [53, 56]
+  16814254:
+    template: Tonberrys_Elemental
+    at:       [-363.802, 0.393, -169.525, 126]
+    level:    [49, 53]
+  16814255:
+    template: Cryptonberry_Stalker
+    region:   sw_172
+    level:    [53, 56]
+  16814256:
+    template: Cryptonberry_Cutter
+    region:   sw_172
+    level:    [56, 58]
+  16814257:
+    template: Camazotz_PX
+    script:   Camazotz
+    region:   sw_177
+    level:    [52, 54]
+  16814258:
+    template: Treasure_Chest
+    at:       [-350.000, 15.747, -170.000, 64]
+    level:    [55, 60]
+  16814259:
+    template: Camazotz_PX
+    script:   Camazotz
+    region:   region_156
+    level:    [52, 54]
+  16814260:
+    template: Cryptonberry_Plaguer
+    region:   sw_180
+    level:    [56, 58]
+  16814261:
+    template: Cryptonberry_Stalker
+    region:   sw_180
+    level:    [56, 58]
+  16814262:
+    template: Cryptonberry_Cutter
+    region:   sw_180
+    level:    [56, 58]
+  16814263:
+    template: Treasure_Chest
+    at:       [-393.000, 15.747, -212.000]
+    level:    [55, 60]
+  16814264:
+    template: Labyrinth_Lizard_PX
+    script:   Labyrinth_Lizard
+    region:   sw_184
+    level:    [56, 58]
+  16814265:
+    template: Labyrinth_Lizard_PX
+    script:   Labyrinth_Lizard
+    region:   sw_184
+    level:    [56, 58]
+  16814266:
+    template: Magic_Millstone
+    region:   sw_186
+    level:    [54, 56]
+  16814267:
+    template: Magic_Millstone
+    region:   sw_186
+    level:    [54, 56]
+  16814268:
+    template: Magic_Millstone
+    region:   sw_186
+    level:    [54, 56]
+  16814269:
+    template: Magic_Millstone
+    region:   sw_186
+    level:    [54, 56]
+  16814270:
+    template: Camazotz_PX
+    script:   Camazotz
+    region:   sw_190
+    level:    [54, 57]
+  16814271:
+    template: Camazotz_PX
+    script:   Camazotz
+    region:   sw_190
+    level:    [54, 57]
+  16814272:
+    template: Cryptonberry_Cutter
+    region:   sw_190
+    level:    [54, 56]
+  16814273:
+    template: Cryptonberry_Harrier
+    region:   sw_193
+    level:    [54, 56]
+  16814274:
+    template: Tonberrys_Elemental
+    at:       [-345.403, 15.647, -266.755, 49]
+    level:    [49, 53]
+  16814275:
+    template: Ice_Elemental
+    region:   sw_195
+    level:    [60, 60]
+  16814276:
+    template: Treasure_Chest
+    at:       [-392.000, 31.747, -210.000]
+    level:    [55, 60]
+  16814277:
+    template: Magic_Millstone
+    region:   sw_197
+    level:    [56, 58]
+  16814278:
+    template: Magic_Millstone
+    region:   sw_197
+    level:    [56, 58]
+  16814279:
+    template: Labyrinth_Lizard_PX
+    script:   Labyrinth_Lizard
+    region:   sw_197
+    level:    [56, 58]
+  16814280:
+    template: Labyrinth_Lizard_PX
+    script:   Labyrinth_Lizard
+    region:   sw_197
+    level:    [56, 58]
+  16814281:
+    template: Labyrinth_Lizard_PX
+    script:   Labyrinth_Lizard
+    region:   sw_201
+    level:    [56, 58]
+  16814282:
+    template: Magic_Millstone
+    region:   sw_202
+    level:    [56, 58]
+  16814283:
+    template: Magic_Millstone
+    region:   sw_202
+    level:    [56, 58]
+  16814284:
+    template: Camazotz_PX
+    script:   Camazotz
+    region:   sw_202
+    level:    [54, 57]
+  16814285:
+    template: Camazotz_PX
+    script:   Camazotz
+    region:   sw_202
+    level:    [54, 57]
+  16814286:
+    template: Diremite_Stalker
+    region:   sw_206
+    level:    [56, 59]
+  16814287:
+    template: Diremite_Stalker
+    region:   sw_206
+    level:    [56, 59]
+  16814288:
+    template: Diremite_Stalker
+    region:   sw_206
+    level:    [56, 59]
+  16814289:
+    template: Cryptonberry_Plaguer
+    region:   sw_206
+    level:    [59, 60]
+  16814290:
+    template: Treasure_Chest
+    at:       [-331.000, 31.747, -268.000]
+    level:    [55, 60]
+  16814291:
+    template: Gargoyle_1463
+    script:   Gargoyle
+    region:   sw_211
+    level:    [56, 57]
+  16814292:
+    template: Gargoyle_1463
+    script:   Gargoyle
+    region:   sw_211
+    level:    [56, 57]
+  16814293:
+    template: Gargoyle_1463
+    script:   Gargoyle
+    region:   sw_211
+    level:    [56, 57]
+  16814294:
+    template: Gargoyle_1463
+    script:   Gargoyle
+    region:   sw_211
+    level:    [56, 57]
+  16814295:
+    template: Diremite_Assaulter
+    region:   sw_215
+    level:    [63, 65]
+  16814296:
+    template: Diremite_Assaulter
+    region:   sw_215
+    level:    [63, 65]
+  16814297:
+    template: Diremite_Assaulter
+    region:   sw_215
+    level:    [63, 65]
+  16814298:
+    template: Diremite_Assaulter
+    region:   sw_215
+    level:    [63, 65]
+  16814299:
+    template: Treasure_Chest
+    at:       [-300.000, 47.500, -220.000, 128]
+    level:    [55, 60]
+  16814300:
+    template: Dire_Bat_PsoXja
+    script:   Dire_Bat
+    region:   region_146
+    level:    [63, 65]
+  16814301:
+    template: Dire_Bat_PsoXja
+    script:   Dire_Bat
+    region:   region_146
+    level:    [63, 65]
+  16814302:
+    template: Ice_Elemental
+    region:   region_147
+    level:    [65, 65]
+  16814303:
+    template: Labyrinth_Lizard_PX
+    script:   Labyrinth_Lizard
+    region:   region_148
+    level:    [56, 58]
+  16814304:
+    template: Labyrinth_Lizard_PX
+    script:   Labyrinth_Lizard
+    region:   region_149
+    level:    [56, 58]
+  16814305:
+    template: Gazer_PX
+    script:   Gazer
+    region:   w_225
+    level:    [42, 44]
+  16814306:
+    template: Gazer_PX
+    script:   Gazer
+    region:   w_225
+    level:    [42, 44]
+  16814307:
+    template: Gazer_PX
+    script:   Gazer
+    region:   w_227
+    level:    [42, 44]
+  16814308:
+    template: Gazer_PX
+    script:   Gazer
+    region:   w_227
+    level:    [42, 44]
+  16814309:
+    template: Diremite
+    region:   w_227
+    level:    [42, 43]
+  16814310:
+    template: Diremite
+    region:   w_227
+    level:    [42, 43]
+  16814311:
+    template: Snowball
+    region:   c_231
+    level:    [43, 46]
+  16814312:
+    template: Gazer_PX
+    script:   Gazer
+    region:   c_232
+    level:    [42, 44]
+  16814313:
+    template: Diremite
+    region:   c_232
+    level:    [42, 43]
+  16814314:
+    template: Diremite
+    region:   c_232
+    level:    [42, 43]
+  16814315:
+    template: Diremite
+    region:   c_232
+    level:    [42, 43]
+  16814316:
+    template: Gazer_PX
+    script:   Gazer
+    region:   n_236
+    level:    [43, 46]
+  16814317:
+    template: Diremite
+    region:   n_236
+    level:    [42, 43]
+  16814318:
+    template: Diremite
+    region:   n_236
+    level:    [42, 43]
+  16814319:
+    template: Diremite
+    region:   c_263
+    level:    [42, 43]
+  16814320:
+    template: Gyre-Carlin_PX
+    script:   Gyre-Carlin
+    region:   n_236
+    level:    [50, 50]
+  16814321:
+    template: Snowball
+    region:   n_241
+    level:    [43, 46]
+  16814322:
+    template: Gazer_PX
+    script:   Gazer
+    region:   n_242
+    level:    [43, 46]
+  16814323:
+    template: Gazer_PX
+    script:   Gazer
+    region:   n_242
+    level:    [43, 46]
+  16814324:
+    template: Diremite
+    region:   n_242
+    level:    [42, 44]
+  16814325:
+    template: Diremite
+    region:   n_242
+    level:    [42, 44]
+  16814326:
+    template: Gazer_PX
+    script:   Gazer
+    region:   n_246
+    level:    [43, 46]
+  16814327:
+    template: Gazer_PX
+    script:   Gazer
+    region:   n_247
+    level:    [43, 46]
+  16814328:
+    template: Diremite
+    region:   n_247
+    level:    [42, 44]
+  16814329:
+    template: Diremite
+    region:   n_247
+    level:    [42, 44]
+  16814330:
+    template: Diremite
+    region:   c_263
+    level:    [42, 44]
+  16814331:
+    template: Gyre-Carlin_PX
+    script:   Gyre-Carlin
+    region:   n_247
+    level:    [50, 50]
+  16814332:
+    template: Snowball
+    region:   n_252
+    level:    [43, 46]
+  16814333:
+    template: Maze_Lizard
+    region:   c_253
+    level:    [43, 45]
+  16814334:
+    template: Maze_Lizard
+    region:   c_253
+    level:    [43, 45]
+  16814335:
+    template: Diremite
+    region:   c_253
+    level:    [44, 46]
+  16814336:
+    template: Diremite
+    region:   c_253
+    level:    [44, 46]
+  16814337:
+    template: Maze_Lizard
+    region:   c_257
+    level:    [43, 45]
+  16814338:
+    template: Maze_Lizard
+    region:   c_258
+    level:    [43, 45]
+  16814339:
+    template: Maze_Lizard
+    region:   c_258
+    level:    [43, 45]
+  16814340:
+    template: Diremite
+    region:   c_258
+    level:    [44, 46]
+  16814341:
+    template: Diremite
+    region:   c_258
+    level:    [44, 46]
+  16814342:
+    template: Maze_Lizard
+    region:   c_262
+    level:    [43, 45]
+  16814343:
+    template: Diremite
+    region:   c_263
+    level:    [44, 46]
+  16814344:
+    template: Gyre-Carlin_PX
+    script:   Gyre-Carlin
+    region:   c_263
+    level:    [50, 50]
+  16814345:
+    template: Diremite
+    region:   c_265
+    level:    [45, 47]
+  16814346:
+    template: Vampire_Bat_PsoXja
+    script:   Vampire_Bat
+    region:   c_266
+    level:    [45, 47]
+  16814347:
+    template: Vampire_Bat_PsoXja
+    script:   Vampire_Bat
+    region:   c_266
+    level:    [45, 47]
+  16814348:
+    template: Diremite
+    region:   c_268
+    level:    [46, 47]
+  16814349:
+    template: Diremite
+    region:   c_269
+    level:    [47, 48]
+  16814350:
+    template: Diremite
+    region:   c_269
+    level:    [47, 48]
+  16814351:
+    template: Vampire_Bat_PsoXja
+    script:   Vampire_Bat
+    region:   c_269
+    level:    [48, 50]
+  16814352:
+    template: Vampire_Bat_PsoXja
+    script:   Vampire_Bat
+    region:   c_269
+    level:    [48, 50]
+  16814353:
+    template: Dark_Elemental
+    region:   c_269
+    level:    [50, 50]
+  16814354:
+    template: Ice_Elemental
+    region:   c_269
+    level:    [50, 50]
+  16814355:
+    template: Vampire_Bat_PsoXja
+    script:   Vampire_Bat
+    region:   c_275
+    level:    [48, 50]
+  16814356:
+    template: Vampire_Bat_PsoXja
+    script:   Vampire_Bat
+    region:   c_275
+    level:    [48, 50]
+  16814357:
+    template: Vampire_Bat_PsoXja
+    script:   Vampire_Bat
+    region:   c_275
+    level:    [48, 50]
+  16814358:
+    template: Vampire_Bat_PsoXja
+    script:   Vampire_Bat
+    region:   c_278
+    level:    [48, 50]
+  16814359:
+    template: Snowball
+    region:   c_278
+    level:    [47, 50]
+  16814360:
+    template: Snowball
+    region:   c_280
+    level:    [47, 50]
+  16814361:
+    template: Nunyunuwi
+    at:       [-329.971, -0.500, 316.561, 132]
+    level:    [56, 58]
+  16814362:
+    template: Maze_Lizard
+    region:   nw_282
+    level:    [43, 45]
+  16814363:
+    template: Maze_Lizard
+    region:   nw_282
+    level:    [43, 45]
+  16814364:
+    template: Diremite
+    region:   nw_284
+    level:    [43, 45]
+  16814365:
+    template: Diremite
+    region:   nw_284
+    level:    [44, 44]
+  16814366:
+    template: Maze_Lizard
+    region:   nw_284
+    level:    [43, 45]
+  16814367:
+    template: Maze_Lizard
+    region:   nw_284
+    level:    [43, 45]
+  16814368:
+    template: Snowball
+    region:   nw_288
+    level:    [43, 46]
+  16814369:
+    template: Snowball
+    region:   nw_289
+    level:    [43, 46]
+  16814370:
+    template: Thousand_Eyes_PX
+    script:   Thousand_Eyes
+    region:   nw_290
+    level:    [66, 68]
+  16814371:
+    template: Dire_Bat_PsoXja
+    script:   Dire_Bat
+    region:   region_150
+    level:    [66, 68]
+  16814372:
+    template: Dire_Bat_PsoXja
+    script:   Dire_Bat
+    region:   region_150
+    level:    [66, 68]
+  16814373:
+    template: Maledict_Millstone
+    region:   nw_293
+    level:    [66, 68]
+  16814374:
+    template: Maledict_Millstone
+    region:   nw_293
+    level:    [66, 68]
+  16814375:
+    template: Maledict_Millstone
+    region:   nw_293
+    level:    [66, 68]
+  16814376:
+    template: Thousand_Eyes_PX
+    script:   Thousand_Eyes
+    region:   nw_293
+    level:    [66, 68]
+  16814377:
+    template: Thousand_Eyes_PX
+    script:   Thousand_Eyes
+    region:   nw_293
+    level:    [66, 68]
+  16814378:
+    template: Dire_Bat_PsoXja
+    script:   Dire_Bat
+    region:   nw_298
+    level:    [66, 68]
+  16814379:
+    template: Dire_Bat_PsoXja
+    script:   Dire_Bat
+    region:   nw_298
+    level:    [66, 68]
+  16814380:
+    template: Diremite_Assaulter
+    region:   nw_300
+    level:    [66, 68]
+  16814381:
+    template: Dire_Bat_PsoXja
+    script:   Dire_Bat
+    region:   region_151
+    level:    [66, 68]
+  16814382:
+    template: Dire_Bat_PsoXja
+    script:   Dire_Bat
+    region:   region_151
+    level:    [66, 68]
+  16814383:
+    template: Diremite_Assaulter
+    region:   nw_303
+    level:    [66, 68]
+  16814384:
+    template: Diremite_Assaulter
+    region:   nw_303
+    level:    [66, 68]
+  16814385:
+    template: Diremite_Assaulter
+    region:   nw_303
+    level:    [66, 68]
+  16814386:
+    template: Snow_Lizard
+    region:   nw_303
+    level:    [66, 68]
+  16814387:
+    template: Snow_Lizard
+    region:   nw_303
+    level:    [66, 68]
+  16814388:
+    template: Dire_Bat_PsoXja
+    script:   Dire_Bat
+    region:   nw_308
+    level:    [66, 68]
+  16814389:
+    template: Dire_Bat_PsoXja
+    script:   Dire_Bat
+    region:   nw_308
+    level:    [66, 68]
+  16814390:
+    template: Avalanche
+    at:       [-370.995, 31.647, 332.965, 221]
+    level:    [75, 75]
+  16814391:
+    template: Purgatory_Bat_PsoXja
+    script:   Purgatory_Bat
+    region:   nw_312
+    level:    [72, 74]
+  16814392:
+    template: Purgatory_Bat_PsoXja
+    script:   Purgatory_Bat
+    region:   nw_312
+    level:    [72, 74]
+  16814393:
+    template: Avalanche
+    region:   nw_313
+    level:    [75, 75]
+  16814394:
+    template: Million_Eyes_PX
+    script:   Million_Eyes
+    region:   nw_314
+    level:    [74, 75]
+  16814395:
+    template: Million_Eyes_PX
+    script:   Million_Eyes
+    region:   nw_314
+    level:    [74, 75]
+  16814396:
+    template: Million_Eyes_PX
+    script:   Million_Eyes
+    region:   nw_316
+    level:    [74, 75]
+  16814397:
+    template: Million_Eyes_PX
+    script:   Million_Eyes
+    region:   nw_316
+    level:    [74, 75]
+  16814398:
+    template: Purgatory_Bat_PsoXja
+    script:   Purgatory_Bat
+    region:   region_152
+    level:    [72, 74]
+  16814399:
+    template: Avalanche
+    region:   nw_319
+    level:    [75, 75]
+  16814400:
+    template: Demonic_Millstone
+    region:   nw_320
+    level:    [72, 75]
+  16814401:
+    template: Demonic_Millstone
+    region:   nw_320
+    level:    [72, 75]
+  16814402:
+    template: Frost_Lizard
+    region:   nw_322
+    level:    [73, 75]
+  16814403:
+    template: Frost_Lizard
+    region:   nw_322
+    level:    [73, 75]
+  16814404:
+    template: Purgatory_Bat_PsoXja
+    script:   Purgatory_Bat
+    region:   region_153
+    level:    [72, 74]
+  16814405:
+    template: Diremite_Dominator
+    region:   nw_325
+    level:    [74, 77]
+  16814406:
+    template: Diremite_Dominator
+    region:   nw_325
+    level:    [74, 77]
+  16814407:
+    template: Frost_Lizard
+    region:   nw_327
+    level:    [73, 75]
+  16814408:
+    template: Frost_Lizard
+    region:   nw_327
+    level:    [73, 75]
+  16814409:
+    template: Purgatory_Bat_PsoXja
+    script:   Purgatory_Bat
+    region:   region_154
+    level:    [72, 74]
+  16814410:
+    template: Diremite_Dominator
+    region:   nw_330
+    level:    [74, 77]
+  16814411:
+    template: Diremite_Dominator
+    region:   nw_330
+    level:    [74, 77]
+  16814412:
+    template: Dark_Elemental
+    region:   region_158
+    level:    [80, 80]
+  16814413:
+    template: Ice_Elemental
+    region:   region_158
+    level:    [75, 75]
+  16814414:
+    template: Demonic_Millstone
+    region:   nw_334
+    level:    [72, 75]
+  16814415:
+    template: Million_Eyes_PX
+    script:   Million_Eyes
+    region:   nw_335
+    level:    [75, 77]
+  16814416:
+    template: Million_Eyes_PX
+    script:   Million_Eyes
+    region:   nw_335
+    level:    [75, 77]
+  16814417:
+    template: Million_Eyes_PX
+    script:   Million_Eyes
+    region:   nw_337
+    level:    [75, 77]
+  16814418:
+    template: Million_Eyes_PX
+    script:   Million_Eyes
+    region:   nw_335
+    level:    [75, 77]
+  16814419:
+    template: Diremite_Dominator
+    region:   nw_339
+    level:    [74, 77]
+  16814420:
+    template: Diremite_Dominator
+    region:   nw_340
+    level:    [74, 77]
+  16814421:
+    template: Purgatory_Bat_PsoXja
+    script:   Purgatory_Bat
+    region:   region_155
+    level:    [73, 76]
+  16814422:
+    template: Purgatory_Bat_PsoXja
+    script:   Purgatory_Bat
+    region:   region_155
+    level:    [73, 76]
+  16814423:
+    template: Frost_Lizard
+    region:   nw_343
+    level:    [75, 77]
+  16814424:
+    template: Frost_Lizard
+    region:   nw_343
+    level:    [75, 77]
+  16814425:
+    template: Archaic_Chest
+    at:       [-350.000, 47.747, 370.000]
+    level:    [80, 80]
+  16814426:
+    template: Dark_Elemental
+    region:   nw_346
+    level:    [80, 80]
+  16814427:
+    template: Ice_Elemental
+    region:   nw_346
+    level:    [80, 80]
+  16814428:
+    template: Archaic_Chest
+    at:       [-290.000, 47.747, 370.000, 128]
+    level:    [80, 80]
+  16814429:
+    template: Dark_Elemental
+    region:   nw_349
+    level:    [80, 80]
+  16814430:
+    template: Ice_Elemental
+    region:   nw_349
+    level:    [80, 80]
+  16814431:
+    template: Cryptonberry_Stalker
+    region:   nw_351
+    level:    [59, 60]
+  16814432:
+    template: Golden-Tongued_Culberry
+    at:       [-288.126, 32.066, 260.040, 4]
+    level:    [84, 85]
+
+slots:
+  - members:
+      16814098: {} # Vampire_Bat
+      16814099: {} # Maze_Lizard
+  - members:
+      16814101: {} # Maze_Lizard
+      16814102: {} # Maze_Lizard
+  - members:
+      16814106: {} # Cryptonberry_Plaguer
+      16814107: {} # Cryptonberry_Plaguer
+  - members:
+      16814110: {} # Cryptonberry_Cutter
+      16814111: {} # Cryptonberry_Cutter
+  - members:
+      16814116: {} # Magic_Millstone
+      16814117: {} # Snoll
+  - members:
+      16814119: {} # Cryptonberry_Harrier
+      16814121: {} # Cryptonberry_Stalker
+  - members:
+      16814122: {} # Cryptonberry_Harrier
+      16814124: {} # Cryptonberry_Stalker
+  - members:
+      16814144: {} # Goblin_Mercenary
+      16814146: {} # Goblin_Bandit
+  - members:
+      16814163: {} # Goblin_Mercenary
+      16814165: {} # Goblin_Bandit
+  - members:
+      16814170: {} # Goblin_Alchemist
+      16814172: {} # Goblin_Bandit
+  - members:
+      16814242: {} # Gargoyle
+      16814243: {} # Gargoyle
+  - members:
+      16814319: {} # Diremite
+      16814330: {} # Diremite
+      16814343: {} # Diremite
+  - members:
+      16814416: {} # Million_Eyes
+      16814418: {} # Million_Eyes

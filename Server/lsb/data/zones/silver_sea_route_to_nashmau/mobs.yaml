@@ -1,0 +1,514 @@
+# yaml-language-server: $schema=../../schemas/mobs.schema.json
+
+templates:
+
+  Abyssal_Pugil:
+    id:            23
+    species:       pugil
+    type:          [fished]
+    skill_list_id: 197
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 348
+        entity_flags: 129
+        hitbox:        23
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: uncommon
+          item:   handful_of_pugil_scales
+      steal: handful_of_fish_scales
+      despoil:
+        handful_of_pugil_scales: 0
+        handful_of_fish_scales:  0
+
+  Air_Elemental:
+    id:            71
+    species:       air_elemental
+    spell_list_id: 12
+    skill_list_id: 99
+    attributes:
+      combat:
+        skill: staff
+      jobs: [blm, rdm]
+      resists:
+        immune_status: [gravity, silence, slow, elegy]
+      render:
+        look:
+          type:  standard
+          model: 438
+        entity_flags:  1155
+        animation_sub:   16
+        model_size:       1
+        hitbox:           3
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+        type:    [weather]
+    loot:
+      drops:
+        - chance: always
+          item:   wind_cluster
+        - chance: common
+          item:   wind_cluster
+        - chance: common
+          item:   wind_cluster
+
+  Apkallu:
+    id:            197
+    species:       apkallu
+    skill_list_id: 27
+    attributes:
+      combat:
+        skill: hand_to_hand
+        delay: 380
+      jobs: [mnk, mnk]
+      render:
+        look:
+          type:  standard
+          model: 1723
+        entity_flags:  1153
+        animation_sub:    5
+        hitbox:           6
+      behaviors:
+        links: true
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: very_common
+          item:   apkallu_feather
+        - chance: common
+          item:   apkallu_egg
+      steal: kalamar
+      despoil:
+        apkallu_feather: 0
+        apkallu_egg:     0
+
+  Bathybic_Kulshedra:
+    id:            359
+    species:       sea_monk
+    type:          [fished]
+    skill_list_id: 218
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 353
+        entity_flags: 3
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+
+  Bigclaw_noaggro:
+    id:            6360
+    display_name:  Bigclaw
+    species:       crab
+    skill_list_id: 77
+    attributes:
+      combat:
+        skill: great_sword
+      jobs: [pld, pld]
+      render:
+        look:
+          type:  standard
+          model: 356
+        entity_flags: 131
+        model_size:     1
+        hitbox:        13
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   slice_of_land_crab_meat
+        - chance: rare
+          item:   sack_of_white_sand
+        - chance: very_rare
+          item:   high-quality_crab_shell
+        - chance: uncommon
+          item:   crab_shell
+      despoil:
+        slice_of_land_crab_meat: 0
+        crab_shell:              0
+
+  Cyan_Deep_Crab:
+    id:            879
+    species:       crab
+    type:          [fished]
+    skill_list_id: 77
+    attributes:
+      combat:
+        skill: great_sword
+      jobs: [pld, pld]
+      render:
+        look:
+          type:  standard
+          model: 356
+        entity_flags: 131
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: common
+          item:   slice_of_land_crab_meat
+        - chance: rare
+          item:   sack_of_white_sand
+        - chance: rare
+          item:   crab_shell
+        - chance: very_rare
+          item:   high-quality_crab_shell
+      steal: chunk_of_rock_salt
+      despoil:
+        slice_of_land_crab_meat: 0
+        crab_shell:              0
+
+  Cyan_Deep_Pugil:
+    id:            880
+    species:       pugil
+    skill_list_id: 197
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 348
+        entity_flags: 131
+        model_size:     1
+        hitbox:        27
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: uncommon
+          item:   handful_of_pugil_scales
+      steal: handful_of_fish_scales
+      despoil:
+        handful_of_pugil_scales: 0
+        handful_of_fish_scales:  0
+
+  Imp:
+    id:            2065
+    species:       imp
+    spell_list_id: 21
+    skill_list_id: 165
+    attributes:
+      combat:
+        skill: scythe
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 1726
+        entity_flags:  1153
+        animation_sub:    4
+        model_size:       1
+        hitbox:          12
+      behaviors:
+        aggressive:     true
+        true_detection: true
+      spawn:
+        respawn: 300
+        type:    [at_night]
+    loot:
+      drops:
+        - chance: common
+          item:   imp_wing
+        - chance: rare
+          item:   imp_horn
+      despoil:
+        imp_wing: 0
+
+  Kulshedra:
+    id:            2296
+    species:       sea_monk
+    skill_list_id: 218
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 353
+        entity_flags: 131
+        model_size:     1
+        hitbox:        17
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: always
+          item:   seashell
+        - chance: rare
+          item:   shall_shell
+      despoil:
+        seashell: 0
+
+  Orobon_fished:
+    id:            3059
+    display_name:  Orobon
+    species:       orobon
+    type:          [fished]
+    skill_list_id: 191
+    attributes:
+      combat:
+        skill: scythe
+        delay: 270
+      render:
+        look:
+          type:  standard
+          model: 1729
+        entity_flags:  3
+        model_size:    2
+        hitbox:       22
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 7000
+
+  Proteus:
+    id:            3207
+    species:       sea_monk
+    type:          [notorious]
+    skill_list_id: 218
+    attributes:
+      combat:
+        skill: scythe
+        delay: 200
+      render:
+        look:
+          type:  standard
+          model: 353
+        entity_flags: 157
+        name_prefix:   32
+        model_size:     2
+        hitbox:        20
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 12000
+    loot:
+      drops:
+        - chance: common
+          item:   shark_necklace
+        - chance: uncommon
+          item:   phantom_fleuret
+
+  Submarine_Nipper:
+    id:            3805
+    species:       crab
+    type:          [fished]
+    skill_list_id: 77
+    attributes:
+      combat:
+        skill: great_sword
+      jobs: [pld, pld]
+      render:
+        look:
+          type:  standard
+          model: 356
+        entity_flags: 129
+        hitbox:        11
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: common
+          item:   slice_of_land_crab_meat
+        - chance: rare
+          item:   sack_of_white_sand
+        - chance: rare
+          item:   crab_shell
+        - chance: very_rare
+          item:   high-quality_crab_shell
+      steal: chunk_of_rock_salt
+      despoil:
+        slice_of_land_crab_meat: 0
+        crab_shell:              0
+
+  Thalassic_Pugil:
+    id:            3885
+    species:       pugil
+    type:          [fished]
+    skill_list_id: 197
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 348
+        entity_flags: 129
+        hitbox:        23
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: uncommon
+          item:   handful_of_pugil_scales
+      steal: handful_of_fish_scales
+      despoil:
+        handful_of_pugil_scales: 0
+        handful_of_fish_scales:  0
+
+  Thunder_Elemental:
+    id:            3912
+    species:       thunder_elemental
+    spell_list_id: 16
+    skill_list_id: 105
+    attributes:
+      combat:
+        skill: staff
+      jobs: [blm, rdm]
+      resists:
+        immune_status: [stun, poison]
+      render:
+        look:
+          type:  standard
+          model: 441
+        entity_flags:  131
+        animation_sub:  16
+        model_size:      1
+        hitbox:          3
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+        type:    [weather]
+    loot:
+      drops:
+        - chance: always
+          item:   lightning_cluster
+        - chance: common
+          item:   lightning_cluster
+        - chance: common
+          item:   lightning_cluster
+
+  Utukku_S:
+    id:            4112
+    species:       ghost
+    spell_list_id: 28
+    skill_list_id: 121
+    attributes:
+      combat:
+        skill: staff
+      jobs: [war, blm]
+      render:
+        look:
+          type:  standard
+          model: 368
+        entity_flags: 1155
+        model_size:      1
+        hitbox:          8
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+        type:    [at_night]
+    loot:
+      drops:
+        - chance: common
+          item:   square_of_cotton_cloth
+        - chance: uncommon
+          item:   revival_tree_root
+      steal: square_of_cotton_cloth
+      despoil:
+        square_of_cotton_cloth: 0
+
+spawns:
+  17014785:
+    template: Cyan_Deep_Crab
+    at:       [1.000, 1.000, 1.000]
+    level:    [49, 49]
+  17014786:
+    template: Submarine_Nipper
+    at:       [1.000, 1.000, 1.000]
+    level:    [52, 53]
+  17014787:
+    template: Thalassic_Pugil
+    at:       [1.000, 1.000, 1.000]
+    level:    [52, 54]
+  17014788:
+    template: Abyssal_Pugil
+    at:       [1.000, 1.000, 1.000]
+    level:    [54, 55]
+  17014789:
+    template: Bathybic_Kulshedra
+    at:       [1.000, 1.000, 1.000]
+    level:    [63, 64]
+  17014790:
+    template: Orobon_fished
+    script:   Orobon
+    at:       [1.000, 1.000, 1.000]
+    level:    [74, 74]
+  17014791:
+    template: Apkallu
+    region:   region_1
+    level:    [54, 56]
+  17014792:
+    template: Apkallu
+    region:   region_1
+    level:    [54, 56]
+  17014793:
+    template: Bigclaw_noaggro
+    script:   Bigclaw
+    region:   region_1
+    level:    [49, 50]
+  17014794:
+    template: Bigclaw_noaggro
+    script:   Bigclaw
+    region:   region_1
+    level:    [49, 50]
+  17014795:
+    template: Cyan_Deep_Pugil
+    at:       [-5.653, -7.163, 5.170, 100]
+    level:    [50, 55]
+  17014796:
+    template: Kulshedra
+    region:   region_1
+    level:    [61, 63]
+  17014797:
+    template: Utukku_S
+    script:   Utukku
+    region:   region_1
+    level:    [55, 56]
+  17014798:
+    template: Imp
+    region:   region_1
+    level:    [54, 54]
+  17014799:
+    template: Air_Elemental
+    region:   region_1
+    level:    [60, 60]
+  17014800:
+    template: Thunder_Elemental
+    region:   region_1
+    level:    [60, 60]
+  17014801:
+    template: Proteus
+    region:   region_1
+    level:    [79, 79]

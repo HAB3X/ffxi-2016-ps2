@@ -1,0 +1,165 @@
+FINAL FANTASY XI  2016 PS2 Edition
+Fan Project by Habex
+==================================
+
+This lets you play the PS2 version of Final Fantasy XI on your own private server,
+on PCSX2 or a real PS2 with a hard drive. No PlayOnline needed.
+
+Works on Mac, Windows and Linux.
+
+
+WHAT'S IN THIS FOLDER
+
+  Server App     Double-click this to run the server. That's all you need to touch.
+  Disc           Original Disc    put your original disc image in here
+                 Patch            the patch (one file, or two parts .001 and .002)
+                 Patched ISO      where your finished disc goes
+                 Hard Drive       makes the PS2 hard drive PCSX2 needs
+  Server         All of the server's code and files. The Server App uses these.
+                 You don't need to open this.
+  Game           All of the code for the game side. Only needed if you want to
+                 change or rebuild the game. You don't need to open this either.
+
+
+WHAT YOU NEED
+
+  PCSX2 (version 2.0 or newer)            https://pcsx2.net
+  A PS2 BIOS file (dumped from your own PS2)
+  The original disc image: Final Fantasy XI Adoulin no Makyou (Japan).iso
+  About 50 GB of free space
+
+The first time you open the Server App on a new computer it checks what's missing.
+If it shows a yellow "Run Setup" line, click it and let it finish:
+  Mac (M1/M2/M3/M4): a few minutes.
+  Windows, Linux, older Intel Macs: 30 to 90 minutes (it builds the server once).
+On a Mac, if it says it can't check the app: right click it, Open, Open. If it asks
+to use the Downloads folder or to accept incoming connections, click Allow.
+
+
+STEP 1  MAKE THE DISC AND THE HARD DRIVE (only the first time)
+
+Put your original disc image in the "Disc / Original Disc" folder. Then open the
+Server App and go to "Game disc" on the left. There are two buttons.
+
+  1. "Patch My Disc"
+       Pick your original disc image.
+       Wait a couple of minutes. It tells you when it's done. The new disc is
+       in "Disc / Patched ISO".
+       The patcher checks your disc first. If it says the disc doesn't match,
+       you've picked the wrong file.
+
+  2. "Make Hard Drive"
+       Save it somewhere easy to find, like Documents. Keep the name it suggests.
+       The game has to be installed on a FORMATTED PS2 hard drive. This button
+       makes one that's already formatted.
+       Don't use the "Create" button in PCSX2. It makes an unformatted drive and
+       the installer will say you need a hard drive.
+
+
+STEP 2  SET UP PCSX2 (only the first time)
+
+  1. Open PCSX2 and finish its first time setup (pick your BIOS).
+  2. Go to Settings > Network & HDD.
+  3. Ethernet:
+       Tick "Enabled"
+       Device Type: Sockets
+       Device: Auto
+       Tick "Intercept DHCP"
+  4. Hard Disk Drive (point PCSX2 at the drive you made in Step 1):
+       Tick "Enabled"
+       Click "Browse" next to HDD File and pick the drive you made,
+       for example Documents / FFXI 2016 HDD.raw
+       Don't click "Create".
+  5. Close the settings window.
+
+You only do this once.
+
+
+STEP 3  START THE SERVER
+
+  1. Open the Server App (in the "Server App" folder):
+       Mac      FFXI Server
+       Windows  FFXI Server (Windows).bat
+       Linux    FFXI Server (Linux).sh
+  2. Pick Local or Port forwarding, then click "Start Server".
+     Wait until it says "Server is on" and "Working" (about 2 minutes).
+  3. Go to Profiles and click "Create Profile". Pick a username and a password.
+  4. On the Server page you'll see the ServerIP and ServerPort. Keep them on screen,
+     you'll type them in soon.
+
+
+STEP 4  INSTALL THE GAME (only the first time)
+
+  1. In PCSX2, start the patched disc (System > Start File, pick the .iso).
+  2. The installer starts by itself (no menu to pick from). Leave it running
+     until it's done. It takes a while (around an hour in PCSX2).
+  3. When it's finished the game starts by itself and shows the sign in page.
+     From now on, starting the disc goes straight to the sign in page (about
+     a minute). It only installs again if you hold L1 while the disc starts.
+
+
+STEP 5  SIGN IN AND PLAY
+
+  1. The sign in page opens. For each box, press X, type, then press X again:
+       POL-ID     your profile's username
+       Password   your profile's password
+       ServerIP   from the Server App
+       ServerPort from the Server App
+     You can type with a USB keyboard, or press R1 for the on screen keyboard.
+  2. Go down to OK and press X.
+  3. Accept the terms, then pick "Create Character" and make your character.
+  4. Play!
+
+Next time you only need Step 3 (start the server) and Step 5 (sign in).
+
+
+PLAYING WITH FRIENDS
+
+Only one person runs the server. Everyone else just needs PCSX2, the patched disc,
+a hard drive and a profile. On the server computer click "Create Profile" for each
+friend and send them the username and password.
+
+In the Server App pick:
+  Local              everyone is on the same network (a LAN party, or your house)
+  Port forwarding    friends play over the internet. Forward the ports the app
+                     lists on your router to the server computer.
+
+Give your friends the ServerIP and ServerPort the app shows for that option.
+The app tells you if it's working.
+
+
+IF SOMETHING GOES WRONG
+
+  "Another server is already running"   Close the other one, or restart the computer.
+  Server App says "Not working"         It tells you why and what to do, right under it.
+  The sign in fails                     Check the ServerIP in the Server App and type it again.
+  "No response from the server"         The server stopped or the network dropped. Check the
+                                        Server App says "Working", then sign in again.
+  The installer says it needs a         The drive isn't formatted (it was made with PCSX2's
+  hard drive                            "Create" button). Close the game, click "Make Hard
+                                        Drive" in the Server App, point PCSX2 at the new
+                                        file (Step 2) and start the disc again.
+  The installer asks to reinstall       Say No unless you really want to start over.
+  Numbers (FPS etc.) in the corner      That's PCSX2's own display. Turn it off in Settings >
+                                        Graphics > On Screen Display if you like.
+
+Found a bug? Report it on the Issues page of the GitHub this came from. You can
+add screenshots there.
+
+
+REAL PS2
+
+The patched disc also works on a real PS2 with an official hard drive and network
+adapter (a console that can boot burned discs, for example with FreeMcBoot). Burn
+the patched .iso to a DVD-R and follow Steps 4 and 5. The PS2 connects the same way
+as PCSX2 (see "Playing with friends").
+
+
+SHARING THIS FOLDER
+
+Server/data holds your profiles, passwords and chat history. Before giving the folder
+to someone, make a clean copy: run Server/setup/make_share_copy.py (it leaves that out).
+
+
+This is an unofficial fan project, not made or supported by Square Enix.
+Final Fantasy XI is a trademark of Square Enix.

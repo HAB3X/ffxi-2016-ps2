@@ -1,0 +1,94 @@
+-- Text ids rebuilt for the 2007 PS2 client data tooling: PROFILE 2012 = the 2012 client data (report 28) by research/tools/lsb_textids_2007.py (19 changed, 14 not in the 2007 dialog DAT 6502 and left unchanged).
+-----------------------------------
+-- Area: Jugner_Forest_[S]
+-----------------------------------
+zones = zones or {}
+
+zones[xi.zone.JUGNER_FOREST_S] =
+{
+    text =
+    {
+        NOTHING_HAPPENS               = 119,  -- Nothing happens...
+        ITEM_CANNOT_BE_OBTAINED       = 6375, -- You cannot obtain the <item>. Come back after sorting your inventory.
+        ITEM_OBTAINED                 = 6378, -- Obtained: <item>.
+        GIL_OBTAINED                  = 6379, -- Obtained <number> gil.
+        KEYITEM_OBTAINED              = 6398, -- Obtained key item: <keyitem>.
+        NOTHING_OUT_OF_ORDINARY       = 6392, -- There is nothing out of the ordinary here.
+        CARRIED_OVER_POINTS           = 7006, -- You have carried over <number> login point[/s].
+        LOGIN_CAMPAIGN_UNDERWAY       = 7007, -- The [/January/February/March/April/May/June/July/August/September/October/November/December] <number> Login Campaign is currently underway!
+        LOGIN_NUMBER                  = 7008, -- In celebration of your most recent login (login no. <number>), we have provided you with <number> points! You currently have a total of <number> points.
+        MEMBERS_LEVELS_ARE_RESTRICTED = 7028, -- Your party is unable to participate because certain members' levels are restricted.
+        LOGGING_IS_POSSIBLE_HERE      = 7013, -- Logging is possible here if you have <item>.
+        YOU_FIND_NOTHING_ORDINARY     = 7053, -- You find nothing out of the ordinary.
+        CAMPAIGN_RESULTS_TALLIED      = 7221, -- Campaign results tallied.
+        FISHING_MESSAGE_OFFSET        = 7306, -- You can't fish here.
+        ALREADY_OBTAINED_TELE         = 7634, -- You already possess the gate crystal for this telepoint.
+        YOU_FIND_SPARKLING_STONE      = 7650, -- You find a sparkling stone.
+        ELEGANT_FOOTPRINTS            = 8325, -- You see numerous sets of elegant footprints.
+        LILISETTE_IS_PREPARING        = 8326, -- Lilisette is preparing a new trap in an attempt to catch the ever-elusive Cait Sith. Bring her <item> to use as bait.
+        IDEAL_PLACE_TO_PLANT_ITEM     = 8455, -- This seems to be an ideal place to plant <item>.
+        YOU_PLANT_ITEM                = 8456, -- You plant <item>.
+        ITEM_IS_PLANTED_HERE          = 8457, -- <item> has been planted here...
+        NO_RESPONSE                   = 8461, -- There is no response...
+        VOIDWALKER_DESPAWN            = 8484, -- The monster fades before your eyes, a look of disappointment on its face.
+        VOIDWALKER_NO_MOB             = 8622, -- The <keyitem> quivers ever so slightly, but emits no light. There seem to be no monsters in the area.
+        VOIDWALKER_MOB_TOO_FAR        = 8623, -- The <keyitem> quivers ever so slightly and emits a faint light. There seem to be no monsters in the immediate vicinity.
+        VOIDWALKER_MOB_HINT           = 8624, -- The <keyitem> resonates [feebly/softly/solidly/strongly/very strongly/furiously], sending a radiant beam of light lancing towards a spot roughly <number> [yalm/yalms] [east/southeast/south/southwest/west/northwest/north/northeast] of here.
+        VOIDWALKER_SPAWN_MOB          = 8534, -- A monster materializes out of nowhere!
+        VOIDWALKER_UPGRADE_KI_1       = 8627, -- The <keyitem> takes on a slightly deeper hue and becomes <keyitem>!
+        VOIDWALKER_UPGRADE_KI_2       = 8628, -- The <keyitem> takes on a deeper, richer hue and becomes <keyitem>!
+        VOIDWALKER_BREAK_KI           = 8629, -- The <keyitem> shatters into tiny fragments.
+        VOIDWALKER_OBTAIN_KI          = 8630, -- Obtained key item: <keyitem>!
+        GATHERED_DAWNDROPS_LIGHT      = 8650, -- The gathered dawndrops unleash a brilliant light, melding together to form <keyitem>!
+        RETRACED_ALL_JUNCTIONS        = 8560, -- You have retraced all junctions of eventualities. Hasten back to where Cait Sith and Lilisette await.
+        COMMON_SENSE_SURVIVAL         = 9525, -- It appears that you have arrived at a new survival guide provided by the Servicemen's Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
+    },
+
+    mob =
+    {
+        DRUMSKULL_ZOGDREGG    = GetFirstID('Drumskull_Zogdregg'),
+        FINGERFILCHER_DRADZAD = GetFirstID('Fingerfilcher_Dradzad'),
+        COBRACLAW_BUCHZVOTCH  = GetFirstID('Cobraclaw_Buchzvotch'),
+        VULKODLAC             = GetFirstID('Vulkodlac'),
+        VOIRLOUP              = GetFirstID('Voirloup'),
+
+        VOIDWALKER =
+        {
+            [xi.keyItem.CLEAR_ABYSSITE] =
+            {
+                17113500, -- Sunderclaw
+                17113499, -- Sunderclaw
+                17113498, -- Sunderclaw
+                17113497, -- Sunderclaw
+                17113496, -- Quagmire Pugil
+                17113495, -- Quagmire Pugil
+                17113494, -- Quagmire Pugil
+                17113493, -- Quagmire Pugil
+            },
+
+            [xi.keyItem.COLORFUL_ABYSSITE] =
+            {
+                17113492, -- Capricornus
+                17113491, -- Yacumama
+            },
+
+            [xi.keyItem.BLUE_ABYSSITE] =
+            {
+                17113490, -- Krabkatoa
+            },
+
+            [xi.keyItem.BLACK_ABYSSITE] =
+            {
+                17113489, -- Yilbegan
+            }
+        },
+    },
+
+    npc =
+    {
+        CAMPAIGN_NPC_OFFSET = GetFirstID('Roiloux_RK'), -- San, Bas, Win, Flag +4, CA
+        LOGGING             = GetTableOfIDs('Logging_Point'),
+    },
+}
+
+return zones[xi.zone.JUGNER_FOREST_S]

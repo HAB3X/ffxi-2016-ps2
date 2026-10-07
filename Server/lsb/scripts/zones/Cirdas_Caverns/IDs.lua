@@ -1,0 +1,34 @@
+-- Text ids rebuilt for the 2007 PS2 client data tooling: PROFILE 2012 = the 2012 client data (report 28) by research/tools/lsb_textids_2007.py (3 changed, 7 not in the 2007 dialog DAT 84285 and left unchanged).
+-----------------------------------
+-- Area: Cirdas_Caverns
+-----------------------------------
+zones = zones or {}
+
+zones[xi.zone.CIRDAS_CAVERNS] =
+{
+    text =
+    {
+        ITEM_CANNOT_BE_OBTAINED       = 6375, -- You cannot obtain the <item>. Come back after sorting your inventory.
+        ITEM_OBTAINED                 = 6378, -- Obtained: <item>.
+        GIL_OBTAINED                  = 6379, -- Obtained <number> gil.
+        KEYITEM_OBTAINED              = 6398, -- Obtained key item: <keyitem>.
+        CARRIED_OVER_POINTS           = 7006, -- You have carried over <number> login point[/s].
+        LOGIN_CAMPAIGN_UNDERWAY       = 7007, -- The [/January/February/March/April/May/June/July/August/September/October/November/December] <number> Login Campaign is currently underway!
+        LOGIN_NUMBER                  = 7008, -- In celebration of your most recent login (login no. <number>), we have provided you with <number> points! You currently have a total of <number> points.
+        MEMBERS_LEVELS_ARE_RESTRICTED = 7028, -- Your party is unable to participate because certain members' levels are restricted.
+        RIVER_UNSUITABLE_FOR_SWIMMING = 7780, -- This river is not suitable for swimming.
+        SHARP_THORNS_PROTRUDE         = 7882, -- Sharp thorns protrude from the surface.
+    },
+    mob =
+    {
+        REIVE_MOB_OFFSET = GetFirstID('Knotted_Root'),
+    },
+    npc =
+    {
+        CASTOFF_POINT_OFFSET   = GetFirstID('Castoff_Point'),
+        REIVE_COLLISION_OFFSET = GetFirstID('_pim'),
+        SCALABLE_AREA_OFFSET   = GetFirstID('Scalable_Area'),
+    },
+}
+
+return zones[xi.zone.CIRDAS_CAVERNS]

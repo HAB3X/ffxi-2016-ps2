@@ -1,0 +1,32 @@
+-- Text ids rebuilt for the 2007 PS2 client data tooling: PROFILE 2012 = the 2012 client data (report 28) by research/tools/lsb_textids_2007.py (5 changed, 7 not in the 2007 dialog DAT 6558 and left unchanged).
+-----------------------------------
+-- Area: Castle_Zvahl_Baileys_[S]
+-----------------------------------
+zones = zones or {}
+
+zones[xi.zone.CASTLE_ZVAHL_BAILEYS_S] =
+{
+    text =
+    {
+        ITEM_CANNOT_BE_OBTAINED       = 6375, -- You cannot obtain the <item>. Come back after sorting your inventory.
+        ITEM_OBTAINED                 = 6378, -- Obtained: <item>.
+        GIL_OBTAINED                  = 6379, -- Obtained <number> gil.
+        KEYITEM_OBTAINED              = 6398, -- Obtained key item: <keyitem>.
+        NOTHING_OUT_OF_ORDINARY       = 6392, -- There is nothing out of the ordinary here.
+        CARRIED_OVER_POINTS           = 7006, -- You have carried over <number> login point[/s].
+        LOGIN_CAMPAIGN_UNDERWAY       = 7007, -- The [/January/February/March/April/May/June/July/August/September/October/November/December] <number> Login Campaign is currently underway!
+        LOGIN_NUMBER                  = 7008, -- In celebration of your most recent login (login no. <number>), we have provided you with <number> points! You currently have a total of <number> points.
+        MEMBERS_LEVELS_ARE_RESTRICTED = 7028, -- Your party is unable to participate because certain members' levels are restricted.
+        CANNOT_FIND_FLARE             = 7691, -- You cannot find the <keyitem>. Try searching again at a later time.
+        NO_RESPONSE                   = 7826, -- There is no response...
+        COMMON_SENSE_SURVIVAL         = 7963, -- It appears that you have arrived at a new survival guide provided by the Servicemen's Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
+    },
+    mob =
+    {
+    },
+    npc =
+    {
+    },
+}
+
+return zones[xi.zone.CASTLE_ZVAHL_BAILEYS_S]

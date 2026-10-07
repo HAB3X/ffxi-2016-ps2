@@ -1,0 +1,2118 @@
+# yaml-language-server: $schema=../../schemas/mobs.schema.json
+
+templates:
+
+  Akvan:
+    id:            5162
+    species:       akoman
+    type:          [notorious]
+    spell_list_id: 21
+    skill_list_id: 4
+    attributes:
+      combat:
+        skill: scythe
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 2109
+        entity_flags: 1183
+        name_prefix:    32
+        model_size:      3
+        hitbox:         33
+      behaviors:
+        aggressive:     true
+        links:          true
+        true_detection: true
+      spawn:
+        type: [scripted]
+      stats:
+        mp: 9999
+
+  Ancient_Bat_LDT_MoS:
+    id:            6450
+    species:       bat
+    skill_list_id: 46
+    attributes:
+      combat:
+        skill: club
+      render:
+        look:
+          type:  standard
+          model: 256
+        entity_flags:  1665
+        animation_sub:    8
+        hitbox:          11
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   bat_wing
+        - chance: very_rare
+          item:   vial_of_fiend_blood
+      despoil:
+        bat_wing: 0
+
+  Bogy_LDT:
+    id:            6504
+    species:       ghost
+    spell_list_id: 28
+    skill_list_id: 121
+    attributes:
+      combat:
+        skill: staff
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 368
+        entity_flags: 129
+        hitbox:         6
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   bloody_robe
+        - chance: rare
+          item:   revival_tree_root
+        - chance: very_rare
+          item:   luminicloth
+      steal: square_of_cotton_cloth
+      despoil:
+        square_of_cotton_cloth: 0
+
+  Chaos_Idol:
+    id:            694
+    species:       doll
+    skill_list_id: 85
+    attributes:
+      combat:
+        skill: staff
+      render:
+        look:
+          type:  standard
+          model: 304
+        entity_flags:  129
+        animation_sub:   4
+        hitbox:         25
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: rare
+          item:   doll_shard
+        - chance: uncommon
+          item:   vial_of_mercury
+
+  Disaster_Idol:
+    id:            1049
+    species:       doll
+    type:          [notorious]
+    spell_list_id: 21
+    skill_list_id: 85
+    attributes:
+      combat:
+        skill: staff
+      jobs: [blm, rdm]
+      render:
+        look:
+          type:  standard
+          model: 304
+        entity_flags:  135
+        animation_sub:  20
+        model_size:      3
+        hitbox:         41
+      behaviors:
+        aggressive:     true
+        true_detection: true
+      spawn:
+        type: [scripted]
+      stats:
+        hp:  4300
+        mp: 10000
+
+  Epialtes:
+    id:            1248
+    species:       gigas
+    type:          [notorious]
+    skill_list_id: 126
+    attributes:
+      combat:
+        skill: great_axe
+      render:
+        look:
+          type:  standard
+          model: 640
+        entity_flags: 1179
+        name_prefix:    32
+        model_size:      1
+        hitbox:         30
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [lottery]
+      stats:
+        hp: 1950
+    loot:
+      drops:
+        - chance: always
+          item:   gigas_socks
+        - chance: common
+          item:   gigas_necklace
+        - chance: uncommon
+          item:   gigas_bracelets
+        - chance: very_common
+          item:   maple_shield
+
+  Eurymedon:
+    id:            1261
+    species:       gigas
+    type:          [notorious]
+    skill_list_id: 126
+    attributes:
+      combat:
+        skill: axe
+      jobs: [bst, bst]
+      render:
+        look:
+          type:  standard
+          model: 640
+        entity_flags:  3
+        model_size:    1
+        hitbox:       30
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [lottery]
+      stats:
+        hp: 1770
+    loot:
+      drops:
+        - chance: always
+          item:   gigas_socks
+        - chance: common
+          item:   gigas_necklace
+        - chance: uncommon
+          item:   gigas_bracelets
+        - chance: very_common
+          item:   maple_shield
+
+  Fomorian_Spear:
+    id:            1379
+    species:       evil_weapon
+    type:          [notorious]
+    skill_list_id: 110
+    attributes:
+      combat:
+        skill: polearm
+      render:
+        look:
+          type:  standard
+          model: 423
+        entity_flags: 131
+        model_size:     1
+        hitbox:        34
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+
+  Giant_Gatekeeper:
+    id:            1526
+    species:       gigas
+    skill_list_id: 126
+    attributes:
+      combat:
+        skill: club
+      render:
+        look:
+          type:  standard
+          model: 708
+        entity_flags: 129
+        hitbox:        25
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: very_rare
+          item:   ram_leather_missive
+      despoil:
+        spool_of_wool_thread: 0
+        square_of_wool_cloth: 0
+
+  Giant_Guard:
+    id:            1528
+    species:       gigas
+    skill_list_id: 127
+    attributes:
+      combat:
+        skill: hand_to_hand
+        delay: 320
+      jobs: [mnk, mnk]
+      render:
+        look:
+          type:  standard
+          model: 709
+        entity_flags: 129
+        hitbox:        25
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: very_rare
+          item:   ram_leather_missive
+      despoil:
+        spool_of_wool_thread: 0
+        square_of_wool_cloth: 0
+
+  Giant_Lobber:
+    id:            1531
+    species:       gigas
+    skill_list_id: 127
+    attributes:
+      combat:
+        skill: axe
+      jobs: [rng, war]
+      render:
+        look:
+          type:  standard
+          model: 711
+        entity_flags: 129
+        hitbox:        25
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: rare
+          item:   northern_fur
+      despoil:
+        spool_of_wool_thread: 0
+        square_of_wool_cloth: 0
+
+  Giant_Sentry:
+    id:            1538
+    species:       gigas
+    skill_list_id: 126
+    attributes:
+      combat:
+        skill: axe
+      jobs: [bst, war]
+      render:
+        look:
+          type:  standard
+          model: 710
+        entity_flags: 129
+        hitbox:        25
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: very_rare
+          item:   ram_leather_missive
+      despoil:
+        spool_of_wool_thread: 0
+        square_of_wool_cloth: 0
+
+  Gigas_Butcher:
+    id:            1554
+    species:       gigas
+    skill_list_id: 126
+    attributes:
+      combat:
+        skill: axe
+      jobs: [bst, bst]
+      render:
+        look:
+          type:  standard
+          model: 710
+        entity_flags: 131
+        model_size:     1
+        hitbox:        30
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+
+  Gigas_Hallwatcher:
+    id:            1564
+    species:       gigas
+    skill_list_id: 126
+    attributes:
+      combat:
+        skill: club
+      render:
+        look:
+          type:  standard
+          model: 708
+        entity_flags: 131
+        model_size:     1
+        hitbox:        30
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: rare
+          item:   delkfutt_chest_key
+      despoil:
+        spool_of_wool_thread: 0
+        square_of_wool_cloth: 0
+
+  Gigas_Punisher:
+    id:            1579
+    species:       gigas
+    skill_list_id: 127
+    attributes:
+      combat:
+        skill: hand_to_hand
+        delay: 320
+      jobs: [mnk, mnk]
+      render:
+        look:
+          type:  standard
+          model: 709
+        entity_flags: 131
+        model_size:     1
+        hitbox:        30
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: rare
+          item:   delkfutt_chest_key
+      despoil:
+        spool_of_wool_thread: 0
+        square_of_wool_cloth: 0
+
+  Gigas_Sculptor:
+    id:            1582
+    species:       gigas
+    skill_list_id: 126
+    attributes:
+      combat:
+        skill: axe
+      jobs: [rng, war]
+      render:
+        look:
+          type:  standard
+          model: 711
+        entity_flags: 131
+        model_size:     1
+        hitbox:        30
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: rare
+          item:   delkfutt_chest_key
+      despoil:
+        spool_of_wool_thread: 0
+        square_of_wool_cloth: 0
+
+  Gigass_Bat:
+    id:            1589
+    species:       bat
+    skill_list_id: 46
+    attributes:
+      combat:
+        skill: club
+      render:
+        look:
+          type:  standard
+          model: 256
+        entity_flags:  643
+        animation_sub:   8
+        model_size:      2
+        hitbox:         14
+      behaviors:
+        links: true
+      spawn:
+        type: [scripted]
+
+  Gigass_Bats:
+    id:            1590
+    species:       flock_bat
+    skill_list_id: 47
+    attributes:
+      combat:
+        skill: club
+      render:
+        look:
+          type:  standard
+          model: 260
+        entity_flags:  643
+        animation_sub:   8
+        name_prefix:    64
+        model_size:      1
+        hitbox:         16
+      behaviors:
+        links: true
+      spawn:
+        type: [scripted]
+
+  Goblin_Gambler:
+    id:            1666
+    species:       goblin
+    spell_list_id: 21
+    skill_list_id: 133
+    attributes:
+      combat:
+        skill: club
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 494
+        entity_flags: 131
+        model_size:     1
+        hitbox:        12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+
+  Goblin_Leecher:
+    id:            1683
+    species:       goblin
+    spell_list_id: 20
+    skill_list_id: 133
+    attributes:
+      combat:
+        skill: staff
+      jobs: [whm, whm]
+      render:
+        look:
+          type:  standard
+          model: 488
+        entity_flags: 131
+        model_size:     1
+        hitbox:        12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: rare
+          item:   scroll_of_paralyze
+        - chance: rare
+          item:   scroll_of_barsleep
+        - chance: rare
+          item:   scroll_of_silence
+        - chance: very_rare
+          item:   scroll_of_barpoison
+        - chance: rare
+          item:   scroll_of_protectra
+        - chance: rare
+          item:   scroll_of_sneak
+        - chance: very_rare
+          item:   scroll_of_invisible
+        - chance: very_rare
+          item:   scroll_of_deodorize
+        - chance: very_rare
+          item:   poets_circlet
+        - chance: very_rare
+          item:   linen_cuffs
+        - chance: very_rare
+          item:   linen_slops
+        - chance: very_rare
+          item:   holly_clogs
+      steal: silver_beastcoin
+      despoil:
+        loaf_of_goblin_bread:      0
+        chunk_of_goblin_chocolate: 0
+        bowl_of_goblin_stew:       0
+        goblin_mushpot:            0
+
+  Goblin_Mugger:
+    id:            1690
+    species:       goblin
+    skill_list_id: 133
+    attributes:
+      combat:
+        skill: dagger
+      jobs: [thf, thf]
+      render:
+        look:
+          type:  standard
+          model: 485
+        entity_flags: 131
+        model_size:     1
+        hitbox:        12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: very_rare
+          item:   brass_cap
+        - chance: very_rare
+          item:   brass_mittens
+        - chance: very_rare
+          item:   brass_subligar
+        - chance: very_rare
+          item:   brass_leggings
+      steal: silver_beastcoin
+      despoil:
+        loaf_of_goblin_bread:      0
+        chunk_of_goblin_chocolate: 0
+        bowl_of_goblin_stew:       0
+        goblin_mushpot:            0
+
+  Hippolytos:
+    id:            1961
+    species:       gigas
+    type:          [notorious]
+    skill_list_id: 127
+    attributes:
+      combat:
+        skill: hand_to_hand
+        delay: 480
+      jobs: [mnk, mnk]
+      render:
+        look:
+          type:  standard
+          model: 643
+        entity_flags: 1179
+        name_prefix:    32
+        model_size:      1
+        hitbox:         30
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [lottery]
+      stats:
+        hp: 2150
+    loot:
+      drops:
+        - chance: always
+          item:   gigas_socks
+        - chance: common
+          item:   gigas_necklace
+        - chance: uncommon
+          item:   gigas_bracelets
+        - chance: very_common
+          item:   maple_shield
+
+  Illusory_Pot:
+    id:            2058
+    species:       magic_pot
+    spell_list_id: 36
+    skill_list_id: 175
+    attributes:
+      combat:
+        skill: scythe
+      jobs: [rdm, war]
+      render:
+        look:
+          type:  standard
+          model: 412
+        entity_flags: 1157
+        model_size:      2
+        hitbox:         43
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+
+  Light_Elemental:
+    id:            2413
+    species:       light_elemental
+    spell_list_id: 19
+    skill_list_id: 104
+    attributes:
+      combat:
+        skill: club
+      jobs: [whm, whm]
+      render:
+        look:
+          type:  standard
+          model: 442
+        entity_flags:  131
+        animation_sub:  16
+        model_size:      1
+        hitbox:          3
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+        type:    [weather]
+    loot:
+      drops:
+        - chance: always
+          item:   light_cluster
+        - chance: common
+          item:   light_cluster
+        - chance: common
+          item:   light_cluster
+
+  Magic_Pot:
+    id:            2480
+    species:       magic_pot
+    spell_list_id: 3
+    skill_list_id: 175
+    attributes:
+      combat:
+        skill: scythe
+      jobs: [rdm, war]
+      render:
+        look:
+          type:  standard
+          model: 412
+        entity_flags: 129
+        hitbox:        32
+      behaviors:
+        aggressive:     true
+        true_detection: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   magic_pot_shard
+        - chance: uncommon
+          item:   vial_of_mercury
+      despoil:
+        magic_pot_shard: 0
+
+  Magic_Urn:
+    id:            2483
+    species:       magic_pot
+    spell_list_id: 36
+    skill_list_id: 175
+    attributes:
+      combat:
+        skill: scythe
+      jobs: [rdm, war]
+      render:
+        look:
+          type:  standard
+          model: 412
+        entity_flags:  645
+        animation_sub:   8
+        model_size:      2
+        hitbox:         43
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   magic_pot_shard
+        - chance: uncommon
+          item:   vial_of_mercury
+        - chance: very_rare
+          item:   delkfutt_chest_key
+      despoil:
+        magic_pot_shard: 0
+
+  Orna:
+    id:            3055
+    species:       evil_weapon
+    type:          [notorious]
+    spell_list_id: 3
+    skill_list_id: 110
+    attributes:
+      combat:
+        skill: sword
+      jobs: [rdm, blm]
+      render:
+        look:
+          type:  standard
+          model: 422
+        entity_flags:  1695
+        animation_sub:    8
+        name_prefix:     32
+        model_size:       3
+        hitbox:          47
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+
+  Seeker_Bats_LDT:
+    id:            6436
+    species:       flock_bat
+    skill_list_id: 47
+    attributes:
+      combat:
+        skill: club
+      render:
+        look:
+          type:  standard
+          model: 260
+        entity_flags:  641
+        animation_sub:   8
+        name_prefix:    64
+        hitbox:         13
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   bat_wing
+      despoil:
+        bat_wing: 0
+
+  Thunder_Elemental:
+    id:            3912
+    species:       thunder_elemental
+    spell_list_id: 16
+    skill_list_id: 105
+    attributes:
+      combat:
+        skill: staff
+      jobs: [blm, rdm]
+      resists:
+        immune_status: [stun, poison]
+      render:
+        look:
+          type:  standard
+          model: 441
+        entity_flags:  131
+        animation_sub:  16
+        model_size:      1
+        hitbox:          3
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+        type:    [weather]
+    loot:
+      drops:
+        - chance: always
+          item:   lightning_cluster
+        - chance: common
+          item:   lightning_cluster
+        - chance: common
+          item:   lightning_cluster
+
+  Tyrant:
+    id:            5427
+    species:       doll
+    type:          [notorious]
+    spell_list_id: 131
+    skill_list_id: 85
+    attributes:
+      combat:
+        skill: staff
+      jobs: [pld, pld]
+      resists:
+        immune_status: [gravity, bind, light_sleep, dark_sleep]
+      render:
+        look:
+          type:  standard
+          model: 304
+        entity_flags:  129
+        animation_sub:   4
+        hitbox:         25
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 5400
+    loot:
+      drops:
+        - chance: uncommon
+          item:   loop_of_aramid_fiber
+    content: wotg
+
+spawns:
+  17530881:
+    template: Epialtes
+    region:   c_2
+    level:    [32, 32]
+  17530882:
+    template: Giant_Gatekeeper
+    region:   c_2
+    level:    [28, 30]
+  17530883:
+    template: Giant_Guard
+    region:   c_2
+    level:    [28, 30]
+  17530884:
+    template: Giant_Sentry
+    region:   c_2
+    level:    [28, 30]
+  17530885:
+    template: Gigass_Bat
+    at:       [1.000, 1.000, 1.000]
+    level:    [21, 23]
+  17530886:
+    template: Giant_Lobber
+    region:   c_2
+    level:    [28, 30]
+  17530887:
+    template: Giant_Gatekeeper
+    region:   c_2
+    level:    [28, 30]
+  17530888:
+    template: Giant_Guard
+    region:   c_2
+    level:    [28, 30]
+  17530889:
+    template: Giant_Sentry
+    region:   c_2
+    level:    [28, 30]
+  17530890:
+    template: Gigass_Bat
+    at:       [1.000, 1.000, 1.000]
+    level:    [21, 23]
+  17530891:
+    template: Giant_Lobber
+    region:   c_2
+    level:    [28, 30]
+  17530892:
+    template: Seeker_Bats_LDT
+    script:   Seeker_Bats
+    region:   c_2
+    level:    [25, 27]
+  17530893:
+    template: Seeker_Bats_LDT
+    script:   Seeker_Bats
+    region:   c_2
+    level:    [25, 27]
+  17530894:
+    template: Ancient_Bat_LDT_MoS
+    script:   Ancient_Bat
+    region:   c_2
+    level:    [27, 29]
+  17530895:
+    template: Ancient_Bat_LDT_MoS
+    script:   Ancient_Bat
+    region:   c_2
+    level:    [27, 29]
+  17530896:
+    template: Giant_Gatekeeper
+    region:   sw_16
+    level:    [28, 30]
+  17530897:
+    template: Giant_Guard
+    region:   sw_16
+    level:    [28, 30]
+  17530898:
+    template: Giant_Sentry
+    region:   sw_16
+    level:    [28, 30]
+  17530899:
+    template: Gigass_Bat
+    at:       [1.000, 1.000, 1.000]
+    level:    [21, 23]
+  17530900:
+    template: Giant_Lobber
+    region:   sw_16
+    level:    [28, 30]
+  17530901:
+    template: Giant_Gatekeeper
+    region:   sw_16
+    level:    [28, 30]
+  17530902:
+    template: Giant_Guard
+    region:   sw_16
+    level:    [28, 30]
+  17530903:
+    template: Giant_Sentry
+    region:   sw_16
+    level:    [28, 30]
+  17530904:
+    template: Gigass_Bat
+    at:       [1.000, 1.000, 1.000]
+    level:    [21, 23]
+  17530905:
+    template: Giant_Lobber
+    region:   sw_16
+    level:    [28, 30]
+  17530906:
+    template: Seeker_Bats_LDT
+    script:   Seeker_Bats
+    region:   sw_16
+    level:    [25, 27]
+  17530907:
+    template: Seeker_Bats_LDT
+    script:   Seeker_Bats
+    region:   sw_16
+    level:    [25, 27]
+  17530908:
+    template: Ancient_Bat_LDT_MoS
+    script:   Ancient_Bat
+    region:   sw_16
+    level:    [27, 29]
+  17530909:
+    template: Seeker_Bats_LDT
+    script:   Seeker_Bats
+    region:   w_30
+    level:    [25, 27]
+  17530910:
+    template: Seeker_Bats_LDT
+    script:   Seeker_Bats
+    region:   w_30
+    level:    [25, 27]
+  17530911:
+    template: Ancient_Bat_LDT_MoS
+    script:   Ancient_Bat
+    region:   w_30
+    level:    [27, 29]
+  17530912:
+    template: Bogy_LDT
+    script:   Bogy
+    region:   w_30
+    level:    [30, 32]
+  17530913:
+    template: Goblin_Mugger
+    region:   s_33
+    level:    [27, 30]
+  17530914:
+    template: Goblin_Leecher
+    region:   s_33
+    level:    [27, 30]
+  17530915:
+    template: Goblin_Gambler
+    region:   s_33
+    level:    [27, 30]
+  17530916:
+    template: Goblin_Mugger
+    region:   s_33
+    level:    [27, 30]
+  17530917:
+    template: Goblin_Leecher
+    region:   s_33
+    level:    [27, 30]
+  17530918:
+    template: Goblin_Gambler
+    region:   s_33
+    level:    [27, 30]
+  17530919:
+    template: Goblin_Mugger
+    region:   se_39
+    level:    [27, 30]
+  17530920:
+    template: Goblin_Leecher
+    region:   se_39
+    level:    [27, 30]
+  17530921:
+    template: Goblin_Gambler
+    region:   se_39
+    level:    [27, 30]
+  17530922:
+    template: Goblin_Mugger
+    region:   se_39
+    level:    [27, 30]
+  17530923:
+    template: Goblin_Leecher
+    region:   se_39
+    level:    [27, 30]
+  17530924:
+    template: Goblin_Gambler
+    region:   se_39
+    level:    [27, 30]
+  17530925:
+    template: Seeker_Bats_LDT
+    script:   Seeker_Bats
+    region:   e_46
+    level:    [25, 27]
+  17530926:
+    template: Seeker_Bats_LDT
+    script:   Seeker_Bats
+    region:   e_46
+    level:    [25, 27]
+  17530927:
+    template: Ancient_Bat_LDT_MoS
+    script:   Ancient_Bat
+    region:   e_46
+    level:    [27, 29]
+  17530928:
+    template: Ancient_Bat_LDT_MoS
+    script:   Ancient_Bat
+    region:   e_46
+    level:    [27, 29]
+  17530929:
+    template: Chaos_Idol
+    region:   c_49
+    level:    [28, 30]
+  17530930:
+    template: Chaos_Idol
+    region:   c_49
+    level:    [28, 30]
+  17530931:
+    template: Chaos_Idol
+    region:   c_49
+    level:    [28, 30]
+  17530932:
+    template: Tyrant
+    region:   c_49
+    level:    [40, 42]
+  17530933:
+    template: Giant_Gatekeeper
+    region:   n_53
+    level:    [28, 30]
+  17530934:
+    template: Giant_Guard
+    region:   n_53
+    level:    [28, 30]
+  17530935:
+    template: Giant_Sentry
+    region:   n_53
+    level:    [28, 30]
+  17530936:
+    template: Gigass_Bat
+    at:       [1.000, 1.000, 1.000]
+    level:    [21, 23]
+  17530937:
+    template: Giant_Lobber
+    region:   n_53
+    level:    [28, 30]
+  17530938:
+    template: Giant_Gatekeeper
+    region:   n_53
+    level:    [28, 30]
+  17530939:
+    template: Giant_Guard
+    region:   n_53
+    level:    [28, 30]
+  17530940:
+    template: Giant_Sentry
+    region:   n_53
+    level:    [28, 30]
+  17530941:
+    template: Gigass_Bat
+    at:       [1.000, 1.000, 1.000]
+    level:    [21, 23]
+  17530942:
+    template: Giant_Lobber
+    region:   n_53
+    level:    [28, 30]
+  17530943:
+    template: Seeker_Bats_LDT
+    script:   Seeker_Bats
+    region:   n_53
+    level:    [25, 27]
+  17530944:
+    template: Seeker_Bats_LDT
+    script:   Seeker_Bats
+    region:   n_53
+    level:    [25, 27]
+  17530945:
+    template: Ancient_Bat_LDT_MoS
+    script:   Ancient_Bat
+    region:   n_53
+    level:    [27, 29]
+  17530946:
+    template: Seeker_Bats_LDT
+    script:   Seeker_Bats
+    region:   n_67
+    level:    [25, 27]
+  17530947:
+    template: Seeker_Bats_LDT
+    script:   Seeker_Bats
+    region:   n_67
+    level:    [25, 27]
+  17530948:
+    template: Ancient_Bat_LDT_MoS
+    script:   Ancient_Bat
+    region:   n_67
+    level:    [27, 29]
+  17530949:
+    template: Ancient_Bat_LDT_MoS
+    script:   Ancient_Bat
+    region:   n_67
+    level:    [27, 29]
+  17530950:
+    template: Giant_Gatekeeper
+    region:   nw_71
+    level:    [28, 30]
+  17530951:
+    template: Giant_Guard
+    region:   nw_71
+    level:    [28, 30]
+  17530952:
+    template: Giant_Sentry
+    region:   nw_71
+    level:    [28, 30]
+  17530953:
+    template: Gigass_Bat
+    at:       [1.000, 1.000, 1.000]
+    level:    [21, 23]
+  17530954:
+    template: Giant_Lobber
+    region:   nw_71
+    level:    [28, 30]
+  17530955:
+    template: Giant_Gatekeeper
+    region:   nw_71
+    level:    [28, 30]
+  17530956:
+    template: Giant_Guard
+    region:   nw_71
+    level:    [28, 30]
+  17530957:
+    template: Giant_Sentry
+    region:   nw_71
+    level:    [28, 30]
+  17530958:
+    template: Gigass_Bat
+    at:       [1.000, 1.000, 1.000]
+    level:    [21, 23]
+  17530959:
+    template: Giant_Lobber
+    region:   nw_71
+    level:    [28, 30]
+  17530960:
+    template: Seeker_Bats_LDT
+    script:   Seeker_Bats
+    region:   nw_71
+    level:    [25, 27]
+  17530961:
+    template: Seeker_Bats_LDT
+    script:   Seeker_Bats
+    region:   nw_71
+    level:    [25, 27]
+  17530962:
+    template: Ancient_Bat_LDT_MoS
+    script:   Ancient_Bat
+    region:   nw_71
+    level:    [27, 29]
+  17530963:
+    template: Gigas_Hallwatcher
+    region:   e_83
+    level:    [34, 35]
+  17530964:
+    template: Gigas_Punisher
+    region:   e_83
+    level:    [34, 35]
+  17530965:
+    template: Gigas_Butcher
+    region:   e_83
+    level:    [34, 35]
+  17530966:
+    template: Gigass_Bats
+    at:       [1.000, 1.000, 1.000, 65]
+    level:    [27, 29]
+  17530967:
+    template: Gigas_Sculptor
+    region:   e_83
+    level:    [34, 35]
+  17530968:
+    template: Gigas_Hallwatcher
+    region:   e_83
+    level:    [34, 35]
+  17530969:
+    template: Gigas_Punisher
+    region:   e_83
+    level:    [34, 35]
+  17530970:
+    template: Gigas_Butcher
+    region:   e_83
+    level:    [34, 35]
+  17530971:
+    template: Gigass_Bats
+    at:       [1.000, 1.000, 1.000]
+    level:    [27, 29]
+  17530972:
+    template: Gigas_Sculptor
+    region:   e_83
+    level:    [34, 35]
+  17530973:
+    template: Thunder_Elemental
+    region:   e_83
+    level:    [35, 36]
+  17530974:
+    template: Light_Elemental
+    region:   e_83
+    level:    [35, 36]
+  17530975:
+    template: Bogy_LDT
+    script:   Bogy
+    region:   ne_95
+    level:    [30, 32]
+  17530976:
+    template: Bogy_LDT
+    script:   Bogy
+    region:   ne_95
+    level:    [30, 32]
+  17530977:
+    template: Bogy_LDT
+    script:   Bogy
+    region:   ne_95
+    level:    [30, 32]
+  17530978:
+    template: Magic_Urn
+    region:   ne_98
+    level:    [34, 35]
+  17530979:
+    template: Magic_Urn
+    region:   ne_98
+    level:    [34, 35]
+  17530980:
+    template: Magic_Urn
+    region:   ne_98
+    level:    [34, 35]
+  17530981:
+    template: Bogy_LDT
+    script:   Bogy
+    region:   s_101
+    level:    [30, 32]
+  17530982:
+    template: Bogy_LDT
+    script:   Bogy
+    region:   s_101
+    level:    [30, 32]
+  17530983:
+    template: Magic_Urn
+    region:   sw_103
+    level:    [34, 35]
+  17530984:
+    template: Magic_Urn
+    region:   sw_103
+    level:    [34, 35]
+  17530985:
+    template: Thunder_Elemental
+    region:   sw_103
+    level:    [35, 36]
+  17530986:
+    template: Light_Elemental
+    region:   sw_103
+    level:    [35, 36]
+  17530987:
+    template: Giant_Gatekeeper
+    region:   sw_107
+    level:    [28, 30]
+  17530988:
+    template: Giant_Guard
+    region:   sw_107
+    level:    [28, 30]
+  17530989:
+    template: Giant_Sentry
+    region:   sw_107
+    level:    [28, 30]
+  17530990:
+    template: Gigass_Bat
+    at:       [1.000, 1.000, 1.000]
+    level:    [21, 23]
+  17530991:
+    template: Giant_Lobber
+    region:   sw_107
+    level:    [28, 30]
+  17530992:
+    template: Giant_Gatekeeper
+    region:   sw_107
+    level:    [28, 30]
+  17530993:
+    template: Giant_Guard
+    region:   sw_107
+    level:    [28, 30]
+  17530994:
+    template: Giant_Sentry
+    region:   sw_107
+    level:    [28, 30]
+  17530995:
+    template: Gigass_Bat
+    at:       [1.000, 1.000, 1.000]
+    level:    [21, 23]
+  17530996:
+    template: Giant_Lobber
+    region:   sw_107
+    level:    [28, 30]
+  17530997:
+    template: Seeker_Bats_LDT
+    script:   Seeker_Bats
+    region:   sw_107
+    level:    [25, 27]
+  17530998:
+    template: Ancient_Bat_LDT_MoS
+    script:   Ancient_Bat
+    region:   sw_107
+    level:    [27, 29]
+  17530999:
+    template: Hippolytos
+    region:   w_119
+    level:    [32, 32]
+  17531000:
+    template: Giant_Gatekeeper
+    region:   w_119
+    level:    [28, 30]
+  17531001:
+    template: Giant_Guard
+    region:   w_119
+    level:    [28, 30]
+  17531002:
+    template: Giant_Sentry
+    region:   w_119
+    level:    [28, 30]
+  17531003:
+    template: Gigass_Bat
+    at:       [1.000, 1.000, 1.000]
+    level:    [21, 23]
+  17531004:
+    template: Giant_Lobber
+    region:   w_119
+    level:    [28, 30]
+  17531005:
+    template: Giant_Gatekeeper
+    region:   nw_127
+    level:    [28, 30]
+  17531006:
+    template: Giant_Guard
+    region:   nw_127
+    level:    [28, 30]
+  17531007:
+    template: Giant_Sentry
+    region:   nw_127
+    level:    [28, 30]
+  17531008:
+    template: Gigass_Bat
+    at:       [1.000, 1.000, 1.000]
+    level:    [21, 23]
+  17531009:
+    template: Giant_Lobber
+    region:   nw_127
+    level:    [28, 30]
+  17531010:
+    template: Goblin_Mugger
+    region:   nw_127
+    level:    [27, 30]
+  17531011:
+    template: Goblin_Leecher
+    region:   nw_127
+    level:    [27, 30]
+  17531012:
+    template: Goblin_Gambler
+    region:   nw_127
+    level:    [27, 30]
+  17531013:
+    template: Goblin_Mugger
+    region:   nw_127
+    level:    [27, 30]
+  17531014:
+    template: Goblin_Leecher
+    region:   nw_127
+    level:    [27, 30]
+  17531015:
+    template: Goblin_Gambler
+    region:   nw_127
+    level:    [27, 30]
+  17531016:
+    template: Seeker_Bats_LDT
+    script:   Seeker_Bats
+    region:   nw_127
+    level:    [25, 27]
+  17531017:
+    template: Seeker_Bats_LDT
+    script:   Seeker_Bats
+    region:   nw_127
+    level:    [25, 27]
+  17531018:
+    template: Ancient_Bat_LDT_MoS
+    script:   Ancient_Bat
+    region:   nw_127
+    level:    [27, 29]
+  17531019:
+    template: Ancient_Bat_LDT_MoS
+    script:   Ancient_Bat
+    region:   nw_127
+    level:    [27, 29]
+  17531020:
+    template: Giant_Gatekeeper
+    region:   c_140
+    level:    [28, 30]
+  17531021:
+    template: Giant_Guard
+    region:   c_140
+    level:    [28, 30]
+  17531022:
+    template: Giant_Sentry
+    region:   c_140
+    level:    [28, 30]
+  17531023:
+    template: Gigass_Bat
+    at:       [1.000, 1.000, 1.000]
+    level:    [21, 23]
+  17531024:
+    template: Giant_Lobber
+    region:   c_140
+    level:    [28, 30]
+  17531025:
+    template: Goblin_Mugger
+    region:   c_140
+    level:    [27, 30]
+  17531026:
+    template: Goblin_Leecher
+    region:   c_140
+    level:    [27, 30]
+  17531027:
+    template: Goblin_Gambler
+    region:   c_140
+    level:    [27, 30]
+  17531028:
+    template: Goblin_Mugger
+    region:   c_140
+    level:    [27, 30]
+  17531029:
+    template: Goblin_Leecher
+    region:   c_140
+    level:    [27, 30]
+  17531030:
+    template: Goblin_Gambler
+    region:   c_140
+    level:    [27, 30]
+  17531031:
+    template: Seeker_Bats_LDT
+    script:   Seeker_Bats
+    region:   c_140
+    level:    [25, 27]
+  17531032:
+    template: Ancient_Bat_LDT_MoS
+    script:   Ancient_Bat
+    region:   c_140
+    level:    [27, 29]
+  17531033:
+    template: Seeker_Bats_LDT
+    script:   Seeker_Bats
+    region:   n_153
+    level:    [25, 27]
+  17531034:
+    template: Seeker_Bats_LDT
+    script:   Seeker_Bats
+    region:   n_153
+    level:    [25, 27]
+  17531035:
+    template: Ancient_Bat_LDT_MoS
+    script:   Ancient_Bat
+    region:   n_153
+    level:    [27, 29]
+  17531036:
+    template: Ancient_Bat_LDT_MoS
+    script:   Ancient_Bat
+    region:   n_153
+    level:    [27, 29]
+  17531037:
+    template: Seeker_Bats_LDT
+    script:   Seeker_Bats
+    region:   n_157
+    level:    [25, 27]
+  17531038:
+    template: Seeker_Bats_LDT
+    script:   Seeker_Bats
+    region:   n_157
+    level:    [25, 27]
+  17531039:
+    template: Ancient_Bat_LDT_MoS
+    script:   Ancient_Bat
+    region:   n_157
+    level:    [27, 29]
+  17531040:
+    template: Chaos_Idol
+    region:   n_160
+    level:    [28, 30]
+  17531041:
+    template: Chaos_Idol
+    region:   n_160
+    level:    [28, 30]
+  17531042:
+    template: Chaos_Idol
+    region:   n_160
+    level:    [28, 30]
+  17531043:
+    template: Chaos_Idol
+    region:   n_160
+    level:    [28, 30]
+  17531044:
+    template: Giant_Gatekeeper
+    region:   e_165
+    level:    [28, 30]
+  17531045:
+    template: Giant_Guard
+    region:   e_165
+    level:    [28, 30]
+  17531046:
+    template: Giant_Sentry
+    region:   e_165
+    level:    [28, 30]
+  17531047:
+    template: Gigass_Bat
+    at:       [1.000, 1.000, 1.000]
+    level:    [21, 23]
+  17531048:
+    template: Giant_Lobber
+    region:   e_165
+    level:    [28, 30]
+  17531049:
+    template: Seeker_Bats_LDT
+    script:   Seeker_Bats
+    region:   e_165
+    level:    [25, 27]
+  17531050:
+    template: Seeker_Bats_LDT
+    script:   Seeker_Bats
+    region:   e_165
+    level:    [25, 27]
+  17531051:
+    template: Magic_Pot
+    region:   s_171
+    level:    [28, 29]
+  17531052:
+    template: Ancient_Bat_LDT_MoS
+    script:   Ancient_Bat
+    region:   s_171
+    level:    [27, 29]
+  17531053:
+    template: Ancient_Bat_LDT_MoS
+    script:   Ancient_Bat
+    region:   s_171
+    level:    [27, 29]
+  17531054:
+    template: Bogy_LDT
+    script:   Bogy
+    region:   c_174
+    level:    [30, 32]
+  17531055:
+    template: Bogy_LDT
+    script:   Bogy
+    region:   c_174
+    level:    [30, 32]
+  17531056:
+    template: Bogy_LDT
+    script:   Bogy
+    region:   c_174
+    level:    [30, 32]
+  17531057:
+    template: Chaos_Idol
+    region:   c_177
+    level:    [28, 30]
+  17531058:
+    template: Chaos_Idol
+    region:   c_177
+    level:    [28, 30]
+  17531059:
+    template: Chaos_Idol
+    region:   c_177
+    level:    [28, 30]
+  17531060:
+    template: Giant_Gatekeeper
+    region:   n_184
+    level:    [28, 30]
+  17531061:
+    template: Giant_Guard
+    region:   n_184
+    level:    [28, 30]
+  17531062:
+    template: Giant_Sentry
+    region:   n_184
+    level:    [28, 30]
+  17531063:
+    template: Gigass_Bat
+    at:       [497.967, -32.026, 82.822, 9]
+    level:    [21, 23]
+  17531064:
+    template: Giant_Lobber
+    region:   n_184
+    level:    [28, 30]
+  17531065:
+    template: Giant_Gatekeeper
+    region:   n_184
+    level:    [28, 30]
+  17531066:
+    template: Giant_Guard
+    region:   n_184
+    level:    [28, 30]
+  17531067:
+    template: Giant_Sentry
+    region:   n_184
+    level:    [28, 30]
+  17531068:
+    template: Gigass_Bat
+    at:       [1.000, 1.000, 1.000]
+    level:    [21, 23]
+  17531069:
+    template: Giant_Lobber
+    region:   n_184
+    level:    [28, 30]
+  17531070:
+    template: Goblin_Mugger
+    region:   n_184
+    level:    [27, 30]
+  17531071:
+    template: Goblin_Leecher
+    region:   n_184
+    level:    [27, 30]
+  17531072:
+    template: Goblin_Gambler
+    region:   n_184
+    level:    [27, 30]
+  17531073:
+    template: Goblin_Mugger
+    region:   n_184
+    level:    [27, 30]
+  17531074:
+    template: Goblin_Leecher
+    region:   n_184
+    level:    [27, 30]
+  17531075:
+    template: Goblin_Gambler
+    region:   n_184
+    level:    [27, 30]
+  17531076:
+    template: Seeker_Bats_LDT
+    script:   Seeker_Bats
+    region:   n_184
+    level:    [25, 27]
+  17531077:
+    template: Seeker_Bats_LDT
+    script:   Seeker_Bats
+    region:   n_184
+    level:    [25, 27]
+  17531078:
+    template: Ancient_Bat_LDT_MoS
+    script:   Ancient_Bat
+    region:   n_184
+    level:    [27, 29]
+  17531079:
+    template: Ancient_Bat_LDT_MoS
+    script:   Ancient_Bat
+    region:   n_184
+    level:    [27, 29]
+  17531080:
+    template: Giant_Gatekeeper
+    region:   c_200
+    level:    [28, 30]
+  17531081:
+    template: Giant_Guard
+    region:   c_200
+    level:    [28, 30]
+  17531082:
+    template: Giant_Sentry
+    region:   c_200
+    level:    [28, 30]
+  17531083:
+    template: Gigass_Bat
+    at:       [1.000, 1.000, 1.000]
+    level:    [21, 23]
+  17531084:
+    template: Giant_Lobber
+    region:   c_200
+    level:    [28, 30]
+  17531085:
+    template: Giant_Gatekeeper
+    region:   c_200
+    level:    [28, 30]
+  17531086:
+    template: Giant_Guard
+    region:   c_200
+    level:    [28, 30]
+  17531087:
+    template: Giant_Sentry
+    region:   c_200
+    level:    [28, 30]
+  17531088:
+    template: Gigass_Bat
+    at:       [1.000, 1.000, 1.000]
+    level:    [21, 23]
+  17531089:
+    template: Giant_Lobber
+    region:   c_200
+    level:    [28, 30]
+  17531090:
+    template: Goblin_Mugger
+    region:   c_200
+    level:    [27, 30]
+  17531091:
+    template: Goblin_Leecher
+    region:   c_200
+    level:    [27, 30]
+  17531092:
+    template: Goblin_Gambler
+    region:   c_200
+    level:    [27, 30]
+  17531093:
+    template: Goblin_Mugger
+    region:   c_200
+    level:    [27, 30]
+  17531094:
+    template: Goblin_Leecher
+    region:   c_200
+    level:    [27, 30]
+  17531095:
+    template: Goblin_Gambler
+    region:   c_200
+    level:    [27, 30]
+  17531096:
+    template: Seeker_Bats_LDT
+    script:   Seeker_Bats
+    region:   c_200
+    level:    [25, 27]
+  17531097:
+    template: Ancient_Bat_LDT_MoS
+    script:   Ancient_Bat
+    region:   c_200
+    level:    [27, 29]
+  17531098:
+    template: Ancient_Bat_LDT_MoS
+    script:   Ancient_Bat
+    region:   c_200
+    level:    [27, 29]
+  17531099:
+    template: Giant_Gatekeeper
+    region:   w_220
+    level:    [28, 30]
+  17531100:
+    template: Giant_Guard
+    region:   w_220
+    level:    [28, 30]
+  17531101:
+    template: Giant_Sentry
+    region:   w_220
+    level:    [28, 30]
+  17531102:
+    template: Gigass_Bat
+    at:       [1.000, 1.000, 1.000]
+    level:    [21, 23]
+  17531103:
+    template: Giant_Lobber
+    region:   w_220
+    level:    [28, 30]
+  17531104:
+    template: Goblin_Mugger
+    region:   w_220
+    level:    [27, 30]
+  17531105:
+    template: Goblin_Leecher
+    region:   w_220
+    level:    [27, 30]
+  17531106:
+    template: Goblin_Gambler
+    region:   w_220
+    level:    [27, 30]
+  17531107:
+    template: Goblin_Mugger
+    region:   w_220
+    level:    [27, 30]
+  17531108:
+    template: Goblin_Leecher
+    region:   w_220
+    level:    [27, 30]
+  17531109:
+    template: Goblin_Gambler
+    region:   w_220
+    level:    [27, 30]
+  17531110:
+    template: Ancient_Bat_LDT_MoS
+    script:   Ancient_Bat
+    region:   w_220
+    level:    [27, 29]
+  17531111:
+    template: Magic_Pot
+    region:   s_232
+    level:    [28, 29]
+  17531112:
+    template: Bogy_LDT
+    script:   Bogy
+    region:   s_232
+    level:    [30, 32]
+  17531113:
+    template: Bogy_LDT
+    script:   Bogy
+    region:   s_232
+    level:    [30, 32]
+  17531114:
+    template: Eurymedon
+    region:   sw_237
+    level:    [32, 32]
+  17531115:
+    template: Gigass_Bat
+    at:       [1.000, 1.000, 1.000]
+    level:    [21, 23]
+  17531116:
+    template: Giant_Gatekeeper
+    region:   sw_237
+    level:    [28, 30]
+  17531117:
+    template: Giant_Guard
+    region:   sw_237
+    level:    [28, 30]
+  17531118:
+    template: Giant_Sentry
+    region:   sw_237
+    level:    [28, 30]
+  17531119:
+    template: Gigass_Bat
+    at:       [1.000, 1.000, 1.000]
+    level:    [21, 23]
+  17531120:
+    template: Giant_Lobber
+    region:   sw_237
+    level:    [28, 30]
+  17531121:
+    template: Disaster_Idol
+    at:       [460.076, 0.001, 139.504, 64]
+    level:    [55, 55]
+  17531122:
+    template: Orna
+    at:       [507.288, 23.707, 97.632, 128]
+    level:    [40, 40]
+  17531123:
+    template: Fomorian_Spear
+    at:       [505.836, 23.744, 96.677, 159]
+    level:    [32, 32]
+  17531124:
+    template: Fomorian_Spear
+    at:       [505.175, 23.878, 95.147, 163]
+    level:    [32, 32]
+  17531125:
+    template: Illusory_Pot
+    at:       [552.494, 0.070, -32.615, 59]
+    level:    [45, 50]
+  17531126:
+    template: Akvan
+    at:       [414.232, 15.899, -23.996, 82]
+    level:    [94, 95]
+  17531127:
+    template: Akvan
+    at:       [388.000, -16.526, 121.000, 154]
+    level:    [94, 95]
+  17531128:
+    template: Akvan
+    at:       [505.000, -32.506, 95.000]
+    level:    [94, 95]
+
+slots:
+  - members:
+      17530883: {} # Giant_Guard
+      17530884: {} # Giant_Sentry
+  - members:
+      17530886: {} # Giant_Lobber
+      17530887: {} # Giant_Gatekeeper
+  - members:
+      17530888: {} # Giant_Guard
+      17530889: {} # Giant_Sentry
+      17530891: {} # Giant_Lobber
+  - members:
+      17530896: {} # Giant_Gatekeeper
+      17530897: {} # Giant_Guard
+      17530898: {} # Giant_Sentry
+  - members:
+      17530900: {} # Giant_Lobber
+      17530901: {} # Giant_Gatekeeper
+      17530902: {} # Giant_Guard
+  - members:
+      17530903: {} # Giant_Sentry
+      17530905: {} # Giant_Lobber
+  - members:
+      17530909: {} # Seeker_Bats
+      17530912: {} # Bogy
+  - members:
+      17530913: {} # Goblin_Mugger
+      17530914: {} # Goblin_Leecher
+  - members:
+      17530915: {} # Goblin_Gambler
+      17530916: {} # Goblin_Mugger
+  - members:
+      17530917: {} # Goblin_Leecher
+      17530918: {} # Goblin_Gambler
+  - members:
+      17530919: {} # Goblin_Mugger
+      17530920: {} # Goblin_Leecher
+  - members:
+      17530921: {} # Goblin_Gambler
+      17530922: {} # Goblin_Mugger
+  - members:
+      17530923: {} # Goblin_Leecher
+      17530924: {} # Goblin_Gambler
+  - members:
+      17530925: {} # Seeker_Bats
+      17530927: {} # Ancient_Bat
+  - members:
+      17530933: {} # Giant_Gatekeeper
+      17530934: {} # Giant_Guard
+  - members:
+      17530935: {} # Giant_Sentry
+      17530937: {} # Giant_Lobber
+      17530938: {} # Giant_Gatekeeper
+  - members:
+      17530939: {} # Giant_Guard
+      17530940: {} # Giant_Sentry
+      17530942: {} # Giant_Lobber
+  - members:
+      17530946: {} # Seeker_Bats
+      17530948: {} # Ancient_Bat
+  - members:
+      17530950: {} # Giant_Gatekeeper
+      17530951: {} # Giant_Guard
+      17530952: {} # Giant_Sentry
+  - members:
+      17530954: {} # Giant_Lobber
+      17530955: {} # Giant_Gatekeeper
+  - members:
+      17530956: {} # Giant_Guard
+      17530957: {} # Giant_Sentry
+      17530959: {} # Giant_Lobber
+  - members:
+      17530964: {} # Gigas_Punisher
+      17530965: {} # Gigas_Butcher
+  - members:
+      17530967: {} # Gigas_Sculptor
+      17530968: {} # Gigas_Hallwatcher
+      17530969: {} # Gigas_Punisher
+  - members:
+      17530970: {} # Gigas_Butcher
+      17530972: {} # Gigas_Sculptor
+  - members:
+      17530987: {} # Giant_Gatekeeper
+      17530988: {} # Giant_Guard
+  - members:
+      17530989: {} # Giant_Sentry
+      17530991: {} # Giant_Lobber
+      17530992: {} # Giant_Gatekeeper
+  - members:
+      17530993: {} # Giant_Guard
+      17530994: {} # Giant_Sentry
+      17530996: {} # Giant_Lobber
+  - members:
+      17531000: {} # Giant_Gatekeeper
+      17531002: {} # Giant_Sentry
+      17531004: {} # Giant_Lobber
+  - members:
+      17531005: {} # Giant_Gatekeeper
+      17531007: {} # Giant_Sentry
+  - members:
+      17531006: {} # Giant_Guard
+      17531009: {} # Giant_Lobber
+  - members:
+      17531010: {} # Goblin_Mugger
+      17531011: {} # Goblin_Leecher
+  - members:
+      17531012: {} # Goblin_Gambler
+      17531013: {} # Goblin_Mugger
+  - members:
+      17531014: {} # Goblin_Leecher
+      17531015: {} # Goblin_Gambler
+  - members:
+      17531020: {} # Giant_Gatekeeper
+      17531024: {} # Giant_Lobber
+  - members:
+      17531021: {} # Giant_Guard
+      17531022: {} # Giant_Sentry
+  - members:
+      17531025: {} # Goblin_Mugger
+      17531026: {} # Goblin_Leecher
+  - members:
+      17531027: {} # Goblin_Gambler
+      17531028: {} # Goblin_Mugger
+  - members:
+      17531029: {} # Goblin_Leecher
+      17531030: {} # Goblin_Gambler
+  - members:
+      17531033: {} # Seeker_Bats
+      17531035: {} # Ancient_Bat
+  - members:
+      17531038: {} # Seeker_Bats
+      17531039: {} # Ancient_Bat
+  - members:
+      17531044: {} # Giant_Gatekeeper
+      17531045: {} # Giant_Guard
+  - members:
+      17531046: {} # Giant_Sentry
+      17531048: {} # Giant_Lobber
+  - members:
+      17531060: {} # Giant_Gatekeeper
+      17531061: {} # Giant_Guard
+      17531062: {} # Giant_Sentry
+      17531064: {} # Giant_Lobber
+  - members:
+      17531065: {} # Giant_Gatekeeper
+      17531066: {} # Giant_Guard
+      17531067: {} # Giant_Sentry
+      17531069: {} # Giant_Lobber
+  - members:
+      17531070: {} # Goblin_Mugger
+      17531071: {} # Goblin_Leecher
+  - members:
+      17531072: {} # Goblin_Gambler
+      17531073: {} # Goblin_Mugger
+  - members:
+      17531074: {} # Goblin_Leecher
+      17531075: {} # Goblin_Gambler
+  - members:
+      17531076: {} # Seeker_Bats
+      17531078: {} # Ancient_Bat
+  - members:
+      17531080: {} # Giant_Gatekeeper
+      17531081: {} # Giant_Guard
+      17531082: {} # Giant_Sentry
+  - members:
+      17531084: {} # Giant_Lobber
+      17531085: {} # Giant_Gatekeeper
+  - members:
+      17531086: {} # Giant_Guard
+      17531087: {} # Giant_Sentry
+      17531089: {} # Giant_Lobber
+  - members:
+      17531090: {} # Goblin_Mugger
+      17531091: {} # Goblin_Leecher
+      17531092: {} # Goblin_Gambler
+  - members:
+      17531093: {} # Goblin_Mugger
+      17531094: {} # Goblin_Leecher
+      17531095: {} # Goblin_Gambler
+  - members:
+      17531096: {} # Seeker_Bats
+      17531097: {} # Ancient_Bat
+  - members:
+      17531099: {} # Giant_Gatekeeper
+      17531100: {} # Giant_Guard
+  - members:
+      17531101: {} # Giant_Sentry
+      17531103: {} # Giant_Lobber
+  - members:
+      17531104: {} # Goblin_Mugger
+      17531105: {} # Goblin_Leecher
+      17531106: {} # Goblin_Gambler
+  - members:
+      17531107: {} # Goblin_Mugger
+      17531108: {} # Goblin_Leecher
+      17531109: {} # Goblin_Gambler
+  - members:
+      17531111: {} # Magic_Pot
+      17531112: {} # Bogy
+  - members:
+      17531116: {} # Giant_Gatekeeper
+      17531117: {} # Giant_Guard
+      17531120: {} # Giant_Lobber

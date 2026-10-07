@@ -1,0 +1,87 @@
+-----------------------------------
+-- Zone: Port_Bastok (236)
+-----------------------------------
+local ID = zones[xi.zone.PORT_BASTOK]
+---@type TZone
+local zoneObject = {}
+
+zoneObject.onInitialize = function(zone)
+    zone:registerCuboidTriggerArea(1, -112, -3, -17, -96, 3, -3)     -- event COP
+    zone:registerCuboidTriggerArea(2, 53.5, 5, -165.3, 66.5, 6, -72) -- drawbridge area
+    xi.conquest.toggleRegionalNPCs(zone)
+
+    -- Set drawbridge NPCs always relevant to clients
+    local drawBridge1 = GetNPCByID(ID.npc.DRAWBRIDGE_1)
+    local drawBridge2 = GetNPCByID(ID.npc.DRAWBRIDGE_2)
+    local drawBridge3 = GetNPCByID(ID.npc.DRAWBRIDGE_3)
+
+    if drawBridge1 then
+        drawBridge1:setNpcAlwaysRelevant(true)
+    end
+
+    if drawBridge2 then
+        drawBridge2:setNpcAlwaysRelevant(true)
+    end
+
+    if drawBridge3 then
+        drawBridge3:setNpcAlwaysRelevant(true)
+    end
+
+    zone:registerCuboidTriggerArea(315, -40.3, 3.1, -93.4, -12.3, 8.9, -61.2) -- Jeuno airship boarding area
+end
+
+zoneObject.onConquestUpdate = function(zone, updatetype, influence, owner, ranking, isConquestAlliance)
+    xi.conquest.onNonRegionConquestUpdate(zone, updatetype, ranking, isConquestAlliance)
+    if updatetype == xi.conquest.constants.TALLY_END then
+        xi.conquest.toggleRegionalNPCs(zone)
+    end
+end
+
+zoneObject.onZoneIn = function(player, prevZone)
+    if
+        player:getXPos() == 0 and
+        player:getYPos() == 0 and
+        player:getZPos() == 0
+    then
+        if prevZone == xi.zone.BASTOK_JEUNO_AIRSHIP then
+            player:setPos(-36.000, 7.000, -58.000, 194)
+            return { 73, -1, bit.bor(xi.cutsceneFlag.RESET_CAMERA, xi.cutsceneFlag.NO_PCS) }
+        end
+    end
+
+    return xi.moghouse.onMoghouseZoneEvent(player, prevZone)
+end
+
+zoneObject.onTriggerAreaEnter = function(player, triggerArea)
+end
+
+zoneObject.onTriggerAreaLeave = function(player, triggerArea)
+end
+
+zoneObject.onTransportEvent = function(player, prevZoneId, transportName)
+    if not player:hasKeyItem(xi.keyItem.AIRSHIP_PASS) then
+        player:startEvent(72)
+        return
+    end
+
+    player:startEvent(71, {
+        isHidden = true,
+        flags    = bit.bor(
+            xi.cutsceneFlag.RESET_CAMERA,
+            xi.cutsceneFlag.NO_PCS,
+            xi.cutsceneFlag.SEND_POSITION,
+            xi.cutsceneFlag.NO_IDLE_WAIT
+        ),
+    })
+end
+
+zoneObject.onEventUpdate = function(player, csid, option, npc)
+end
+
+zoneObject.onEventFinish = function(player, csid, option, npc)
+    if csid == 71 then
+        player:setPos(0, 0, 0, 0, 224)
+    end
+end
+
+return zoneObject

@@ -1,0 +1,38 @@
+FFXI 2016 SERVER
+Fan Project by Habex
+=======================================
+
+You do not need to open anything in here. Use the app in the "Server App" folder.
+
+WHAT IS IN HERE
+  lsb/            LandSandBoat (the game server) as used for this project: source code, scripts,
+                  settings (settings/*.lua) and modules (modules/, list in modules/init.txt).
+  programs/       the four server programs (xi_connect, xi_search, xi_world, xi_map), one folder
+                  per kind of computer. Computers without a folder here build their own with Setup;
+                  those land in lsb/.
+  proxy/          the PS2 login part (ps2proxy*.py, 2016 mode) and its maps (proxy/maps), plus the
+                  friend list service for the 2016 game (soc_service.py).
+  database/       ffxi_world.sql.gz, the game world. Every account, character, chat log and
+                  mail table is EMPTY (list in emptied_tables.txt); profiles are made in the app.
+  admin/          what the app runs inside the map server (messages, moderation).
+  setup/          one time setup per computer:
+                    Setup Mac.command         Mac
+                    Setup Windows.bat         Windows
+                    Setup Linux.sh            Linux
+                    build_server_programs.sh  the build on its own (Linux, Intel Mac)
+                    make_share_copy.py        a copy of the release folder without your private data
+  server_control.py   start, stop and profiles (the app uses it; it also works on its own:
+                      python3 server_control.py start | stop | status | check | create-profile NAME)
+  server_admin.py     online players, profiles, world chat, the / commands
+  server_net.py       addresses, port forwarding (UPnP), the "is it working?" check
+  server_roles.py     roles for in game "!" commands (checked by lsb/modules/lan_roles)
+  server_chat.py      chat rules, scheduled messages, chat history (the rules run in
+                      proxy/ps2proxy_chatrules.py, so they apply to every player)
+  data/           made at the first start: the private database (port 3316, only this computer),
+                  players.txt (profile passwords for the PS2 sign in, keep it private), roles, chat
+                  rules, chat history (chat.db), logs. Leave data/ out when you share the release folder.
+
+START ORDER (what Start Server does)
+  database, then login (xi_connect), search, world, map, the PS2 login part and the friend list.
+  The database is a private MariaDB that keeps its files in data/database; it never touches another
+  MariaDB on the computer.

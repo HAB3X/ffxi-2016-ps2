@@ -1,0 +1,4488 @@
+# yaml-language-server: $schema=../../schemas/mobs.schema.json
+
+templates:
+
+  Arisen_Soulflayer:
+    id:            6119
+    species:       soulflayer
+    type:          [notorious]
+    spell_list_id: 28
+    skill_list_id: 233
+    attributes:
+      combat:
+        skill: axe
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 3592
+        entity_flags:  129
+        animation_sub:   4
+        hitbox:         16
+      behaviors:
+        aggressive:     true
+        links:          true
+        true_detection: true
+      spawn:
+        type: [scripted]
+
+  Awoken_Vampyr_Jarl:
+    id:            6097
+    species:       vampyr
+    type:          [notorious]
+    spell_list_id: 1
+    skill_list_id: 2054
+    attributes:
+      combat:
+        skill: scythe
+      jobs: [drk, war]
+      render:
+        look:
+          type:  standard
+          model: 3594
+        entity_flags:  3
+        model_size:    2
+        hitbox:       20
+      behaviors:
+        links:          true
+        true_detection: true
+      spawn:
+        type: [scripted]
+
+  Aynu-Kaysey:
+    id:            5206
+    species:       qutrub
+    type:          [notorious]
+    skill_list_id: 203
+    attributes:
+      combat:
+        skill: axe
+      jobs: [thf, thf]
+      resists:
+        immune_status: [gravity, bind, light_sleep, dark_sleep]
+      render:
+        look:
+          type:  automaton
+          model: 1733
+        entity_flags: 1155
+        model_size:      1
+        hitbox:         13
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 20000
+        mp:  5000
+    loot:
+      drops:
+        - chance: uncommon
+          item:   cinquedea
+    content: wotg
+
+  Brekekekex:
+    id:            5207
+    species:       blue_poroggo
+    type:          [notorious]
+    spell_list_id: 21
+    skill_list_id: 196
+    attributes:
+      combat:
+        skill: staff
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 2097
+        entity_flags: 159
+        name_prefix:   32
+        model_size:     3
+        hitbox:        11
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+      stats:
+        mp: 20000
+
+  Caedarva_Leech:
+    id:            603
+    species:       leech
+    skill_list_id: 172
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 277
+        entity_flags: 643
+        model_size:     1
+        hitbox:        11
+      behaviors:
+        links: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   vial_of_fiend_blood
+        - chance: rare
+          item:   vial_of_beastman_blood
+        - chance: very_rare
+          item:   carbuncles_ruby
+      despoil:
+        vial_of_fiend_blood:    0
+        vial_of_beastman_blood: 0
+        vial_of_bird_blood:     0
+
+  Caedarva_Marshscum:
+    id:            604
+    species:       scum
+    type:          [fished]
+    skill_list_id: 229
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 292
+        entity_flags:  3
+        model_size:    1
+        hitbox:       24
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: common
+          item:   vial_of_slime_oil
+      despoil:
+        vial_of_slime_oil: 0
+
+  Caedarva_Pondscum:
+    id:            605
+    species:       scum
+    type:          [fished]
+    skill_list_id: 229
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 292
+        entity_flags:  3
+        model_size:    1
+        hitbox:       24
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: common
+          item:   vial_of_slime_oil
+      despoil:
+        vial_of_slime_oil: 0
+
+  Caedarva_Toad:
+    id:            606
+    species:       doomed
+    type:          [notorious]
+    skill_list_id: 86
+    attributes:
+      combat:
+        skill: dagger
+      render:
+        look:
+          type:  standard
+          model: 320
+        entity_flags:  129
+        animation_sub:   8
+        hitbox:         25
+      behaviors:
+        aggressive:     true
+        true_detection: true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 8400
+
+  Chigoe:
+    id:            714
+    species:       chigoe
+    roam:          [stealth]
+    skill_list_id: 64
+    attributes:
+      combat:
+        skill: dagger
+        delay: 150
+      jobs: [thf, thf]
+      render:
+        look:
+          type:  standard
+          model: 1747
+        entity_flags:  641
+        animation_sub:   8
+        hitbox:          5
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   vial_of_chimera_blood
+        - chance: very_rare
+          item:   vial_of_demon_blood
+
+  Chigoe_Caedarva:
+    id:            7299
+    display_name:  Chigoe
+    species:       chigoe
+    roam:          [stealth]
+    skill_list_id: 64
+    attributes:
+      combat:
+        skill: dagger
+        delay: 150
+      jobs: [thf, thf]
+      render:
+        look:
+          type:  standard
+          model: 1747
+        entity_flags:  641
+        animation_sub:   8
+        model_size:      1
+        hitbox:          6
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: common
+          item:   vial_of_chimera_blood
+        - chance: very_rare
+          item:   vial_of_demon_blood
+
+  Chigoe_Small:
+    id:            7188
+    display_name:  Chigoe
+    species:       chigoe
+    roam:          [stealth]
+    skill_list_id: 64
+    attributes:
+      combat:
+        skill: dagger
+        delay: 150
+      jobs: [thf, thf]
+      render:
+        look:
+          type:  standard
+          model: 1747
+        entity_flags:  641
+        animation_sub:   8
+        hitbox:          5
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   vial_of_chimera_blood
+        - chance: very_rare
+          item:   vial_of_demon_blood
+
+  Chorus_Toad:
+    id:            5208
+    species:       blue_poroggo
+    type:          [notorious]
+    skill_list_id: 196
+    attributes:
+      render:
+        look:
+          type:  standard
+          model: 2098
+        entity_flags:  1153
+        animation_sub:    8
+        hitbox:           6
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+      stats:
+        mp: 20000
+
+  Dark_Bugler:
+    id:            910
+    species:       imp
+    spell_list_id: 21
+    skill_list_id: 165
+    attributes:
+      combat:
+        skill: scythe
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 1726
+        entity_flags:  131
+        animation_sub:   4
+        model_size:      1
+        hitbox:         12
+      behaviors:
+        aggressive:     true
+        links:          true
+        true_detection: true
+      spawn:
+        type: [scripted]
+
+  Dark_Elemental:
+    id:            913
+    species:       dark_elemental
+    spell_list_id: 18
+    skill_list_id: 100
+    attributes:
+      combat:
+        skill: club
+      jobs: [drk, drk]
+      resists:
+        immune_status: [blind, light_sleep, dark_sleep]
+      render:
+        look:
+          type:  standard
+          model: 443
+        entity_flags:  131
+        animation_sub:  16
+        model_size:      1
+        hitbox:          3
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+        type:    [weather]
+    loot:
+      drops:
+        - chance: always
+          item:   dark_cluster
+        - chance: common
+          item:   dark_cluster
+        - chance: common
+          item:   dark_cluster
+
+  Dark_Esquire:
+    id:            914
+    species:       kindred
+    skill_list_id: 169
+    attributes:
+      combat:
+        skill: sword
+      render:
+        look:
+          type:  standard
+          model: 751
+        entity_flags: 131
+        model_size:     1
+        hitbox:        17
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+
+  Dark_Rider:
+    id:            916
+    species:       odin
+    type:          [notorious]
+    spell_list_id: 5
+    skill_list_id: 42
+    attributes:
+      combat:
+        skill: sword
+      jobs: [drk, bst]
+      render:
+        look:
+          type:  standard
+          model: 1829
+        entity_flags: 131
+        model_size:     1
+        hitbox:        34
+      spawn:
+        type: [scripted]
+
+  Dazbog:
+    id:      6124
+    species: meeble
+    type:    [notorious]
+    attributes:
+      combat:
+        skill: sword
+      jobs: [pld, pld]
+      render:
+        look:
+          type:  standard
+          model: 3586
+        entity_flags: 129
+        hitbox:        32
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+
+  Descended_Winebibber:
+    id:            6120
+    species:       soulflayer
+    type:          [notorious]
+    spell_list_id: 28
+    skill_list_id: 233
+    attributes:
+      combat:
+        skill: axe
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 294
+        entity_flags:  131
+        animation_sub:   4
+        model_size:      1
+        hitbox:         16
+      behaviors:
+        aggressive:     true
+        links:          true
+        true_detection: true
+      spawn:
+        type: [scripted]
+
+  Draugar_Servant_blm:
+    id:            5195
+    display_name:  Draugar_Servant
+    species:       draugar
+    spell_list_id: 21
+    skill_list_id: 89
+    attributes:
+      combat:
+        skill: polearm
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 1765
+        entity_flags:  131
+        animation_sub:  16
+        model_size:      1
+        hitbox:         12
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: common
+          item:   bone_chip
+        - chance: uncommon
+          item:   lamian_fang_key
+      despoil:
+        bone_chip: 0
+
+  Draugar_Servant_drg:
+    id:            5196
+    display_name:  Draugar_Servant
+    species:       draugar
+    skill_list_id: 89
+    attributes:
+      combat:
+        skill: polearm
+      jobs: [drg, drg]
+      render:
+        look:
+          type:  standard
+          model: 1762
+        entity_flags:  131
+        animation_sub:  16
+        model_size:      1
+        hitbox:         12
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: common
+          item:   bone_chip
+        - chance: uncommon
+          item:   lamian_fang_key
+      despoil:
+        bone_chip: 0
+
+  Draugar_Servant_drk:
+    id:            1111
+    display_name:  Draugar_Servant
+    species:       draugar
+    spell_list_id: 5
+    skill_list_id: 89
+    attributes:
+      combat:
+        skill: polearm
+      jobs: [drk, drk]
+      render:
+        look:
+          type:  standard
+          model: 1750
+        entity_flags:  131
+        animation_sub:  16
+        model_size:      1
+        hitbox:         12
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: common
+          item:   bone_chip
+        - chance: uncommon
+          item:   lamian_fang_key
+      despoil:
+        bone_chip: 0
+
+  Draugar_Servant_thf:
+    id:            5197
+    display_name:  Draugar_Servant
+    species:       draugar
+    skill_list_id: 89
+    attributes:
+      combat:
+        skill: polearm
+      jobs: [thf, thf]
+      render:
+        look:
+          type:  standard
+          model: 1757
+        entity_flags:  131
+        animation_sub:  16
+        model_size:      1
+        hitbox:         12
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: common
+          item:   bone_chip
+        - chance: uncommon
+          item:   lamian_fang_key
+      despoil:
+        bone_chip: 0
+
+  Draugars_Wyvern:
+    id:            1112
+    species:       shadow_wyvern
+    skill_list_id: 714
+    attributes:
+      combat:
+        skill: scythe
+        delay: 200
+      render:
+        look:
+          type:  standard
+          model: 761
+        entity_flags: 131
+        model_size:     1
+        hitbox:         8
+      spawn:
+        type: [scripted]
+
+  Elder_Treant:
+    id:            1193
+    species:       winter_treant
+    skill_list_id: 245
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 395
+        entity_flags: 1155
+        model_size:      1
+        hitbox:         37
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      despoil:
+        bag_of_vegetable_seeds: 0
+        treant_bulb:            0
+        bag_of_wildgrass_seeds: 0
+
+  Ephramadian_Shade_cor:
+    id:            5205
+    display_name:  Ephramadian_Shade
+    species:       fomor
+    skill_list_id: 115
+    attributes:
+      combat:
+        skill: sword
+        delay: 360
+      jobs: [cor, cor]
+      render:
+        look:
+          type:  misc
+          model: 1897
+        entity_flags: 1667
+        model_size:      1
+        hitbox:         17
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: common
+          item:   timeworn_talisman
+
+  Ephramadian_Shade_mnk:
+    id:            5203
+    display_name:  Ephramadian_Shade
+    species:       fomor
+    skill_list_id: 115
+    attributes:
+      combat:
+        skill: hand_to_hand
+        delay: 380
+      jobs: [mnk, mnk]
+      render:
+        look:
+          type:  misc
+          model: 1900
+        entity_flags: 1667
+        model_size:      1
+        hitbox:         17
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: common
+          item:   timeworn_talisman
+
+  Ephramadian_Shade_rdm:
+    id:            5202
+    display_name:  Ephramadian_Shade
+    species:       fomor
+    spell_list_id: 3
+    skill_list_id: 115
+    attributes:
+      combat:
+        skill: sword
+        delay: 360
+      jobs: [rdm, rdm]
+      render:
+        look:
+          type:  misc
+          model: 1899
+        entity_flags: 1667
+        model_size:      1
+        hitbox:         17
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: common
+          item:   timeworn_talisman
+
+  Ephramadian_Shade_rng:
+    id:            5204
+    display_name:  Ephramadian_Shade
+    species:       fomor
+    skill_list_id: 115
+    attributes:
+      combat:
+        skill: dagger
+        delay: 360
+      jobs: [rng, rng]
+      render:
+        look:
+          type:  misc
+          model: 1898
+        entity_flags: 1667
+        model_size:      1
+        hitbox:         17
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: common
+          item:   timeworn_talisman
+
+  Experimental_Lamia:
+    id:            1272
+    species:       experimental
+    type:          [notorious]
+    skill_list_id: 310
+    attributes:
+      combat:
+        skill: club
+      jobs: [cor, cor]
+      resists:
+        immune_status: [gravity, light_sleep, dark_sleep]
+      render:
+        look:
+          type:  standard
+          model: 1664
+        entity_flags:  3
+        model_size:    2
+        hitbox:       13
+      behaviors:
+        aggressive:     true
+        links:          true
+        true_detection: true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 32000
+    loot:
+      drops:
+        - chance: always
+          item:   experimental_lamias_armband
+        - chance: very_common
+          item:   water_grip
+        - chance: very_common
+          item:   earth_grip
+        - chance: always
+          one_of: [mekki_shakki, aurum_cuisses, enkidus_leggings]
+        - chance: uncommon
+          one_of: [mekki_shakki, aurum_cuisses, enkidus_leggings]
+
+  Gloom_Phantom:
+    id:      6122
+    species: goblin
+    type:    [notorious]
+    attributes:
+      combat:
+        skill: scythe
+      jobs: [war, drk]
+      render:
+        look:
+          type:  standard
+          model: 3584
+        entity_flags: 129
+        hitbox:        32
+      behaviors:
+        aggressive:     true
+        true_detection: true
+      spawn:
+        type: [scripted]
+
+  Guard_Bhoot:
+    id:            1833
+    species:       bhoot
+    spell_list_id: 28
+    skill_list_id: 52
+    attributes:
+      combat:
+        skill: club
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 369
+        entity_flags: 131
+        model_size:     1
+        hitbox:         8
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   revival_tree_root
+        - chance: common
+          item:   square_of_mohbwa_cloth
+      despoil:
+        square_of_cotton_cloth: 0
+
+  Guard_Skeleton_blm:
+    id:            1835
+    species:       skeleton
+    spell_list_id: 28
+    skill_list_id: 227
+    attributes:
+      combat:
+        skill: axe
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 564
+        entity_flags:  131
+        animation_sub:  16
+        model_size:      1
+        hitbox:         12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+        type:    [at_night]
+    loot:
+      drops:
+        - chance: common
+          item:   bone_chip
+        - chance: uncommon
+          item:   revival_tree_root
+      steal: bone_chip
+      despoil:
+        bone_chip: 0
+
+  Guard_Skeleton_war:
+    id:            6554
+    species:       skeleton
+    skill_list_id: 227
+    attributes:
+      combat:
+        skill: axe
+      render:
+        look:
+          type:  standard
+          model: 572
+        entity_flags:  131
+        animation_sub:  16
+        model_size:      1
+        hitbox:         12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+        type:    [at_night]
+    loot:
+      drops:
+        - chance: common
+          item:   bone_chip
+        - chance: uncommon
+          item:   revival_tree_root
+      steal: bone_chip
+      despoil:
+        bone_chip: 0
+
+  Heraldic_Imp_CM:
+    id:            6636
+    species:       imp
+    spell_list_id: 21
+    skill_list_id: 165
+    attributes:
+      combat:
+        skill: axe
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 1726
+        entity_flags:  1157
+        animation_sub:    4
+        model_size:       2
+        hitbox:          13
+      behaviors:
+        aggressive:     true
+        true_detection: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: very_common
+          item:   imp_wing
+        - chance: rare
+          item:   imp_horn
+      despoil:
+        imp_wing: 0
+
+  Jazaraat:
+    id:            2144
+    species:       fomor
+    type:          [notorious]
+    skill_list_id: 115
+    attributes:
+      combat:
+        skill: sword
+      jobs: [cor, cor]
+      render:
+        look:
+          type:  misc
+          model: 1897
+        entity_flags: 157
+        name_prefix:   32
+        model_size:     2
+        hitbox:        20
+      behaviors:
+        aggressive:     true
+        true_detection: true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 13500
+
+  Jnun_CM:
+    id:            6483
+    species:       doomed
+    skill_list_id: 86
+    attributes:
+      combat:
+        skill: sword
+        delay: 270
+      render:
+        look:
+          type:  standard
+          model: 321
+        entity_flags:  131
+        animation_sub:   4
+        model_size:      1
+        hitbox:         30
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   revival_tree_root
+        - chance: uncommon
+          item:   undead_skin
+      despoil:
+        undead_skin: 0
+
+  Khimaira:
+    id:            2220
+    species:       khimaira
+    type:          [notorious]
+    skill_list_id: 168
+    attributes:
+      combat:
+        skill: scythe
+        delay: 210
+      render:
+        look:
+          type:  standard
+          model: 1805
+        entity_flags: 645
+        model_size:     2
+        hitbox:        34
+      behaviors:
+        flags:          [no_turn]
+        aggressive:     true
+        true_detection: true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 76000
+    loot:
+      drops:
+        - chance: always
+          item:   khimaira_horn
+        - chance: always
+          item:   khimaira_mane
+        - chance: always
+          item:   khimaira_tail
+        - chance: always
+          item:   khimaira_mane
+        - chance: uncommon
+          item:   seveneyes
+        - chance: rare
+          item:   hauteclaire
+
+  Lamia_Chaukidar:
+    id:            2326
+    species:       lamiae
+    skill_list_id: 171
+    attributes:
+      combat:
+        skill: axe
+      jobs: [cor, cor]
+      render:
+        look:
+          type:  automaton
+          model: 1656
+        entity_flags:  515
+        animation_sub:  12
+        model_size:      1
+        hitbox:         12
+      behaviors:
+        aggressive: true
+        links:      true
+      mob_mods:
+        exp_bonus: 6
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   lamia_skin
+        - chance: uncommon
+          item:   vial_of_chimera_blood
+        - chance: very_rare
+          item:   lamian_armlet
+      despoil:
+        lamian_kaman_-1: 0
+
+  Lamia_Deathdancer:
+    id:            2330
+    species:       lamiae
+    skill_list_id: 171
+    attributes:
+      combat:
+        skill: axe
+      jobs: [cor, cor]
+      render:
+        look:
+          type:  automaton
+          model: 1656
+        entity_flags:  517
+        animation_sub:  12
+        model_size:      2
+        hitbox:         13
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+
+  Lamia_Fatedealer:
+    id:            2332
+    species:       lamiae
+    skill_list_id: 171
+    attributes:
+      combat:
+        skill: axe
+      jobs: [cor, cor]
+      render:
+        look:
+          type:  automaton
+          model: 1655
+        entity_flags:  515
+        animation_sub:  12
+        model_size:      1
+        hitbox:         12
+      behaviors:
+        aggressive: true
+        links:      true
+      mob_mods:
+        exp_bonus: 6
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   corsairs_testimony
+        - chance: rare
+          item:   vial_of_chimera_blood
+        - chance: very_rare
+          item:   lamian_armlet
+      despoil:
+        lamian_kaman_-1: 0
+
+  Lamia_Idolater_blm:
+    id:            6748
+    display_name:  Lamia_Idolater
+    species:       qutrub
+    spell_list_id: 21
+    skill_list_id: 203
+    attributes:
+      combat:
+        skill: axe
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  automaton
+          model: 1734
+        entity_flags:  131
+        animation_sub:   4
+        model_size:      1
+        hitbox:         13
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   qutrub_bandage
+        - chance: very_rare
+          item:   qutrub_gorget
+      despoil:
+        qutrub_bandage: 0
+        qutrub_gorget:  0
+
+  Lamia_Idolater_drk:
+    id:            2335
+    display_name:  Lamia_Idolater
+    species:       qutrub
+    spell_list_id: 5
+    skill_list_id: 203
+    attributes:
+      combat:
+        skill: axe
+      jobs: [drk, drk]
+      render:
+        look:
+          type:  automaton
+          model: 1733
+        entity_flags:  131
+        animation_sub:   4
+        model_size:      1
+        hitbox:         13
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   qutrub_bandage
+        - chance: very_rare
+          item:   qutrub_gorget
+      despoil:
+        qutrub_bandage: 0
+        qutrub_gorget:  0
+
+  Lamia_Necromancer_CM:
+    id:            6672
+    display_name:  Lamia_Necromancer
+    species:       lamiae
+    spell_list_id: 28
+    skill_list_id: 171
+    attributes:
+      combat:
+        skill: axe
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  automaton
+          model: 1654
+        entity_flags:  515
+        animation_sub:  12
+        model_size:      1
+        hitbox:         12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   lamia_skin
+        - chance: uncommon
+          item:   vial_of_chimera_blood
+        - chance: very_rare
+          item:   lamian_armlet
+      despoil:
+        lamian_kaman_-1: 0
+
+  Lamia_No27:
+    id:            2349
+    species:       lamiae
+    type:          [notorious]
+    spell_list_id: 28
+    skill_list_id: 171
+    attributes:
+      combat:
+        skill: axe
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  automaton
+          model: 1652
+        entity_flags:  541
+        animation_sub:  12
+        name_prefix:    32
+        model_size:      2
+        hitbox:         13
+      behaviors:
+        aggressive:     true
+        links:          true
+        true_detection: true
+      spawn:
+        type: [scripted]
+
+  Lamia_Toxophilite_CM:
+    id:            6674
+    display_name:  Lamia_Toxophilite
+    species:       lamiae
+    skill_list_id: 171
+    attributes:
+      combat:
+        skill: axe
+      jobs: [rng, rng]
+      render:
+        look:
+          type:  automaton
+          model: 1649
+        entity_flags:  515
+        animation_sub:  12
+        model_size:      1
+        hitbox:         12
+      behaviors:
+        aggressive: true
+        links:      true
+      mob_mods:
+        exp_bonus: 6
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   lamia_skin
+        - chance: common
+          item:   lamian_kaman_-1
+        - chance: very_rare
+          item:   lamian_armlet
+      despoil:
+        lamian_kaman_-1: 0
+
+  Llamhigyn_Y_Dwr:
+    id:            2426
+    species:       doomed
+    type:          [fished, battlefield]
+    skill_list_id: 86
+    attributes:
+      combat:
+        skill: sword
+        delay: 270
+      render:
+        look:
+          type:  standard
+          model: 320
+        entity_flags:  133
+        animation_sub:   8
+        model_size:      2
+        hitbox:         34
+      behaviors:
+        aggressive:     true
+        true_detection: true
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: common
+          item:   revival_tree_root
+        - chance: uncommon
+          item:   undead_skin
+      despoil:
+        undead_skin: 0
+
+  Locus_Imp:
+    id:            7356
+    species:       imp
+    spell_list_id: 21
+    skill_list_id: 165
+    attributes:
+      combat:
+        skill: scythe
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 3662
+        entity_flags:  1153
+        animation_sub:    4
+        model_size:       1
+        hitbox:          12
+      behaviors:
+        aggressive:     true
+        true_detection: true
+      spawn:
+        respawn: 60
+      stats:
+        hp: 267000
+    content: tvr
+
+  Magh_Bihu:
+    id:      6123
+    species: citrullus
+    type:    [notorious]
+    attributes:
+      combat:
+        skill: hand_to_hand
+      jobs: [mnk, mnk]
+      render:
+        look:
+          type:  standard
+          model: 3585
+        entity_flags: 129
+        hitbox:        32
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+
+  Mahjlaef_the_Paintorn:
+    id:            2489
+    species:       soulflayer
+    type:          [notorious]
+    spell_list_id: 28
+    skill_list_id: 234
+    attributes:
+      combat:
+        skill: axe
+      jobs: [blm, rdm]
+      resists:
+        immune_status: [silence, slow, elegy]
+        rank_element:
+          fire:     2
+          ice:      4
+          wind:     2
+          earth:    2
+          thunder:  2
+          water:   10
+          light:    1
+        rank_status:
+          paralyze:     4
+          bind:         4
+          silence:      2
+          slow:         2
+          poison:      10
+          light_sleep:  1
+      render:
+        look:
+          type:  standard
+          model: 1776
+        entity_flags:  157
+        animation_sub:   4
+        name_prefix:    32
+        model_size:      2
+        hitbox:         20
+      behaviors:
+        aggressive:     true
+        links:          true
+        true_detection: true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 37000
+    loot:
+      drops:
+        - chance: always
+          item:   mahjlaefs_staff
+        - chance: very_common
+          item:   fire_grip
+        - chance: very_common
+          item:   thunder_grip
+        - chance: always
+          one_of: [legion_scutum, aurum_gauntlets, oracles_braconi]
+        - chance: uncommon
+          one_of: [legion_scutum, aurum_gauntlets, oracles_braconi]
+
+  Marsh_Murre:
+    id:            2580
+    species:       bird
+    skill_list_id: 55
+    attributes:
+      combat:
+        skill: dagger
+      render:
+        look:
+          type:  standard
+          model: 445
+        entity_flags: 131
+        model_size:     1
+        hitbox:        20
+      behaviors:
+        links: true
+      detects: [hearing]
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: very_common
+          item:   handful_of_almonds
+        - chance: common
+          item:   bird_feather
+        - chance: rare
+          item:   bird_egg
+      steal: bird_feather
+      despoil:
+        bird_feather: 0
+        bird_egg:     0
+
+  Mature_Treant:
+    id:            2587
+    species:       treant
+    skill_list_id: 245
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 388
+        entity_flags: 131
+        model_size:     1
+        hitbox:        37
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: very_common
+          item:   dryad_root
+        - chance: common
+          item:   sprig_of_mistletoe
+        - chance: uncommon
+          item:   puffball
+        - chance: rare
+          one_of:
+            rosewood_log:  45
+            mahogany_log:  30
+            ebony_log:     15
+            petrified_log: 10
+      despoil:
+        bag_of_vegetable_seeds: 0
+        treant_bulb:            0
+        bag_of_wildgrass_seeds: 0
+
+  Merrow_Shadowdancer:
+    id:            2627
+    species:       merrow
+    spell_list_id: 3
+    skill_list_id: 182
+    attributes:
+      combat:
+        skill: great_sword
+      jobs: [rdm, rdm]
+      render:
+        look:
+          type:  automaton
+          model: 1669
+        entity_flags:  515
+        animation_sub:  12
+        model_size:      1
+        hitbox:         12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+
+  Merrow_Typhoondancer:
+    id:            2630
+    species:       merrow
+    skill_list_id: 182
+    attributes:
+      combat:
+        skill: axe
+      jobs: [sam, sam]
+      render:
+        look:
+          type:  automaton
+          model: 1672
+        entity_flags:  517
+        animation_sub:  12
+        model_size:      1
+        hitbox:         12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+
+  Mnejing:
+    id:      6125
+    species: automaton
+    attributes:
+      combat:
+        skill: sword
+      jobs: [pld, pld]
+      render:
+        look:
+          type:  standard
+          model: 1974
+        entity_flags: 129
+        hitbox:        32
+      spawn:
+        type: [scripted]
+    allegiance: player
+
+  Moshdahn:
+    id:            2752
+    species:       qutrub
+    type:          [notorious]
+    spell_list_id: 5
+    skill_list_id: 203
+    attributes:
+      combat:
+        skill: axe
+      jobs: [drk, drk]
+      render:
+        look:
+          type:  automaton
+          model: 1733
+        entity_flags:  155
+        animation_sub:   4
+        name_prefix:    32
+        model_size:      1
+        hitbox:         13
+      behaviors:
+        aggressive:     true
+        links:          true
+        true_detection: true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 8333
+
+  Mosshorn:
+    id:            2753
+    species:       mosshorn
+    skill_list_id: 208
+    attributes:
+      combat:
+        skill: scythe
+        delay: 320
+      render:
+        look:
+          type:  standard
+          model: 344
+        entity_flags:  131
+        animation_sub:  16
+        model_size:      1
+        hitbox:         41
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: always
+          item:   ram_horn
+        - chance: very_common
+          item:   ram_skin
+        - chance: very_common
+          item:   ram_horn
+        - chance: always
+          item:   lanolin_cube
+        - chance: very_common
+          item:   ram_skin
+        - chance: very_common
+          item:   ram_skin
+        - chance: very_common
+          item:   ram_skin
+        - chance: common
+          item:   ram_skin
+        - chance: common
+          item:   ram_skin
+      steal: clump_of_sheep_wool
+      despoil:
+        ram_skin: 0
+        ram_horn: 0
+
+  Oil_Slick_CM:
+    id:            2957
+    species:       slime
+    skill_list_id: 229
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 292
+        entity_flags: 1155
+        model_size:      1
+        hitbox:         24
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   vial_of_slime_oil
+      despoil:
+        vial_of_slime_oil: 0
+
+  Orderly_Imp:
+    id:            3049
+    species:       imp
+    spell_list_id: 21
+    skill_list_id: 165
+    attributes:
+      combat:
+        skill: scythe
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 1726
+        entity_flags:  1155
+        animation_sub:    4
+        model_size:       1
+        hitbox:          12
+      behaviors:
+        aggressive:     true
+        links:          true
+        true_detection: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   imp_wing
+        - chance: rare
+          item:   imp_horn
+      despoil:
+        imp_wing: 0
+
+  Peallaidh:
+    id:            3109
+    species:       karakul
+    type:          [notorious]
+    skill_list_id: 167
+    attributes:
+      combat:
+        skill: scythe
+        delay: 280
+      render:
+        look:
+          type:  standard
+          model: 341
+        entity_flags:  157
+        animation_sub:   4
+        name_prefix:    32
+        model_size:      2
+        hitbox:         27
+      behaviors:
+        links: true
+      spawn:
+        type: [lottery]
+      stats:
+        hp: 14400
+    loot:
+      drops:
+        - chance: common
+          item:   karakul_skin
+        - chance: uncommon
+          item:   slice_of_karakul_meat
+
+  Puktrap:
+    id:            3224
+    species:       flytrap
+    skill_list_id: 114
+    attributes:
+      combat:
+        skill: polearm
+        delay: 200
+      render:
+        look:
+          type:  standard
+          model: 1345
+        entity_flags: 131
+        model_size:     1
+        hitbox:        12
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: rare
+          item:   flytrap_leaf
+      despoil:
+        flytrap_leaf: 0
+
+  Qiqirn_Mine:
+    id:      3258
+    species: fortifications
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 1790
+        entity_flags:  643
+        animation_sub:   8
+        model_size:      1
+        hitbox:         12
+      behaviors:
+        aggressive:     true
+        true_detection: true
+      spawn:
+        type: [scripted]
+
+  Qiqirn_Mireguide:
+    id:            3260
+    species:       qiqirn
+    skill_list_id: 199
+    attributes:
+      combat:
+        skill: dagger
+        delay: 200
+      jobs: [thf, thf]
+      render:
+        look:
+          type:  standard
+          model: 1735
+        entity_flags: 129
+        hitbox:        10
+      behaviors:
+        links: true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: very_common
+          item:   handful_of_almonds
+        - chance: very_rare
+          item:   qiqirn_sandbag
+      steal: qiqirn_sandbag
+      despoil:
+        qiqirn_cape:    0
+        qiqirn_sandbag: 0
+
+  Qiqirn_Rock_Hound:
+    id:            3264
+    species:       qiqirn
+    skill_list_id: 199
+    attributes:
+      combat:
+        skill: axe
+        delay: 200
+      jobs: [rng, rng]
+      render:
+        look:
+          type:  standard
+          model: 1735
+        entity_flags: 131
+        model_size:     1
+        hitbox:        12
+      behaviors:
+        links: true
+      mob_mods:
+        hp_standback: 1
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: very_common
+          item:   handful_of_almonds
+        - chance: very_rare
+          item:   qiqirn_sandbag
+      steal: qiqirn_sandbag
+      despoil:
+        qiqirn_cape:    0
+        qiqirn_sandbag: 0
+
+  Ravin_Raven:
+    id:            3331
+    species:       bird
+    type:          [notorious]
+    skill_list_id: 55
+    attributes:
+      combat:
+        skill: axe
+      render:
+        look:
+          type:  standard
+          model: 445
+        entity_flags: 3
+      behaviors:
+        links: true
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: rare
+          item:   elm_log
+
+  Reserve_Draugar_CM_blm:
+    id:            6575
+    display_name:  Reserve_Draugar
+    species:       draugar
+    spell_list_id: 21
+    skill_list_id: 89
+    attributes:
+      combat:
+        skill: polearm
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 1766
+        entity_flags:  131
+        animation_sub:  16
+        model_size:      1
+        hitbox:         12
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: uncommon
+          item:   lamian_fang_key
+        - chance: common
+          item:   bone_chip
+        - chance: uncommon
+          item:   revival_tree_root
+      steal: bone_chip
+      despoil:
+        bone_chip: 0
+
+  Reserve_Draugar_CM_thf:
+    id:            6576
+    display_name:  Reserve_Draugar
+    species:       draugar
+    skill_list_id: 89
+    attributes:
+      combat:
+        skill: polearm
+      jobs: [thf, thf]
+      render:
+        look:
+          type:  standard
+          model: 1751
+        entity_flags:  131
+        animation_sub:  16
+        model_size:      1
+        hitbox:         12
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: uncommon
+          item:   lamian_fang_key
+        - chance: common
+          item:   bone_chip
+        - chance: uncommon
+          item:   revival_tree_root
+      steal: bone_chip
+      despoil:
+        bone_chip: 0
+
+  Shedu:
+    id:            6758
+    species:       khimaira
+    type:          [notorious]
+    skill_list_id: 168
+    attributes:
+      combat:
+        skill:    scythe
+        delay:    320
+        dmg_mult: 125
+      jobs: [thf, war]
+      resists:
+        immune_status: [gravity, bind, light_sleep, dark_sleep]
+      render:
+        look:
+          type:  standard
+          model: 1805
+        entity_flags:  133
+        animation_sub:   5
+        name_prefix:    32
+        model_size:      2
+        hitbox:         34
+      behaviors:
+        aggressive:     true
+        true_detection: true
+      spawn:
+        type: [scripted]
+
+  Slough_Skua:
+    id:            5336
+    species:       bird
+    skill_list_id: 55
+    attributes:
+      combat:
+        skill: dagger
+      render:
+        look:
+          type:  standard
+          model: 445
+        entity_flags: 131
+        model_size:     1
+        hitbox:        20
+      behaviors:
+        links: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: very_common
+          item:   handful_of_almonds
+        - chance: common
+          item:   bird_feather
+        - chance: rare
+          item:   bird_egg
+      steal: bird_feather
+      despoil:
+        bird_feather: 0
+        bird_egg:     0
+    content: abyssea
+
+  Soulflayer:
+    id:            3704
+    species:       soulflayer
+    spell_list_id: 28
+    skill_list_id: 233
+    attributes:
+      combat:
+        skill: axe
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 1775
+        entity_flags:  129
+        animation_sub:   4
+        hitbox:         15
+      behaviors:
+        aggressive:     true
+        true_detection: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   soulflayer_tentacle
+        - chance: uncommon
+          item:   soulflayer_staff
+        - chance: rare
+          item:   soulflayer_robe
+      despoil:
+        soulflayer_staff: 0
+        soulflayer_robe:  0
+
+  Spongilla_Fly:
+    id:            3738
+    species:       fly
+    skill_list_id: 113
+    attributes:
+      combat:
+        skill: polearm
+      render:
+        look:
+          type:  standard
+          model: 448
+        entity_flags:  643
+        animation_sub:   8
+        model_size:      1
+        hitbox:         15
+      behaviors:
+        links: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   insect_wing
+      despoil:
+        insect_wing: 0
+
+  Suhur_Mas_fished:
+    id:            6767
+    display_name:  Suhur_Mas
+    species:       pugil
+    type:          [fished]
+    skill_list_id: 197
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 348
+        entity_flags: 131
+        model_size:     2
+        hitbox:        32
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+    loot:
+      steal: handful_of_fish_scales
+      despoil:
+        handful_of_pugil_scales: 0
+        handful_of_fish_scales:  0
+
+  Thunder_Elemental:
+    id:            3912
+    species:       thunder_elemental
+    spell_list_id: 16
+    skill_list_id: 105
+    attributes:
+      combat:
+        skill: staff
+      jobs: [blm, rdm]
+      resists:
+        immune_status: [stun, poison]
+      render:
+        look:
+          type:  standard
+          model: 441
+        entity_flags:  131
+        animation_sub:  16
+        model_size:      1
+        hitbox:          3
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+        type:    [weather]
+    loot:
+      drops:
+        - chance: always
+          item:   lightning_cluster
+        - chance: common
+          item:   lightning_cluster
+        - chance: common
+          item:   lightning_cluster
+
+  Treant_Sapling_AS_CM:
+    id:            6354
+    species:       sapling
+    skill_list_id: 216
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 392
+        entity_flags: 131
+        model_size:     1
+        hitbox:        12
+      behaviors:
+        links: true
+      spawn:
+        respawn: 300
+
+  Tyger:
+    id:            4063
+    species:       khimaira
+    type:          [notorious]
+    skill_list_id: 315
+    attributes:
+      combat:
+        skill: scythe
+        delay: 320
+      resists:
+        immune_status: [slow, elegy]
+        rank_status:
+          paralyze:   5
+          bind:       5
+          silence:    8
+          poison:     5
+          dark_sleep: 5
+          blind:      5
+      render:
+        look:
+          type:  standard
+          model: 1806
+        entity_flags:  3
+        model_size:    2
+        hitbox:       34
+      behaviors:
+        flags:          [no_turn]
+        aggressive:     true
+        true_detection: true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 48000
+    loot:
+      drops:
+        - chance: always
+          item:   khimaira_tail
+        - chance: always
+          item:   khimaira_horn
+        - chance: always
+          item:   khimaira_mane
+        - chance: always
+          item:   tygers_tail
+        - chance: always
+          one_of: [aurum_armet, enkidus_cap, aurum_cuirass]
+        - chance: common
+          one_of: [hachiryu_kote, enforcer, antares]
+
+  Uran-Mafran:
+    id:      6121
+    species: tarutaru
+    attributes:
+      combat:
+        skill: hand_to_hand
+      render:
+        look:
+          type:  equipped
+          race:  5
+          face:  4
+          head:  4096
+          body:  8238
+          hands: 12334
+          legs:  16430
+          feet:  20526
+          main:  24805
+          sub:   28672
+        entity_flags: 129
+        hitbox:        16
+      spawn:
+        type: [scripted]
+    allegiance: player
+
+  Vauxia_Fly:
+    id:            5337
+    species:       fly
+    skill_list_id: 113
+    attributes:
+      combat:
+        skill: polearm
+      render:
+        look:
+          type:  standard
+          model: 448
+        entity_flags:  643
+        animation_sub:   8
+        model_size:      1
+        hitbox:         15
+      behaviors:
+        links: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   insect_wing
+      despoil:
+        insect_wing: 0
+    content: abyssea
+
+  Verdelet:
+    id:            4221
+    species:       imp
+    type:          [notorious]
+    spell_list_id: 21
+    skill_list_id: 301
+    attributes:
+      combat:
+        skill: scythe
+      jobs: [blm, blm]
+      resists:
+        immune_status: [gravity, silence, slow, light_sleep, dark_sleep]
+        dmg_physical:
+          piercing: 2500
+        rank_element:
+          wind:   3
+          light: -1
+          dark:   8
+        rank_status:
+          silence:      3
+          light_sleep: -1
+          dark_sleep:   8
+          blind:        8
+      render:
+        look:
+          type:  standard
+          model: 1727
+        entity_flags:  157
+        animation_sub:   4
+        name_prefix:    32
+        model_size:      2
+        hitbox:         13
+      behaviors:
+        aggressive:     true
+        links:          true
+        true_detection: true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 22000
+    loot:
+      drops:
+        - chance: always
+          item:   verdelets_wing
+        - chance: common
+          item:   solitaire_cape
+        - chance: common
+          item:   muse_tariqah
+
+  Water_Elemental:
+    id:            4309
+    species:       water_elemental
+    spell_list_id: 15
+    skill_list_id: 106
+    attributes:
+      combat:
+        skill: staff
+      jobs: [blm, rdm]
+      resists:
+        immune_status: [poison]
+      render:
+        look:
+          type:  standard
+          model: 440
+        entity_flags:  131
+        animation_sub:  16
+        model_size:      1
+        hitbox:          3
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+        type:    [weather]
+    loot:
+      drops:
+        - chance: always
+          item:   water_cluster
+        - chance: common
+          item:   water_cluster
+        - chance: common
+          item:   water_cluster
+
+  Wild_Karakul:
+    id:            4342
+    species:       karakul
+    skill_list_id: 167
+    attributes:
+      combat:
+        skill: scythe
+        delay: 280
+      render:
+        look:
+          type:  standard
+          model: 341
+        entity_flags:  131
+        animation_sub:  21
+        model_size:      1
+        hitbox:         24
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   karakul_skin
+        - chance: uncommon
+          item:   slice_of_karakul_meat
+      steal: lesser_chigoe
+      despoil:
+        sheep_tooth: 0
+
+  Zikko:
+    id:            4503
+    species:       imp
+    type:          [notorious]
+    spell_list_id: 1
+    skill_list_id: 166
+    attributes:
+      combat:
+        skill: scythe
+      jobs: [blm, blm]
+      resists:
+        dmg_physical:
+          piercing: 2500
+      render:
+        look:
+          type:  standard
+          model: 1726
+        entity_flags:  157
+        animation_sub:   4
+        name_prefix:    32
+        model_size:      2
+        hitbox:         13
+      behaviors:
+        aggressive:     true
+        links:          true
+        true_detection: true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 9000
+    loot:
+      drops:
+        - chance: uncommon
+          item:   immortals_sash
+        - chance: common
+          item:   templar_hammer
+
+
+  Beta_taka_Marsh_Murre:
+    id:            40093
+    species:       bird
+    skill_list_id: 55
+    attributes:
+      combat:
+        skill: dagger
+      render:
+        look:
+          type:  standard
+          model: 2442
+        entity_flags: 131
+        model_size:     1
+        hitbox:        20
+      behaviors:
+        links: true
+      detects: [hearing]
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: rare
+          item:   beta_15764
+        - chance: uncommon
+          item:   beta_245
+        - chance: uncommon
+          item:   beta_4950
+        - chance: uncommon
+          item:   beta_6793
+        - chance: very_common
+          item:   handful_of_almonds
+        - chance: common
+          item:   bird_feather
+        - chance: rare
+          item:   bird_egg
+      steal: bird_feather
+      despoil:
+        bird_feather: 0
+        bird_egg:     0
+
+spawns:
+  17100801:
+    template: Caedarva_Pondscum
+    at:       [1.000, 1.000, 1.000]
+    level:    [64, 66]
+  17100802:
+    template: Caedarva_Marshscum
+    at:       [1.000, 1.000, 1.000]
+    level:    [66, 67]
+  17100803:
+    template: Suhur_Mas_fished
+    script:   Suhur_Mas
+    at:       [1.000, 1.000, 1.000]
+    level:    [69, 71]
+  17100804:
+    template: Llamhigyn_Y_Dwr
+    at:       [1.000, 1.000, 1.000]
+    level:    [76, 78]
+  17100805:
+    template: Llamhigyn_Y_Dwr
+    at:       [1.000, 1.000, 1.000]
+    level:    [76, 78]
+  17100806:
+    template: Chigoe_Caedarva
+    script:   Chigoe
+    at:       [237.115, -8.949, -352.812, 20]
+    level:    [62, 66]
+  17100807:
+    template: Chigoe_Caedarva
+    script:   Chigoe
+    at:       [314.347, -8.709, -446.945, 110]
+    level:    [62, 66]
+  17100808:
+    template: Chigoe_Caedarva
+    script:   Chigoe
+    at:       [318.988, -10.787, -455.924, 43]
+    level:    [62, 66]
+  17100809:
+    template: Chigoe_Caedarva
+    script:   Chigoe
+    at:       [318.605, -10.500, -453.678, 232]
+    level:    [62, 66]
+  17100810:
+    template: Chigoe_Caedarva
+    script:   Chigoe
+    at:       [239.320, -8.268, -353.714, 25]
+    level:    [62, 66]
+  17100811:
+    template: Chigoe_Caedarva
+    script:   Chigoe
+    at:       [270.933, -20.099, -328.418, 152]
+    level:    [62, 66]
+  17100812:
+    template: Chigoe_Caedarva
+    script:   Chigoe
+    at:       [270.459, -20.098, -328.045, 151]
+    level:    [62, 66]
+  17100813:
+    template: Chigoe_Caedarva
+    script:   Chigoe
+    at:       [1.000, 1.000, 1.000]
+    level:    [62, 66]
+  17100814:
+    template: Chigoe_Caedarva
+    script:   Chigoe
+    at:       [1.000, 1.000, 1.000]
+    level:    [62, 66]
+  17100815:
+    template: Chigoe_Caedarva
+    script:   Chigoe
+    at:       [1.000, 1.000, 1.000]
+    level:    [62, 66]
+  17100816:
+    template: Puktrap
+    region:   s_16
+    level:    [64, 66]
+  17100817:
+    template: Marsh_Murre
+    region:   s_16
+    level:    [64, 66]
+  17100818:
+    template: Marsh_Murre
+    region:   s_18
+    level:    [64, 66]
+  17100819:
+    template: Treant_Sapling_AS_CM
+    script:   Treant_Sapling
+    region:   s_18
+    level:    [61, 63]
+  17100820:
+    template: Chigoe_Small
+    script:   Chigoe
+    region:   s_20
+    level:    [64, 66]
+  17100821:
+    template: Chigoe_Small
+    script:   Chigoe
+    region:   s_20
+    level:    [64, 66]
+  17100822:
+    template: Treant_Sapling_AS_CM
+    script:   Treant_Sapling
+    region:   s_20
+    level:    [61, 63]
+  17100823:
+    template: Chigoe_Small
+    script:   Chigoe
+    region:   s_23
+    level:    [64, 66]
+  17100824:
+    template: Chigoe_Small
+    script:   Chigoe
+    region:   s_23
+    level:    [64, 66]
+  17100825:
+    template: Treant_Sapling_AS_CM
+    script:   Treant_Sapling
+    region:   s_23
+    level:    [61, 63]
+  17100826:
+    template: Marsh_Murre
+    region:   s_26
+    level:    [64, 66]
+  17100827:
+    template: Puktrap
+    region:   s_26
+    level:    [64, 66]
+  17100828:
+    template: Puktrap
+    region:   s_26
+    level:    [64, 66]
+  17100829:
+    template: Water_Elemental
+    region:   s_26
+    level:    [70, 71]
+  17100830:
+    template: Puktrap
+    region:   s_30
+    level:    [64, 66]
+  17100831:
+    template: Caedarva_Leech
+    region:   s_30
+    level:    [63, 65]
+  17100832:
+    template: Puktrap
+    region:   s_32
+    level:    [64, 66]
+  17100833:
+    template: Puktrap
+    region:   s_32
+    level:    [64, 66]
+  17100834:
+    template: Marsh_Murre
+    region:   s_34
+    level:    [64, 66]
+  17100835:
+    template: Treant_Sapling_AS_CM
+    script:   Treant_Sapling
+    region:   s_34
+    level:    [61, 63]
+  17100836:
+    template: Puktrap
+    region:   s_36
+    level:    [64, 66]
+  17100837:
+    template: Caedarva_Leech
+    region:   s_36
+    level:    [63, 65]
+  17100838:
+    template: Treant_Sapling_AS_CM
+    script:   Treant_Sapling
+    region:   s_36
+    level:    [61, 63]
+  17100839:
+    template: Marsh_Murre
+    region:   s_39
+    level:    [64, 66]
+  17100840:
+    template: Orderly_Imp
+    region:   s_40
+    level:    [63, 65]
+  17100841:
+    template: Marsh_Murre
+    region:   s_40
+    level:    [64, 66]
+  17100842:
+    template: Puktrap
+    region:   s_42
+    level:    [64, 66]
+  17100843:
+    template: Puktrap
+    region:   s_42
+    level:    [64, 66]
+  17100844:
+    template: Caedarva_Leech
+    region:   s_42
+    level:    [63, 65]
+  17100845:
+    template: Puktrap
+    region:   s_45
+    level:    [64, 66]
+  17100846:
+    template: Puktrap
+    region:   s_45
+    level:    [64, 66]
+  17100847:
+    template: Caedarva_Leech
+    region:   s_45
+    level:    [63, 65]
+  17100848:
+    template: Puktrap
+    region:   s_48
+    level:    [64, 66]
+  17100849:
+    template: Caedarva_Leech
+    region:   s_48
+    level:    [63, 65]
+  17100850:
+    template: Marsh_Murre
+    region:   s_50
+    level:    [64, 66]
+  17100851:
+    template: Treant_Sapling_AS_CM
+    script:   Treant_Sapling
+    region:   s_50
+    level:    [61, 63]
+  17100852:
+    template: Chigoe_Small
+    script:   Chigoe
+    region:   s_50
+    level:    [64, 66]
+  17100853:
+    template: Chigoe_Small
+    script:   Chigoe
+    region:   s_50
+    level:    [64, 66]
+  17100854:
+    template: Puktrap
+    region:   s_54
+    level:    [64, 66]
+  17100855:
+    template: Puktrap
+    region:   s_54
+    level:    [64, 66]
+  17100856:
+    template: Caedarva_Leech
+    region:   s_54
+    level:    [63, 65]
+  17100857:
+    template: Marsh_Murre
+    region:   s_57
+    level:    [64, 66]
+  17100858:
+    template: Treant_Sapling_AS_CM
+    script:   Treant_Sapling
+    region:   s_57
+    level:    [61, 63]
+  17100859:
+    template: Puktrap
+    region:   s_59
+    level:    [64, 66]
+  17100860:
+    template: Puktrap
+    region:   s_59
+    level:    [64, 66]
+  17100861:
+    template: Water_Elemental
+    region:   s_59
+    level:    [70, 71]
+  17100862:
+    template: Marsh_Murre
+    region:   s_62
+    level:    [64, 66]
+  17100863:
+    template: Puktrap
+    region:   s_62
+    level:    [64, 66]
+  17100864:
+    template: Marsh_Murre
+    region:   s_64
+    level:    [64, 66]
+  17100865:
+    template: Puktrap
+    region:   s_64
+    level:    [64, 66]
+  17100866:
+    template: Puktrap
+    region:   region_158
+    level:    [64, 66]
+  17100867:
+    template: Puktrap
+    region:   region_159
+    level:    [64, 66]
+  17100868:
+    template: Caedarva_Leech
+    region:   s_68
+    level:    [63, 65]
+  17100869:
+    template: Caedarva_Leech
+    region:   se_69
+    level:    [63, 65]
+  17100870:
+    template: Wild_Karakul
+    region:   se_70
+    level:    [68, 70]
+  17100871:
+    template: Wild_Karakul
+    region:   s_71
+    level:    [68, 70]
+  17100872:
+    template: Wild_Karakul
+    region:   s_71
+    level:    [68, 70]
+  17100873:
+    template: Wild_Karakul
+    region:   s_73
+    level:    [68, 70]
+  17100874:
+    template: Wild_Karakul
+    region:   s_73
+    level:    [68, 70]
+  17100875:
+    template: Wild_Karakul
+    region:   se_75
+    level:    [68, 70]
+  17100876:
+    template: Wild_Karakul
+    region:   se_75
+    level:    [68, 70]
+  17100877:
+    template: Water_Elemental
+    region:   se_75
+    level:    [70, 71]
+  17100878:
+    template: Wild_Karakul
+    region:   s_78
+    level:    [68, 70]
+  17100879:
+    template: Wild_Karakul
+    region:   s_78
+    level:    [68, 70]
+  17100880:
+    template: Jnun_CM
+    script:   Jnun
+    region:   region_160
+    level:    [72, 73]
+  17100881:
+    template: Jnun_CM
+    script:   Jnun
+    region:   region_161
+    level:    [72, 73]
+  17100882:
+    template: Oil_Slick_CM
+    script:   Oil_Slick
+    region:   s_82
+    level:    [65, 67]
+  17100883:
+    template: Oil_Slick_CM
+    script:   Oil_Slick
+    region:   s_82
+    level:    [65, 67]
+  17100884:
+    template: Jnun_CM
+    script:   Jnun
+    region:   s_84
+    level:    [72, 73]
+  17100885:
+    template: Marsh_Murre
+    region:   s_85
+    level:    [66, 68]
+  17100886:
+    template: Mature_Treant
+    region:   s_86
+    level:    [70, 72]
+  17100887:
+    template: Treant_Sapling_AS_CM
+    script:   Treant_Sapling
+    region:   s_86
+    level:    [61, 63]
+  17100888:
+    template: Treant_Sapling_AS_CM
+    script:   Treant_Sapling
+    region:   s_86
+    level:    [61, 63]
+  17100889:
+    template: Wild_Karakul
+    region:   s_89
+    level:    [68, 70]
+  17100890:
+    template: Chigoe_Small
+    script:   Chigoe
+    region:   s_89
+    level:    [64, 66]
+  17100891:
+    template: Chigoe_Small
+    script:   Chigoe
+    region:   s_89
+    level:    [64, 66]
+  17100892:
+    template: Wild_Karakul
+    region:   s_92
+    level:    [68, 70]
+  17100893:
+    template: Chigoe_Small
+    script:   Chigoe
+    region:   s_92
+    level:    [64, 66]
+  17100894:
+    template: Chigoe_Small
+    script:   Chigoe
+    region:   s_92
+    level:    [65, 66]
+  17100895:
+    template: Orderly_Imp
+    region:   s_92
+    level:    [66, 68]
+  17100896:
+    template: Mature_Treant
+    region:   s_96
+    level:    [70, 72]
+  17100897:
+    template: Treant_Sapling_AS_CM
+    script:   Treant_Sapling
+    region:   s_96
+    level:    [61, 63]
+  17100898:
+    template: Treant_Sapling_AS_CM
+    script:   Treant_Sapling
+    region:   s_96
+    level:    [61, 63]
+  17100899:
+    template: Caedarva_Leech
+    region:   c_99
+    level:    [63, 65]
+  17100900:
+    template: Chigoe_Small
+    script:   Chigoe
+    region:   c_99
+    level:    [64, 66]
+  17100901:
+    template: Chigoe_Small
+    script:   Chigoe
+    region:   c_99
+    level:    [64, 66]
+  17100902:
+    template: Chigoe_Small
+    script:   Chigoe
+    region:   c_99
+    level:    [64, 66]
+  17100903:
+    template: Mature_Treant
+    region:   c_103
+    level:    [70, 72]
+  17100904:
+    template: Treant_Sapling_AS_CM
+    script:   Treant_Sapling
+    region:   c_103
+    level:    [61, 63]
+  17100905:
+    template: Treant_Sapling_AS_CM
+    script:   Treant_Sapling
+    region:   c_103
+    level:    [61, 63]
+  17100906:
+    template: Treant_Sapling_AS_CM
+    script:   Treant_Sapling
+    region:   c_106
+    level:    [61, 63]
+  17100907:
+    template: Treant_Sapling_AS_CM
+    script:   Treant_Sapling
+    region:   c_106
+    level:    [61, 63]
+  17100908:
+    template: Oil_Slick_CM
+    script:   Oil_Slick
+    region:   c_108
+    level:    [65, 67]
+  17100909:
+    template: Oil_Slick_CM
+    script:   Oil_Slick
+    region:   c_108
+    level:    [65, 67]
+  17100910:
+    template: Jnun_CM
+    script:   Jnun
+    region:   region_162
+    level:    [72, 73]
+  17100911:
+    template: Mature_Treant
+    region:   c_111
+    level:    [70, 72]
+  17100912:
+    template: Treant_Sapling_AS_CM
+    script:   Treant_Sapling
+    region:   c_111
+    level:    [61, 63]
+  17100913:
+    template: Mature_Treant
+    region:   c_113
+    level:    [70, 72]
+  17100914:
+    template: Treant_Sapling_AS_CM
+    script:   Treant_Sapling
+    region:   c_113
+    level:    [61, 63]
+  17100915:
+    template: Orderly_Imp
+    region:   c_115
+    level:    [66, 68]
+  17100916:
+    template: Mature_Treant
+    region:   c_115
+    level:    [70, 72]
+  17100917:
+    template: Treant_Sapling_AS_CM
+    script:   Treant_Sapling
+    region:   c_115
+    level:    [61, 63]
+  17100918:
+    template: Treant_Sapling_AS_CM
+    script:   Treant_Sapling
+    region:   c_115
+    level:    [61, 63]
+  17100919:
+    template: Lamia_Fatedealer
+    region:   c_119
+    level:    [74, 75]
+  17100920:
+    template: Reserve_Draugar_CM_blm
+    script:   Reserve_Draugar
+    region:   c_119
+    level:    [73, 74]
+  17100921:
+    template: Reserve_Draugar_CM_thf
+    script:   Reserve_Draugar
+    region:   c_119
+    level:    [73, 74]
+  17100922:
+    template: Mature_Treant
+    region:   c_119
+    level:    [70, 72]
+  17100923:
+    template: Lamia_Fatedealer
+    region:   c_123
+    level:    [74, 75]
+  17100924:
+    template: Reserve_Draugar_CM_blm
+    script:   Reserve_Draugar
+    region:   c_123
+    level:    [73, 74]
+  17100925:
+    template: Reserve_Draugar_CM_thf
+    script:   Reserve_Draugar
+    region:   c_123
+    level:    [73, 74]
+  17100926:
+    template: Marsh_Murre
+    region:   se_126
+    level:    [66, 68]
+  17100927:
+    template: Heraldic_Imp_CM
+    script:   Heraldic_Imp
+    region:   se_127
+    level:    [79, 81]
+  17100928:
+    template: Spongilla_Fly
+    region:   se_127
+    level:    [78, 79]
+  17100929:
+    template: Spongilla_Fly
+    region:   se_127
+    level:    [78, 79]
+  17100930:
+    template: Heraldic_Imp_CM
+    script:   Heraldic_Imp
+    region:   se_130
+    level:    [79, 81]
+  17100931:
+    template: Heraldic_Imp_CM
+    script:   Heraldic_Imp
+    region:   se_130
+    level:    [79, 81]
+  17100932:
+    template: Spongilla_Fly
+    region:   se_130
+    level:    [78, 79]
+  17100933:
+    template: Jnun_CM
+    script:   Jnun
+    region:   se_133
+    level:    [76, 77]
+  17100934:
+    template: Jnun_CM
+    script:   Jnun
+    region:   se_134
+    level:    [76, 77]
+  17100935:
+    template: Water_Elemental
+    region:   se_133
+    level:    [70, 71]
+  17100936:
+    template: Jnun_CM
+    script:   Jnun
+    region:   region_163
+    level:    [76, 77]
+  17100937:
+    template: Jnun_CM
+    script:   Jnun
+    region:   region_164
+    level:    [76, 77]
+  17100938:
+    template: Spongilla_Fly
+    region:   e_138
+    level:    [78, 79]
+  17100939:
+    template: Heraldic_Imp_CM
+    script:   Heraldic_Imp
+    region:   e_138
+    level:    [79, 81]
+  17100940:
+    template: Spongilla_Fly
+    region:   e_138
+    level:    [78, 79]
+  17100941:
+    template: Spongilla_Fly
+    region:   se_141
+    level:    [78, 79]
+  17100942:
+    template: Heraldic_Imp_CM
+    script:   Heraldic_Imp
+    region:   se_141
+    level:    [79, 81]
+  17100943:
+    template: Spongilla_Fly
+    region:   se_143
+    level:    [78, 79]
+  17100944:
+    template: Heraldic_Imp_CM
+    script:   Heraldic_Imp
+    region:   se_143
+    level:    [79, 81]
+  17100945:
+    template: Heraldic_Imp_CM
+    script:   Heraldic_Imp
+    region:   se_145
+    level:    [79, 81]
+  17100946:
+    template: Heraldic_Imp_CM
+    script:   Heraldic_Imp
+    region:   e_146
+    level:    [79, 81]
+  17100947:
+    template: Spongilla_Fly
+    region:   e_146
+    level:    [78, 79]
+  17100948:
+    template: Spongilla_Fly
+    region:   e_146
+    level:    [78, 79]
+  17100949:
+    template: Heraldic_Imp_CM
+    script:   Heraldic_Imp
+    region:   e_149
+    level:    [79, 81]
+  17100950:
+    template: Heraldic_Imp_CM
+    script:   Heraldic_Imp
+    region:   e_149
+    level:    [79, 81]
+  17100951:
+    template: Heraldic_Imp_CM
+    script:   Heraldic_Imp
+    region:   e_151
+    level:    [79, 81]
+  17100952:
+    template: Spongilla_Fly
+    region:   e_151
+    level:    [78, 79]
+  17100953:
+    template: Caedarva_Leech
+    region:   e_153
+    level:    [63, 65]
+  17100954:
+    template: Caedarva_Leech
+    region:   e_153
+    level:    [63, 65]
+  17100955:
+    template: Caedarva_Leech
+    region:   c_155
+    level:    [63, 65]
+  17100956:
+    template: Chigoe_Small
+    script:   Chigoe
+    region:   c_155
+    level:    [64, 66]
+  17100957:
+    template: Chigoe_Small
+    script:   Chigoe
+    region:   c_155
+    level:    [64, 66]
+  17100958:
+    template: Chigoe_Small
+    script:   Chigoe
+    region:   c_155
+    level:    [64, 66]
+  17100959:
+    template: Spongilla_Fly
+    region:   e_159
+    level:    [78, 79]
+  17100960:
+    template: Heraldic_Imp_CM
+    script:   Heraldic_Imp
+    region:   e_160
+    level:    [79, 81]
+  17100961:
+    template: Heraldic_Imp_CM
+    script:   Heraldic_Imp
+    region:   e_160
+    level:    [79, 81]
+  17100962:
+    template: Thunder_Elemental
+    region:   e_160
+    level:    [70, 71]
+  17100963:
+    template: Marsh_Murre
+    region:   s_163
+    level:    [64, 66]
+  17100964:
+    template: Heraldic_Imp_CM
+    script:   Heraldic_Imp
+    region:   e_164
+    level:    [79, 81]
+  17100965:
+    template: Mosshorn
+    region:   e_165
+    level:    [80, 81]
+  17100966:
+    template: Wild_Karakul
+    region:   e_165
+    level:    [68, 70]
+  17100967:
+    template: Mosshorn
+    region:   e_167
+    level:    [80, 81]
+  17100968:
+    template: Wild_Karakul
+    region:   e_167
+    level:    [68, 70]
+  17100969:
+    template: Elder_Treant
+    region:   e_169
+    level:    [80, 82]
+  17100970:
+    template: Elder_Treant
+    region:   e_170
+    level:    [80, 82]
+  17100971:
+    template: Mosshorn
+    region:   e_171
+    level:    [80, 81]
+  17100972:
+    template: Wild_Karakul
+    region:   e_171
+    level:    [68, 70]
+  17100973:
+    template: Mosshorn
+    region:   e_173
+    level:    [80, 81]
+  17100974:
+    template: Elder_Treant
+    region:   e_173
+    level:    [80, 82]
+  17100975:
+    template: Mosshorn
+    region:   e_175
+    level:    [80, 81]
+  17100976:
+    template: Elder_Treant
+    region:   e_175
+    level:    [80, 82]
+  17100977:
+    template: Treant_Sapling_AS_CM
+    script:   Treant_Sapling
+    region:   sw_177
+    level:    [61, 63]
+  17100978:
+    template: Treant_Sapling_AS_CM
+    script:   Treant_Sapling
+    region:   sw_177
+    level:    [61, 63]
+  17100979:
+    template: Marsh_Murre
+    region:   sw_177
+    level:    [64, 66]
+  17100980:
+    template: Caedarva_Leech
+    region:   sw_177
+    level:    [63, 65]
+  17100981:
+    template: Marsh_Murre
+    region:   sw_181
+    level:    [64, 66]
+  17100982:
+    template: Marsh_Murre
+    region:   sw_181
+    level:    [64, 66]
+  17100983:
+    template: Caedarva_Leech
+    region:   sw_181
+    level:    [63, 65]
+  17100984:
+    template: Marsh_Murre
+    region:   sw_184
+    level:    [64, 66]
+  17100985:
+    template: Marsh_Murre
+    region:   sw_184
+    level:    [64, 66]
+  17100986:
+    template: Treant_Sapling_AS_CM
+    script:   Treant_Sapling
+    region:   sw_184
+    level:    [61, 63]
+  17100987:
+    template: Treant_Sapling_AS_CM
+    script:   Treant_Sapling
+    region:   sw_184
+    level:    [61, 63]
+  17100988:
+    template: Marsh_Murre
+    region:   sw_188
+    level:    [64, 66]
+  17100989:
+    template: Marsh_Murre
+    region:   sw_189
+    level:    [65, 67]
+  17100990:
+    template: Qiqirn_Rock_Hound
+    region:   sw_190
+    level:    [67, 69]
+  17100991:
+    template: Guard_Skeleton_blm
+    script:   Guard_Skeleton
+    region:   sw_190
+    level:    [67, 69]
+  17100992:
+    template: Orderly_Imp
+    region:   region_165
+    level:    [66, 68]
+  17100993:
+    template: Marsh_Murre
+    region:   sw_193
+    level:    [65, 67]
+  17100994:
+    template: Qiqirn_Rock_Hound
+    region:   sw_194
+    level:    [67, 69]
+  17100995:
+    template: Guard_Skeleton_war
+    script:   Guard_Skeleton
+    region:   sw_194
+    level:    [67, 69]
+  17100996:
+    template: Qiqirn_Mireguide
+    region:   sw_196
+    level:    [67, 69]
+  17100997:
+    template: Qiqirn_Mine
+    level:    [75, 75]
+  17100998:
+    template: Guard_Skeleton_blm
+    script:   Guard_Skeleton
+    region:   sw_196
+    level:    [67, 69]
+  17100999:
+    template: Qiqirn_Rock_Hound
+    region:   region_166
+    level:    [67, 69]
+  17101000:
+    template: Guard_Skeleton_war
+    script:   Guard_Skeleton
+    region:   region_166
+    level:    [67, 69]
+  17101001:
+    template: Marsh_Murre
+    region:   sw_201
+    level:    [65, 67]
+  17101002:
+    template: Qiqirn_Mireguide
+    region:   sw_202
+    level:    [67, 69]
+  17101003:
+    template: Qiqirn_Mine
+    level:    [75, 75]
+  17101004:
+    template: Guard_Skeleton_blm
+    script:   Guard_Skeleton
+    region:   sw_202
+    level:    [67, 69]
+  17101005:
+    template: Marsh_Murre
+    region:   sw_205
+    level:    [65, 67]
+  17101006:
+    template: Marsh_Murre
+    region:   sw_206
+    level:    [65, 67]
+  17101007:
+    template: Qiqirn_Mireguide
+    region:   sw_207
+    level:    [67, 69]
+  17101008:
+    template: Qiqirn_Mine
+    level:    [75, 75]
+  17101009:
+    template: Guard_Skeleton_blm
+    script:   Guard_Skeleton
+    region:   sw_207
+    level:    [67, 69]
+  17101010:
+    template: Marsh_Murre
+    region:   sw_210
+    level:    [65, 67]
+  17101011:
+    template: Orderly_Imp
+    region:   sw_210
+    level:    [66, 68]
+  17101012:
+    template: Qiqirn_Mireguide
+    region:   sw_212
+    level:    [67, 69]
+  17101013:
+    template: Qiqirn_Mine
+    level:    [75, 75]
+  17101014:
+    template: Guard_Skeleton_blm
+    script:   Guard_Skeleton
+    region:   sw_212
+    level:    [67, 69]
+  17101015:
+    template: Marsh_Murre
+    region:   sw_215
+    level:    [65, 67]
+  17101016:
+    template: Chigoe_Small
+    script:   Chigoe
+    region:   region_167
+    level:    [64, 66]
+  17101017:
+    template: Chigoe_Small
+    script:   Chigoe
+    region:   region_167
+    level:    [64, 66]
+  17101018:
+    template: Orderly_Imp
+    region:   region_167
+    level:    [66, 68]
+  17101019:
+    template: Marsh_Murre
+    region:   sw_219
+    level:    [65, 67]
+  17101020:
+    template: Marsh_Murre
+    region:   sw_220
+    level:    [65, 67]
+  17101021:
+    template: Slough_Skua
+    region:   sw_221
+    level:    [88, 89]
+  17101022:
+    template: Slough_Skua
+    region:   sw_221
+    level:    [88, 89]
+  17101023:
+    template: Slough_Skua
+    region:   sw_221
+    level:    [88, 89]
+  17101024:
+    template: Slough_Skua
+    region:   sw_221
+    level:    [88, 89]
+  17101025:
+    template: Slough_Skua
+    region:   sw_225
+    level:    [88, 89]
+  17101026:
+    template: Slough_Skua
+    region:   sw_225
+    level:    [88, 89]
+  17101027:
+    template: Slough_Skua
+    region:   sw_225
+    level:    [88, 89]
+  17101028:
+    template: Slough_Skua
+    region:   sw_225
+    level:    [88, 89]
+  17101029:
+    template: Slough_Skua
+    region:   sw_225
+    level:    [88, 89]
+  17101030:
+    template: Slough_Skua
+    region:   sw_230
+    level:    [88, 89]
+  17101031:
+    template: Slough_Skua
+    region:   sw_230
+    level:    [88, 89]
+  17101032:
+    template: Slough_Skua
+    region:   sw_230
+    level:    [88, 89]
+  17101033:
+    template: Slough_Skua
+    region:   sw_230
+    level:    [88, 89]
+  17101034:
+    template: Slough_Skua
+    region:   sw_230
+    level:    [88, 89]
+  17101035:
+    template: Slough_Skua
+    region:   sw_230
+    level:    [88, 89]
+  17101036:
+    template: Ephramadian_Shade_mnk
+    script:   Ephramadian_Shade
+    region:   w_236
+    level:    [75, 77]
+  17101037:
+    template: Ephramadian_Shade_rng
+    script:   Ephramadian_Shade
+    region:   w_236
+    level:    [75, 77]
+  17101038:
+    template: Ephramadian_Shade_rdm
+    script:   Ephramadian_Shade
+    region:   w_238
+    level:    [75, 77]
+  17101039:
+    template: Ephramadian_Shade_cor
+    script:   Ephramadian_Shade
+    region:   w_239
+    level:    [75, 77]
+  17101040:
+    template: Ephramadian_Shade_mnk
+    script:   Ephramadian_Shade
+    region:   w_240
+    level:    [75, 77]
+  17101041:
+    template: Ephramadian_Shade_rdm
+    script:   Ephramadian_Shade
+    region:   w_241
+    level:    [75, 77]
+  17101042:
+    template: Ephramadian_Shade_rng
+    script:   Ephramadian_Shade
+    region:   w_241
+    level:    [75, 77]
+  17101043:
+    template: Jnun_CM
+    script:   Jnun
+    region:   w_243
+    level:    [75, 77]
+  17101044:
+    template: Jnun_CM
+    script:   Jnun
+    region:   region_168
+    level:    [75, 77]
+  17101045:
+    template: Ephramadian_Shade_cor
+    script:   Ephramadian_Shade
+    region:   w_245
+    level:    [75, 77]
+  17101046:
+    template: Ephramadian_Shade_mnk
+    script:   Ephramadian_Shade
+    region:   w_246
+    level:    [75, 77]
+  17101047:
+    template: Water_Elemental
+    region:   w_246
+    level:    [70, 71]
+  17101048:
+    template: Ephramadian_Shade_rdm
+    script:   Ephramadian_Shade
+    region:   w_248
+    level:    [75, 77]
+  17101049:
+    template: Ephramadian_Shade_rng
+    script:   Ephramadian_Shade
+    region:   w_249
+    level:    [75, 77]
+  17101050:
+    template: Ephramadian_Shade_cor
+    script:   Ephramadian_Shade
+    region:   region_169
+    level:    [75, 77]
+  17101051:
+    template: Ephramadian_Shade_mnk
+    script:   Ephramadian_Shade
+    region:   w_251
+    level:    [75, 77]
+  17101052:
+    template: Ephramadian_Shade_rdm
+    script:   Ephramadian_Shade
+    region:   w_251
+    level:    [75, 77]
+  17101053:
+    template: Ephramadian_Shade_rng
+    script:   Ephramadian_Shade
+    region:   w_253
+    level:    [75, 77]
+  17101054:
+    template: Ephramadian_Shade_cor
+    script:   Ephramadian_Shade
+    region:   w_253
+    level:    [75, 77]
+  17101055:
+    template: Guard_Bhoot
+    region:   w_255
+    level:    [81, 83]
+  17101056:
+    template: Dark_Elemental
+    region:   w_255
+    level:    [74, 76]
+  17101057:
+    template: Draugar_Servant_drg
+    script:   Draugar_Servant
+    region:   region_170
+    level:    [78, 80]
+  17101058:
+    template: Draugars_Wyvern
+    region:   w_258
+    level:    [74, 75]
+  17101059:
+    template: Draugar_Servant_drg
+    script:   Draugar_Servant
+    region:   w_258
+    level:    [78, 80]
+  17101060:
+    template: Lamia_Idolater_blm
+    script:   Lamia_Idolater
+    region:   w_258
+    level:    [79, 81]
+  17101061:
+    template: Draugar_Servant_thf
+    script:   Draugar_Servant
+    region:   w_261
+    level:    [78, 80]
+  17101062:
+    template: Draugar_Servant_drk
+    script:   Draugar_Servant
+    region:   w_261
+    level:    [78, 80]
+  17101063:
+    template: Lamia_Idolater_blm
+    script:   Lamia_Idolater
+    region:   w_263
+    level:    [79, 81]
+  17101064:
+    template: Lamia_Idolater_drk
+    script:   Lamia_Idolater
+    region:   w_263
+    level:    [79, 81]
+  17101065:
+    template: Heraldic_Imp_CM
+    script:   Heraldic_Imp
+    region:   w_263
+    level:    [79, 81]
+  17101066:
+    template: Jnun_CM
+    script:   Jnun
+    region:   region_171
+    level:    [75, 77]
+  17101067:
+    template: Jnun_CM
+    script:   Jnun
+    region:   region_172
+    level:    [75, 77]
+  17101068:
+    template: Jnun_CM
+    script:   Jnun
+    region:   w_268
+    level:    [75, 77]
+  17101069:
+    template: Oil_Slick_CM
+    script:   Oil_Slick
+    region:   w_268
+    level:    [67, 69]
+  17101070:
+    template: Oil_Slick_CM
+    script:   Oil_Slick
+    region:   w_268
+    level:    [67, 69]
+  17101071:
+    template: Lamia_Idolater_drk
+    script:   Lamia_Idolater
+    region:   w_271
+    level:    [79, 81]
+  17101072:
+    template: Lamia_Idolater_blm
+    script:   Lamia_Idolater
+    region:   w_272
+    level:    [79, 81]
+  17101073:
+    template: Lamia_Idolater_drk
+    script:   Lamia_Idolater
+    region:   w_272
+    level:    [79, 81]
+  17101074:
+    template: Water_Elemental
+    region:   w_272
+    level:    [70, 71]
+  17101075:
+    template: Draugars_Wyvern
+    region:   w_275
+    level:    [74, 75]
+  17101076:
+    template: Draugar_Servant_drg
+    script:   Draugar_Servant
+    region:   w_275
+    level:    [78, 80]
+  17101077:
+    template: Guard_Bhoot
+    region:   w_275
+    level:    [81, 83]
+  17101078:
+    template: Lamia_Idolater_drk
+    script:   Lamia_Idolater
+    region:   w_278
+    level:    [79, 81]
+  17101079:
+    template: Draugar_Servant_blm
+    script:   Draugar_Servant
+    region:   w_278
+    level:    [78, 80]
+  17101080:
+    template: Lamia_Toxophilite_CM
+    script:   Lamia_Toxophilite
+    region:   w_280
+    level:    [82, 83]
+  17101081:
+    template: Draugar_Servant_drk
+    script:   Draugar_Servant
+    region:   w_280
+    level:    [78, 80]
+  17101082:
+    template: Draugar_Servant_thf
+    script:   Draugar_Servant
+    region:   w_280
+    level:    [78, 80]
+  17101083:
+    template: Lamia_Idolater_blm
+    script:   Lamia_Idolater
+    region:   w_283
+    level:    [79, 81]
+  17101084:
+    template: Lamia_Idolater_drk
+    script:   Lamia_Idolater
+    region:   w_283
+    level:    [79, 81]
+  17101085:
+    template: Dark_Elemental
+    region:   w_283
+    level:    [74, 76]
+  17101086:
+    template: Lamia_Idolater_drk
+    script:   Lamia_Idolater
+    region:   w_286
+    level:    [79, 81]
+  17101087:
+    template: Lamia_Idolater_blm
+    script:   Lamia_Idolater
+    region:   w_287
+    level:    [79, 81]
+  17101088:
+    template: Lamia_Idolater_drk
+    script:   Lamia_Idolater
+    region:   w_288
+    level:    [79, 81]
+  17101089:
+    template: Lamia_Idolater_blm
+    script:   Lamia_Idolater
+    region:   w_289
+    level:    [79, 81]
+  17101090:
+    template: Lamia_Chaukidar
+    region:   w_290
+    level:    [82, 83]
+  17101091:
+    template: Lamia_Idolater_blm
+    script:   Lamia_Idolater
+    region:   w_291
+    level:    [79, 81]
+  17101092:
+    template: Lamia_Idolater_drk
+    script:   Lamia_Idolater
+    region:   w_291
+    level:    [79, 81]
+  17101093:
+    template: Lamia_Idolater_blm
+    script:   Lamia_Idolater
+    region:   w_293
+    level:    [79, 81]
+  17101094:
+    template: Lamia_Idolater_drk
+    script:   Lamia_Idolater
+    region:   w_293
+    level:    [79, 81]
+  17101095:
+    template: Heraldic_Imp_CM
+    script:   Heraldic_Imp
+    region:   w_293
+    level:    [79, 81]
+  17101096:
+    template: Lamia_Necromancer_CM
+    script:   Lamia_Necromancer
+    region:   w_296
+    level:    [82, 83]
+  17101097:
+    template: Lamia_Idolater_blm
+    script:   Lamia_Idolater
+    region:   w_296
+    level:    [79, 81]
+  17101098:
+    template: Lamia_Idolater_drk
+    script:   Lamia_Idolater
+    region:   w_296
+    level:    [79, 81]
+  17101099:
+    template: Aynu-Kaysey
+    script:   Aynu-kaysey
+    region:   w_296
+    level:    [82, 83]
+  17101100:
+    template: Vauxia_Fly
+    region:   w_300
+    level:    [87, 89]
+  17101101:
+    template: Vauxia_Fly
+    region:   w_300
+    level:    [87, 89]
+  17101102:
+    template: Vauxia_Fly
+    region:   w_300
+    level:    [87, 89]
+  17101103:
+    template: Vauxia_Fly
+    region:   w_303
+    level:    [87, 89]
+  17101104:
+    template: Vauxia_Fly
+    region:   w_303
+    level:    [87, 89]
+  17101105:
+    template: Vauxia_Fly
+    region:   w_303
+    level:    [87, 89]
+  17101106:
+    template: Vauxia_Fly
+    region:   w_306
+    level:    [87, 89]
+  17101107:
+    template: Vauxia_Fly
+    region:   w_306
+    level:    [87, 89]
+  17101108:
+    template: Vauxia_Fly
+    region:   w_306
+    level:    [87, 89]
+  17101109:
+    template: Vauxia_Fly
+    region:   w_309
+    level:    [87, 89]
+  17101110:
+    template: Vauxia_Fly
+    region:   w_309
+    level:    [87, 89]
+  17101111:
+    template: Vauxia_Fly
+    region:   w_309
+    level:    [87, 89]
+  17101112:
+    template: Vauxia_Fly
+    region:   w_312
+    level:    [87, 89]
+  17101113:
+    template: Vauxia_Fly
+    region:   w_312
+    level:    [87, 89]
+  17101114:
+    template: Vauxia_Fly
+    region:   w_312
+    level:    [87, 89]
+  17101115:
+    template: Vauxia_Fly
+    region:   w_290
+    level:    [87, 89]
+  17101116:
+    template: Vauxia_Fly
+    region:   w_290
+    level:    [87, 89]
+  17101117:
+    template: Vauxia_Fly
+    region:   w_290
+    level:    [87, 89]
+  17101118:
+    template: Lamia_Idolater_drk
+    script:   Lamia_Idolater
+    region:   w_318
+    level:    [79, 81]
+  17101119:
+    template: Ephramadian_Shade_mnk
+    script:   Ephramadian_Shade
+    region:   region_173
+    level:    [75, 77]
+  17101120:
+    template: Ephramadian_Shade_rdm
+    script:   Ephramadian_Shade
+    region:   nw_320
+    level:    [75, 77]
+  17101121:
+    template: Ephramadian_Shade_rng
+    script:   Ephramadian_Shade
+    region:   nw_321
+    level:    [75, 77]
+  17101122:
+    template: Ephramadian_Shade_cor
+    script:   Ephramadian_Shade
+    region:   nw_322
+    level:    [75, 77]
+  17101123:
+    template: Draugar_Servant_drk
+    script:   Draugar_Servant
+    region:   nw_323
+    level:    [78, 80]
+  17101124:
+    template: Draugar_Servant_thf
+    script:   Draugar_Servant
+    region:   nw_324
+    level:    [78, 80]
+  17101125:
+    template: Lamia_Toxophilite_CM
+    script:   Lamia_Toxophilite
+    region:   nw_325
+    level:    [82, 83]
+  17101126:
+    template: Draugar_Servant_drk
+    script:   Draugar_Servant
+    region:   nw_325
+    level:    [78, 80]
+  17101127:
+    template: Draugar_Servant_drg
+    script:   Draugar_Servant
+    region:   nw_325
+    level:    [78, 80]
+  17101128:
+    template: Draugars_Wyvern
+    region:   nw_328
+    level:    [74, 75]
+  17101129:
+    template: Draugar_Servant_drg
+    script:   Draugar_Servant
+    region:   nw_328
+    level:    [78, 80]
+  17101130:
+    template: Lamia_Chaukidar
+    region:   nw_330
+    level:    [82, 83]
+  17101131:
+    template: Lamia_Idolater_drk
+    script:   Lamia_Idolater
+    region:   nw_330
+    level:    [79, 81]
+  17101132:
+    template: Lamia_Idolater_drk
+    script:   Lamia_Idolater
+    region:   nw_330
+    level:    [79, 81]
+  17101133:
+    template: Lamia_Idolater_drk
+    script:   Lamia_Idolater
+    region:   nw_333
+    level:    [79, 81]
+  17101134:
+    template: Lamia_Idolater_drk
+    script:   Lamia_Idolater
+    region:   nw_334
+    level:    [79, 81]
+  17101135:
+    template: Lamia_Deathdancer
+    level:    [73, 75]
+  17101136:
+    template: Dark_Rider
+    at:       [322.703, -8.500, -440.885, 74]
+    level:    [95, 95]
+  17101137:
+    template: Dark_Bugler
+    at:       [499.695, -24.050, 2.663, 106]
+    level:    [76, 76]
+  17101138:
+    template: Dark_Bugler
+    at:       [472.333, -26.335, -12.995, 216]
+    level:    [76, 76]
+  17101139:
+    template: Dark_Bugler
+    at:       [415.727, -20.088, -126.116, 115]
+    level:    [76, 76]
+  17101140:
+    template: Dark_Esquire
+    at:       [390.531, -9.046, -217.579, 44]
+    level:    [76, 76]
+  17101141:
+    template: Dark_Esquire
+    at:       [484.556, -8.619, -275.598, 215]
+    level:    [76, 76]
+  17101142:
+    template: Dark_Esquire
+    at:       [332.531, -15.760, -404.727, 84]
+    level:    [76, 76]
+  17101143:
+    template: Peallaidh
+    region:   s_73
+    level:    [75, 75]
+  17101144:
+    template: Zikko
+    at:       [-613.174, 13.337, -180.725, 205]
+    level:    [80, 80]
+  17101145:
+    template: Caedarva_Toad
+    at:       [136.189, -0.100, -626.997, 240]
+    level:    [45, 45]
+  17101146:
+    template: Jazaraat
+    at:       [-388.900, 7.191, -570.690, 227]
+    level:    [67, 70]
+  17101147:
+    template: Ravin_Raven
+    level:    [63, 65]
+  17101148:
+    template: Lamia_No27
+    at:       [454.931, -7.000, -270.619, 104]
+    level:    [79, 81]
+  17101149:
+    template: Moshdahn
+    at:       [458.922, -7.000, -271.195, 254]
+    level:    [79, 81]
+  17101150:
+    template: Heraldic_Imp_CM
+    script:   Heraldic_Imp
+    region:   ne_350
+    level:    [80, 82]
+  17101151:
+    template: Heraldic_Imp_CM
+    script:   Heraldic_Imp
+    region:   ne_350
+    level:    [80, 82]
+  17101152:
+    template: Heraldic_Imp_CM
+    script:   Heraldic_Imp
+    region:   ne_350
+    level:    [80, 82]
+  17101153:
+    template: Soulflayer
+    region:   ne_350
+    level:    [82, 83]
+  17101154:
+    template: Soulflayer
+    region:   ne_350
+    level:    [82, 83]
+  17101155:
+    template: Heraldic_Imp_CM
+    script:   Heraldic_Imp
+    region:   ne_355
+    level:    [80, 82]
+  17101156:
+    template: Heraldic_Imp_CM
+    script:   Heraldic_Imp
+    region:   ne_355
+    level:    [80, 82]
+  17101157:
+    template: Soulflayer
+    region:   ne_355
+    level:    [82, 83]
+  17101158:
+    script: Vidhuwa_the_Wrathborn
+    region: ne_355
+  17101159:
+    template: Heraldic_Imp_CM
+    script:   Heraldic_Imp
+    region:   ne_359
+    level:    [80, 82]
+  17101160:
+    template: Heraldic_Imp_CM
+    script:   Heraldic_Imp
+    region:   ne_359
+    level:    [80, 82]
+  17101161:
+    template: Heraldic_Imp_CM
+    script:   Heraldic_Imp
+    region:   ne_359
+    level:    [80, 82]
+  17101162:
+    template: Soulflayer
+    region:   ne_359
+    level:    [82, 83]
+  17101163:
+    template: Heraldic_Imp_CM
+    script:   Heraldic_Imp
+    region:   ne_363
+    level:    [80, 82]
+  17101164:
+    template: Heraldic_Imp_CM
+    script:   Heraldic_Imp
+    region:   ne_363
+    level:    [80, 82]
+  17101165:
+    template: Soulflayer
+    region:   ne_365
+    level:    [82, 83]
+  17101166:
+    template: Heraldic_Imp_CM
+    script:   Heraldic_Imp
+    region:   ne_366
+    level:    [80, 82]
+  17101167:
+    template: Soulflayer
+    region:   ne_366
+    level:    [82, 83]
+  17101168:
+    template: Soulflayer
+    region:   ne_366
+    level:    [82, 83]
+  17101169:
+    template: Heraldic_Imp_CM
+    script:   Heraldic_Imp
+    region:   ne_369
+    level:    [80, 82]
+  17101170:
+    template: Heraldic_Imp_CM
+    script:   Heraldic_Imp
+    region:   ne_370
+    level:    [80, 82]
+  17101171:
+    template: Heraldic_Imp_CM
+    script:   Heraldic_Imp
+    region:   ne_370
+    level:    [80, 82]
+  17101172:
+    template: Heraldic_Imp_CM
+    script:   Heraldic_Imp
+    region:   ne_370
+    level:    [80, 82]
+  17101173:
+    template: Soulflayer
+    region:   ne_370
+    level:    [82, 83]
+  17101174:
+    template: Soulflayer
+    region:   ne_370
+    level:    [82, 83]
+  17101175:
+    template: Heraldic_Imp_CM
+    script:   Heraldic_Imp
+    region:   ne_375
+    level:    [80, 82]
+  17101176:
+    template: Heraldic_Imp_CM
+    script:   Heraldic_Imp
+    region:   ne_375
+    level:    [80, 82]
+  17101177:
+    template: Heraldic_Imp_CM
+    script:   Heraldic_Imp
+    region:   ne_375
+    level:    [80, 82]
+  17101178:
+    template: Soulflayer
+    region:   ne_375
+    level:    [82, 83]
+  17101179:
+    template: Soulflayer
+    region:   ne_375
+    level:    [82, 83]
+  17101180:
+    template: Heraldic_Imp_CM
+    script:   Heraldic_Imp
+    region:   ne_382
+    level:    [80, 82]
+  17101181:
+    template: Heraldic_Imp_CM
+    script:   Heraldic_Imp
+    region:   ne_382
+    level:    [80, 82]
+  17101182:
+    template: Heraldic_Imp_CM
+    script:   Heraldic_Imp
+    region:   ne_382
+    level:    [80, 82]
+  17101183:
+    template: Heraldic_Imp_CM
+    script:   Heraldic_Imp
+    region:   ne_382
+    level:    [80, 82]
+  17101184:
+    template: Soulflayer
+    region:   ne_382
+    level:    [82, 83]
+  17101185:
+    template: Soulflayer
+    region:   ne_382
+    level:    [82, 83]
+  17101186:
+    template: Soulflayer
+    region:   ne_382
+    level:    [82, 83]
+  17101187:
+    template: Soulflayer
+    region:   ne_387
+    level:    [82, 83]
+  17101188:
+    template: Heraldic_Imp_CM
+    script:   Heraldic_Imp
+    region:   ne_388
+    level:    [80, 82]
+  17101189:
+    template: Heraldic_Imp_CM
+    script:   Heraldic_Imp
+    region:   ne_388
+    level:    [80, 82]
+  17101190:
+    template: Soulflayer
+    region:   ne_388
+    level:    [82, 83]
+  17101191:
+    template: Heraldic_Imp_CM
+    script:   Heraldic_Imp
+    region:   ne_391
+    level:    [80, 82]
+  17101192:
+    template: Heraldic_Imp_CM
+    script:   Heraldic_Imp
+    region:   ne_391
+    level:    [80, 82]
+  17101193:
+    template: Heraldic_Imp_CM
+    script:   Heraldic_Imp
+    region:   ne_393
+    level:    [80, 82]
+  17101194:
+    template: Heraldic_Imp_CM
+    script:   Heraldic_Imp
+    region:   ne_393
+    level:    [80, 82]
+  17101195:
+    template: Heraldic_Imp_CM
+    script:   Heraldic_Imp
+    region:   ne_395
+    level:    [80, 82]
+  17101196:
+    template: Heraldic_Imp_CM
+    script:   Heraldic_Imp
+    region:   ne_393
+    level:    [80, 82]
+  17101197:
+    template: Khimaira
+    at:       [603.887, -16.140, 414.765, 255]
+    level:    [85, 85]
+  17101198:
+    template: Verdelet
+    at:       [417.020, -19.295, -69.990, 63]
+    level:    [85, 86]
+  17101199:
+    template: Tyger
+    at:       [-766.000, -12.000, 632.000, 239]
+    level:    [88, 90]
+  17101200:
+    template: Mahjlaef_the_Paintorn
+    at:       [695.369, -7.147, 527.646, 42]
+    level:    [83, 85]
+  17101201:
+    template: Experimental_Lamia
+    at:       [-773.369, -11.824, 322.298, 15]
+    level:    [82, 84]
+  17101202:
+    template: Merrow_Shadowdancer
+    at:       [-699.225, -3.760, 180.461, 106]
+    level:    [73, 75]
+  17101203:
+    template: Merrow_Typhoondancer
+    at:       [-701.965, 3.331, 147.010, 87]
+    level:    [73, 75]
+  17101204:
+    template: Merrow_Typhoondancer
+    at:       [-701.174, 0.354, 154.094, 212]
+    level:    [73, 75]
+  17101205:
+    template: Brekekekex
+    at:       [242.949, -4.942, -491.421, 66]
+    level:    [95, 96]
+  17101206:
+    template: Chorus_Toad
+    at:       [242.351, -4.750, -492.251, 47]
+    level:    [95, 96]
+  17101207:
+    template: Chorus_Toad
+    at:       [242.822, -4.750, -493.156, 169]
+    level:    [95, 96]
+  17101208:
+    template: Chorus_Toad
+    at:       [242.236, -4.750, -492.338, 35]
+    level:    [95, 96]
+  17101209:
+    template: Chorus_Toad
+    at:       [242.181, -4.750, -493.085, 225]
+    level:    [95, 96]
+  17101210:
+    template: Chorus_Toad
+    at:       [242.321, -4.750, -492.256, 44]
+    level:    [95, 96]
+  17101211:
+    template: Chorus_Toad
+    at:       [242.107, -4.750, -492.947, 237]
+    level:    [95, 96]
+  17101212:
+    template: Chorus_Toad
+    level:    [95, 96]
+  17101213:
+    template: Chorus_Toad
+    level:    [95, 96]
+  17101214:
+    template: Brekekekex
+    at:       [254.210, -2.500, -725.390, 152]
+    level:    [95, 96]
+  17101215:
+    template: Chorus_Toad
+    at:       [252.486, -2.000, -725.176, 254]
+    level:    [95, 96]
+  17101216:
+    template: Chorus_Toad
+    at:       [253.415, -2.000, -724.427, 50]
+    level:    [95, 96]
+  17101217:
+    template: Chorus_Toad
+    at:       [252.909, -2.000, -725.797, 226]
+    level:    [95, 96]
+  17101218:
+    template: Chorus_Toad
+    at:       [253.902, -2.217, -723.924, 70]
+    level:    [95, 96]
+  17101219:
+    template: Chorus_Toad
+    at:       [253.629, -2.000, -725.365, 196]
+    level:    [95, 96]
+  17101220:
+    template: Chorus_Toad
+    at:       [253.026, -2.000, -724.556, 30]
+    level:    [95, 96]
+  17101221:
+    template: Chorus_Toad
+    level:    [95, 96]
+  17101222:
+    template: Chorus_Toad
+    level:    [95, 96]
+  17101223:
+    template: Brekekekex
+    at:       [-314.613, -4.758, -748.020, 117]
+    level:    [95, 96]
+  17101224:
+    template: Chorus_Toad
+    at:       [-312.199, -4.565, -742.070, 14]
+    level:    [95, 96]
+  17101225:
+    template: Chorus_Toad
+    at:       [-311.661, -4.565, -741.758, 69]
+    level:    [95, 96]
+  17101226:
+    template: Chorus_Toad
+    at:       [-311.224, -4.565, -742.385, 138]
+    level:    [95, 96]
+  17101227:
+    template: Chorus_Toad
+    at:       [-312.098, -4.565, -741.923, 29]
+    level:    [95, 96]
+  17101228:
+    template: Chorus_Toad
+    at:       [-311.451, -4.565, -742.692, 169]
+    level:    [95, 96]
+  17101229:
+    template: Chorus_Toad
+    at:       [-312.191, -4.565, -742.064, 15]
+    level:    [95, 96]
+  17101230:
+    template: Chorus_Toad
+    level:    [95, 96]
+  17101231:
+    template: Chorus_Toad
+    level:    [95, 96]
+  17101232:
+    template: Shedu
+    level:    [99, 99]
+  17101233:
+    template: Shedu
+    at:       [591.048, -9.162, 316.739, 80]
+    level:    [99, 99]
+  17101234:
+    template: Shedu
+    level:    [99, 99]
+  17101235:
+    template: Awoken_Vampyr_Jarl
+    at:       [784.870, -12.750, 647.170, 11]
+    level:    [119, 119]
+  17101236:
+    template: Arisen_Soulflayer
+    at:       [756.689, -8.500, 640.703, 185]
+    level:    [139, 139]
+  17101237:
+    template: Descended_Winebibber
+    at:       [757.248, -8.500, 640.618, 108]
+    level:    [139, 139]
+  17101238:
+    template: Descended_Winebibber
+    at:       [754.117, -8.735, 641.438, 131]
+    level:    [139, 139]
+  17101239:
+    template: Descended_Winebibber
+    at:       [755.083, -8.614, 640.267, 157]
+    level:    [139, 139]
+  17101240:
+    template: Uran-Mafran
+    at:       [767.437, -8.894, 630.945, 94]
+    level:    [139, 139]
+  17101241:
+    template: Gloom_Phantom
+    at:       [-453.498, 7.810, -595.464, 94]
+    level:    [139, 139]
+  17101242:
+    template: Magh_Bihu
+    at:       [-454.717, 8.311, -594.995, 166]
+    level:    [139, 139]
+  17101243:
+    template: Dazbog
+    at:       [-452.832, 7.802, -596.548, 76]
+    level:    [139, 139]
+  17101244:
+    template: Mnejing
+    at:       [-453.315, 7.832, -598.658, 201]
+    level:    [139, 139]
+  17101245:
+    template: Locus_Imp
+    region:   ne_445
+    level:    [134, 136]
+  17101246:
+    template: Locus_Imp
+    region:   ne_445
+    level:    [134, 136]
+  17101247:
+    template: Locus_Imp
+    region:   ne_445
+    level:    [134, 136]
+  17101248:
+    template: Locus_Imp
+    region:   ne_445
+    level:    [134, 136]
+  17101249:
+    template: Locus_Imp
+    region:   ne_445
+    level:    [134, 136]
+  17101250:
+    template: Locus_Imp
+    region:   ne_445
+    level:    [134, 136]
+  17101251:
+    template: Locus_Imp
+    region:   ne_445
+    level:    [134, 136]
+  17101252:
+    template: Locus_Imp
+    region:   ne_445
+    level:    [134, 136]
+  17101253:
+    template: Locus_Imp
+    region:   ne_453
+    level:    [134, 136]
+  17101254:
+    template: Locus_Imp
+    region:   ne_453
+    level:    [134, 136]
+  17101255:
+    template: Locus_Imp
+    region:   ne_453
+    level:    [134, 136]
+  17101256:
+    template: Locus_Imp
+    region:   ne_453
+    level:    [134, 136]
+  17101257:
+    template: Locus_Imp
+    region:   ne_453
+    level:    [134, 136]
+  17101258:
+    template: Locus_Imp
+    region:   ne_453
+    level:    [134, 136]
+  17101259:
+    template: Locus_Imp
+    region:   ne_453
+    level:    [134, 136]
+  17101260:
+    template: Locus_Imp
+    region:   ne_453
+    level:    [134, 136]
+  17101261:
+    template: Locus_Imp
+    region:   ne_461
+    level:    [134, 136]
+  17101262:
+    template: Locus_Imp
+    region:   ne_461
+    level:    [134, 136]
+  17101263:
+    template: Locus_Imp
+    region:   ne_461
+    level:    [134, 136]
+  17101264:
+    template: Locus_Imp
+    region:   ne_461
+    level:    [134, 136]
+  17101265:
+    template: Locus_Imp
+    region:   ne_461
+    level:    [134, 136]
+  17101266:
+    template: Locus_Imp
+    region:   ne_461
+    level:    [134, 136]
+  17101267:
+    template: Locus_Imp
+    region:   ne_461
+    level:    [134, 136]
+  17101268:
+    template: Locus_Imp
+    region:   ne_461
+    level:    [134, 136]
+  17101269:
+    template: Locus_Imp
+    region:   ne_469
+    level:    [134, 136]
+  17101270:
+    template: Locus_Imp
+    region:   ne_469
+    level:    [134, 136]
+  17101271:
+    template: Locus_Imp
+    region:   ne_469
+    level:    [134, 136]
+  17101272:
+    template: Locus_Imp
+    region:   ne_469
+    level:    [134, 136]
+  17101273:
+    template: Locus_Imp
+    region:   ne_469
+    level:    [134, 136]
+  17101274:
+    template: Locus_Imp
+    region:   ne_469
+    level:    [134, 136]
+  17101275:
+    template: Locus_Imp
+    region:   ne_469
+    level:    [134, 136]
+  17101276:
+    template: Locus_Imp
+    region:   ne_469
+    level:    [134, 136]
+  17101277:
+    template: Locus_Imp
+    region:   ne_477
+    level:    [134, 136]
+  17101278:
+    template: Locus_Imp
+    region:   ne_477
+    level:    [134, 136]
+  17101279:
+    template: Locus_Imp
+    region:   ne_477
+    level:    [134, 136]
+  17101280:
+    template: Locus_Imp
+    region:   ne_477
+    level:    [134, 136]
+  17101281:
+    template: Locus_Imp
+    region:   ne_477
+    level:    [134, 136]
+  17101282:
+    template: Locus_Imp
+    region:   ne_477
+    level:    [134, 136]
+  17101283:
+    template: Locus_Imp
+    region:   ne_477
+    level:    [134, 136]
+  17101284:
+    template: Locus_Imp
+    region:   ne_477
+    level:    [134, 136]
+
+  17101420:
+    template: Beta_taka_Marsh_Murre
+    region:   s_16
+    level:    [64, 66]
+  17101421:
+    template: Beta_taka_Marsh_Murre
+    region:   s_16
+    level:    [64, 66]
+slots:
+  - members:
+      17101153: {} # Soulflayer
+      17101157: {} # Soulflayer
+  - members:
+      17101194: {} # Heraldic_Imp
+      17101196: {} # Heraldic_Imp

@@ -1,0 +1,385 @@
+# Set DEVTOOLS_IMAGE repo var to use a different devtools image. Default: ghcr.io/landsandboat/devtools:ubuntu
+
+name: PR Checks
+
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref || github.run_id }}
+  cancel-in-progress: true
+
+# # Available machines:
+# # https://github.com/actions/runner-images/tree/main
+jobs:
+  Sanity_Checks:
+    name: Sanity Checks
+    runs-on: ubuntu-latest
+    container:
+      image: ${{ vars.DEVTOOLS_IMAGE || 'ghcr.io/landsandboat/devtools:ubuntu' }}
+    defaults:
+      run:
+        shell: bash
+    steps:
+      # github.workspace is the workspace in the runner (/home/runner/work/server/server)
+      # $GITHUB_WORKSPACE is the workspace in the container (/__w/server/server)
+      - run: git config --global --add safe.directory $GITHUB_WORKSPACE
+
+      # Full history is only needed for the merge base; blobs are fetched on demand.
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+          filter: blob:none
+
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip setuptools wheel
+          python -m pip install --upgrade -r ./tools/requirements.txt
+
+      - name: Run checks
+        run: ./tools/ci/sanity_checks.sh origin/${{ github.event.pull_request.base.ref }}
+
+      - name: Add sanity checks report to summary
+        if: ${{ always() }}
+        run: tr -d '\r' < sanity_checks_summary.md >> $GITHUB_STEP_SUMMARY
+
+      - name: Upload changed files as artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: changed-files
+          path: changed-files.txt
+        continue-on-error: true
+
+  Lua_Language_Server:
+    name: Lua Language Server
+    needs: Sanity_Checks
+    runs-on: ubuntu-latest
+    container:
+        image: ${{ vars.DEVTOOLS_IMAGE || 'ghcr.io/landsandboat/devtools:ubuntu' }}
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - name: Download Changed Files
+        uses: actions/download-artifact@v8
+        with:
+          name: changed-files
+
+      - name: Check For Changed Lua Files
+        id: check-changes
+        run: |
+          mapfile -t changed_files < changed-files.txt
+          lua_changes=false
+          for changed_file in ${changed_files[@]}; do
+              if [[ $changed_file == scripts/**/*.lua || $changed_file == modules/**/*.lua ]]; then
+                lua_changes=true
+                break
+              fi
+          done
+          echo "lua_changes=$lua_changes" >> $GITHUB_OUTPUT
+
+      - run: git config --global --add safe.directory $GITHUB_WORKSPACE
+
+      - uses: actions/checkout@v6
+        if: ${{ steps.check-changes.outputs.lua_changes == 'true' }}
+        with:
+          fetch-depth: 0
+          filter: blob:none
+
+      - name: Install Python dependencies
+        if: ${{ steps.check-changes.outputs.lua_changes == 'true' }}
+        run: |
+          python -m pip install --upgrade pip setuptools wheel
+          python -m pip install --upgrade -r ./tools/requirements.txt
+
+      - name: Generate codegen Lua enums
+        if: ${{ steps.check-changes.outputs.lua_changes == 'true' }}
+        run: python -m tools.codegen "$RUNNER_TEMP/codegen-out"
+
+      - name: Run Lua Language Server
+        id: run_lls
+        if: ${{ steps.check-changes.outputs.lua_changes == 'true' }}
+        run: python ./tools/ci/lua_lang_server.py
+
+      - name: Summarize run
+        id: summarize_run
+        if: ${{ steps.check-changes.outputs.lua_changes == 'true' }}
+        run: |
+          found_issues=false
+          check_file=lua_lang_errors.txt
+          if [[ -f "$check_file" && -s "$check_file" ]]; then
+              found_issues=true
+              echo "## :x: Run Failed" >> $GITHUB_STEP_SUMMARY
+              echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
+              tr -d '\r' < "$check_file" >> $GITHUB_STEP_SUMMARY
+              echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
+              echo "" >> $GITHUB_STEP_SUMMARY
+          fi
+          if [[ "$found_issues" == "false" ]]; then
+              if [[ "${{ steps.run_lls.outcome }}" == "success" ]]; then
+                  echo "## :heavy_check_mark: All checks passed." >> $GITHUB_STEP_SUMMARY
+              else
+                  echo "## :x: Lua Language Server had errors, but no specific output was found." >> $GITHUB_STEP_SUMMARY
+                  echo "Check the logs step for details." >> $GITHUB_STEP_SUMMARY
+                  found_issues=true
+              fi
+          fi
+          echo "issues_found=$found_issues" >> $GITHUB_OUTPUT
+
+      - name: Fail Workflow if Checks Failed
+        if: ${{ steps.check-changes.outputs.lua_changes == 'true' && (steps.run_lls.outcome == 'failure' || steps.summarize_run.outputs.issues_found == 'true') }}
+        run: |
+          echo "Lua Language Server failed. See summary for details."
+          exit 1
+
+  Data_Validation:
+    needs: Sanity_Checks
+    name: Data validation
+    runs-on: ubuntu-latest
+    container:
+      image: ${{ vars.DEVTOOLS_IMAGE || 'ghcr.io/landsandboat/devtools:ubuntu' }}
+    defaults:
+      run:
+        shell: bash
+    env:
+      CPM_SOURCE_CACHE: /tmp/data-schema-cpm
+    steps:
+      - name: Download Changed Files
+        uses: actions/download-artifact@v8
+        with:
+          name: changed-files
+
+      - name: Check for data schema changes
+        id: changed
+        run: |
+          mapfile -t changed_files < changed-files.txt
+          touched=false
+          for changed_file in "${changed_files[@]}"; do
+            case "$changed_file" in
+              data/*|tools/codegen/*|src/map/data/*|src/common/enum_traits.h|*CMakeLists.txt)
+                touched=true
+                break
+                ;;
+            esac
+          done
+          echo "touched=$touched" >> "$GITHUB_OUTPUT"
+
+      - uses: actions/checkout@v6
+        if: steps.changed.outputs.touched == 'true'
+
+      - name: Install Python dependencies
+        if: steps.changed.outputs.touched == 'true'
+        run: python -m pip install --upgrade -r ./tools/requirements.txt
+
+      - name: Restore CPM source cache
+        if: steps.changed.outputs.touched == 'true'
+        uses: actions/cache@v5
+        with:
+          path: /tmp/data-schema-cpm
+          key: data-schema-cpm-${{ runner.os }}-${{ hashFiles('CMakeLists.txt', 'cmake/**', 'ext/CMakeLists.txt') }}
+          restore-keys: data-schema-cpm-${{ runner.os }}-
+
+      - name: Configure schema compiler
+        if: steps.changed.outputs.touched == 'true'
+        run: |
+          cmake -G Ninja -S . -B build-data-schema \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DPCH_ENABLE=OFF \
+            -DTRACY_ENABLE=OFF
+
+      - name: Generate and validate data schemas
+        if: steps.changed.outputs.touched == 'true'
+        run: cmake --build build-data-schema --target data_schema_check
+
+  Formatting:
+    needs: Sanity_Checks
+    name: Data formatting
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - name: Download Changed Files
+        uses: actions/download-artifact@v8
+        with:
+          name: changed-files
+
+      - name: Filter data/ changed files
+        id: changed
+        run: |
+          mapfile -t changed_files < changed-files.txt
+          yaml_files=()
+          other_files=()
+          for f in "${changed_files[@]}"; do
+            if [[ $f == data/*.yaml || $f == data/*.yml ]]; then
+              yaml_files+=("$f")
+            elif [[ $f == data/* ]]; then
+              other_files+=("$f")
+            fi
+          done
+          echo "yaml=${yaml_files[*]}" >> "$GITHUB_OUTPUT"
+          echo "other=${other_files[*]}" >> "$GITHUB_OUTPUT"
+          echo "Changed YAML: ${yaml_files[*]}"
+          echo "Changed other: ${other_files[*]}"
+
+      - uses: actions/checkout@v6
+        if: steps.changed.outputs.yaml != '' || steps.changed.outputs.other != ''
+
+      - name: Setup Python
+        if: steps.changed.outputs.yaml != ''
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.14"
+
+      - name: Install Python dependencies
+        if: steps.changed.outputs.yaml != ''
+        run: python -m pip install pyyaml ruamel.yaml
+
+      - name: Check YAML formatting
+        if: steps.changed.outputs.yaml != ''
+        run: python tools/yaml/format.py ${{ steps.changed.outputs.yaml }} --check
+
+      - name: Cache prettier results
+        if: steps.changed.outputs.other != ''
+        uses: actions/cache@v5
+        with:
+          path: /tmp/prettier-cache
+          key: prettier-cache-${{ hashFiles('data/**/*.json') }}
+          restore-keys: prettier-cache-
+
+      - name: Run prettier
+        if: steps.changed.outputs.other != ''
+        run: |
+          set +e
+          FAILED=$(npx --yes prettier@3 --cache --cache-strategy content --cache-location /tmp/prettier-cache --list-different ${{ steps.changed.outputs.other }})
+          set -e
+          if [ -z "$FAILED" ]; then
+            echo "All files use Prettier code style!"
+            exit 0
+          fi
+          echo "::group::Files needing reformat"
+          echo "$FAILED"
+          echo "::endgroup::"
+          echo "::group::Diff"
+          for f in $FAILED; do
+            diff -u "$f" <(npx --yes prettier@3 "$f") || true
+          done
+          echo "::endgroup::"
+          echo "Run \`npx prettier --write data\` locally to fix."
+          exit 1
+
+  Clang_Tidy:
+    needs: Sanity_Checks
+    name: Clang Tidy
+    uses: ./.github/workflows/runner_build.yml
+    with:
+      runner: ubuntu-26.04
+      compiler: clang
+      compiler_version: 22
+      build_type: Debug
+      build_modules: false
+      tracy: false
+      upload_artifact: false
+      clang_tidy: true
+      optional_build: true
+
+  Build:
+    needs: Sanity_Checks
+    name: ${{ matrix.runner && 'Build' || '' }} # GitHub Actions hack to hide matrix args
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - build_type: Debug
+            runner: windows-2025
+            compiler: msvc
+            build_modules: false
+          - build_type: Debug
+            runner: macos-26
+            compiler: appleClang
+            build_modules: false
+          - build_type: Debug
+            runner: ubuntu-26.04
+            compiler: gcc
+            compiler_version: 15
+            build_modules: false
+    uses: ./.github/workflows/runner_build.yml
+    with:
+      runner: ${{ matrix.runner }}
+      compiler: ${{ matrix.compiler }}
+      compiler_version: ${{ matrix.compiler_version }}
+      build_type: ${{ matrix.build_type }}
+      build_modules: ${{ matrix.build_modules }}
+      upload_artifact: true
+
+  # Compiles modules/*/cpp, which no other job builds. Uploads no artifact:
+  # REGISTER_CPP_MODULE is a static initializer, so a modules-enabled binary
+  # runs those modules regardless of init.txt and must not be tested against.
+  Modules_Build:
+    needs: Sanity_Checks
+    name: Modules Build
+    uses: ./.github/workflows/runner_build.yml
+    with:
+      runner: ubuntu-26.04
+      compiler: gcc
+      compiler_version: 15
+      build_type: Debug
+      build_modules: true
+      upload_artifact: false
+      optional_build: true
+
+  Test:
+    needs: Build
+    if: ${{ !cancelled() && needs.Build.result == 'success' }}
+    name: ${{ matrix.runner && 'Test' || '' }} # GitHub Actions hack to hide matrix args
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - runner: windows-2025
+            test_modules: false
+            multi_process: true
+            xi_test: true
+            startup_checks: true
+          - runner: macos-26
+            test_modules: false
+            multi_process: false
+            xi_test: true
+            startup_checks: true
+          - runner: ubuntu-26.04
+            test_modules: false
+            multi_process: false
+            xi_test: true
+            startup_checks: true
+    uses: ./.github/workflows/runner_test.yml
+    with:
+      runner: ${{ matrix.runner }}
+      test_modules: ${{ matrix.test_modules }}
+      multi_process: ${{ matrix.multi_process }}
+      xi_test: ${{ matrix.xi_test }}
+      startup_checks: ${{ matrix.startup_checks }}
+
+  # Docker_Build:
+  #   needs: Sanity_Checks
+  #   name: Build
+  #   uses: ./.github/workflows/docker_build.yml
+  #   with:
+  #     os: ubuntu
+  #     compiler: gcc14
+  #     build_type: Debug
+  #     build_modules: false
+  #     tracy: false
+  #     upload_artifact: true
+
+  # Docker_Test:
+  #   needs: Docker_Build
+  #   name: Test
+  #   uses: ./.github/workflows/docker_test.yml
+  #   with:
+  #     os: ubuntu
+  #     test_modules: false
+  #     multi_process: false

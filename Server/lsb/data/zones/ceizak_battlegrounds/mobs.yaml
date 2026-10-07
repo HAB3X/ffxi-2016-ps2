@@ -1,0 +1,2659 @@
+# yaml-language-server: $schema=../../schemas/mobs.schema.json
+
+templates:
+
+  Appetent_Umbril:
+    id:            5006
+    species:       umbril
+    skill_list_id: 337
+    attributes:
+      combat:
+        skill: staff
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 2565
+        entity_flags:  1153
+        animation_sub:    5
+        name_prefix:      2
+        hitbox:           6
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+        type:    [at_night]
+
+  Barnacled_Orobon:
+    id:            6964
+    species:       orobon
+    type:          [fished]
+    skill_list_id: 191
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 1729
+        entity_flags: 129
+      behaviors:
+        aggressive:     true
+        links:          true
+        true_detection: true
+      spawn:
+        type: [scripted]
+
+  Belaboring_Wasp:
+    id:            5009
+    species:       blue_bee
+    skill_list_id: 48
+    attributes:
+      combat:
+        skill: dagger
+      render:
+        look:
+          type:  standard
+          model: 1936
+        entity_flags:  641
+        animation_sub:   8
+        hitbox:          8
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   beehive_chip
+        - chance: uncommon
+          item:   pot_of_honey
+        - chance: rare
+          item:   insect_wing
+        - chance: very_rare
+          item:   giant_stinger
+        - chance: very_rare
+          item:   celadon_yggrete_rock
+      despoil:
+        beehive_chip:  0
+        giant_stinger: 0
+        pot_of_honey:  0
+
+  Bight_Uragnite:
+    id:            5002
+    species:       uragnite
+    skill_list_id: 251
+    attributes:
+      combat:
+        skill: scythe
+        delay: 290
+      render:
+        look:
+          type:  standard
+          model: 1361
+        entity_flags:  641
+        animation_sub:   4
+        hitbox:         10
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+
+  Blanched_Mandragora:
+    id:            5001
+    species:       mandragora
+    skill_list_id: 178
+    attributes:
+      combat:
+        skill: hand_to_hand
+        delay: 360
+      jobs: [mnk, mnk]
+      render:
+        look:
+          type:  standard
+          model: 300
+        entity_flags:  641
+        animation_sub:   8
+        hitbox:          6
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   two-leaf_mandragora_bud
+        - chance: rare
+          item:   celadon_yggrete_shard_ii
+        - chance: very_rare
+          item:   celadon_yggrete_rock
+      despoil:
+        two-leaf_mandragora_bud: 0
+        ball_of_saruta_cotton:   0
+
+  Bounding_Chapuli:
+    id:            4751
+    species:       chapuli
+    skill_list_id: 339
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 2545
+        entity_flags: 131
+        model_size:     1
+        hitbox:         8
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 19000
+
+  Careening_Twitherym:
+    id:            5007
+    species:       twitherym
+    skill_list_id: 338
+    attributes:
+      combat:
+        skill: staff
+      render:
+        look:
+          type:  standard
+          model: 2535
+        entity_flags: 129
+        name_prefix:   64
+        hitbox:         6
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: rare
+          item:   twitherym_wing
+        - chance: rare
+          item:   celadon_yggrete_shard_iii
+        - chance: very_rare
+          item:   celadon_yggrete_rock
+      despoil:
+        twitherym_wing: 0
+
+  Colkhab:
+    id:            4927
+    species:       bztavian
+    type:          [notorious]
+    skill_list_id: 456
+    attributes:
+      combat:
+        skill: dagger
+      resists:
+        dmg_physical:
+          piercing: 2500
+      render:
+        look:
+          type:  standard
+          model: 2500
+        entity_flags: 131
+        hitbox:        19
+      spawn:
+        type: [scripted]
+      stats:
+        mp: 9999
+
+  Colossal_Spider:
+    id:            5016
+    species:       attercop
+    skill_list_id: 236
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 312
+        entity_flags:  641
+        animation_sub:   8
+        hitbox:         11
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   spider_web
+        - chance: rare
+          item:   celadon_yggrete_shard_iv
+        - chance: very_rare
+          item:   celadon_yggrete_rock
+      despoil:
+        spool_of_rainbow_thread: 0
+        spider_web:              0
+
+  Cornered_Heartwing:
+    id:            5018
+    species:       heartwing
+    spell_list_id: 21
+    skill_list_id: 343
+    attributes:
+      combat:
+        skill: club
+      jobs: [blm, war]
+      render:
+        look:
+          type:  standard
+          model: 2575
+        entity_flags: 129
+        hitbox:         4
+      spawn:
+        respawn: 300
+
+  Deathmaw_Orobon:
+    id:            5004
+    species:       orobon
+    skill_list_id: 191
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 1729
+        entity_flags: 129
+        hitbox:        17
+      behaviors:
+        aggressive:     true
+        links:          true
+        true_detection: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: rare
+          item:   chunk_of_orobon_meat
+        - chance: rare
+          item:   celadon_yggrete_shard_ii
+        - chance: very_rare
+          item:   celadon_yggrete_rock
+      despoil:
+        orobon_lure:          0
+        chunk_of_orobon_meat: 0
+
+  Downy_Emerald:
+    id:            5017
+    species:       fly
+    skill_list_id: 113
+    attributes:
+      combat:
+        skill: polearm
+      render:
+        look:
+          type:  standard
+          model: 448
+        entity_flags: 641
+        hitbox:        12
+      behaviors:
+        links: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   insect_wing
+        - chance: rare
+          item:   celadon_yggrete_shard_iv
+        - chance: very_rare
+          item:   celadon_yggrete_rock
+      despoil:
+        insect_wing: 0
+
+  Fernfelling_Chapuli:
+    id:            5005
+    species:       chapuli
+    skill_list_id: 339
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 2545
+        entity_flags: 129
+        hitbox:         6
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   chapuli_wing
+        - chance: rare
+          item:   chapuli_horn
+        - chance: rare
+          item:   celadon_yggrete_shard_v
+        - chance: very_rare
+          item:   celadon_yggrete_rock
+      despoil:
+        chapuli_wing: 0
+        chapuli_horn: 0
+
+  Floodplain_Spider:
+    id:            4750
+    species:       spider
+    skill_list_id: 236
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 312
+        entity_flags:  643
+        animation_sub:   8
+        model_size:      1
+        hitbox:         13
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 19000
+
+  Fluffy_Sheep:
+    id:            5000
+    species:       sheep
+    skill_list_id: 226
+    attributes:
+      combat:
+        skill: club
+      render:
+        look:
+          type:  standard
+          model: 340
+        entity_flags:  129
+        animation_sub:  16
+        hitbox:         20
+      behaviors:
+        links: true
+      spawn:
+        respawn: 300
+
+  Frenzied_Mantis:
+    id:            5008
+    species:       green_mantid
+    spell_list_id: 21
+    skill_list_id: 340
+    attributes:
+      combat:
+        skill: staff
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 2104
+        entity_flags:  641
+        animation_sub:   8
+        hitbox:         17
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+      stats:
+        hp: 19000
+    loot:
+      drops:
+        - chance: rare
+          item:   mantid_foreleg
+        - chance: rare
+          item:   celadon_yggrete_shard_v
+        - chance: very_rare
+          item:   celadon_yggrete_rock
+
+  Irascible_Baelfyr:
+    id:            6696
+    species:       baelfyr
+    spell_list_id: 3
+    attributes:
+      combat:
+        skill: club
+      jobs: [rdm, whm]
+      render:
+        look:
+          type:  standard
+          model: 2149
+        entity_flags: 1153
+        hitbox:         15
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+        type:    [weather]
+
+  Knobby_Treant:
+    id:            5014
+    species:       treant
+    skill_list_id: 245
+    attributes:
+      combat:
+        skill: polearm
+      render:
+        look:
+          type:  standard
+          model: 388
+        entity_flags: 129
+        hitbox:        32
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   dryad_root
+        - chance: uncommon
+          item:   sprig_of_mistletoe
+        - chance: rare
+          item:   puffball
+        - chance: ultra_rare
+          item:   rosewood_log
+        - chance: very_rare
+          item:   celadon_yggrete_rock
+      despoil:
+        bag_of_vegetable_seeds: 0
+        treant_bulb:            0
+        bag_of_wildgrass_seeds: 0
+
+  Knotted_Root_YHG_CB:
+    id:           5064
+    display_name: Knotted_Root
+    species:      unclassified
+    type:         [event]
+    attributes:
+      combat:
+        delay: 32767
+      render:
+        look:
+          type:  standard
+          model: 1580
+        entity_flags:  641
+        animation_sub:   8
+        hitbox:         12
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 20000
+
+  Lavender_Twitherym:
+    id:            4749
+    species:       twitherym
+    skill_list_id: 338
+    attributes:
+      combat:
+        skill: staff
+      render:
+        look:
+          type:  standard
+          model: 2535
+        entity_flags: 131
+        name_prefix:   64
+        model_size:     1
+        hitbox:         8
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 19000
+
+  Lightfoot_Lapinion:
+    id:            4929
+    species:       rabbit
+    skill_list_id: 206
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 1937
+        entity_flags: 131
+        model_size:     1
+        hitbox:        12
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 15000
+
+  Longclaw_Raptor:
+    id:            5011
+    species:       raptor
+    skill_list_id: 210
+    attributes:
+      combat:
+        skill: scythe
+        delay: 220
+      jobs: [thf, thf]
+      render:
+        look:
+          type:  standard
+          model: 317
+        entity_flags: 129
+        hitbox:        16
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   raptor_skin
+        - chance: very_rare
+          item:   celadon_yggrete_rock
+      despoil:
+        raptor_skin: 0
+
+  Mastop:
+    id:            6912
+    species:       gnat
+    type:          [notorious]
+    spell_list_id: 509
+    skill_list_id: 2022
+    attributes:
+      combat:
+        skill: sword
+        delay: 225
+      jobs: [thf, rdm]
+      render:
+        look:
+          type:  standard
+          model: 2013
+        entity_flags: 159
+        name_prefix:   32
+        model_size:     3
+        hitbox:        13
+      behaviors:
+        aggressive:     true
+        links:          true
+        true_detection: true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 63000
+        mp:  9999
+
+  Mischievous_Leafkin:
+    id:            6922
+    species:       leafkin
+    skill_list_id: 455
+    attributes:
+      combat:
+        skill: polearm
+      render:
+        look:
+          type:  standard
+          model: 2530
+        entity_flags: 129
+        hitbox:         6
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+      stats:
+        hp: 20000
+
+  Molted_Mantis:
+    id:            6909
+    species:       green_mantid
+    type:          [notorious]
+    spell_list_id: 21
+    skill_list_id: 340
+    attributes:
+      combat:
+        skill: staff
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 2104
+        entity_flags:  643
+        animation_sub:   8
+        model_size:      1
+        hitbox:         20
+      behaviors:
+        aggressive:     true
+        true_detection: true
+      spawn:
+        type: [scripted]
+
+  Numbing_Blossom:
+    id:            5013
+    species:       unclassified
+    type:          [notorious]
+    skill_list_id: 341
+    attributes:
+      combat:
+        skill: scythe
+        delay: 32767
+      render:
+        look:
+          type:  standard
+          model: 2776
+        entity_flags:  641
+        animation_sub:   8
+        hitbox:          3
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+
+  Prosperous_Luckybug:
+    id:            6910
+    species:       ladybug
+    type:          [notorious]
+    skill_list_id: 170
+    attributes:
+      combat:
+        skill: scythe
+        delay: 220
+      jobs: [thf, thf]
+      resists:
+        dmg_physical:
+          piercing: 2500
+        rank_element:
+          ice:  4
+          dark: 4
+        rank_status:
+          paralyze:   4
+          bind:       4
+          dark_sleep: 4
+          blind:      4
+      render:
+        look:
+          type:  standard
+          model: 2019
+        entity_flags: 643
+        model_size:     1
+        hitbox:        10
+      behaviors:
+        aggressive:     true
+        true_detection: true
+      spawn:
+        type: [scripted]
+
+  Resplendent_Luckybug:
+    id:            5015
+    species:       luckybug
+    skill_list_id: 170
+    attributes:
+      combat:
+        skill: scythe
+        delay: 220
+      jobs: [thf, thf]
+      render:
+        look:
+          type:  standard
+          model: 2019
+        entity_flags: 641
+        hitbox:         8
+      behaviors:
+        aggressive:     true
+        true_detection: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   ladybug_wing
+        - chance: very_rare
+          item:   celadon_yggrete_rock
+      despoil:
+        ladybug_wing: 0
+
+  Sedge_Scorpion:
+    id:            5012
+    species:       scolopendrid
+    skill_list_id: 217
+    attributes:
+      combat:
+        skill: axe
+      render:
+        look:
+          type:  standard
+          model: 2107
+        entity_flags: 129
+        hitbox:        23
+      behaviors:
+        links: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   scorpion_claw
+        - chance: uncommon
+          item:   scorpion_shell
+        - chance: very_rare
+          item:   celadon_yggrete_rock
+      despoil:
+        scorpion_shell: 0
+        scorpion_claw:  0
+
+  Supernal_Chapuli:
+    id:            4863
+    species:       chapuli
+    type:          [notorious]
+    skill_list_id: 339
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 2545
+        entity_flags: 135
+        model_size:     3
+        hitbox:        11
+      behaviors:
+        aggressive:     true
+        true_detection: true
+      spawn:
+        type: [scripted]
+
+  Taxet:
+    id:            4864
+    species:       coral_wamoura
+    type:          [notorious]
+    skill_list_id: 253
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 1809
+        entity_flags: 159
+        name_prefix:   32
+        model_size:     3
+        hitbox:        27
+      behaviors:
+        aggressive:     true
+        links:          true
+        true_detection: true
+      spawn:
+        type: [scripted]
+
+  Transcendent_Scorpion:
+    id:            6911
+    species:       scorpion
+    type:          [notorious]
+    skill_list_id: 2020
+    attributes:
+      combat:
+        skill: axe
+      jobs: [war, sam]
+      render:
+        look:
+          type:  standard
+          model: 2107
+        entity_flags: 135
+        model_size:     3
+        hitbox:        39
+      behaviors:
+        aggressive:     true
+        links:          true
+        true_detection: true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 96500
+
+  Truculent_Mantis:
+    id:            6965
+    species:       green_mantid
+    type:          [notorious]
+    skill_list_id: 340
+    attributes:
+      combat:
+        skill: staff
+      render:
+        look:
+          type:  standard
+          model: 2104
+        entity_flags:  645
+        animation_sub:   8
+        model_size:      2
+        hitbox:         22
+      behaviors:
+        aggressive:     true
+        links:          true
+        true_detection: true
+      spawn:
+        type: [scripted]
+
+  Twigtrip_Lapinion:
+    id:            5003
+    species:       lapinion
+    skill_list_id: 206
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 1937
+        entity_flags: 129
+        hitbox:        11
+      behaviors:
+        links: true
+      spawn:
+        respawn: 300
+
+  Unbridled_Ungeweder:
+    id:            2245
+    species:       ungeweder
+    spell_list_id: 3
+    skill_list_id: 105
+    attributes:
+      combat:
+        skill: club
+      jobs: [rdm, whm]
+      render:
+        look:
+          type:  standard
+          model: 2150
+        entity_flags:  1153
+        animation_sub:   16
+        hitbox:          15
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+        type:    [weather]
+
+  Undergrowth_Hornet:
+    id:            5010
+    species:       pephredo
+    skill_list_id: 48
+    attributes:
+      combat:
+        skill: axe
+      render:
+        look:
+          type:  standard
+          model: 273
+        entity_flags:  1665
+        animation_sub:    8
+        hitbox:           8
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   beehive_chip
+        - chance: uncommon
+          item:   pot_of_honey
+        - chance: rare
+          item:   insect_wing
+        - chance: very_rare
+          item:   giant_stinger
+        - chance: very_rare
+          item:   celadon_yggrete_rock
+      despoil:
+        beehive_chip:  0
+        giant_stinger: 0
+        pot_of_honey:  0
+
+  Unfettered_Twitherym:
+    id:            4862
+    species:       twitherym
+    spell_list_id: 508
+    skill_list_id: 2017
+    attributes:
+      combat:
+        skill: staff
+      jobs: [rdm, blm]
+      render:
+        look:
+          type:  standard
+          model: 2535
+        entity_flags:  1159
+        animation_sub:    5
+        name_vis:         4
+        name_prefix:     64
+        model_size:       3
+        hitbox:          11
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 60000
+        mp:  9999
+
+  Velkk_Torturer:
+    id:            5019
+    species:       blue_velkk
+    skill_list_id: 342
+    attributes:
+      combat:
+        skill: katana
+        delay: 280
+      jobs: [thf, thf]
+      render:
+        look:
+          type:  standard
+          model: 2520
+        entity_flags: 129
+        hitbox:        10
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   velkk_necklace
+        - chance: very_rare
+          item:   celadon_yggrete_rock
+      despoil:
+        velkk_necklace: 0
+        velkk_mask:     0
+
+  Waggling_Wasp:
+    id:            5649
+    species:       yellow_bee
+    skill_list_id: 48
+    attributes:
+      combat:
+        skill: axe
+      render:
+        look:
+          type:  standard
+          model: 273
+        entity_flags:  641
+        animation_sub:   8
+        model_size:      1
+        hitbox:         10
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 15000
+
+  Waggling_Wasp_Small:
+    id:            7195
+    display_name:  Waggling_Wasp
+    species:       yellow_bee
+    skill_list_id: 48
+    attributes:
+      combat:
+        skill: axe
+      render:
+        look:
+          type:  standard
+          model: 273
+        entity_flags:  641
+        animation_sub:   8
+        hitbox:          8
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 15000
+
+  Wasp_Nest:
+    id:      4798
+    species: unclassified
+    type:    [event]
+    attributes:
+      combat:
+        delay: 32767
+      render:
+        look:
+          type:  standard
+          model: 2781
+        entity_flags:  129
+        animation_sub:  16
+        hitbox:          4
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 19000
+
+spawns:
+  17846273:
+    script: Crusty_Crab
+    at:     [1.000, 1.000, 1.000]
+  17846274:
+    script: Crusty_Crab
+    at:     [1.000, 1.000, 1.000]
+  17846275:
+    script: Crusty_Crab
+    at:     [1.000, 1.000, 1.000]
+  17846276:
+    script: Crusty_Crab
+    at:     [1.000, 1.000, 1.000]
+  17846277:
+    template: Barnacled_Orobon
+    at:       [1.000, 1.000, 1.000]
+  17846278:
+    template: Fluffy_Sheep
+    region:   ne_6
+    level:    [100, 101]
+  17846279:
+    template: Fluffy_Sheep
+    region:   ne_6
+    level:    [100, 101]
+  17846280:
+    template: Fluffy_Sheep
+    region:   ne_8
+    level:    [100, 101]
+  17846281:
+    template: Fluffy_Sheep
+    region:   ne_8
+    level:    [100, 101]
+  17846282:
+    template: Fluffy_Sheep
+    region:   ne_10
+    level:    [100, 101]
+  17846283:
+    template: Fluffy_Sheep
+    region:   ne_10
+    level:    [100, 101]
+  17846284:
+    template: Irascible_Baelfyr
+    at:       [317.910, -0.490, 278.664, 208]
+    level:    [100, 101]
+  17846285:
+    template: Blanched_Mandragora
+    region:   e_13
+    level:    [100, 101]
+  17846286:
+    template: Blanched_Mandragora
+    region:   e_13
+    level:    [100, 101]
+  17846287:
+    template: Blanched_Mandragora
+    region:   e_15
+    level:    [100, 101]
+  17846288:
+    template: Blanched_Mandragora
+    region:   e_15
+    level:    [100, 101]
+  17846289:
+    template: Blanched_Mandragora
+    region:   e_17
+    level:    [100, 101]
+  17846290:
+    template: Blanched_Mandragora
+    region:   e_17
+    level:    [100, 101]
+  17846291:
+    template: Bight_Uragnite
+    region:   e_19
+    level:    [100, 101]
+  17846292:
+    template: Bight_Uragnite
+    region:   e_19
+    level:    [100, 101]
+  17846293:
+    template: Bight_Uragnite
+    region:   e_21
+    level:    [100, 101]
+  17846294:
+    template: Bight_Uragnite
+    region:   e_21
+    level:    [100, 101]
+  17846295:
+    template: Twigtrip_Lapinion
+    region:   e_23
+    level:    [100, 101]
+  17846296:
+    template: Twigtrip_Lapinion
+    region:   e_23
+    level:    [100, 101]
+  17846297:
+    template: Twigtrip_Lapinion
+    region:   e_23
+    level:    [100, 101]
+  17846298:
+    template: Twigtrip_Lapinion
+    region:   e_26
+    level:    [100, 101]
+  17846299:
+    template: Twigtrip_Lapinion
+    region:   e_26
+    level:    [100, 101]
+  17846300:
+    template: Irascible_Baelfyr
+    at:       [204.830, -0.218, 87.517, 220]
+    level:    [100, 101]
+  17846301:
+    template: Blanched_Mandragora
+    region:   e_29
+    level:    [100, 101]
+  17846302:
+    template: Blanched_Mandragora
+    region:   e_29
+    level:    [100, 101]
+  17846303:
+    template: Blanched_Mandragora
+    region:   e_29
+    level:    [100, 101]
+  17846304:
+    template: Blanched_Mandragora
+    region:   e_32
+    level:    [100, 101]
+  17846305:
+    template: Blanched_Mandragora
+    region:   e_32
+    level:    [100, 101]
+  17846306:
+    template: Blanched_Mandragora
+    region:   e_32
+    level:    [100, 101]
+  17846307:
+    template: Blanched_Mandragora
+    region:   e_35
+    level:    [100, 101]
+  17846308:
+    template: Blanched_Mandragora
+    region:   e_35
+    level:    [100, 101]
+  17846309:
+    template: Blanched_Mandragora
+    region:   e_35
+    level:    [100, 101]
+  17846310:
+    template: Blanched_Mandragora
+    region:   e_38
+    level:    [100, 101]
+  17846311:
+    template: Blanched_Mandragora
+    region:   e_38
+    level:    [100, 101]
+  17846312:
+    template: Blanched_Mandragora
+    region:   e_38
+    level:    [100, 101]
+  17846313:
+    template: Deathmaw_Orobon
+    region:   e_41
+    level:    [100, 102]
+  17846314:
+    template: Deathmaw_Orobon
+    region:   e_41
+    level:    [100, 102]
+  17846315:
+    template: Deathmaw_Orobon
+    region:   e_43
+    level:    [100, 102]
+  17846316:
+    template: Fernfelling_Chapuli
+    region:   e_44
+    level:    [100, 101]
+  17846317:
+    template: Fernfelling_Chapuli
+    region:   e_44
+    level:    [100, 101]
+  17846318:
+    template: Appetent_Umbril
+    region:   e_44
+    level:    [100, 101]
+  17846319:
+    template: Fernfelling_Chapuli
+    region:   e_47
+    level:    [100, 101]
+  17846320:
+    template: Fernfelling_Chapuli
+    region:   e_47
+    level:    [100, 101]
+  17846321:
+    template: Appetent_Umbril
+    region:   e_47
+    level:    [100, 101]
+  17846322:
+    template: Blanched_Mandragora
+    region:   se_50
+    level:    [100, 101]
+  17846323:
+    template: Blanched_Mandragora
+    region:   se_50
+    level:    [100, 101]
+  17846324:
+    template: Blanched_Mandragora
+    region:   se_52
+    level:    [100, 101]
+  17846325:
+    template: Blanched_Mandragora
+    region:   se_52
+    level:    [100, 101]
+  17846326:
+    template: Careening_Twitherym
+    region:   se_54
+    level:    [100, 101]
+  17846327:
+    template: Careening_Twitherym
+    region:   se_54
+    level:    [100, 101]
+  17846328:
+    template: Careening_Twitherym
+    region:   se_56
+    level:    [100, 101]
+  17846329:
+    template: Careening_Twitherym
+    region:   se_56
+    level:    [100, 101]
+  17846330:
+    template: Careening_Twitherym
+    region:   se_58
+    level:    [100, 101]
+  17846331:
+    template: Careening_Twitherym
+    region:   se_58
+    level:    [100, 101]
+  17846332:
+    template: Appetent_Umbril
+    region:   se_58
+    level:    [100, 101]
+  17846333:
+    template: Careening_Twitherym
+    region:   s_61
+    level:    [100, 101]
+  17846334:
+    template: Careening_Twitherym
+    region:   s_61
+    level:    [100, 101]
+  17846335:
+    template: Twigtrip_Lapinion
+    region:   s_61
+    level:    [100, 101]
+  17846336:
+    template: Twigtrip_Lapinion
+    region:   s_61
+    level:    [100, 101]
+  17846337:
+    template: Unbridled_Ungeweder
+    region:   s_61
+    level:    [100, 101]
+  17846338:
+    template: Careening_Twitherym
+    region:   s_66
+    level:    [100, 101]
+  17846339:
+    template: Careening_Twitherym
+    at:       [8.217, 0.003, -288.120, 159]
+    level:    [100, 101]
+  17846340:
+    template: Twigtrip_Lapinion
+    region:   s_66
+    level:    [100, 101]
+  17846341:
+    template: Twigtrip_Lapinion
+    region:   s_66
+    level:    [100, 101]
+  17846342:
+    template: Unbridled_Ungeweder
+    region:   s_66
+    level:    [100, 101]
+  17846343:
+    template: Fernfelling_Chapuli
+    region:   c_71
+    level:    [100, 101]
+  17846344:
+    template: Fernfelling_Chapuli
+    region:   c_71
+    level:    [100, 101]
+  17846345:
+    template: Fernfelling_Chapuli
+    region:   c_73
+    level:    [100, 101]
+  17846346:
+    template: Fernfelling_Chapuli
+    region:   c_73
+    level:    [100, 101]
+  17846347:
+    template: Careening_Twitherym
+    region:   e_75
+    level:    [100, 101]
+  17846348:
+    template: Careening_Twitherym
+    region:   e_75
+    level:    [100, 101]
+  17846349:
+    template: Careening_Twitherym
+    region:   e_75
+    level:    [100, 101]
+  17846350:
+    template: Appetent_Umbril
+    region:   e_75
+    level:    [100, 101]
+  17846351:
+    template: Fernfelling_Chapuli
+    region:   c_79
+    level:    [100, 101]
+  17846352:
+    template: Fernfelling_Chapuli
+    region:   c_79
+    level:    [100, 101]
+  17846353:
+    template: Careening_Twitherym
+    region:   c_79
+    level:    [100, 101]
+  17846354:
+    template: Fernfelling_Chapuli
+    region:   c_82
+    level:    [100, 101]
+  17846355:
+    template: Fernfelling_Chapuli
+    region:   c_82
+    level:    [100, 101]
+  17846356:
+    template: Careening_Twitherym
+    region:   c_82
+    level:    [100, 101]
+  17846357:
+    template: Careening_Twitherym
+    region:   c_85
+    level:    [100, 101]
+  17846358:
+    template: Careening_Twitherym
+    region:   c_85
+    level:    [100, 101]
+  17846359:
+    template: Fernfelling_Chapuli
+    region:   c_85
+    level:    [100, 101]
+  17846360:
+    template: Frenzied_Mantis
+    region:   c_85
+    level:    [100, 103]
+  17846361:
+    template: Careening_Twitherym
+    region:   c_89
+    level:    [100, 101]
+  17846362:
+    template: Careening_Twitherym
+    region:   c_89
+    level:    [100, 101]
+  17846363:
+    template: Fernfelling_Chapuli
+    region:   c_89
+    level:    [100, 101]
+  17846364:
+    template: Twigtrip_Lapinion
+    region:   c_92
+    level:    [100, 101]
+  17846365:
+    template: Twigtrip_Lapinion
+    region:   c_92
+    level:    [100, 101]
+  17846366:
+    template: Twigtrip_Lapinion
+    region:   c_92
+    level:    [100, 101]
+  17846367:
+    template: Twigtrip_Lapinion
+    region:   c_95
+    level:    [100, 101]
+  17846368:
+    template: Twigtrip_Lapinion
+    region:   c_95
+    level:    [100, 101]
+  17846369:
+    template: Twigtrip_Lapinion
+    region:   c_95
+    level:    [100, 101]
+  17846370:
+    template: Appetent_Umbril
+    at:       [-139.100, 2.883, -103.730, 77]
+    level:    [100, 101]
+  17846371:
+    template: Careening_Twitherym
+    region:   s_99
+    level:    [100, 101]
+  17846372:
+    template: Careening_Twitherym
+    region:   s_99
+    level:    [100, 101]
+  17846373:
+    template: Careening_Twitherym
+    region:   s_99
+    level:    [100, 101]
+  17846374:
+    template: Careening_Twitherym
+    region:   sw_102
+    level:    [100, 101]
+  17846375:
+    template: Careening_Twitherym
+    region:   sw_102
+    level:    [100, 101]
+  17846376:
+    template: Careening_Twitherym
+    region:   sw_102
+    level:    [100, 101]
+  17846377:
+    template: Frenzied_Mantis
+    at:       [-248.500, -0.172, -278.200, 85]
+    level:    [100, 103]
+  17846378:
+    template: Careening_Twitherym
+    region:   sw_106
+    level:    [100, 101]
+  17846379:
+    template: Careening_Twitherym
+    region:   sw_106
+    level:    [100, 101]
+  17846380:
+    template: Careening_Twitherym
+    region:   sw_106
+    level:    [100, 101]
+  17846381:
+    template: Frenzied_Mantis
+    region:   sw_106
+    level:    [100, 103]
+  17846382:
+    template: Fernfelling_Chapuli
+    region:   sw_110
+    level:    [100, 101]
+  17846383:
+    template: Appetent_Umbril
+    region:   sw_110
+    level:    [100, 101]
+  17846384:
+    template: Fernfelling_Chapuli
+    region:   sw_112
+    level:    [100, 101]
+  17846385:
+    template: Fernfelling_Chapuli
+    region:   sw_112
+    level:    [100, 101]
+  17846386:
+    template: Frenzied_Mantis
+    region:   sw_112
+    level:    [100, 103]
+  17846387:
+    template: Fernfelling_Chapuli
+    region:   sw_115
+    level:    [100, 101]
+  17846388:
+    template: Fernfelling_Chapuli
+    region:   sw_115
+    level:    [100, 101]
+  17846389:
+    template: Frenzied_Mantis
+    region:   sw_115
+    level:    [100, 103]
+  17846390:
+    template: Fernfelling_Chapuli
+    region:   s_118
+    level:    [100, 101]
+  17846391:
+    template: Fernfelling_Chapuli
+    region:   s_118
+    level:    [100, 101]
+  17846392:
+    template: Frenzied_Mantis
+    at:       [-227.600, 0.662, -343.460, 206]
+    level:    [100, 103]
+  17846393:
+    template: Twigtrip_Lapinion
+    region:   s_121
+    level:    [100, 101]
+  17846394:
+    template: Twigtrip_Lapinion
+    region:   s_121
+    level:    [100, 101]
+  17846395:
+    template: Appetent_Umbril
+    region:   s_121
+    level:    [100, 101]
+  17846396:
+    template: Twigtrip_Lapinion
+    region:   s_124
+    level:    [100, 101]
+  17846397:
+    template: Twigtrip_Lapinion
+    region:   s_124
+    level:    [100, 101]
+  17846398:
+    template: Twigtrip_Lapinion
+    region:   s_124
+    level:    [100, 101]
+  17846399:
+    template: Frenzied_Mantis
+    at:       [-115.900, -0.497, -360.410, 135]
+    level:    [100, 103]
+  17846400:
+    template: Twigtrip_Lapinion
+    region:   s_128
+    level:    [100, 101]
+  17846401:
+    template: Twigtrip_Lapinion
+    region:   s_128
+    level:    [100, 101]
+  17846402:
+    template: Twigtrip_Lapinion
+    region:   s_128
+    level:    [100, 101]
+  17846403:
+    template: Frenzied_Mantis
+    region:   s_128
+    level:    [100, 103]
+  17846404:
+    template: Twigtrip_Lapinion
+    region:   s_132
+    level:    [100, 101]
+  17846405:
+    template: Twigtrip_Lapinion
+    region:   s_132
+    level:    [100, 101]
+  17846406:
+    template: Twigtrip_Lapinion
+    region:   s_132
+    level:    [100, 101]
+  17846407:
+    template: Fernfelling_Chapuli
+    region:   s_135
+    level:    [100, 101]
+  17846408:
+    template: Careening_Twitherym
+    region:   s_135
+    level:    [100, 101]
+  17846409:
+    template: Careening_Twitherym
+    region:   s_135
+    level:    [100, 101]
+  17846410:
+    template: Fernfelling_Chapuli
+    region:   s_138
+    level:    [100, 101]
+  17846411:
+    template: Careening_Twitherym
+    region:   s_138
+    level:    [100, 101]
+  17846412:
+    template: Careening_Twitherym
+    region:   s_138
+    level:    [100, 101]
+  17846413:
+    template: Fernfelling_Chapuli
+    region:   s_141
+    level:    [100, 101]
+  17846414:
+    template: Fernfelling_Chapuli
+    region:   s_141
+    level:    [100, 101]
+  17846415:
+    template: Careening_Twitherym
+    region:   s_141
+    level:    [100, 101]
+  17846416:
+    template: Fernfelling_Chapuli
+    region:   s_144
+    level:    [100, 101]
+  17846417:
+    template: Fernfelling_Chapuli
+    region:   s_144
+    level:    [100, 101]
+  17846418:
+    template: Twigtrip_Lapinion
+    region:   sw_146
+    level:    [100, 101]
+  17846419:
+    template: Twigtrip_Lapinion
+    region:   sw_146
+    level:    [100, 101]
+  17846420:
+    template: Twigtrip_Lapinion
+    region:   sw_146
+    level:    [100, 101]
+  17846421:
+    template: Appetent_Umbril
+    region:   sw_146
+    level:    [100, 101]
+  17846422:
+    template: Careening_Twitherym
+    region:   s_150
+    level:    [100, 101]
+  17846423:
+    template: Careening_Twitherym
+    region:   s_150
+    level:    [100, 101]
+  17846424:
+    template: Twigtrip_Lapinion
+    region:   se_152
+    level:    [100, 101]
+  17846425:
+    template: Twigtrip_Lapinion
+    region:   se_152
+    level:    [100, 101]
+  17846426:
+    template: Careening_Twitherym
+    region:   se_152
+    level:    [100, 101]
+  17846427:
+    template: Careening_Twitherym
+    region:   se_152
+    level:    [100, 101]
+  17846428:
+    template: Twigtrip_Lapinion
+    region:   se_156
+    level:    [100, 101]
+  17846429:
+    template: Twigtrip_Lapinion
+    region:   se_156
+    level:    [100, 101]
+  17846430:
+    template: Careening_Twitherym
+    region:   se_156
+    level:    [100, 101]
+  17846431:
+    template: Careening_Twitherym
+    region:   se_159
+    level:    [100, 101]
+  17846432:
+    template: Careening_Twitherym
+    region:   se_159
+    level:    [100, 101]
+  17846433:
+    template: Careening_Twitherym
+    region:   se_159
+    level:    [100, 101]
+  17846434:
+    template: Appetent_Umbril
+    region:   se_159
+    level:    [100, 101]
+  17846435:
+    template: Fernfelling_Chapuli
+    region:   s_163
+    level:    [100, 101]
+  17846436:
+    template: Fernfelling_Chapuli
+    region:   s_163
+    level:    [100, 101]
+  17846437:
+    template: Fernfelling_Chapuli
+    region:   s_163
+    level:    [100, 101]
+  17846438:
+    template: Appetent_Umbril
+    region:   s_163
+    level:    [100, 101]
+  17846439:
+    template: Belaboring_Wasp
+    region:   n_167
+    level:    [100, 101]
+  17846440:
+    template: Belaboring_Wasp
+    region:   n_167
+    level:    [100, 101]
+  17846441:
+    template: Belaboring_Wasp
+    region:   n_167
+    level:    [100, 101]
+  17846442:
+    template: Appetent_Umbril
+    region:   n_167
+    level:    [100, 101]
+  17846443:
+    template: Fluffy_Sheep
+    region:   n_171
+    level:    [100, 101]
+  17846444:
+    template: Fluffy_Sheep
+    region:   n_171
+    level:    [100, 101]
+  17846445:
+    template: Fluffy_Sheep
+    region:   n_171
+    level:    [100, 101]
+  17846446:
+    template: Belaboring_Wasp
+    region:   n_174
+    level:    [100, 101]
+  17846447:
+    template: Belaboring_Wasp
+    region:   n_174
+    level:    [100, 101]
+  17846448:
+    template: Belaboring_Wasp
+    region:   n_174
+    level:    [100, 101]
+  17846449:
+    template: Unbridled_Ungeweder
+    region:   n_174
+    level:    [100, 101]
+  17846450:
+    template: Belaboring_Wasp
+    region:   n_178
+    level:    [100, 101]
+  17846451:
+    template: Belaboring_Wasp
+    region:   n_178
+    level:    [100, 101]
+  17846452:
+    template: Belaboring_Wasp
+    region:   n_178
+    level:    [100, 101]
+  17846453:
+    template: Belaboring_Wasp
+    region:   n_178
+    level:    [100, 101]
+  17846454:
+    template: Fluffy_Sheep
+    region:   n_182
+    level:    [100, 101]
+  17846455:
+    template: Undergrowth_Hornet
+    region:   n_182
+    level:    [100, 101]
+  17846456:
+    template: Fluffy_Sheep
+    region:   n_184
+    level:    [100, 101]
+  17846457:
+    template: Fluffy_Sheep
+    region:   n_184
+    level:    [100, 101]
+  17846458:
+    template: Undergrowth_Hornet
+    region:   n_184
+    level:    [100, 101]
+  17846459:
+    template: Undergrowth_Hornet
+    region:   n_184
+    level:    [100, 101]
+  17846460:
+    template: Fluffy_Sheep
+    region:   n_188
+    level:    [100, 101]
+  17846461:
+    template: Undergrowth_Hornet
+    region:   n_188
+    level:    [100, 101]
+  17846462:
+    template: Unbridled_Ungeweder
+    region:   n_188
+    level:    [100, 101]
+  17846463:
+    template: Fluffy_Sheep
+    region:   n_191
+    level:    [100, 101]
+  17846464:
+    template: Fluffy_Sheep
+    region:   n_191
+    level:    [100, 101]
+  17846465:
+    template: Undergrowth_Hornet
+    region:   n_191
+    level:    [100, 101]
+  17846466:
+    template: Undergrowth_Hornet
+    region:   n_191
+    level:    [100, 101]
+  17846467:
+    template: Undergrowth_Hornet
+    region:   n_195
+    level:    [100, 101]
+  17846468:
+    template: Undergrowth_Hornet
+    region:   n_195
+    level:    [100, 101]
+  17846469:
+    template: Belaboring_Wasp
+    region:   n_195
+    level:    [100, 101]
+  17846470:
+    template: Appetent_Umbril
+    region:   n_195
+    level:    [100, 101]
+  17846471:
+    template: Undergrowth_Hornet
+    region:   n_199
+    level:    [100, 101]
+  17846472:
+    template: Undergrowth_Hornet
+    region:   n_199
+    level:    [100, 101]
+  17846473:
+    template: Belaboring_Wasp
+    region:   n_201
+    level:    [100, 101]
+  17846474:
+    template: Belaboring_Wasp
+    region:   n_201
+    level:    [100, 101]
+  17846475:
+    template: Belaboring_Wasp
+    region:   n_203
+    level:    [100, 101]
+  17846476:
+    template: Belaboring_Wasp
+    region:   n_203
+    level:    [100, 101]
+  17846477:
+    template: Appetent_Umbril
+    region:   n_203
+    level:    [100, 101]
+  17846478:
+    template: Fluffy_Sheep
+    region:   c_206
+    level:    [100, 101]
+  17846479:
+    template: Fluffy_Sheep
+    region:   c_206
+    level:    [100, 101]
+  17846480:
+    template: Undergrowth_Hornet
+    region:   c_206
+    level:    [100, 101]
+  17846481:
+    template: Undergrowth_Hornet
+    at:       [74.958, -0.093, 109.296, 16]
+    level:    [100, 101]
+  17846482:
+    template: Fluffy_Sheep
+    at:       [75.964, -0.057, 88.295, 231]
+    level:    [100, 101]
+  17846483:
+    template: Fluffy_Sheep
+    at:       [60.000, 0.010, 86.240, 147]
+    level:    [100, 101]
+  17846484:
+    template: Undergrowth_Hornet
+    region:   c_212
+    level:    [100, 101]
+  17846485:
+    template: Undergrowth_Hornet
+    region:   c_212
+    level:    [100, 101]
+  17846486:
+    template: Longclaw_Raptor
+    region:   nw_214
+    level:    [100, 101]
+  17846487:
+    template: Longclaw_Raptor
+    region:   nw_214
+    level:    [100, 101]
+  17846488:
+    template: Longclaw_Raptor
+    region:   nw_216
+    level:    [100, 101]
+  17846489:
+    template: Longclaw_Raptor
+    region:   nw_216
+    level:    [100, 101]
+  17846490:
+    template: Sedge_Scorpion
+    region:   nw_216
+    level:    [100, 101]
+  17846491:
+    template: Longclaw_Raptor
+    region:   nw_219
+    level:    [100, 101]
+  17846492:
+    template: Longclaw_Raptor
+    region:   nw_219
+    level:    [100, 101]
+  17846493:
+    template: Sedge_Scorpion
+    region:   nw_219
+    level:    [100, 101]
+  17846494:
+    template: Irascible_Baelfyr
+    at:       [-321.700, -0.411, 320.398, 104]
+    level:    [100, 101]
+  17846495:
+    template: Numbing_Blossom
+    at:       [-333.200, 0.031, 321.260, 25]
+    level:    [1, 1]
+  17846496:
+    template: Longclaw_Raptor
+    region:   nw_224
+    level:    [100, 101]
+  17846497:
+    template: Longclaw_Raptor
+    region:   nw_224
+    level:    [100, 101]
+  17846498:
+    template: Longclaw_Raptor
+    region:   nw_224
+    level:    [100, 101]
+  17846499:
+    template: Knobby_Treant
+    region:   nw_227
+    level:    [100, 102]
+  17846500:
+    template: Knobby_Treant
+    region:   nw_227
+    level:    [100, 102]
+  17846501:
+    template: Knobby_Treant
+    region:   nw_227
+    level:    [100, 102]
+  17846502:
+    template: Numbing_Blossom
+    at:       [-434.900, -0.477, 270.509, 78]
+    level:    [1, 1]
+  17846503:
+    template: Longclaw_Raptor
+    region:   w_231
+    level:    [100, 101]
+  17846504:
+    template: Longclaw_Raptor
+    region:   w_231
+    level:    [100, 101]
+  17846505:
+    template: Irascible_Baelfyr
+    at:       [-527.500, -0.483, 122.646, 185]
+    level:    [100, 101]
+  17846506:
+    template: Numbing_Blossom
+    level:    [1, 1]
+  17846507:
+    template: Longclaw_Raptor
+    region:   w_235
+    level:    [100, 101]
+  17846508:
+    template: Longclaw_Raptor
+    region:   w_235
+    level:    [100, 101]
+  17846509:
+    template: Irascible_Baelfyr
+    at:       [-513.700, -0.500, 79.946, 52]
+    level:    [100, 101]
+  17846510:
+    template: Numbing_Blossom
+    at:       [-510.200, -0.500, 84.794, 87]
+    level:    [1, 1]
+  17846511:
+    template: Resplendent_Luckybug
+    region:   w_239
+    level:    [99, 107]
+  17846512:
+    template: Resplendent_Luckybug
+    region:   w_239
+    level:    [99, 107]
+  17846513:
+    template: Resplendent_Luckybug
+    region:   w_241
+    level:    [99, 107]
+  17846514:
+    template: Resplendent_Luckybug
+    region:   w_241
+    level:    [99, 107]
+  17846515:
+    template: Appetent_Umbril
+    region:   w_241
+    level:    [100, 101]
+  17846516:
+    template: Colossal_Spider
+    region:   w_244
+    level:    [99, 107]
+  17846517:
+    template: Colossal_Spider
+    region:   w_244
+    level:    [99, 107]
+  17846518:
+    template: Colossal_Spider
+    region:   w_244
+    level:    [99, 107]
+  17846519:
+    template: Numbing_Blossom
+    at:       [-361.300, -0.500, 79.113, 94]
+    level:    [1, 1]
+  17846520:
+    template: Colossal_Spider
+    region:   w_248
+    level:    [99, 107]
+  17846521:
+    template: Colossal_Spider
+    region:   w_248
+    level:    [99, 107]
+  17846522:
+    template: Colossal_Spider
+    region:   w_248
+    level:    [99, 107]
+  17846523:
+    template: Appetent_Umbril
+    region:   w_248
+    level:    [100, 101]
+  17846524:
+    template: Downy_Emerald
+    region:   w_252
+    level:    [99, 107]
+  17846525:
+    template: Downy_Emerald
+    region:   w_252
+    level:    [99, 107]
+  17846526:
+    template: Downy_Emerald
+    region:   w_252
+    level:    [99, 107]
+  17846527:
+    template: Numbing_Blossom
+    at:       [-241.100, -0.500, 34.088, 90]
+    level:    [1, 1]
+  17846528:
+    template: Colossal_Spider
+    region:   w_256
+    level:    [99, 107]
+  17846529:
+    template: Colossal_Spider
+    region:   w_256
+    level:    [99, 107]
+  17846530:
+    template: Downy_Emerald
+    region:   w_256
+    level:    [99, 107]
+  17846531:
+    template: Irascible_Baelfyr
+    at:       [-282.300, -0.291, -32.823, 221]
+    level:    [100, 101]
+  17846532:
+    template: Colossal_Spider
+    region:   w_260
+    level:    [99, 107]
+  17846533:
+    template: Colossal_Spider
+    region:   w_260
+    level:    [99, 107]
+  17846534:
+    template: Downy_Emerald
+    region:   w_260
+    level:    [99, 107]
+  17846535:
+    template: Numbing_Blossom
+    at:       [-287.100, -0.500, -42.576, 37]
+    level:    [1, 1]
+  17846536:
+    template: Downy_Emerald
+    region:   w_264
+    level:    [99, 107]
+  17846537:
+    template: Downy_Emerald
+    region:   w_264
+    level:    [99, 107]
+  17846538:
+    template: Downy_Emerald
+    region:   w_264
+    level:    [99, 107]
+  17846539:
+    template: Resplendent_Luckybug
+    region:   w_267
+    level:    [99, 107]
+  17846540:
+    template: Resplendent_Luckybug
+    region:   w_267
+    level:    [99, 107]
+  17846541:
+    template: Resplendent_Luckybug
+    at:       [-413.500, 0.277, -54.706, 254]
+    level:    [99, 107]
+  17846542:
+    template: Numbing_Blossom
+    at:       [-412.400, 2.050, -63.789, 107]
+    level:    [1, 1]
+  17846543:
+    template: Longclaw_Raptor
+    region:   w_271
+    level:    [100, 101]
+  17846544:
+    template: Longclaw_Raptor
+    at:       [-482.700, -0.500, -85.559, 39]
+    level:    [100, 101]
+  17846545:
+    template: Longclaw_Raptor
+    at:       [-480.300, -0.500, -74.906, 169]
+    level:    [100, 101]
+  17846546:
+    template: Resplendent_Luckybug
+    at:       [-475.600, -0.500, -160.190, 31]
+    level:    [99, 107]
+  17846547:
+    template: Resplendent_Luckybug
+    at:       [-476.200, -0.500, -162.360, 231]
+    level:    [99, 107]
+  17846548:
+    template: Knobby_Treant
+    at:       [-562.100, -0.500, -154.530, 135]
+    level:    [100, 102]
+  17846549:
+    template: Knobby_Treant
+    at:       [-562.100, -0.500, -167.290, 90]
+    level:    [100, 102]
+  17846550:
+    template: Knobby_Treant
+    at:       [-560.000, -0.500, -165.110, 181]
+    level:    [100, 102]
+  17846551:
+    template: Numbing_Blossom
+    at:       [-553.300, -0.500, -164.510, 11]
+    level:    [1, 1]
+  17846552:
+    template: Resplendent_Luckybug
+    at:       [-394.500, -0.500, -282.680, 231]
+    level:    [99, 107]
+  17846553:
+    template: Resplendent_Luckybug
+    at:       [-401.400, -0.500, -284.840, 151]
+    level:    [99, 107]
+  17846554:
+    template: Resplendent_Luckybug
+    region:   sw_282
+    level:    [99, 107]
+  17846555:
+    template: Colossal_Spider
+    region:   w_283
+    level:    [99, 107]
+  17846556:
+    template: Colossal_Spider
+    region:   w_283
+    level:    [99, 107]
+  17846557:
+    template: Colossal_Spider
+    region:   w_283
+    level:    [99, 107]
+  17846558:
+    template: Appetent_Umbril
+    region:   w_283
+    level:    [100, 101]
+  17846559:
+    template: Numbing_Blossom
+    at:       [-399.600, 0.025, -173.020, 79]
+    level:    [1, 1]
+  17846560:
+    template: Colossal_Spider
+    region:   w_288
+    level:    [99, 107]
+  17846561:
+    template: Colossal_Spider
+    region:   w_288
+    level:    [99, 107]
+  17846562:
+    template: Colossal_Spider
+    region:   w_288
+    level:    [99, 107]
+  17846563:
+    template: Longclaw_Raptor
+    region:   sw_291
+    level:    [100, 101]
+  17846564:
+    template: Longclaw_Raptor
+    region:   sw_291
+    level:    [100, 101]
+  17846565:
+    template: Sedge_Scorpion
+    region:   sw_291
+    level:    [100, 101]
+  17846566:
+    template: Longclaw_Raptor
+    region:   sw_294
+    level:    [100, 101]
+  17846567:
+    template: Longclaw_Raptor
+    region:   sw_294
+    level:    [100, 101]
+  17846568:
+    template: Sedge_Scorpion
+    region:   sw_294
+    level:    [100, 101]
+  17846569:
+    template: Irascible_Baelfyr
+    at:       [-458.700, -0.004, -389.380, 152]
+    level:    [100, 101]
+  17846570:
+    template: Numbing_Blossom
+    at:       [-457.200, 0.069, -384.120, 113]
+    level:    [1, 1]
+  17846571:
+    template: Cornered_Heartwing
+    region:   sw_299
+    level:    [100, 101]
+  17846572:
+    template: Mischievous_Leafkin
+    region:   n_300
+    level:    [100, 101]
+  17846573:
+    template: Velkk_Torturer
+    region:   w_301
+    level:    [100, 103]
+  17846574:
+    template: Velkk_Torturer
+    at:       [-280.200, -0.405, -2.242, 180]
+    level:    [100, 103]
+  17846575:
+    template: Appetent_Umbril
+    at:       [258.130, 1.231, 137.300, 5]
+    level:    [100, 101]
+  17846576:
+    template: Careening_Twitherym
+    at:       [212.750, 1.343, 26.397, 198]
+    level:    [100, 101]
+  17846577:
+    template: Careening_Twitherym
+    at:       [224.880, 1.073, 15.972, 113]
+    level:    [100, 101]
+  17846578:
+    template: Fernfelling_Chapuli
+    at:       [215.310, -0.054, -146.420, 45]
+    level:    [100, 101]
+  17846579:
+    template: Fernfelling_Chapuli
+    at:       [217.170, -0.019, -171.890, 81]
+    level:    [100, 101]
+  17846580:
+    template: Twigtrip_Lapinion
+    at:       [68.668, -0.068, -263.240, 109]
+    level:    [100, 101]
+  17846581:
+    template: Twigtrip_Lapinion
+    at:       [72.845, 0.031, -261.670, 129]
+    level:    [100, 101]
+  17846582:
+    template: Careening_Twitherym
+    at:       [121.270, 0.016, -381.390, 125]
+    level:    [100, 101]
+  17846583:
+    template: Careening_Twitherym
+    at:       [130.620, -0.052, -383.400, 13]
+    level:    [100, 101]
+  17846584:
+    template: Careening_Twitherym
+    region:   s_312
+    level:    [100, 101]
+  17846585:
+    template: Careening_Twitherym
+    region:   s_312
+    level:    [100, 101]
+  17846586:
+    template: Twigtrip_Lapinion
+    region:   s_314
+    level:    [100, 101]
+  17846587:
+    template: Twigtrip_Lapinion
+    region:   s_314
+    level:    [100, 101]
+  17846588:
+    template: Careening_Twitherym
+    at:       [-48.880, -0.023, -59.816, 140]
+    level:    [100, 101]
+  17846589:
+    template: Careening_Twitherym
+    at:       [-34.490, 0.036, -61.154, 255]
+    level:    [100, 101]
+  17846590:
+    template: Fernfelling_Chapuli
+    region:   c_318
+    level:    [100, 101]
+  17846591:
+    template: Fernfelling_Chapuli
+    region:   c_318
+    level:    [100, 101]
+  17846592:
+    template: Fernfelling_Chapuli
+    at:       [-265.400, -0.009, -350.200, 229]
+    level:    [100, 101]
+  17846593:
+    template: Downy_Emerald
+    region:   w_321
+    level:    [99, 107]
+  17846594:
+    template: Downy_Emerald
+    region:   w_321
+    level:    [99, 107]
+  17846595:
+    template: Colossal_Spider
+    at:       [-265.800, -0.090, 18.680, 87]
+    level:    [99, 107]
+  17846596:
+    template: Colossal_Spider
+    region:   w_324
+    level:    [99, 107]
+  17846597:
+    template: Downy_Emerald
+    region:   w_325
+    level:    [99, 107]
+  17846598:
+    template: Downy_Emerald
+    region:   w_325
+    level:    [99, 107]
+  17846599:
+    template: Resplendent_Luckybug
+    region:   w_327
+    level:    [99, 107]
+  17846600:
+    template: Resplendent_Luckybug
+    at:       [-481.000, 0.002, 61.451, 1]
+    level:    [99, 107]
+  17846601:
+    template: Longclaw_Raptor
+    at:       [-420.500, 0.059, -312.770, 191]
+    level:    [100, 101]
+  17846602:
+    template: Longclaw_Raptor
+    at:       [-423.400, -0.072, -331.670, 215]
+    level:    [100, 101]
+  17846603:
+    template: Truculent_Mantis
+    at:       [31.545, -0.486, -84.639, 73]
+  17846604:
+    template: Wasp_Nest
+    at:       [199.500, -0.500, 240.000, 82]
+    level:    [100, 101]
+  17846605:
+    template: Waggling_Wasp_Small
+    script:   Waggling_Wasp
+    at:       [198.850, -0.500, 243.960, 77]
+    level:    [100, 101]
+  17846606:
+    template: Waggling_Wasp_Small
+    script:   Waggling_Wasp
+    at:       [194.970, -0.500, 240.156, 244]
+    level:    [100, 101]
+  17846607:
+    template: Lightfoot_Lapinion
+    at:       [195.100, -0.500, 234.555, 43]
+    level:    [100, 101]
+  17846608:
+    template: Wasp_Nest
+    at:       [0.000, -0.500, -400.000, 123]
+    level:    [100, 101]
+  17846609:
+    template: Waggling_Wasp_Small
+    script:   Waggling_Wasp
+    at:       [-3.135, -0.472, -405.530, 52]
+    level:    [100, 101]
+  17846610:
+    template: Waggling_Wasp_Small
+    script:   Waggling_Wasp
+    at:       [2.966, -0.365, -407.280, 12]
+    level:    [100, 101]
+  17846611:
+    template: Molted_Mantis
+    at:       [-9.236, -0.194, -398.010, 16]
+    level:    [100, 100]
+  17846612:
+    template: Wasp_Nest
+    at:       [-360.000, -0.500, -80.000, 2]
+    level:    [100, 101]
+  17846613:
+    template: Waggling_Wasp_Small
+    script:   Waggling_Wasp
+    at:       [-359.000, -0.476, -88.792, 121]
+    level:    [100, 101]
+  17846614:
+    template: Waggling_Wasp_Small
+    script:   Waggling_Wasp
+    region:   w_342
+    level:    [100, 101]
+  17846615:
+    template: Prosperous_Luckybug
+    region:   w_342
+    level:    [100, 100]
+  17846616:
+    template: Wasp_Nest
+    at:       [-440.000, -0.500, 160.000, 5]
+    level:    [100, 101]
+  17846617:
+    template: Waggling_Wasp_Small
+    script:   Waggling_Wasp
+    region:   nw_345
+    level:    [100, 101]
+  17846618:
+    template: Waggling_Wasp_Small
+    script:   Waggling_Wasp
+    region:   nw_345
+    level:    [100, 101]
+  17846619:
+    template: Floodplain_Spider
+    region:   nw_345
+    level:    [100, 105]
+  17846620:
+    template: Wasp_Nest
+    at:       [-80.500, -0.500, 240.000, 120]
+    level:    [100, 101]
+  17846621:
+    template: Waggling_Wasp_Small
+    script:   Waggling_Wasp
+    region:   n_349
+    level:    [100, 101]
+  17846622:
+    template: Waggling_Wasp_Small
+    script:   Waggling_Wasp
+    region:   n_349
+    level:    [100, 101]
+  17846623:
+    template: Bounding_Chapuli
+    region:   n_349
+    level:    [100, 105]
+  17846624:
+    template: Knotted_Root_YHG_CB
+    script:   Knotted_Root
+    at:       [120.500, -1.000, -54.000, 95]
+    level:    [100, 101]
+  17846625:
+    template: Knotted_Root_YHG_CB
+    script:   Knotted_Root
+    at:       [120.500, -1.000, -58.000, 104]
+    level:    [100, 101]
+  17846626:
+    template: Knotted_Root_YHG_CB
+    script:   Knotted_Root
+    at:       [120.500, -1.000, -62.000, 77]
+    level:    [100, 101]
+  17846627:
+    template: Bounding_Chapuli
+    region:   e_355
+    level:    [100, 105]
+  17846628:
+    template: Bounding_Chapuli
+    region:   e_355
+    level:    [100, 105]
+  17846629:
+    template: Bounding_Chapuli
+    region:   e_357
+    level:    [100, 105]
+  17846630:
+    template: Bounding_Chapuli
+    region:   e_357
+    level:    [100, 105]
+  17846631:
+    template: Knotted_Root_YHG_CB
+    script:   Knotted_Root
+    at:       [-239.500, -1.000, -174.000, 127]
+    level:    [100, 101]
+  17846632:
+    template: Knotted_Root_YHG_CB
+    script:   Knotted_Root
+    at:       [-239.500, -1.000, -178.000, 14]
+    level:    [100, 101]
+  17846633:
+    template: Knotted_Root_YHG_CB
+    script:   Knotted_Root
+    at:       [-239.500, -1.000, -182.000, 68]
+    level:    [100, 101]
+  17846634:
+    template: Lavender_Twitherym
+    region:   c_362
+    level:    [100, 105]
+  17846635:
+    template: Lavender_Twitherym
+    region:   c_362
+    level:    [100, 105]
+  17846636:
+    template: Lavender_Twitherym
+    region:   c_362
+    level:    [100, 105]
+  17846637:
+    template: Lavender_Twitherym
+    region:   w_365
+    level:    [100, 105]
+  17846638:
+    template: Lavender_Twitherym
+    region:   w_365
+    level:    [100, 105]
+  17846639:
+    template: Lavender_Twitherym
+    region:   w_365
+    level:    [100, 105]
+  17846640:
+    template: Knotted_Root_YHG_CB
+    script:   Knotted_Root
+    at:       [-134.000, -1.000, 39.500, 62]
+    level:    [100, 101]
+  17846641:
+    template: Knotted_Root_YHG_CB
+    script:   Knotted_Root
+    at:       [-138.000, -1.000, 39.500, 100]
+    level:    [100, 101]
+  17846642:
+    template: Knotted_Root_YHG_CB
+    script:   Knotted_Root
+    at:       [-142.000, -1.000, 39.500, 48]
+    level:    [100, 101]
+  17846643:
+    template: Lightfoot_Lapinion
+    region:   c_371
+    level:    [100, 101]
+  17846644:
+    template: Lightfoot_Lapinion
+    region:   c_371
+    level:    [100, 101]
+  17846645:
+    template: Lightfoot_Lapinion
+    region:   c_371
+    level:    [100, 101]
+  17846646:
+    template: Lightfoot_Lapinion
+    region:   c_374
+    level:    [100, 101]
+  17846647:
+    template: Lightfoot_Lapinion
+    region:   c_374
+    level:    [100, 101]
+  17846648:
+    template: Lightfoot_Lapinion
+    region:   c_374
+    level:    [100, 101]
+  17846649:
+    template: Knotted_Root_YHG_CB
+    script:   Knotted_Root
+    at:       [-280.500, -1.000, 182.000, 46]
+    level:    [100, 101]
+  17846650:
+    template: Knotted_Root_YHG_CB
+    script:   Knotted_Root
+    at:       [-280.500, -1.000, 178.000, 25]
+    level:    [100, 101]
+  17846651:
+    template: Knotted_Root_YHG_CB
+    script:   Knotted_Root
+    at:       [-280.500, -1.000, 174.000, 35]
+    level:    [100, 101]
+  17846652:
+    template: Floodplain_Spider
+    region:   nw_380
+    level:    [100, 105]
+  17846653:
+    template: Floodplain_Spider
+    region:   nw_380
+    level:    [100, 105]
+  17846654:
+    template: Floodplain_Spider
+    region:   nw_380
+    level:    [100, 105]
+  17846655:
+    template: Floodplain_Spider
+    region:   nw_383
+    level:    [100, 105]
+  17846656:
+    template: Floodplain_Spider
+    at:       [-268.500, 0.016, 180.369, 221]
+    level:    [100, 105]
+  17846657:
+    template: Floodplain_Spider
+    at:       [-264.400, 0.314, 180.722, 190]
+    level:    [100, 105]
+  17846658:
+    template: Colkhab
+    at:       [-143.000, 0.001, 432.000, 36]
+    level:    [116, 116]
+  17846659:
+    template: Bounding_Chapuli
+    level:    [100, 105]
+  17846660:
+    template: Bounding_Chapuli
+    level:    [100, 105]
+  17846661:
+    template: Bounding_Chapuli
+    level:    [100, 105]
+  17846662:
+    template: Bounding_Chapuli
+    level:    [100, 105]
+  17846663:
+    template: Bounding_Chapuli
+    level:    [100, 105]
+  17846664:
+    script: Rapier_Hornet
+    region: n_392
+  17846665:
+    script: Rapier_Hornet
+    region: n_392
+  17846666:
+    script: Rapier_Hornet
+    region: n_392
+  17846667:
+    script: Rapier_Hornet
+    region: n_392
+  17846668:
+    script: Rapier_Hornet
+    region: n_392
+  17846669:
+    script: Rapier_Hornet
+    region: n_392
+  17846670:
+    script: Rapier_Hornet
+    region: n_392
+  17846671:
+    template: Waggling_Wasp
+    region:   n_399
+    level:    [100, 101]
+  17846672:
+    template: Waggling_Wasp
+    region:   n_399
+    level:    [100, 101]
+  17846673:
+    template: Unfettered_Twitherym
+    at:       [210.000, 0.000, 115.000]
+    level:    [110, 110]
+  17846674:
+    template: Supernal_Chapuli
+    at:       [276.940, 0.000, -129.240, 115]
+    level:    [107, 109]
+  17846675:
+    template: Transcendent_Scorpion
+    at:       [160.000, 0.000, -400.000]
+    level:    [110, 110]
+  17846676:
+    template: Mastop
+    at:       [-230.000, 0.000, 36.000, 155]
+    level:    [110, 110]
+  17846677:
+    template: Taxet
+    at:       [-280.000, 0.000, -290.000, 233]
+    level:    [107, 109]

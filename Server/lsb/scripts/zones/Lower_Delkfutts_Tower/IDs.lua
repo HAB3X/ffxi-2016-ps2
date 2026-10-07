@@ -1,0 +1,49 @@
+-- Text ids rebuilt for the 2007 PS2 client data tooling: PROFILE 2012 = the 2012 client data (report 28) by research/tools/lsb_textids_2007.py (13 changed, 8 not in the 2007 dialog DAT 6604 and left unchanged).
+-----------------------------------
+-- Area: Lower_Delkfutts_Tower
+-----------------------------------
+zones = zones or {}
+
+zones[xi.zone.LOWER_DELKFUTTS_TOWER] =
+{
+    text =
+    {
+        CONQUEST_BASE                    = 0,     -- Tallying conquest results...
+        THE_DOOR_IS_FIRMLY_SHUT_OPEN_KEY = 159,   -- The door is firmly shut. You might be able to open it if you had the key.
+        DOOR_FIRMLY_SHUT                 = 160,   -- The door is firmly shut.
+        ITEM_CANNOT_BE_OBTAINED          = 6564,  -- You cannot obtain the <item>. Come back after sorting your inventory.
+        ITEM_OBTAINED                    = 6567,  -- Obtained: <item>.
+        GIL_OBTAINED                     = 6568,  -- Obtained <number> gil.
+        KEYITEM_OBTAINED                 = 6587,  -- Obtained key item: <keyitem>.
+        NOTHING_OUT_OF_ORDINARY          = 6581,  -- There is nothing out of the ordinary here.
+        FELLOW_MESSAGE_OFFSET            = 6595,  -- I'm ready. I suppose.
+        CARRIED_OVER_POINTS              = 7195,  -- You have carried over <number> login point[/s].
+        LOGIN_CAMPAIGN_UNDERWAY          = 7196,  -- The [/January/February/March/April/May/June/July/August/September/October/November/December] <number> Login Campaign is currently underway!
+        LOGIN_NUMBER                     = 7197,  -- In celebration of your most recent login (login no. <number>), we have provided you with <number> points! You currently have a total of <number> points.
+        MEMBERS_LEVELS_ARE_RESTRICTED    = 7217,  -- Your party is unable to participate because certain members' levels are restricted.
+        FISHING_MESSAGE_OFFSET           = 7183,  -- You can't fish here.
+        SOMETHING_HUGE_BEARING_DOWN      = 7423,  -- Something huge is bearing down upon you!
+        PLAYER_OBTAINS_ITEM              = 8558,  -- <name> obtains <item>!
+        UNABLE_TO_OBTAIN_ITEM            = 8559,  -- You were unable to obtain the item.
+        PLAYER_OBTAINS_TEMP_ITEM         = 8560,  -- <name> obtains the temporary item: <item>!
+        ALREADY_POSSESS_TEMP             = 8561,  -- You already possess that temporary item.
+        NO_COMBINATION                   = 8566,  -- You were unable to enter a combination.
+        REGIME_REGISTERED                = 10644, -- New training regime registered!
+        LEARNS_SPELL                     = 11780, -- <name> learns <spell>!
+        UNCANNY_SENSATION                = 11782, -- You are assaulted by an uncanny sensation.
+        COMMON_SENSE_SURVIVAL            = 11789, -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
+    },
+    mob =
+    {
+        HIPPOLYTOS    = GetFirstID('Hippolytos'),
+        EPIALTES      = GetFirstID('Epialtes'),
+        EURYMEDON     = GetFirstID('Eurymedon'),
+        DISASTER_IDOL = GetFirstID('Disaster_Idol'),
+    },
+    npc =
+    {
+        TALES_BEGINNING = GetFirstID('Tales_Beginning'), -- CoP 1-1 mission script uses this
+    },
+}
+
+return zones[xi.zone.LOWER_DELKFUTTS_TOWER]

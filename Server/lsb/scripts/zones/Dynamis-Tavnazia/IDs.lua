@@ -1,0 +1,109 @@
+-- Text ids rebuilt for the 2007 PS2 client data tooling: PROFILE 2012 = the 2012 client data (report 28) by research/tools/lsb_textids_2007.py (11 changed, 6 not in the 2007 dialog DAT 6462 and left unchanged).
+-----------------------------------
+-- Area: Dynamis-Tavnazia
+-----------------------------------
+zones = zones or {}
+
+zones[xi.zone.DYNAMIS_TAVNAZIA] =
+{
+    text =
+    {
+        ITEM_CANNOT_BE_OBTAINED       = 6375, -- You cannot obtain the <item>. Come back after sorting your inventory.
+        ITEM_OBTAINED                 = 6378, -- Obtained: <item>.
+        GIL_OBTAINED                  = 6380, -- Obtained <number> gil.
+        KEYITEM_OBTAINED              = 6398, -- Obtained key item: <keyitem>.
+        CARRIED_OVER_POINTS           = 7006, -- You have carried over <number> login point[/s].
+        LOGIN_CAMPAIGN_UNDERWAY       = 7007, -- The [/January/February/March/April/May/June/July/August/September/October/November/December] <number> Login Campaign is currently underway!
+        LOGIN_NUMBER                  = 7008, -- In celebration of your most recent login (login no. <number>), we have provided you with <number> points! You currently have a total of <number> points.
+        MEMBERS_LEVELS_ARE_RESTRICTED = 7028, -- Your party is unable to participate because certain members' levels are restricted.
+        CONQUEST_BASE                 = 7086, -- Tallying conquest results...
+        DYNAMIS_TIME_BEGIN            = 7339, -- The sands of the <item> have begun to fall. You have <number> minutes (Earth time) remaining in Dynamis.
+        DYNAMIS_TIME_EXTEND           = 7252, -- Your stay in Dynamis has been extended by <number> minute[/s].
+        DYNAMIS_TIME_UPDATE_1         = 7253, -- You will be expelled from Dynamis in <number> [second/minute] (Earth time).
+        DYNAMIS_TIME_UPDATE_2         = 7254, -- You will be expelled from Dynamis in <number> [seconds/minutes] (Earth time).
+        DYNAMIS_TIME_EXPIRED          = 7256, -- The sands of the hourglass have emptied...
+        DYNAMIS_SUB_UNLOCKED          = 7261, -- Memories of skills long forgotten come flooding back to you...
+        DIABOLOS                      = 7265, -- You sense that something might happen if you possessed one of these...
+        OMINOUS_PRESENCE              = 7267, -- You feel an ominous presence, as if something might happen if you possessed <item>.
+    },
+    mob =
+    {
+        TIME_EXTENSION =
+        {
+            { minutes = 10, ki = xi.keyItem.CRIMSON_GRANULES_OF_TIME,   mob = 16949272 },
+            { minutes = 10, ki = xi.keyItem.AZURE_GRANULES_OF_TIME,     mob = 16949292 },
+            { minutes = 10, ki = xi.keyItem.AMBER_GRANULES_OF_TIME,     mob = 16949306 },
+            { minutes = 10, ki = xi.keyItem.ALABASTER_GRANULES_OF_TIME, mob = 16949325 },
+            { minutes = 20, ki = xi.keyItem.OBSIDIAN_GRANULES_OF_TIME,  mob = 16949380 },
+        },
+
+        REFILL_STATUE =
+        {
+            {
+                { mob = 16949269, eye = xi.dynamis.eye.RED   }, -- Adamantking_Effigy
+                { mob = 16949270, eye = xi.dynamis.eye.BLUE  },
+                { mob = 16949271, eye = xi.dynamis.eye.GREEN },
+            },
+
+            {
+                { mob = 16949289, eye = xi.dynamis.eye.RED   }, -- Serjeant_Tombstone
+                { mob = 16949290, eye = xi.dynamis.eye.BLUE  },
+                { mob = 16949291, eye = xi.dynamis.eye.GREEN },
+            },
+
+            {
+                { mob = 16949303, eye = xi.dynamis.eye.RED   }, -- Manifest_Icon
+                { mob = 16949304, eye = xi.dynamis.eye.BLUE  },
+                { mob = 16949305, eye = xi.dynamis.eye.GREEN },
+            },
+
+            {
+                { mob = 16949322, eye = xi.dynamis.eye.RED   }, -- Goblin_Replica
+                { mob = 16949323, eye = xi.dynamis.eye.BLUE  },
+                { mob = 16949324, eye = xi.dynamis.eye.GREEN },
+            },
+
+            {
+                { mob = 16949356, eye = xi.dynamis.eye.RED   }, -- Goblin_Replica
+                { mob = 16949357, eye = xi.dynamis.eye.BLUE  },
+                { mob = 16949358, eye = xi.dynamis.eye.GREEN },
+            },
+
+            {
+                { mob = 16949362, eye = xi.dynamis.eye.RED   }, -- Manifest_Icon
+                { mob = 16949363, eye = xi.dynamis.eye.BLUE  },
+                { mob = 16949364, eye = xi.dynamis.eye.GREEN },
+            },
+
+            {
+                { mob = 16949369, eye = xi.dynamis.eye.RED   }, -- Adamantking_Effigy
+                { mob = 16949370, eye = xi.dynamis.eye.BLUE  },
+                { mob = 16949371, eye = xi.dynamis.eye.GREEN },
+            },
+
+            {
+                { mob = 16949376, eye = xi.dynamis.eye.RED   }, -- Serjeant_Tombstone
+                { mob = 16949377, eye = xi.dynamis.eye.BLUE  },
+                { mob = 16949378, eye = xi.dynamis.eye.GREEN },
+            },
+        },
+    },
+
+    npc =
+    {
+        QM =
+        {
+            [16949397] =
+            {
+                param = { 3459, 3483, 3484, 3485, 3486 },
+                trade =
+                {
+                    { item = 3459,                       mob = { 16949249, 16949250, 16949251, 16949252 } }, -- Diabolos Spade/Heart/Diamond/Club
+                    { item = { 3483, 3484, 3485, 3486 }, mob = { 16949326, 16949327, 16949328, 16949329 } }, -- Diabolos Somnus/Nox/Umbra/Letum
+                }
+            },
+        },
+    },
+}
+
+return zones[xi.zone.DYNAMIS_TAVNAZIA]

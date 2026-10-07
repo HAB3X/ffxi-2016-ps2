@@ -1,0 +1,55 @@
+-----------------------------------
+-- Spell: Corrosive Ooze
+-- Deals water damage to an enemy. Additional Effect: Attack Down and Defense Down
+-- Spell cost: 55 MP
+-- Monster Type: Amorphs
+-- Spell Type: Magical (Water)
+-- Blue Magic Points: 4
+-- Stat Bonus: HP-10 MP+10
+-- Level: 66
+-- Casting Time: 5 seconds
+-- Recast Time: 30 seconds
+-----------------------------------
+-- Combos: Clear Mind
+-----------------------------------
+---@type TSpell
+local spellObject = {}
+
+spellObject.onMagicCastingCheck = function(caster, target, spell)
+    return 0
+end
+
+spellObject.onSpellCast = function(caster, target, spell)
+    local params      = xi.spells.blue.getDefaultParams(caster)
+    params.ecosystem  = xi.ecosystem.AMORPH
+    params.attackType = xi.attackType.MAGICAL
+    params.damageType = xi.damageType.WATER
+
+    params.dStat           = xi.mod.INT
+    params.ftp0            = 2.125
+    params.azureBonus      = 0.5
+    params.dStatMultiplier = 2.0
+    params.baseDamageCap   = 69
+
+    params.int_wsc = 0.2
+
+    local damage = xi.spells.blue.useMagicalSpell(caster, target, spell, params)
+    local maccParams =
+    {
+        magicalElement = spell:getElement(),
+        actorStat      = xi.mod.INT,
+        skillType      = xi.skill.BLUE_MAGIC,
+        spellGroup     = spell:getSpellGroup(),
+    }
+
+    local resist = xi.combat.magicHitRate.calculateResistRate(caster, target, maccParams)
+
+    if resist >= 0.5 then
+        target:addStatusEffect(xi.effect.DEFENSE_DOWN, { power = 5, duration = 90 * resist, origin = caster })
+        target:addStatusEffect(xi.effect.ATTACK_DOWN, { power = 5, duration = 90 * resist, origin = caster })
+    end
+
+    return damage
+end
+
+return spellObject

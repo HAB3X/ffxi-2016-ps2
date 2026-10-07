@@ -1,0 +1,121 @@
+-----------------------------------
+-- Stardust
+-----------------------------------
+-- Log ID: 1, Quest ID: 24
+-- Baldric : !pos -50.858 1.777 -31.141 237
+-- qm1     : !pos 238.524 2.661 -148.784 103
+-----------------------------------
+
+local quest = Quest:new(xi.questLog.BASTOK, xi.quest.id.bastok.STARDUST)
+
+quest.reward =
+{
+    fame     = 10,
+    fameArea = xi.fameArea.BASTOK,
+    gil      = 300,
+}
+
+quest.sections =
+{
+    {
+        check = function(player, status, vars)
+            return status == xi.questStatus.QUEST_AVAILABLE and
+                player:getFameLevel(xi.fameArea.BASTOK) >= 2
+        end,
+
+        [xi.zone.METALWORKS] =
+        {
+            ['Baldric'] = quest:progressEvent(554),
+
+            onEventFinish =
+            {
+                [554] = function(player, csid, option, npc)
+                    quest:begin(player)
+                end,
+            },
+        },
+    },
+
+    {
+        check = function(player, status, vars)
+            return status == xi.questStatus.QUEST_ACCEPTED
+        end,
+
+        [xi.zone.METALWORKS] =
+        {
+            ['Baldric'] =
+            {
+                onTrade = function(player, npc, trade)
+                    if npcUtil.tradeMatches(trade, { { xi.item.PINCH_OF_VALKURM_SUNSAND, 1 } }) then
+                        return quest:progressEvent(555)
+                    end
+                end,
+            },
+
+            onEventFinish =
+            {
+                [555] = function(player, csid, option, npc)
+                    if quest:complete(player) then
+                        player:tradeComplete()
+                        quest:setMustZone(player)
+                    end
+                end,
+            },
+        },
+
+        [xi.zone.BASTOK_MINES] =
+        {
+            ['Drangord'] = quest:event(97),
+        },
+    },
+
+    {
+        check = function(player, status, vars)
+            return status == xi.questStatus.QUEST_COMPLETED
+        end,
+
+        [xi.zone.METALWORKS] =
+        {
+            ['Baldric'] =
+            {
+                onTrade = function(player, npc, trade)
+                    if
+                        quest:getVar(player, 'Prog') == 1 and
+                        npcUtil.tradeMatches(trade, { { xi.item.PINCH_OF_VALKURM_SUNSAND, 1 } })
+                    then
+                        return quest:progressEvent(555)
+                    end
+                end,
+
+                onTrigger = function(player, npc)
+                    if
+                        quest:getVar(player, 'Prog') == 0 and
+                        not quest:getMustZone(player)
+                    then
+                        return quest:progressEvent(554)
+                    end
+                end,
+            },
+
+            onEventFinish =
+            {
+                [554] = function(player, csid, option, npc)
+                    quest:setVar(player, 'Prog', 1)
+                end,
+
+                [555] = function(player, csid, option, npc)
+                    if
+                        not quest:getMustZone(player) and
+                        quest:complete(player)
+                    then
+                        player:tradeComplete()
+                        quest:setMustZone(player)
+                    end
+                end,
+            },
+        },
+    },
+
+}
+
+return quest

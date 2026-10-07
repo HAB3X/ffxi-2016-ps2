@@ -1,0 +1,2271 @@
+# yaml-language-server: $schema=../../schemas/mobs.schema.json
+
+templates:
+
+  Awoken_Andhrimnir:
+    id:            6109
+    species:       corse
+    type:          [notorious]
+    spell_list_id: 1
+    skill_list_id: 2046
+    attributes:
+      combat:
+        skill: staff
+        delay: 290
+      jobs: [blm, blm]
+      resists:
+        dmg_physical:
+          blunt: 2500
+      render:
+        look:
+          type:  standard
+          model: 3607
+        entity_flags:  3
+        model_size:    2
+        hitbox:       13
+      behaviors:
+        links:          true
+        true_detection: true
+      spawn:
+        type: [scripted]
+
+  Bugbear_Deathsman:
+    id:            561
+    species:       bugbear
+    skill_list_id: 59
+    attributes:
+      combat:
+        skill: hand_to_hand
+        delay: 380
+      jobs: [mnk, mnk]
+      render:
+        look:
+          type:  standard
+          model: 1355
+        entity_flags: 133
+        model_size:     2
+        hitbox:        13
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: uncommon
+          item:   sylvan_stone
+        - chance: rare
+          item:   bugbear_mask
+        - chance: uncommon
+          item:   chunk_of_kopparnickel_ore
+        - chance: rare
+          item:   newton_coffer_key
+        - chance: very_rare
+          item:   igneous_rock
+      steal: chunk_of_mythril_ore
+      despoil:
+        bugbear_mask: 0
+
+  Bugbear_Matman:
+    id:            562
+    species:       bugbear
+    type:          [notorious]
+    skill_list_id: 59
+    attributes:
+      combat:
+        skill: hand_to_hand
+        delay: 380
+      jobs: [mnk, war]
+      render:
+        look:
+          type:  standard
+          model: 1355
+        entity_flags: 135
+        model_size:     3
+        hitbox:        16
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 11900
+    loot:
+      drops:
+        - chance: common
+          item:   rutter_sabatons
+        - chance: uncommon
+          item:   sylvan_stone
+        - chance: rare
+          item:   chunk_of_kopparnickel_ore
+        - chance: very_rare
+          item:   bugbear_mask
+
+  Bugbear_Trashman:
+    id:            567
+    species:       bugbear
+    skill_list_id: 59
+    attributes:
+      combat:
+        skill: hand_to_hand
+        delay: 380
+      jobs: [mnk, mnk]
+      render:
+        look:
+          type:  standard
+          model: 1355
+        entity_flags: 131
+        model_size:     1
+        hitbox:        12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: uncommon
+          item:   sylvan_stone
+        - chance: rare
+          item:   bugbear_mask
+        - chance: common
+          item:   chunk_of_kopparnickel_ore
+        - chance: very_rare
+          item:   igneous_rock
+      steal: chunk_of_mythril_ore
+      despoil:
+        bugbear_mask: 0
+
+  Bugbear_Watchman:
+    id:            568
+    species:       bugbear
+    roam:          [scripted]
+    skill_list_id: 59
+    attributes:
+      combat:
+        skill: hand_to_hand
+        delay: 380
+      jobs: [mnk, mnk]
+      render:
+        look:
+          type:  standard
+          model: 1355
+        entity_flags: 133
+        model_size:     2
+        hitbox:        13
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: uncommon
+          item:   sylvan_stone
+        - chance: rare
+          item:   bugbear_mask
+        - chance: uncommon
+          item:   chunk_of_kopparnickel_ore
+        - chance: rare
+          item:   newton_coffer_key
+        - chance: very_rare
+          item:   igneous_rock
+      steal: chunk_of_mythril_ore
+      despoil:
+        bugbear_mask: 0
+
+  Dire_Bat_Newton_Movalpolos:
+    id:            7317
+    display_name:  Dire_Bat
+    species:       bat
+    skill_list_id: 224
+    attributes:
+      combat:
+        skill: club
+      render:
+        look:
+          type:  standard
+          model: 256
+        entity_flags:  643
+        animation_sub:   8
+        model_size:      1
+        hitbox:         12
+      behaviors:
+        links: true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: very_common
+          item:   bat_wing
+        - chance: uncommon
+          item:   bat_fang
+        - chance: rare
+          item:   vial_of_fiend_blood
+        - chance: very_rare
+          item:   vial_of_beastman_blood
+      despoil:
+        bat_wing: 0
+
+  Earth_Elemental:
+    id:            1160
+    species:       earth_elemental
+    spell_list_id: 13
+    skill_list_id: 101
+    attributes:
+      combat:
+        skill: staff
+      jobs: [blm, rdm]
+      resists:
+        immune_status: [stun, slow, elegy]
+      render:
+        look:
+          type:  standard
+          model: 439
+        entity_flags:  1155
+        animation_sub:   16
+        model_size:       1
+        hitbox:           3
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 960
+        type:    [weather]
+    loot:
+      drops:
+        - chance: always
+          item:   earth_cluster
+        - chance: common
+          item:   earth_cluster
+        - chance: common
+          item:   earth_cluster
+
+  Goblin_Collector:
+    id:            1645
+    species:       goblin
+    type:          [notorious]
+    spell_list_id: 463
+    skill_list_id: 1172
+    attributes:
+      combat:
+        skill:    club
+        delay:    200
+        dmg_mult: 200
+      jobs: [whm, thf]
+      resists:
+        immune_status: [silence, light_sleep, dark_sleep]
+      render:
+        look:
+          type:  standard
+          model: 700
+        entity_flags:  3
+        model_size:    3
+        hitbox:       25
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 17500
+    loot:
+      drops:
+        - chance: uncommon
+          item:   barbarian_mittens
+
+  Goblin_Fireman:
+    id:            1658
+    species:       armored_goblin
+    skill_list_id: 133
+    attributes:
+      combat:
+        skill: great_sword
+      render:
+        look:
+          type:  standard
+          model: 715
+        entity_flags: 131
+        model_size:     1
+        hitbox:        30
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: uncommon
+          item:   gold_key
+        - chance: rare
+          item:   goblin_helm
+        - chance: very_rare
+          item:   goblin_mail
+      steal: gold_beastcoin
+      despoil:
+        loaf_of_goblin_bread:      0
+        chunk_of_goblin_chocolate: 0
+        bowl_of_goblin_stew:       0
+        goblin_mushpot:            0
+
+  Goblin_Foreman:
+    id:            1661
+    species:       goblin
+    skill_list_id: 133
+    attributes:
+      combat:
+        skill: dagger
+      jobs: [bst, bst]
+      render:
+        look:
+          type:  standard
+          model: 676
+        entity_flags: 131
+        model_size:     1
+        hitbox:        12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: uncommon
+          item:   gold_key
+        - chance: rare
+          item:   goblin_mask
+        - chance: very_rare
+          item:   goblin_armor
+      steal: gold_beastcoin
+      despoil:
+        loaf_of_goblin_bread:      0
+        chunk_of_goblin_chocolate: 0
+        bowl_of_goblin_stew:       0
+        goblin_mushpot:            0
+
+  Goblin_Hangman:
+    id:            1675
+    species:       goblin
+    spell_list_id: 5
+    skill_list_id: 133
+    attributes:
+      combat:
+        skill: sword
+      jobs: [drk, drk]
+      render:
+        look:
+          type:  standard
+          model: 719
+        entity_flags: 133
+        model_size:     2
+        hitbox:        34
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: rare
+          item:   goblin_helm
+        - chance: very_rare
+          item:   goblin_mail
+        - chance: uncommon
+          item:   jar_of_firesand
+      steal: platinum_beastcoin
+      despoil:
+        loaf_of_goblin_bread:      0
+        chunk_of_goblin_chocolate: 0
+        bowl_of_goblin_stew:       0
+        goblin_mushpot:            0
+
+  Goblin_Headman:
+    id:            1676
+    species:       goblin
+    skill_list_id: 133
+    attributes:
+      combat:
+        skill: axe
+      jobs: [bst, bst]
+      render:
+        look:
+          type:  standard
+          model: 677
+        entity_flags: 133
+        model_size:     2
+        hitbox:        13
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: rare
+          item:   goblin_mask
+        - chance: very_rare
+          item:   goblin_armor
+        - chance: uncommon
+          item:   jar_of_firesand
+      steal: platinum_beastcoin
+      despoil:
+        loaf_of_goblin_bread:      0
+        chunk_of_goblin_chocolate: 0
+        bowl_of_goblin_stew:       0
+        goblin_mushpot:            0
+
+  Goblin_Junkman:
+    id:            1680
+    species:       goblin
+    skill_list_id: 133
+    attributes:
+      combat:
+        skill: axe
+      render:
+        look:
+          type:  standard
+          model: 716
+        entity_flags: 133
+        model_size:     2
+        hitbox:        34
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: uncommon
+          item:   jar_of_firesand
+        - chance: rare
+          item:   newton_coffer_key
+        - chance: rare
+          item:   goblin_helm
+        - chance: very_rare
+          item:   goblin_mail
+      steal: platinum_beastcoin
+      despoil:
+        loaf_of_goblin_bread:      0
+        chunk_of_goblin_chocolate: 0
+        bowl_of_goblin_stew:       0
+        goblin_mushpot:            0
+
+  Goblin_Lengthman:
+    id:            1684
+    species:       goblin
+    skill_list_id: 133
+    attributes:
+      combat:
+        skill: dagger
+      jobs: [rng, rng]
+      render:
+        look:
+          type:  standard
+          model: 676
+        entity_flags: 131
+        model_size:     1
+        hitbox:        12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: uncommon
+          item:   gold_key
+        - chance: rare
+          item:   goblin_mask
+        - chance: very_rare
+          item:   goblin_armor
+      steal: gold_beastcoin
+      despoil:
+        loaf_of_goblin_bread:      0
+        chunk_of_goblin_chocolate: 0
+        bowl_of_goblin_stew:       0
+        goblin_mushpot:            0
+
+  Goblin_Marksman:
+    id:            1685
+    species:       goblin
+    skill_list_id: 133
+    attributes:
+      combat:
+        skill: dagger
+      jobs: [rng, rng]
+      render:
+        look:
+          type:  standard
+          model: 680
+        entity_flags: 133
+        model_size:     2
+        hitbox:        17
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: rare
+          item:   goblin_mask
+        - chance: very_rare
+          item:   goblin_armor
+        - chance: uncommon
+          item:   jar_of_firesand
+      steal: platinum_beastcoin
+      despoil:
+        loaf_of_goblin_bread:      0
+        chunk_of_goblin_chocolate: 0
+        bowl_of_goblin_stew:       0
+        goblin_mushpot:            0
+
+  Goblin_Packman:
+    id:            1692
+    species:       goblin
+    spell_list_id: 5
+    skill_list_id: 133
+    attributes:
+      combat:
+        skill: great_sword
+      jobs: [drk, drk]
+      render:
+        look:
+          type:  standard
+          model: 715
+        entity_flags: 131
+        model_size:     1
+        hitbox:        30
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: uncommon
+          item:   gold_key
+        - chance: rare
+          item:   goblin_helm
+        - chance: very_rare
+          item:   goblin_mail
+      steal: gold_beastcoin
+      despoil:
+        loaf_of_goblin_bread:      0
+        chunk_of_goblin_chocolate: 0
+        bowl_of_goblin_stew:       0
+        goblin_mushpot:            0
+
+  Goblin_Swordsman:
+    id:            1719
+    species:       goblin
+    skill_list_id: 133
+    attributes:
+      combat:
+        skill: great_sword
+      render:
+        look:
+          type:  standard
+          model: 701
+        entity_flags: 133
+        model_size:     2
+        hitbox:        20
+      behaviors:
+        aggressive: true
+        links:      true
+      mob_mods:
+        assist: 2
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: always
+          item:   sylvan_stone
+        - chance: rare
+          item:   goblin_helm
+        - chance: very_rare
+          item:   goblin_mail
+      despoil:
+        loaf_of_goblin_bread:      0
+        chunk_of_goblin_chocolate: 0
+        bowl_of_goblin_stew:       0
+        goblin_mushpot:            0
+
+  Goblins_Bat_Tier1_Newton Movalpo:
+    id:            7322
+    display_name:  Goblins_Bat
+    species:       bat
+    skill_list_id: 224
+    attributes:
+      combat:
+        skill: club
+      render:
+        look:
+          type:  standard
+          model: 256
+        entity_flags:  643
+        animation_sub:   8
+        model_size:      1
+        hitbox:         12
+      behaviors:
+        links: true
+      spawn:
+        type: [scripted]
+
+  Goblins_Bat_Tier2_Newton Movalpo:
+    id:            7323
+    display_name:  Goblins_Bat
+    species:       bat
+    skill_list_id: 224
+    attributes:
+      combat:
+        skill: club
+      render:
+        look:
+          type:  standard
+          model: 256
+        entity_flags:  643
+        animation_sub:   8
+        model_size:      1
+        hitbox:         12
+      behaviors:
+        links: true
+      spawn:
+        type: [scripted]
+
+  Mimic:
+    id:            2664
+    species:       mimic
+    type:          [notorious]
+    skill_list_id: 183
+    attributes:
+      combat:
+        skill: scythe
+        delay: 170
+      resists:
+        dmg_physical:
+          slashing: -5000
+          piercing: -5000
+          blunt:    -5000
+          h2h:      -5000
+      render:
+        look:
+          type:  standard
+          model: 259
+        entity_flags:  131
+        animation_sub:  13
+        model_size:      1
+        hitbox:         12
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: always
+          item:   newton_coffer_key
+
+  Moblin_Aidman:
+    id:            2684
+    species:       moblin
+    spell_list_id: 20
+    skill_list_id: 184
+    attributes:
+      combat:
+        skill: sword
+      jobs: [whm, whm]
+      render:
+        look:
+          type:  standard
+          model: 692
+        entity_flags: 133
+        model_size:     2
+        hitbox:        17
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: very_rare
+          item:   newton_coffer_key
+        - chance: common
+          item:   spool_of_moblin_thread
+        - chance: uncommon
+          item:   moblin_sheepskin
+        - chance: rare
+          item:   moblin_armor
+      steal: platinum_beastcoin
+      despoil:
+        loaf_of_goblin_bread:      0
+        chunk_of_goblin_chocolate: 0
+        bowl_of_goblin_stew:       0
+        goblin_mushpot:            0
+
+  Moblin_Aidman_2:
+    id:            2684
+    display_name:  Moblin_Aidman
+    species:       moblin
+    spell_list_id: 20
+    skill_list_id: 184
+    attributes:
+      combat:
+        skill: sword
+      jobs: [whm, whm]
+      render:
+        look:
+          type:  standard
+          model: 692
+        entity_flags: 133
+        model_size:     2
+        hitbox:        17
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: very_rare
+          item:   newton_coffer_key
+        - chance: common
+          item:   spool_of_moblin_thread
+        - chance: uncommon
+          item:   moblin_sheepskin
+        - chance: rare
+          item:   moblin_armor
+      steal: platinum_beastcoin
+      despoil:
+        loaf_of_goblin_bread:      0
+        chunk_of_goblin_chocolate: 0
+        bowl_of_goblin_stew:       0
+        goblin_mushpot:            0
+
+  Moblin_Draftsman:
+    id:            2690
+    species:       moblin
+    spell_list_id: 21
+    skill_list_id: 184
+    attributes:
+      combat:
+        skill: axe
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 691
+        entity_flags: 131
+        model_size:     1
+        hitbox:        15
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: uncommon
+          item:   moblin_mask
+        - chance: uncommon
+          item:   moblin_sheepskin
+        - chance: rare
+          item:   moblin_armor
+        - chance: very_rare
+          item:   scroll_of_stone_iii
+        - chance: very_rare
+          item:   scroll_of_stonega_ii
+        - chance: very_rare
+          item:   scroll_of_stonega_iii
+        - chance: very_rare
+          item:   scroll_of_quake
+      steal: gold_beastcoin
+      despoil:
+        loaf_of_goblin_bread:      0
+        chunk_of_goblin_chocolate: 0
+        bowl_of_goblin_stew:       0
+        goblin_mushpot:            0
+
+  Moblin_Engineman:
+    id:            2692
+    species:       moblin
+    spell_list_id: 21
+    skill_list_id: 184
+    attributes:
+      combat:
+        skill: axe
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 695
+        entity_flags: 133
+        model_size:     2
+        hitbox:        17
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: common
+          item:   jar_of_firesand
+        - chance: uncommon
+          item:   moblin_mask
+        - chance: uncommon
+          item:   moblin_sheepskin
+        - chance: rare
+          item:   moblin_armor
+        - chance: very_rare
+          item:   scroll_of_aero_iii
+        - chance: very_rare
+          item:   scroll_of_aero_iv
+        - chance: very_rare
+          item:   scroll_of_aeroga_ii
+        - chance: very_rare
+          item:   scroll_of_aeroga_iii
+      steal: platinum_beastcoin
+      despoil:
+        loaf_of_goblin_bread:      0
+        chunk_of_goblin_chocolate: 0
+        bowl_of_goblin_stew:       0
+        goblin_mushpot:            0
+
+  Moblin_Engineman_2:
+    id:            2692
+    display_name:  Moblin_Engineman
+    species:       moblin
+    spell_list_id: 21
+    skill_list_id: 184
+    attributes:
+      combat:
+        skill: axe
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 695
+        entity_flags: 133
+        model_size:     2
+        hitbox:        17
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: common
+          item:   jar_of_firesand
+        - chance: uncommon
+          item:   moblin_mask
+        - chance: uncommon
+          item:   moblin_sheepskin
+        - chance: rare
+          item:   moblin_armor
+        - chance: very_rare
+          item:   scroll_of_aero_iii
+        - chance: very_rare
+          item:   scroll_of_aero_iv
+        - chance: very_rare
+          item:   scroll_of_aeroga_ii
+        - chance: very_rare
+          item:   scroll_of_aeroga_iii
+      steal: platinum_beastcoin
+      despoil:
+        loaf_of_goblin_bread:      0
+        chunk_of_goblin_chocolate: 0
+        bowl_of_goblin_stew:       0
+        goblin_mushpot:            0
+
+  Moblin_Groundman:
+    id:            2695
+    species:       moblin
+    spell_list_id: 3
+    skill_list_id: 184
+    attributes:
+      combat:
+        skill: great_sword
+      jobs: [rdm, rdm]
+      render:
+        look:
+          type:  standard
+          model: 697
+        entity_flags: 133
+        model_size:     2
+        hitbox:        20
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: common
+          item:   moblin_hotrok
+        - chance: uncommon
+          item:   moblin_helm
+        - chance: rare
+          item:   moblin_mail
+      despoil:
+        loaf_of_goblin_bread:      0
+        chunk_of_goblin_chocolate: 0
+        bowl_of_goblin_stew:       0
+        goblin_mushpot:            0
+
+  Moblin_Roadman:
+    id:            2702
+    species:       moblin
+    skill_list_id: 184
+    attributes:
+      combat:
+        skill: dagger
+      jobs: [thf, thf]
+      render:
+        look:
+          type:  standard
+          model: 686
+        entity_flags: 133
+        model_size:     2
+        hitbox:        17
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: common
+          item:   jar_of_firesand
+        - chance: uncommon
+          item:   moblin_mask
+        - chance: rare
+          item:   glass_fiber_fishing_rod
+        - chance: rare
+          item:   moblin_armor
+      steal: platinum_beastcoin
+      despoil:
+        loaf_of_goblin_bread:      0
+        chunk_of_goblin_chocolate: 0
+        bowl_of_goblin_stew:       0
+        goblin_mushpot:            0
+
+  Moblin_Scalpelman:
+    id:            2704
+    species:       moblin
+    spell_list_id: 20
+    skill_list_id: 184
+    attributes:
+      combat:
+        skill: sword
+      jobs: [rdm, whm]
+      render:
+        look:
+          type:  standard
+          model: 699
+        entity_flags: 133
+        model_size:     2
+        hitbox:        20
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: uncommon
+          item:   moblin_mask
+        - chance: rare
+          item:   moblin_armor
+      steal: platinum_beastcoin
+      despoil:
+        loaf_of_goblin_bread:      0
+        chunk_of_goblin_chocolate: 0
+        bowl_of_goblin_stew:       0
+        goblin_mushpot:            0
+
+  Moblin_Tankman:
+    id:            2705
+    species:       moblin
+    spell_list_id: 20
+    skill_list_id: 184
+    attributes:
+      combat:
+        skill: great_axe
+      jobs: [whm, whm]
+      render:
+        look:
+          type:  standard
+          model: 691
+        entity_flags: 131
+        model_size:     1
+        hitbox:        15
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: rare
+          item:   gold_key
+        - chance: uncommon
+          item:   moblin_mask
+        - chance: uncommon
+          item:   moblin_sheepskin
+        - chance: very_rare
+          item:   moblin_armor
+      steal: gold_beastcoin
+      despoil:
+        loaf_of_goblin_bread:      0
+        chunk_of_goblin_chocolate: 0
+        bowl_of_goblin_stew:       0
+        goblin_mushpot:            0
+
+  Moblin_Topsman:
+    id:            2706
+    species:       moblin
+    spell_list_id: 3
+    skill_list_id: 184
+    attributes:
+      combat:
+        skill: great_sword
+      jobs: [rdm, rdm]
+      render:
+        look:
+          type:  standard
+          model: 685
+        entity_flags: 133
+        model_size:     2
+        hitbox:        17
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: common
+          item:   spool_of_moblin_thread
+        - chance: uncommon
+          item:   moblin_mask
+        - chance: rare
+          item:   moblin_armor
+      steal: platinum_beastcoin
+      despoil:
+        loaf_of_goblin_bread:      0
+        chunk_of_goblin_chocolate: 0
+        bowl_of_goblin_stew:       0
+        goblin_mushpot:            0
+
+  Moblin_Topsman_2:
+    id:            2706
+    display_name:  Moblin_Topsman
+    species:       moblin
+    spell_list_id: 3
+    skill_list_id: 184
+    attributes:
+      combat:
+        skill: great_sword
+      jobs: [rdm, rdm]
+      render:
+        look:
+          type:  standard
+          model: 685
+        entity_flags: 133
+        model_size:     2
+        hitbox:        17
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: common
+          item:   spool_of_moblin_thread
+        - chance: uncommon
+          item:   moblin_mask
+        - chance: rare
+          item:   moblin_armor
+      steal: platinum_beastcoin
+      despoil:
+        loaf_of_goblin_bread:      0
+        chunk_of_goblin_chocolate: 0
+        bowl_of_goblin_stew:       0
+        goblin_mushpot:            0
+
+  Moblin_Workman:
+    id:            2709
+    species:       moblin
+    spell_list_id: 3
+    skill_list_id: 184
+    attributes:
+      combat:
+        skill: great_sword
+      jobs: [rdm, rdm]
+      render:
+        look:
+          type:  standard
+          model: 684
+        entity_flags: 131
+        model_size:     1
+        hitbox:        15
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: rare
+          item:   gold_key
+        - chance: uncommon
+          item:   moblin_mask
+        - chance: very_rare
+          item:   moblin_armor
+      steal: gold_beastcoin
+      despoil:
+        loaf_of_goblin_bread:      0
+        chunk_of_goblin_chocolate: 0
+        bowl_of_goblin_stew:       0
+        goblin_mushpot:            0
+
+  Moblin_Yardman:
+    id:            2710
+    species:       moblin
+    skill_list_id: 184
+    attributes:
+      combat:
+        skill: dagger
+      jobs: [thf, thf]
+      render:
+        look:
+          type:  standard
+          model: 684
+        entity_flags: 131
+        model_size:     1
+        hitbox:        15
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: rare
+          item:   gold_key
+        - chance: uncommon
+          item:   moblin_mask
+        - chance: very_rare
+          item:   moblin_armor
+      steal: gold_beastcoin
+      despoil:
+        loaf_of_goblin_bread:      0
+        chunk_of_goblin_chocolate: 0
+        bowl_of_goblin_stew:       0
+        goblin_mushpot:            0
+
+  Nightmare_Bats_Newton_Movalpolos:
+    id:            7352
+    display_name:  Nightmare_Bats
+    species:       flock_bat
+    skill_list_id: 2015
+    attributes:
+      combat:
+        skill: axe
+      render:
+        look:
+          type:  standard
+          model: 260
+        entity_flags:  643
+        animation_sub:   8
+        name_prefix:    64
+        model_size:      1
+        hitbox:         16
+      behaviors:
+        links: true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: common
+          item:   bat_wing
+        - chance: uncommon
+          item:   bat_fang
+        - chance: uncommon
+          item:   vial_of_fiend_blood
+        - chance: rare
+          item:   newton_coffer_key
+        - chance: very_rare
+          item:   vial_of_beastman_blood
+      despoil:
+        bat_wing: 0
+
+  Purgatory_Bat_Newton_Movapolos:
+    id:            7328
+    display_name:  Purgatory_Bat
+    species:       bat
+    skill_list_id: 224
+    attributes:
+      combat:
+        skill: club
+      render:
+        look:
+          type:  standard
+          model: 256
+        entity_flags:  645
+        animation_sub:   8
+        model_size:      2
+        hitbox:         14
+      behaviors:
+        links: true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: common
+          item:   bat_wing
+        - chance: uncommon
+          item:   bat_fang
+        - chance: uncommon
+          item:   vial_of_fiend_blood
+        - chance: rare
+          item:   newton_coffer_key
+        - chance: rare
+          item:   vial_of_beastman_blood
+      despoil:
+        bat_wing: 0
+
+  Succubus_Bats_Newton_Movalpolos:
+    id:            7350
+    display_name:  Succubus_Bats
+    species:       flock_bat
+    skill_list_id: 2015
+    attributes:
+      combat:
+        skill: club
+      render:
+        look:
+          type:  standard
+          model: 260
+        entity_flags:  643
+        animation_sub:   8
+        name_prefix:    64
+        model_size:      1
+        hitbox:         16
+      behaviors:
+        links: true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: very_common
+          item:   bat_wing
+        - chance: uncommon
+          item:   bat_fang
+        - chance: rare
+          item:   vial_of_fiend_blood
+        - chance: very_rare
+          item:   vial_of_beastman_blood
+      despoil:
+        bat_wing: 0
+
+  Swashstox_Beadblinker:
+    id:            3824
+    species:       goblin
+    type:          [notorious]
+    skill_list_id: 133
+    attributes:
+      combat:
+        skill: great_sword
+        delay: 200
+      render:
+        look:
+          type:  standard
+          model: 702
+        entity_flags: 157
+        name_prefix:   32
+        model_size:     2
+        hitbox:        20
+      behaviors:
+        aggressive: true
+        links:      true
+      mob_mods:
+        assist: 2
+      spawn:
+        type: [lottery]
+      stats:
+        hp: 6650
+    loot:
+      drops:
+        - chance: uncommon
+          item:   sylvan_stone
+        - chance: common
+          item:   darksteel_codpiece
+        - chance: uncommon
+          item:   pachamacs_collar
+
+  Sword_Sorcerer_Solisoq:
+    id:            6718
+    species:       goblin
+    type:          [notorious]
+    spell_list_id: 485
+    skill_list_id: 133
+    attributes:
+      combat:
+        skill: dagger
+      jobs: [rdm, rdm]
+      render:
+        look:
+          type:  standard
+          model: 682
+        entity_flags: 155
+        name_prefix:   32
+        model_size:     1
+        hitbox:        15
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 3600
+      stats:
+        hp: 14000
+    loot:
+      drops:
+        - chance: uncommon
+          item:   aptant_of_primus
+        - chance: uncommon
+          item:   aptant_of_fyrst
+        - chance: uncommon
+          item:   aptant_of_arkhe
+    content: wotg
+
+  Thunder_Elemental:
+    id:            3912
+    species:       thunder_elemental
+    spell_list_id: 16
+    skill_list_id: 105
+    attributes:
+      combat:
+        skill: staff
+      jobs: [blm, rdm]
+      resists:
+        immune_status: [stun, poison]
+      render:
+        look:
+          type:  standard
+          model: 441
+        entity_flags:  131
+        animation_sub:  16
+        model_size:      1
+        hitbox:          3
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 960
+        type:    [weather]
+    loot:
+      drops:
+        - chance: always
+          item:   lightning_cluster
+        - chance: common
+          item:   lightning_cluster
+        - chance: common
+          item:   lightning_cluster
+
+spawns:
+  16826369:
+    template: Goblin_Foreman
+    region:   region_76
+    level:    [66, 68]
+  16826370:
+    template: Goblins_Bat_Tier1_Newton Movalpo
+    script:   Goblins_Bat
+    at:       [-282.596, 7.396, -179.573, 128]
+    level:    [61, 64]
+  16826371:
+    template: Goblin_Packman
+    region:   sw_3
+    level:    [66, 68]
+  16826372:
+    template: Bugbear_Trashman
+    region:   sw_3
+    level:    [65, 66]
+  16826373:
+    template: Goblin_Fireman
+    region:   sw_5
+    level:    [66, 68]
+  16826374:
+    template: Goblin_Lengthman
+    region:   sw_5
+    level:    [66, 68]
+  16826375:
+    template: Bugbear_Trashman
+    region:   sw_5
+    level:    [66, 66]
+  16826376:
+    template: Goblin_Fireman
+    region:   sw_8
+    level:    [66, 68]
+  16826377:
+    template: Goblin_Packman
+    region:   sw_8
+    level:    [66, 68]
+  16826378:
+    template: Goblin_Lengthman
+    region:   sw_8
+    level:    [66, 68]
+  16826379:
+    template: Bugbear_Watchman
+    at:       [-178.542, 12.000, -161.705, 63]
+    level:    [71, 71]
+  16826380:
+    template: Bugbear_Watchman
+    at:       [-181.544, 12.000, -161.569, 64]
+    level:    [71, 71]
+  16826381:
+    template: Goblin_Foreman
+    region:   nw_13
+    level:    [66, 68]
+  16826382:
+    template: Goblins_Bat_Tier1_Newton Movalpo
+    script:   Goblins_Bat
+    at:       [-182.255, 15.360, 118.395, 193]
+    level:    [61, 64]
+  16826383:
+    template: Bugbear_Trashman
+    region:   nw_15
+    level:    [66, 66]
+  16826384:
+    template: Moblin_Workman
+    region:   nw_16
+    level:    [66, 68]
+  16826385:
+    template: Goblin_Packman
+    region:   nw_17
+    level:    [66, 68]
+  16826386:
+    template: Goblin_Lengthman
+    region:   nw_15
+    level:    [66, 68]
+  16826387:
+    template: Moblin_Tankman
+    region:   nw_13
+    level:    [66, 68]
+  16826388:
+    template: Goblin_Fireman
+    region:   nw_13
+    level:    [66, 68]
+  16826389:
+    template: Goblin_Fireman
+    region:   nw_21
+    level:    [66, 68]
+  16826390:
+    template: Moblin_Draftsman
+    region:   nw_21
+    level:    [66, 68]
+  16826391:
+    template: Moblin_Workman
+    region:   nw_23
+    level:    [66, 68]
+  16826392:
+    template: Bugbear_Trashman
+    region:   nw_23
+    level:    [66, 66]
+  16826393:
+    template: Dire_Bat_Newton_Movalpolos
+    script:   Dire_Bat
+    region:   nw_25
+    level:    [63, 65]
+  16826394:
+    template: Dire_Bat_Newton_Movalpolos
+    script:   Dire_Bat
+    region:   nw_25
+    level:    [63, 65]
+  16826395:
+    template: Bugbear_Trashman
+    region:   nw_27
+    level:    [65, 65]
+  16826396:
+    template: Goblin_Foreman
+    region:   nw_28
+    level:    [66, 68]
+  16826397:
+    template: Goblins_Bat_Tier1_Newton Movalpo
+    script:   Goblins_Bat
+    at:       [-92.519, 15.397, 213.135, 226]
+    level:    [61, 64]
+  16826398:
+    template: Goblin_Lengthman
+    region:   nw_28
+    level:    [66, 68]
+  16826399:
+    template: Bugbear_Trashman
+    region:   nw_31
+    level:    [65, 66]
+  16826400:
+    template: Moblin_Workman
+    region:   n_32
+    level:    [66, 68]
+  16826401:
+    template: Moblin_Yardman
+    region:   n_32
+    level:    [66, 68]
+  16826402:
+    template: Goblin_Fireman
+    region:   n_34
+    level:    [66, 68]
+  16826403:
+    template: Goblin_Packman
+    region:   n_34
+    level:    [66, 68]
+  16826404:
+    template: Goblin_Lengthman
+    region:   n_34
+    level:    [66, 68]
+  16826405:
+    template: Goblin_Fireman
+    region:   n_34
+    level:    [66, 68]
+  16826406:
+    template: Goblin_Packman
+    region:   n_34
+    level:    [66, 68]
+  16826407:
+    template: Goblin_Lengthman
+    region:   n_34
+    level:    [66, 68]
+  16826408:
+    template: Succubus_Bats_Newton_Movalpolos
+    script:   Succubus_Bats
+    region:   n_40
+    level:    [63, 65]
+  16826409:
+    template: Succubus_Bats_Newton_Movalpolos
+    script:   Succubus_Bats
+    region:   n_40
+    level:    [63, 65]
+  16826410:
+    template: Moblin_Yardman
+    region:   n_42
+    level:    [66, 68]
+  16826411:
+    template: Moblin_Tankman
+    region:   n_42
+    level:    [66, 68]
+  16826412:
+    template: Moblin_Tankman
+    region:   n_42
+    level:    [66, 68]
+  16826413:
+    template: Moblin_Draftsman
+    region:   n_45
+    level:    [66, 68]
+  16826414:
+    template: Moblin_Workman
+    region:   n_46
+    level:    [66, 68]
+  16826415:
+    template: Goblin_Foreman
+    region:   n_46
+    level:    [66, 68]
+  16826416:
+    template: Goblins_Bat_Tier1_Newton Movalpo
+    script:   Goblins_Bat
+    at:       [119.460, 19.399, 139.744, 128]
+    level:    [61, 64]
+  16826417:
+    template: Bugbear_Trashman
+    region:   region_75
+    level:    [66, 67]
+  16826418:
+    template: Goblin_Fireman
+    region:   n_50
+    level:    [66, 68]
+  16826419:
+    template: Bugbear_Trashman
+    region:   n_50
+    level:    [66, 67]
+  16826420:
+    template: Goblin_Packman
+    region:   n_55
+    level:    [66, 68]
+  16826421:
+    template: Goblin_Lengthman
+    region:   region_77
+    level:    [66, 68]
+  16826422:
+    template: Moblin_Workman
+    region:   n_55
+    level:    [66, 68]
+  16826423:
+    template: Moblin_Yardman
+    region:   n_55
+    level:    [66, 68]
+  16826424:
+    template: Moblin_Draftsman
+    region:   n_55
+    level:    [66, 68]
+  16826425:
+    template: Moblin_Draftsman
+    region:   nw_57
+    level:    [66, 68]
+  16826426:
+    template: Moblin_Tankman
+    region:   nw_57
+    level:    [66, 68]
+  16826427:
+    template: Dire_Bat_Newton_Movalpolos
+    script:   Dire_Bat
+    region:   w_60
+    level:    [63, 65]
+  16826428:
+    template: Moblin_Workman
+    region:   w_60
+    level:    [66, 68]
+  16826429:
+    template: Moblin_Draftsman
+    region:   w_60
+    level:    [66, 68]
+  16826430:
+    template: Succubus_Bats_Newton_Movalpolos
+    script:   Succubus_Bats
+    region:   w_60
+    level:    [63, 65]
+  16826431:
+    template: Moblin_Workman
+    region:   n_63
+    level:    [66, 68]
+  16826432:
+    template: Moblin_Tankman
+    region:   n_63
+    level:    [66, 68]
+  16826433:
+    template: Succubus_Bats_Newton_Movalpolos
+    script:   Succubus_Bats
+    region:   n_63
+    level:    [64, 65]
+  16826434:
+    template: Thunder_Elemental
+    region:   nw_66
+    level:    [70, 70]
+  16826435:
+    template: Earth_Elemental
+    region:   nw_66
+    level:    [70, 70]
+  16826436:
+    template: Bugbear_Trashman
+    region:   c_68
+    level:    [66, 67]
+  16826437:
+    template: Goblin_Lengthman
+    region:   c_69
+    level:    [66, 68]
+  16826438:
+    template: Goblin_Foreman
+    region:   c_69
+    level:    [66, 68]
+  16826439:
+    template: Goblins_Bat_Tier1_Newton Movalpo
+    script:   Goblins_Bat
+    at:       [-27.074, 15.399, 33.131, 142]
+    level:    [61, 64]
+  16826440:
+    template: Bugbear_Watchman
+    at:       [-221.513, 16.000, 163.820, 180]
+    level:    [71, 71]
+  16826441:
+    template: Bugbear_Watchman
+    at:       [-218.485, 16.000, 163.395, 191]
+    level:    [71, 71]
+  16826442:
+    template: Goblin_Fireman
+    region:   sw_74
+    level:    [66, 68]
+  16826443:
+    template: Goblin_Lengthman
+    region:   sw_75
+    level:    [66, 68]
+  16826444:
+    template: Goblin_Foreman
+    region:   sw_76
+    level:    [66, 68]
+  16826445:
+    template: Goblins_Bat_Tier1_Newton Movalpo
+    script:   Goblins_Bat
+    at:       [-131.022, 11.378, -135.543, 9]
+    level:    [61, 64]
+  16826446:
+    template: Moblin_Workman
+    region:   region_82
+    level:    [66, 68]
+  16826447:
+    template: Goblin_Packman
+    region:   region_82
+    level:    [66, 68]
+  16826448:
+    template: Moblin_Yardman
+    region:   sw_80
+    level:    [66, 68]
+  16826449:
+    template: Moblin_Draftsman
+    region:   sw_81
+    level:    [66, 68]
+  16826450:
+    template: Goblin_Packman
+    region:   sw_81
+    level:    [66, 68]
+  16826451:
+    template: Bugbear_Trashman
+    region:   sw_81
+    level:    [66, 67]
+  16826452:
+    template: Moblin_Tankman
+    region:   sw_84
+    level:    [66, 68]
+  16826453:
+    template: Bugbear_Trashman
+    region:   sw_84
+    level:    [66, 67]
+  16826454:
+    template: Bugbear_Trashman
+    region:   sw_84
+    level:    [66, 67]
+  16826455:
+    template: Goblin_Packman
+    region:   s_87
+    level:    [66, 68]
+  16826456:
+    template: Moblin_Yardman
+    region:   s_87
+    level:    [66, 68]
+  16826457:
+    template: Succubus_Bats_Newton_Movalpolos
+    script:   Succubus_Bats
+    region:   s_87
+    level:    [64, 65]
+  16826458:
+    template: Moblin_Draftsman
+    region:   s_90
+    level:    [66, 68]
+  16826459:
+    template: Goblin_Foreman
+    region:   s_90
+    level:    [66, 68]
+  16826460:
+    template: Goblins_Bat_Tier1_Newton Movalpo
+    script:   Goblins_Bat
+    at:       [-14.590, 15.492, -97.146, 139]
+    level:    [61, 64]
+  16826461:
+    template: Succubus_Bats_Newton_Movalpolos
+    script:   Succubus_Bats
+    region:   s_90
+    level:    [64, 65]
+  16826462:
+    template: Thunder_Elemental
+    region:   region_84
+    level:    [70, 70]
+  16826463:
+    template: Earth_Elemental
+    region:   region_84
+    level:    [70, 70]
+  16826464:
+    template: Goblin_Lengthman
+    region:   c_96
+    level:    [66, 68]
+  16826465:
+    template: Moblin_Tankman
+    region:   c_96
+    level:    [66, 68]
+  16826466:
+    template: Moblin_Draftsman
+    region:   region_78
+    level:    [66, 68]
+  16826467:
+    template: Moblin_Workman
+    region:   s_99
+    level:    [66, 68]
+  16826468:
+    template: Moblin_Yardman
+    region:   s_99
+    level:    [66, 68]
+  16826469:
+    template: Goblin_Fireman
+    region:   s_101
+    level:    [68, 69]
+  16826470:
+    template: Goblin_Fireman
+    region:   s_101
+    level:    [68, 69]
+  16826471:
+    template: Goblin_Packman
+    region:   s_101
+    level:    [68, 69]
+  16826472:
+    template: Goblin_Lengthman
+    region:   s_104
+    level:    [68, 69]
+  16826473:
+    template: Moblin_Draftsman
+    region:   s_104
+    level:    [68, 69]
+  16826474:
+    template: Sword_Sorcerer_Solisoq
+    region:   s_104
+    level:    [83, 83]
+  16826475:
+    template: Goblin_Foreman
+    region:   s_107
+    level:    [68, 69]
+  16826476:
+    template: Goblins_Bat_Tier1_Newton Movalpo
+    script:   Goblins_Bat
+    at:       [62.670, 15.397, -169.120, 166]
+    level:    [61, 64]
+  16826477:
+    template: Goblin_Lengthman
+    region:   s_109
+    level:    [68, 69]
+  16826478:
+    template: Bugbear_Trashman
+    region:   s_109
+    level:    [66, 67]
+  16826479:
+    template: Bugbear_Watchman
+    at:       [94.011, 15.995, -176.779, 116]
+    level:    [76, 76]
+  16826480:
+    template: Goblin_Headman
+    region:   s_112
+    level:    [75, 77]
+  16826481:
+    template: Goblins_Bat_Tier2_Newton Movalpo
+    script:   Goblins_Bat
+    at:       [98.452, 15.552, -150.206, 193]
+    level:    [71, 73]
+  16826482:
+    template: Nightmare_Bats_Newton_Movalpolos
+    script:   Nightmare_Bats
+    region:   s_112
+    level:    [72, 73]
+  16826483:
+    template: Goblin_Junkman
+    region:   s_115
+    level:    [75, 77]
+  16826484:
+    template: Moblin_Aidman
+    region:   s_115
+    level:    [75, 77]
+  16826485:
+    template: Purgatory_Bat_Newton_Movapolos
+    script:   Purgatory_Bat
+    region:   s_115
+    level:    [73, 74]
+  16826486:
+    template: Goblin_Junkman
+    region:   s_118
+    level:    [75, 77]
+  16826487:
+    template: Moblin_Topsman
+    region:   s_118
+    level:    [75, 77]
+  16826488:
+    template: Bugbear_Deathsman
+    region:   s_118
+    level:    [74, 75]
+  16826489:
+    template: Bugbear_Watchman
+    at:       [-87.807, 16.000, -21.246, 125]
+    level:    [76, 76]
+  16826490:
+    template: Bugbear_Watchman
+    at:       [-87.459, 16.000, -18.783, 125]
+    level:    [76, 76]
+  16826491:
+    template: Goblin_Marksman
+    region:   c_123
+    level:    [75, 77]
+  16826492:
+    template: Goblin_Headman
+    region:   c_123
+    level:    [75, 77]
+  16826493:
+    template: Goblins_Bat_Tier2_Newton Movalpo
+    script:   Goblins_Bat
+    at:       [-54.167, 13.416, -19.293, 64]
+    level:    [71, 73]
+  16826494:
+    template: Bugbear_Deathsman
+    region:   c_126
+    level:    [74, 75]
+  16826495:
+    template: Moblin_Aidman
+    region:   c_128
+    level:    [75, 77]
+  16826496:
+    template: Moblin_Engineman
+    region:   c_128
+    level:    [75, 77]
+  16826497:
+    template: Moblin_Roadman
+    region:   c_128
+    level:    [75, 77]
+  16826498:
+    template: Moblin_Aidman
+    region:   c_130
+    level:    [75, 77]
+  16826499:
+    template: Moblin_Engineman
+    region:   c_130
+    level:    [75, 77]
+  16826500:
+    template: Goblin_Hangman
+    region:   c_130
+    level:    [75, 77]
+  16826501:
+    template: Goblin_Junkman
+    region:   region_83
+    level:    [75, 77]
+  16826502:
+    template: Purgatory_Bat_Newton_Movapolos
+    script:   Purgatory_Bat
+    region:   region_83
+    level:    [72, 74]
+  16826503:
+    template: Purgatory_Bat_Newton_Movapolos
+    script:   Purgatory_Bat
+    region:   region_83
+    level:    [73, 74]
+  16826504:
+    template: Moblin_Engineman
+    region:   c_136
+    level:    [75, 77]
+  16826505:
+    template: Nightmare_Bats_Newton_Movalpolos
+    script:   Nightmare_Bats
+    region:   c_136
+    level:    [72, 74]
+  16826506:
+    template: Nightmare_Bats_Newton_Movalpolos
+    script:   Nightmare_Bats
+    region:   c_136
+    level:    [72, 74]
+  16826507:
+    template: Goblin_Swordsman
+    region:   c_139
+    level:    [78, 78]
+  16826508:
+    template: Moblin_Aidman_2
+    script:   Moblin_Aidman
+    region:   c_139
+    level:    [75, 77]
+  16826509:
+    template: Moblin_Engineman_2
+    script:   Moblin_Engineman
+    region:   c_139
+    level:    [75, 77]
+  16826510:
+    template: Swashstox_Beadblinker
+    region:   c_136
+    level:    [80, 80]
+  16826511:
+    template: Moblin_Aidman_2
+    script:   Moblin_Aidman
+    at:       [51.850, 15.850, -22.750]
+    level:    [75, 77]
+  16826512:
+    template: Moblin_Engineman_2
+    script:   Moblin_Engineman
+    at:       [47.850, 15.850, -18.750]
+    level:    [75, 77]
+  16826513:
+    template: Moblin_Groundman
+    region:   c_139
+    level:    [77, 77]
+  16826514:
+    template: Goblin_Swordsman
+    region:   c_139
+    level:    [78, 78]
+  16826515:
+    template: Moblin_Aidman_2
+    script:   Moblin_Aidman
+    at:       [118.597, 15.395, -21.537]
+    level:    [75, 77]
+  16826516:
+    template: Moblin_Engineman_2
+    script:   Moblin_Engineman
+    at:       [117.594, 15.396, -21.707, 1]
+    level:    [75, 77]
+  16826517:
+    template: Swashstox_Beadblinker
+    region:   c_162
+    level:    [80, 80]
+  16826518:
+    template: Moblin_Aidman_2
+    script:   Moblin_Aidman
+    at:       [109.450, 15.528, -22.401, 6]
+    level:    [75, 77]
+  16826519:
+    template: Moblin_Engineman_2
+    script:   Moblin_Engineman
+    at:       [108.622, 15.668, -21.742, 15]
+    level:    [75, 77]
+  16826520:
+    template: Moblin_Groundman
+    region:   c_152
+    level:    [77, 77]
+  16826521:
+    template: Goblin_Junkman
+    region:   c_154
+    level:    [75, 77]
+  16826522:
+    template: Moblin_Roadman
+    region:   c_154
+    level:    [75, 77]
+  16826523:
+    template: Goblin_Headman
+    region:   c_154
+    level:    [75, 77]
+  16826524:
+    template: Goblins_Bat_Tier2_Newton Movalpo
+    script:   Goblins_Bat
+    at:       [89.272, 15.394, 19.657, 112]
+    level:    [71, 73]
+  16826525:
+    template: Bugbear_Deathsman
+    region:   c_157
+    level:    [74, 75]
+  16826526:
+    template: Goblin_Marksman
+    region:   c_158
+    level:    [75, 77]
+  16826527:
+    template: Goblin_Junkman
+    region:   c_158
+    level:    [76, 79]
+  16826528:
+    template: Goblin_Headman
+    region:   c_160
+    level:    [76, 79]
+  16826529:
+    template: Goblins_Bat_Tier2_Newton Movalpo
+    script:   Goblins_Bat
+    at:       [172.273, 15.399, 16.448, 195]
+    level:    [71, 73]
+  16826530:
+    template: Moblin_Aidman
+    region:   c_162
+    level:    [75, 77]
+  16826531:
+    template: Moblin_Engineman
+    region:   c_162
+    level:    [76, 79]
+  16826532:
+    template: Goblin_Hangman
+    region:   c_162
+    level:    [76, 79]
+  16826533:
+    template: Bugbear_Deathsman
+    region:   c_165
+    level:    [74, 75]
+  16826534:
+    template: Goblin_Hangman
+    region:   c_166
+    level:    [76, 79]
+  16826535:
+    template: Moblin_Topsman
+    region:   c_166
+    level:    [76, 79]
+  16826536:
+    template: Bugbear_Deathsman
+    region:   c_166
+    level:    [74, 75]
+  16826537:
+    template: Moblin_Aidman
+    region:   c_169
+    level:    [75, 77]
+  16826538:
+    template: Moblin_Engineman
+    region:   c_169
+    level:    [76, 79]
+  16826539:
+    template: Moblin_Topsman
+    region:   c_169
+    level:    [76, 79]
+  16826540:
+    template: Goblin_Headman
+    region:   c_172
+    level:    [76, 79]
+  16826541:
+    template: Goblins_Bat_Tier2_Newton Movalpo
+    script:   Goblins_Bat
+    at:       [176.722, 15.486, 31.589, 83]
+    level:    [71, 73]
+  16826542:
+    template: Goblin_Hangman
+    region:   region_80
+    level:    [76, 79]
+  16826543:
+    template: Goblin_Marksman
+    region:   region_80
+    level:    [76, 79]
+  16826544:
+    template: Moblin_Roadman
+    region:   e_176
+    level:    [78, 79]
+  16826545:
+    template: Goblin_Marksman
+    region:   c_166
+    level:    [76, 79]
+  16826546:
+    template: Moblin_Engineman
+    region:   c_166
+    level:    [76, 79]
+  16826547:
+    template: Goblin_Swordsman
+    region:   e_179
+    level:    [78, 78]
+  16826548:
+    template: Moblin_Aidman_2
+    script:   Moblin_Aidman
+    region:   e_179
+    level:    [78, 79]
+  16826549:
+    template: Moblin_Topsman_2
+    script:   Moblin_Topsman
+    region:   e_179
+    level:    [76, 79]
+  16826550:
+    template: Moblin_Aidman
+    region:   e_182
+    level:    [78, 79]
+  16826551:
+    template: Moblin_Roadman
+    region:   e_182
+    level:    [78, 79]
+  16826552:
+    template: Moblin_Roadman
+    region:   e_182
+    level:    [78, 79]
+  16826553:
+    template: Moblin_Topsman
+    region:   e_182
+    level:    [76, 79]
+  16826554:
+    template: Moblin_Roadman
+    region:   e_186
+    level:    [78, 79]
+  16826555:
+    template: Moblin_Roadman
+    region:   e_186
+    level:    [78, 79]
+  16826556:
+    template: Moblin_Topsman
+    region:   region_81
+    level:    [76, 79]
+  16826557:
+    template: Moblin_Topsman
+    region:   region_81
+    level:    [76, 79]
+  16826558:
+    template: Moblin_Aidman
+    region:   e_190
+    level:    [78, 79]
+  16826559:
+    template: Moblin_Aidman
+    region:   e_190
+    level:    [78, 79]
+  16826560:
+    template: Moblin_Engineman
+    region:   e_192
+    level:    [76, 79]
+  16826561:
+    template: Moblin_Engineman
+    region:   e_192
+    level:    [76, 79]
+  16826562:
+    template: Thunder_Elemental
+    region:   e_194
+    level:    [80, 80]
+  16826563:
+    template: Earth_Elemental
+    region:   e_194
+    level:    [80, 80]
+  16826564:
+    template: Mimic
+    at:       [-46.013, 17.481, -26.274, 65]
+    level:    [70, 70]
+  16826565:
+    template: Moblin_Scalpelman
+    region:   n_49
+    level:    [78, 80]
+  16826566:
+    template: Moblin_Scalpelman
+    region:   s_198
+    level:    [78, 80]
+  16826567:
+    template: Moblin_Scalpelman
+    region:   c_199
+    level:    [78, 80]
+  16826568:
+    template: Moblin_Scalpelman
+    region:   e_200
+    level:    [78, 80]
+  16826569:
+    template: Goblin_Collector
+    at:       [152.126, 20.000, 103.074, 129]
+    level:    [83, 84]
+  16826570:
+    template: Bugbear_Matman
+    at:       [124.544, 19.988, -60.670, 246]
+    level:    [78, 78]
+  16826571:
+    template: Awoken_Andhrimnir
+    at:       [351.640, 25.570, -42.150, 53]
+    level:    [119, 119]
+
+slots:
+  - members:
+      16826404: {} # Goblin_Lengthman
+      16826407: {} # Goblin_Lengthman
+  - members:
+      16826411: {} # Moblin_Tankman
+      16826412: {} # Moblin_Tankman
+  - members:
+      16826420: {} # Goblin_Packman
+      16826421: {} # Goblin_Lengthman
+  - members:
+      16826422: {} # Moblin_Workman
+      16826424: {} # Moblin_Draftsman
+  - members:
+      16826427: {} # Dire_Bat
+      16826430: {} # Succubus_Bats
+  - members:
+      16826470: {} # Goblin_Fireman
+      16826471: {} # Goblin_Packman
+  - members:
+      16826495: {} # Moblin_Aidman
+      16826496: {} # Moblin_Engineman
+  - members:
+      16826498: {} # Moblin_Aidman
+      16826499: {} # Moblin_Engineman
+  - members:
+      16826507: {} # Goblin_Swordsman
+      16826514: {} # Goblin_Swordsman
+  - members:
+      16826521: {} # Goblin_Junkman
+      16826522: {} # Moblin_Roadman
+  - members:
+      16826531: {} # Moblin_Engineman
+      16826532: {} # Goblin_Hangman
+  - members:
+      16826537: {} # Moblin_Aidman
+      16826538: {} # Moblin_Engineman
+  - members:
+      16826542: {} # Goblin_Hangman
+      16826543: {} # Goblin_Marksman
+  - members:
+      16826552: {} # Moblin_Roadman
+      16826553: {} # Moblin_Topsman

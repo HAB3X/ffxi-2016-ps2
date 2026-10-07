@@ -1,0 +1,59 @@
+-----------------------------------
+-- Spell: Magic Hammer
+-- Steals an amount of enemy's MP equal to damage dealt. Ineffective against undead.
+-- Spell cost: 40 MP
+-- Monster Type: Beastmen
+-- Spell Type: Magical (Light)
+-- Blue Magic Points: 4
+-- Stat Bonus: MP-5, MND+2
+-- Level: 74
+-- Casting Time: 4 seconds
+-- Recast Time: 180 seconds
+-- Magic Bursts on: Transfixion, Fusion, and Light
+-- Combos: Magic Attack Bonus
+-- Notes:
+-- Modifiers: MND 30%.
+-- Affected by Magic Attack Bonus.
+-- The bonus from Light Staff/Apollo's Staff affects both accuracy and amount of MP drained.
+-- The bonuses from weather/day effects and Korin/Hachirin-no-Obi affect both accuracy and amount of MP drained.
+-- Can only drain MP from targets that have MP and cannot drain more MP than the target has.
+-- Damage and MP drained are enhanced by both Magic Attack Bonus and Magic Attack from Convergence.
+-----------------------------------
+---@type TSpell
+local spellObject = {}
+
+spellObject.onMagicCastingCheck = function(caster, target, spell)
+    return 0
+end
+
+spellObject.onSpellCast = function(caster, target, spell)
+    local params        = xi.spells.blue.getDefaultParams(caster)
+    params.ecosystem    = xi.ecosystem.BEASTMEN
+    params.attackType   = xi.attackType.MAGICAL
+    params.damageType   = xi.damageType.LIGHT
+    params.dStat        = xi.mod.MND
+
+    params.ftp0            = 1.5
+    params.azureBonus      = 0.5
+    params.dStatMultiplier = 1.0
+    params.baseDamageCap   = 35
+    params.halfThreshold   = 60
+    params.lowThreshold    = -17
+
+    params.mnd_wsc = 0.3
+
+    local damage = xi.spells.blue.useMagicalSpell(caster, target, spell, params)
+
+    local mpDrained = utils.clamp(damage, 0, target:getMP())
+
+    -- Magic Hammer is a damaging spell that also restores MP. There is no messaging about MP restoration.
+    -- Despite this, magic hammer doesn't work on undead.
+    if mpDrained > 0 and not target:isUndead() then
+        caster:addMP(mpDrained)
+        target:delMP(mpDrained)
+    end
+
+    return damage
+end
+
+return spellObject

@@ -1,0 +1,68 @@
+-----------------------------------
+-- Area: Newton Movalpolos
+--   NM: Swashstox Beadblinker
+-----------------------------------
+local ID = zones[xi.zone.NEWTON_MOVALPOLOS]
+-----------------------------------
+---@type TMobEntity
+local entity = {}
+
+entity.phList =
+{
+    [ID.mob.SWASHSTOX_BEADBLINKER[1] - 3] = ID.mob.SWASHSTOX_BEADBLINKER[1], -- Confirmed on retail
+    [ID.mob.SWASHSTOX_BEADBLINKER[2] - 3] = ID.mob.SWASHSTOX_BEADBLINKER[2], -- Confirmed on retail
+}
+
+entity.onMobSpawn = function(mob)
+    local mobId = mob:getID()
+
+    -- Spawn guards that follow NM
+    for i = 1, 2 do
+        local guardID = mobId + i
+        local pos = mob:getPos()
+
+        SpawnMob(guardID)
+        GetMobByID(guardID):setSpawn(pos.x + i, pos.y - 0.5, pos.z - i, pos.rot)
+
+        mob:setMobMod(xi.mobMod.BASE_DAMAGE_MULTIPLIER, 150)
+    end
+end
+
+entity.onMobFight = function(mob, target)
+    local mobId = mob:getID()
+    for i = 1, 2 do
+        local guardObj = GetMobByID(mobId + i)
+
+        if guardObj then
+            guardObj:updateEnmity(target)
+        end
+    end
+end
+
+entity.onMobRoam = function(mob)
+    local guard1 = GetMobByID(mob:getID() + 1)
+    local guard2 = GetMobByID(mob:getID() + 2)
+
+    -- Tell guards to follow NM
+    if guard1 and guard1:isSpawned() then
+        guard1:pathTo(mob:getXPos() + 1, mob:getYPos(), mob:getZPos())
+    end
+
+    if guard2 and guard2:isSpawned() then
+        guard2:pathTo(mob:getXPos() + 3, mob:getYPos(), mob:getZPos() + 1)
+    end
+end
+
+entity.onMobDeath = function(mob, player, optParams)
+    xi.hunts.checkHunt(mob, player, 247)
+end
+
+entity.onMobDespawn = function(mob)
+    local mobId = mob:getID()
+    for i = 1, 2 do
+        local guardID = mobId + i
+        DespawnMob(guardID)
+    end
+end
+
+return entity

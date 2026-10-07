@@ -1,0 +1,392 @@
+# yaml-language-server: $schema=../../schemas/mobs.schema.json
+
+templates:
+
+  Clot:
+    id:            746
+    species:       clot
+    skill_list_id: 66
+    attributes:
+      combat:
+        skill: club
+      render:
+        look:
+          type:  standard
+          model: 294
+        entity_flags: 131
+        model_size:     1
+        hitbox:        24
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: rare
+          item:   handful_of_clot_plasma
+      despoil:
+        vial_of_slime_oil: 0
+
+  Colossal_Calamari:
+    id:            769
+    species:       sea_monk
+    skill_list_id: 218
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 352
+        entity_flags: 131
+        model_size:     1
+        hitbox:        17
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: common
+          item:   seashell
+        - chance: very_rare
+          item:   shall_shell
+      despoil:
+        seashell: 0
+
+  Cutter_Manaclipper:
+    id:            883
+    display_name:  Cutter
+    species:       crab
+    skill_list_id: 77
+    attributes:
+      combat:
+        skill: great_sword
+      jobs: [pld, pld]
+      render:
+        look:
+          type:  standard
+          model: 356
+        entity_flags: 131
+        model_size:     1
+        hitbox:        13
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: common
+          item:   chunk_of_rock_salt
+        - chance: rare
+          item:   slice_of_land_crab_meat
+        - chance: very_rare
+          item:   crab_shell
+      steal: chunk_of_rock_salt
+      despoil:
+        slice_of_land_crab_meat: 0
+        crab_shell:              0
+
+  Cyclopean_Conch:
+    id:            881
+    species:       uragnite
+    type:          [notorious, fished]
+    skill_list_id: 251
+    attributes:
+      combat:
+        skill: scythe
+        delay: 290
+      render:
+        look:
+          type:  standard
+          model: 1361
+        entity_flags: 645
+        model_size:     2
+        hitbox:        13
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 5600
+    loot:
+      drops:
+        - chance: rare
+          item:   uragnite_shell
+      despoil:
+        seashell:       0
+        uragnite_shell: 0
+
+  Fatty_Pugil:
+    id:            1304
+    species:       pugil
+    skill_list_id: 197
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 348
+        entity_flags: 131
+        model_size:     1
+        hitbox:        27
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: uncommon
+          item:   handful_of_pugil_scales
+        - chance: rare
+          item:   shall_shell
+      steal: handful_of_fish_scales
+      despoil:
+        handful_of_pugil_scales: 0
+        handful_of_fish_scales:  0
+
+  Ghost_Crab_fished:
+    id:            1516
+    display_name:  Ghost_Crab
+    species:       crab
+    type:          [fished]
+    skill_list_id: 77
+    attributes:
+      combat:
+        skill: great_sword
+      jobs: [pld, pld]
+      render:
+        look:
+          type:  standard
+          model: 356
+        entity_flags:  131
+        animation_sub:   8
+        model_size:      1
+        hitbox:         13
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: common
+          item:   chunk_of_rock_salt
+        - chance: rare
+          item:   slice_of_land_crab_meat
+        - chance: very_rare
+          item:   crab_shell
+      steal: chunk_of_rock_salt
+      despoil:
+        slice_of_land_crab_meat: 0
+        crab_shell:              0
+
+  Greater_Pugil_fished:
+    id:            5868
+    display_name:  Greater_Pugil
+    species:       pugil
+    type:          [fished]
+    skill_list_id: 197
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 348
+        entity_flags: 131
+        model_size:     1
+        hitbox:        27
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+    loot:
+      steal: handful_of_fish_scales
+      despoil:
+        handful_of_pugil_scales: 0
+        handful_of_fish_scales:  0
+
+  Harajnite:
+    id:            1891
+    species:       uragnite
+    type:          [notorious, fished]
+    skill_list_id: 251
+    attributes:
+      combat:
+        skill: scythe
+        delay: 290
+      jobs: [pld, pld]
+      render:
+        look:
+          type:  standard
+          model: 1361
+        entity_flags:  3
+        model_size:    1
+        hitbox:       12
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 6800
+    loot:
+      drops:
+        - chance: uncommon
+          item:   uragnite_shell
+        - chance: rare
+          item:   harajnite_shell
+
+  Kraken_fished:
+    id:            6029
+    display_name:  Kraken
+    species:       sea_monk
+    type:          [fished]
+    skill_list_id: 218
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 352
+        entity_flags: 131
+        model_size:     1
+        hitbox:        17
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: common
+          item:   seashell
+        - chance: very_rare
+          item:   shall_shell
+      despoil:
+        seashell: 0
+
+  Uragnite:
+    id:            4106
+    species:       uragnite
+    skill_list_id: 251
+    attributes:
+      combat:
+        skill: scythe
+        delay: 290
+      render:
+        look:
+          type:  standard
+          model: 1361
+        entity_flags:  1667
+        animation_sub:    4
+        model_size:       1
+        hitbox:          12
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: common
+          item:   seashell
+        - chance: rare
+          item:   uragnite_shell
+      despoil:
+        seashell:       0
+        uragnite_shell: 0
+
+  Zoredonite:
+    id:            4519
+    species:       uragnite
+    type:          [notorious]
+    spell_list_id: 498
+    skill_list_id: 251
+    attributes:
+      combat:
+        skill: scythe
+        delay: 210
+      jobs: [pld, pld]
+      render:
+        look:
+          type:  standard
+          model: 1361
+        entity_flags:  647
+        animation_sub:   4
+        model_size:      3
+        hitbox:         16
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 3200
+    loot:
+      drops:
+        - chance: rare
+          item:   seashell
+        - chance: common
+          item:   zoredonite_ring
+        - chance: common
+          item:   kosshin
+        - chance: always
+          item:   nebimonite_belt
+        - chance: common
+          item:   healing_mace
+
+spawns:
+  16789505:
+    template: Ghost_Crab_fished
+    script:   Ghost_Crab
+    at:       [1.000, 1.000, 1.000]
+    level:    [30, 34]
+  16789506:
+    template: Ghost_Crab_fished
+    script:   Ghost_Crab
+    at:       [1.000, 1.000, 1.000]
+    level:    [30, 34]
+  16789507:
+    template: Greater_Pugil_fished
+    script:   Greater_Pugil
+    at:       [1.000, 1.000, 1.000]
+    level:    [35, 39]
+  16789508:
+    template: Kraken_fished
+    script:   Kraken
+    at:       [1.000, 1.000, 1.000]
+    level:    [40, 42]
+  16789509:
+    template: Harajnite
+    at:       [1.000, 1.000, 1.000]
+    level:    [51, 51]
+  16789510:
+    template: Cyclopean_Conch
+    at:       [1.000, 1.000, 1.000]
+    level:    [55, 55]
+  16789511:
+    template: Cutter_Manaclipper
+    script:   Cutter
+    region:   region_1
+    level:    [31, 34]
+  16789512:
+    template: Fatty_Pugil
+    region:   region_1
+    level:    [25, 34]
+  16789513:
+    template: Uragnite
+    region:   region_1
+    level:    [31, 35]
+  16789514:
+    template: Uragnite
+    region:   region_1
+    level:    [35, 40]
+  16789515:
+    template: Clot
+    region:   region_1
+    level:    [31, 35]
+  16789516:
+    template: Clot
+    region:   region_1
+    level:    [36, 37]
+  16789517:
+    template: Colossal_Calamari
+    region:   region_1
+    level:    [41, 42]
+  16789518:
+    template: Zoredonite
+    at:       [-2.370, -3.492, -11.285, 32]
+    level:    [61, 62]

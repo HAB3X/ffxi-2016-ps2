@@ -1,0 +1,219 @@
+------------------------------------
+-- Era Spell Enmity Overrides
+-- CE = minimal (1), VE = era-accurate spike
+------------------------------------
+-- Source : https://kanican.livejournal.com/tag/enmity%20table%21/
+------------------------------------
+
+-- White Magic
+
+UPDATE `spell_list` SET CE = 1, VE = 300 WHERE `name` = 'poisona';
+UPDATE `spell_list` SET CE = 1, VE = 300 WHERE `name` = 'paralyna';
+UPDATE `spell_list` SET CE = 1, VE = 300 WHERE `name` = 'blindna';
+UPDATE `spell_list` SET CE = 1, VE = 300 WHERE `name` = 'silena';
+UPDATE `spell_list` SET CE = 1, VE = 300 WHERE `name` = 'cursna';
+UPDATE `spell_list` SET CE = 1, VE = 300 WHERE `name` = 'viruna';
+UPDATE `spell_list` SET CE = 1, VE = 300 WHERE `name` = 'stona';
+UPDATE `spell_list` SET CE = 1, VE = 480 WHERE `name` = 'erase';
+UPDATE `spell_list` SET CE = 1, VE = 300 WHERE `name` = 'esuna';
+UPDATE `spell_list` SET CE = 1, VE = 300 WHERE `name` = 'aquaveil';
+UPDATE `spell_list` SET CE = 1, VE = 300 WHERE `name` = 'blink';
+UPDATE `spell_list` SET CE = 1, VE = 300 WHERE `name` = 'stoneskin';
+UPDATE `spell_list` SET CE = 1, VE = 300 WHERE `name` = 'phalanx';
+UPDATE `spell_list` SET CE = 1, VE = 300 WHERE `name` = 'phalanx_ii';
+UPDATE `spell_list` SET CE = 1, VE = 300 WHERE `name` = 'haste';
+UPDATE `spell_list` SET CE = 1, VE = 300 WHERE `name` = 'refresh';
+UPDATE `spell_list` SET CE = 1, VE = 300 WHERE `name` = 'regen';
+UPDATE `spell_list` SET CE = 1, VE = 300 WHERE `name` = 'regen_ii';
+UPDATE `spell_list` SET CE = 1, VE = 300 WHERE `name` = 'regen_iii';
+UPDATE `spell_list` SET CE = 1, VE = 320 WHERE `name` = 'paralyze';
+UPDATE `spell_list` SET CE = 1, VE = 320 WHERE `name` = 'paralyze_ii';
+UPDATE `spell_list` SET CE = 1, VE = 320 WHERE `name` = 'silence';
+UPDATE `spell_list` SET CE = 1, VE = 320 WHERE `name` = 'slow';
+UPDATE `spell_list` SET CE = 1, VE = 320 WHERE `name` = 'slow_ii';
+UPDATE `spell_list` SET CE = 1, VE = 300 WHERE `name` = 'sacrifice';
+UPDATE `spell_list` SET CE = 1, VE = 300 WHERE `name` = 'auspice';
+UPDATE `spell_list` SET CE = 1, VE = 300 WHERE `name` = 'repose';
+UPDATE `spell_list` SET CE = 1, VE = 300 WHERE `name` = 'enthunder';
+UPDATE `spell_list` SET CE = 1, VE = 300 WHERE `name` = 'enstone';
+UPDATE `spell_list` SET CE = 1, VE = 300 WHERE `name` = 'enaero';
+UPDATE `spell_list` SET CE = 1, VE = 300 WHERE `name` = 'enfire';
+UPDATE `spell_list` SET CE = 1, VE = 300 WHERE `name` = 'enblizzard';
+UPDATE `spell_list` SET CE = 1, VE = 300 WHERE `name` = 'enwater';
+UPDATE `spell_list` SET CE = 1, VE = 240 WHERE `name` = 'enthunder_ii';
+UPDATE `spell_list` SET CE = 1, VE = 240 WHERE `name` = 'enstone_ii';
+UPDATE `spell_list` SET CE = 1, VE = 240 WHERE `name` = 'enaero_ii';
+UPDATE `spell_list` SET CE = 1, VE = 240 WHERE `name` = 'enfire_ii';
+UPDATE `spell_list` SET CE = 1, VE = 240 WHERE `name` = 'enblizzard_ii';
+UPDATE `spell_list` SET CE = 1, VE = 240 WHERE `name` = 'enwater_ii';
+UPDATE `spell_list` SET CE = 1, VE = 300 WHERE `name` = 'barvirus';
+UPDATE `spell_list` SET CE = 1, VE = 300 WHERE `name` = 'barparalyze';
+UPDATE `spell_list` SET CE = 1, VE = 300 WHERE `name` = 'barsilence';
+UPDATE `spell_list` SET CE = 1, VE = 300 WHERE `name` = 'barpetrify';
+UPDATE `spell_list` SET CE = 1, VE = 300 WHERE `name` = 'barpoison';
+UPDATE `spell_list` SET CE = 1, VE = 300 WHERE `name` = 'barblind';
+UPDATE `spell_list` SET CE = 1, VE = 300 WHERE `name` = 'barsleep';
+UPDATE `spell_list` SET CE = 1, VE = 300 WHERE `name` = 'barfire';
+UPDATE `spell_list` SET CE = 1, VE = 300 WHERE `name` = 'barblizzard';
+UPDATE `spell_list` SET CE = 1, VE = 300 WHERE `name` = 'baraero';
+UPDATE `spell_list` SET CE = 1, VE = 300 WHERE `name` = 'barstone';
+UPDATE `spell_list` SET CE = 1, VE = 300 WHERE `name` = 'barthunder';
+UPDATE `spell_list` SET CE = 1, VE = 300 WHERE `name` = 'barwater';
+UPDATE `spell_list` SET CE = 1, VE = 300 WHERE `name` = 'sandstorm';
+UPDATE `spell_list` SET CE = 1, VE = 300 WHERE `name` = 'rainstorm';
+UPDATE `spell_list` SET CE = 1, VE = 300 WHERE `name` = 'windstorm';
+UPDATE `spell_list` SET CE = 1, VE = 300 WHERE `name` = 'firestorm';
+UPDATE `spell_list` SET CE = 1, VE = 300 WHERE `name` = 'hailstorm';
+UPDATE `spell_list` SET CE = 1, VE = 300 WHERE `name` = 'thunderstorm';
+UPDATE `spell_list` SET CE = 1, VE = 300 WHERE `name` = 'voidstorm';
+UPDATE `spell_list` SET CE = 1, VE = 300 WHERE `name` = 'aurorastorm';
+
+-- Black Magic
+
+UPDATE `spell_list` SET CE =   1, VE = 320 WHERE `name` = 'poison';
+UPDATE `spell_list` SET CE =   1, VE = 320 WHERE `name` = 'poison_ii';
+UPDATE `spell_list` SET CE =   1, VE = 320 WHERE `name` = 'poisonga';
+UPDATE `spell_list` SET CE =   1, VE = 640 WHERE `name` = 'blind';
+UPDATE `spell_list` SET CE =   1, VE = 640 WHERE `name` = 'blind_ii';
+UPDATE `spell_list` SET CE =   1, VE = 640 WHERE `name` = 'bind';
+UPDATE `spell_list` SET CE =   1, VE = 320 WHERE `name` = 'bio';
+UPDATE `spell_list` SET CE =   1, VE = 320 WHERE `name` = 'bio_ii';
+UPDATE `spell_list` SET CE =   1, VE = 320 WHERE `name` = 'bio_iii';
+UPDATE `spell_list` SET CE =   1, VE = 480 WHERE `name` = 'blaze_spikes';
+UPDATE `spell_list` SET CE =   1, VE = 480 WHERE `name` = 'ice_spikes';
+UPDATE `spell_list` SET CE =   1, VE = 480 WHERE `name` = 'shock_spikes';
+UPDATE `spell_list` SET CE =   1, VE = 300 WHERE `name` = 'burn';
+UPDATE `spell_list` SET CE =   1, VE = 300 WHERE `name` = 'choke';
+UPDATE `spell_list` SET CE =   1, VE = 300 WHERE `name` = 'shock';
+UPDATE `spell_list` SET CE =   1, VE = 300 WHERE `name` = 'frost';
+UPDATE `spell_list` SET CE =   1, VE = 300 WHERE `name` = 'rasp';
+UPDATE `spell_list` SET CE =   1, VE = 300 WHERE `name` = 'drown';
+UPDATE `spell_list` SET CE = 320, VE = 240 WHERE `name` = 'sleep';
+UPDATE `spell_list` SET CE = 480, VE = 480 WHERE `name` = 'sleep_ii';
+UPDATE `spell_list` SET CE =   1, VE =  80 WHERE `name` = 'gravity';
+UPDATE `spell_list` SET CE = 320, VE = 320 WHERE `name` = 'dispel';
+UPDATE `spell_list` SET CE =   1, VE = 640 WHERE `name` = 'absorb-str';
+UPDATE `spell_list` SET CE =   1, VE = 640 WHERE `name` = 'absorb-dex';
+UPDATE `spell_list` SET CE =   1, VE = 640 WHERE `name` = 'absorb-vit';
+UPDATE `spell_list` SET CE =   1, VE = 640 WHERE `name` = 'absorb-int';
+UPDATE `spell_list` SET CE =   1, VE = 640 WHERE `name` = 'absorb-mnd';
+UPDATE `spell_list` SET CE =   1, VE = 640 WHERE `name` = 'absorb-chr';
+UPDATE `spell_list` SET CE =   1, VE = 640 WHERE `name` = 'absorb-agi';
+UPDATE `spell_list` SET CE =   1, VE = 640 WHERE `name` = 'absorb-acc';
+
+-- Songs
+
+UPDATE `spell_list` SET CE = 100, VE = 240 WHERE `name` = 'foe_requiem';
+UPDATE `spell_list` SET CE = 100, VE = 240 WHERE `name` = 'foe_requiem_ii';
+UPDATE `spell_list` SET CE = 100, VE = 240 WHERE `name` = 'foe_requiem_iii';
+UPDATE `spell_list` SET CE = 100, VE = 240 WHERE `name` = 'foe_requiem_iv';
+UPDATE `spell_list` SET CE = 100, VE = 240 WHERE `name` = 'foe_requiem_v';
+UPDATE `spell_list` SET CE = 100, VE = 240 WHERE `name` = 'foe_requiem_vi';
+UPDATE `spell_list` SET CE = 240, VE = 0   WHERE `name` = 'horde_lullaby';
+UPDATE `spell_list` SET CE = 20,  VE = 80  WHERE `name` = 'armys_paeon';
+UPDATE `spell_list` SET CE = 20,  VE = 80  WHERE `name` = 'armys_paeon_ii';
+UPDATE `spell_list` SET CE = 20,  VE = 80  WHERE `name` = 'armys_paeon_iii';
+UPDATE `spell_list` SET CE = 20,  VE = 80  WHERE `name` = 'armys_paeon_iv';
+UPDATE `spell_list` SET CE = 20,  VE = 80  WHERE `name` = 'armys_paeon_v';
+UPDATE `spell_list` SET CE = 20,  VE = 80  WHERE `name` = 'mages_ballad';
+UPDATE `spell_list` SET CE = 20,  VE = 80  WHERE `name` = 'mages_ballad_ii';
+UPDATE `spell_list` SET CE = 20,  VE = 80  WHERE `name` = 'knights_minne';
+UPDATE `spell_list` SET CE = 20,  VE = 80  WHERE `name` = 'knights_minne_ii';
+UPDATE `spell_list` SET CE = 20,  VE = 80  WHERE `name` = 'knights_minne_iii';
+UPDATE `spell_list` SET CE = 20,  VE = 80  WHERE `name` = 'knights_minne_iv';
+UPDATE `spell_list` SET CE = 20,  VE = 80  WHERE `name` = 'valor_minuet';
+UPDATE `spell_list` SET CE = 20,  VE = 80  WHERE `name` = 'valor_minuet_ii';
+UPDATE `spell_list` SET CE = 20,  VE = 80  WHERE `name` = 'valor_minuet_iii';
+UPDATE `spell_list` SET CE = 20,  VE = 80  WHERE `name` = 'valor_minuet_iv';
+UPDATE `spell_list` SET CE = 20,  VE = 80  WHERE `name` = 'sword_madrigal';
+UPDATE `spell_list` SET CE = 20,  VE = 80  WHERE `name` = 'blade_madrigal';
+UPDATE `spell_list` SET CE = 20,  VE = 80  WHERE `name` = 'hunters_prelude';
+UPDATE `spell_list` SET CE = 20,  VE = 80  WHERE `name` = 'archers_prelude';
+UPDATE `spell_list` SET CE = 20,  VE = 80  WHERE `name` = 'sheepfoe_mambo';
+UPDATE `spell_list` SET CE = 20,  VE = 80  WHERE `name` = 'dragonfoe_mambo';
+UPDATE `spell_list` SET CE = 20,  VE = 80  WHERE `name` = 'fowl_aubade';
+UPDATE `spell_list` SET CE = 20,  VE = 80  WHERE `name` = 'herb_pastoral';
+UPDATE `spell_list` SET CE = 20,  VE = 80  WHERE `name` = 'shining_fantasia';
+UPDATE `spell_list` SET CE = 20,  VE = 80  WHERE `name` = 'scops_operetta';
+UPDATE `spell_list` SET CE = 20,  VE = 80  WHERE `name` = 'puppets_operetta';
+UPDATE `spell_list` SET CE = 20,  VE = 80  WHERE `name` = 'gold_capriccio';
+UPDATE `spell_list` SET CE = 20,  VE = 80  WHERE `name` = 'warding_round';
+UPDATE `spell_list` SET CE = 20,  VE = 80  WHERE `name` = 'goblin_gavotte';
+UPDATE `spell_list` SET CE = 20,  VE = 80  WHERE `name` = 'advancing_march';
+UPDATE `spell_list` SET CE = 20,  VE = 80  WHERE `name` = 'victory_march';
+UPDATE `spell_list` SET CE = 100, VE = 240 WHERE `name` = 'battlefield_elegy';
+UPDATE `spell_list` SET CE = 100, VE = 240 WHERE `name` = 'carnage_elegy';
+UPDATE `spell_list` SET CE = 160, VE = 160 WHERE `name` = 'sinewy_etude';
+UPDATE `spell_list` SET CE = 160, VE = 160 WHERE `name` = 'dextrous_etude';
+UPDATE `spell_list` SET CE = 160, VE = 160 WHERE `name` = 'vivacious_etude';
+UPDATE `spell_list` SET CE = 160, VE = 160 WHERE `name` = 'quick_etude';
+UPDATE `spell_list` SET CE = 160, VE = 160 WHERE `name` = 'learned_etude';
+UPDATE `spell_list` SET CE = 160, VE = 160 WHERE `name` = 'spirited_etude';
+UPDATE `spell_list` SET CE = 160, VE = 160 WHERE `name` = 'enchanting_etude';
+UPDATE `spell_list` SET CE = 160, VE = 160 WHERE `name` = 'herculean_etude';
+UPDATE `spell_list` SET CE = 160, VE = 160 WHERE `name` = 'uncanny_etude';
+UPDATE `spell_list` SET CE = 160, VE = 160 WHERE `name` = 'vital_etude';
+UPDATE `spell_list` SET CE = 160, VE = 160 WHERE `name` = 'swift_etude';
+UPDATE `spell_list` SET CE = 160, VE = 160 WHERE `name` = 'sage_etude';
+UPDATE `spell_list` SET CE = 160, VE = 160 WHERE `name` = 'logical_etude';
+UPDATE `spell_list` SET CE = 160, VE = 160 WHERE `name` = 'bewitching_etude';
+UPDATE `spell_list` SET CE = 20,  VE = 80  WHERE `name` = 'fire_carol';
+UPDATE `spell_list` SET CE = 20,  VE = 80  WHERE `name` = 'ice_carol';
+UPDATE `spell_list` SET CE = 20,  VE = 80  WHERE `name` = 'wind_carol';
+UPDATE `spell_list` SET CE = 20,  VE = 80  WHERE `name` = 'earth_carol';
+UPDATE `spell_list` SET CE = 20,  VE = 80  WHERE `name` = 'lightning_carol';
+UPDATE `spell_list` SET CE = 20,  VE = 80  WHERE `name` = 'water_carol';
+UPDATE `spell_list` SET CE = 20,  VE = 80  WHERE `name` = 'light_carol';
+UPDATE `spell_list` SET CE = 20,  VE = 80  WHERE `name` = 'dark_carol';
+UPDATE `spell_list` SET CE = 100, VE = 240 WHERE `name` = 'fire_threnody';
+UPDATE `spell_list` SET CE = 100, VE = 240 WHERE `name` = 'ice_threnody';
+UPDATE `spell_list` SET CE = 100, VE = 240 WHERE `name` = 'wind_threnody';
+UPDATE `spell_list` SET CE = 100, VE = 240 WHERE `name` = 'earth_threnody';
+UPDATE `spell_list` SET CE = 100, VE = 240 WHERE `name` = 'lightning_threnody';
+UPDATE `spell_list` SET CE = 100, VE = 240 WHERE `name` = 'water_threnody';
+UPDATE `spell_list` SET CE = 100, VE = 240 WHERE `name` = 'light_threnody';
+UPDATE `spell_list` SET CE = 100, VE = 240 WHERE `name` = 'dark_threnody';
+UPDATE `spell_list` SET CE = 100, VE = 240 WHERE `name` = 'magic_finale';
+UPDATE `spell_list` SET CE = 240, VE = 0   WHERE `name` = 'foe_lullaby';
+UPDATE `spell_list` SET CE = 20,  VE = 80  WHERE `name` = 'goddesss_hymnus';
+UPDATE `spell_list` SET CE = 20,  VE = 80  WHERE `name` = 'chocobo_mazurka';
+UPDATE `spell_list` SET CE = 240, VE = 240 WHERE `name` = 'maidens_virelai';
+UPDATE `spell_list` SET CE = 20,  VE = 80  WHERE `name` = 'raptor_mazurka';
+UPDATE `spell_list` SET CE = 20,  VE = 80  WHERE `name` = 'foe_sirvente';
+UPDATE `spell_list` SET CE = 20,  VE = 80  WHERE `name` = 'adventurers_dirge';
+
+-- Ninjutsu
+
+UPDATE `spell_list` SET CE = 80, VE = 240 WHERE `name` = 'monomi_ichi';
+UPDATE `spell_list` SET CE = 80, VE = 240 WHERE `name` = 'aisha_ichi';
+UPDATE `spell_list` SET CE = 1,  VE = 300 WHERE `name` = 'utsusemi_ichi';
+UPDATE `spell_list` SET CE = 1,  VE = 300 WHERE `name` = 'utsusemi_ni';
+UPDATE `spell_list` SET CE = 80, VE = 240 WHERE `name` = 'jubaku_ichi';
+UPDATE `spell_list` SET CE = 80, VE = 240 WHERE `name` = 'hojo_ichi';
+UPDATE `spell_list` SET CE = 80, VE = 240 WHERE `name` = 'hojo_ni';
+UPDATE `spell_list` SET CE = 80, VE = 240 WHERE `name` = 'kurayami_ichi';
+UPDATE `spell_list` SET CE = 80, VE = 240 WHERE `name` = 'kurayami_ni';
+UPDATE `spell_list` SET CE = 80, VE = 240 WHERE `name` = 'dokumori_ichi';
+
+-- Summoning Magic
+
+UPDATE `spell_list` SET CE = 90, VE = 300 WHERE `name` = 'fire_spirit';
+UPDATE `spell_list` SET CE = 90, VE = 300 WHERE `name` = 'ice_spirit';
+UPDATE `spell_list` SET CE = 90, VE = 300 WHERE `name` = 'air_spirit';
+UPDATE `spell_list` SET CE = 90, VE = 300 WHERE `name` = 'earth_spirit';
+UPDATE `spell_list` SET CE = 90, VE = 300 WHERE `name` = 'thunder_spirit';
+UPDATE `spell_list` SET CE = 90, VE = 300 WHERE `name` = 'water_spirit';
+UPDATE `spell_list` SET CE = 90, VE = 300 WHERE `name` = 'light_spirit';
+UPDATE `spell_list` SET CE = 90, VE = 300 WHERE `name` = 'dark_spirit';
+UPDATE `spell_list` SET CE = 90, VE = 300 WHERE `name` = 'carbuncle';
+UPDATE `spell_list` SET CE = 90, VE = 300 WHERE `name` = 'fenrir';
+UPDATE `spell_list` SET CE = 90, VE = 300 WHERE `name` = 'ifrit';
+UPDATE `spell_list` SET CE = 90, VE = 300 WHERE `name` = 'titan';
+UPDATE `spell_list` SET CE = 90, VE = 300 WHERE `name` = 'leviathan';
+UPDATE `spell_list` SET CE = 90, VE = 300 WHERE `name` = 'garuda';
+UPDATE `spell_list` SET CE = 90, VE = 300 WHERE `name` = 'shiva';
+UPDATE `spell_list` SET CE = 90, VE = 300 WHERE `name` = 'ramuh';
+UPDATE `spell_list` SET CE = 90, VE = 300 WHERE `name` = 'diabolos';
+UPDATE `spell_list` SET CE = 90, VE = 300 WHERE `name` = 'odin';
+UPDATE `spell_list` SET CE = 90, VE = 300 WHERE `name` = 'alexander';
+UPDATE `spell_list` SET CE = 90, VE = 300 WHERE `name` = 'cait_sith';

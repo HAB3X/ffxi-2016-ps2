@@ -1,0 +1,75 @@
+/*
+===========================================================================
+
+  Copyright (c) 2026 LandSandBoat Dev Teams
+
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with this program.  If not, see http://www.gnu.org/licenses/
+
+===========================================================================
+*/
+
+#pragma once
+
+#include <array>
+#include <vector>
+
+// A world-space sphere used to carve stray triangles out of the collision data.
+struct NavMeshSkipSphere
+{
+    std::array<float, 3> center{};
+    float                radius{};
+};
+
+struct NavMeshConfig
+{
+    float cellSize{ 0.5f };               // Previous xiNavmeshes value: 0.4
+    float cellHeight{ 0.2f };             // Previous xiNavmeshes value: 0.2
+    float walkableSlopeAngle{ 46.0f };    // Previous xiNavmeshes value: 46.0
+    float agentHeight{ 2.0f };            // Previous xiNavmeshes value: 1.8
+    float agentRadius{ 0.0f };            // Previous xiNavmeshes value: 0.3
+    float agentMaxClimb{ 1.0f };          // Previous xiNavmeshes value: 0.6
+    float maxEdgeLen{ 0.0f };             // Previous xiNavmeshes value: 12.0
+    float maxSimplificationError{ 1.3f }; // Previous xiNavmeshes value: 1.3
+    int   minRegionArea{ 8 };             // Previous xiNavmeshes value: 8
+    int   mergeRegionArea{ 20 };          // Previous xiNavmeshes value: 20
+    int   maxVertsPerPoly{ 6 };           // Previous xiNavmeshes value: 6
+    float detailSampleDist{ 6.0f };       // Previous xiNavmeshes value: 6.0
+    float detailSampleMaxError{ 1.0f };   // Previous xiNavmeshes value: 1.0
+    int   tileSize{ 64 };                 // Previous xiNavmeshes value: 256
+
+    bool filterLowHangingObstacles{ true };
+    bool filterLedgeSpans{ true };
+    bool filterWalkableLowHeightSpans{ true };
+
+    // World-space Y planes to strip from the gathered collision triangles. A triangle
+    // is discarded when all three vertices lie on one of these planes (within a small
+    // tolerance). Used to remove phantom collision planes from bad zone geometry;
+    // sloped or non-flat triangles near a listed Y are unaffected.
+    std::vector<float> ySkipPlanes{};
+
+    // World-space spheres to carve out of the gathered collision triangles. A triangle
+    // is discarded when all three vertices lie inside one of these spheres. Used to
+    // remove stray geometry parked far outside the playable area, which would otherwise
+    // inflate the world bounds and with them the tile grid.
+    std::vector<NavMeshSkipSphere> skipSpheres{};
+
+    // World-space positions something is known to stand on, such as spawn points and roam region corners.
+    // A surface buried under other ground is kept when one of these sits on it, since a floor under a floor is a real floor.
+    std::vector<std::array<float, 3>> seeds{};
+
+    // Auto-generate off-mesh drop/step links across ledges Recast severs; zone-wide.
+    bool  generateOffMeshLinks{ true };
+    float offMeshMaxDrop{ 5.0f };    // largest vertical drop (wu) a link may bridge
+    float offMeshHorizReach{ 3.0f }; // largest horizontal ledge->landing offset (wu)
+};

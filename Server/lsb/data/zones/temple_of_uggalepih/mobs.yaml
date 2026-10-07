@@ -1,0 +1,3137 @@
+# yaml-language-server: $schema=../../schemas/mobs.schema.json
+
+templates:
+
+  Azure-toothed_Clawberry:
+    id:            6728
+    species:       tonberry
+    type:          [notorious]
+    spell_list_id: 32
+    skill_list_id: 243
+    attributes:
+      combat:
+        skill: great_axe
+      jobs: [smn, smn]
+      render:
+        look:
+          type:  standard
+          model: 1197
+        entity_flags: 133
+        name_prefix:   32
+        model_size:     2
+        hitbox:        11
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+
+  Beryl-footed_Molberry:
+    id:            399
+    species:       tonberry
+    type:          [notorious]
+    spell_list_id: 7
+    skill_list_id: 243
+    attributes:
+      combat:
+        skill: dagger
+      jobs: [nin, nin]
+      render:
+        look:
+          type:  standard
+          model: 1205
+        entity_flags: 157
+        name_prefix:   32
+        model_size:     2
+        hitbox:        11
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 6400
+    loot:
+      drops:
+        - chance: always
+          item:   tonberry_coat
+        - chance: very_common
+          item:   tonberry_lantern
+        - chance: rare
+          item:   hototogisu
+        - chance: very_rare
+          item:   pinch_of_dried_mugwort
+
+  Bloodsucker_fished:
+    id:            6770
+    display_name:  Bloodsucker
+    species:       leech
+    type:          [fished]
+    skill_list_id: 172
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 276
+        entity_flags: 641
+        model_size:     2
+        hitbox:        12
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: uncommon
+          item:   vial_of_fiend_blood
+        - chance: rare
+          item:   vial_of_beastman_blood
+        - chance: very_rare
+          item:   carbuncles_ruby
+      despoil:
+        vial_of_fiend_blood:    0
+        vial_of_beastman_blood: 0
+        vial_of_bird_blood:     0
+
+  Bonze_Marberry:
+    id:            501
+    species:       tonberry
+    type:          [notorious]
+    spell_list_id: 21
+    skill_list_id: 243
+    attributes:
+      combat:
+        skill: great_axe
+      jobs: [blm, blm]
+      resists:
+        immune_status: [silence, light_sleep, dark_sleep]
+      render:
+        look:
+          type:  standard
+          model: 1222
+        entity_flags: 157
+        name_prefix:   32
+        model_size:     2
+        hitbox:        11
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 900
+      stats:
+        hp: 6800
+    loot:
+      drops:
+        - chance: always
+          item:   cursed_key
+        - chance: always
+          item:   cursed_key
+
+  Bouncing_Ball_fished:
+    id:            6782
+    display_name:  Bouncing_Ball
+    species:       leech
+    type:          [fished]
+    skill_list_id: 172
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 276
+        entity_flags: 645
+        model_size:     2
+        hitbox:        12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: uncommon
+          item:   vial_of_fiend_blood
+        - chance: very_rare
+          item:   carbuncles_ruby
+      despoil:
+        vial_of_fiend_blood:    0
+        vial_of_beastman_blood: 0
+        vial_of_bird_blood:     0
+
+  Branding_Iron:
+    id:            522
+    species:       doll
+    skill_list_id: 85
+    attributes:
+      combat:
+        skill: staff
+      render:
+        look:
+          type:  standard
+          model: 304
+        entity_flags:  131
+        animation_sub:   4
+        model_size:      1
+        hitbox:         30
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: rare
+          item:   doll_shard
+        - chance: uncommon
+          item:   vial_of_mercury
+
+  Clawberrys_Avatar:
+    id:            6730
+    species:       carbuncle
+    skill_list_id: 34
+    attributes:
+      combat:
+        skill: scythe
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 791
+        entity_flags: 131
+        name_prefix:   32
+        model_size:     1
+        hitbox:         7
+      behaviors:
+        links: true
+      spawn:
+        type: [scripted]
+
+  Clawberrys_Elemental:
+    id:            6729
+    species:       dark_elemental
+    type:          [called]
+    spell_list_id: 5
+    skill_list_id: 100
+    attributes:
+      combat:
+        skill: scythe
+      jobs: [drk, rdm]
+      render:
+        look:
+          type:  standard
+          model: 12
+        entity_flags: 131
+        name_prefix:   32
+        model_size:     1
+        hitbox:         8
+      behaviors:
+        links: true
+      spawn:
+        type: [scripted]
+
+  Cleuvarion_M_Resoaix:
+    id:            740
+    species:       shadow
+    type:          [notorious]
+    skill_list_id: 221
+    attributes:
+      combat:
+        skill: sword
+      resists:
+        rank_element:
+          fire:  -2
+          ice:    4
+          light: -2
+          dark:   4
+        rank_status:
+          paralyze:     4
+          bind:         4
+          light_sleep: -2
+          dark_sleep:   4
+          blind:        4
+      render:
+        look:
+          type:  standard
+          model: 538
+        entity_flags: 155
+        name_prefix:   32
+        model_size:     1
+        hitbox:        20
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 5300
+
+  Cook_Fulberry:
+    id:            784
+    species:       tonberry
+    skill_list_id: 243
+    attributes:
+      combat:
+        skill: great_axe
+      jobs: [smn, smn]
+      render:
+        look:
+          type:  standard
+          model: 1239
+        entity_flags:  3
+        model_size:    2
+        hitbox:       11
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+
+  Cook_Minberry:
+    id:            785
+    species:       tonberry
+    spell_list_id: 7
+    skill_list_id: 243
+    attributes:
+      combat:
+        skill: dagger
+      jobs: [nin, nin]
+      render:
+        look:
+          type:  standard
+          model: 1246
+        entity_flags:  3
+        model_size:    2
+        hitbox:       11
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+
+  Cook_Nalberry:
+    id:            786
+    species:       tonberry
+    type:          [notorious]
+    skill_list_id: 243
+    attributes:
+      combat:
+        skill: dagger
+      jobs: [thf, thf]
+      render:
+        look:
+          type:  standard
+          model: 1250
+        entity_flags:  3
+        model_size:    2
+        hitbox:       11
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+
+  Cook_Solberry:
+    id:            787
+    species:       tonberry
+    type:          [notorious]
+    spell_list_id: 21
+    skill_list_id: 243
+    attributes:
+      combat:
+        skill: katana
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 1251
+        entity_flags:  3
+        model_size:    2
+        hitbox:       11
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+
+  Crimson-toothed_Pawberry:
+    id:            836
+    species:       tonberry
+    type:          [notorious]
+    spell_list_id: 32
+    skill_list_id: 243
+    attributes:
+      combat:
+        skill: great_axe
+      jobs: [smn, smn]
+      render:
+        look:
+          type:  standard
+          model: 1197
+        entity_flags: 157
+        name_prefix:   32
+        model_size:     2
+        hitbox:        11
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 18300
+        mp: 18300
+    loot:
+      drops:
+        - chance: always
+          item:   tonberry_coat
+        - chance: very_common
+          item:   tonberry_lantern
+        - chance: rare
+          item:   pinch_of_dried_mugwort
+        - chance: uncommon
+          item:   light_spirit_pact
+        - chance: always
+          item:   carbuncle_mitts
+        - chance: very_rare
+          item:   pinch_of_dried_mugwort
+
+  Death_from_Above:
+    id:            939
+    species:       yellow_bee
+    type:          [notorious]
+    skill_list_id: 48
+    attributes:
+      combat:
+        skill: great_axe
+        delay: 78
+      resists:
+        immune_status: [light_sleep, dark_sleep]
+      render:
+        look:
+          type:  standard
+          model: 272
+        name_prefix: 32
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 4100
+        mp: 4100
+    loot:
+      drops:
+        - chance: always
+          item:   hornetneedle
+        - chance: always
+          item:   pot_of_honey
+        - chance: always
+          item:   pot_of_honey
+        - chance: common
+          item:   serving_of_royal_jelly
+
+  Fire_Elemental:
+    id:            1341
+    species:       fire_elemental
+    spell_list_id: 17
+    skill_list_id: 102
+    attributes:
+      combat:
+        skill: staff
+      jobs: [blm, rdm]
+      resists:
+        immune_status: [bind, paralyze]
+      render:
+        look:
+          type:  standard
+          model: 436
+        entity_flags:  131
+        animation_sub:  16
+        model_size:      1
+        hitbox:          3
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 960
+        type:    [weather]
+    loot:
+      drops:
+        - chance: always
+          item:   fire_cluster
+        - chance: common
+          item:   fire_cluster
+        - chance: common
+          item:   fire_cluster
+
+  Flauros:
+    id:            1362
+    species:       coeurl
+    type:          [notorious]
+    skill_list_id: 71
+    attributes:
+      combat:
+        skill: axe
+      render:
+        look:
+          type:  standard
+          model: 367
+        entity_flags: 155
+        name_prefix:   32
+        model_size:     1
+        hitbox:        16
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [lottery]
+      stats:
+        hp: 6800
+    loot:
+      drops:
+        - chance: always
+          item:   flauros_whisker
+        - chance: common
+          item:   high-quality_coeurl_hide
+        - chance: common
+          item:   slice_of_coeurl_meat
+        - chance: uncommon
+          item:   coeurl_hide
+        - chance: rare
+          item:   coeurl_whisker
+
+  Habetrot:
+    id:            1865
+    species:       crawler
+    type:          [notorious]
+    skill_list_id: 79
+    attributes:
+      combat:
+        skill: club
+      render:
+        look:
+          type:  standard
+          model: 397
+        entity_flags: 131
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 6000
+    loot:
+      drops:
+        - chance: always
+          item:   twincoon
+        - chance: very_common
+          item:   twincoon
+        - chance: common
+          item:   twincoon
+        - chance: common
+          item:   twincoon
+
+  Hover_Tank:
+    id:            1995
+    species:       magic_pot
+    spell_list_id: 36
+    skill_list_id: 175
+    attributes:
+      combat:
+        skill: scythe
+      jobs: [rdm, war]
+      render:
+        look:
+          type:  standard
+          model: 412
+        entity_flags: 1155
+        model_size:      1
+        hitbox:         37
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: common
+          item:   magic_pot_shard
+        - chance: rare
+          item:   scroll_of_enthunder_ii
+        - chance: uncommon
+          item:   vial_of_mercury
+        - chance: uncommon
+          item:   red_mages_testimony
+        - chance: rare
+          item:   uggalepih_coffer_key
+        - chance: rare
+          one_of:
+            scroll_of_thunder_iii:  35
+            scroll_of_shell_iv:     20
+            scroll_of_thundaga_iii: 20
+            scroll_of_thunder_iv:   15
+            scroll_of_burst:        10
+      despoil:
+        magic_pot_shard: 0
+
+  Iron_Maiden:
+    id:            2101
+    species:       doll
+    skill_list_id: 85
+    attributes:
+      combat:
+        skill: staff
+      render:
+        look:
+          type:  standard
+          model: 304
+        entity_flags:  1157
+        animation_sub:   12
+        model_size:       2
+        hitbox:          34
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: very_rare
+          item:   uggalepih_coffer_key
+        - chance: rare
+          item:   doll_shard
+        - chance: uncommon
+          item:   vial_of_mercury
+      despoil:
+        doll_shard: 0
+
+  Manipulator:
+    id:            2552
+    species:       doll
+    type:          [notorious]
+    skill_list_id: 85
+    attributes:
+      combat:
+        skill: staff
+        delay: 180
+      render:
+        look:
+          type:  standard
+          model: 304
+        entity_flags:  133
+        animation_sub:   4
+        model_size:      2
+        hitbox:         34
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 900
+      stats:
+        hp: 10150
+    loot:
+      drops:
+        - chance: always
+          item:   hard_shield
+        - chance: very_common
+          item:   doll_shard
+        - chance: very_common
+          item:   vial_of_mercury
+        - chance: very_common
+          item:   doll_shard
+      steal: doll_gizmo
+
+  Mimic:
+    id:            2664
+    species:       mimic
+    type:          [notorious]
+    skill_list_id: 183
+    attributes:
+      combat:
+        skill: scythe
+        delay: 170
+      resists:
+        dmg_physical:
+          slashing: -5000
+          piercing: -5000
+          blunt:    -5000
+          h2h:      -5000
+      render:
+        look:
+          type:  standard
+          model: 259
+        entity_flags:  131
+        animation_sub:  13
+        model_size:      1
+        hitbox:         12
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: always
+          item:   uggalepih_coffer_key
+
+  Neith:
+    id:      6726
+    species: arundimite
+    type:    [notorious]
+    attributes:
+      combat:
+        skill: great_katana
+      jobs: [sam, sam]
+      render:
+        look:
+          type:  standard
+          model: 1354
+        entity_flags:  671
+        animation_sub:   8
+        name_prefix:    32
+        model_size:      3
+        hitbox:         24
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+
+  Neiths_Bobbin:
+    id:            6727
+    species:       spider
+    skill_list_id: 236
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 310
+        entity_flags: 649
+        name_prefix:   32
+        hitbox:        11
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+
+  Nio-A:
+    id:            2888
+    species:       doll
+    type:          [notorious]
+    skill_list_id: 85
+    attributes:
+      combat:
+        skill: axe
+      render:
+        look:
+          type:  standard
+          model: 304
+        entity_flags:  131
+        animation_sub:   4
+        model_size:      1
+        hitbox:         30
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 6700
+
+  Nio-Hum:
+    id:            2889
+    species:       doll
+    type:          [notorious]
+    skill_list_id: 85
+    attributes:
+      combat:
+        skill: axe
+      render:
+        look:
+          type:  standard
+          model: 304
+        entity_flags:  131
+        animation_sub:   4
+        model_size:      1
+        hitbox:         30
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 6700
+
+  Rompaulion_S_Citalle:
+    id:            3388
+    species:       shadow
+    type:          [notorious]
+    skill_list_id: 221
+    attributes:
+      combat:
+        skill: katana
+        delay: 150
+      jobs: [thf, thf]
+      resists:
+        rank_element:
+          fire:  -2
+          ice:    4
+          light: -2
+          dark:   4
+        rank_status:
+          paralyze:     4
+          bind:         4
+          light_sleep: -2
+          dark_sleep:   4
+          blind:        4
+      render:
+        look:
+          type:  standard
+          model: 546
+        entity_flags: 155
+        name_prefix:   32
+        model_size:     1
+        hitbox:        20
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 5000
+
+  Rumble_Crawler:
+    id:            3415
+    species:       crawler
+    skill_list_id: 79
+    attributes:
+      combat:
+        skill: club
+      render:
+        look:
+          type:  standard
+          model: 396
+        entity_flags: 131
+        model_size:     1
+        hitbox:        15
+      behaviors:
+        links: true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: uncommon
+          item:   piece_of_crawler_cocoon
+        - chance: rare
+          item:   spool_of_silk_thread
+        - chance: very_rare
+          item:   crawler_egg
+      despoil:
+        piece_of_crawler_cocoon: 0
+        crawler_egg:             0
+
+  Rumble_Crawler_2:
+    id:            3415
+    display_name:  Rumble_Crawler
+    species:       crawler
+    skill_list_id: 79
+    attributes:
+      combat:
+        skill: club
+      render:
+        look:
+          type:  standard
+          model: 396
+        entity_flags: 131
+        model_size:     1
+        hitbox:        15
+      behaviors:
+        links: true
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: uncommon
+          item:   piece_of_crawler_cocoon
+        - chance: rare
+          item:   spool_of_silk_thread
+        - chance: very_rare
+          item:   crawler_egg
+      despoil:
+        piece_of_crawler_cocoon: 0
+        crawler_egg:             0
+
+  Sacrificial_Goblet:
+    id:            3434
+    species:       magic_pot
+    type:          [notorious]
+    spell_list_id: 36
+    skill_list_id: 175
+    attributes:
+      combat:
+        skill: scythe
+      jobs: [blm, blm]
+      resists:
+        dmg_physical:
+          h2h: 2500
+      render:
+        look:
+          type:  standard
+          model: 412
+        entity_flags: 3
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 12000
+        mp: 12000
+    loot:
+      drops:
+        - chance: always
+          item:   charging_shield
+        - chance: very_common
+          item:   magic_pot_shard
+        - chance: very_common
+          item:   magic_pot_shard
+        - chance: common
+          item:   vial_of_mercury
+      steal: mana_barrel
+
+  Sozu_Rogberry:
+    id:            3712
+    species:       tonberry
+    type:          [notorious]
+    skill_list_id: 244
+    attributes:
+      combat:
+        skill: dagger
+      jobs: [thf, thf]
+      render:
+        look:
+          type:  standard
+          model: 1194
+        entity_flags: 133
+        model_size:     2
+        hitbox:        11
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 6800
+    loot:
+      drops:
+        - chance: always
+          item:   tonberry_coat
+        - chance: common
+          item:   tonberry_lantern
+        - chance: always
+          item:   thiefs_knife
+        - chance: rare
+          item:   pinch_of_dried_mugwort
+      steal: gold_beastcoin
+
+  Sozu_Sarberry:
+    id:            3713
+    species:       tonberry
+    type:          [notorious]
+    spell_list_id: 7
+    skill_list_id: 243
+    attributes:
+      combat:
+        skill: dagger
+      jobs: [nin, nin]
+      render:
+        look:
+          type:  standard
+          model: 1200
+        entity_flags: 133
+        model_size:     2
+        hitbox:        11
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [lottery]
+      stats:
+        hp: 7500
+    loot:
+      drops:
+        - chance: always
+          item:   tonberry_coat
+        - chance: common
+          item:   tonberry_lantern
+        - chance: very_common
+          item:   manji_shuriken
+        - chance: uncommon
+          item:   scroll_of_tonko_ni
+        - chance: uncommon
+          item:   scroll_of_hojo_ni
+        - chance: rare
+          item:   scroll_of_kurayami_ni
+        - chance: rare
+          item:   pinch_of_dried_mugwort
+        - chance: very_rare
+          item:   hocho
+      steal: gold_beastcoin
+
+  Sozu_Terberry:
+    id:            3714
+    species:       tonberry
+    type:          [notorious]
+    spell_list_id: 32
+    skill_list_id: 243
+    attributes:
+      combat:
+        skill: great_axe
+      jobs: [smn, smn]
+      render:
+        look:
+          type:  standard
+          model: 1197
+        entity_flags: 133
+        model_size:     2
+        hitbox:        11
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [lottery]
+      stats:
+        hp: 6300
+        mp: 6300
+
+  Temple_Bee:
+    id:            3871
+    species:       yellow_bee
+    skill_list_id: 48
+    attributes:
+      combat:
+        skill: dagger
+      render:
+        look:
+          type:  standard
+          model: 273
+        entity_flags:  133
+        animation_sub:   8
+        model_size:      2
+        hitbox:         11
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: common
+          item:   beehive_chip
+        - chance: uncommon
+          item:   pot_of_honey
+        - chance: rare
+          item:   insect_wing
+        - chance: rare
+          item:   uggalepih_coffer_key
+        - chance: very_rare
+          item:   giant_stinger
+      steal: pot_of_honey
+      despoil:
+        beehive_chip:  0
+        giant_stinger: 0
+        pot_of_honey:  0
+
+  Temple_Guardian:
+    id:            3872
+    species:       doll
+    type:          [event]
+    skill_list_id: 85
+    attributes:
+      combat:
+        skill: staff
+      render:
+        look:
+          type:  standard
+          model: 304
+        entity_flags:  131
+        animation_sub:   4
+        model_size:      1
+        hitbox:         30
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: rare
+          item:   uggalepih_coffer_key
+      despoil:
+        doll_shard: 0
+
+  Temple_Opo-opo:
+    id:            3874
+    species:       opo_opo
+    skill_list_id: 188
+    attributes:
+      combat:
+        skill: scythe
+        delay: 200
+      render:
+        look:
+          type:  standard
+          model: 416
+        entity_flags: 131
+        model_size:     1
+        hitbox:        18
+      behaviors:
+        links: true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: uncommon
+          item:   bunch_of_pamamas
+        - chance: common
+          item:   pebble
+        - chance: rare
+          item:   kazham_pineapple
+        - chance: very_rare
+          item:   thundermelon
+      steal: bunch_of_pamamas
+      despoil:
+        bunch_of_pamamas: 0
+
+  Tonberry_Cutter:
+    id:            3952
+    species:       tonberry
+    spell_list_id: 7
+    skill_list_id: 243
+    attributes:
+      combat:
+        skill: dagger
+      jobs: [nin, nin]
+      render:
+        look:
+          type:  standard
+          model: 1202
+        entity_flags: 131
+        model_size:     1
+        hitbox:        10
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: uncommon
+          item:   uggalepih_key
+        - chance: rare
+          item:   tonberry_coat
+        - chance: rare
+          item:   coeurl_leather_missive
+        - chance: rare
+          item:   manji_shuriken
+        - chance: very_rare
+          item:   rancor_mantle
+        - chance: ultra_rare
+          item:   scroll_of_hojo_ni
+        - chance: very_rare
+          item:   scroll_of_tonko_ni
+        - chance: super_rare
+          item:   scroll_of_kurayami_ni
+      steal: mythril_beastcoin
+      despoil:
+        pinch_of_poison_dust: 0
+        pinch_of_venom_dust:  0
+        bag_of_poison_flour:  0
+
+  Tonberry_Dismayer:
+    id:            3955
+    species:       tonberry
+    spell_list_id: 32
+    skill_list_id: 243
+    attributes:
+      combat:
+        skill: great_axe
+      jobs: [smn, smn]
+      render:
+        look:
+          type:  standard
+          model: 1226
+        entity_flags: 133
+        model_size:     2
+        hitbox:        11
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: uncommon
+          item:   summoners_testimony
+        - chance: common
+          item:   tonberry_coat
+        - chance: rare
+          item:   uggalepih_coffer_key
+        - chance: uncommon
+          item:   flask_of_venom_potion
+        - chance: rare
+          item:   water_spirit_pact
+      steal: gold_beastcoin
+      despoil:
+        pinch_of_poison_dust: 0
+        pinch_of_venom_dust:  0
+        bag_of_poison_flour:  0
+
+  Tonberry_Harrier:
+    id:            3957
+    species:       tonberry
+    spell_list_id: 32
+    skill_list_id: 243
+    attributes:
+      combat:
+        skill: great_axe
+      jobs: [smn, smn]
+      render:
+        look:
+          type:  standard
+          model: 1231
+        entity_flags: 131
+        model_size:     1
+        hitbox:        10
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: common
+          item:   tonberry_coat
+        - chance: rare
+          item:   tonberry_lantern
+        - chance: uncommon
+          item:   flask_of_vitriol
+        - chance: very_rare
+          item:   water_spirit_pact
+        - chance: very_rare
+          item:   rancor_globe
+      steal: mythril_beastcoin
+      despoil:
+        pinch_of_poison_dust: 0
+        pinch_of_venom_dust:  0
+        bag_of_poison_flour:  0
+
+  Tonberry_Kinq:
+    id:            3961
+    species:       tonberry
+    type:          [notorious]
+    spell_list_id: 32
+    skill_list_id: 243
+    attributes:
+      combat:
+        skill: great_katana
+      jobs: [smn, smn]
+      render:
+        look:
+          type:  standard
+          model: 1246
+        entity_flags: 133
+        model_size:     2
+        hitbox:        11
+      behaviors:
+        aggressive:     true
+        links:          true
+        true_detection: true
+      spawn:
+        type: [lottery]
+      stats:
+        hp: 3100
+        mp: 3100
+    loot:
+      drops:
+        - chance: very_common
+          item:   tonberry_coat
+        - chance: common
+          item:   tonberry_lantern
+        - chance: rare
+          item:   water_spirit_pact
+        - chance: rare
+          item:   pinch_of_dried_mugwort
+        - chance: rare
+          item:   light_spirit_pact
+
+  Tonberry_Maledictor:
+    id:            3963
+    species:       tonberry
+    spell_list_id: 21
+    skill_list_id: 243
+    attributes:
+      combat:
+        skill: great_axe
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 1212
+        entity_flags: 133
+        model_size:     2
+        hitbox:        11
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: uncommon
+          item:   black_mages_testimony
+        - chance: common
+          item:   tonberry_coat
+        - chance: uncommon
+          item:   unlit_lantern
+        - chance: rare
+          item:   uggalepih_coffer_key
+        - chance: rare
+          item:   scroll_of_thundaga_ii
+        - chance: very_rare
+          item:   scroll_of_thunder_iii
+      steal: gold_beastcoin
+      despoil:
+        pinch_of_poison_dust: 0
+        pinch_of_venom_dust:  0
+        bag_of_poison_flour:  0
+
+  Tonberry_Pursuer:
+    id:            3965
+    species:       tonberry
+    skill_list_id: 243
+    attributes:
+      combat:
+        skill: dagger
+      jobs: [thf, thf]
+      render:
+        look:
+          type:  standard
+          model: 1191
+        entity_flags: 133
+        model_size:     2
+        hitbox:        11
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: common
+          item:   tonberry_coat
+        - chance: uncommon
+          item:   flask_of_venom_potion
+        - chance: rare
+          item:   uggalepih_coffer_key
+        - chance: rare
+          item:   tonberry_board
+        - chance: very_rare
+          item:   flickering_lantern
+      steal: thiefs_testimony
+      despoil:
+        pinch_of_poison_dust: 0
+        pinch_of_venom_dust:  0
+        bag_of_poison_flour:  0
+
+  Tonberry_Stabber:
+    id:            3968
+    species:       tonberry
+    spell_list_id: 7
+    skill_list_id: 243
+    attributes:
+      combat:
+        skill: dagger
+      jobs: [nin, nin]
+      render:
+        look:
+          type:  standard
+          model: 1203
+        entity_flags: 133
+        model_size:     2
+        hitbox:        11
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: uncommon
+          item:   ninjas_testimony
+        - chance: common
+          item:   tonberry_coat
+        - chance: rare
+          item:   uggalepih_coffer_key
+        - chance: rare
+          item:   prelate_key
+        - chance: uncommon
+          item:   flask_of_venom_potion
+        - chance: rare
+          item:   chunk_of_white_steel
+        - chance: very_rare
+          item:   manji_shuriken
+        - chance: super_rare
+          item:   scroll_of_tonko_ni
+        - chance: ultra_rare
+          item:   scroll_of_kurayami_ni
+        - chance: ultra_rare
+          item:   scroll_of_hojo_ni
+      steal: gold_beastcoin
+      despoil:
+        pinch_of_poison_dust: 0
+        pinch_of_venom_dust:  0
+        bag_of_poison_flour:  0
+
+  Tonberry_Stalker:
+    id:            3969
+    species:       tonberry
+    skill_list_id: 243
+    attributes:
+      combat:
+        skill: dagger
+      jobs: [thf, thf]
+      render:
+        look:
+          type:  standard
+          model: 1188
+        entity_flags: 131
+        model_size:     1
+        hitbox:        10
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: uncommon
+          item:   flask_of_vitriol
+        - chance: rare
+          item:   set_of_giant_fish_bones
+        - chance: rare
+          item:   coeurl_leather_missive
+      steal: mythril_beastcoin
+      despoil:
+        pinch_of_poison_dust: 0
+        pinch_of_venom_dust:  0
+        bag_of_poison_flour:  0
+
+  Tonberrys_Avatar:
+    id:            3970
+    species:       carbuncle
+    type:          [called, battlefield]
+    skill_list_id: 34
+    attributes:
+      combat:
+        skill: scythe
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 791
+        entity_flags: 129
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+
+  Tonberrys_Elemental:
+    id:            3971
+    species:       fire_elemental
+    type:          [called]
+    spell_list_id: 21
+    skill_list_id: 102
+    attributes:
+      combat:
+        skill: staff
+      jobs: [blm, rdm]
+      render:
+        look:
+          type:  standard
+          model: 8
+        entity_flags:  1155
+        animation_sub:   16
+        model_size:       1
+        hitbox:           8
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+
+  Torama:
+    id:            3976
+    species:       coeurl
+    skill_list_id: 71
+    attributes:
+      combat:
+        skill: dagger
+      render:
+        look:
+          type:  standard
+          model: 367
+        entity_flags: 131
+        model_size:     1
+        hitbox:        16
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: common
+          item:   slice_of_coeurl_meat
+        - chance: uncommon
+          item:   coeurl_whisker
+        - chance: rare
+          item:   high-quality_coeurl_hide
+      steal: coeurl_whisker
+      despoil:
+        coeurl_hide:          0
+        slice_of_coeurl_meat: 0
+
+  Trompe_LOeil:
+    id:            4039
+    species:       golem
+    type:          [notorious]
+    skill_list_id: 135
+    attributes:
+      combat:
+        skill: club
+        delay: 320
+      render:
+        look:
+          type:  standard
+          model: 432
+        entity_flags: 133
+        model_size:     2
+        hitbox:        22
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 17000
+
+  Uggalepih_Leech:
+    id:            4076
+    species:       leech
+    type:          [fished]
+    skill_list_id: 172
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 276
+        entity_flags: 3
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: uncommon
+          item:   vial_of_fiend_blood
+        - chance: rare
+          item:   vial_of_beastman_blood
+        - chance: very_rare
+          item:   carbuncles_ruby
+      despoil:
+        vial_of_fiend_blood:    0
+        vial_of_beastman_blood: 0
+        vial_of_bird_blood:     0
+
+  Water_Elemental:
+    id:            4309
+    species:       water_elemental
+    spell_list_id: 15
+    skill_list_id: 106
+    attributes:
+      combat:
+        skill: staff
+      jobs: [blm, rdm]
+      resists:
+        immune_status: [poison]
+      render:
+        look:
+          type:  standard
+          model: 440
+        entity_flags:  131
+        animation_sub:  16
+        model_size:      1
+        hitbox:          3
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 960
+        type:    [weather]
+    loot:
+      drops:
+        - chance: always
+          item:   water_cluster
+        - chance: common
+          item:   water_cluster
+        - chance: common
+          item:   water_cluster
+
+  Wespe_TU:
+    id:            5142
+    species:       yellow_bee
+    skill_list_id: 48
+    attributes:
+      combat:
+        skill: dagger
+      render:
+        look:
+          type:  standard
+          model: 273
+        entity_flags:  643
+        animation_sub:   8
+        model_size:      1
+        hitbox:         10
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: common
+          item:   beehive_chip
+        - chance: uncommon
+          item:   pot_of_honey
+        - chance: rare
+          item:   insect_wing
+        - chance: very_rare
+          item:   bag_of_bee_larvae
+      steal: pot_of_honey
+      despoil:
+        beehive_chip:  0
+        giant_stinger: 0
+        pot_of_honey:  0
+
+  Yallery_Brown:
+    id:            4463
+    species:       sapling
+    skill_list_id: 216
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 392
+        entity_flags: 133
+        model_size:     2
+        hitbox:        14
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 7200
+
+spawns:
+  17428481:
+    template: Uggalepih_Leech
+    at:       [1.000, 1.000, 1.000]
+    level:    [50, 52]
+  17428482:
+    template: Uggalepih_Leech
+    at:       [1.000, 1.000, 1.000]
+    level:    [50, 52]
+  17428483:
+    template: Bloodsucker_fished
+    script:   Bloodsucker
+    at:       [1.000, 1.000, 1.000]
+    level:    [55, 62]
+  17428484:
+    template: Bloodsucker_fished
+    script:   Bloodsucker
+    at:       [1.000, 1.000, 1.000]
+    level:    [55, 62]
+  17428485:
+    template: Bouncing_Ball_fished
+    script:   Bouncing_Ball
+    at:       [1.000, 1.000, 1.000]
+    level:    [65, 67]
+  17428486:
+    template: Bonze_Marberry
+    region:   ne_6
+    level:    [66, 66]
+  17428487:
+    template: Trompe_LOeil
+    at:       [80.031, -0.500, -38.824, 197]
+    level:    [60, 60]
+  17428488:
+    template: Cook_Solberry
+    at:       [-144.000, 0.000, -97.000, 231]
+    level:    [75, 75]
+  17428489:
+    template: Cook_Nalberry
+    at:       [-130.000, 0.000, -101.000, 186]
+    level:    [75, 75]
+  17428490:
+    template: Cook_Minberry
+    at:       [-142.000, 0.000, -101.000, 234]
+    level:    [75, 75]
+  17428491:
+    template: Cook_Fulberry
+    at:       [-132.000, 0.000, -97.000, 123]
+    level:    [75, 75]
+  17428492:
+    template: Tonberrys_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [43, 55]
+  17428493:
+    template: Tonberrys_Avatar
+    level:    [43, 55]
+  17428494:
+    template: Temple_Guardian
+    at:       [-64.472, -0.023, -102.889, 191]
+    level:    [65, 65]
+  17428495:
+    template: Nio-A
+    at:       [-47.124, -17.000, -144.151, 127]
+    level:    [72, 72]
+  17428496:
+    template: Nio-Hum
+    at:       [-52.853, -17.000, -143.869]
+    level:    [72, 72]
+  17428497:
+    template: Mimic
+    at:       [1.000, 1.000, 1.000]
+    level:    [60, 60]
+  17428498:
+    template: Wespe_TU
+    script:   Wespe
+    region:   c_18
+    level:    [52, 55]
+  17428499:
+    template: Temple_Opo-opo
+    region:   se_19
+    level:    [51, 54]
+  17428500:
+    template: Wespe_TU
+    script:   Wespe
+    region:   se_19
+    level:    [52, 55]
+  17428501:
+    template: Wespe_TU
+    script:   Wespe
+    region:   se_19
+    level:    [52, 55]
+  17428502:
+    template: Wespe_TU
+    script:   Wespe
+    region:   se_19
+    level:    [52, 55]
+  17428503:
+    template: Tonberry_Stalker
+    region:   s_23
+    level:    [51, 54]
+  17428504:
+    template: Tonberry_Cutter
+    region:   s_23
+    level:    [51, 54]
+  17428505:
+    template: Tonberry_Harrier
+    region:   s_23
+    level:    [51, 54]
+  17428506:
+    template: Tonberrys_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [43, 55]
+  17428507:
+    template: Tonberry_Stalker
+    region:   s_23
+    level:    [51, 54]
+  17428508:
+    template: Tonberry_Cutter
+    region:   s_23
+    level:    [51, 54]
+  17428509:
+    template: Temple_Opo-opo
+    region:   s_23
+    level:    [51, 54]
+  17428510:
+    template: Wespe_TU
+    script:   Wespe
+    region:   s_23
+    level:    [52, 55]
+  17428511:
+    template: Temple_Opo-opo
+    region:   s_31
+    level:    [51, 54]
+  17428512:
+    template: Temple_Opo-opo
+    region:   s_31
+    level:    [51, 54]
+  17428513:
+    template: Tonberry_Stalker
+    region:   s_33
+    level:    [51, 54]
+  17428514:
+    template: Tonberry_Cutter
+    region:   s_33
+    level:    [51, 54]
+  17428515:
+    template: Tonberry_Harrier
+    region:   s_33
+    level:    [51, 54]
+  17428516:
+    template: Tonberrys_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [43, 55]
+  17428517:
+    template: Tonberry_Stalker
+    region:   s_33
+    level:    [51, 54]
+  17428518:
+    template: Tonberry_Cutter
+    region:   s_33
+    level:    [51, 54]
+  17428519:
+    template: Temple_Opo-opo
+    region:   s_33
+    level:    [51, 54]
+  17428520:
+    template: Temple_Opo-opo
+    region:   s_33
+    level:    [51, 54]
+  17428521:
+    template: Temple_Opo-opo
+    region:   s_41
+    level:    [51, 54]
+  17428522:
+    template: Temple_Opo-opo
+    region:   s_41
+    level:    [51, 54]
+  17428523:
+    template: Temple_Opo-opo
+    region:   s_41
+    level:    [51, 54]
+  17428524:
+    template: Tonberry_Cutter
+    region:   s_41
+    level:    [52, 55]
+  17428525:
+    template: Temple_Opo-opo
+    region:   s_45
+    level:    [51, 54]
+  17428526:
+    template: Temple_Opo-opo
+    region:   s_45
+    level:    [51, 54]
+  17428527:
+    template: Temple_Opo-opo
+    region:   s_45
+    level:    [51, 54]
+  17428528:
+    template: Tonberry_Harrier
+    region:   s_45
+    level:    [52, 55]
+  17428529:
+    template: Tonberrys_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [43, 55]
+  17428530:
+    template: Temple_Opo-opo
+    region:   s_50
+    level:    [51, 54]
+  17428531:
+    template: Temple_Opo-opo
+    region:   s_50
+    level:    [51, 54]
+  17428532:
+    template: Temple_Opo-opo
+    region:   s_50
+    level:    [51, 54]
+  17428533:
+    template: Tonberry_Stalker
+    region:   s_50
+    level:    [52, 55]
+  17428534:
+    template: Tonberry_Cutter
+    region:   c_54
+    level:    [52, 55]
+  17428535:
+    template: Temple_Opo-opo
+    region:   c_54
+    level:    [51, 54]
+  17428536:
+    template: Wespe_TU
+    script:   Wespe
+    region:   c_54
+    level:    [52, 55]
+  17428537:
+    template: Wespe_TU
+    script:   Wespe
+    region:   c_54
+    level:    [52, 55]
+  17428538:
+    template: Temple_Opo-opo
+    region:   c_58
+    level:    [51, 54]
+  17428539:
+    template: Temple_Opo-opo
+    region:   c_58
+    level:    [51, 54]
+  17428540:
+    template: Tonberry_Stalker
+    region:   c_58
+    level:    [52, 55]
+  17428541:
+    template: Tonberry_Stalker
+    region:   s_61
+    level:    [52, 55]
+  17428542:
+    template: Tonberry_Cutter
+    region:   s_61
+    level:    [52, 55]
+  17428543:
+    template: Tonberry_Harrier
+    region:   s_61
+    level:    [52, 55]
+  17428544:
+    template: Tonberrys_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [43, 55]
+  17428545:
+    template: Tonberry_Stalker
+    region:   s_61
+    level:    [52, 55]
+  17428546:
+    template: Temple_Opo-opo
+    region:   s_61
+    level:    [51, 54]
+  17428547:
+    template: Temple_Opo-opo
+    region:   region_73
+    level:    [51, 54]
+  17428548:
+    template: Temple_Opo-opo
+    region:   s_68
+    level:    [51, 54]
+  17428549:
+    template: Temple_Opo-opo
+    region:   s_68
+    level:    [51, 54]
+  17428550:
+    template: Tonberry_Stalker
+    region:   s_68
+    level:    [53, 55]
+  17428551:
+    template: Tonberry_Cutter
+    region:   s_68
+    level:    [52, 55]
+  17428552:
+    template: Tonberry_Harrier
+    region:   s_68
+    level:    [52, 55]
+  17428553:
+    template: Tonberrys_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [43, 55]
+  17428554:
+    template: Sozu_Sarberry
+    region:   s_68
+    level:    [66, 66]
+  17428555:
+    template: Tonberry_Cutter
+    region:   region_74
+    level:    [52, 55]
+  17428556:
+    template: Tonberry_Harrier
+    region:   region_75
+    level:    [52, 55]
+  17428557:
+    template: Tonberrys_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [43, 55]
+  17428558:
+    template: Tonberry_Stalker
+    region:   region_76
+    level:    [52, 55]
+  17428559:
+    template: Tonberry_Harrier
+    region:   region_77
+    level:    [52, 55]
+  17428560:
+    template: Tonberrys_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [43, 55]
+  17428561:
+    template: Tonberry_Cutter
+    region:   region_78
+    level:    [52, 55]
+  17428562:
+    template: Tonberry_Harrier
+    at:       [90.122, 0.000, -127.217, 72]
+    level:    [52, 55]
+  17428563:
+    template: Tonberrys_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [43, 55]
+  17428564:
+    template: Rumble_Crawler
+    region:   s_84
+    level:    [53, 56]
+  17428565:
+    template: Rumble_Crawler
+    region:   s_84
+    level:    [53, 56]
+  17428566:
+    template: Wespe_TU
+    script:   Wespe
+    region:   s_84
+    level:    [52, 55]
+  17428567:
+    template: Wespe_TU
+    script:   Wespe
+    region:   s_84
+    level:    [52, 55]
+  17428568:
+    template: Tonberry_Stalker
+    region:   s_84
+    level:    [53, 57]
+  17428569:
+    template: Tonberry_Cutter
+    region:   s_84
+    level:    [53, 57]
+  17428570:
+    template: Tonberry_Harrier
+    region:   s_84
+    level:    [53, 57]
+  17428571:
+    template: Tonberrys_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [43, 55]
+  17428572:
+    template: Branding_Iron
+    region:   s_92
+    level:    [55, 58]
+  17428573:
+    template: Rumble_Crawler
+    region:   s_92
+    level:    [53, 56]
+  17428574:
+    template: Rumble_Crawler
+    region:   s_92
+    level:    [53, 56]
+  17428575:
+    template: Rumble_Crawler
+    region:   w_95
+    level:    [53, 56]
+  17428576:
+    template: Wespe_TU
+    script:   Wespe
+    region:   w_95
+    level:    [52, 55]
+  17428577:
+    template: Tonberry_Cutter
+    region:   w_95
+    level:    [53, 57]
+  17428578:
+    template: Wespe_TU
+    script:   Wespe
+    region:   w_98
+    level:    [52, 55]
+  17428579:
+    template: Rumble_Crawler
+    region:   w_98
+    level:    [53, 56]
+  17428580:
+    template: Tonberry_Cutter
+    region:   w_98
+    level:    [53, 57]
+  17428581:
+    template: Wespe_TU
+    script:   Wespe
+    region:   w_101
+    level:    [52, 55]
+  17428582:
+    template: Rumble_Crawler
+    region:   w_101
+    level:    [53, 56]
+  17428583:
+    template: Tonberry_Stalker
+    region:   w_101
+    level:    [53, 57]
+  17428584:
+    template: Rumble_Crawler
+    region:   w_104
+    level:    [53, 56]
+  17428585:
+    template: Rumble_Crawler
+    region:   w_104
+    level:    [53, 56]
+  17428586:
+    template: Tonberry_Stalker
+    region:   w_104
+    level:    [54, 58]
+  17428587:
+    template: Tonberry_Cutter
+    region:   w_104
+    level:    [54, 58]
+  17428588:
+    template: Tonberry_Stalker
+    region:   region_79
+    level:    [54, 58]
+  17428589:
+    template: Tonberry_Harrier
+    region:   region_80
+    level:    [54, 58]
+  17428590:
+    template: Tonberrys_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [43, 55]
+  17428591:
+    template: Tonberry_Cutter
+    region:   region_81
+    level:    [54, 58]
+  17428592:
+    template: Tonberry_Stalker
+    region:   region_82
+    level:    [54, 58]
+  17428593:
+    template: Wespe_TU
+    script:   Wespe
+    region:   region_83
+    level:    [52, 55]
+  17428594:
+    template: Wespe_TU
+    script:   Wespe
+    region:   w_114
+    level:    [52, 55]
+  17428595:
+    template: Tonberry_Stalker
+    region:   w_114
+    level:    [54, 58]
+  17428596:
+    template: Tonberry_Harrier
+    region:   sw_116
+    level:    [54, 58]
+  17428597:
+    template: Tonberrys_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [43, 55]
+  17428598:
+    template: Wespe_TU
+    script:   Wespe
+    region:   sw_118
+    level:    [52, 55]
+  17428599:
+    template: Tonberry_Cutter
+    region:   sw_118
+    level:    [54, 58]
+  17428600:
+    template: Wespe_TU
+    script:   Wespe
+    region:   region_84
+    level:    [52, 55]
+  17428601:
+    template: Tonberry_Harrier
+    region:   sw_121
+    level:    [54, 58]
+  17428602:
+    template: Tonberrys_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [43, 55]
+  17428603:
+    template: Rumble_Crawler
+    region:   sw_123
+    level:    [53, 56]
+  17428604:
+    template: Torama
+    region:   sw_123
+    level:    [55, 58]
+  17428605:
+    template: Tonberry_Cutter
+    region:   sw_123
+    level:    [54, 58]
+  17428606:
+    template: Tonberry_Stalker
+    region:   sw_126
+    level:    [54, 58]
+  17428607:
+    template: Tonberry_Cutter
+    region:   sw_126
+    level:    [54, 58]
+  17428608:
+    template: Tonberry_Harrier
+    region:   sw_126
+    level:    [54, 58]
+  17428609:
+    template: Tonberrys_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [43, 55]
+  17428610:
+    template: Wespe_TU
+    script:   Wespe
+    region:   sw_126
+    level:    [52, 55]
+  17428611:
+    template: Sozu_Terberry
+    region:   sw_126
+    level:    [65, 65]
+  17428612:
+    template: Tonberrys_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [43, 55]
+  17428613:
+    template: Tonberrys_Avatar
+    at:       [1.000, 1.000, 1.000]
+    level:    [43, 55]
+  17428614:
+    template: Branding_Iron
+    region:   sw_134
+    level:    [55, 58]
+  17428615:
+    template: Wespe_TU
+    script:   Wespe
+    region:   sw_134
+    level:    [52, 55]
+  17428616:
+    template: Wespe_TU
+    script:   Wespe
+    region:   sw_134
+    level:    [52, 55]
+  17428617:
+    template: Tonberry_Cutter
+    region:   sw_137
+    level:    [55, 59]
+  17428618:
+    template: Torama
+    region:   sw_137
+    level:    [55, 58]
+  17428619:
+    template: Wespe_TU
+    script:   Wespe
+    region:   sw_137
+    level:    [52, 55]
+  17428620:
+    template: Wespe_TU
+    script:   Wespe
+    region:   sw_137
+    level:    [52, 55]
+  17428621:
+    template: Torama
+    region:   sw_141
+    level:    [55, 58]
+  17428622:
+    template: Wespe_TU
+    script:   Wespe
+    region:   sw_141
+    level:    [52, 55]
+  17428623:
+    template: Tonberry_Stalker
+    region:   sw_141
+    level:    [55, 59]
+  17428624:
+    template: Tonberry_Stalker
+    region:   region_85
+    level:    [55, 59]
+  17428625:
+    template: Tonberry_Harrier
+    region:   region_86
+    level:    [55, 59]
+  17428626:
+    template: Tonberrys_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [43, 55]
+  17428627:
+    template: Tonberry_Cutter
+    region:   region_87
+    level:    [55, 59]
+  17428628:
+    template: Tonberry_Stalker
+    region:   region_89
+    level:    [55, 59]
+  17428629:
+    template: Tonberry_Stalker
+    region:   sw_149
+    level:    [55, 59]
+  17428630:
+    template: Tonberry_Cutter
+    region:   sw_149
+    level:    [55, 59]
+  17428631:
+    template: Tonberry_Cutter
+    region:   sw_149
+    level:    [55, 59]
+  17428632:
+    template: Rumble_Crawler
+    region:   sw_149
+    level:    [53, 56]
+  17428633:
+    template: Tonberry_Stalker
+    region:   region_90
+    level:    [56, 59]
+  17428634:
+    template: Tonberry_Harrier
+    region:   region_90
+    level:    [56, 59]
+  17428635:
+    template: Tonberrys_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [43, 55]
+  17428636:
+    template: Tonberry_Cutter
+    region:   sw_156
+    level:    [56, 59]
+  17428637:
+    template: Tonberry_Cutter
+    region:   sw_157
+    level:    [56, 59]
+  17428638:
+    template: Tonberry_Cutter
+    region:   sw_157
+    level:    [56, 59]
+  17428639:
+    template: Tonberry_Stalker
+    region:   sw_157
+    level:    [56, 59]
+  17428640:
+    template: Tonberry_Stalker
+    region:   sw_157
+    level:    [56, 59]
+  17428641:
+    template: Tonberry_Harrier
+    region:   sw_161
+    level:    [56, 59]
+  17428642:
+    template: Tonberrys_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [43, 55]
+  17428643:
+    template: Tonberry_Harrier
+    region:   sw_161
+    level:    [56, 59]
+  17428644:
+    template: Tonberrys_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [43, 55]
+  17428645:
+    template: Tonberry_Cutter
+    region:   sw_161
+    level:    [56, 59]
+  17428646:
+    template: Tonberry_Cutter
+    region:   sw_161
+    level:    [56, 59]
+  17428647:
+    template: Tonberry_Cutter
+    region:   sw_167
+    level:    [56, 59]
+  17428648:
+    template: Tonberry_Cutter
+    region:   sw_167
+    level:    [56, 59]
+  17428649:
+    template: Tonberry_Stalker
+    region:   sw_167
+    level:    [56, 59]
+  17428650:
+    template: Tonberry_Stalker
+    region:   sw_167
+    level:    [56, 59]
+  17428651:
+    template: Manipulator
+    at:       [0.000, 0.000, 0.100]
+    level:    [59, 61]
+  17428652:
+    template: Torama
+    region:   s_172
+    level:    [55, 58]
+  17428653:
+    template: Tonberry_Cutter
+    region:   s_172
+    level:    [56, 59]
+  17428654:
+    template: Torama
+    region:   sw_174
+    level:    [55, 58]
+  17428655:
+    template: Tonberry_Stalker
+    region:   sw_174
+    level:    [56, 59]
+  17428656:
+    template: Tonberry_Harrier
+    region:   sw_176
+    level:    [56, 59]
+  17428657:
+    template: Tonberrys_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [43, 55]
+  17428658:
+    template: Tonberry_Cutter
+    region:   sw_176
+    level:    [56, 59]
+  17428659:
+    template: Tonberry_Harrier
+    region:   w_179
+    level:    [56, 59]
+  17428660:
+    template: Tonberrys_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [43, 55]
+  17428661:
+    template: Tonberry_Stalker
+    region:   w_179
+    level:    [56, 59]
+  17428662:
+    template: Tonberry_Harrier
+    region:   sw_182
+    level:    [56, 59]
+  17428663:
+    template: Tonberrys_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [43, 55]
+  17428664:
+    template: Tonberry_Harrier
+    region:   sw_182
+    level:    [56, 59]
+  17428665:
+    template: Tonberrys_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [43, 55]
+  17428666:
+    template: Tonberry_Stalker
+    region:   sw_182
+    level:    [56, 59]
+  17428667:
+    template: Tonberry_Cutter
+    region:   sw_182
+    level:    [56, 59]
+  17428668:
+    template: Tonberry_Cutter
+    region:   region_88
+    level:    [56, 59]
+  17428669:
+    template: Tonberry_Stalker
+    region:   region_91
+    level:    [56, 59]
+  17428670:
+    template: Tonberry_Maledictor
+    region:   w_190
+    level:    [64, 67]
+  17428671:
+    template: Tonberry_Pursuer
+    region:   w_190
+    level:    [64, 67]
+  17428672:
+    template: Tonberry_Stabber
+    region:   w_190
+    level:    [64, 67]
+  17428673:
+    template: Tonberry_Dismayer
+    region:   w_190
+    level:    [64, 67]
+  17428674:
+    template: Tonberrys_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [43, 55]
+  17428675:
+    template: Tonberry_Dismayer
+    region:   w_195
+    level:    [64, 67]
+  17428676:
+    template: Tonberrys_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [43, 55]
+  17428677:
+    template: Tonberry_Kinq
+    at:       [-219.962, -1.736, 28.388, 64]
+    level:    [65, 66]
+  17428678:
+    template: Tonberrys_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [43, 55]
+  17428679:
+    template: Tonberrys_Avatar
+    at:       [1.000, 1.000, 1.000]
+    level:    [43, 55]
+  17428680:
+    template: Tonberry_Harrier
+    region:   sw_200
+    level:    [56, 59]
+  17428681:
+    template: Tonberrys_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [43, 55]
+  17428682:
+    template: Tonberry_Cutter
+    region:   sw_200
+    level:    [56, 59]
+  17428683:
+    template: Tonberry_Harrier
+    region:   c_203
+    level:    [56, 59]
+  17428684:
+    template: Tonberrys_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [43, 55]
+  17428685:
+    template: Tonberry_Stalker
+    region:   c_203
+    level:    [56, 59]
+  17428686:
+    template: Hover_Tank
+    region:   s_206
+    level:    [64, 68]
+  17428687:
+    template: Hover_Tank
+    region:   s_206
+    level:    [64, 68]
+  17428688:
+    template: Tonberry_Maledictor
+    region:   s_206
+    level:    [64, 67]
+  17428689:
+    template: Tonberry_Pursuer
+    region:   s_206
+    level:    [64, 67]
+  17428690:
+    template: Tonberry_Stabber
+    region:   s_206
+    level:    [64, 67]
+  17428691:
+    template: Tonberry_Dismayer
+    region:   s_206
+    level:    [64, 67]
+  17428692:
+    template: Tonberrys_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [43, 55]
+  17428693:
+    template: Fire_Elemental
+    region:   s_213
+    level:    [65, 68]
+  17428694:
+    template: Hover_Tank
+    region:   s_214
+    level:    [64, 68]
+  17428695:
+    template: Tonberry_Maledictor
+    region:   sw_215
+    level:    [64, 67]
+  17428696:
+    template: Tonberry_Pursuer
+    region:   sw_215
+    level:    [64, 67]
+  17428697:
+    template: Tonberry_Stabber
+    region:   sw_215
+    level:    [64, 67]
+  17428698:
+    template: Tonberry_Dismayer
+    region:   sw_215
+    level:    [64, 67]
+  17428699:
+    template: Tonberrys_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [43, 55]
+  17428700:
+    template: Fire_Elemental
+    region:   sw_215
+    level:    [65, 68]
+  17428701:
+    template: Hover_Tank
+    region:   sw_221
+    level:    [64, 68]
+  17428702:
+    template: Iron_Maiden
+    region:   sw_222
+    level:    [64, 68]
+  17428703:
+    template: Iron_Maiden
+    region:   sw_222
+    level:    [64, 68]
+  17428704:
+    template: Tonberry_Maledictor
+    region:   sw_222
+    level:    [64, 67]
+  17428705:
+    template: Tonberry_Pursuer
+    region:   sw_222
+    level:    [64, 67]
+  17428706:
+    template: Tonberry_Stabber
+    region:   sw_222
+    level:    [64, 67]
+  17428707:
+    template: Tonberry_Dismayer
+    region:   sw_222
+    level:    [67, 69]
+  17428708:
+    template: Tonberrys_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [43, 55]
+  17428709:
+    template: Fire_Elemental
+    region:   sw_222
+    level:    [65, 68]
+  17428710:
+    template: Hover_Tank
+    region:   region_92
+    level:    [64, 68]
+  17428711:
+    template: Iron_Maiden
+    region:   region_93
+    level:    [64, 68]
+  17428712:
+    template: Iron_Maiden
+    region:   region_94
+    level:    [64, 68]
+  17428713:
+    template: Hover_Tank
+    region:   s_233
+    level:    [64, 68]
+  17428714:
+    template: Hover_Tank
+    region:   s_233
+    level:    [64, 68]
+  17428715:
+    template: Iron_Maiden
+    region:   s_235
+    level:    [64, 68]
+  17428716:
+    template: Iron_Maiden
+    region:   s_235
+    level:    [64, 68]
+  17428717:
+    template: Fire_Elemental
+    region:   s_235
+    level:    [65, 68]
+  17428718:
+    template: Tonberry_Maledictor
+    region:   w_238
+    level:    [67, 69]
+  17428719:
+    template: Tonberry_Pursuer
+    region:   w_238
+    level:    [67, 69]
+  17428720:
+    template: Tonberry_Stabber
+    region:   w_238
+    level:    [67, 69]
+  17428721:
+    template: Tonberry_Dismayer
+    region:   w_238
+    level:    [67, 69]
+  17428722:
+    template: Tonberrys_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [43, 55]
+  17428723:
+    template: Iron_Maiden
+    region:   sw_243
+    level:    [64, 68]
+  17428724:
+    template: Iron_Maiden
+    region:   sw_243
+    level:    [64, 68]
+  17428725:
+    template: Fire_Elemental
+    region:   sw_245
+    level:    [65, 68]
+  17428726:
+    template: Hover_Tank
+    region:   sw_246
+    level:    [64, 68]
+  17428727:
+    template: Hover_Tank
+    region:   sw_246
+    level:    [64, 68]
+  17428728:
+    template: Torama
+    region:   region_95
+    level:    [55, 58]
+  17428729:
+    template: Tonberry_Stalker
+    region:   e_249
+    level:    [56, 59]
+  17428730:
+    template: Tonberry_Cutter
+    region:   e_249
+    level:    [56, 59]
+  17428731:
+    template: Tonberry_Harrier
+    region:   e_249
+    level:    [56, 59]
+  17428732:
+    template: Tonberrys_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [43, 55]
+  17428733:
+    template: Tonberry_Stalker
+    region:   e_249
+    level:    [56, 59]
+  17428734:
+    template: Tonberry_Cutter
+    region:   e_249
+    level:    [56, 59]
+  17428735:
+    template: Tonberry_Harrier
+    region:   e_249
+    level:    [56, 59]
+  17428736:
+    template: Tonberrys_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [43, 55]
+  17428737:
+    template: Flauros
+    region:   e_249
+    level:    [59, 61]
+  17428738:
+    template: Tonberry_Stalker
+    region:   e_258
+    level:    [56, 59]
+  17428739:
+    template: Tonberry_Cutter
+    region:   e_258
+    level:    [56, 59]
+  17428740:
+    template: Torama
+    region:   e_258
+    level:    [55, 58]
+  17428741:
+    template: Torama
+    region:   e_258
+    level:    [55, 58]
+  17428742:
+    template: Tonberry_Harrier
+    region:   e_262
+    level:    [56, 59]
+  17428743:
+    template: Tonberrys_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [43, 55]
+  17428744:
+    template: Torama
+    region:   e_262
+    level:    [55, 58]
+  17428745:
+    template: Tonberry_Stalker
+    region:   region_96
+    level:    [56, 59]
+  17428746:
+    template: Tonberry_Cutter
+    region:   region_97
+    level:    [56, 59]
+  17428747:
+    template: Tonberry_Pursuer
+    region:   ne_267
+    level:    [61, 64]
+  17428748:
+    template: Tonberry_Stabber
+    region:   ne_267
+    level:    [61, 64]
+  17428749:
+    template: Hover_Tank
+    region:   ne_267
+    level:    [64, 68]
+  17428750:
+    template: Hover_Tank
+    region:   ne_267
+    level:    [64, 68]
+  17428751:
+    template: Sozu_Rogberry
+    at:       [223.000, -8.000, 259.000, 133]
+    level:    [65, 66]
+  17428752:
+    template: Temple_Bee
+    region:   ne_272
+    level:    [60, 63]
+  17428753:
+    template: Temple_Bee
+    region:   region_98
+    level:    [60, 63]
+  17428754:
+    template: Temple_Bee
+    region:   ne_274
+    level:    [60, 63]
+  17428755:
+    template: Tonberry_Maledictor
+    region:   ne_275
+    level:    [61, 64]
+  17428756:
+    template: Hover_Tank
+    region:   ne_275
+    level:    [64, 68]
+  17428757:
+    template: Temple_Bee
+    region:   ne_275
+    level:    [60, 63]
+  17428758:
+    template: Temple_Bee
+    region:   ne_275
+    level:    [60, 63]
+  17428759:
+    template: Tonberry_Pursuer
+    region:   ne_279
+    level:    [61, 64]
+  17428760:
+    template: Hover_Tank
+    region:   ne_279
+    level:    [64, 68]
+  17428761:
+    template: Temple_Bee
+    region:   ne_279
+    level:    [60, 63]
+  17428762:
+    template: Temple_Bee
+    region:   region_99
+    level:    [60, 63]
+  17428763:
+    template: Iron_Maiden
+    region:   region_99
+    level:    [64, 68]
+  17428764:
+    template: Tonberry_Maledictor
+    at:       [286.679, -0.040, 229.838, 127]
+    level:    [61, 64]
+  17428765:
+    template: Tonberry_Pursuer
+    region:   region_99
+    level:    [61, 64]
+  17428766:
+    template: Tonberry_Stabber
+    region:   ne_267
+    level:    [61, 64]
+  17428767:
+    template: Tonberry_Dismayer
+    at:       [310.930, 0.000, 229.744, 127]
+    level:    [61, 64]
+  17428768:
+    template: Tonberrys_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [43, 55]
+  17428769:
+    template: Hover_Tank
+    region:   ne_6
+    level:    [64, 68]
+  17428770:
+    template: Tonberry_Pursuer
+    region:   ne_292
+    level:    [64, 67]
+  17428771:
+    template: Tonberry_Maledictor
+    region:   ne_292
+    level:    [64, 67]
+  17428772:
+    template: Tonberry_Stabber
+    region:   ne_292
+    level:    [64, 67]
+  17428773:
+    template: Tonberry_Dismayer
+    region:   ne_292
+    level:    [64, 67]
+  17428774:
+    template: Tonberrys_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [43, 55]
+  17428775:
+    template: Tonberry_Pursuer
+    region:   ne_295
+    level:    [61, 64]
+  17428776:
+    template: Tonberry_Maledictor
+    region:   ne_295
+    level:    [61, 64]
+  17428777:
+    template: Tonberry_Stabber
+    region:   ne_295
+    level:    [61, 64]
+  17428778:
+    template: Tonberry_Dismayer
+    region:   ne_295
+    level:    [61, 64]
+  17428779:
+    template: Tonberrys_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [43, 55]
+  17428780:
+    template: Hover_Tank
+    region:   ne_300
+    level:    [64, 68]
+  17428781:
+    template: Iron_Maiden
+    region:   ne_300
+    level:    [64, 68]
+  17428782:
+    template: Water_Elemental
+    region:   ne_300
+    level:    [61, 64]
+  17428783:
+    template: Water_Elemental
+    region:   ne_300
+    level:    [61, 64]
+  17428784:
+    template: Temple_Bee
+    region:   ne_304
+    level:    [60, 63]
+  17428785:
+    template: Temple_Bee
+    region:   ne_304
+    level:    [60, 63]
+  17428786:
+    template: Water_Elemental
+    region:   ne_304
+    level:    [61, 64]
+  17428787:
+    template: Tonberry_Pursuer
+    region:   ne_307
+    level:    [61, 64]
+  17428788:
+    template: Temple_Bee
+    region:   ne_307
+    level:    [60, 63]
+  17428789:
+    template: Temple_Bee
+    region:   ne_309
+    level:    [60, 63]
+  17428790:
+    template: Iron_Maiden
+    region:   ne_310
+    level:    [64, 68]
+  17428791:
+    template: Tonberry_Maledictor
+    region:   ne_310
+    level:    [61, 64]
+  17428792:
+    template: Tonberry_Dismayer
+    region:   ne_310
+    level:    [61, 64]
+  17428793:
+    template: Tonberrys_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [43, 55]
+  17428794:
+    template: Tonberry_Pursuer
+    region:   ne_314
+    level:    [61, 64]
+  17428795:
+    template: Tonberry_Maledictor
+    region:   ne_314
+    level:    [61, 64]
+  17428796:
+    template: Iron_Maiden
+    region:   ne_314
+    level:    [64, 68]
+  17428797:
+    template: Iron_Maiden
+    region:   ne_314
+    level:    [64, 68]
+  17428798:
+    template: Tonberry_Pursuer
+    region:   region_100
+    level:    [61, 64]
+  17428799:
+    template: Tonberry_Maledictor
+    region:   region_101
+    level:    [61, 64]
+  17428800:
+    template: Tonberry_Stabber
+    region:   region_102
+    level:    [61, 64]
+  17428801:
+    template: Tonberry_Dismayer
+    region:   region_103
+    level:    [61, 64]
+  17428802:
+    template: Tonberrys_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [43, 55]
+  17428803:
+    template: Tonberry_Pursuer
+    region:   ne_323
+    level:    [61, 64]
+  17428804:
+    template: Tonberry_Maledictor
+    region:   ne_323
+    level:    [61, 64]
+  17428805:
+    template: Iron_Maiden
+    region:   ne_323
+    level:    [64, 68]
+  17428806:
+    template: Temple_Bee
+    region:   ne_323
+    level:    [60, 63]
+  17428807:
+    template: Cleuvarion_M_Resoaix
+    at:       [58.000, 1.000, -70.000]
+    level:    [63, 63]
+  17428808:
+    template: Rompaulion_S_Citalle
+    at:       [62.000, 1.000, -70.000]
+    level:    [63, 63]
+  17428809:
+    template: Beryl-footed_Molberry
+    at:       [-66.000, -0.100, -0.100, 190]
+    level:    [61, 63]
+  17428810:
+    template: Death_from_Above
+    at:       [53.000, 1.000, -62.000]
+    level:    [57, 59]
+  17428811:
+    template: Habetrot
+    at:       [-60.000, -8.000, 58.000, 220]
+    level:    [57, 59]
+  17428812:
+    template: Rumble_Crawler_2
+    script:   Rumble_Crawler
+    region:   w_95
+    level:    [53, 56]
+  17428813:
+    template: Crimson-toothed_Pawberry
+    at:       [-40.000, -24.000, 31.000, 66]
+    level:    [70, 71]
+  17428814:
+    template: Tonberrys_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [43, 55]
+  17428815:
+    template: Tonberrys_Avatar
+    at:       [-38.000, -24.000, 31.000, 66]
+    level:    [43, 55]
+  17428816:
+    template: Sacrificial_Goblet
+    at:       [300.000, 1.000, 255.000, 187]
+    level:    [66, 68]
+  17428817:
+    template: Yallery_Brown
+    at:       [220.000, -8.110, 205.380, 191]
+    level:    [80, 80]
+  17428818:
+    template: Neith
+    at:       [179.723, 0.000, -61.927, 249]
+  17428819:
+    template: Neiths_Bobbin
+    at:       [178.695, -0.008, -62.926, 232]
+  17428820:
+    template: Neiths_Bobbin
+    at:       [179.852, 0.000, -61.844, 254]
+  17428821:
+    template: Neiths_Bobbin
+    at:       [180.281, 0.000, -61.223, 56]
+  17428822:
+    template: Neiths_Bobbin
+    at:       [179.983, 0.000, -62.121, 230]
+  17428823:
+    template: Neiths_Bobbin
+    at:       [179.878, -0.014, -63.949, 201]
+  17428824:
+    template: Neith
+    at:       [259.972, 0.000, 60.831, 22]
+  17428825:
+    template: Neiths_Bobbin
+    at:       [260.305, 0.000, 57.475, 215]
+  17428826:
+    template: Neiths_Bobbin
+    at:       [259.295, 0.000, 59.605, 254]
+  17428827:
+    template: Neiths_Bobbin
+    at:       [259.282, 0.000, 58.239, 234]
+  17428828:
+    template: Neiths_Bobbin
+    at:       [261.656, 0.000, 56.964, 194]
+  17428829:
+    template: Neiths_Bobbin
+    at:       [261.630, 0.000, 58.169, 196]
+  17428830:
+    template: Neith
+    at:       [-143.783, 0.985, -23.117, 37]
+  17428831:
+    template: Neiths_Bobbin
+    at:       [-131.588, 0.977, -22.675, 68]
+  17428832:
+    template: Neiths_Bobbin
+    at:       [-131.230, 0.977, -21.952, 72]
+  17428833:
+    template: Neiths_Bobbin
+    at:       [-131.746, 0.978, -22.079, 64]
+  17428834:
+    template: Neiths_Bobbin
+    at:       [-135.089, 1.282, -20.828, 34]
+  17428835:
+    template: Neiths_Bobbin
+    at:       [-134.070, 1.132, -20.137, 44]
+  17428836:
+    template: Azure-toothed_Clawberry
+  17428837:
+    template: Clawberrys_Elemental
+  17428838:
+    template: Clawberrys_Elemental
+  17428839:
+    template: Clawberrys_Elemental
+  17428840:
+    template: Clawberrys_Avatar
+  17428841:
+    template: Clawberrys_Avatar
+  17428842:
+    template: Clawberrys_Avatar
+  17428843:
+    template: Azure-toothed_Clawberry
+    at:       [-96.991, -0.600, -59.916, 79]
+  17428844:
+    template: Clawberrys_Elemental
+    at:       [-96.264, -0.600, -61.953, 124]
+  17428845:
+    template: Clawberrys_Elemental
+    at:       [-98.312, -0.600, -60.043, 55]
+  17428846:
+    template: Clawberrys_Elemental
+    at:       [-97.894, -0.221, -60.202, 78]
+  17428847:
+    template: Clawberrys_Avatar
+    at:       [-95.542, -0.500, -63.324, 94]
+  17428848:
+    template: Clawberrys_Avatar
+    at:       [-96.177, -0.600, -62.785, 75]
+  17428849:
+    template: Clawberrys_Avatar
+    at:       [-95.374, -0.500, -63.596, 102]
+  17428850:
+    template: Azure-toothed_Clawberry
+    at:       [-184.343, -0.100, 22.883, 85]
+  17428851:
+    template: Clawberrys_Elemental
+    at:       [-181.969, -0.105, 21.182, 163]
+  17428852:
+    template: Clawberrys_Elemental
+    at:       [-182.015, -0.108, 21.155, 163]
+  17428853:
+    template: Clawberrys_Elemental
+    at:       [-182.036, -0.101, 21.245, 163]
+  17428854:
+    template: Clawberrys_Avatar
+    at:       [-183.524, -0.600, 22.828, 122]
+  17428855:
+    template: Clawberrys_Avatar
+    at:       [-185.127, -0.500, 22.492, 244]
+  17428856:
+    template: Clawberrys_Avatar
+    at:       [-184.190, -0.600, 21.945, 178]
+
+slots:
+  - members:
+      17428764: {} # Tonberry_Maledictor
+      17428765: {} # Tonberry_Pursuer
+  - members:
+      17428766: {} # Tonberry_Stabber
+      17428767: {} # Tonberry_Dismayer
+  - members:
+      17428770: {} # Tonberry_Pursuer
+      17428771: {} # Tonberry_Maledictor
+  - members:
+      17428772: {} # Tonberry_Stabber
+      17428773: {} # Tonberry_Dismayer

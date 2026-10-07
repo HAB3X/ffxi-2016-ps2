@@ -1,0 +1,4270 @@
+# yaml-language-server: $schema=../../schemas/mobs.schema.json
+
+templates:
+
+  Absolute_Virtue:
+    id:            21
+    species:       aern
+    type:          [notorious]
+    spell_list_id: 145
+    skill_list_id: 329
+    attributes:
+      combat:
+        skill:    polearm
+        delay:    180
+        dmg_mult: 125
+      jobs: [drg, blm]
+      render:
+        look:
+          type:  standard
+          model: 1378
+        entity_flags: 1183
+        name_prefix:    32
+        model_size:      3
+        hitbox:         16
+      behaviors:
+        links: true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 66000
+    loot:
+      drops:
+        - chance: always
+          item:   sin_of_invidiousness
+        - chance: always
+          item:   sin_of_insolence
+        - chance: always
+          item:   sin_of_infatuation
+        - chance: common
+          item:   sin_of_intemperance
+        - chance: common
+          item:   sin_of_indolence
+        - chance: common
+          item:   sin_of_indignation
+        - chance: rare
+          item:   sin_of_indulgence
+
+  Aerns_Elemental:
+    id:            54
+    species:       dark_elemental
+    type:          [called]
+    spell_list_id: 5
+    skill_list_id: 100
+    attributes:
+      combat:
+        skill: scythe
+      jobs: [drk, rdm]
+      render:
+        look:
+          type:  standard
+          model: 15
+        entity_flags:  131
+        animation_sub:  16
+        model_size:      1
+        hitbox:          8
+      behaviors:
+        links: true
+      spawn:
+        type: [scripted]
+
+  Aerns_Wynav:
+    id:            56
+    species:       wynav
+    type:          [called]
+    skill_list_id: 714
+    attributes:
+      combat:
+        skill: scythe
+        delay: 200
+      resists:
+        immune_status: [light_sleep, dark_sleep]
+      render:
+        look:
+          type:  standard
+          model: 530
+        entity_flags: 1155
+        model_size:      1
+        hitbox:         12
+      behaviors:
+        links: true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 1500
+
+  Aerns_Xzomit:
+    id:            57
+    species:       xzomit
+    skill_list_id: 269
+    attributes:
+      combat:
+        skill: scythe
+        delay: 200
+      render:
+        look:
+          type:  standard
+          model: 528
+        entity_flags: 1153
+        hitbox:         10
+      behaviors:
+        links: true
+      spawn:
+        type: [scripted]
+
+  Aweuvhi:
+    id:            299
+    species:       euvhi
+    skill_list_id: 109
+    attributes:
+      combat:
+        skill: club
+      render:
+        look:
+          type:  standard
+          model: 526
+        entity_flags:  1155
+        animation_sub:    6
+        model_size:       1
+        hitbox:          12
+      behaviors:
+        true_detection: true
+      spawn:
+        respawn: 600
+    loot:
+      drops:
+        - chance: rare
+          item:   euvhi_organ
+        - chance: rare
+          item:   high-quality_euvhi_organ
+        - chance: rare
+          item:   sample_of_luminian_tissue
+        - chance: rare
+          one_of: [fire_cluster, ice_cluster, wind_cluster, earth_cluster, lightning_cluster, water_cluster, light_cluster, dark_cluster]
+      despoil:
+        sample_of_luminian_tissue: 0
+
+  Jailer_of_Hope:
+    id:            2132
+    species:       phuabo
+    type:          [notorious]
+    skill_list_id: 194
+    attributes:
+      combat:
+        skill:    scythe
+        delay:    280
+        dmg_mult: 125
+      jobs: [war, blm]
+      resists:
+        immune_status: [stun, light_sleep, dark_sleep]
+      render:
+        look:
+          type:  standard
+          model: 1154
+        entity_flags:  2183
+        animation_sub:    5
+        name_vis:        24
+        model_size:       3
+        hitbox:          16
+      behaviors:
+        aggressive:     true
+        true_detection: true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 29200
+    loot:
+      drops:
+        - chance: always
+          item:   fifth_virtue
+        - chance: always
+          item:   hope_staff
+        - chance: uncommon
+          item:   hope_torque
+
+  Jailer_of_Justice:
+    id:            2133
+    species:       xzomit
+    type:          [notorious]
+    skill_list_id: 269
+    attributes:
+      combat:
+        skill:    scythe
+        delay:    200
+        dmg_mult: 125
+      jobs: [bst, bst]
+      resists:
+        immune_status: [stun, light_sleep, dark_sleep]
+      render:
+        look:
+          type:  standard
+          model: 529
+        entity_flags:  4
+        model_size:    3
+        hitbox:       16
+      behaviors:
+        aggressive:     true
+        links:          true
+        true_detection: true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 37000
+    loot:
+      drops:
+        - chance: always
+          item:   fourth_virtue
+        - chance: always
+          item:   justice_sword
+        - chance: uncommon
+          item:   justice_torque
+
+  Jailer_of_Love:
+    id:            2134
+    species:       yovra
+    type:          [notorious]
+    skill_list_id: 271
+    attributes:
+      combat:
+        skill: scythe
+        delay: 220
+      jobs: [smn, smn]
+      render:
+        look:
+          type:  standard
+          model: 1148
+        entity_flags:  1157
+        animation_sub:    1
+        model_size:       3
+        hitbox:          16
+      behaviors:
+        aggressive:     true
+        true_detection: true
+      spawn:
+        type: [scripted]
+      stats:
+        hp:  57000
+        mp: 100000
+    loot:
+      drops:
+        - chance: always
+          item:   love_halberd
+        - chance: common
+          item:   aura_of_adulation
+        - chance: common
+          item:   aura_of_voracity
+        - chance: common
+          item:   love_torque
+
+  Jailer_of_Prudence:
+    id:            2135
+    species:       hpemde
+    type:          [notorious]
+    skill_list_id: 144
+    attributes:
+      combat:
+        skill:    dagger
+        delay:    220
+        dmg_mult: 125
+      jobs: [thf, thf]
+      render:
+        look:
+          type:  standard
+          model: 1152
+        entity_flags:  4
+        model_size:    3
+        hitbox:       16
+      behaviors:
+        aggressive:     true
+        links:          true
+        true_detection: true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 20000
+    loot:
+      drops:
+        - chance: always
+          item:   sixth_virtue
+        - chance: always
+          item:   prudence_rod
+        - chance: uncommon
+          item:   prudence_torque
+
+  Omaern_blm:
+    id:            6206
+    species:       aern
+    spell_list_id: 21
+    skill_list_id: 442
+    attributes:
+      combat:
+        skill: dagger
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 1368
+        entity_flags:  1155
+        animation_sub:    5
+        model_size:       1
+        hitbox:          12
+      behaviors:
+        links: true
+      spawn:
+        respawn: 300
+      stats:
+        mp: 5000
+    loot:
+      drops:
+        - chance: rare
+          item:   aern_organ
+        - chance: very_rare
+          item:   sample_of_luminian_tissue
+        - chance: very_rare
+          one_of: [fire_cluster, ice_cluster, wind_cluster, earth_cluster, lightning_cluster, water_cluster, light_cluster, dark_cluster]
+      despoil:
+        sample_of_luminian_tissue: 0
+        aern_organ:                0
+
+  Omaern_brd:
+    id:            6212
+    species:       aern
+    spell_list_id: 6
+    skill_list_id: 442
+    attributes:
+      combat:
+        skill: dagger
+        delay: 360
+      jobs: [brd, brd]
+      render:
+        look:
+          type:  standard
+          model: 1368
+        entity_flags:  1155
+        animation_sub:    5
+        model_size:       1
+        hitbox:          12
+      behaviors:
+        links: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: rare
+          item:   aern_organ
+        - chance: very_rare
+          item:   sample_of_luminian_tissue
+        - chance: very_rare
+          one_of: [fire_cluster, ice_cluster, wind_cluster, earth_cluster, lightning_cluster, water_cluster, light_cluster, dark_cluster]
+      despoil:
+        sample_of_luminian_tissue: 0
+        aern_organ:                0
+
+  Omaern_bst:
+    id:            6211
+    species:       aern
+    skill_list_id: 443
+    attributes:
+      combat:
+        skill: axe
+        delay: 360
+      jobs: [bst, bst]
+      render:
+        look:
+          type:  standard
+          model: 1369
+        entity_flags:  1155
+        animation_sub:    5
+        model_size:       1
+        hitbox:          12
+      behaviors:
+        links: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: rare
+          item:   aern_organ
+        - chance: very_rare
+          item:   sample_of_luminian_tissue
+        - chance: very_rare
+          one_of: [fire_cluster, ice_cluster, wind_cluster, earth_cluster, lightning_cluster, water_cluster, light_cluster, dark_cluster]
+      despoil:
+        sample_of_luminian_tissue: 0
+        aern_organ:                0
+
+  Omaern_drg:
+    id:            6216
+    species:       aern
+    skill_list_id: 440
+    attributes:
+      combat:
+        skill: polearm
+        delay: 360
+      jobs: [drg, drg]
+      render:
+        look:
+          type:  standard
+          model: 1371
+        entity_flags:  1155
+        animation_sub:    5
+        model_size:       1
+        hitbox:          12
+      behaviors:
+        links: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: rare
+          item:   aern_organ
+        - chance: very_rare
+          item:   sample_of_luminian_tissue
+        - chance: very_rare
+          one_of: [fire_cluster, ice_cluster, wind_cluster, earth_cluster, lightning_cluster, water_cluster, light_cluster, dark_cluster]
+      despoil:
+        sample_of_luminian_tissue: 0
+        aern_organ:                0
+
+  Omaern_drk:
+    id:            6210
+    species:       aern
+    spell_list_id: 5
+    skill_list_id: 441
+    attributes:
+      combat:
+        skill: sword
+        delay: 360
+      jobs: [drk, drk]
+      render:
+        look:
+          type:  standard
+          model: 1370
+        entity_flags:  1155
+        animation_sub:    5
+        model_size:       1
+        hitbox:          12
+      behaviors:
+        links: true
+      spawn:
+        respawn: 300
+      stats:
+        mp: 5000
+    loot:
+      drops:
+        - chance: rare
+          item:   aern_organ
+        - chance: very_rare
+          item:   sample_of_luminian_tissue
+        - chance: very_rare
+          one_of: [fire_cluster, ice_cluster, wind_cluster, earth_cluster, lightning_cluster, water_cluster, light_cluster, dark_cluster]
+      despoil:
+        sample_of_luminian_tissue: 0
+        aern_organ:                0
+
+  Omaern_mnk:
+    id:            6204
+    species:       aern
+    skill_list_id: 3
+    attributes:
+      combat:
+        skill: hand_to_hand
+        delay: 480
+      jobs: [mnk, mnk]
+      render:
+        look:
+          type:  standard
+          model: 1367
+        entity_flags:  1155
+        animation_sub:    5
+        model_size:       1
+        hitbox:          12
+      behaviors:
+        links: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: rare
+          item:   aern_organ
+        - chance: very_rare
+          item:   sample_of_luminian_tissue
+        - chance: very_rare
+          one_of: [fire_cluster, ice_cluster, wind_cluster, earth_cluster, lightning_cluster, water_cluster, light_cluster, dark_cluster]
+      despoil:
+        sample_of_luminian_tissue: 0
+        aern_organ:                0
+
+  Omaern_nin:
+    id:            6215
+    species:       aern
+    spell_list_id: 7
+    skill_list_id: 3
+    attributes:
+      combat:
+        skill: katana
+      jobs: [nin, nin]
+      render:
+        look:
+          type:  standard
+          model: 1367
+        entity_flags:  1155
+        animation_sub:    5
+        model_size:       1
+        hitbox:          12
+      behaviors:
+        links: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: rare
+          item:   aern_organ
+        - chance: very_rare
+          item:   sample_of_luminian_tissue
+        - chance: very_rare
+          one_of: [fire_cluster, ice_cluster, wind_cluster, earth_cluster, lightning_cluster, water_cluster, light_cluster, dark_cluster]
+      despoil:
+        sample_of_luminian_tissue: 0
+        aern_organ:                0
+
+  Omaern_pld:
+    id:            6209
+    species:       aern
+    spell_list_id: 4
+    skill_list_id: 441
+    attributes:
+      combat:
+        skill: sword
+        delay: 360
+      jobs: [pld, pld]
+      render:
+        look:
+          type:  standard
+          model: 1370
+        entity_flags:  1155
+        animation_sub:    5
+        model_size:       1
+        hitbox:          12
+      behaviors:
+        links: true
+      spawn:
+        respawn: 300
+      stats:
+        mp: 5000
+    loot:
+      drops:
+        - chance: rare
+          item:   aern_organ
+        - chance: very_rare
+          item:   sample_of_luminian_tissue
+        - chance: very_rare
+          one_of: [fire_cluster, ice_cluster, wind_cluster, earth_cluster, lightning_cluster, water_cluster, light_cluster, dark_cluster]
+      despoil:
+        sample_of_luminian_tissue: 0
+        aern_organ:                0
+
+  Omaern_rdm:
+    id:            6207
+    species:       aern
+    spell_list_id: 3
+    skill_list_id: 441
+    attributes:
+      combat:
+        skill: sword
+        delay: 360
+      jobs: [rdm, rdm]
+      render:
+        look:
+          type:  standard
+          model: 1370
+        entity_flags:  1155
+        animation_sub:    5
+        model_size:       1
+        hitbox:          12
+      behaviors:
+        links: true
+      spawn:
+        respawn: 300
+      stats:
+        mp: 5000
+    loot:
+      drops:
+        - chance: rare
+          item:   aern_organ
+        - chance: very_rare
+          item:   sample_of_luminian_tissue
+        - chance: very_rare
+          one_of: [fire_cluster, ice_cluster, wind_cluster, earth_cluster, lightning_cluster, water_cluster, light_cluster, dark_cluster]
+      despoil:
+        sample_of_luminian_tissue: 0
+        aern_organ:                0
+
+  Omaern_rng:
+    id:            6213
+    species:       aern
+    skill_list_id: 443
+    attributes:
+      combat:
+        skill: axe
+        delay: 360
+      jobs: [rng, rng]
+      render:
+        look:
+          type:  standard
+          model: 1369
+        entity_flags:  1155
+        animation_sub:    5
+        model_size:       1
+        hitbox:          12
+      behaviors:
+        links: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: rare
+          item:   aern_organ
+        - chance: very_rare
+          item:   sample_of_luminian_tissue
+        - chance: very_rare
+          one_of: [fire_cluster, ice_cluster, wind_cluster, earth_cluster, lightning_cluster, water_cluster, light_cluster, dark_cluster]
+      despoil:
+        sample_of_luminian_tissue: 0
+        aern_organ:                0
+
+  Omaern_sam:
+    id:            6214
+    species:       aern
+    skill_list_id: 440
+    attributes:
+      combat:
+        skill: polearm
+        delay: 360
+      jobs: [sam, sam]
+      render:
+        look:
+          type:  standard
+          model: 1371
+        entity_flags:  1155
+        animation_sub:    5
+        model_size:       1
+        hitbox:          12
+      behaviors:
+        links: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: rare
+          item:   aern_organ
+        - chance: very_rare
+          item:   sample_of_luminian_tissue
+        - chance: very_rare
+          one_of: [fire_cluster, ice_cluster, wind_cluster, earth_cluster, lightning_cluster, water_cluster, light_cluster, dark_cluster]
+      despoil:
+        sample_of_luminian_tissue: 0
+        aern_organ:                0
+
+  Omaern_smn:
+    id:            6217
+    species:       aern
+    skill_list_id: 439
+    attributes:
+      combat:
+        skill: staff
+        delay: 360
+      jobs: [smn, smn]
+      render:
+        look:
+          type:  standard
+          model: 1372
+        entity_flags:  1155
+        animation_sub:    5
+        model_size:       1
+        hitbox:          12
+      behaviors:
+        links: true
+      spawn:
+        respawn: 300
+      stats:
+        mp: 5000
+    loot:
+      drops:
+        - chance: rare
+          item:   aern_organ
+        - chance: very_rare
+          item:   sample_of_luminian_tissue
+        - chance: very_rare
+          one_of: [fire_cluster, ice_cluster, wind_cluster, earth_cluster, lightning_cluster, water_cluster, light_cluster, dark_cluster]
+      despoil:
+        sample_of_luminian_tissue: 0
+        aern_organ:                0
+
+  Omaern_thf:
+    id:            6208
+    species:       aern
+    skill_list_id: 442
+    attributes:
+      combat:
+        skill: dagger
+      jobs: [thf, thf]
+      render:
+        look:
+          type:  standard
+          model: 1368
+        entity_flags:  1155
+        animation_sub:    5
+        model_size:       1
+        hitbox:          12
+      behaviors:
+        links: true
+      spawn:
+        respawn: 300
+      stats:
+        mp: 5000
+    loot:
+      drops:
+        - chance: rare
+          item:   aern_organ
+        - chance: very_rare
+          item:   sample_of_luminian_tissue
+        - chance: very_rare
+          one_of: [fire_cluster, ice_cluster, wind_cluster, earth_cluster, lightning_cluster, water_cluster, light_cluster, dark_cluster]
+      despoil:
+        sample_of_luminian_tissue: 0
+        aern_organ:                0
+
+  Omaern_war:
+    id:            6203
+    species:       aern
+    skill_list_id: 443
+    attributes:
+      combat:
+        skill: axe
+        delay: 360
+      render:
+        look:
+          type:  standard
+          model: 1369
+        entity_flags:  1155
+        animation_sub:    5
+        model_size:       1
+        hitbox:          12
+      behaviors:
+        links: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: rare
+          item:   aern_organ
+        - chance: very_rare
+          item:   sample_of_luminian_tissue
+        - chance: very_rare
+          one_of: [fire_cluster, ice_cluster, wind_cluster, earth_cluster, lightning_cluster, water_cluster, light_cluster, dark_cluster]
+      despoil:
+        sample_of_luminian_tissue: 0
+        aern_organ:                0
+
+  Omaern_whm:
+    id:            6205
+    species:       aern
+    spell_list_id: 20
+    skill_list_id: 439
+    attributes:
+      combat:
+        skill: staff
+        delay: 360
+      jobs: [whm, whm]
+      render:
+        look:
+          type:  standard
+          model: 1372
+        entity_flags:  1155
+        animation_sub:    5
+        model_size:       1
+        hitbox:          12
+      behaviors:
+        links: true
+      spawn:
+        respawn: 300
+      stats:
+        mp: 5000
+    loot:
+      drops:
+        - chance: rare
+          item:   aern_organ
+        - chance: very_rare
+          item:   sample_of_luminian_tissue
+        - chance: very_rare
+          one_of: [fire_cluster, ice_cluster, wind_cluster, earth_cluster, lightning_cluster, water_cluster, light_cluster, dark_cluster]
+      despoil:
+        sample_of_luminian_tissue: 0
+        aern_organ:                0
+
+  Omhpemde:
+    id:            2976
+    species:       hpemde
+    skill_list_id: 144
+    attributes:
+      combat:
+        skill: polearm
+        delay: 220
+      jobs: [drg, drg]
+      render:
+        look:
+          type:  standard
+          model: 1151
+        entity_flags:  3205
+        animation_sub:    5
+        name_vis:        24
+        model_size:       1
+        hitbox:          13
+      behaviors:
+        aggressive:     true
+        links:          true
+        true_detection: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   high-quality_hpemde_organ
+        - chance: uncommon
+          item:   hpemde_organ
+        - chance: very_rare
+          item:   sample_of_luminian_tissue
+        - chance: rare
+          one_of: [fire_cluster, ice_cluster, wind_cluster, earth_cluster, lightning_cluster, water_cluster, light_cluster, dark_cluster]
+      despoil:
+        sample_of_luminian_tissue: 0
+        hpemde_organ:              0
+
+  Omhpemde_nodive:
+    id:            7033
+    display_name:  Omhpemde
+    species:       hpemde
+    skill_list_id: 144
+    attributes:
+      combat:
+        skill: polearm
+        delay: 220
+      jobs: [drg, drg]
+      render:
+        look:
+          type:  standard
+          model: 1151
+        entity_flags:  1157
+        animation_sub:    6
+        model_size:       1
+        hitbox:          13
+      behaviors:
+        aggressive:     true
+        links:          true
+        true_detection: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   high-quality_hpemde_organ
+        - chance: uncommon
+          item:   hpemde_organ
+        - chance: very_rare
+          item:   sample_of_luminian_tissue
+        - chance: rare
+          one_of: [fire_cluster, ice_cluster, wind_cluster, earth_cluster, lightning_cluster, water_cluster, light_cluster, dark_cluster]
+      despoil:
+        sample_of_luminian_tissue: 0
+        hpemde_organ:              0
+
+  Omphuabo:
+    id:            2977
+    species:       phuabo
+    roam:          [stealth]
+    skill_list_id: 194
+    attributes:
+      combat:
+        skill: scythe
+        delay: 280
+      jobs: [pld, pld]
+      render:
+        look:
+          type:  standard
+          model: 1154
+        entity_flags:  3205
+        animation_sub:    5
+        name_vis:        24
+        model_size:       1
+        hitbox:          13
+      behaviors:
+        aggressive:     true
+        true_detection: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: very_common
+          item:   phuabo_organ
+        - chance: uncommon
+          item:   phuabo_organ
+        - chance: rare
+          item:   sample_of_luminian_tissue
+        - chance: very_rare
+          item:   high-quality_phuabo_organ
+      despoil:
+        sample_of_luminian_tissue: 0
+        phuabo_organ:              0
+
+  Omxzomit_2978:
+    id:            2978
+    display_name:  Omxzomit
+    species:       xzomit
+    skill_list_id: 269
+    attributes:
+      combat:
+        skill: scythe
+        delay: 200
+      jobs: [pld, war]
+      render:
+        look:
+          type:  standard
+          model: 528
+        entity_flags: 1153
+        model_size:      2
+        hitbox:         13
+      behaviors:
+        links: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   xzomit_organ
+        - chance: uncommon
+          item:   high-quality_xzomit_organ
+        - chance: rare
+          item:   sample_of_luminian_tissue
+        - chance: very_rare
+          one_of: [fire_cluster, ice_cluster, wind_cluster, earth_cluster, lightning_cluster, water_cluster, light_cluster, dark_cluster]
+      despoil:
+        sample_of_luminian_tissue: 0
+        xzomit_organ:              0
+
+  Omxzomit_7094:
+    id:            7094
+    display_name:  Omxzomit
+    species:       xzomit
+    roam:          [scripted]
+    skill_list_id: 269
+    attributes:
+      combat:
+        skill: scythe
+        delay: 200
+      jobs: [mnk, war]
+      render:
+        look:
+          type:  standard
+          model: 528
+        entity_flags: 1153
+        model_size:      2
+        hitbox:         13
+      behaviors:
+        links: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   xzomit_organ
+        - chance: uncommon
+          item:   high-quality_xzomit_organ
+        - chance: rare
+          item:   sample_of_luminian_tissue
+        - chance: very_rare
+          one_of: [fire_cluster, ice_cluster, wind_cluster, earth_cluster, lightning_cluster, water_cluster, light_cluster, dark_cluster]
+      despoil:
+        sample_of_luminian_tissue: 0
+        xzomit_organ:              0
+
+  Omyovra:
+    id:            2979
+    species:       yovra
+    type:          [notorious]
+    roam:          [stealth]
+    skill_list_id: 271
+    attributes:
+      combat:
+        skill: scythe
+      jobs: [blm, drk]
+      render:
+        look:
+          type:  standard
+          model: 1148
+        entity_flags:  3205
+        animation_sub:   13
+        name_vis:        24
+        model_size:       1
+        hitbox:          13
+      behaviors:
+        flags:          [no_assist, no_turn]
+        aggressive:     true
+        true_detection: true
+      mob_mods:
+        exp_bonus: 35
+      spawn:
+        respawn: 3600
+      stats:
+        hp: 18000
+    loot:
+      drops:
+        - chance: always
+          item:   yovra_organ
+        - chance: rare
+          item:   yovra_organ
+        - chance: rare
+          item:   sample_of_luminian_tissue
+        - chance: rare
+          one_of: [fire_cluster, ice_cluster, wind_cluster, earth_cluster, lightning_cluster, water_cluster, light_cluster, dark_cluster]
+
+  Qnhpemde:
+    id:            3270
+    species:       hpemde
+    type:          [notorious]
+    skill_list_id: 144
+    attributes:
+      combat:
+        skill: polearm
+        delay: 220
+      jobs: [drg, drg]
+      render:
+        look:
+          type:  standard
+          model: 1152
+        model_size:  1
+        hitbox:     12
+      behaviors:
+        links: true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 2500
+
+  Qnxzomit:
+    id:            3271
+    species:       xzomit
+    type:          [notorious]
+    skill_list_id: 269
+    attributes:
+      combat:
+        skill: scythe
+        delay: 200
+      jobs: [nin, nin]
+      render:
+        look:
+          type:  standard
+          model: 528
+        hitbox: 10
+      behaviors:
+        links: true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 2500
+
+  Ruaern_blm:
+    id:            5886
+    species:       aern
+    type:          [notorious]
+    spell_list_id: 21
+    skill_list_id: 442
+    attributes:
+      combat:
+        skill: dagger
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 1368
+        entity_flags:  133
+        animation_sub:   5
+        model_size:      2
+        hitbox:         13
+      behaviors:
+        aggressive:     true
+        links:          true
+        true_detection: true
+      spawn:
+        type: [scripted]
+
+  Ruaern_drk:
+    id:            5882
+    species:       aern
+    type:          [notorious]
+    spell_list_id: 5
+    skill_list_id: 441
+    attributes:
+      combat:
+        skill: sword
+        delay: 360
+      jobs: [drk, drk]
+      render:
+        look:
+          type:  standard
+          model: 1370
+        entity_flags:  133
+        animation_sub:   5
+        model_size:      2
+        hitbox:         13
+      behaviors:
+        aggressive:     true
+        links:          true
+        true_detection: true
+      spawn:
+        type: [scripted]
+
+  Ruaern_mnk:
+    id:            5885
+    species:       aern
+    type:          [notorious]
+    skill_list_id: 443
+    attributes:
+      combat:
+        skill: hand_to_hand
+        delay: 480
+      jobs: [mnk, mnk]
+      render:
+        look:
+          type:  standard
+          model: 1367
+        entity_flags:  133
+        animation_sub:   5
+        model_size:      2
+        hitbox:         13
+      behaviors:
+        aggressive:     true
+        links:          true
+        true_detection: true
+      spawn:
+        type: [scripted]
+
+  Ruaern_pld:
+    id:            5887
+    species:       aern
+    type:          [notorious]
+    spell_list_id: 4
+    skill_list_id: 441
+    attributes:
+      combat:
+        skill: sword
+        delay: 360
+      jobs: [pld, pld]
+      render:
+        look:
+          type:  standard
+          model: 1370
+        entity_flags:  133
+        animation_sub:   5
+        model_size:      2
+        hitbox:         13
+      behaviors:
+        aggressive:     true
+        links:          true
+        true_detection: true
+      spawn:
+        type: [scripted]
+
+  Ruaern_rdm:
+    id:            5883
+    species:       aern
+    type:          [notorious]
+    spell_list_id: 3
+    skill_list_id: 441
+    attributes:
+      combat:
+        skill: sword
+        delay: 360
+      jobs: [rdm, rdm]
+      render:
+        look:
+          type:  standard
+          model: 1370
+        entity_flags:  133
+        animation_sub:   5
+        model_size:      2
+        hitbox:         13
+      behaviors:
+        aggressive:     true
+        links:          true
+        true_detection: true
+      spawn:
+        type: [scripted]
+
+  Ruaern_rng:
+    id:            5884
+    species:       aern
+    type:          [notorious]
+    skill_list_id: 443
+    attributes:
+      combat:
+        skill: axe
+        delay: 360
+      jobs: [rng, rng]
+      render:
+        look:
+          type:  standard
+          model: 1369
+        entity_flags:  133
+        animation_sub:   5
+        model_size:      2
+        hitbox:         13
+      behaviors:
+        aggressive:     true
+        links:          true
+        true_detection: true
+      spawn:
+        type: [scripted]
+
+  Ruaern_sam:
+    id:            5881
+    species:       aern
+    type:          [notorious]
+    skill_list_id: 440
+    attributes:
+      combat:
+        skill: polearm
+        delay: 360
+      jobs: [sam, sam]
+      render:
+        look:
+          type:  standard
+          model: 1371
+        entity_flags:  133
+        animation_sub:   5
+        model_size:      2
+        hitbox:         13
+      behaviors:
+        aggressive:     true
+        links:          true
+        true_detection: true
+      spawn:
+        type: [scripted]
+
+  Ruaern_war:
+    id:            5880
+    species:       aern
+    type:          [notorious]
+    skill_list_id: 443
+    attributes:
+      combat:
+        skill: axe
+        delay: 360
+      render:
+        look:
+          type:  standard
+          model: 1369
+        entity_flags:  133
+        animation_sub:   5
+        model_size:      2
+        hitbox:         13
+      behaviors:
+        aggressive:     true
+        links:          true
+        true_detection: true
+      spawn:
+        type: [scripted]
+
+  Ruaern_whm:
+    id:            5879
+    species:       aern
+    type:          [notorious]
+    spell_list_id: 20
+    skill_list_id: 439
+    attributes:
+      combat:
+        skill: staff
+        delay: 360
+      jobs: [whm, whm]
+      render:
+        look:
+          type:  standard
+          model: 1372
+        entity_flags:  133
+        animation_sub:   5
+        model_size:      2
+        hitbox:         13
+      behaviors:
+        aggressive:     true
+        links:          true
+        true_detection: true
+      spawn:
+        type: [scripted]
+
+  Ruphuabo:
+    id:            3422
+    species:       phuabo
+    type:          [notorious]
+    skill_list_id: 194
+    attributes:
+      combat:
+        skill: scythe
+        delay: 280
+      jobs: [pld, pld]
+      render:
+        look:
+          type:  standard
+          model: 1155
+        animation_sub:  1
+        hitbox:        10
+      behaviors:
+        aggressive:     true
+        links:          true
+        true_detection: true
+      mob_mods:
+        exp_bonus: 10
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 2500
+
+  Ulaern_blm:
+    id:            6191
+    species:       aern
+    spell_list_id: 21
+    skill_list_id: 442
+    attributes:
+      combat:
+        skill: dagger
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 1368
+        entity_flags:  1153
+        animation_sub:    5
+        hitbox:          10
+      behaviors:
+        links: true
+      spawn:
+        respawn: 300
+      stats:
+        mp: 5000
+    loot:
+      drops:
+        - chance: uncommon
+          item:   aern_organ
+        - chance: rare
+          item:   sample_of_luminian_tissue
+        - chance: rare
+          one_of: [fire_cluster, ice_cluster, wind_cluster, earth_cluster, lightning_cluster, water_cluster, light_cluster, dark_cluster]
+      despoil:
+        sample_of_luminian_tissue: 0
+        aern_organ:                0
+
+  Ulaern_brd:
+    id:            6197
+    species:       aern
+    spell_list_id: 6
+    skill_list_id: 442
+    attributes:
+      combat:
+        skill: dagger
+        delay: 360
+      jobs: [brd, brd]
+      render:
+        look:
+          type:  standard
+          model: 1368
+        entity_flags:  1153
+        animation_sub:    5
+        hitbox:          10
+      behaviors:
+        links: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   aern_organ
+        - chance: rare
+          item:   sample_of_luminian_tissue
+        - chance: rare
+          one_of: [fire_cluster, ice_cluster, wind_cluster, earth_cluster, lightning_cluster, water_cluster, light_cluster, dark_cluster]
+      despoil:
+        sample_of_luminian_tissue: 0
+        aern_organ:                0
+
+  Ulaern_bst:
+    id:            6196
+    species:       aern
+    skill_list_id: 443
+    attributes:
+      combat:
+        skill: axe
+        delay: 360
+      jobs: [bst, bst]
+      render:
+        look:
+          type:  standard
+          model: 1369
+        entity_flags:  1153
+        animation_sub:    5
+        hitbox:          10
+      behaviors:
+        links: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   aern_organ
+        - chance: rare
+          item:   sample_of_luminian_tissue
+        - chance: rare
+          one_of: [fire_cluster, ice_cluster, wind_cluster, earth_cluster, lightning_cluster, water_cluster, light_cluster, dark_cluster]
+      despoil:
+        sample_of_luminian_tissue: 0
+        aern_organ:                0
+
+  Ulaern_drg:
+    id:            6201
+    species:       aern
+    skill_list_id: 440
+    attributes:
+      combat:
+        skill: polearm
+        delay: 360
+      jobs: [drg, drg]
+      render:
+        look:
+          type:  standard
+          model: 1371
+        entity_flags:  1153
+        animation_sub:    5
+        hitbox:          10
+      behaviors:
+        links: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   aern_organ
+        - chance: rare
+          item:   sample_of_luminian_tissue
+        - chance: rare
+          one_of: [fire_cluster, ice_cluster, wind_cluster, earth_cluster, lightning_cluster, water_cluster, light_cluster, dark_cluster]
+      despoil:
+        sample_of_luminian_tissue: 0
+        aern_organ:                0
+
+  Ulaern_drk:
+    id:            6195
+    species:       aern
+    spell_list_id: 5
+    skill_list_id: 441
+    attributes:
+      combat:
+        skill: sword
+        delay: 360
+      jobs: [drk, drk]
+      render:
+        look:
+          type:  standard
+          model: 1370
+        entity_flags:  1153
+        animation_sub:    5
+        hitbox:          10
+      behaviors:
+        links: true
+      spawn:
+        respawn: 300
+      stats:
+        mp: 5000
+    loot:
+      drops:
+        - chance: uncommon
+          item:   aern_organ
+        - chance: rare
+          item:   sample_of_luminian_tissue
+        - chance: rare
+          one_of: [fire_cluster, ice_cluster, wind_cluster, earth_cluster, lightning_cluster, water_cluster, light_cluster, dark_cluster]
+      despoil:
+        sample_of_luminian_tissue: 0
+        aern_organ:                0
+
+  Ulaern_mnk:
+    id:            6189
+    species:       aern
+    skill_list_id: 3
+    attributes:
+      combat:
+        skill: hand_to_hand
+        delay: 480
+      jobs: [mnk, mnk]
+      render:
+        look:
+          type:  standard
+          model: 1367
+        entity_flags:  1153
+        animation_sub:    5
+        hitbox:          10
+      behaviors:
+        links: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   aern_organ
+        - chance: rare
+          item:   sample_of_luminian_tissue
+        - chance: rare
+          one_of: [fire_cluster, ice_cluster, wind_cluster, earth_cluster, lightning_cluster, water_cluster, light_cluster, dark_cluster]
+      despoil:
+        sample_of_luminian_tissue: 0
+        aern_organ:                0
+
+  Ulaern_nin:
+    id:            6200
+    species:       aern
+    spell_list_id: 7
+    skill_list_id: 3
+    attributes:
+      combat:
+        skill: katana
+      jobs: [nin, nin]
+      render:
+        look:
+          type:  standard
+          model: 1367
+        entity_flags:  1153
+        animation_sub:    5
+        hitbox:          10
+      behaviors:
+        links: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   aern_organ
+        - chance: rare
+          item:   sample_of_luminian_tissue
+        - chance: rare
+          one_of: [fire_cluster, ice_cluster, wind_cluster, earth_cluster, lightning_cluster, water_cluster, light_cluster, dark_cluster]
+      despoil:
+        sample_of_luminian_tissue: 0
+        aern_organ:                0
+
+  Ulaern_pld:
+    id:            6194
+    species:       aern
+    spell_list_id: 4
+    skill_list_id: 441
+    attributes:
+      combat:
+        skill: sword
+        delay: 360
+      jobs: [pld, pld]
+      render:
+        look:
+          type:  standard
+          model: 1370
+        entity_flags:  1153
+        animation_sub:    5
+        hitbox:          10
+      behaviors:
+        links: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   aern_organ
+        - chance: rare
+          item:   sample_of_luminian_tissue
+        - chance: rare
+          one_of: [fire_cluster, ice_cluster, wind_cluster, earth_cluster, lightning_cluster, water_cluster, light_cluster, dark_cluster]
+      despoil:
+        sample_of_luminian_tissue: 0
+        aern_organ:                0
+
+  Ulaern_rdm:
+    id:            6192
+    species:       aern
+    spell_list_id: 3
+    skill_list_id: 441
+    attributes:
+      combat:
+        skill: sword
+        delay: 360
+      jobs: [rdm, rdm]
+      render:
+        look:
+          type:  standard
+          model: 1370
+        entity_flags:  1153
+        animation_sub:    5
+        hitbox:          10
+      behaviors:
+        links: true
+      spawn:
+        respawn: 300
+      stats:
+        mp: 5000
+    loot:
+      drops:
+        - chance: uncommon
+          item:   aern_organ
+        - chance: rare
+          item:   sample_of_luminian_tissue
+        - chance: rare
+          one_of: [fire_cluster, ice_cluster, wind_cluster, earth_cluster, lightning_cluster, water_cluster, light_cluster, dark_cluster]
+      despoil:
+        sample_of_luminian_tissue: 0
+        aern_organ:                0
+
+  Ulaern_rng:
+    id:            6198
+    species:       aern
+    skill_list_id: 443
+    attributes:
+      combat:
+        skill: axe
+        delay: 360
+      jobs: [rng, rng]
+      render:
+        look:
+          type:  standard
+          model: 1369
+        entity_flags:  1153
+        animation_sub:    5
+        hitbox:          10
+      behaviors:
+        links: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   aern_organ
+        - chance: rare
+          item:   sample_of_luminian_tissue
+        - chance: rare
+          one_of: [fire_cluster, ice_cluster, wind_cluster, earth_cluster, lightning_cluster, water_cluster, light_cluster, dark_cluster]
+      despoil:
+        sample_of_luminian_tissue: 0
+        aern_organ:                0
+
+  Ulaern_sam:
+    id:            6199
+    species:       aern
+    skill_list_id: 440
+    attributes:
+      combat:
+        skill: polearm
+        delay: 360
+      jobs: [sam, sam]
+      render:
+        look:
+          type:  standard
+          model: 1371
+        entity_flags:  1153
+        animation_sub:    5
+        hitbox:          10
+      behaviors:
+        links: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   aern_organ
+        - chance: rare
+          item:   sample_of_luminian_tissue
+        - chance: rare
+          one_of: [fire_cluster, ice_cluster, wind_cluster, earth_cluster, lightning_cluster, water_cluster, light_cluster, dark_cluster]
+      despoil:
+        sample_of_luminian_tissue: 0
+        aern_organ:                0
+
+  Ulaern_smn:
+    id:            6202
+    species:       aern
+    skill_list_id: 439
+    attributes:
+      combat:
+        skill: staff
+        delay: 360
+      jobs: [smn, smn]
+      render:
+        look:
+          type:  standard
+          model: 1372
+        entity_flags:  1153
+        animation_sub:    5
+        hitbox:          10
+      behaviors:
+        links: true
+      spawn:
+        respawn: 300
+      stats:
+        mp: 5000
+    loot:
+      drops:
+        - chance: uncommon
+          item:   aern_organ
+        - chance: rare
+          item:   sample_of_luminian_tissue
+        - chance: rare
+          one_of: [fire_cluster, ice_cluster, wind_cluster, earth_cluster, lightning_cluster, water_cluster, light_cluster, dark_cluster]
+      despoil:
+        sample_of_luminian_tissue: 0
+        aern_organ:                0
+
+  Ulaern_thf:
+    id:            6193
+    species:       aern
+    skill_list_id: 442
+    attributes:
+      combat:
+        skill: dagger
+      jobs: [thf, thf]
+      render:
+        look:
+          type:  standard
+          model: 1368
+        entity_flags:  1153
+        animation_sub:    5
+        hitbox:          10
+      behaviors:
+        links: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   aern_organ
+        - chance: rare
+          item:   sample_of_luminian_tissue
+        - chance: rare
+          one_of: [fire_cluster, ice_cluster, wind_cluster, earth_cluster, lightning_cluster, water_cluster, light_cluster, dark_cluster]
+      despoil:
+        sample_of_luminian_tissue: 0
+        aern_organ:                0
+
+  Ulaern_war:
+    id:            6188
+    species:       aern
+    skill_list_id: 443
+    attributes:
+      combat:
+        skill: axe
+        delay: 360
+      render:
+        look:
+          type:  standard
+          model: 1369
+        entity_flags:  1153
+        animation_sub:    5
+        hitbox:          10
+      behaviors:
+        links: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   aern_organ
+        - chance: rare
+          item:   sample_of_luminian_tissue
+        - chance: rare
+          one_of: [fire_cluster, ice_cluster, wind_cluster, earth_cluster, lightning_cluster, water_cluster, light_cluster, dark_cluster]
+      despoil:
+        sample_of_luminian_tissue: 0
+        aern_organ:                0
+
+  Ulaern_whm:
+    id:            6190
+    species:       aern
+    spell_list_id: 20
+    skill_list_id: 439
+    attributes:
+      combat:
+        skill: staff
+        delay: 360
+      jobs: [whm, whm]
+      render:
+        look:
+          type:  standard
+          model: 1372
+        entity_flags:  1153
+        animation_sub:    5
+        hitbox:          10
+      behaviors:
+        links: true
+      spawn:
+        respawn: 300
+      stats:
+        mp: 5000
+    loot:
+      drops:
+        - chance: uncommon
+          item:   aern_organ
+        - chance: rare
+          item:   sample_of_luminian_tissue
+        - chance: rare
+          one_of: [fire_cluster, ice_cluster, wind_cluster, earth_cluster, lightning_cluster, water_cluster, light_cluster, dark_cluster]
+      despoil:
+        sample_of_luminian_tissue: 0
+        aern_organ:                0
+
+  Ulhpemde:
+    id:            4086
+    species:       hpemde
+    skill_list_id: 144
+    attributes:
+      combat:
+        skill: polearm
+        delay: 220
+      jobs: [drg, drg]
+      render:
+        look:
+          type:  standard
+          model: 1151
+        entity_flags:  1155
+        animation_sub:    6
+        model_size:       1
+        hitbox:          12
+      behaviors:
+        aggressive:     true
+        links:          true
+        true_detection: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: rare
+          item:   high-quality_hpemde_organ
+        - chance: rare
+          item:   hpemde_organ
+        - chance: very_rare
+          item:   sample_of_luminian_tissue
+        - chance: rare
+          one_of: [fire_cluster, ice_cluster, wind_cluster, earth_cluster, lightning_cluster, water_cluster, light_cluster, dark_cluster]
+      despoil:
+        sample_of_luminian_tissue: 0
+        hpemde_organ:              0
+
+  Ulphuabo:
+    id:            4087
+    species:       phuabo
+    roam:          [stealth]
+    skill_list_id: 194
+    attributes:
+      combat:
+        skill: scythe
+        delay: 280
+      jobs: [pld, pld]
+      render:
+        look:
+          type:  standard
+          model: 1154
+        entity_flags:  3203
+        animation_sub:    5
+        name_vis:        24
+        model_size:       1
+        hitbox:          12
+      behaviors:
+        aggressive:     true
+        true_detection: true
+      mob_mods:
+        exp_bonus: 10
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   phuabo_organ
+        - chance: rare
+          item:   phuabo_organ
+        - chance: rare
+          item:   high-quality_phuabo_organ
+        - chance: very_rare
+          item:   sample_of_luminian_tissue
+      despoil:
+        sample_of_luminian_tissue: 0
+        phuabo_organ:              0
+
+  Ulxzomit_2615:
+    id:            2615
+    display_name:  Ulxzomit
+    species:       xzomit
+    roam:          [scripted]
+    skill_list_id: 269
+    attributes:
+      combat:
+        skill: scythe
+        delay: 200
+      jobs: [mnk, war]
+      render:
+        look:
+          type:  standard
+          model: 528
+        entity_flags: 1157
+        hitbox:         10
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: very_rare
+          item:   xzomit_organ
+        - chance: very_rare
+          item:   high-quality_xzomit_organ
+        - chance: very_rare
+          item:   sample_of_luminian_tissue
+        - chance: very_rare
+          one_of: [fire_cluster, ice_cluster, wind_cluster, earth_cluster, lightning_cluster, water_cluster, light_cluster, dark_cluster]
+
+  Ulxzomit_4088:
+    id:            4088
+    display_name:  Ulxzomit
+    species:       xzomit
+    skill_list_id: 269
+    attributes:
+      combat:
+        skill: scythe
+        delay: 200
+      jobs: [pld, war]
+      render:
+        look:
+          type:  standard
+          model: 528
+        entity_flags: 1157
+        model_size:      2
+        hitbox:         13
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: always
+          item:   xzomit_organ
+        - chance: uncommon
+          item:   high-quality_xzomit_organ
+        - chance: rare
+          item:   sample_of_luminian_tissue
+        - chance: rare
+          one_of: [fire_cluster, ice_cluster, wind_cluster, earth_cluster, lightning_cluster, water_cluster, light_cluster, dark_cluster]
+      despoil:
+        sample_of_luminian_tissue: 0
+        xzomit_organ:              0
+
+  Ulyovra:
+    id:            4089
+    species:       yovra
+    type:          [notorious]
+    roam:          [stealth]
+    skill_list_id: 271
+    attributes:
+      combat:
+        skill: scythe
+      jobs: [blm, drk]
+      render:
+        look:
+          type:  standard
+          model: 1148
+        entity_flags:  3715
+        animation_sub:   13
+        name_vis:        24
+        model_size:       1
+        hitbox:          12
+      behaviors:
+        flags:          [no_assist, no_turn]
+        aggressive:     true
+        true_detection: true
+      mob_mods:
+        exp_bonus: 35
+      spawn:
+        respawn: 3600
+      stats:
+        hp: 15000
+    loot:
+      drops:
+        - chance: very_common
+          item:   yovra_organ
+        - chance: rare
+          item:   sample_of_luminian_tissue
+        - chance: uncommon
+          one_of: [fire_cluster, ice_cluster, wind_cluster, earth_cluster, lightning_cluster, water_cluster, light_cluster, dark_cluster]
+
+spawns:
+  16912385:
+    template: Ulaern_war
+    script:   Ulaern
+    region:   s_1
+    level:    [70, 73]
+  16912386:
+    template: Ulaern_war
+    script:   Ulaern
+    region:   s_15
+    level:    [70, 73]
+  16912387:
+    template: Ulaern_whm
+    script:   Ulaern
+    region:   s_1
+    level:    [70, 73]
+  16912388:
+    template: Ulaern_blm
+    script:   Ulaern
+    region:   s_1
+    level:    [70, 73]
+  16912389:
+    template: Ulaern_rdm
+    script:   Ulaern
+    region:   s_1
+    level:    [70, 73]
+  16912390:
+    template: Ulaern_brd
+    script:   Ulaern
+    region:   s_1
+    level:    [70, 73]
+  16912391:
+    template: Ulaern_rng
+    script:   Ulaern
+    region:   s_1
+    level:    [70, 73]
+  16912392:
+    template: Ulaern_sam
+    script:   Ulaern
+    region:   s_1
+    level:    [70, 73]
+  16912393:
+    template: Ulaern_sam
+    script:   Ulaern
+    region:   s_1
+    level:    [70, 73]
+  16912394:
+    template: Ulxzomit_4088
+    script:   Ulxzomit
+    region:   s_1
+    level:    [68, 71]
+  16912395:
+    template: Ulxzomit_2615
+    script:   Ulxzomit
+    region:   s_1
+    level:    [68, 71]
+  16912396:
+    template: Ulxzomit_2615
+    script:   Ulxzomit
+    region:   s_1
+    level:    [70, 71]
+  16912397:
+    template: Ulhpemde
+    region:   s_13
+    level:    [68, 72]
+  16912398:
+    template: Ulhpemde
+    region:   s_13
+    level:    [68, 72]
+  16912399:
+    template: Ulhpemde
+    region:   s_15
+    level:    [69, 72]
+  16912400:
+    template: Ulhpemde
+    region:   s_15
+    level:    [68, 72]
+  16912401:
+    template: Ulphuabo
+    region:   s_17
+    level:    [75, 77]
+  16912402:
+    template: Ulphuabo
+    region:   s_18
+    level:    [75, 77]
+  16912403:
+    template: Ulaern_mnk
+    script:   Ulaern
+    region:   s_19
+    level:    [70, 73]
+  16912404:
+    template: Ulaern_pld
+    script:   Ulaern
+    region:   s_19
+    level:    [70, 73]
+  16912405:
+    template: Ulaern_bst
+    script:   Ulaern
+    region:   s_19
+    level:    [70, 73]
+  16912406:
+    template: Ulaern_drg
+    script:   Ulaern
+    region:   s_19
+    level:    [70, 73]
+  16912407:
+    template: Aerns_Wynav
+    at:       [1.000, 1.000, 1.000]
+    level:    [65, 69]
+  16912408:
+    template: Aerns_Xzomit
+    at:       [1.000, 1.000, 1.000]
+    level:    [65, 69]
+  16912409:
+    template: Ulxzomit_4088
+    script:   Ulxzomit
+    region:   s_19
+    level:    [68, 71]
+  16912410:
+    template: Ulxzomit_2615
+    script:   Ulxzomit
+    region:   s_19
+    level:    [68, 71]
+  16912411:
+    template: Ulxzomit_2615
+    script:   Ulxzomit
+    region:   s_19
+    level:    [70, 71]
+  16912412:
+    template: Ulhpemde
+    region:   s_19
+    level:    [68, 72]
+  16912413:
+    template: Ulhpemde
+    region:   s_19
+    level:    [68, 72]
+  16912414:
+    template: Ulphuabo
+    region:   s_30
+    level:    [75, 77]
+  16912415:
+    template: Ulaern_thf
+    script:   Ulaern
+    region:   s_31
+    level:    [70, 73]
+  16912416:
+    template: Ulaern_drk
+    script:   Ulaern
+    region:   s_31
+    level:    [70, 73]
+  16912417:
+    template: Ulaern_nin
+    script:   Ulaern
+    region:   s_31
+    level:    [70, 73]
+  16912418:
+    template: Ulaern_smn
+    script:   Ulaern
+    region:   s_31
+    level:    [70, 73]
+  16912419:
+    template: Ulhpemde
+    region:   s_31
+    level:    [68, 72]
+  16912420:
+    template: Ulhpemde
+    region:   s_31
+    level:    [69, 72]
+  16912421:
+    template: Aerns_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [65, 69]
+  16912422:
+    template: Ulxzomit_4088
+    script:   Ulxzomit
+    region:   s_31
+    level:    [68, 71]
+  16912423:
+    template: Ulxzomit_2615
+    script:   Ulxzomit
+    region:   s_31
+    level:    [68, 71]
+  16912424:
+    template: Ulxzomit_2615
+    script:   Ulxzomit
+    region:   s_31
+    level:    [70, 71]
+  16912425:
+    template: Ulphuabo
+    region:   s_41
+    level:    [75, 77]
+  16912426:
+    template: Ulxzomit_4088
+    script:   Ulxzomit
+    region:   s_42
+    level:    [68, 71]
+  16912427:
+    template: Ulxzomit_2615
+    script:   Ulxzomit
+    region:   s_42
+    level:    [68, 71]
+  16912428:
+    template: Ulxzomit_2615
+    script:   Ulxzomit
+    region:   s_42
+    level:    [68, 71]
+  16912429:
+    template: Ulxzomit_4088
+    script:   Ulxzomit
+    region:   s_42
+    level:    [68, 71]
+  16912430:
+    template: Ulxzomit_2615
+    script:   Ulxzomit
+    region:   s_42
+    level:    [68, 71]
+  16912431:
+    template: Ulxzomit_2615
+    script:   Ulxzomit
+    region:   s_42
+    level:    [68, 71]
+  16912432:
+    template: Ulxzomit_4088
+    script:   Ulxzomit
+    region:   s_42
+    level:    [68, 71]
+  16912433:
+    template: Ulxzomit_2615
+    script:   Ulxzomit
+    region:   s_42
+    level:    [68, 71]
+  16912434:
+    template: Ulxzomit_2615
+    script:   Ulxzomit
+    region:   s_42
+    level:    [70, 71]
+  16912435:
+    template: Ulxzomit_4088
+    script:   Ulxzomit
+    region:   s_42
+    level:    [70, 71]
+  16912436:
+    template: Ulxzomit_2615
+    script:   Ulxzomit
+    region:   s_42
+    level:    [70, 71]
+  16912437:
+    template: Ulxzomit_2615
+    script:   Ulxzomit
+    region:   s_42
+    level:    [70, 71]
+  16912438:
+    template: Ulhpemde
+    region:   s_42
+    level:    [68, 72]
+  16912439:
+    template: Ulhpemde
+    region:   s_42
+    level:    [68, 72]
+  16912440:
+    template: Ulhpemde
+    region:   s_42
+    level:    [68, 72]
+  16912441:
+    template: Ulphuabo
+    region:   s_57
+    level:    [75, 77]
+  16912442:
+    template: Ulhpemde
+    region:   s_58
+    level:    [68, 72]
+  16912443:
+    template: Ulxzomit_4088
+    script:   Ulxzomit
+    region:   s_58
+    level:    [68, 71]
+  16912444:
+    template: Ulxzomit_2615
+    script:   Ulxzomit
+    region:   s_58
+    level:    [68, 71]
+  16912445:
+    template: Ulxzomit_2615
+    script:   Ulxzomit
+    region:   s_58
+    level:    [68, 71]
+  16912446:
+    template: Ulxzomit_4088
+    script:   Ulxzomit
+    region:   s_58
+    level:    [68, 71]
+  16912447:
+    template: Ulxzomit_2615
+    script:   Ulxzomit
+    region:   s_58
+    level:    [70, 71]
+  16912448:
+    template: Ulxzomit_2615
+    script:   Ulxzomit
+    region:   s_58
+    level:    [70, 71]
+  16912449:
+    template: Ulxzomit_4088
+    script:   Ulxzomit
+    region:   se_65
+    level:    [68, 71]
+  16912450:
+    template: Ulxzomit_2615
+    script:   Ulxzomit
+    region:   se_65
+    level:    [68, 71]
+  16912451:
+    template: Ulxzomit_2615
+    script:   Ulxzomit
+    region:   se_65
+    level:    [68, 71]
+  16912452:
+    template: Ulxzomit_4088
+    script:   Ulxzomit
+    region:   se_65
+    level:    [68, 71]
+  16912453:
+    template: Ulxzomit_2615
+    script:   Ulxzomit
+    region:   se_65
+    level:    [68, 71]
+  16912454:
+    template: Ulxzomit_2615
+    script:   Ulxzomit
+    region:   se_65
+    level:    [68, 71]
+  16912455:
+    template: Ulxzomit_4088
+    script:   Ulxzomit
+    region:   se_65
+    level:    [70, 71]
+  16912456:
+    template: Ulxzomit_2615
+    script:   Ulxzomit
+    region:   se_65
+    level:    [70, 71]
+  16912457:
+    template: Ulxzomit_2615
+    script:   Ulxzomit
+    region:   se_65
+    level:    [70, 71]
+  16912458:
+    template: Ulhpemde
+    region:   se_65
+    level:    [68, 72]
+  16912459:
+    template: Ulhpemde
+    region:   se_65
+    level:    [69, 72]
+  16912460:
+    template: Ulphuabo
+    region:   se_76
+    level:    [75, 77]
+  16912461:
+    template: Ulphuabo
+    region:   s_77
+    level:    [75, 77]
+  16912462:
+    template: Ulhpemde
+    region:   se_78
+    level:    [68, 72]
+  16912463:
+    template: Ulhpemde
+    region:   se_78
+    level:    [68, 72]
+  16912464:
+    template: Ulhpemde
+    region:   se_78
+    level:    [68, 72]
+  16912465:
+    template: Ulhpemde
+    region:   se_78
+    level:    [68, 72]
+  16912466:
+    template: Ulhpemde
+    region:   se_78
+    level:    [68, 72]
+  16912467:
+    template: Ulhpemde
+    region:   se_78
+    level:    [68, 72]
+  16912468:
+    template: Ulxzomit_4088
+    script:   Ulxzomit
+    region:   se_78
+    level:    [68, 71]
+  16912469:
+    template: Ulxzomit_2615
+    script:   Ulxzomit
+    region:   se_78
+    level:    [68, 71]
+  16912470:
+    template: Ulxzomit_2615
+    script:   Ulxzomit
+    region:   se_78
+    level:    [70, 71]
+  16912471:
+    template: Ulphuabo
+    region:   se_87
+    level:    [75, 77]
+  16912472:
+    template: Omaern_whm
+    script:   Omaern
+    region:   se_88
+    level:    [75, 78]
+  16912473:
+    template: Omaern_bst
+    script:   Omaern_BST
+    region:   se_88
+    level:    [75, 78]
+  16912474:
+    template: Omaern_drg
+    script:   Omaern_DRG
+    region:   se_88
+    level:    [75, 78]
+  16912475:
+    template: Omaern_smn
+    script:   Omaern_SMN
+    at:       [485.983, -0.500, -391.483, 38]
+    level:    [75, 78]
+  16912476:
+    template: Omhpemde
+    region:   se_88
+    level:    [73, 77]
+  16912477:
+    template: Omhpemde
+    region:   se_88
+    level:    [73, 77]
+  16912478:
+    template: Omhpemde
+    region:   se_88
+    level:    [73, 77]
+  16912479:
+    template: Omhpemde
+    region:   se_88
+    level:    [73, 77]
+  16912480:
+    template: Omhpemde
+    region:   se_88
+    level:    [73, 77]
+  16912481:
+    template: Aerns_Wynav
+    at:       [1.000, 1.000, 1.000]
+    level:    [65, 69]
+  16912482:
+    template: Aerns_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [65, 69]
+  16912483:
+    template: Aerns_Xzomit
+    at:       [1.000, 1.000, 1.000]
+    level:    [65, 69]
+  16912484:
+    template: Omxzomit_2978
+    script:   Omxzomit
+    region:   se_88
+    level:    [73, 76]
+  16912485:
+    template: Omxzomit_7094
+    script:   Omxzomit
+    region:   se_88
+    level:    [73, 76]
+  16912486:
+    template: Omxzomit_7094
+    script:   Omxzomit
+    region:   se_88
+    level:    [73, 76]
+  16912487:
+    template: Omaern_war
+    script:   Omaern
+    region:   se_103
+    level:    [75, 78]
+  16912488:
+    template: Omaern_whm
+    script:   Omaern
+    region:   se_103
+    level:    [75, 78]
+  16912489:
+    template: Omaern_pld
+    script:   Omaern
+    at:       [522.335, -0.189, -445.636, 242]
+    level:    [75, 78]
+  16912490:
+    template: Omaern_drk
+    script:   Omaern
+    region:   se_103
+    level:    [75, 78]
+  16912491:
+    template: Omaern_drk
+    script:   Omaern
+    region:   se_103
+    level:    [75, 78]
+  16912492:
+    template: Omaern_brd
+    script:   Omaern
+    region:   se_103
+    level:    [75, 78]
+  16912493:
+    template: Omaern_brd
+    script:   Omaern
+    region:   se_103
+    level:    [75, 78]
+  16912494:
+    template: Omaern_sam
+    script:   Omaern
+    region:   se_103
+    level:    [75, 78]
+  16912495:
+    template: Omaern_sam
+    script:   Omaern
+    at:       [492.151, -0.864, -427.770, 239]
+    level:    [75, 78]
+  16912496:
+    template: Omhpemde
+    region:   se_103
+    level:    [73, 77]
+  16912497:
+    template: Omhpemde
+    region:   se_103
+    level:    [73, 77]
+  16912498:
+    template: Omhpemde
+    region:   se_103
+    level:    [73, 77]
+  16912499:
+    template: Omaern_mnk
+    script:   Omaern
+    at:       [455.566, -1.217, -597.924, 251]
+    level:    [75, 78]
+  16912500:
+    template: Omaern_blm
+    script:   Omaern
+    at:       [561.407, -1.533, -527.602, 66]
+    level:    [75, 78]
+  16912501:
+    template: Omaern_rdm
+    script:   Omaern
+    region:   se_117
+    level:    [75, 78]
+  16912502:
+    template: Omaern_thf
+    script:   Omaern
+    region:   se_117
+    level:    [75, 78]
+  16912503:
+    template: Omaern_nin
+    script:   Omaern
+    region:   se_117
+    level:    [75, 78]
+  16912504:
+    template: Omxzomit_2978
+    script:   Omxzomit
+    region:   se_120
+    level:    [73, 76]
+  16912505:
+    template: Omxzomit_7094
+    script:   Omxzomit
+    region:   se_120
+    level:    [73, 75]
+  16912506:
+    template: Omxzomit_7094
+    script:   Omxzomit
+    region:   se_120
+    level:    [73, 76]
+  16912507:
+    template: Omhpemde
+    region:   se_120
+    level:    [73, 77]
+  16912508:
+    template: Omhpemde
+    region:   se_120
+    level:    [73, 77]
+  16912509:
+    template: Omhpemde
+    region:   se_120
+    level:    [73, 77]
+  16912510:
+    template: Omhpemde
+    region:   se_120
+    level:    [73, 77]
+  16912511:
+    template: Omhpemde
+    region:   se_120
+    level:    [73, 77]
+  16912512:
+    template: Omhpemde
+    region:   se_120
+    level:    [73, 77]
+  16912513:
+    template: Omhpemde
+    region:   se_120
+    level:    [73, 77]
+  16912514:
+    template: Omhpemde
+    region:   se_120
+    level:    [73, 77]
+  16912515:
+    template: Omphuabo
+    region:   se_131
+    level:    [79, 81]
+  16912516:
+    template: Omphuabo
+    region:   e_132
+    level:    [79, 81]
+  16912517:
+    template: Omaern_blm
+    script:   Omaern
+    region:   e_133
+    level:    [75, 78]
+  16912518:
+    template: Omaern_nin
+    script:   Omaern
+    region:   e_133
+    level:    [75, 78]
+  16912519:
+    template: Omaern_drg
+    script:   Omaern_DRG
+    at:       [679.939, -0.500, -186.798, 177]
+    level:    [75, 78]
+  16912520:
+    template: Aerns_Wynav
+    at:       [1.000, 1.000, 1.000]
+    level:    [65, 69]
+  16912521:
+    template: Omxzomit_2978
+    script:   Omxzomit
+    region:   e_133
+    level:    [73, 76]
+  16912522:
+    template: Omxzomit_7094
+    script:   Omxzomit
+    region:   e_133
+    level:    [73, 76]
+  16912523:
+    template: Omxzomit_7094
+    script:   Omxzomit
+    region:   e_133
+    level:    [73, 76]
+  16912524:
+    template: Omxzomit_2978
+    script:   Omxzomit
+    region:   e_133
+    level:    [73, 76]
+  16912525:
+    template: Omxzomit_7094
+    script:   Omxzomit
+    region:   e_133
+    level:    [73, 76]
+  16912526:
+    template: Omxzomit_7094
+    script:   Omxzomit
+    region:   e_133
+    level:    [73, 76]
+  16912527:
+    template: Omaern_rdm
+    script:   Omaern
+    region:   e_143
+    level:    [75, 78]
+  16912528:
+    template: Omaern_bst
+    script:   Omaern_BST
+    region:   e_143
+    level:    [75, 78]
+  16912529:
+    template: Omaern_smn
+    script:   Omaern_SMN
+    at:       [653.033, -0.492, -182.964, 120]
+    level:    [75, 78]
+  16912530:
+    template: Aerns_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [65, 69]
+  16912531:
+    template: Aerns_Xzomit
+    at:       [1.000, 1.000, 1.000]
+    level:    [65, 69]
+  16912532:
+    template: Omhpemde
+    region:   e_148
+    level:    [73, 77]
+  16912533:
+    template: Omhpemde
+    region:   e_148
+    level:    [73, 77]
+  16912534:
+    template: Omhpemde
+    region:   e_150
+    level:    [73, 77]
+  16912535:
+    template: Omhpemde
+    region:   e_150
+    level:    [73, 77]
+  16912536:
+    template: Omphuabo
+    region:   e_152
+    level:    [79, 81]
+  16912537:
+    template: Omphuabo
+    region:   e_152
+    level:    [79, 81]
+  16912538:
+    template: Omhpemde
+    region:   e_154
+    level:    [73, 77]
+  16912539:
+    template: Omhpemde
+    region:   e_154
+    level:    [73, 77]
+  16912540:
+    template: Omhpemde
+    region:   e_154
+    level:    [73, 77]
+  16912541:
+    template: Omhpemde
+    region:   e_154
+    level:    [73, 77]
+  16912542:
+    template: Omphuabo
+    region:   e_158
+    level:    [79, 81]
+  16912543:
+    template: Omphuabo
+    region:   e_159
+    level:    [79, 81]
+  16912544:
+    template: Omphuabo
+    region:   e_159
+    level:    [79, 81]
+  16912545:
+    template: Ulxzomit_4088
+    script:   Ulxzomit
+    region:   s_161
+    level:    [68, 71]
+  16912546:
+    template: Ulxzomit_2615
+    script:   Ulxzomit
+    region:   s_161
+    level:    [68, 71]
+  16912547:
+    template: Ulxzomit_2615
+    script:   Ulxzomit
+    region:   s_161
+    level:    [70, 71]
+  16912548:
+    template: Ulxzomit_4088
+    script:   Ulxzomit
+    region:   sw_164
+    level:    [68, 71]
+  16912549:
+    template: Ulxzomit_2615
+    script:   Ulxzomit
+    region:   sw_164
+    level:    [68, 71]
+  16912550:
+    template: Ulxzomit_2615
+    script:   Ulxzomit
+    region:   sw_164
+    level:    [70, 71]
+  16912551:
+    template: Ulhpemde
+    region:   s_167
+    level:    [69, 72]
+  16912552:
+    template: Ulhpemde
+    region:   s_167
+    level:    [68, 72]
+  16912553:
+    template: Ulhpemde
+    region:   s_167
+    level:    [68, 72]
+  16912554:
+    template: Ulhpemde
+    region:   s_167
+    level:    [68, 72]
+  16912555:
+    template: Ulhpemde
+    region:   s_167
+    level:    [68, 72]
+  16912556:
+    template: Ulhpemde
+    region:   sw_172
+    level:    [69, 72]
+  16912557:
+    template: Ulhpemde
+    region:   sw_172
+    level:    [68, 72]
+  16912558:
+    template: Ulhpemde
+    region:   sw_172
+    level:    [68, 72]
+  16912559:
+    template: Ulhpemde
+    at:       [-382.736, -0.500, -527.523, 173]
+    level:    [68, 72]
+  16912560:
+    template: Ulphuabo
+    region:   s_176
+    level:    [75, 77]
+  16912561:
+    template: Ulphuabo
+    region:   sw_177
+    level:    [75, 77]
+  16912562:
+    template: Omaern_war
+    script:   Omaern
+    region:   sw_178
+    level:    [75, 78]
+  16912563:
+    template: Omaern_war
+    script:   Omaern
+    at:       [-565.841, -0.313, -387.083, 232]
+    level:    [75, 78]
+  16912564:
+    template: Omaern_mnk
+    script:   Omaern
+    region:   sw_178
+    level:    [75, 78]
+  16912565:
+    template: Omaern_mnk
+    script:   Omaern
+    region:   sw_178
+    level:    [75, 78]
+  16912566:
+    template: Omaern_thf
+    script:   Omaern
+    region:   sw_178
+    level:    [75, 78]
+  16912567:
+    template: Omaern_rng
+    script:   Omaern
+    region:   sw_178
+    level:    [75, 78]
+  16912568:
+    template: Omaern_rng
+    script:   Omaern
+    region:   sw_178
+    level:    [75, 78]
+  16912569:
+    template: Omaern_sam
+    script:   Omaern
+    region:   sw_178
+    level:    [75, 78]
+  16912570:
+    template: Omaern_nin
+    script:   Omaern
+    at:       [-504.233, -0.500, -441.207, 10]
+    level:    [75, 78]
+  16912571:
+    template: Omaern_drg
+    script:   Omaern_DRG
+    region:   sw_178
+    level:    [75, 78]
+  16912572:
+    template: Omaern_drg
+    script:   Omaern_DRG
+    region:   sw_178
+    level:    [75, 78]
+  16912573:
+    template: Aerns_Wynav
+    at:       [1.000, 1.000, 1.000]
+    level:    [65, 69]
+  16912574:
+    template: Aerns_Wynav
+    at:       [1.000, 1.000, 1.000]
+    level:    [65, 69]
+  16912575:
+    template: Omxzomit_2978
+    script:   Omxzomit
+    region:   sw_178
+    level:    [73, 76]
+  16912576:
+    template: Omxzomit_7094
+    script:   Omxzomit
+    region:   sw_178
+    level:    [73, 76]
+  16912577:
+    template: Omphuabo
+    region:   sw_193
+    level:    [79, 81]
+  16912578:
+    template: Omxzomit_2978
+    script:   Omxzomit
+    region:   sw_194
+    level:    [73, 76]
+  16912579:
+    template: Omxzomit_7094
+    script:   Omxzomit
+    region:   sw_194
+    level:    [73, 76]
+  16912580:
+    template: Omxzomit_2978
+    script:   Omxzomit
+    region:   sw_194
+    level:    [73, 76]
+  16912581:
+    template: Omxzomit_7094
+    script:   Omxzomit
+    region:   sw_197
+    level:    [73, 76]
+  16912582:
+    template: Omxzomit_2978
+    script:   Omxzomit
+    region:   sw_198
+    level:    [73, 76]
+  16912583:
+    template: Omxzomit_7094
+    script:   Omxzomit
+    region:   sw_198
+    level:    [73, 76]
+  16912584:
+    template: Omaern_whm
+    script:   Omaern
+    region:   w_200
+    level:    [75, 78]
+  16912585:
+    template: Omaern_pld
+    script:   Omaern
+    region:   w_200
+    level:    [75, 78]
+  16912586:
+    template: Omaern_drk
+    script:   Omaern
+    at:       [-485.739, -0.500, -113.174, 132]
+    level:    [75, 78]
+  16912587:
+    template: Omaern_brd
+    script:   Omaern
+    at:       [-516.898, -0.573, -225.663, 11]
+    level:    [75, 78]
+  16912588:
+    template: Omaern_smn
+    script:   Omaern_SMN
+    region:   w_200
+    level:    [75, 78]
+  16912589:
+    template: Omhpemde
+    region:   w_200
+    level:    [73, 77]
+  16912590:
+    template: Omhpemde
+    region:   w_200
+    level:    [73, 77]
+  16912591:
+    template: Omhpemde
+    region:   w_200
+    level:    [73, 77]
+  16912592:
+    template: Omhpemde
+    region:   w_200
+    level:    [73, 77]
+  16912593:
+    template: Aerns_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [65, 69]
+  16912594:
+    template: Omxzomit_2978
+    script:   Omxzomit
+    region:   w_200
+    level:    [73, 76]
+  16912595:
+    template: Omxzomit_7094
+    script:   Omxzomit
+    region:   w_200
+    level:    [73, 76]
+  16912596:
+    template: Omphuabo
+    region:   w_212
+    level:    [79, 81]
+  16912597:
+    template: Omphuabo
+    region:   w_212
+    level:    [79, 81]
+  16912598:
+    template: Omphuabo
+    region:   w_212
+    level:    [79, 81]
+  16912599:
+    template: Omhpemde
+    region:   w_215
+    level:    [73, 77]
+  16912600:
+    template: Omhpemde
+    region:   w_215
+    level:    [73, 77]
+  16912601:
+    template: Omhpemde
+    region:   w_217
+    level:    [73, 77]
+  16912602:
+    template: Omhpemde
+    region:   w_217
+    level:    [73, 77]
+  16912603:
+    template: Omhpemde
+    region:   w_219
+    level:    [73, 77]
+  16912604:
+    template: Omhpemde
+    region:   w_219
+    level:    [73, 77]
+  16912605:
+    template: Omaern_mnk
+    script:   Omaern
+    at:       [-588.123, -0.500, -133.283, 174]
+    level:    [75, 78]
+  16912606:
+    template: Omaern_blm
+    script:   Omaern
+    at:       [-651.434, -0.499, -120.670, 242]
+    level:    [75, 78]
+  16912607:
+    template: Omaern_rdm
+    script:   Omaern
+    region:   w_223
+    level:    [75, 78]
+  16912608:
+    template: Omaern_thf
+    script:   Omaern
+    region:   w_223
+    level:    [75, 78]
+  16912609:
+    template: Omaern_bst
+    script:   Omaern_BST
+    at:       [-653.310, -0.500, -127.648, 115]
+    level:    [75, 78]
+  16912610:
+    template: Omhpemde
+    region:   w_223
+    level:    [73, 77]
+  16912611:
+    template: Omhpemde
+    region:   w_223
+    level:    [73, 77]
+  16912612:
+    template: Omhpemde
+    region:   w_223
+    level:    [73, 77]
+  16912613:
+    template: Omhpemde
+    region:   w_223
+    level:    [73, 77]
+  16912614:
+    template: Aerns_Xzomit
+    at:       [1.000, 1.000, 1.000]
+    level:    [65, 69]
+  16912615:
+    template: Omxzomit_2978
+    script:   Omxzomit
+    region:   w_223
+    level:    [73, 76]
+  16912616:
+    template: Omxzomit_7094
+    script:   Omxzomit
+    region:   w_223
+    level:    [73, 76]
+  16912617:
+    template: Omphuabo
+    region:   w_233
+    level:    [79, 81]
+  16912618:
+    template: Omaern_blm
+    script:   Omaern
+    region:   w_234
+    level:    [75, 78]
+  16912619:
+    template: Omaern_rdm
+    script:   Omaern
+    region:   w_234
+    level:    [75, 78]
+  16912620:
+    template: Omyovra
+    region:   sw_236
+    level:    [84, 85]
+  16912621:
+    template: Omyovra
+    region:   w_237
+    level:    [84, 85]
+  16912622:
+    template: Omyovra
+    region:   e_238
+    level:    [84, 85]
+  16912623:
+    template: Omyovra
+    region:   se_239
+    level:    [84, 85]
+  16912624:
+    template: Ulyovra
+    region:   s_240
+    level:    [79, 80]
+  16912625:
+    template: Ulyovra
+    region:   region_133
+    level:    [79, 80]
+  16912626:
+    template: Omxzomit_2978
+    script:   Omxzomit
+    region:   n_242
+    level:    [73, 76]
+  16912627:
+    template: Omxzomit_7094
+    script:   Omxzomit
+    region:   n_242
+    level:    [73, 76]
+  16912628:
+    template: Omxzomit_2978
+    script:   Omxzomit
+    region:   n_242
+    level:    [72, 75]
+  16912629:
+    template: Omxzomit_7094
+    script:   Omxzomit
+    region:   n_242
+    level:    [73, 76]
+  16912630:
+    template: Omphuabo
+    region:   n_246
+    level:    [79, 81]
+  16912631:
+    template: Omxzomit_2978
+    script:   Omxzomit
+    region:   n_247
+    level:    [73, 76]
+  16912632:
+    template: Omxzomit_7094
+    script:   Omxzomit
+    region:   n_247
+    level:    [73, 76]
+  16912633:
+    template: Omxzomit_2978
+    script:   Omxzomit
+    region:   n_247
+    level:    [72, 74]
+  16912634:
+    template: Omxzomit_7094
+    script:   Omxzomit
+    region:   n_247
+    level:    [73, 76]
+  16912635:
+    template: Omphuabo
+    region:   n_251
+    level:    [79, 81]
+  16912636:
+    template: Omxzomit_2978
+    script:   Omxzomit
+    region:   region_132
+    level:    [73, 76]
+  16912637:
+    template: Omxzomit_7094
+    script:   Omxzomit
+    region:   region_132
+    level:    [73, 76]
+  16912638:
+    template: Omhpemde_nodive
+    script:   Omhpemde
+    region:   n_252
+    level:    [73, 77]
+  16912639:
+    template: Omhpemde_nodive
+    script:   Omhpemde
+    region:   n_252
+    level:    [73, 77]
+  16912640:
+    template: Omphuabo
+    region:   n_256
+    level:    [79, 81]
+  16912641:
+    template: Omphuabo
+    region:   n_256
+    level:    [79, 81]
+  16912642:
+    template: Omxzomit_2978
+    script:   Omxzomit
+    region:   ne_258
+    level:    [74, 76]
+  16912643:
+    template: Omxzomit_7094
+    script:   Omxzomit
+    region:   ne_258
+    level:    [73, 76]
+  16912644:
+    template: Omxzomit_7094
+    script:   Omxzomit
+    region:   ne_258
+    level:    [73, 76]
+  16912645:
+    template: Omhpemde_nodive
+    script:   Omhpemde
+    region:   ne_258
+    level:    [73, 77]
+  16912646:
+    template: Omhpemde_nodive
+    script:   Omhpemde
+    region:   ne_258
+    level:    [73, 77]
+  16912647:
+    template: Omphuabo
+    region:   ne_263
+    level:    [79, 81]
+  16912648:
+    template: Omaern_mnk
+    script:   Omaern
+    region:   n_264
+    level:    [75, 78]
+  16912649:
+    template: Omaern_blm
+    script:   Omaern
+    region:   n_264
+    level:    [75, 78]
+  16912650:
+    template: Omaern_rdm
+    script:   Omaern
+    region:   n_264
+    level:    [75, 78]
+  16912651:
+    template: Omhpemde_nodive
+    script:   Omhpemde
+    region:   n_264
+    level:    [73, 77]
+  16912652:
+    template: Omhpemde_nodive
+    script:   Omhpemde
+    region:   n_264
+    level:    [73, 77]
+  16912653:
+    template: Omphuabo
+    region:   n_269
+    level:    [79, 81]
+  16912654:
+    template: Omphuabo
+    region:   ne_270
+    level:    [79, 81]
+  16912655:
+    template: Omaern_sam
+    script:   Omaern
+    region:   n_271
+    level:    [75, 78]
+  16912656:
+    template: Omaern_thf
+    script:   Omaern
+    region:   n_271
+    level:    [75, 78]
+  16912657:
+    template: Omhpemde_nodive
+    script:   Omhpemde
+    region:   n_271
+    level:    [73, 77]
+  16912658:
+    template: Omhpemde_nodive
+    script:   Omhpemde
+    region:   n_271
+    level:    [73, 77]
+  16912659:
+    template: Omphuabo
+    region:   n_275
+    level:    [79, 81]
+  16912660:
+    template: Omxzomit_2978
+    script:   Omxzomit
+    region:   n_276
+    level:    [73, 76]
+  16912661:
+    template: Omxzomit_7094
+    script:   Omxzomit
+    region:   n_276
+    level:    [73, 76]
+  16912662:
+    template: Omhpemde_nodive
+    script:   Omhpemde
+    region:   n_276
+    level:    [73, 77]
+  16912663:
+    template: Omhpemde_nodive
+    script:   Omhpemde
+    region:   n_276
+    level:    [73, 77]
+  16912664:
+    template: Omphuabo
+    region:   n_280
+    level:    [79, 81]
+  16912665:
+    template: Omaern_rng
+    script:   Omaern
+    region:   nw_281
+    level:    [75, 78]
+  16912666:
+    template: Omaern_bst
+    script:   Omaern_BST
+    region:   nw_281
+    level:    [75, 78]
+  16912667:
+    template: Aerns_Xzomit
+    at:       [1.000, 1.000, 1.000]
+    level:    [65, 69]
+  16912668:
+    template: Omhpemde_nodive
+    script:   Omhpemde
+    region:   nw_281
+    level:    [73, 77]
+  16912669:
+    template: Omhpemde_nodive
+    script:   Omhpemde
+    region:   nw_281
+    level:    [73, 77]
+  16912670:
+    template: Omphuabo
+    region:   nw_286
+    level:    [79, 81]
+  16912671:
+    template: Omaern_pld
+    script:   Omaern
+    region:   n_287
+    level:    [75, 78]
+  16912672:
+    template: Omaern_nin
+    script:   Omaern
+    region:   n_287
+    level:    [75, 78]
+  16912673:
+    template: Omaern_drg
+    script:   Omaern_DRG
+    region:   n_287
+    level:    [75, 78]
+  16912674:
+    template: Aerns_Wynav
+    at:       [1.000, 1.000, 1.000]
+    level:    [65, 69]
+  16912675:
+    template: Omhpemde_nodive
+    script:   Omhpemde
+    region:   n_287
+    level:    [73, 77]
+  16912676:
+    template: Omhpemde_nodive
+    script:   Omhpemde
+    region:   n_287
+    level:    [73, 77]
+  16912677:
+    template: Omphuabo
+    region:   n_293
+    level:    [79, 81]
+  16912678:
+    template: Omaern_whm
+    script:   Omaern
+    region:   n_294
+    level:    [75, 78]
+  16912679:
+    template: Omaern_drk
+    script:   Omaern
+    region:   n_294
+    level:    [75, 78]
+  16912680:
+    template: Omhpemde_nodive
+    script:   Omhpemde
+    region:   n_294
+    level:    [73, 77]
+  16912681:
+    template: Omhpemde_nodive
+    script:   Omhpemde
+    region:   n_294
+    level:    [73, 77]
+  16912682:
+    template: Omxzomit_2978
+    script:   Omxzomit
+    region:   w_298
+    level:    [72, 75]
+  16912683:
+    template: Omxzomit_7094
+    script:   Omxzomit
+    region:   w_298
+    level:    [73, 76]
+  16912684:
+    template: Omxzomit_2978
+    script:   Omxzomit
+    region:   w_298
+    level:    [73, 76]
+  16912685:
+    template: Omxzomit_7094
+    script:   Omxzomit
+    region:   w_298
+    level:    [73, 76]
+  16912686:
+    template: Omphuabo
+    region:   w_302
+    level:    [79, 81]
+  16912687:
+    template: Omxzomit_2978
+    script:   Omxzomit
+    region:   w_303
+    level:    [72, 75]
+  16912688:
+    template: Omxzomit_7094
+    script:   Omxzomit
+    region:   w_303
+    level:    [72, 75]
+  16912689:
+    template: Omxzomit_2978
+    script:   Omxzomit
+    region:   w_303
+    level:    [72, 75]
+  16912690:
+    template: Omxzomit_7094
+    script:   Omxzomit
+    region:   w_303
+    level:    [73, 73]
+  16912691:
+    template: Omxzomit_2978
+    script:   Omxzomit
+    region:   w_303
+    level:    [73, 76]
+  16912692:
+    template: Omxzomit_7094
+    script:   Omxzomit
+    region:   w_303
+    level:    [73, 76]
+  16912693:
+    template: Omphuabo
+    region:   w_309
+    level:    [79, 81]
+  16912694:
+    template: Omaern_war
+    script:   Omaern
+    region:   w_310
+    level:    [75, 78]
+  16912695:
+    template: Omaern_pld
+    script:   Omaern
+    region:   w_310
+    level:    [75, 78]
+  16912696:
+    template: Omaern_rdm
+    script:   Omaern
+    region:   w_310
+    level:    [75, 78]
+  16912697:
+    template: Omxzomit_2978
+    script:   Omxzomit
+    region:   w_310
+    level:    [73, 74]
+  16912698:
+    template: Omxzomit_7094
+    script:   Omxzomit
+    region:   w_310
+    level:    [73, 76]
+  16912699:
+    template: Omxzomit_7094
+    script:   Omxzomit
+    region:   w_310
+    level:    [73, 76]
+  16912700:
+    template: Omxzomit_2978
+    script:   Omxzomit
+    region:   w_310
+    level:    [73, 76]
+  16912701:
+    template: Omxzomit_7094
+    script:   Omxzomit
+    region:   w_310
+    level:    [73, 76]
+  16912702:
+    template: Omphuabo
+    region:   w_318
+    level:    [79, 81]
+  16912703:
+    template: Omphuabo
+    region:   w_318
+    level:    [79, 81]
+  16912704:
+    template: Omphuabo
+    at:       [-479.044, -0.500, 202.431, 161]
+    level:    [79, 81]
+  16912705:
+    template: Omphuabo
+    region:   w_321
+    level:    [79, 81]
+  16912706:
+    template: Omaern_blm
+    script:   Omaern
+    region:   w_322
+    level:    [75, 78]
+  16912707:
+    template: Omxzomit_2978
+    script:   Omxzomit
+    region:   w_322
+    level:    [73, 76]
+  16912708:
+    template: Omxzomit_7094
+    script:   Omxzomit
+    region:   w_322
+    level:    [74, 75]
+  16912709:
+    template: Omaern_sam
+    script:   Omaern
+    region:   nw_325
+    level:    [75, 78]
+  16912710:
+    template: Omaern_whm
+    script:   Omaern
+    region:   nw_325
+    level:    [75, 78]
+  16912711:
+    template: Omaern_rng
+    script:   Omaern
+    region:   nw_325
+    level:    [75, 78]
+  16912712:
+    template: Omaern_smn
+    script:   Omaern_SMN
+    region:   nw_325
+    level:    [75, 78]
+  16912713:
+    template: Aerns_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [65, 69]
+  16912714:
+    template: Omphuabo
+    region:   nw_330
+    level:    [79, 81]
+  16912715:
+    template: Omaern_drk
+    script:   Omaern
+    region:   nw_331
+    level:    [75, 78]
+  16912716:
+    template: Omaern_brd
+    script:   Omaern
+    region:   nw_331
+    level:    [75, 78]
+  16912717:
+    template: Omaern_nin
+    script:   Omaern
+    region:   nw_331
+    level:    [75, 78]
+  16912718:
+    template: Omhpemde_nodive
+    script:   Omhpemde
+    region:   nw_331
+    level:    [73, 77]
+  16912719:
+    template: Omhpemde_nodive
+    script:   Omhpemde
+    region:   nw_331
+    level:    [73, 77]
+  16912720:
+    template: Omphuabo
+    region:   nw_336
+    level:    [79, 81]
+  16912721:
+    template: Omphuabo
+    region:   nw_336
+    level:    [79, 81]
+  16912722:
+    template: Omaern_war
+    script:   Omaern
+    region:   nw_338
+    level:    [75, 78]
+  16912723:
+    template: Omaern_drk
+    script:   Omaern
+    region:   nw_338
+    level:    [75, 78]
+  16912724:
+    template: Omaern_bst
+    script:   Omaern_BST
+    region:   nw_338
+    level:    [75, 78]
+  16912725:
+    template: Aerns_Xzomit
+    at:       [1.000, 1.000, 1.000]
+    level:    [65, 69]
+  16912726:
+    template: Omaern_drg
+    script:   Omaern_DRG
+    region:   nw_338
+    level:    [75, 78]
+  16912727:
+    template: Aerns_Wynav
+    at:       [1.000, 1.000, 1.000]
+    level:    [65, 69]
+  16912728:
+    template: Omhpemde_nodive
+    script:   Omhpemde
+    region:   nw_338
+    level:    [73, 77]
+  16912729:
+    template: Omhpemde_nodive
+    script:   Omhpemde
+    region:   nw_338
+    level:    [73, 77]
+  16912730:
+    template: Omphuabo
+    region:   nw_346
+    level:    [79, 81]
+  16912731:
+    template: Omphuabo
+    region:   nw_347
+    level:    [79, 81]
+  16912732:
+    template: Omaern_thf
+    script:   Omaern
+    region:   nw_348
+    level:    [75, 78]
+  16912733:
+    template: Omhpemde_nodive
+    script:   Omhpemde
+    region:   nw_348
+    level:    [73, 77]
+  16912734:
+    template: Omphuabo
+    region:   nw_350
+    level:    [79, 81]
+  16912735:
+    template: Omphuabo
+    region:   nw_351
+    level:    [79, 81]
+  16912736:
+    template: Omhpemde_nodive
+    script:   Omhpemde
+    region:   nw_352
+    level:    [73, 77]
+  16912737:
+    template: Omhpemde_nodive
+    script:   Omhpemde
+    region:   nw_352
+    level:    [73, 77]
+  16912738:
+    template: Omhpemde_nodive
+    script:   Omhpemde
+    region:   nw_352
+    level:    [73, 77]
+  16912739:
+    template: Omphuabo
+    region:   nw_355
+    level:    [79, 81]
+  16912740:
+    template: Omphuabo
+    at:       [-415.159, -0.500, 548.450, 28]
+    level:    [79, 81]
+  16912741:
+    template: Omphuabo
+    region:   nw_357
+    level:    [79, 81]
+  16912742:
+    template: Omaern_thf
+    script:   Omaern
+    region:   e_358
+    level:    [75, 78]
+  16912743:
+    template: Omaern_rng
+    script:   Omaern
+    region:   e_358
+    level:    [75, 78]
+  16912744:
+    template: Omphuabo
+    region:   e_360
+    level:    [79, 81]
+  16912745:
+    template: Omaern_blm
+    script:   Omaern
+    region:   e_361
+    level:    [75, 78]
+  16912746:
+    template: Omaern_rdm
+    script:   Omaern
+    region:   e_361
+    level:    [75, 78]
+  16912747:
+    template: Omaern_drg
+    script:   Omaern_DRG
+    region:   e_361
+    level:    [75, 78]
+  16912748:
+    template: Aerns_Wynav
+    at:       [1.000, 1.000, 1.000]
+    level:    [65, 69]
+  16912749:
+    template: Omhpemde_nodive
+    script:   Omhpemde
+    region:   e_361
+    level:    [73, 77]
+  16912750:
+    template: Omhpemde_nodive
+    script:   Omhpemde
+    region:   e_361
+    level:    [73, 77]
+  16912751:
+    template: Omphuabo
+    region:   e_367
+    level:    [79, 81]
+  16912752:
+    template: Omphuabo
+    region:   e_367
+    level:    [79, 81]
+  16912753:
+    template: Omaern_sam
+    script:   Omaern
+    region:   e_369
+    level:    [75, 78]
+  16912754:
+    template: Omaern_thf
+    script:   Omaern
+    region:   e_369
+    level:    [75, 78]
+  16912755:
+    template: Omaern_brd
+    script:   Omaern
+    region:   e_369
+    level:    [75, 78]
+  16912756:
+    template: Omaern_nin
+    script:   Omaern
+    region:   e_369
+    level:    [75, 78]
+  16912757:
+    template: Omphuabo
+    region:   e_373
+    level:    [79, 81]
+  16912758:
+    template: Omphuabo
+    region:   e_374
+    level:    [79, 81]
+  16912759:
+    template: Omphuabo
+    region:   e_375
+    level:    [79, 81]
+  16912760:
+    template: Omaern_mnk
+    script:   Omaern
+    region:   e_376
+    level:    [75, 78]
+  16912761:
+    template: Omaern_whm
+    script:   Omaern
+    region:   e_376
+    level:    [75, 78]
+  16912762:
+    template: Omaern_smn
+    script:   Omaern_SMN
+    region:   e_376
+    level:    [75, 78]
+  16912763:
+    template: Aerns_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [65, 69]
+  16912764:
+    template: Omphuabo
+    region:   e_380
+    level:    [79, 81]
+  16912765:
+    template: Omaern_pld
+    script:   Omaern
+    region:   e_381
+    level:    [75, 78]
+  16912766:
+    template: Omaern_rng
+    script:   Omaern
+    region:   e_381
+    level:    [75, 78]
+  16912767:
+    template: Omphuabo
+    region:   e_383
+    level:    [79, 81]
+  16912768:
+    template: Omhpemde_nodive
+    script:   Omhpemde
+    region:   ne_384
+    level:    [73, 77]
+  16912769:
+    template: Omhpemde_nodive
+    script:   Omhpemde
+    region:   ne_384
+    level:    [73, 77]
+  16912770:
+    template: Omhpemde_nodive
+    script:   Omhpemde
+    region:   ne_384
+    level:    [73, 77]
+  16912771:
+    template: Omhpemde_nodive
+    script:   Omhpemde
+    region:   ne_384
+    level:    [73, 77]
+  16912772:
+    template: Omhpemde_nodive
+    script:   Omhpemde
+    region:   ne_384
+    level:    [73, 77]
+  16912773:
+    template: Omhpemde_nodive
+    script:   Omhpemde
+    region:   ne_384
+    level:    [73, 77]
+  16912774:
+    template: Omphuabo
+    region:   ne_390
+    level:    [79, 81]
+  16912775:
+    template: Omxzomit_2978
+    script:   Omxzomit
+    region:   ne_391
+    level:    [73, 76]
+  16912776:
+    template: Omxzomit_7094
+    script:   Omxzomit
+    region:   ne_391
+    level:    [73, 76]
+  16912777:
+    template: Omhpemde_nodive
+    script:   Omhpemde
+    region:   ne_391
+    level:    [73, 77]
+  16912778:
+    template: Omhpemde_nodive
+    script:   Omhpemde
+    region:   ne_391
+    level:    [73, 77]
+  16912779:
+    template: Omphuabo
+    region:   ne_395
+    level:    [79, 81]
+  16912780:
+    template: Omxzomit_2978
+    script:   Omxzomit
+    region:   ne_396
+    level:    [72, 75]
+  16912781:
+    template: Omxzomit_7094
+    script:   Omxzomit
+    region:   ne_396
+    level:    [73, 76]
+  16912782:
+    template: Omhpemde_nodive
+    script:   Omhpemde
+    region:   ne_396
+    level:    [73, 77]
+  16912783:
+    template: Omhpemde_nodive
+    script:   Omhpemde
+    region:   ne_396
+    level:    [73, 77]
+  16912784:
+    template: Omphuabo
+    at:       [483.854, -0.499, 371.323, 78]
+    level:    [79, 81]
+  16912785:
+    template: Omxzomit_2978
+    script:   Omxzomit
+    region:   ne_401
+    level:    [72, 75]
+  16912786:
+    template: Omxzomit_7094
+    script:   Omxzomit
+    region:   ne_401
+    level:    [73, 76]
+  16912787:
+    template: Omxzomit_2978
+    script:   Omxzomit
+    region:   ne_401
+    level:    [73, 76]
+  16912788:
+    template: Omxzomit_7094
+    script:   Omxzomit
+    region:   ne_401
+    level:    [73, 76]
+  16912789:
+    template: Omxzomit_2978
+    script:   Omxzomit
+    region:   ne_401
+    level:    [73, 76]
+  16912790:
+    template: Omxzomit_7094
+    script:   Omxzomit
+    region:   ne_401
+    level:    [73, 76]
+  16912791:
+    template: Omphuabo
+    region:   ne_407
+    level:    [79, 81]
+  16912792:
+    template: Omxzomit_2978
+    script:   Omxzomit
+    region:   ne_408
+    level:    [72, 75]
+  16912793:
+    template: Omxzomit_7094
+    script:   Omxzomit
+    region:   ne_408
+    level:    [73, 76]
+  16912794:
+    template: Omxzomit_2978
+    script:   Omxzomit
+    region:   ne_408
+    level:    [72, 75]
+  16912795:
+    template: Omxzomit_7094
+    script:   Omxzomit
+    region:   ne_408
+    level:    [73, 76]
+  16912796:
+    template: Omxzomit_2978
+    script:   Omxzomit
+    region:   ne_408
+    level:    [72, 75]
+  16912797:
+    template: Omxzomit_7094
+    script:   Omxzomit
+    region:   ne_408
+    level:    [72, 75]
+  16912798:
+    template: Omphuabo
+    region:   ne_414
+    level:    [79, 81]
+  16912799:
+    template: Omphuabo
+    at:       [567.458, -0.238, 438.554, 150]
+    level:    [79, 81]
+  16912800:
+    template: Omxzomit_2978
+    script:   Omxzomit
+    region:   ne_416
+    level:    [72, 75]
+  16912801:
+    template: Omxzomit_7094
+    script:   Omxzomit
+    region:   ne_416
+    level:    [73, 76]
+  16912802:
+    template: Omhpemde_nodive
+    script:   Omhpemde
+    region:   ne_416
+    level:    [73, 77]
+  16912803:
+    template: Omhpemde_nodive
+    script:   Omhpemde
+    region:   ne_416
+    level:    [73, 77]
+  16912804:
+    template: Omphuabo
+    region:   ne_420
+    level:    [79, 81]
+  16912805:
+    template: Omxzomit_7094
+    script:   Omxzomit
+    region:   ne_421
+    level:    [73, 76]
+  16912806:
+    template: Omxzomit_2978
+    script:   Omxzomit
+    region:   ne_421
+    level:    [72, 75]
+  16912807:
+    template: Omhpemde_nodive
+    script:   Omhpemde
+    region:   ne_421
+    level:    [73, 77]
+  16912808:
+    template: Omhpemde_nodive
+    script:   Omhpemde
+    region:   ne_421
+    level:    [73, 77]
+  16912809:
+    template: Omphuabo
+    at:       [402.174, -0.493, 571.392, 103]
+    level:    [79, 81]
+  16912810:
+    template: Omphuabo
+    region:   ne_426
+    level:    [79, 81]
+  16912811:
+    template: Aweuvhi
+    at:       [300.008, -0.500, 440.956, 235]
+    level:    [78, 80]
+  16912812:
+    template: Omyovra
+    region:   ne_428
+    level:    [84, 85]
+  16912813:
+    template: Aweuvhi
+    at:       [-131.443, -1.613, 587.186, 227]
+    level:    [78, 80]
+  16912814:
+    template: Omyovra
+    region:   n_430
+    level:    [84, 85]
+  16912815:
+    template: Aweuvhi
+    at:       [133.624, -0.500, 718.888, 96]
+    level:    [78, 80]
+  16912816:
+    template: Omyovra
+    region:   n_432
+    level:    [84, 85]
+  16912817:
+    template: Aweuvhi
+    at:       [-328.663, -0.500, 438.076, 6]
+    level:    [78, 80]
+  16912818:
+    template: Omyovra
+    region:   nw_434
+    level:    [84, 85]
+  16912819:
+    template: Aweuvhi
+    at:       [-604.573, -1.416, 340.526, 160]
+    level:    [78, 80]
+  16912820:
+    template: Omyovra
+    region:   nw_436
+    level:    [84, 85]
+  16912821:
+    template: Aweuvhi
+    at:       [-360.523, -0.500, 221.878, 138]
+    level:    [78, 80]
+  16912822:
+    template: Omyovra
+    region:   w_438
+    level:    [84, 85]
+  16912823:
+    template: Aweuvhi
+    at:       [392.709, -0.500, 415.565, 24]
+    level:    [78, 80]
+  16912824:
+    template: Omyovra
+    region:   ne_440
+    level:    [84, 85]
+  16912825:
+    template: Aweuvhi
+    at:       [474.343, -0.500, 68.152, 237]
+    level:    [78, 80]
+  16912826:
+    template: Omyovra
+    region:   e_442
+    level:    [84, 85]
+  16912827:
+    template: Aweuvhi
+    at:       [451.779, -0.500, -245.322, 145]
+    level:    [78, 80]
+  16912828:
+    template: Omyovra
+    region:   e_444
+    level:    [84, 85]
+  16912829:
+    template: Ruaern_war
+    script:   Ruaern
+    at:       [3.722, -3.756, -734.022, 130]
+    level:    [70, 71]
+  16912830:
+    template: Ruaern_whm
+    script:   Ruaern
+    at:       [0.133, -3.756, -729.262, 60]
+    level:    [70, 71]
+  16912831:
+    template: Ruaern_sam
+    script:   Ruaern
+    at:       [-4.557, -3.756, -734.109, 250]
+    level:    [70, 71]
+  16912832:
+    template: Ruaern_drk
+    script:   Ruaern
+    at:       [-678.787, -3.755, -224.752, 195]
+    level:    [70, 71]
+  16912833:
+    template: Ruaern_rdm
+    script:   Ruaern
+    at:       [-677.037, -3.755, -220.077, 120]
+    level:    [70, 71]
+  16912834:
+    template: Ruaern_rng
+    script:   Ruaern
+    at:       [-681.744, -3.755, -216.856, 45]
+    level:    [70, 71]
+  16912835:
+    template: Ruaern_pld
+    script:   Ruaern
+    at:       [681.343, -3.756, -216.772, 80]
+    level:    [70, 71]
+  16912836:
+    template: Ruaern_blm
+    script:   Ruaern
+    at:       [676.025, -3.756, -219.469, 15]
+    level:    [70, 71]
+  16912837:
+    template: Ruaern_mnk
+    script:   Ruaern
+    at:       [676.589, -3.756, -224.828, 200]
+    level:    [70, 71]
+  16912838:
+    template: Jailer_of_Hope
+    at:       [-681.683, -0.500, -77.066, 157]
+    level:    [85, 85]
+  16912839:
+    template: Jailer_of_Justice
+    at:       [-279.194, -0.500, -465.362, 246]
+    level:    [85, 85]
+  16912840:
+    template: Qnxzomit
+    at:       [-286.000, -0.500, -465.000]
+    level:    [80, 80]
+  16912841:
+    template: Qnxzomit
+    at:       [-295.663, -0.060, -448.272, 149]
+    level:    [80, 80]
+  16912842:
+    template: Qnxzomit
+    at:       [-287.525, -0.500, -464.500, 69]
+    level:    [80, 80]
+  16912843:
+    template: Qnxzomit
+    at:       [-284.194, -0.500, -470.361, 246]
+    level:    [80, 80]
+  16912844:
+    template: Qnxzomit
+    at:       [-295.663, -0.060, -448.272, 149]
+    level:    [80, 80]
+  16912845:
+    template: Qnxzomit
+    at:       [-287.525, -0.500, -464.500, 69]
+    level:    [80, 80]
+  16912846:
+    template: Jailer_of_Prudence
+    at:       [706.114, -1.021, 24.110, 85]
+    level:    [85, 85]
+  16912847:
+    template: Jailer_of_Prudence
+    at:       [709.324, -1.289, 22.126, 85]
+    level:    [85, 85]
+  16912848:
+    template: Jailer_of_Love
+    at:       [437.760, -1.643, -598.571, 4]
+    level:    [90, 90]
+  16912849:
+    template: Ruphuabo
+    at:       [477.480, -1.111, -565.864, 39]
+    level:    [80, 80]
+  16912850:
+    template: Ruphuabo
+    at:       [477.550, -1.114, -566.001, 38]
+    level:    [80, 80]
+  16912851:
+    template: Ruphuabo
+    at:       [477.622, -1.110, -566.194, 37]
+    level:    [80, 80]
+  16912852:
+    template: Ruphuabo
+    at:       [480.104, -1.506, -561.952, 252]
+    level:    [80, 80]
+  16912853:
+    template: Ruphuabo
+    at:       [480.242, -1.498, -561.964, 252]
+    level:    [80, 80]
+  16912854:
+    template: Ruphuabo
+    at:       [480.110, -1.466, -562.257, 248]
+    level:    [80, 80]
+  16912855:
+    template: Ruphuabo
+    at:       [476.961, -1.279, -560.968, 247]
+    level:    [80, 80]
+  16912856:
+    template: Ruphuabo
+    at:       [477.169, -1.295, -560.921, 247]
+    level:    [80, 80]
+  16912857:
+    template: Ruphuabo
+    at:       [477.550, -1.328, -561.215, 242]
+    level:    [80, 80]
+  16912858:
+    template: Qnxzomit
+    at:       [482.157, -1.504, -561.017, 92]
+    level:    [80, 80]
+  16912859:
+    template: Qnxzomit
+    at:       [478.351, -1.358, -561.169, 31]
+    level:    [80, 80]
+  16912860:
+    template: Qnxzomit
+    at:       [479.613, -1.395, -561.400, 46]
+    level:    [80, 80]
+  16912861:
+    template: Qnxzomit
+    at:       [480.343, -1.461, -562.054, 250]
+    level:    [80, 80]
+  16912862:
+    template: Qnxzomit
+    at:       [480.538, -1.380, -561.452, 4]
+    level:    [80, 80]
+  16912863:
+    template: Qnxzomit
+    at:       [480.093, -1.473, -561.951, 252]
+    level:    [80, 80]
+  16912864:
+    template: Qnxzomit
+    at:       [479.049, -1.470, -560.512, 248]
+    level:    [80, 80]
+  16912865:
+    template: Qnxzomit
+    at:       [478.548, -1.473, -560.292, 40]
+    level:    [80, 80]
+  16912866:
+    template: Qnxzomit
+    at:       [477.643, -1.564, -561.005, 26]
+    level:    [80, 80]
+  16912867:
+    template: Qnhpemde
+    at:       [480.014, -1.804, -560.765, 13]
+    level:    [80, 80]
+  16912868:
+    template: Qnhpemde
+    at:       [479.857, -1.848, -560.908, 10]
+    level:    [80, 80]
+  16912869:
+    template: Qnhpemde
+    at:       [479.691, -1.850, -560.698, 41]
+    level:    [80, 80]
+  16912870:
+    template: Qnhpemde
+    at:       [480.161, -1.889, -560.058, 59]
+    level:    [80, 80]
+  16912871:
+    template: Qnhpemde
+    at:       [479.138, -1.738, -560.684, 119]
+    level:    [80, 80]
+  16912872:
+    template: Qnhpemde
+    at:       [481.643, -1.676, -560.652, 83]
+    level:    [80, 80]
+  16912873:
+    template: Qnhpemde
+    at:       [479.042, -1.840, -559.745, 28]
+    level:    [80, 80]
+  16912874:
+    template: Qnhpemde
+    at:       [478.761, -1.550, -559.849, 25]
+    level:    [80, 80]
+  16912875:
+    template: Qnhpemde
+    at:       [479.025, -1.534, -559.847, 27]
+    level:    [80, 80]
+  16912876:
+    template: Absolute_Virtue
+    at:       [461.266, -1.643, -580.192, 4]
+    level:    [92, 92]
+  16912877:
+    template: Aerns_Wynav
+    at:       [463.115, -1.346, -571.896, 181]
+    level:    [65, 69]
+  16912878:
+    template: Aerns_Wynav
+    at:       [463.214, -1.336, -573.022, 202]
+    level:    [65, 69]
+  16912879:
+    template: Aerns_Wynav
+    at:       [463.557, -1.360, -574.178, 193]
+    level:    [65, 69]
+  16912880:
+    template: Aerns_Wynav
+    at:       [463.115, -1.346, -571.896, 181]
+    level:    [65, 69]
+  16912881:
+    template: Aerns_Wynav
+    at:       [463.214, -1.336, -573.022, 202]
+    level:    [65, 69]
+  16912882:
+    template: Aerns_Wynav
+    at:       [463.557, -1.360, -574.178, 193]
+    level:    [65, 69]

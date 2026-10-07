@@ -1,0 +1,38 @@
+-- Text ids rebuilt for the 2007 PS2 client data tooling: PROFILE 2012 = the 2012 client data (report 28) by research/tools/lsb_textids_2007.py (7 changed, 7 not in the 2007 dialog DAT 6562 and left unchanged).
+-----------------------------------
+-- Area: Yughott Grotto (142)
+-----------------------------------
+zones = zones or {}
+
+zones[xi.zone.YUGHOTT_GROTTO] =
+{
+    text =
+    {
+        CONQUEST_BASE                 = 0,    -- Tallying conquest results...
+        ITEM_CANNOT_BE_OBTAINED       = 6534, -- You cannot obtain the <item>. Come back after sorting your inventory.
+        ITEM_OBTAINED                 = 6537, -- Obtained: <item>.
+        GIL_OBTAINED                  = 6538, -- Obtained <number> gil.
+        KEYITEM_OBTAINED              = 6557, -- Obtained key item: <keyitem>.
+        FELLOW_MESSAGE_OFFSET         = 6565, -- I'm ready. I suppose.
+        CARRIED_OVER_POINTS           = 7165, -- You have carried over <number> login point[/s].
+        LOGIN_CAMPAIGN_UNDERWAY       = 7166, -- The [/January/February/March/April/May/June/July/August/September/October/November/December] <number> Login Campaign is currently underway!
+        LOGIN_NUMBER                  = 7167, -- In celebration of your most recent login (login no. <number>), we have provided you with <number> points! You currently have a total of <number> points.
+        GEOMAGNETRON_ATTUNED          = 7176, -- Your <keyitem> has been attuned to a geomagnetic fount in the corresponding locale.
+        MEMBERS_LEVELS_ARE_RESTRICTED = 7187, -- Your party is unable to participate because certain members' levels are restricted.
+        FISHING_MESSAGE_OFFSET        = 7153, -- You can't fish here.
+        CHEST_UNLOCKED                = 7270, -- You unlock the chest!
+        MINING_IS_POSSIBLE_HERE       = 7278, -- Mining is possible here if you have <item>.
+        HOMEPOINT_SET                 = 7467, -- Home point set!
+    },
+    mob =
+    {
+        ASHMAKER_GOTBLUT = GetFirstID('Ashmaker_Gotblut'),
+    },
+    npc =
+    {
+        TREASURE_CHEST = GetFirstID('Treasure_Chest'),
+        MINING         = GetTableOfIDs('Mining_Point'),
+    },
+}
+
+return zones[xi.zone.YUGHOTT_GROTTO]

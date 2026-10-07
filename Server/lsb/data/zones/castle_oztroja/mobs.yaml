@@ -1,0 +1,3410 @@
+# yaml-language-server: $schema=../../schemas/mobs.schema.json
+
+templates:
+
+  Bastion_Bats:
+    id:            355
+    species:       flock_bat
+    skill_list_id: 47
+    attributes:
+      combat:
+        skill: club
+      render:
+        look:
+          type:  standard
+          model: 260
+        entity_flags:  643
+        animation_sub:   8
+        name_prefix:    64
+        model_size:      1
+        hitbox:         16
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 780
+    loot:
+      drops:
+        - chance: common
+          item:   bat_wing
+      despoil:
+        bat_wing: 0
+
+  Bulwark_Bat:
+    id:            582
+    species:       bat
+    skill_list_id: 46
+    attributes:
+      combat:
+        skill: club
+      render:
+        look:
+          type:  standard
+          model: 256
+        entity_flags:  643
+        animation_sub:   8
+        model_size:      1
+        hitbox:         12
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 780
+    loot:
+      drops:
+        - chance: common
+          item:   bat_wing
+        - chance: uncommon
+          item:   bat_fang
+        - chance: very_rare
+          item:   vial_of_fiend_blood
+      despoil:
+        bat_wing: 0
+
+  Cutter:
+    id:            872
+    species:       crab
+    skill_list_id: 77
+    attributes:
+      combat:
+        skill: great_sword
+      jobs: [pld, pld]
+      render:
+        look:
+          type:  standard
+          model: 356
+        entity_flags: 131
+        model_size:     1
+        hitbox:        13
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 780
+    loot:
+      drops:
+        - chance: always
+          item:   chunk_of_rock_salt
+        - chance: common
+          item:   slice_of_land_crab_meat
+        - chance: common
+          item:   crab_shell
+        - chance: common
+          item:   slice_of_land_crab_meat
+        - chance: uncommon
+          item:   slice_of_land_crab_meat
+      steal: chunk_of_rock_salt
+      despoil:
+        slice_of_land_crab_meat: 0
+        crab_shell:              0
+
+  Earth_Elemental:
+    id:            1160
+    species:       earth_elemental
+    spell_list_id: 13
+    skill_list_id: 101
+    attributes:
+      combat:
+        skill: staff
+      jobs: [blm, rdm]
+      resists:
+        immune_status: [stun, slow, elegy]
+      render:
+        look:
+          type:  standard
+          model: 439
+        entity_flags:  1155
+        animation_sub:   16
+        model_size:       1
+        hitbox:           3
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 960
+        type:    [weather]
+    loot:
+      drops:
+        - chance: always
+          item:   earth_cluster
+        - chance: common
+          item:   earth_cluster
+        - chance: common
+          item:   earth_cluster
+        - chance: uncommon
+          item:   white_rock
+
+  Fire_Elemental:
+    id:            1341
+    species:       fire_elemental
+    spell_list_id: 17
+    skill_list_id: 102
+    attributes:
+      combat:
+        skill: staff
+      jobs: [blm, rdm]
+      resists:
+        immune_status: [bind, paralyze]
+      render:
+        look:
+          type:  standard
+          model: 436
+        entity_flags:  131
+        animation_sub:  16
+        model_size:      1
+        hitbox:          3
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 960
+        type:    [weather]
+    loot:
+      drops:
+        - chance: always
+          item:   fire_cluster
+        - chance: common
+          item:   fire_cluster
+        - chance: common
+          item:   fire_cluster
+
+  Huu_Xalmo_the_Savage:
+    id:            2016
+    species:       yagudo
+    type:          [notorious]
+    skill_list_id: 360
+    attributes:
+      combat:
+        skill: hand_to_hand
+        delay: 280
+      jobs: [mnk, mnk]
+      render:
+        look:
+          type:  standard
+          model: 590
+        entity_flags: 157
+        name_prefix:   32
+        model_size:     2
+        hitbox:        17
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 31500
+    loot:
+      drops:
+        - chance: always
+          item:   xalmo_feather
+      steal: beastcoin
+
+  Lii_Jixa_the_Somnolist:
+    id:            4573
+    species:       yagudo
+    type:          [notorious]
+    spell_list_id: 20
+    skill_list_id: 270
+    attributes:
+      combat:
+        skill: club
+      jobs: [whm, whm]
+      render:
+        look:
+          type:  standard
+          model: 603
+        entity_flags:  667
+        animation_sub:   8
+        name_prefix:    32
+        model_size:      1
+        hitbox:         15
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 3600
+    loot:
+      drops:
+        - chance: very_common
+          item:   ceres_spica
+    content: wotg
+
+  Meat_Maggot:
+    id:            2602
+    species:       crawler
+    skill_list_id: 79
+    attributes:
+      combat:
+        skill: club
+      render:
+        look:
+          type:  standard
+          model: 396
+        entity_flags: 131
+        model_size:     1
+        hitbox:        15
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 780
+    loot:
+      drops:
+        - chance: uncommon
+          item:   spool_of_silk_thread
+        - chance: rare
+          item:   white_rock
+      despoil:
+        piece_of_crawler_cocoon: 0
+        crawler_egg:             0
+
+  Mee_Deggi_the_Punisher:
+    id:            2607
+    species:       yagudo
+    type:          [notorious]
+    skill_list_id: 360
+    attributes:
+      combat:
+        skill: hand_to_hand
+        delay: 380
+      jobs: [mnk, mnk]
+      render:
+        look:
+          type:  standard
+          model: 580
+        entity_flags: 155
+        name_prefix:   32
+        model_size:     1
+        hitbox:        15
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [lottery]
+      stats:
+        hp: 2920
+    loot:
+      drops:
+        - chance: always
+          one_of:
+            impact_knuckles: 95
+            ochimusha_kote:   5
+      steal: beastcoin
+
+  Mimic:
+    id:            2664
+    species:       mimic
+    type:          [notorious]
+    skill_list_id: 183
+    attributes:
+      combat:
+        skill: scythe
+        delay: 170
+      resists:
+        dmg_physical:
+          slashing: -5000
+          piercing: -5000
+          blunt:    -5000
+          h2h:      -5000
+      render:
+        look:
+          type:  standard
+          model: 259
+        entity_flags:  131
+        animation_sub:  13
+        model_size:      1
+        hitbox:         12
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: always
+          item:   oztroja_coffer_key
+
+  Moo_Ouzi_the_Swiftblade:
+    id:            2737
+    species:       yagudo
+    type:          [notorious]
+    skill_list_id: 360
+    attributes:
+      combat:
+        skill: great_katana
+        delay: 210
+      jobs: [sam, sam]
+      render:
+        look:
+          type:  standard
+          model: 598
+        entity_flags: 155
+        name_prefix:   32
+        model_size:     1
+        hitbox:        15
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [lottery]
+      stats:
+        hp: 1570
+    loot:
+      drops:
+        - chance: always
+          one_of:
+            barbarians_sword: 90
+            demonic_sword:    10
+
+  Odontotyrannus:
+    id:            2944
+    species:       pugil
+    type:          [notorious, fished]
+    skill_list_id: 197
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 348
+        entity_flags: 1153
+        hitbox:         23
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: always
+          item:   odontotyrannus
+
+  Ooze:
+    id:            2987
+    species:       slime
+    skill_list_id: 229
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 292
+        entity_flags: 1155
+        model_size:      1
+        hitbox:         24
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: common
+          item:   vial_of_slime_oil
+        - chance: very_rare
+          item:   bull_earring
+        - chance: uncommon
+          item:   vial_of_slime_oil
+        - chance: very_rare
+          item:   oztroja_chest_key
+      despoil:
+        vial_of_slime_oil: 0
+
+  Quu_Domi_the_Gallant:
+    id:            3298
+    species:       yagudo
+    type:          [notorious]
+    spell_list_id: 7
+    skill_list_id: 360
+    attributes:
+      combat:
+        skill: dagger
+      jobs: [nin, nin]
+      render:
+        look:
+          type:  standard
+          model: 588
+        entity_flags: 155
+        name_prefix:   32
+        model_size:     1
+        hitbox:        15
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [lottery]
+      stats:
+        hp: 2240
+    loot:
+      drops:
+        - chance: always
+          one_of:
+            strider_sword:   90
+            sarutobi_kyahan: 10
+
+  Saa_Doyi_the_Fervid:
+    id:            4576
+    species:       yagudo
+    type:          [notorious]
+    spell_list_id: 306
+    skill_list_id: 270
+    attributes:
+      combat:
+        skill: katana
+      jobs: [nin, nin]
+      render:
+        look:
+          type:  standard
+          model: 587
+        entity_flags: 155
+        name_prefix:   32
+        model_size:     1
+        hitbox:        15
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 3600
+    loot:
+      drops:
+        - chance: very_common
+          item:   lump_of_tokkyu_tama-hagane
+    content: wotg
+
+  Tzee_Xicu_the_Manifest:
+    id:            4072
+    species:       manifest
+    type:          [notorious]
+    spell_list_id: 30
+    skill_list_id: 360
+    attributes:
+      combat:
+        skill:    staff
+        delay:    265
+        dmg_mult: 125
+      jobs: [smn, smn]
+      render:
+        look:
+          type:  standard
+          model: 781
+        entity_flags: 157
+        name_prefix:   32
+        model_size:     2
+        hitbox:        17
+      behaviors:
+        aggressive:     true
+        links:          true
+        true_detection: true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 39000
+        mp: 42000
+    loot:
+      drops:
+        - chance: always
+          item:   platinum_beastcoin
+        - chance: always
+          item:   summoners_testimony
+        - chance: rare
+          item:   astral_signa
+        - chance: very_rare
+          item:   reraiser
+        - chance: very_rare
+          item:   vile_elixir
+        - chance: very_rare
+          item:   vile_elixir_+1
+        - chance: always
+          item:   daylight_dagger
+        - chance: always
+          one_of:
+            philosophers_stone:          30
+            phoenix_feather:             30
+            square_of_raxa:              10
+            damascus_ingot:             7.5
+            spool_of_malboro_fiber:     7.5
+            square_of_damascene_cloth:  7.5
+            vial_of_black_beetle_blood: 7.5
+        - chance: always
+          one_of:
+            square_of_raxa:           15.5
+            chunk_of_darksteel_ore:    6.5
+            chunk_of_gold_ore:         6.5
+            chunk_of_mythril_ore:      6.5
+            chunk_of_platinum_ore:     6.5
+            coral_fragment:            6.5
+            demon_horn:                6.5
+            ebony_log:                 6.5
+            handful_of_wyvern_scales:  6.5
+            mahogany_log:              6.5
+            petrified_log:             6.5
+            ram_horn:                  6.5
+            spool_of_gold_thread:      6.5
+            square_of_rainbow_cloth:   6.5
+      steal: platinum_beastcoin
+
+  Yaa_Haqa_the_Profane:
+    id:            4402
+    species:       yagudo
+    type:          [notorious]
+    spell_list_id: 21
+    skill_list_id: 360
+    attributes:
+      combat:
+        skill: axe
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 604
+        entity_flags: 155
+        name_prefix:   32
+        model_size:     1
+        hitbox:        15
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [lottery]
+    loot:
+      drops:
+        - chance: always
+          one_of:
+            frost_robe:    90
+            earth_doublet: 10
+
+  Yagudo_Abbot:
+    id:            4404
+    species:       yagudo
+    spell_list_id: 20
+    skill_list_id: 360
+    attributes:
+      combat:
+        skill: sword
+      jobs: [whm, war]
+      render:
+        look:
+          type:  standard
+          model: 603
+        entity_flags: 131
+        model_size:     1
+        hitbox:        15
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: common
+          item:   canteen_of_yagudo_holy_water
+        - chance: rare
+          item:   scroll_of_auspice
+        - chance: very_rare
+          item:   scroll_of_reraise
+        - chance: super_rare
+          item:   white_cloak
+      steal: mythril_beastcoin
+      despoil:
+        roast_carp:       0
+        roast_pipira:     0
+        boiled_tuna_head: 0
+
+  Yagudo_Assassin:
+    id:            4407
+    species:       yagudo
+    spell_list_id: 7
+    skill_list_id: 270
+    attributes:
+      combat:
+        skill: dagger
+      jobs: [nin, war]
+      render:
+        look:
+          type:  standard
+          model: 601
+        entity_flags: 133
+        model_size:     2
+        hitbox:        17
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: uncommon
+          item:   ninjas_testimony
+        - chance: rare
+          item:   oztroja_coffer_key
+        - chance: common
+          item:   manji_shuriken
+        - chance: rare
+          item:   scroll_of_tonko_ni
+        - chance: very_rare
+          item:   scroll_of_kurayami_ni
+        - chance: very_rare
+          item:   scroll_of_hojo_ni
+      steal: gold_beastcoin
+      despoil:
+        roast_carp:       0
+        roast_pipira:     0
+        boiled_tuna_head: 0
+
+  Yagudo_Avatar:
+    id:            4408
+    species:       yagudo
+    type:          [notorious]
+    spell_list_id: 30
+    skill_list_id: 270
+    attributes:
+      combat:
+        skill: club
+      jobs: [smn, war]
+      render:
+        look:
+          type:  standard
+          model: 607
+        entity_flags: 133
+        model_size:     2
+        hitbox:        17
+      behaviors:
+        aggressive:     true
+        links:          true
+        true_detection: true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 4200
+    loot:
+      drops:
+        - chance: always
+          item:   platinum_beastcoin
+        - chance: always
+          item:   summoners_testimony
+        - chance: always
+          item:   air_spirit_pact
+        - chance: always
+          one_of:
+            oak_staff:    90
+            walrus_staff: 10
+      steal: beastcoin
+
+  Yagudo_Chanter:
+    id:            4410
+    species:       yagudo
+    spell_list_id: 6
+    skill_list_id: 270
+    attributes:
+      combat:
+        skill: axe
+      jobs: [brd, war]
+      render:
+        look:
+          type:  standard
+          model: 594
+        entity_flags: 131
+        model_size:     1
+        hitbox:        15
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: very_rare
+          item:   scroll_of_foe_requiem_v
+        - chance: rare
+          item:   scroll_of_gold_capriccio
+        - chance: very_rare
+          item:   scroll_of_carnage_elegy
+      steal: mythril_beastcoin
+      despoil:
+        roast_carp:       0
+        roast_pipira:     0
+        boiled_tuna_head: 0
+
+  Yagudo_Conductor:
+    id:            4412
+    species:       yagudo
+    spell_list_id: 6
+    skill_list_id: 270
+    attributes:
+      combat:
+        skill: axe
+      jobs: [brd, war]
+      render:
+        look:
+          type:  standard
+          model: 595
+        entity_flags: 133
+        model_size:     2
+        hitbox:        17
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: uncommon
+          item:   bards_testimony
+        - chance: rare
+          item:   oztroja_coffer_key
+        - chance: uncommon
+          item:   scroll_of_warding_round
+        - chance: uncommon
+          item:   scroll_of_shining_fantasia
+        - chance: uncommon
+          item:   scroll_of_goddesss_hymnus
+        - chance: rare
+          item:   scroll_of_foe_requiem_vi
+        - chance: very_rare
+          item:   scroll_of_victory_march
+        - chance: very_rare
+          item:   scroll_of_knights_minne_iv
+        - chance: super_rare
+          item:   scroll_of_valor_minuet_iv
+        - chance: super_rare
+          item:   scroll_of_chocobo_mazurka
+
+  Yagudo_Conquistador:
+    id:            4413
+    species:       yagudo
+    spell_list_id: 7
+    skill_list_id: 270
+    attributes:
+      combat:
+        skill: dagger
+      jobs: [nin, nin]
+      render:
+        look:
+          type:  standard
+          model: 587
+        entity_flags: 131
+        model_size:     1
+        hitbox:        15
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: rare
+          item:   oztroja_chest_key
+        - chance: rare
+          item:   juji_shuriken
+        - chance: very_rare
+          item:   scroll_of_raiton_ni
+        - chance: very_rare
+          item:   scroll_of_suiton_ni
+        - chance: very_rare
+          item:   scroll_of_katon_ni
+        - chance: very_rare
+          item:   scroll_of_hyoton_ni
+        - chance: very_rare
+          item:   scroll_of_huton_ni
+        - chance: very_rare
+          item:   scroll_of_doton_ni
+      steal: mythril_beastcoin
+      despoil:
+        roast_carp:       0
+        roast_pipira:     0
+        boiled_tuna_head: 0
+
+  Yagudo_Drummer:
+    id:            4416
+    species:       yagudo
+    spell_list_id: 6
+    skill_list_id: 270
+    attributes:
+      combat:
+        skill: axe
+      jobs: [brd, brd]
+      render:
+        look:
+          type:  standard
+          model: 592
+        entity_flags: 131
+        model_size:     1
+        hitbox:        15
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 780
+    loot:
+      drops:
+        - chance: rare
+          item:   scroll_of_horde_lullaby
+        - chance: rare
+          item:   scroll_of_magic_finale
+        - chance: rare
+          item:   thirteen-knot_quipu
+      steal: silver_beastcoin
+      despoil:
+        roast_carp:       0
+        roast_pipira:     0
+        boiled_tuna_head: 0
+
+  Yagudo_Flagellant:
+    id:            4418
+    species:       yagudo
+    skill_list_id: 270
+    attributes:
+      combat:
+        skill: hand_to_hand
+        delay: 250
+      jobs: [mnk, war]
+      render:
+        look:
+          type:  standard
+          model: 590
+        entity_flags: 133
+        model_size:     2
+        hitbox:        17
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: uncommon
+          item:   monks_testimony
+        - chance: rare
+          item:   oztroja_coffer_key
+        - chance: uncommon
+          item:   judgment_key
+        - chance: ultra_rare
+          item:   raptor_helm
+        - chance: ultra_rare
+          item:   raptor_gloves
+        - chance: ultra_rare
+          item:   raptor_trousers
+        - chance: ultra_rare
+          item:   raptor_ledelsens
+
+  Yagudo_Herald:
+    id:            4423
+    species:       yagudo
+    spell_list_id: 7
+    skill_list_id: 270
+    attributes:
+      combat:
+        skill: dagger
+      jobs: [nin, nin]
+      render:
+        look:
+          type:  standard
+          model: 588
+        entity_flags: 131
+        model_size:     1
+        hitbox:        15
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 780
+    loot:
+      drops:
+        - chance: rare
+          item:   thirteen-knot_quipu
+        - chance: very_rare
+          item:   juji_shuriken
+      steal: silver_beastcoin
+      despoil:
+        roast_carp:       0
+        roast_pipira:     0
+        boiled_tuna_head: 0
+
+  Yagudo_High_Priest:
+    id:            4425
+    species:       yagudo
+    type:          [notorious]
+    spell_list_id: 20
+    skill_list_id: 270
+    attributes:
+      combat:
+        skill: club
+      jobs: [whm, war]
+      render:
+        look:
+          type:  standard
+          model: 606
+        entity_flags: 133
+        model_size:     2
+        hitbox:        17
+      behaviors:
+        aggressive:     true
+        links:          true
+        true_detection: true
+      spawn:
+        respawn: 1440
+      stats:
+        hp: 4300
+    loot:
+      drops:
+        - chance: very_common
+          item:   white_mages_testimony
+        - chance: very_common
+          item:   scroll_of_reraise_iii
+        - chance: uncommon
+          item:   scroll_of_shellra_iv
+        - chance: rare
+          item:   scroll_of_cure_v
+        - chance: rare
+          item:   scroll_of_raise_ii
+        - chance: rare
+          item:   scroll_of_regen_iii
+        - chance: very_rare
+          item:   scroll_of_curaga_iv
+      steal: beastcoin
+
+  Yagudo_Inquisitor:
+    id:            4427
+    species:       yagudo
+    skill_list_id: 270
+    attributes:
+      combat:
+        skill: great_katana
+      jobs: [sam, war]
+      render:
+        look:
+          type:  standard
+          model: 600
+        entity_flags: 131
+        model_size:     1
+        hitbox:        15
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: ultra_rare
+          item:   raptor_helm
+        - chance: ultra_rare
+          item:   raptor_gloves
+        - chance: ultra_rare
+          item:   raptor_trousers
+        - chance: ultra_rare
+          item:   raptor_ledelsens
+      steal: mythril_beastcoin
+      despoil:
+        roast_carp:       0
+        roast_pipira:     0
+        boiled_tuna_head: 0
+
+  Yagudo_Interrogator:
+    id:            4428
+    species:       yagudo
+    skill_list_id: 270
+    attributes:
+      combat:
+        skill: great_katana
+      jobs: [sam, sam]
+      render:
+        look:
+          type:  standard
+          model: 599
+        entity_flags: 131
+        model_size:     1
+        hitbox:        15
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 780
+    loot:
+      drops:
+        - chance: rare
+          item:   thirteen-knot_quipu
+        - chance: super_rare
+          item:   soil_hachimaki
+        - chance: super_rare
+          item:   soil_tekko
+        - chance: super_rare
+          item:   soil_sitabaki
+        - chance: super_rare
+          item:   soil_kyahan
+      steal: silver_beastcoin
+      despoil:
+        roast_carp:       0
+        roast_pipira:     0
+        boiled_tuna_head: 0
+
+  Yagudo_Lutenist:
+    id:            4431
+    species:       yagudo
+    spell_list_id: 6
+    skill_list_id: 270
+    attributes:
+      combat:
+        skill: axe
+      jobs: [brd, brd]
+      render:
+        look:
+          type:  standard
+          model: 593
+        entity_flags: 131
+        model_size:     1
+        hitbox:        15
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: very_rare
+          item:   oztroja_chest_key
+        - chance: rare
+          item:   scroll_of_blade_madrigal
+        - chance: very_rare
+          item:   scroll_of_dragonfoe_mambo
+      steal: mythril_beastcoin
+      despoil:
+        roast_carp:       0
+        roast_pipira:     0
+        boiled_tuna_head: 0
+
+  Yagudo_Muralist:
+    id:            4434
+    species:       yagudo
+    spell_list_id: 21
+    skill_list_id: 270
+    attributes:
+      combat:
+        skill: axe
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 584
+        entity_flags: 131
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+
+  Yagudo_Oracle:
+    id:            4437
+    species:       yagudo
+    spell_list_id: 30
+    skill_list_id: 270
+    attributes:
+      combat:
+        skill: great_axe
+      jobs: [smn, smn]
+      render:
+        look:
+          type:  standard
+          model: 596
+        entity_flags:  131
+        animation_sub:  16
+        model_size:      1
+        hitbox:         15
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 780
+    loot:
+      drops:
+        - chance: rare
+          item:   air_spirit_pact
+        - chance: ultra_rare
+          item:   wool_hat
+        - chance: ultra_rare
+          item:   wool_cuffs
+        - chance: ultra_rare
+          item:   wool_slops
+        - chance: ultra_rare
+          item:   chestnut_sabots
+      steal: silver_beastcoin
+      despoil:
+        roast_carp:       0
+        roast_pipira:     0
+        boiled_tuna_head: 0
+
+  Yagudo_Parasite:
+    id:            4438
+    species:       leech
+    skill_list_id: 172
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 276
+        entity_flags: 131
+        model_size:     1
+        hitbox:        11
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: uncommon
+          item:   vial_of_fiend_blood
+        - chance: common
+          item:   parasite_skin
+        - chance: very_rare
+          item:   oztroja_chest_key
+      despoil:
+        vial_of_fiend_blood:    0
+        vial_of_beastman_blood: 0
+        vial_of_bird_blood:     0
+
+  Yagudo_Prelate:
+    id:            5494
+    species:       yagudo
+    spell_list_id: 21
+    skill_list_id: 270
+    attributes:
+      combat:
+        skill: axe
+      jobs: [blm, war]
+      render:
+        look:
+          type:  standard
+          model: 605
+        entity_flags: 133
+        model_size:     2
+        hitbox:        17
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: rare
+          item:   oztroja_coffer_key
+        - chance: uncommon
+          item:   black_mages_testimony
+        - chance: rare
+          item:   scroll_of_aero_iii
+        - chance: very_rare
+          item:   scroll_of_aero_iv
+        - chance: rare
+          item:   scroll_of_aeroga_ii
+        - chance: very_rare
+          item:   scroll_of_aeroga_iii
+        - chance: very_rare
+          item:   scroll_of_tornado
+        - chance: ultra_rare
+          item:   black_mitts
+        - chance: ultra_rare
+          item:   white_slacks
+        - chance: ultra_rare
+          item:   moccasins
+      steal: gold_beastcoin
+      despoil:
+        roast_carp:       0
+        roast_pipira:     0
+        boiled_tuna_head: 0
+
+  Yagudo_Priest:
+    id:            4444
+    species:       yagudo
+    spell_list_id: 20
+    skill_list_id: 270
+    attributes:
+      combat:
+        skill: sword
+      jobs: [whm, whm]
+      render:
+        look:
+          type:  standard
+          model: 597
+        entity_flags: 131
+        model_size:     1
+        hitbox:        15
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 780
+    loot:
+      drops:
+        - chance: very_rare
+          item:   scroll_of_barpoisonra
+        - chance: very_rare
+          item:   scroll_of_invisible
+        - chance: very_rare
+          item:   scroll_of_deodorize
+        - chance: rare
+          item:   scroll_of_silence
+        - chance: very_rare
+          item:   poets_circlet
+        - chance: very_rare
+          item:   linen_cuffs
+        - chance: very_rare
+          item:   linen_slops
+        - chance: very_rare
+          item:   holly_clogs
+      steal: silver_beastcoin
+      despoil:
+        roast_carp:       0
+        roast_pipira:     0
+        boiled_tuna_head: 0
+
+  Yagudo_Prior:
+    id:            4445
+    species:       yagudo
+    spell_list_id: 21
+    skill_list_id: 270
+    attributes:
+      combat:
+        skill: axe
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 604
+        entity_flags: 131
+        model_size:     1
+        hitbox:        15
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: very_rare
+          item:   oztroja_chest_key
+        - chance: ultra_rare
+          item:   black_mitts
+        - chance: ultra_rare
+          item:   white_slacks
+        - chance: ultra_rare
+          item:   moccasins
+      steal: mythril_beastcoin
+      despoil:
+        roast_carp:       0
+        roast_pipira:     0
+        boiled_tuna_head: 0
+
+  Yagudo_Sentinel:
+    id:            4450
+    species:       yagudo
+    skill_list_id: 270
+    attributes:
+      combat:
+        skill: hand_to_hand
+        delay: 250
+      jobs: [mnk, war]
+      render:
+        look:
+          type:  standard
+          model: 586
+        entity_flags: 131
+        model_size:     1
+        hitbox:        15
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: super_rare
+          item:   cuir_bandana
+        - chance: super_rare
+          item:   cuir_gloves
+        - chance: super_rare
+          item:   cuir_trousers
+        - chance: super_rare
+          item:   cuir_highboots
+      steal: mythril_beastcoin
+      despoil:
+        roast_carp:       0
+        roast_pipira:     0
+        boiled_tuna_head: 0
+
+  Yagudo_Templar:
+    id:            4455
+    species:       yagudo
+    type:          [notorious]
+    skill_list_id: 270
+    attributes:
+      combat:
+        skill: great_katana
+      jobs: [sam, war]
+      render:
+        look:
+          type:  standard
+          model: 602
+        entity_flags: 133
+        model_size:     1
+        hitbox:        15
+      behaviors:
+        aggressive:     true
+        links:          true
+        true_detection: true
+      spawn:
+        respawn: 1440
+    loot:
+      drops:
+        - chance: very_common
+          item:   samurais_testimony
+      steal: beastcoin
+
+  Yagudo_Theologist:
+    id:            4456
+    species:       yagudo
+    spell_list_id: 21
+    skill_list_id: 270
+    attributes:
+      combat:
+        skill: axe
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 589
+        entity_flags: 131
+        model_size:     1
+        hitbox:        15
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 780
+    loot:
+      drops:
+        - chance: very_rare
+          item:   poets_circlet
+        - chance: very_rare
+          item:   linen_cuffs
+        - chance: very_rare
+          item:   linen_slops
+        - chance: very_rare
+          item:   holly_clogs
+      steal: silver_beastcoin
+      despoil:
+        roast_carp:       0
+        roast_pipira:     0
+        boiled_tuna_head: 0
+
+  Yagudo_Votary:
+    id:            4459
+    species:       yagudo
+    skill_list_id: 270
+    attributes:
+      combat:
+        skill: hand_to_hand
+        delay: 380
+      jobs: [mnk, mnk]
+      render:
+        look:
+          type:  standard
+          model: 581
+        entity_flags: 131
+        model_size:     1
+        hitbox:        15
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 780
+    loot:
+      drops:
+        - chance: super_rare
+          item:   cotton_hachimaki
+        - chance: super_rare
+          item:   cotton_tekko
+        - chance: super_rare
+          item:   cotton_sitabaki
+        - chance: super_rare
+          item:   cotton_kyahan
+      steal: silver_beastcoin
+      despoil:
+        roast_carp:       0
+        roast_pipira:     0
+        boiled_tuna_head: 0
+
+  Yagudo_Zealot:
+    id:            4461
+    species:       yagudo
+    skill_list_id: 270
+    attributes:
+      combat:
+        skill: hand_to_hand
+        delay: 250
+      jobs: [mnk, mnk]
+      render:
+        look:
+          type:  standard
+          model: 585
+        entity_flags: 131
+        model_size:     1
+        hitbox:        15
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: rare
+          item:   oztroja_chest_key
+        - chance: super_rare
+          item:   cuir_bandana
+        - chance: super_rare
+          item:   cuir_highboots
+        - chance: super_rare
+          item:   cuir_gloves
+        - chance: super_rare
+          item:   cuir_trousers
+      steal: mythril_beastcoin
+      despoil:
+        roast_carp:       0
+        roast_pipira:     0
+        boiled_tuna_head: 0
+
+  Yagudos_Avatar:
+    id:            4453
+    species:       carbuncle
+    type:          [battlefield]
+    skill_list_id: 34
+    attributes:
+      combat:
+        skill: scythe
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 791
+        entity_flags: 131
+        model_size:     1
+        hitbox:        24
+      spawn:
+        type: [scripted]
+
+  Yagudos_Elemental:
+    id:            4454
+    species:       air_elemental
+    spell_list_id: 21
+    skill_list_id: 99
+    attributes:
+      combat:
+        skill: staff
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 10
+        entity_flags:  129
+        animation_sub:  16
+        model_size:      1
+        hitbox:          8
+      behaviors:
+        links: true
+      spawn:
+        type: [scripted]
+
+
+  Beta_craw_Meat_Maggot:
+    id:            40041
+    species:       crawler
+    skill_list_id: 79
+    attributes:
+      combat:
+        skill: club
+      render:
+        look:
+          type:  standard
+          model: 2970
+        entity_flags: 131
+        model_size:     1
+        hitbox:        15
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 780
+    loot:
+      drops:
+        - chance: rare
+          item:   beta_10376
+        - chance: rare
+          item:   beta_19987
+        - chance: uncommon
+          item:   beta_292
+        - chance: uncommon
+          item:   beta_5015
+        - chance: uncommon
+          item:   beta_6807
+        - chance: uncommon
+          item:   spool_of_silk_thread
+        - chance: rare
+          item:   white_rock
+      despoil:
+        piece_of_crawler_cocoon: 0
+        crawler_egg:             0
+
+spawns:
+  17395713:
+    template: Yagudo_Votary
+    region:   w_1
+    level:    [22, 23]
+  17395714:
+    template: Yagudo_Votary
+    region:   w_1
+    level:    [22, 23]
+  17395715:
+    template: Bastion_Bats
+    region:   w_1
+    level:    [18, 21]
+  17395716:
+    template: Bastion_Bats
+    region:   w_1
+    level:    [18, 21]
+  17395717:
+    template: Yagudo_Theologist
+    region:   w_5
+    level:    [22, 23]
+  17395718:
+    template: Yagudo_Priest
+    region:   w_5
+    level:    [22, 23]
+  17395719:
+    template: Yagudo_Votary
+    region:   w_7
+    level:    [22, 23]
+  17395720:
+    template: Yagudo_Votary
+    region:   w_7
+    level:    [22, 23]
+  17395721:
+    template: Bastion_Bats
+    region:   w_7
+    level:    [18, 21]
+  17395722:
+    template: Bastion_Bats
+    region:   w_7
+    level:    [18, 21]
+  17395723:
+    template: Yagudo_Theologist
+    region:   sw_11
+    level:    [22, 23]
+  17395724:
+    template: Yagudo_Priest
+    region:   sw_11
+    level:    [22, 23]
+  17395725:
+    template: Yagudo_Votary
+    region:   c_13
+    level:    [22, 26]
+  17395726:
+    template: Yagudo_Theologist
+    region:   c_13
+    level:    [23, 27]
+  17395727:
+    template: Yagudo_Priest
+    region:   c_13
+    level:    [24, 28]
+  17395728:
+    template: Yagudo_Votary
+    region:   c_13
+    level:    [22, 26]
+  17395729:
+    template: Yagudo_Theologist
+    region:   c_13
+    level:    [23, 27]
+  17395730:
+    template: Bastion_Bats
+    region:   c_13
+    level:    [18, 21]
+  17395731:
+    template: Saa_Doyi_the_Fervid
+    region:   c_13
+    level:    [37, 39]
+  17395732:
+    template: Yagudo_Votary
+    region:   c_20
+    level:    [22, 26]
+  17395733:
+    template: Yagudo_Theologist
+    region:   c_20
+    level:    [23, 27]
+  17395734:
+    template: Yagudo_Priest
+    region:   c_20
+    level:    [24, 28]
+  17395735:
+    template: Yagudo_Votary
+    region:   c_20
+    level:    [22, 26]
+  17395736:
+    template: Yagudo_Priest
+    region:   c_20
+    level:    [24, 28]
+  17395737:
+    template: Bastion_Bats
+    region:   c_20
+    level:    [18, 21]
+  17395738:
+    template: Yagudo_Votary
+    region:   c_26
+    level:    [22, 26]
+  17395739:
+    template: Yagudo_Theologist
+    region:   c_26
+    level:    [23, 27]
+  17395740:
+    template: Yagudo_Priest
+    region:   c_26
+    level:    [24, 28]
+  17395741:
+    template: Yagudo_Theologist
+    region:   c_26
+    level:    [23, 27]
+  17395742:
+    template: Yagudo_Priest
+    region:   c_26
+    level:    [24, 28]
+  17395743:
+    template: Bastion_Bats
+    region:   c_26
+    level:    [18, 21]
+  17395744:
+    template: Yagudo_Theologist
+    region:   c_32
+    level:    [23, 27]
+  17395745:
+    template: Yagudo_Priest
+    region:   c_32
+    level:    [24, 28]
+  17395746:
+    template: Bastion_Bats
+    region:   c_34
+    level:    [18, 21]
+  17395747:
+    template: Bastion_Bats
+    region:   c_34
+    level:    [18, 21]
+  17395748:
+    template: Yagudo_Votary
+    region:   c_36
+    level:    [22, 26]
+  17395749:
+    template: Yagudo_Theologist
+    region:   c_36
+    level:    [23, 27]
+  17395750:
+    template: Yagudo_Priest
+    region:   c_36
+    level:    [24, 26]
+  17395751:
+    template: Bastion_Bats
+    region:   c_36
+    level:    [18, 21]
+  17395752:
+    template: Yagudo_Votary
+    region:   n_40
+    level:    [22, 26]
+  17395753:
+    template: Yagudo_Theologist
+    region:   n_40
+    level:    [23, 27]
+  17395754:
+    template: Yagudo_Priest
+    region:   n_40
+    level:    [24, 28]
+  17395755:
+    template: Yagudo_Theologist
+    region:   n_40
+    level:    [23, 27]
+  17395756:
+    template: Yagudo_Priest
+    region:   n_40
+    level:    [24, 28]
+  17395757:
+    template: Bastion_Bats
+    region:   n_40
+    level:    [18, 21]
+  17395758:
+    template: Yagudo_Herald
+    region:   nw_47
+    level:    [32, 36]
+  17395759:
+    template: Yagudo_Oracle
+    region:   nw_47
+    level:    [34, 38]
+  17395760:
+    template: Yagudos_Elemental
+    at:       [1.000, 1.000, 1.000, 127]
+    level:    [25, 29]
+  17395761:
+    template: Yagudo_Interrogator
+    region:   nw_47
+    level:    [35, 39]
+  17395762:
+    template: Meat_Maggot
+    region:   nw_47
+    level:    [29, 31]
+  17395763:
+    template: Meat_Maggot
+    region:   nw_47
+    level:    [29, 31]
+  17395764:
+    template: Fire_Elemental
+    region:   nw_53
+    level:    [47, 49]
+  17395765:
+    template: Earth_Elemental
+    region:   nw_53
+    level:    [47, 49]
+  17395766:
+    template: Yagudo_Drummer
+    region:   nw_55
+    level:    [33, 37]
+  17395767:
+    template: Yagudo_Oracle
+    region:   nw_55
+    level:    [34, 38]
+  17395768:
+    template: Yagudos_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [25, 29]
+  17395769:
+    template: Yagudo_Interrogator
+    region:   nw_55
+    level:    [35, 39]
+  17395770:
+    template: Meat_Maggot
+    region:   nw_55
+    level:    [29, 31]
+  17395771:
+    template: Meat_Maggot
+    region:   nw_55
+    level:    [29, 31]
+  17395772:
+    template: Fire_Elemental
+    region:   nw_53
+    level:    [47, 49]
+  17395773:
+    template: Earth_Elemental
+    region:   nw_53
+    level:    [47, 49]
+  17395774:
+    template: Yagudo_Herald
+    region:   nw_63
+    level:    [32, 36]
+  17395775:
+    template: Yagudo_Drummer
+    region:   nw_63
+    level:    [33, 37]
+  17395776:
+    template: Yagudo_Oracle
+    region:   nw_63
+    level:    [34, 38]
+  17395777:
+    template: Yagudos_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [25, 29]
+  17395778:
+    template: Meat_Maggot
+    region:   nw_66
+    level:    [29, 31]
+  17395779:
+    template: Meat_Maggot
+    region:   nw_63
+    level:    [29, 31]
+  17395780:
+    template: Fire_Elemental
+    region:   nw_53
+    level:    [47, 49]
+  17395781:
+    template: Earth_Elemental
+    region:   nw_53
+    level:    [47, 49]
+  17395782:
+    template: Yagudo_Herald
+    region:   nw_70
+    level:    [32, 36]
+  17395783:
+    template: Yagudo_Drummer
+    region:   nw_70
+    level:    [33, 37]
+  17395784:
+    template: Yagudo_Interrogator
+    region:   nw_70
+    level:    [35, 39]
+  17395785:
+    template: Meat_Maggot
+    region:   nw_70
+    level:    [29, 31]
+  17395786:
+    template: Meat_Maggot
+    region:   nw_70
+    level:    [29, 31]
+  17395787:
+    template: Fire_Elemental
+    region:   nw_53
+    level:    [47, 49]
+  17395788:
+    template: Earth_Elemental
+    region:   nw_53
+    level:    [47, 49]
+  17395789:
+    template: Cutter
+    region:   nw_77
+    level:    [30, 32]
+  17395790:
+    template: Cutter
+    region:   nw_77
+    level:    [30, 32]
+  17395791:
+    template: Cutter
+    region:   nw_77
+    level:    [30, 32]
+  17395792:
+    template: Cutter
+    region:   nw_77
+    level:    [30, 32]
+  17395793:
+    template: Cutter
+    region:   nw_77
+    level:    [30, 32]
+  17395794:
+    template: Cutter
+    region:   nw_82
+    level:    [30, 32]
+  17395795:
+    template: Yagudo_Herald
+    region:   nw_83
+    level:    [32, 36]
+  17395796:
+    template: Yagudo_Oracle
+    region:   nw_83
+    level:    [34, 38]
+  17395797:
+    template: Yagudos_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [25, 29]
+  17395798:
+    template: Yagudo_Drummer
+    region:   nw_86
+    level:    [33, 37]
+  17395799:
+    template: Yagudo_Interrogator
+    region:   nw_86
+    level:    [35, 39]
+  17395800:
+    template: Mee_Deggi_the_Punisher
+    region:   nw_86
+    level:    [35, 36]
+  17395801:
+    template: Yagudo_Votary
+    region:   c_89
+    level:    [22, 26]
+  17395802:
+    template: Yagudo_Theologist
+    region:   c_89
+    level:    [23, 27]
+  17395803:
+    template: Yagudo_Priest
+    region:   c_89
+    level:    [24, 28]
+  17395804:
+    template: Yagudo_Votary
+    region:   e_92
+    level:    [22, 26]
+  17395805:
+    template: Yagudo_Theologist
+    region:   e_92
+    level:    [23, 27]
+  17395806:
+    template: Yagudo_Priest
+    region:   e_92
+    level:    [24, 28]
+  17395807:
+    template: Bastion_Bats
+    region:   e_92
+    level:    [18, 21]
+  17395808:
+    template: Yagudo_Votary
+    region:   c_96
+    level:    [22, 26]
+  17395809:
+    template: Yagudo_Theologist
+    region:   s_101
+    level:    [23, 27]
+  17395810:
+    template: Yagudo_Priest
+    region:   c_96
+    level:    [24, 28]
+  17395811:
+    template: Bastion_Bats
+    region:   c_96
+    level:    [18, 21]
+  17395812:
+    template: Yagudo_Votary
+    region:   s_101
+    level:    [22, 26]
+  17395813:
+    template: Yagudo_Theologist
+    region:   s_101
+    level:    [23, 27]
+  17395814:
+    template: Yagudo_Priest
+    region:   s_101
+    level:    [24, 28]
+  17395815:
+    template: Bastion_Bats
+    region:   s_101
+    level:    [18, 21]
+  17395816:
+    template: Moo_Ouzi_the_Swiftblade
+    region:   s_101
+    level:    [30, 30]
+  17395817:
+    template: Yagudo_Votary
+    region:   s_105
+    level:    [22, 26]
+  17395818:
+    template: Yagudo_Theologist
+    region:   s_105
+    level:    [23, 27]
+  17395819:
+    template: Yagudo_Priest
+    region:   s_105
+    level:    [24, 28]
+  17395820:
+    template: Yagudo_Theologist
+    region:   s_105
+    level:    [23, 27]
+  17395821:
+    template: Yagudo_Priest
+    region:   s_105
+    level:    [24, 28]
+  17395822:
+    template: Bastion_Bats
+    region:   s_105
+    level:    [18, 21]
+  17395823:
+    template: Yagudo_Votary
+    region:   s_111
+    level:    [22, 26]
+  17395824:
+    template: Yagudo_Theologist
+    region:   s_111
+    level:    [23, 27]
+  17395825:
+    template: Yagudo_Priest
+    region:   s_111
+    level:    [24, 28]
+  17395826:
+    template: Yagudo_Theologist
+    region:   s_111
+    level:    [23, 27]
+  17395827:
+    template: Yagudo_Priest
+    region:   s_111
+    level:    [24, 28]
+  17395828:
+    template: Bastion_Bats
+    region:   s_111
+    level:    [18, 21]
+  17395829:
+    template: Yagudo_Herald
+    region:   se_118
+    level:    [32, 36]
+  17395830:
+    template: Yagudo_Drummer
+    region:   se_118
+    level:    [33, 37]
+  17395831:
+    template: Yagudo_Oracle
+    region:   se_118
+    level:    [34, 38]
+  17395832:
+    template: Yagudos_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [25, 29]
+  17395833:
+    template: Meat_Maggot
+    region:   se_118
+    level:    [29, 31]
+  17395834:
+    template: Meat_Maggot
+    region:   se_118
+    level:    [29, 30]
+  17395835:
+    template: Fire_Elemental
+    region:   se_118
+    level:    [47, 49]
+  17395836:
+    template: Earth_Elemental
+    region:   se_147
+    level:    [47, 49]
+  17395837:
+    template: Yagudo_Herald
+    region:   se_125
+    level:    [32, 36]
+  17395838:
+    template: Yagudo_Drummer
+    region:   se_125
+    level:    [33, 37]
+  17395839:
+    template: Yagudo_Interrogator
+    region:   se_125
+    level:    [35, 39]
+  17395840:
+    template: Meat_Maggot
+    region:   se_125
+    level:    [29, 31]
+  17395841:
+    template: Meat_Maggot
+    region:   se_125
+    level:    [29, 31]
+  17395842:
+    template: Fire_Elemental
+    region:   se_118
+    level:    [47, 49]
+  17395843:
+    template: Earth_Elemental
+    region:   se_147
+    level:    [47, 49]
+  17395844:
+    template: Yagudo_Herald
+    region:   se_132
+    level:    [32, 36]
+  17395845:
+    template: Yagudo_Oracle
+    region:   se_132
+    level:    [34, 38]
+  17395846:
+    template: Yagudos_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [25, 29]
+  17395847:
+    template: Yagudo_Interrogator
+    region:   se_132
+    level:    [35, 39]
+  17395848:
+    template: Meat_Maggot
+    region:   se_132
+    level:    [29, 31]
+  17395849:
+    template: Meat_Maggot
+    region:   se_132
+    level:    [29, 31]
+  17395850:
+    template: Fire_Elemental
+    region:   se_118
+    level:    [47, 49]
+  17395851:
+    template: Earth_Elemental
+    region:   se_147
+    level:    [47, 49]
+  17395852:
+    template: Yagudo_Drummer
+    region:   se_140
+    level:    [33, 37]
+  17395853:
+    template: Yagudo_Oracle
+    region:   se_140
+    level:    [34, 38]
+  17395854:
+    template: Yagudos_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [25, 29]
+  17395855:
+    template: Yagudo_Interrogator
+    region:   se_140
+    level:    [35, 39]
+  17395856:
+    template: Meat_Maggot
+    region:   se_140
+    level:    [29, 31]
+  17395857:
+    template: Meat_Maggot
+    region:   se_140
+    level:    [29, 31]
+  17395858:
+    template: Fire_Elemental
+    region:   se_118
+    level:    [47, 49]
+  17395859:
+    template: Earth_Elemental
+    region:   se_147
+    level:    [47, 49]
+  17395860:
+    template: Cutter
+    region:   se_148
+    level:    [30, 32]
+  17395861:
+    template: Cutter
+    region:   se_148
+    level:    [30, 32]
+  17395862:
+    template: Cutter
+    region:   se_148
+    level:    [30, 32]
+  17395863:
+    template: Cutter
+    region:   se_148
+    level:    [30, 32]
+  17395864:
+    template: Cutter
+    region:   se_152
+    level:    [30, 32]
+  17395865:
+    template: Yagudo_Drummer
+    region:   se_153
+    level:    [33, 37]
+  17395866:
+    template: Yagudo_Interrogator
+    region:   se_153
+    level:    [35, 39]
+  17395867:
+    template: Yagudo_Herald
+    region:   se_156
+    level:    [32, 36]
+  17395868:
+    template: Yagudo_Oracle
+    region:   se_156
+    level:    [34, 38]
+  17395869:
+    template: Yagudos_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [25, 29]
+  17395870:
+    template: Quu_Domi_the_Gallant
+    region:   se_156
+    level:    [35, 36]
+  17395871:
+    template: Yagudo_Herald
+    region:   se_159
+    level:    [32, 36]
+  17395872:
+    template: Yagudo_Oracle
+    region:   se_159
+    level:    [34, 38]
+  17395873:
+    template: Yagudos_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [25, 29]
+  17395874:
+    template: Yagudo_Interrogator
+    region:   se_159
+    level:    [35, 39]
+  17395875:
+    template: Bulwark_Bat
+    region:   se_159
+    level:    [29, 31]
+  17395876:
+    template: Yagudo_Herald
+    region:   se_165
+    level:    [32, 36]
+  17395877:
+    template: Yagudo_Drummer
+    region:   se_165
+    level:    [33, 37]
+  17395878:
+    template: Yagudo_Interrogator
+    region:   se_165
+    level:    [35, 39]
+  17395879:
+    template: Bulwark_Bat
+    region:   se_165
+    level:    [29, 31]
+  17395880:
+    template: Yagudo_Herald
+    region:   e_168
+    level:    [32, 36]
+  17395881:
+    template: Yagudo_Interrogator
+    region:   e_168
+    level:    [35, 39]
+  17395882:
+    template: Yagudo_Drummer
+    region:   e_170
+    level:    [33, 37]
+  17395883:
+    template: Yagudo_Oracle
+    region:   e_170
+    level:    [34, 38]
+  17395884:
+    template: Yagudos_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [25, 29]
+  17395885:
+    template: Bulwark_Bat
+    region:   e_170
+    level:    [29, 31]
+  17395886:
+    template: Yagudo_Herald
+    region:   e_174
+    level:    [32, 36]
+  17395887:
+    template: Yagudo_Oracle
+    region:   e_174
+    level:    [34, 38]
+  17395888:
+    template: Yagudos_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [25, 29]
+  17395889:
+    template: Yagudo_Drummer
+    region:   e_177
+    level:    [33, 37]
+  17395890:
+    template: Yagudo_Interrogator
+    region:   e_177
+    level:    [35, 39]
+  17395891:
+    template: Bulwark_Bat
+    region:   e_177
+    level:    [29, 31]
+  17395892:
+    template: Yagudo_Herald
+    region:   c_180
+    level:    [32, 36]
+  17395893:
+    template: Yagudo_Drummer
+    region:   c_180
+    level:    [33, 37]
+  17395894:
+    template: Yagudo_Zealot
+    region:   c_182
+    level:    [42, 46]
+  17395895:
+    template: Yagudo_Prior
+    region:   c_182
+    level:    [45, 49]
+  17395896:
+    template: Lii_Jixa_the_Somnolist
+    region:   c_182
+    level:    [43, 43]
+  17395897:
+    template: Yagudo_Oracle
+    region:   s_185
+    level:    [34, 38]
+  17395898:
+    template: Yagudos_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [25, 29]
+  17395899:
+    template: Yagudo_Interrogator
+    region:   s_185
+    level:    [35, 39]
+  17395900:
+    template: Bulwark_Bat
+    region:   s_185
+    level:    [29, 31]
+  17395901:
+    template: Yagudo_Conquistador
+    region:   se_189
+    level:    [43, 47]
+  17395902:
+    template: Yagudo_Lutenist
+    region:   se_189
+    level:    [44, 48]
+  17395903:
+    template: Yagudo_Zealot
+    region:   se_191
+    level:    [42, 46]
+  17395904:
+    template: Yagudo_Conquistador
+    region:   se_191
+    level:    [43, 47]
+  17395905:
+    template: Yagudo_Lutenist
+    region:   se_193
+    level:    [44, 48]
+  17395906:
+    template: Yagudo_Prior
+    region:   se_193
+    level:    [45, 49]
+  17395907:
+    template: Yagudo_Herald
+    region:   se_195
+    level:    [32, 36]
+  17395908:
+    template: Yagudo_Oracle
+    region:   se_195
+    level:    [34, 38]
+  17395909:
+    template: Yagudos_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [25, 29]
+  17395910:
+    template: Yagudo_Interrogator
+    region:   se_195
+    level:    [35, 39]
+  17395911:
+    template: Yagudo_Herald
+    region:   se_199
+    level:    [32, 36]
+  17395912:
+    template: Yagudo_Drummer
+    region:   se_199
+    level:    [33, 37]
+  17395913:
+    template: Yagudo_Interrogator
+    region:   se_199
+    level:    [35, 39]
+  17395914:
+    template: Yagudo_Drummer
+    region:   s_202
+    level:    [33, 37]
+  17395915:
+    template: Yagudo_Oracle
+    region:   s_202
+    level:    [34, 38]
+  17395916:
+    template: Yagudos_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [25, 29]
+  17395917:
+    template: Yagudo_Interrogator
+    region:   s_202
+    level:    [35, 39]
+  17395918:
+    template: Bulwark_Bat
+    region:   s_202
+    level:    [29, 31]
+  17395919:
+    template: Yagudo_Herald
+    region:   s_207
+    level:    [32, 36]
+  17395920:
+    template: Yagudo_Drummer
+    region:   s_207
+    level:    [33, 37]
+  17395921:
+    template: Yagudo_Interrogator
+    region:   s_207
+    level:    [35, 39]
+  17395922:
+    template: Bulwark_Bat
+    region:   s_210
+    level:    [29, 31]
+  17395923:
+    template: Bulwark_Bat
+    region:   s_210
+    level:    [29, 31]
+  17395924:
+    template: Yagudo_Herald
+    region:   c_212
+    level:    [32, 36]
+  17395925:
+    template: Yagudo_Drummer
+    region:   c_212
+    level:    [33, 37]
+  17395926:
+    template: Yagudo_Oracle
+    region:   c_212
+    level:    [34, 38]
+  17395927:
+    template: Yagudos_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [25, 29]
+  17395928:
+    template: Yagudo_Herald
+    region:   c_218
+    level:    [32, 36]
+  17395929:
+    template: Yagudo_Drummer
+    region:   c_218
+    level:    [33, 37]
+  17395930:
+    template: Yagudo_Oracle
+    region:   c_218
+    level:    [34, 38]
+  17395931:
+    template: Yagudos_Elemental
+    at:       [-175.735, -15.751, -18.539, 25]
+    level:    [25, 29]
+  17395932:
+    template: Yagudo_Interrogator
+    region:   c_218
+    level:    [35, 39]
+  17395933:
+    template: Yagudo_Herald
+    region:   c_221
+    level:    [32, 36]
+  17395934:
+    template: Yagudo_Oracle
+    region:   c_221
+    level:    [34, 38]
+  17395935:
+    template: Yagudos_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [25, 29]
+  17395936:
+    template: Yagudo_Interrogator
+    region:   c_221
+    level:    [35, 39]
+  17395937:
+    template: Bulwark_Bat
+    region:   c_221
+    level:    [29, 31]
+  17395938:
+    template: Yagudo_Zealot
+    region:   w_228
+    level:    [42, 46]
+  17395939:
+    template: Yagudo_Conquistador
+    region:   w_228
+    level:    [43, 47]
+  17395940:
+    template: Yagudo_Lutenist
+    region:   w_228
+    level:    [44, 48]
+  17395941:
+    template: Yagudo_Prior
+    region:   w_228
+    level:    [45, 49]
+  17395942:
+    template: Yagudo_Sentinel
+    region:   w_230
+    level:    [52, 56]
+  17395943:
+    template: Yagudo_Abbot
+    region:   w_230
+    level:    [55, 59]
+  17395944:
+    template: Yagudo_Chanter
+    region:   w_232
+    level:    [53, 57]
+  17395945:
+    template: Yagudo_Inquisitor
+    region:   w_232
+    level:    [54, 58]
+  17395946:
+    template: Yagudo_Sentinel
+    region:   w_234
+    level:    [52, 56]
+  17395947:
+    template: Yagudo_Chanter
+    region:   w_234
+    level:    [53, 57]
+  17395948:
+    template: Yagudo_Inquisitor
+    region:   w_234
+    level:    [54, 58]
+  17395949:
+    template: Yagudo_Abbot
+    region:   w_234
+    level:    [55, 59]
+  17395950:
+    template: Yagudo_Zealot
+    region:   s_240
+    level:    [42, 46]
+  17395951:
+    template: Yagudo_Conquistador
+    region:   s_240
+    level:    [43, 47]
+  17395952:
+    template: Yagudo_Lutenist
+    region:   s_240
+    level:    [44, 48]
+  17395953:
+    template: Yagudo_Prior
+    region:   s_240
+    level:    [45, 49]
+  17395954:
+    template: Yaa_Haqa_the_Profane
+    region:   s_240
+    level:    [43, 43]
+  17395955:
+    template: Yagudo_Lutenist
+    region:   c_243
+    level:    [44, 48]
+  17395956:
+    template: Yagudo_Prior
+    region:   c_243
+    level:    [45, 49]
+  17395957:
+    template: Yagudo_Drummer
+    region:   e_245
+    level:    [33, 37]
+  17395958:
+    template: Yagudo_Oracle
+    region:   e_245
+    level:    [34, 38]
+  17395959:
+    template: Yagudos_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [25, 29]
+  17395960:
+    template: Yagudo_Interrogator
+    region:   e_245
+    level:    [35, 39]
+  17395961:
+    template: Yagudo_Herald
+    region:   c_249
+    level:    [32, 36]
+  17395962:
+    template: Yagudo_Oracle
+    region:   c_249
+    level:    [34, 38]
+  17395963:
+    template: Yagudos_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [25, 29]
+  17395964:
+    template: Yagudo_Interrogator
+    region:   c_249
+    level:    [35, 39]
+  17395965:
+    template: Bulwark_Bat
+    region:   c_249
+    level:    [29, 31]
+  17395966:
+    template: Yagudo_Herald
+    region:   n_254
+    level:    [32, 36]
+  17395967:
+    template: Yagudo_Drummer
+    region:   n_254
+    level:    [33, 37]
+  17395968:
+    template: Yagudo_Oracle
+    region:   n_254
+    level:    [34, 38]
+  17395969:
+    template: Yagudos_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [25, 29]
+  17395970:
+    template: Yagudo_Herald
+    region:   n_258
+    level:    [32, 36]
+  17395971:
+    template: Yagudo_Drummer
+    region:   n_258
+    level:    [33, 37]
+  17395972:
+    template: Yagudo_Interrogator
+    region:   n_258
+    level:    [35, 39]
+  17395973:
+    template: Bulwark_Bat
+    region:   c_261
+    level:    [29, 31]
+  17395974:
+    template: Bulwark_Bat
+    region:   c_261
+    level:    [29, 31]
+  17395975:
+    template: Yagudo_Drummer
+    region:   c_263
+    level:    [33, 37]
+  17395976:
+    template: Yagudo_Oracle
+    region:   c_263
+    level:    [34, 38]
+  17395977:
+    template: Yagudos_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [25, 29]
+  17395978:
+    template: Yagudo_Interrogator
+    region:   c_263
+    level:    [35, 39]
+  17395979:
+    template: Yagudo_Herald
+    region:   w_267
+    level:    [32, 36]
+  17395980:
+    template: Yagudo_Drummer
+    region:   w_267
+    level:    [33, 37]
+  17395981:
+    template: Yagudo_Interrogator
+    region:   w_267
+    level:    [35, 39]
+  17395982:
+    template: Yagudo_Herald
+    region:   w_272
+    level:    [32, 36]
+  17395983:
+    template: Yagudo_Oracle
+    region:   w_272
+    level:    [34, 38]
+  17395984:
+    template: Yagudos_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [25, 29]
+  17395985:
+    template: Yagudo_Interrogator
+    region:   w_272
+    level:    [35, 39]
+  17395986:
+    template: Yagudo_Herald
+    region:   n_274
+    level:    [32, 36]
+  17395987:
+    template: Yagudo_Drummer
+    region:   n_274
+    level:    [33, 37]
+  17395988:
+    template: Yagudo_Oracle
+    region:   n_274
+    level:    [34, 38]
+  17395989:
+    template: Yagudos_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [25, 29]
+  17395990:
+    template: Yagudo_Zealot
+    region:   nw_278
+    level:    [42, 46]
+  17395991:
+    template: Yagudo_Lutenist
+    region:   nw_278
+    level:    [44, 48]
+  17395992:
+    template: Yagudo_Conquistador
+    region:   nw_280
+    level:    [43, 47]
+  17395993:
+    template: Yagudo_Prior
+    region:   nw_280
+    level:    [45, 49]
+  17395994:
+    template: Yagudo_Zealot
+    region:   nw_282
+    level:    [42, 46]
+  17395995:
+    template: Yagudo_Prior
+    region:   nw_282
+    level:    [45, 49]
+  17395996:
+    template: Yagudo_Drummer
+    region:   nw_284
+    level:    [33, 37]
+  17395997:
+    template: Yagudo_Oracle
+    region:   nw_284
+    level:    [34, 38]
+  17395998:
+    template: Yagudos_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [25, 29]
+  17395999:
+    template: Yagudo_Interrogator
+    region:   nw_284
+    level:    [35, 39]
+  17396000:
+    template: Yagudo_Herald
+    region:   nw_288
+    level:    [32, 36]
+  17396001:
+    template: Yagudo_Drummer
+    region:   nw_288
+    level:    [33, 37]
+  17396002:
+    template: Yagudo_Oracle
+    region:   nw_288
+    level:    [34, 38]
+  17396003:
+    template: Yagudos_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [25, 29]
+  17396004:
+    template: Bulwark_Bat
+    region:   nw_292
+    level:    [29, 31]
+  17396005:
+    template: Bulwark_Bat
+    region:   nw_292
+    level:    [29, 31]
+  17396006:
+    template: Yagudo_Oracle
+    region:   n_294
+    level:    [34, 38]
+  17396007:
+    template: Yagudos_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [25, 29]
+  17396008:
+    template: Yagudo_Drummer
+    region:   n_296
+    level:    [33, 37]
+  17396009:
+    template: Yagudo_Oracle
+    region:   n_296
+    level:    [34, 38]
+  17396010:
+    template: Yagudos_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [25, 29]
+  17396011:
+    template: Yagudo_Interrogator
+    region:   n_296
+    level:    [35, 39]
+  17396012:
+    template: Bulwark_Bat
+    region:   n_296
+    level:    [29, 31]
+  17396013:
+    template: Bulwark_Bat
+    region:   n_301
+    level:    [29, 31]
+  17396014:
+    template: Bulwark_Bat
+    region:   n_301
+    level:    [29, 31]
+  17396015:
+    template: Yagudo_Herald
+    region:   n_303
+    level:    [32, 36]
+  17396016:
+    template: Yagudo_Drummer
+    region:   n_303
+    level:    [33, 37]
+  17396017:
+    template: Yagudo_Oracle
+    region:   n_303
+    level:    [34, 38]
+  17396018:
+    template: Yagudos_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [25, 29]
+  17396019:
+    template: Bulwark_Bat
+    region:   n_303
+    level:    [29, 31]
+  17396020:
+    template: Yagudo_Herald
+    region:   c_308
+    level:    [32, 36]
+  17396021:
+    template: Yagudo_Drummer
+    region:   c_308
+    level:    [33, 37]
+  17396022:
+    template: Yagudo_Oracle
+    region:   c_308
+    level:    [34, 38]
+  17396023:
+    template: Yagudos_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [25, 29]
+  17396024:
+    template: Yagudo_Interrogator
+    region:   c_308
+    level:    [35, 39]
+  17396025:
+    template: Yagudo_Herald
+    region:   e_168
+    level:    [32, 36]
+  17396026:
+    template: Yagudo_Oracle
+    region:   region_113
+    level:    [34, 38]
+  17396027:
+    template: Yagudos_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [25, 29]
+  17396028:
+    template: Yagudo_Interrogator
+    region:   region_113
+    level:    [35, 39]
+  17396029:
+    template: Bulwark_Bat
+    region:   region_113
+    level:    [29, 31]
+  17396030:
+    template: Yagudo_Zealot
+    region:   region_114
+    level:    [42, 46]
+  17396031:
+    template: Yagudo_Conquistador
+    region:   region_114
+    level:    [43, 47]
+  17396032:
+    template: Yagudo_Lutenist
+    region:   region_114
+    level:    [44, 48]
+  17396033:
+    template: Yagudo_Prior
+    region:   region_114
+    level:    [45, 49]
+  17396034:
+    template: Bulwark_Bat
+    region:   w_327
+    level:    [29, 31]
+  17396035:
+    template: Yagudo_Zealot
+    region:   sw_323
+    level:    [42, 46]
+  17396036:
+    template: Yagudo_Conquistador
+    region:   sw_323
+    level:    [43, 47]
+  17396037:
+    template: Yagudo_Lutenist
+    region:   sw_323
+    level:    [44, 48]
+  17396038:
+    template: Yagudo_Prior
+    region:   sw_323
+    level:    [45, 49]
+  17396039:
+    template: Yagudo_Zealot
+    region:   w_327
+    level:    [42, 46]
+  17396040:
+    template: Yagudo_Prior
+    region:   w_327
+    level:    [45, 49]
+  17396041:
+    template: Bulwark_Bat
+    region:   w_327
+    level:    [29, 31]
+  17396042:
+    template: Yagudo_Conquistador
+    region:   c_330
+    level:    [43, 47]
+  17396043:
+    template: Yagudo_Lutenist
+    region:   c_330
+    level:    [44, 48]
+  17396044:
+    template: Yagudo_Zealot
+    region:   c_332
+    level:    [42, 46]
+  17396045:
+    template: Yagudo_Conquistador
+    region:   c_332
+    level:    [43, 47]
+  17396046:
+    template: Yagudo_Lutenist
+    region:   c_332
+    level:    [44, 48]
+  17396047:
+    template: Yagudo_Prior
+    region:   c_332
+    level:    [45, 49]
+  17396048:
+    template: Yagudo_Zealot
+    region:   c_332
+    level:    [42, 46]
+  17396049:
+    template: Yagudo_Conquistador
+    region:   c_332
+    level:    [43, 47]
+  17396050:
+    template: Ooze
+    region:   region_116
+    level:    [38, 40]
+  17396051:
+    template: Ooze
+    region:   region_116
+    level:    [38, 40]
+  17396052:
+    template: Yagudo_Lutenist
+    region:   s_340
+    level:    [44, 48]
+  17396053:
+    template: Yagudo_Prior
+    region:   s_340
+    level:    [45, 49]
+  17396054:
+    template: Bulwark_Bat
+    region:   region_115
+    level:    [29, 31]
+  17396055:
+    template: Yagudo_Zealot
+    region:   s_343
+    level:    [42, 46]
+  17396056:
+    template: Yagudo_Conquistador
+    region:   s_343
+    level:    [43, 47]
+  17396057:
+    template: Yagudo_Lutenist
+    region:   region_115
+    level:    [44, 48]
+  17396058:
+    template: Yagudo_Prior
+    region:   sw_323
+    level:    [45, 49]
+  17396059:
+    template: Yagudo_Zealot
+    region:   region_117
+    level:    [42, 46]
+  17396060:
+    template: Yagudo_Lutenist
+    region:   region_117
+    level:    [44, 48]
+  17396061:
+    template: Yagudo_Prior
+    region:   region_117
+    level:    [45, 49]
+  17396062:
+    template: Yagudo_Zealot
+    region:   s_352
+    level:    [42, 46]
+  17396063:
+    template: Yagudo_Conquistador
+    region:   s_352
+    level:    [43, 47]
+  17396064:
+    template: Yagudo_Lutenist
+    region:   s_352
+    level:    [44, 48]
+  17396065:
+    template: Yagudo_Prior
+    region:   s_352
+    level:    [45, 49]
+  17396066:
+    template: Yagudo_Conquistador
+    region:   c_354
+    level:    [43, 47]
+  17396067:
+    template: Yagudo_Sentinel
+    region:   c_355
+    level:    [52, 56]
+  17396068:
+    template: Yagudo_Chanter
+    region:   c_355
+    level:    [53, 57]
+  17396069:
+    template: Yagudo_Inquisitor
+    region:   c_355
+    level:    [54, 58]
+  17396070:
+    template: Yagudo_Abbot
+    region:   c_355
+    level:    [55, 59]
+  17396071:
+    template: Yagudo_Sentinel
+    region:   s_359
+    level:    [52, 56]
+  17396072:
+    template: Yagudo_Chanter
+    region:   s_359
+    level:    [53, 57]
+  17396073:
+    template: Yagudo_Inquisitor
+    region:   s_359
+    level:    [54, 58]
+  17396074:
+    template: Yagudo_Abbot
+    region:   s_359
+    level:    [55, 59]
+  17396075:
+    template: Yagudo_Sentinel
+    region:   s_359
+    level:    [52, 56]
+  17396076:
+    template: Yagudo_Chanter
+    region:   s_359
+    level:    [53, 57]
+  17396077:
+    template: Yagudo_Inquisitor
+    region:   s_359
+    level:    [54, 58]
+  17396078:
+    template: Yagudo_Abbot
+    region:   s_359
+    level:    [55, 59]
+  17396079:
+    template: Yagudo_Parasite
+    region:   s_367
+    level:    [45, 48]
+  17396080:
+    template: Yagudo_Parasite
+    region:   s_367
+    level:    [45, 48]
+  17396081:
+    template: Yagudo_Parasite
+    region:   s_367
+    level:    [45, 48]
+  17396082:
+    template: Yagudo_Parasite
+    region:   s_367
+    level:    [45, 48]
+  17396083:
+    template: Yagudo_Sentinel
+    region:   s_371
+    level:    [52, 56]
+  17396084:
+    template: Yagudo_Chanter
+    region:   s_371
+    level:    [53, 57]
+  17396085:
+    template: Yagudo_Inquisitor
+    region:   region_118
+    level:    [54, 58]
+  17396086:
+    template: Yagudo_Abbot
+    region:   region_118
+    level:    [55, 59]
+  17396087:
+    template: Yagudo_Sentinel
+    region:   region_118
+    level:    [52, 56]
+  17396088:
+    template: Yagudo_Chanter
+    region:   region_118
+    level:    [53, 57]
+  17396089:
+    template: Yagudo_Inquisitor
+    region:   s_382
+    level:    [54, 58]
+  17396090:
+    template: Yagudo_Abbot
+    region:   s_382
+    level:    [55, 59]
+  17396091:
+    template: Yagudo_Sentinel
+    region:   s_382
+    level:    [52, 56]
+  17396092:
+    template: Yagudo_Chanter
+    region:   s_382
+    level:    [53, 57]
+  17396093:
+    template: Yagudo_Inquisitor
+    region:   s_382
+    level:    [54, 58]
+  17396094:
+    template: Yagudo_Abbot
+    region:   s_382
+    level:    [55, 59]
+  17396095:
+    template: Yagudo_Flagellant
+    region:   s_383
+    level:    [62, 66]
+  17396096:
+    template: Yagudo_Prelate
+    region:   s_383
+    level:    [65, 69]
+  17396097:
+    template: Yagudo_Conductor
+    region:   s_385
+    level:    [63, 67]
+  17396098:
+    template: Yagudo_Assassin
+    region:   s_385
+    level:    [64, 68]
+  17396099:
+    template: Yagudo_Flagellant
+    region:   s_387
+    level:    [62, 66]
+  17396100:
+    template: Yagudo_Conductor
+    region:   s_387
+    level:    [63, 67]
+  17396101:
+    template: Yagudo_Assassin
+    region:   s_389
+    level:    [64, 68]
+  17396102:
+    template: Yagudo_Prelate
+    region:   s_389
+    level:    [65, 68]
+  17396103:
+    template: Yagudo_Flagellant
+    region:   s_391
+    level:    [62, 66]
+  17396104:
+    template: Yagudo_Assassin
+    region:   s_391
+    level:    [64, 68]
+  17396105:
+    template: Yagudo_Conductor
+    region:   s_393
+    level:    [63, 67]
+  17396106:
+    template: Yagudo_Prelate
+    region:   s_393
+    level:    [65, 69]
+  17396107:
+    template: Yagudo_Flagellant
+    region:   c_395
+    level:    [62, 66]
+  17396108:
+    template: Yagudo_Conductor
+    region:   c_395
+    level:    [63, 67]
+  17396109:
+    template: Yagudo_Assassin
+    region:   s_397
+    level:    [64, 68]
+  17396110:
+    template: Yagudo_Prelate
+    region:   s_397
+    level:    [65, 69]
+  17396111:
+    template: Yagudo_Flagellant
+    region:   c_399
+    level:    [62, 66]
+  17396112:
+    template: Yagudo_Prelate
+    region:   c_399
+    level:    [65, 69]
+  17396113:
+    template: Yagudo_Conductor
+    region:   s_401
+    level:    [63, 67]
+  17396114:
+    template: Yagudo_Assassin
+    region:   s_401
+    level:    [64, 68]
+  17396115:
+    template: Yagudo_Flagellant
+    region:   c_403
+    level:    [69, 71]
+  17396116:
+    template: Yagudo_Prelate
+    region:   c_403
+    level:    [69, 71]
+  17396117:
+    template: Yagudo_Flagellant
+    region:   c_405
+    level:    [69, 71]
+  17396118:
+    template: Yagudo_Conductor
+    region:   c_405
+    level:    [69, 71]
+  17396119:
+    template: Yagudo_Assassin
+    region:   c_405
+    level:    [69, 71]
+  17396120:
+    template: Yagudo_Prelate
+    region:   c_405
+    level:    [69, 71]
+  17396121:
+    template: Yagudo_Flagellant
+    region:   c_409
+    level:    [69, 71]
+  17396122:
+    template: Yagudo_Conductor
+    region:   c_409
+    level:    [69, 71]
+  17396123:
+    template: Yagudo_Assassin
+    region:   c_409
+    level:    [69, 71]
+  17396124:
+    template: Yagudo_Prelate
+    region:   c_409
+    level:    [69, 71]
+  17396125:
+    template: Yagudo_Conductor
+    region:   c_413
+    level:    [69, 71]
+  17396126:
+    template: Yagudo_Assassin
+    region:   c_413
+    level:    [69, 71]
+  17396127:
+    template: Yagudo_High_Priest
+    region:   c_413
+    level:    [72, 73]
+  17396128:
+    template: Yagudo_Flagellant
+    region:   n_416
+    level:    [70, 72]
+  17396129:
+    template: Yagudo_Prelate
+    region:   n_416
+    level:    [70, 72]
+  17396130:
+    template: Yagudo_Conductor
+    region:   n_418
+    level:    [70, 72]
+  17396131:
+    template: Yagudo_Assassin
+    region:   n_418
+    level:    [70, 72]
+  17396132:
+    template: Yagudo_Templar
+    region:   n_420
+    level:    [72, 74]
+  17396133:
+    template: Yagudo_High_Priest
+    region:   n_420
+    level:    [72, 74]
+  17396134:
+    template: Yagudo_Avatar
+    at:       [-96.516, -73.255, 97.807, 6]
+    level:    [75, 75]
+  17396135:
+    template: Yagudos_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [25, 29]
+  17396136:
+    template: Yagudos_Avatar
+    at:       [1.000, 1.000, 1.000]
+    level:    [60, 60]
+  17396137:
+    template: Tzee_Xicu_the_Manifest
+    at:       [-99.000, -72.000, 93.000, 127]
+    level:    [85, 85]
+  17396138:
+    template: Yagudos_Elemental
+    at:       [1.000, 1.000, 1.000]
+    level:    [25, 29]
+  17396139:
+    template: Yagudos_Avatar
+    at:       [1.000, 1.000, 1.000]
+    level:    [60, 60]
+  17396140:
+    template: Huu_Xalmo_the_Savage
+    at:       [-99.851, -71.750, -127.744, 81]
+    level:    [63, 63]
+  17396141:
+    template: Odontotyrannus
+    at:       [-86.941, 23.264, -38.873, 213]
+    level:    [52, 52]
+  17396143:
+    template: Yagudo_Muralist
+    at:       [185.513, -16.250, -139.871, 236]
+    level:    [75, 75]
+  17396144:
+    template: Mimic
+    at:       [1.000, 1.000, 1.000]
+    level:    [60, 60]
+
+  17396273:
+    template: Beta_craw_Meat_Maggot
+    region:   nw_47
+    level:    [29, 31]
+  17396274:
+    template: Beta_craw_Meat_Maggot
+    region:   nw_47
+    level:    [29, 31]
+slots:
+  - members:
+      17395735: {} # Yagudo_Votary
+      17395736: {} # Yagudo_Priest
+  - members:
+      17395741: {} # Yagudo_Theologist
+      17395742: {} # Yagudo_Priest
+  - members:
+      17395755: {} # Yagudo_Theologist
+      17395756: {} # Yagudo_Priest
+  - members:
+      17395758: {} # Yagudo_Herald
+      17395759: {} # Yagudo_Oracle
+  - members:
+      17395764: {} # Fire_Elemental
+      17395772: {} # Fire_Elemental
+      17395780: {} # Fire_Elemental
+      17395787: {} # Fire_Elemental
+  - members:
+      17395765: {} # Earth_Elemental
+      17395773: {} # Earth_Elemental
+      17395781: {} # Earth_Elemental
+      17395788: {} # Earth_Elemental
+  - members:
+      17395766: {} # Yagudo_Drummer
+      17395769: {} # Yagudo_Interrogator
+  - members:
+      17395774: {} # Yagudo_Herald
+      17395776: {} # Yagudo_Oracle
+  - members:
+      17395783: {} # Yagudo_Drummer
+      17395784: {} # Yagudo_Interrogator
+  - members:
+      17395798: {} # Yagudo_Drummer
+      17395799: {} # Yagudo_Interrogator
+  - members:
+      17395802: {} # Yagudo_Theologist
+      17395803: {} # Yagudo_Priest
+  - members:
+      17395808: {} # Yagudo_Votary
+      17395809: {} # Yagudo_Theologist
+  - members:
+      17395812: {} # Yagudo_Votary
+      17395814: {} # Yagudo_Priest
+  - members:
+      17395820: {} # Yagudo_Theologist
+      17395821: {} # Yagudo_Priest
+  - members:
+      17395826: {} # Yagudo_Theologist
+      17395827: {} # Yagudo_Priest
+  - members:
+      17395829: {} # Yagudo_Herald
+      17395831: {} # Yagudo_Oracle
+  - members:
+      17395835: {} # Fire_Elemental
+      17395842: {} # Fire_Elemental
+      17395850: {} # Fire_Elemental
+      17395858: {} # Fire_Elemental
+  - members:
+      17395836: {} # Earth_Elemental
+      17395843: {} # Earth_Elemental
+      17395851: {} # Earth_Elemental
+      17395859: {} # Earth_Elemental
+  - members:
+      17395837: {} # Yagudo_Herald
+      17395839: {} # Yagudo_Interrogator
+  - members:
+      17395844: {} # Yagudo_Herald
+      17395845: {} # Yagudo_Oracle
+  - members:
+      17395852: {} # Yagudo_Drummer
+      17395855: {} # Yagudo_Interrogator
+  - members:
+      17395867: {} # Yagudo_Herald
+      17395868: {} # Yagudo_Oracle
+  - members:
+      17395876: {} # Yagudo_Herald
+      17395877: {} # Yagudo_Drummer
+  - members:
+      17395928: {} # Yagudo_Herald
+      17395930: {} # Yagudo_Oracle
+  - members:
+      17395929: {} # Yagudo_Drummer
+      17395932: {} # Yagudo_Interrogator
+  - members:
+      17395938: {} # Yagudo_Zealot
+      17395941: {} # Yagudo_Prior
+  - members:
+      17395939: {} # Yagudo_Conquistador
+      17395940: {} # Yagudo_Lutenist
+  - members:
+      17395951: {} # Yagudo_Conquistador
+      17395952: {} # Yagudo_Lutenist
+  - members:
+      17395950: {} # Yagudo_Zealot
+      17395953: {} # Yagudo_Prior
+  - members:
+      17396029: {} # Bulwark_Bat
+      17396054: {} # Bulwark_Bat
+  - members:
+      17396034: {} # Bulwark_Bat
+      17396041: {} # Bulwark_Bat
+  - members:
+      17396048: {} # Yagudo_Zealot
+      17396049: {} # Yagudo_Conquistador
+  - members:
+      17396055: {} # Yagudo_Zealot
+      17396056: {} # Yagudo_Conquistador
+  - members:
+      17396057: {} # Yagudo_Lutenist
+      17396058: {} # Yagudo_Prior
+  - members:
+      17396059: {} # Yagudo_Zealot
+      17396061: {} # Yagudo_Prior
+  - members:
+      17396075: {} # Yagudo_Sentinel
+      17396076: {} # Yagudo_Chanter
+  - members:
+      17396077: {} # Yagudo_Inquisitor
+      17396078: {} # Yagudo_Abbot
+  - members:
+      17396087: {} # Yagudo_Sentinel
+      17396089: {} # Yagudo_Inquisitor
+  - members:
+      17396088: {} # Yagudo_Chanter
+      17396090: {} # Yagudo_Abbot

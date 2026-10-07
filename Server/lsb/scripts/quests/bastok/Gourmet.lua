@@ -1,0 +1,113 @@
+-----------------------------------
+-- Gourmet
+-----------------------------------
+-- Log ID: 1, Quest ID: 12
+-- Salimah : !pos -31.687 -6.824 -73.282
+-----------------------------------
+
+local quest = Quest:new(xi.questLog.BASTOK, xi.quest.id.bastok.GOURMET)
+
+quest.reward =
+{
+    title = xi.title.MOMMYS_HELPER,
+}
+
+-- Table Format: { eventId, timeMin, timeMax }
+-- NOTE: In order to iterate through these without having to change conditional
+-- logic, all time comparisons are 6 less than the actual time.
+local tradeItemData =
+{
+    [xi.item.SLEEPSHROOM] = { 201, 12, 24 }, -- 18:00 ~ 06:00
+    [xi.item.TREANT_BULB] = { 201,  0,  6 }, -- 06:00 ~ 12:00
+    [xi.item.WILD_ONION ] = { 202,  6, 12 }, -- 12:00 ~ 18:00
+}
+
+local function tradeEventFinish(player, gilReward)
+    if quest:complete(player) then
+        player:tradeComplete()
+        npcUtil.giveCurrency(player, 'gil', gilReward)
+        player:addFame(xi.fameArea.BASTOK, 10)
+        quest:setMustZone(player)
+    end
+end
+
+quest.sections =
+{
+    {
+        check = function(player, status, vars)
+            return status == xi.questStatus.QUEST_AVAILABLE
+        end,
+
+        [xi.zone.BASTOK_MARKETS] =
+        {
+            ['Salimah'] = quest:progressEvent(200),
+
+            onEventFinish =
+            {
+                [200] = function(player, csid, option, npc)
+                    quest:begin(player)
+                end,
+            },
+        },
+    },
+
+    {
+        check = function(player, status, vars)
+            return status >= xi.questStatus.QUEST_ACCEPTED
+        end,
+
+        [xi.zone.BASTOK_MARKETS] =
+        {
+            ['Salimah'] =
+            {
+                onTrade = function(player, npc, trade)
+                    if not quest:getMustZone(player) then
+                        for itemId, itemData in pairs(tradeItemData) do
+                            if npcUtil.tradeMatches(trade, { { itemId, 1 } }) then
+                                local timeOffset = VanadielHour() - 6
+
+                                if timeOffset < 0 then
+                                    timeOffset = 24 + timeOffset
+                                end
+
+                                if
+                                    timeOffset >= itemData[2] and
+                                    timeOffset < itemData[3]
+                                then
+                                    return quest:progressEvent(itemData[1], itemId)
+                                else
+                                    return quest:progressEvent(203, itemId)
+                                end
+                            end
+                        end
+                    end
+                end,
+
+                onTrigger = function(player, npc)
+                    if not quest:getMustZone(player) then
+                        return quest:event(200)
+                    else
+                        return quest:event(121)
+                    end
+                end,
+            },
+
+            onEventFinish =
+            {
+                [201] = function(player, csid, option, npc)
+                    tradeEventFinish(player, 200)
+                end,
+
+                [202] = function(player, csid, option, npc)
+                    tradeEventFinish(player, 350)
+                end,
+
+                [203] = function(player, csid, option, npc)
+                    tradeEventFinish(player, 100)
+                end,
+            },
+        },
+    },
+}
+
+return quest

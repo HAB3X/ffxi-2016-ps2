@@ -1,0 +1,2186 @@
+# yaml-language-server: $schema=../../schemas/mobs.schema.json
+
+templates:
+
+  Air_Elemental:
+    id:            71
+    species:       air_elemental
+    spell_list_id: 12
+    skill_list_id: 99
+    attributes:
+      combat:
+        skill: staff
+      jobs: [blm, rdm]
+      resists:
+        immune_status: [gravity, silence, slow, elegy]
+      render:
+        look:
+          type:  standard
+          model: 438
+        entity_flags:  1155
+        animation_sub:   16
+        model_size:       1
+        hitbox:           3
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 960
+        type:    [weather]
+    loot:
+      drops:
+        - chance: always
+          item:   wind_cluster
+        - chance: common
+          item:   wind_cluster
+        - chance: common
+          item:   wind_cluster
+
+  Aqueduct_Spider:
+    id:            4531
+    species:       spider
+    skill_list_id: 236
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 310
+        entity_flags:  1665
+        animation_sub:    8
+        hitbox:          11
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: uncommon
+          item:   water_spiders_web
+      despoil:
+        spool_of_rainbow_thread: 0
+        spider_web:              0
+    content: abyssea
+
+  Azren_Kuba:
+    id:            314
+    species:       skeleton
+    type:          [event]
+    spell_list_id: 28
+    skill_list_id: 227
+    attributes:
+      combat:
+        skill: great_katana
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 564
+        entity_flags: 1155
+        model_size:      1
+        hitbox:         12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 1800
+      stats:
+        hp: 300
+
+  Azren_Kuguza:
+    id:            315
+    species:       skeleton
+    type:          [event]
+    skill_list_id: 227
+    attributes:
+      combat:
+        skill: axe
+      render:
+        look:
+          type:  standard
+          model: 572
+        entity_flags: 1155
+        model_size:      1
+        hitbox:         12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 1800
+      stats:
+        hp: 300
+
+  Balor:
+    id:            333
+    species:       fomor
+    type:          [notorious]
+    skill_list_id: 2098
+    attributes:
+      combat:
+        skill: dagger
+        delay: 210
+      jobs: [rng, rng]
+      render:
+        look:
+          type:  misc
+          model: 1018
+        entity_flags: 157
+        name_prefix:   32
+        model_size:     2
+        hitbox:        20
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 6300
+    loot:
+      drops:
+        - chance: very_common
+          item:   swift_belt
+
+  Blubber_Eyes:
+    id:            476
+    display_name:  Blubber_Eyes_PX
+    species:       hecteye
+    spell_list_id: 10
+    skill_list_id: 139
+    attributes:
+      combat:
+        skill: staff
+        delay: 280
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 384
+        entity_flags: 131
+        model_size:     1
+        hitbox:        12
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: rare
+          item:   hecteyes_eye
+        - chance: common
+          item:   vial_of_mercury
+      despoil:
+        hecteyes_eye: 0
+
+  Caithleann:
+    id:            608
+    species:       fomor
+    type:          [notorious]
+    spell_list_id: 1
+    skill_list_id: 2098
+    attributes:
+      combat:
+        skill: sword
+        delay: 220
+      jobs: [rdm, nin]
+      render:
+        look:
+          type:  misc
+          model: 1033
+        entity_flags: 541
+        name_prefix:   32
+        model_size:     2
+        hitbox:        20
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 6200
+    loot:
+      drops:
+        - chance: very_common
+          item:   swift_belt
+
+  Dark_Elemental:
+    id:            913
+    species:       dark_elemental
+    spell_list_id: 18
+    skill_list_id: 100
+    attributes:
+      combat:
+        skill: club
+      jobs: [drk, drk]
+      resists:
+        immune_status: [blind, light_sleep, dark_sleep]
+      render:
+        look:
+          type:  standard
+          model: 443
+        entity_flags:  131
+        animation_sub:  16
+        model_size:      1
+        hitbox:          3
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 960
+        type:    [weather]
+    loot:
+      drops:
+        - chance: always
+          item:   dark_cluster
+        - chance: common
+          item:   dark_cluster
+        - chance: common
+          item:   dark_cluster
+
+  Elel:
+    id:            1196
+    species:       corse
+    type:          [notorious]
+    spell_list_id: 1
+    skill_list_id: 74
+    attributes:
+      combat:
+        skill: staff
+        delay: 290
+      jobs: [blm, blm]
+      resists:
+        dmg_physical:
+          blunt: 2500
+      render:
+        look:
+          type:  standard
+          model: 1363
+        entity_flags: 1157
+        model_size:      2
+        hitbox:         13
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 6500
+    loot:
+      drops:
+        - chance: always
+          item:   corse_bracelet
+        - chance: uncommon
+          item:   magical_mitts
+        - chance: uncommon
+          item:   corse_robe
+        - chance: uncommon
+          item:   frenzy_sallet
+
+  Fomor_Bard:
+    id:            1380
+    species:       fomor
+    spell_list_id: 6
+    skill_list_id: 115
+    attributes:
+      combat:
+        skill: sword
+      jobs: [brd, brd]
+      render:
+        look:
+          type:  misc
+          model: 1038
+        entity_flags: 131
+        model_size:     1
+        hitbox:        20
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: uncommon
+          item:   coral_crest_key
+        - chance: rare
+          item:   libra_subligar
+        - chance: rare
+          item:   sacrarium_chest_key
+        - chance: very_rare
+          item:   revival_tree_root
+
+  Fomor_Beastmaster:
+    id:            1381
+    species:       fomor
+    skill_list_id: 115
+    attributes:
+      combat:
+        skill: axe
+      jobs: [bst, bst]
+      render:
+        look:
+          type:  misc
+          model: 1042
+        entity_flags: 131
+        model_size:     1
+        hitbox:        20
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: uncommon
+          item:   coral_crest_key
+        - chance: rare
+          item:   ophiuchus_subligar
+        - chance: rare
+          item:   sacrarium_chest_key
+        - chance: very_rare
+          item:   revival_tree_root
+
+  Fomor_Black_Mage:
+    id:            1382
+    species:       fomor
+    spell_list_id: 21
+    skill_list_id: 115
+    attributes:
+      combat:
+        skill: club
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  misc
+          model: 1030
+        entity_flags: 131
+        model_size:     1
+        hitbox:        15
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: uncommon
+          item:   coral_crest_key
+        - chance: rare
+          item:   aries_subligar
+        - chance: rare
+          item:   sacrarium_chest_key
+        - chance: very_rare
+          item:   revival_tree_root
+
+  Fomor_Dark_Knight:
+    id:            1383
+    species:       fomor
+    spell_list_id: 5
+    skill_list_id: 115
+    attributes:
+      combat:
+        skill: scythe
+      jobs: [drk, drk]
+      render:
+        look:
+          type:  misc
+          model: 1034
+        entity_flags:  3
+        model_size:    1
+        hitbox:       17
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: uncommon
+          item:   coral_crest_key
+        - chance: rare
+          item:   sagittarius_subligar
+        - chance: rare
+          item:   sacrarium_chest_key
+        - chance: very_rare
+          item:   revival_tree_root
+
+  Fomor_Dragoon:
+    id:            1384
+    species:       fomor
+    skill_list_id: 115
+    attributes:
+      combat:
+        skill: polearm
+      jobs: [drg, drg]
+      render:
+        look:
+          type:  misc
+          model: 1014
+        entity_flags: 131
+        model_size:     1
+        hitbox:        17
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: uncommon
+          item:   coral_crest_key
+        - chance: rare
+          item:   leo_subligar
+        - chance: rare
+          item:   sacrarium_chest_key
+        - chance: very_rare
+          item:   revival_tree_root
+
+  Fomor_Monk:
+    id:            1385
+    species:       fomor
+    skill_list_id: 115
+    attributes:
+      combat:
+        skill: hand_to_hand
+        delay: 380
+      jobs: [mnk, mnk]
+      render:
+        look:
+          type:  misc
+          model: 1028
+        entity_flags: 131
+        model_size:     1
+        hitbox:        15
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: uncommon
+          item:   coral_crest_key
+        - chance: rare
+          item:   aquarius_subligar
+        - chance: rare
+          item:   sacrarium_chest_key
+        - chance: very_rare
+          item:   revival_tree_root
+
+  Fomor_Ninja:
+    id:            1386
+    species:       fomor
+    spell_list_id: 7
+    skill_list_id: 115
+    attributes:
+      combat:
+        skill: katana
+      jobs: [nin, nin]
+      render:
+        look:
+          type:  misc
+          model: 1036
+        entity_flags:  3
+        model_size:    1
+        hitbox:       17
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: uncommon
+          item:   coral_crest_key
+        - chance: rare
+          item:   taurus_subligar
+        - chance: common
+          item:   shakudo_ingot
+        - chance: common
+          item:   shakudo_ingot
+        - chance: rare
+          item:   sacrarium_chest_key
+
+  Fomor_Paladin:
+    id:            1387
+    species:       fomor
+    spell_list_id: 4
+    skill_list_id: 115
+    attributes:
+      combat:
+        skill: sword
+      jobs: [pld, pld]
+      render:
+        look:
+          type:  misc
+          model: 1040
+        entity_flags: 131
+        model_size:     1
+        hitbox:        20
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: uncommon
+          item:   coral_crest_key
+        - chance: rare
+          item:   pisces_subligar
+        - chance: rare
+          item:   sacrarium_chest_key
+        - chance: very_rare
+          item:   revival_tree_root
+
+  Fomor_Ranger:
+    id:            1388
+    species:       fomor
+    skill_list_id: 115
+    attributes:
+      combat:
+        skill: dagger
+      jobs: [rng, rng]
+      render:
+        look:
+          type:  misc
+          model: 1017
+        entity_flags: 131
+        model_size:     1
+        hitbox:        17
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: uncommon
+          item:   coral_crest_key
+        - chance: rare
+          item:   virgo_subligar
+        - chance: uncommon
+          item:   square_of_balloon_cloth
+        - chance: uncommon
+          item:   square_of_balloon_cloth
+        - chance: rare
+          item:   sacrarium_chest_key
+        - chance: very_rare
+          item:   revival_tree_root
+
+  Fomor_Ranger_Large:
+    id:            7284
+    display_name:  Fomor_Ranger
+    species:       fomor
+    skill_list_id: 115
+    attributes:
+      combat:
+        skill: dagger
+      jobs: [rng, rng]
+      render:
+        look:
+          type:  misc
+          model: 1017
+        entity_flags: 131
+        model_size:     1
+        hitbox:        20
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: uncommon
+          item:   coral_crest_key
+        - chance: rare
+          item:   virgo_subligar
+        - chance: uncommon
+          item:   square_of_balloon_cloth
+        - chance: uncommon
+          item:   square_of_balloon_cloth
+        - chance: rare
+          item:   sacrarium_chest_key
+        - chance: very_rare
+          item:   revival_tree_root
+
+  Fomor_Red_Mage:
+    id:            1389
+    species:       fomor
+    spell_list_id: 3
+    skill_list_id: 115
+    attributes:
+      combat:
+        skill: sword
+      jobs: [rdm, rdm]
+      render:
+        look:
+          type:  misc
+          model: 1032
+        entity_flags:  3
+        model_size:    1
+        hitbox:       17
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: uncommon
+          item:   coral_crest_key
+        - chance: rare
+          item:   scorpius_subligar
+        - chance: rare
+          item:   sacrarium_chest_key
+        - chance: very_rare
+          item:   revival_tree_root
+
+  Fomor_Samurai:
+    id:            1390
+    species:       fomor
+    skill_list_id: 115
+    attributes:
+      combat:
+        skill: great_katana
+      jobs: [sam, sam]
+      render:
+        look:
+          type:  misc
+          model: 1012
+        entity_flags: 131
+        model_size:     1
+        hitbox:        17
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: uncommon
+          item:   coral_crest_key
+        - chance: rare
+          item:   cancer_subligar
+        - chance: common
+          item:   shakudo_ingot
+        - chance: common
+          item:   shakudo_ingot
+        - chance: rare
+          item:   sacrarium_chest_key
+
+  Fomor_Summoner:
+    id:            1391
+    species:       fomor
+    spell_list_id: 34
+    skill_list_id: 115
+    attributes:
+      combat:
+        skill: staff
+      jobs: [smn, smn]
+      render:
+        look:
+          type:  misc
+          model: 1026
+        entity_flags: 131
+        model_size:     1
+        hitbox:        15
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: uncommon
+          item:   coral_crest_key
+        - chance: rare
+          item:   capricornus_subligar
+        - chance: rare
+          item:   sacrarium_chest_key
+        - chance: very_rare
+          item:   revival_tree_root
+
+  Fomor_Thief:
+    id:            1397
+    species:       fomor
+    skill_list_id: 115
+    attributes:
+      combat:
+        skill: dagger
+      jobs: [thf, thf]
+      render:
+        look:
+          type:  misc
+          model: 1022
+        entity_flags: 131
+        model_size:     1
+        hitbox:        20
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: uncommon
+          item:   coral_crest_key
+        - chance: rare
+          item:   gemini_subligar
+        - chance: common
+          item:   square_of_balloon_cloth
+        - chance: common
+          item:   square_of_balloon_cloth
+        - chance: rare
+          item:   sacrarium_chest_key
+
+  Fomor_Warrior:
+    id:            1398
+    species:       fomor
+    skill_list_id: 115
+    attributes:
+      combat:
+        skill: great_axe
+      render:
+        look:
+          type:  misc
+          model: 1020
+        entity_flags: 131
+        model_size:     1
+        hitbox:        20
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: uncommon
+          item:   coral_crest_key
+        - chance: rare
+          item:   sacrarium_chest_key
+        - chance: very_rare
+          item:   revival_tree_root
+
+  Fomors_Avatar:
+    id:            1392
+    species:       carbuncle
+    skill_list_id: 34
+    attributes:
+      combat:
+        skill: scythe
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 791
+      behaviors:
+        links: true
+      spawn:
+        type: [scripted]
+
+  Fomors_Bats_Sacrarium:
+    id:            7347
+    display_name:  Fomors_Bats
+    species:       flock_bat
+    skill_list_id: 2015
+    attributes:
+      combat:
+        skill: club
+      render:
+        look:
+          type:  standard
+          model: 260
+        entity_flags:  643
+        animation_sub:   8
+        name_prefix:    64
+        model_size:      1
+        hitbox:         16
+      behaviors:
+        links: true
+      spawn:
+        type: [scripted]
+
+  Fomors_Elemental:
+    id:            1395
+    species:       earth_elemental
+    spell_list_id: 21
+    skill_list_id: 101
+    attributes:
+      combat:
+        skill: staff
+      jobs: [blm, rdm]
+      render:
+        look:
+          type:  standard
+          model: 11
+        entity_flags:  131
+        animation_sub:  16
+        model_size:      1
+        hitbox:          8
+      behaviors:
+        links: true
+      spawn:
+        type: [scripted]
+
+  Fomors_Elemental_2:
+    id:            1395
+    display_name:  Fomors_Elemental
+    species:       earth_elemental
+    spell_list_id: 21
+    skill_list_id: 101
+    attributes:
+      combat:
+        skill: staff
+      jobs: [blm, rdm]
+      render:
+        look:
+          type:  standard
+          model: 11
+        entity_flags:  131
+        animation_sub:  16
+        model_size:      1
+        hitbox:          8
+      behaviors:
+        links: true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 790
+
+  Fomors_Wyvern:
+    id:            1396
+    species:       blue_wyvern
+    skill_list_id: 714
+    attributes:
+      combat:
+        skill: scythe
+        delay: 200
+      render:
+        look:
+          type:  standard
+          model: 24
+        entity_flags: 131
+        model_size:     1
+        hitbox:         8
+      behaviors:
+        links: true
+      spawn:
+        type: [scripted]
+
+  Gazer:
+    id:            1481
+    species:       hecteye
+    spell_list_id: 10
+    skill_list_id: 139
+    attributes:
+      combat:
+        skill: staff
+        delay: 280
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 384
+        entity_flags: 131
+        model_size:     1
+        hitbox:        12
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 840
+    loot:
+      drops:
+        - chance: common
+          item:   vial_of_mercury
+        - chance: rare
+          item:   hecteyes_eye
+        - chance: rare
+          item:   sacrarium_chest_key
+      despoil:
+        hecteyes_eye: 0
+
+  Greater_Gaylas_Sacrarium:
+    id:            7346
+    display_name:  Greater_Gaylas
+    species:       flock_bat
+    skill_list_id: 2015
+    attributes:
+      combat:
+        skill: club
+      render:
+        look:
+          type:  standard
+          model: 260
+        entity_flags:  643
+        animation_sub:   8
+        name_prefix:    64
+        model_size:      1
+        hitbox:         16
+      behaviors:
+        links: true
+      spawn:
+        respawn: 840
+    loot:
+      drops:
+        - chance: very_common
+          item:   bat_wing
+        - chance: uncommon
+          item:   bat_fang
+        - chance: rare
+          item:   vial_of_fiend_blood
+        - chance: very_rare
+          item:   vial_of_beastman_blood
+      despoil:
+        bat_wing: 0
+
+  Indich:
+    id:            2074
+    species:       fomor
+    type:          [notorious]
+    spell_list_id: 1
+    skill_list_id: 2098
+    attributes:
+      combat:
+        skill: sword
+        delay: 220
+      jobs: [brd, pld]
+      render:
+        look:
+          type:  misc
+          model: 1039
+        entity_flags: 1181
+        name_prefix:    32
+        model_size:      2
+        hitbox:         22
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 6500
+    loot:
+      drops:
+        - chance: very_common
+          item:   swift_belt
+
+  Keremet:
+    id:            2210
+    species:       corse
+    type:          [notorious, event]
+    spell_list_id: 21
+    skill_list_id: 74
+    attributes:
+      combat:
+        skill: club
+        delay: 290
+      jobs: [blm, blm]
+      resists:
+        dmg_physical:
+          blunt: 2500
+      render:
+        look:
+          type:  standard
+          model: 1363
+        entity_flags: 133
+        model_size:     2
+        hitbox:        13
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 600
+      stats:
+        hp: 6000
+    loot:
+      drops:
+        - chance: always
+          item:   sealion_crest_key
+
+  Lich:
+    id:            2407
+    species:       skeleton
+    spell_list_id: 28
+    skill_list_id: 227
+    attributes:
+      combat:
+        skill: great_katana
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 564
+        entity_flags: 131
+        model_size:     1
+        hitbox:        12
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: common
+          item:   bone_chip
+        - chance: rare
+          item:   revival_tree_root
+      steal: bone_chip
+      despoil:
+        bone_chip: 0
+
+  Lobais:
+    id:            2427
+    species:       fomor
+    type:          [notorious]
+    skill_list_id: 2099
+    attributes:
+      combat:
+        skill: staff
+        delay: 210
+      jobs: [smn, blm]
+      render:
+        look:
+          type:  misc
+          model: 1027
+        entity_flags: 157
+        name_prefix:   32
+        model_size:     2
+        hitbox:        17
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 6100
+    loot:
+      drops:
+        - chance: very_common
+          item:   swift_belt
+
+  Luaith:
+    id:            2444
+    species:       fomor
+    type:          [notorious]
+    skill_list_id: 2098
+    attributes:
+      combat:
+        skill: dagger
+        delay: 220
+      jobs: [thf, war]
+      render:
+        look:
+          type:  misc
+          model: 1023
+        entity_flags: 157
+        name_prefix:   32
+        model_size:     2
+        hitbox:        22
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 6400
+    loot:
+      drops:
+        - chance: very_common
+          item:   swift_belt
+
+  Mariselles_Pupil:
+    id:            2566
+    species:       ghost
+    type:          [notorious]
+    skill_list_id: 121
+    attributes:
+      combat:
+        skill: staff
+      jobs: [rdm, blm]
+      render:
+        look:
+          type:  standard
+          model: 368
+        entity_flags: 153
+        name_prefix:   32
+        hitbox:         6
+      behaviors:
+        aggressive:     true
+        links:          true
+        true_detection: true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 1000
+
+  Mummy:
+    id:            2770
+    species:       skeleton
+    skill_list_id: 227
+    attributes:
+      combat:
+        skill: axe
+      render:
+        look:
+          type:  standard
+          model: 572
+        entity_flags:  643
+        animation_sub:   8
+        model_size:      1
+        hitbox:         12
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: rare
+          item:   sacrarium_chest_key
+      despoil:
+        bone_chip: 0
+
+  Old_Professor_Mariselle:
+    id:            2964
+    species:       ghost
+    type:          [notorious]
+    spell_list_id: 2
+    skill_list_id: 121
+    attributes:
+      combat:
+        skill: staff
+      jobs: [blm, drk]
+      render:
+        look:
+          type:  standard
+          model: 368
+        entity_flags:  1695
+        animation_sub:    8
+        name_prefix:     32
+        model_size:       3
+        hitbox:          11
+      behaviors:
+        aggressive:     true
+        true_detection: true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 5000
+        mp: 5000
+
+  Stegotaur_S:
+    id:            6638
+    species:       taurus
+    skill_list_id: 240
+    attributes:
+      combat:
+        skill: hand_to_hand
+        delay: 380
+      jobs: [mnk, mnk]
+      render:
+        look:
+          type:  standard
+          model: 1359
+        entity_flags: 129
+        hitbox:        10
+      behaviors:
+        aggressive:     true
+        links:          true
+        true_detection: true
+      spawn:
+        respawn: 840
+    loot:
+      drops:
+        - chance: rare
+          item:   fomor_codex
+        - chance: rare
+          item:   taurus_horn
+      despoil:
+        demon_skull: 0
+        demon_horn:  0
+
+  Teratotaur:
+    id:            3880
+    species:       taurus
+    skill_list_id: 240
+    attributes:
+      combat:
+        skill: hand_to_hand
+        delay: 380
+      jobs: [mnk, mnk]
+      render:
+        look:
+          type:  standard
+          model: 1359
+        entity_flags: 131
+        model_size:     1
+        hitbox:        12
+      behaviors:
+        aggressive:     true
+        links:          true
+        true_detection: true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: rare
+          item:   fomor_codex
+        - chance: rare
+          item:   taurus_horn
+      despoil:
+        demon_skull: 0
+        demon_horn:  0
+
+  Thunder_Elemental:
+    id:            3912
+    species:       thunder_elemental
+    spell_list_id: 16
+    skill_list_id: 105
+    attributes:
+      combat:
+        skill: staff
+      jobs: [blm, rdm]
+      resists:
+        immune_status: [stun, poison]
+      render:
+        look:
+          type:  standard
+          model: 441
+        entity_flags:  131
+        animation_sub:  16
+        model_size:      1
+        hitbox:          3
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 960
+        type:    [weather]
+    loot:
+      drops:
+        - chance: always
+          item:   lightning_cluster
+        - chance: common
+          item:   lightning_cluster
+        - chance: common
+          item:   lightning_cluster
+
+  Utukku_S:
+    id:            4112
+    species:       ghost
+    spell_list_id: 28
+    skill_list_id: 121
+    attributes:
+      combat:
+        skill: staff
+      jobs: [war, blm]
+      render:
+        look:
+          type:  standard
+          model: 368
+        entity_flags: 1155
+        model_size:      1
+        hitbox:          8
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: common
+          item:   square_of_cotton_cloth
+        - chance: uncommon
+          item:   revival_tree_root
+        - chance: rare
+          item:   sacrarium_chest_key
+      steal: square_of_cotton_cloth
+      despoil:
+        square_of_cotton_cloth: 0
+
+
+  Beta_skel_Azren_Kuba:
+    id:            40059
+    species:       skeleton
+    type:          [event]
+    spell_list_id: 28
+    skill_list_id: 227
+    attributes:
+      combat:
+        skill: great_katana
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 2963
+        entity_flags: 1155
+        model_size:      1
+        hitbox:         12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 1800
+      stats:
+        hp: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   beta_1068
+        - chance: uncommon
+          item:   beta_6136
+        - chance: uncommon
+          item:   beta_6831
+
+  Beta_eys_Blubber_Eyes:
+    id:            40082
+    display_name:  Blubber_Eyes_PX
+    species:       hecteye
+    spell_list_id: 10
+    skill_list_id: 139
+    attributes:
+      combat:
+        skill: staff
+        delay: 280
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 2969
+        entity_flags: 131
+        model_size:     1
+        hitbox:        12
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: rare
+          item:   beta_18919
+        - chance: uncommon
+          item:   beta_172
+        - chance: uncommon
+          item:   beta_4811
+        - chance: uncommon
+          item:   beta_6770
+        - chance: rare
+          item:   hecteyes_eye
+        - chance: common
+          item:   vial_of_mercury
+      despoil:
+        hecteyes_eye: 0
+
+spawns:
+  16891905:
+    template: Gazer
+    region:   w_1
+    level:    [48, 50]
+  16891906:
+    template: Gazer
+    region:   w_1
+    level:    [48, 50]
+  16891907:
+    template: Greater_Gaylas_Sacrarium
+    script:   Greater_Gaylas
+    region:   w_1
+    level:    [46, 48]
+  16891908:
+    template: Stegotaur_S
+    script:   Stegotaur
+    region:   w_1
+    level:    [47, 49]
+  16891909:
+    template: Gazer
+    region:   nw_5
+    level:    [48, 50]
+  16891910:
+    template: Stegotaur_S
+    script:   Stegotaur
+    at:       [-179.476, -8.532, 28.622, 35]
+    level:    [47, 49]
+  16891911:
+    template: Stegotaur_S
+    script:   Stegotaur
+    region:   region_40
+    level:    [47, 49]
+  16891912:
+    template: Greater_Gaylas_Sacrarium
+    script:   Greater_Gaylas
+    region:   region_40
+    level:    [46, 48]
+  16891913:
+    template: Mummy
+    region:   w_9
+    level:    [54, 56]
+  16891914:
+    template: Mummy
+    region:   w_9
+    level:    [54, 56]
+  16891915:
+    template: Lich
+    region:   w_9
+    level:    [54, 56]
+  16891916:
+    template: Mummy
+    region:   w_12
+    level:    [54, 56]
+  16891917:
+    template: Lich
+    region:   w_12
+    level:    [54, 56]
+  16891918:
+    template: Mummy
+    region:   w_14
+    level:    [54, 56]
+  16891919:
+    template: Lich
+    region:   w_14
+    level:    [54, 56]
+  16891920:
+    template: Mummy
+    region:   w_16
+    level:    [54, 56]
+  16891921:
+    template: Lich
+    region:   w_16
+    level:    [54, 56]
+  16891922:
+    template: Lich
+    region:   w_16
+    level:    [54, 56]
+  16891923:
+    template: Mummy
+    region:   w_19
+    level:    [54, 56]
+  16891924:
+    template: Lich
+    region:   w_19
+    level:    [54, 56]
+  16891925:
+    template: Blubber_Eyes
+    region:   w_24
+    level:    [57, 59]
+  16891926:
+    template: Mummy
+    region:   w_22
+    level:    [54, 56]
+  16891927:
+    template: Blubber_Eyes
+    region:   w_22
+    level:    [57, 59]
+  16891928:
+    template: Mummy
+    region:   w_24
+    level:    [54, 56]
+  16891929:
+    template: Lich
+    region:   w_24
+    level:    [54, 56]
+  16891930:
+    template: Blubber_Eyes
+    region:   w_24
+    level:    [57, 59]
+  16891931:
+    template: Mummy
+    region:   w_28
+    level:    [54, 56]
+  16891932:
+    template: Lich
+    region:   w_28
+    level:    [54, 56]
+  16891933:
+    template: Blubber_Eyes
+    region:   w_28
+    level:    [57, 59]
+  16891934:
+    template: Mummy
+    region:   c_30
+    level:    [54, 56]
+  16891935:
+    template: Lich
+    region:   c_30
+    level:    [54, 56]
+  16891936:
+    template: Mummy
+    region:   c_32
+    level:    [54, 56]
+  16891937:
+    template: Mummy
+    region:   c_32
+    level:    [54, 56]
+  16891938:
+    template: Lich
+    region:   c_34
+    level:    [54, 56]
+  16891939:
+    template: Lich
+    region:   c_34
+    level:    [54, 56]
+  16891940:
+    template: Mummy
+    region:   c_36
+    level:    [54, 56]
+  16891941:
+    template: Lich
+    region:   c_36
+    level:    [54, 56]
+  16891942:
+    template: Utukku_S
+    script:   Utukku
+    region:   c_40
+    level:    [55, 55]
+  16891943:
+    template: Utukku_S
+    script:   Utukku
+    region:   c_40
+    level:    [55, 55]
+  16891944:
+    template: Utukku_S
+    script:   Utukku
+    region:   c_40
+    level:    [55, 55]
+  16891945:
+    template: Utukku_S
+    script:   Utukku
+    region:   c_43
+    level:    [55, 55]
+  16891946:
+    template: Utukku_S
+    script:   Utukku
+    region:   c_43
+    level:    [55, 55]
+  16891947:
+    template: Utukku_S
+    script:   Utukku
+    region:   c_43
+    level:    [55, 55]
+  16891948:
+    template: Elel
+    at:       [-46.558, -0.600, -24.327, 198]
+    level:    [60, 60]
+  16891949:
+    template: Stegotaur_S
+    script:   Stegotaur
+    at:       [-60.798, -0.606, 46.926, 188]
+    level:    [47, 49]
+  16891950:
+    template: Stegotaur_S
+    script:   Stegotaur
+    region:   region_48
+    level:    [47, 49]
+  16891951:
+    template: Fomor_Ranger_Large
+    script:   Fomor_Ranger
+    region:   n_47
+    level:    [54, 56]
+  16891952:
+    template: Fomor_Ninja
+    region:   n_47
+    level:    [54, 56]
+  16891953:
+    template: Fomor_Bard
+    region:   n_47
+    level:    [54, 56]
+  16891954:
+    template: Fomor_Dragoon
+    region:   n_50
+    level:    [54, 56]
+  16891955:
+    template: Fomors_Wyvern
+    region:   n_50
+    level:    [49, 52]
+  16891956:
+    template: Fomor_Ranger
+    region:   n_50
+    level:    [54, 56]
+  16891957:
+    template: Fomor_Black_Mage
+    region:   n_53
+    level:    [54, 56]
+  16891958:
+    template: Fomor_Bard
+    region:   n_53
+    level:    [54, 56]
+  16891959:
+    template: Fomor_Beastmaster
+    region:   n_53
+    level:    [54, 56]
+  16891960:
+    template: Fomors_Bats_Sacrarium
+    script:   Fomors_Bats
+    at:       [1.000, 1.000, 1.000, 117]
+    level:    [49, 51]
+  16891961:
+    template: Fomor_Monk
+    region:   s_57
+    level:    [54, 56]
+  16891962:
+    template: Fomor_Red_Mage
+    region:   s_57
+    level:    [54, 56]
+  16891963:
+    template: Fomor_Samurai
+    region:   s_57
+    level:    [54, 56]
+  16891964:
+    template: Fomor_Dark_Knight
+    region:   s_60
+    level:    [54, 56]
+  16891965:
+    template: Fomor_Summoner
+    region:   s_60
+    level:    [54, 56]
+  16891966:
+    template: Fomors_Elemental
+    at:       [1.000, 1.000, 1.000, 120]
+    level:    [49, 51]
+  16891967:
+    template: Fomor_Warrior
+    region:   s_63
+    level:    [54, 56]
+  16891968:
+    template: Fomor_Thief
+    region:   s_63
+    level:    [54, 56]
+  16891969:
+    template: Fomor_Paladin
+    region:   s_63
+    level:    [54, 56]
+  16891970:
+    template: Old_Professor_Mariselle
+    at:       [57.135, -2.023, -123.622, 190]
+    level:    [55, 55]
+  16891971:
+    template: Mariselles_Pupil
+    at:       [57.959, -2.500, -123.480, 166]
+    level:    [47, 48]
+  16891972:
+    template: Mariselles_Pupil
+    at:       [58.636, -2.500, -122.869, 142]
+    level:    [47, 48]
+  16891973:
+    template: Fomor_Ranger
+    region:   n_69
+    level:    [55, 56]
+  16891974:
+    template: Fomor_Samurai
+    region:   n_69
+    level:    [55, 56]
+  16891975:
+    template: Fomor_Dragoon
+    region:   n_69
+    level:    [55, 56]
+  16891976:
+    template: Fomors_Wyvern
+    region:   n_69
+    level:    [49, 52]
+  16891977:
+    template: Fomor_Ranger
+    region:   n_69
+    level:    [55, 56]
+  16891978:
+    template: Fomor_Samurai
+    region:   n_69
+    level:    [55, 56]
+  16891979:
+    template: Fomor_Dragoon
+    region:   n_69
+    level:    [55, 56]
+  16891980:
+    template: Fomors_Wyvern
+    region:   n_69
+    level:    [49, 52]
+  16891981:
+    template: Greater_Gaylas_Sacrarium
+    script:   Greater_Gaylas
+    region:   n_69
+    level:    [46, 48]
+  16891982:
+    template: Fomor_Warrior
+    region:   n_78
+    level:    [55, 56]
+  16891983:
+    template: Fomor_Thief
+    region:   n_78
+    level:    [55, 56]
+  16891984:
+    template: Fomor_Ranger_Large
+    script:   Fomor_Ranger
+    region:   n_78
+    level:    [55, 56]
+  16891985:
+    template: Fomor_Warrior
+    region:   n_78
+    level:    [55, 56]
+  16891986:
+    template: Fomor_Thief
+    region:   n_78
+    level:    [55, 56]
+  16891987:
+    template: Fomor_Ranger_Large
+    script:   Fomor_Ranger
+    region:   n_78
+    level:    [55, 56]
+  16891988:
+    template: Greater_Gaylas_Sacrarium
+    script:   Greater_Gaylas
+    region:   n_78
+    level:    [46, 48]
+  16891989:
+    template: Fomor_Monk
+    region:   n_85
+    level:    [55, 56]
+  16891990:
+    template: Fomor_Black_Mage
+    region:   n_85
+    level:    [55, 56]
+  16891991:
+    template: Fomor_Summoner
+    region:   n_85
+    level:    [55, 56]
+  16891992:
+    template: Fomors_Elemental
+    at:       [1.000, 1.000, 1.000, 125]
+    level:    [49, 51]
+  16891993:
+    template: Fomor_Monk
+    region:   n_85
+    level:    [55, 56]
+  16891994:
+    template: Fomor_Black_Mage
+    region:   n_85
+    level:    [55, 56]
+  16891995:
+    template: Fomor_Summoner
+    region:   n_85
+    level:    [55, 56]
+  16891996:
+    template: Fomors_Elemental
+    at:       [1.000, 1.000, 1.000, 203]
+    level:    [49, 51]
+  16891997:
+    template: Greater_Gaylas_Sacrarium
+    script:   Greater_Gaylas
+    region:   n_85
+    level:    [46, 48]
+  16891998:
+    template: Fomor_Red_Mage
+    region:   s_94
+    level:    [55, 56]
+  16891999:
+    template: Fomor_Dark_Knight
+    region:   s_94
+    level:    [55, 56]
+  16892000:
+    template: Fomor_Ninja
+    region:   s_94
+    level:    [55, 56]
+  16892001:
+    template: Fomor_Red_Mage
+    region:   s_94
+    level:    [55, 56]
+  16892002:
+    template: Fomor_Dark_Knight
+    region:   s_94
+    level:    [55, 56]
+  16892003:
+    template: Fomor_Ninja
+    region:   s_94
+    level:    [55, 56]
+  16892004:
+    template: Greater_Gaylas_Sacrarium
+    script:   Greater_Gaylas
+    region:   s_94
+    level:    [46, 48]
+  16892005:
+    template: Fomor_Paladin
+    region:   s_101
+    level:    [55, 56]
+  16892006:
+    template: Fomor_Beastmaster
+    region:   s_101
+    level:    [55, 56]
+  16892007:
+    template: Fomors_Bats_Sacrarium
+    script:   Fomors_Bats
+    at:       [1.000, 1.000, 1.000, 196]
+    level:    [49, 51]
+  16892008:
+    template: Fomor_Bard
+    region:   s_101
+    level:    [55, 56]
+  16892009:
+    template: Fomor_Paladin
+    region:   s_101
+    level:    [55, 56]
+  16892010:
+    template: Fomor_Beastmaster
+    region:   s_101
+    level:    [55, 56]
+  16892011:
+    template: Fomors_Bats_Sacrarium
+    script:   Fomors_Bats
+    at:       [1.000, 1.000, 1.000, 32]
+    level:    [49, 51]
+  16892012:
+    template: Fomor_Bard
+    region:   s_101
+    level:    [55, 56]
+  16892013:
+    template: Greater_Gaylas_Sacrarium
+    script:   Greater_Gaylas
+    region:   s_101
+    level:    [46, 48]
+  16892014:
+    template: Fomor_Bard
+    at:       [100.000, -3.229, -129.000, 192]
+    level:    [55, 56]
+  16892015:
+    template: Fomor_Monk
+    at:       [94.000, -2.500, -116.000, 64]
+    level:    [56, 57]
+  16892016:
+    template: Fomor_Samurai
+    at:       [92.000, -2.500, -110.000, 64]
+    level:    [55, 56]
+  16892017:
+    template: Fomor_Ninja
+    at:       [96.000, -2.500, -110.000, 64]
+    level:    [55, 56]
+  16892018:
+    template: Fomor_Black_Mage
+    at:       [106.000, -2.500, -116.000, 64]
+    level:    [56, 57]
+  16892019:
+    template: Fomor_Ranger_Large
+    script:   Fomor_Ranger
+    at:       [104.000, -2.500, -110.000, 64]
+    level:    [55, 56]
+  16892020:
+    template: Fomor_Red_Mage
+    at:       [108.000, -2.500, -110.000, 64]
+    level:    [55, 56]
+  16892021:
+    template: Greater_Gaylas_Sacrarium
+    script:   Greater_Gaylas
+    region:   s_117
+    level:    [46, 48]
+  16892022:
+    template: Fomor_Thief
+    region:   c_118
+    level:    [57, 58]
+  16892023:
+    template: Fomor_Samurai
+    region:   c_118
+    level:    [56, 57]
+  16892024:
+    template: Blubber_Eyes
+    region:   c_118
+    level:    [57, 59]
+  16892025:
+    template: Fomor_Summoner
+    region:   c_118
+    level:    [54, 55]
+  16892026:
+    template: Fomors_Elemental
+    at:       [1.000, 1.000, 1.000, 193]
+    level:    [49, 51]
+  16892027:
+    template: Fomor_Monk
+    region:   c_123
+    level:    [57, 58]
+  16892028:
+    template: Fomor_Warrior
+    region:   c_123
+    level:    [56, 57]
+  16892029:
+    template: Teratotaur
+    region:   c_125
+    level:    [57, 58]
+  16892030:
+    template: Teratotaur
+    region:   c_125
+    level:    [57, 58]
+  16892031:
+    template: Teratotaur
+    region:   c_125
+    level:    [57, 58]
+  16892032:
+    template: Teratotaur
+    region:   c_125
+    level:    [57, 58]
+  16892033:
+    template: Teratotaur
+    region:   ne_129
+    level:    [57, 58]
+  16892034:
+    template: Fomor_Warrior
+    region:   e_130
+    level:    [57, 58]
+  16892035:
+    template: Fomor_Dragoon
+    region:   e_130
+    level:    [56, 57]
+  16892036:
+    template: Fomors_Wyvern
+    region:   e_130
+    level:    [49, 52]
+  16892037:
+    template: Fomor_Bard
+    region:   e_130
+    level:    [56, 57]
+  16892038:
+    template: Fomor_Dark_Knight
+    region:   e_130
+    level:    [56, 57]
+  16892039:
+    template: Fomor_Black_Mage
+    region:   e_130
+    level:    [56, 57]
+  16892040:
+    template: Blubber_Eyes
+    region:   e_130
+    level:    [57, 59]
+  16892041:
+    template: Blubber_Eyes
+    region:   e_130
+    level:    [57, 59]
+  16892042:
+    template: Teratotaur
+    region:   se_138
+    level:    [57, 58]
+  16892043:
+    template: Teratotaur
+    region:   e_139
+    level:    [58, 59]
+  16892044:
+    template: Teratotaur
+    region:   e_139
+    level:    [58, 59]
+  16892045:
+    template: Greater_Gaylas_Sacrarium
+    script:   Greater_Gaylas
+    region:   e_139
+    level:    [46, 48]
+  16892046:
+    template: Greater_Gaylas_Sacrarium
+    script:   Greater_Gaylas
+    region:   e_139
+    level:    [46, 48]
+  16892047:
+    template: Greater_Gaylas_Sacrarium
+    script:   Greater_Gaylas
+    region:   e_139
+    level:    [46, 48]
+  16892048:
+    template: Greater_Gaylas_Sacrarium
+    script:   Greater_Gaylas
+    region:   e_139
+    level:    [46, 48]
+  16892049:
+    template: Keremet
+    at:       [261.000, -0.500, 0.000, 128]
+    level:    [56, 57]
+  16892050:
+    template: Azren_Kuguza
+    at:       [169.000, -0.500, 17.000, 192]
+    level:    [42, 43]
+  16892051:
+    template: Azren_Kuba
+    at:       [169.000, -0.500, 23.000, 64]
+    level:    [42, 43]
+  16892052:
+    template: Azren_Kuguza
+    at:       [180.000, -0.500, 17.000, 192]
+    level:    [42, 43]
+  16892053:
+    template: Azren_Kuba
+    at:       [180.000, -0.500, 23.000, 64]
+    level:    [42, 43]
+  16892054:
+    template: Azren_Kuguza
+    at:       [191.000, -0.500, 17.000, 192]
+    level:    [42, 43]
+  16892055:
+    template: Azren_Kuba
+    at:       [191.000, -0.500, 23.000, 64]
+    level:    [42, 43]
+  16892056:
+    template: Azren_Kuguza
+    at:       [169.000, -0.500, -17.000, 64]
+    level:    [42, 43]
+  16892057:
+    template: Azren_Kuba
+    at:       [169.000, -0.500, -23.000, 192]
+    level:    [42, 43]
+  16892058:
+    template: Azren_Kuguza
+    at:       [180.000, -0.500, -17.000, 64]
+    level:    [42, 43]
+  16892059:
+    template: Azren_Kuba
+    at:       [180.000, -0.500, -23.000, 192]
+    level:    [42, 43]
+  16892060:
+    template: Azren_Kuguza
+    at:       [191.000, -0.500, -17.000, 64]
+    level:    [42, 43]
+  16892061:
+    template: Azren_Kuba
+    at:       [191.000, -0.500, -23.000, 192]
+    level:    [42, 43]
+  16892062:
+    template: Air_Elemental
+    region:   ne_158
+    level:    [60, 60]
+  16892063:
+    template: Thunder_Elemental
+    region:   ne_158
+    level:    [60, 60]
+  16892064:
+    template: Dark_Elemental
+    region:   ne_158
+    level:    [60, 60]
+  16892065:
+    template: Air_Elemental
+    region:   se_161
+    level:    [60, 60]
+  16892066:
+    template: Thunder_Elemental
+    region:   se_161
+    level:    [60, 60]
+  16892067:
+    template: Dark_Elemental
+    region:   se_161
+    level:    [60, 60]
+  16892068:
+    template: Balor
+    at:       [32.129, -2.500, 117.292, 196]
+    level:    [57, 58]
+  16892069:
+    template: Luaith
+    at:       [69.000, -2.500, 116.000, 65]
+    level:    [57, 58]
+  16892070:
+    template: Lobais
+    at:       [109.000, -2.500, 116.000, 103]
+    level:    [57, 58]
+  16892071:
+    template: Fomors_Elemental_2
+    script:   Fomors_Elemental_Lobais
+    at:       [1.000, 1.000, 1.000, 102]
+    level:    [53, 53]
+  16892072:
+    template: Fomors_Avatar
+    at:       [102.910, -2.500, 90.210, 131]
+    level:    [49, 51]
+  16892073:
+    template: Caithleann
+    at:       [11.000, -2.500, -115.000, 2]
+    level:    [57, 58]
+  16892074:
+    template: Indich
+    at:       [50.000, -2.250, -115.000, 238]
+    level:    [57, 58]
+  16892075:
+    template: Aqueduct_Spider
+    region:   w_171
+    level:    [84, 86]
+  16892076:
+    template: Aqueduct_Spider
+    region:   w_171
+    level:    [84, 86]
+  16892077:
+    template: Aqueduct_Spider
+    region:   w_171
+    level:    [84, 86]
+  16892078:
+    template: Aqueduct_Spider
+    region:   w_171
+    level:    [84, 86]
+  16892079:
+    template: Aqueduct_Spider
+    region:   w_171
+    level:    [84, 86]
+  16892080:
+    template: Aqueduct_Spider
+    region:   region_42
+    level:    [84, 86]
+  16892081:
+    template: Aqueduct_Spider
+    region:   region_42
+    level:    [84, 86]
+  16892082:
+    template: Aqueduct_Spider
+    region:   region_43
+    level:    [84, 86]
+  16892083:
+    template: Aqueduct_Spider
+    region:   region_43
+    level:    [84, 86]
+  16892084:
+    template: Aqueduct_Spider
+    region:   region_44
+    level:    [84, 86]
+  16892085:
+    template: Aqueduct_Spider
+    region:   region_44
+    level:    [84, 86]
+  16892086:
+    template: Aqueduct_Spider
+    region:   region_45
+    level:    [84, 86]
+  16892087:
+    template: Aqueduct_Spider
+    region:   region_45
+    level:    [84, 86]
+  16892088:
+    template: Aqueduct_Spider
+    region:   region_45
+    level:    [84, 86]
+  16892089:
+    template: Aqueduct_Spider
+    region:   region_46
+    level:    [84, 86]
+  16892090:
+    template: Aqueduct_Spider
+    region:   region_46
+    level:    [84, 86]
+  16892091:
+    template: Aqueduct_Spider
+    region:   region_47
+    level:    [84, 86]
+  16892092:
+    template: Aqueduct_Spider
+    region:   region_47
+    level:    [84, 86]
+  16892093:
+    template: Aqueduct_Spider
+    region:   se_163
+    level:    [84, 86]
+  16892094:
+    template: Aqueduct_Spider
+    region:   se_163
+    level:    [84, 86]
+  16892095:
+    template: Aqueduct_Spider
+    region:   se_163
+    level:    [84, 86]
+
+  16892187:
+    template: Beta_skel_Azren_Kuba
+    at:       [169.000, -0.500, 23.000, 64.000]
+    level:    [42, 43]
+  16892188:
+    template: Beta_skel_Azren_Kuba
+    at:       [169.000, -0.500, 23.000, 64.000]
+    level:    [42, 43]
+  16892189:
+    template: Beta_eys_Blubber_Eyes
+    region:   w_24
+    level:    [57, 59]
+  16892190:
+    template: Beta_eys_Blubber_Eyes
+    region:   w_24
+    level:    [57, 59]
+slots:
+  - members:
+      16891914: {} # Mummy
+      16891915: {} # Lich
+  - members:
+      16891920: {} # Mummy
+      16891921: {} # Lich
+  - members:
+      16891925: {} # Blubber_Eyes
+      16891930: {} # Blubber_Eyes
+  - members:
+      16891928: {} # Mummy
+      16891929: {} # Lich
+  - members:
+      16891931: {} # Mummy
+      16891932: {} # Lich
+  - members:
+      16891942: {} # Utukku
+      16891943: {} # Utukku
+      16891944: {} # Utukku
+  - members:
+      16891945: {} # Utukku
+      16891946: {} # Utukku
+      16891947: {} # Utukku
+  - members:
+      16891949: {} # Stegotaur
+      16891950: {} # Stegotaur

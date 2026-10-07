@@ -1,0 +1,40 @@
+-- Text ids rebuilt for the 2007 PS2 client data tooling: PROFILE 2012 = the 2012 client data (report 28) by research/tools/lsb_textids_2007.py (13 changed, 6 not in the 2007 dialog DAT 6568 and left unchanged).
+-----------------------------------
+-- Area: Qulun_Dome
+-----------------------------------
+zones = zones or {}
+
+zones[xi.zone.QULUN_DOME] =
+{
+    text =
+    {
+        ITEM_CANNOT_BE_OBTAINED                 = 6375, -- You cannot obtain the <item>. Come back after sorting your inventory.
+        ITEM_OBTAINED                           = 6378, -- Obtained: <item>.
+        GIL_OBTAINED                            = 6379, -- Obtained <number> gil.
+        KEYITEM_OBTAINED                        = 6398, -- Obtained key item: <keyitem>.
+        NOTHING_OUT_OF_ORDINARY                 = 6392, -- There is nothing out of the ordinary here.
+        CARRIED_OVER_POINTS                     = 7006, -- You have carried over <number> login point[/s].
+        LOGIN_CAMPAIGN_UNDERWAY                 = 7007, -- The [/January/February/March/April/May/June/July/August/September/October/November/December] <number> Login Campaign is currently underway!
+        LOGIN_NUMBER                            = 7008, -- In celebration of your most recent login (login no. <number>), we have provided you with <number> points! You currently have a total of <number> points.
+        MEMBERS_LEVELS_ARE_RESTRICTED           = 7028, -- Your party is unable to participate because certain members' levels are restricted.
+        CONQUEST_BASE                           = 6994, -- Tallying conquest results...
+        IT_SEEMS_TO_BE_LOCKED_BY_POWERFUL_MAGIC = 7153, -- A door... It seems to be locked by powerful magic.
+        THE_3_ITEMS_GLOW_FAINTLY                = 7233, -- The <item>, <item>, and <item> glow faintly.
+        CANNOT_BE_OPENED_FROM_THIS_SIDE         = 7158, -- It cannot be opened from this side!
+        THE_MAGICITE_GLOWS_OMINOUSLY            = 7196, -- The magicite glows ominously.
+        YOU_FIND_NOTHING                        = 7197, -- You find nothing.
+        DIAMOND_QUADAV_ENGAGE                   = 7198, -- Gwa-ha-ha, puny peoples! Ou-ur king never forge-ets a gru-udge. He'll gri-ind you into pa-aste!
+        DIAMOND_QUADAV_DEATH                    = 7199, -- Glo-ory to the Adamantking!
+        QUADAV_KING_ENGAGE                      = 7200, -- Childre-en of Altana? I will ba-athe in your blood as I did at the Ba-attle of Jeuno!
+        QUADAV_KING_DEATH                       = 7201, -- I a-am fini-ished. Hear me, wa-arriors of the Quadav! The throne of the Adamantking and the line of Za'Dha pa-asses to my bro-other...
+    },
+    mob =
+    {
+        DIAMOND_QUADAV             = GetFirstID('Diamond_Quadav'), -- Also used for An Affable Adamantking? offset
+    },
+    npc =
+    {
+    },
+}
+
+return zones[xi.zone.QULUN_DOME]

@@ -1,0 +1,135 @@
+-- Text ids rebuilt for the 2007 PS2 client data tooling: PROFILE 2012pc = the 2012 client + PC 2025 import (report 36) by research/tools/lsb_textids_2007.py (1 changed, 17 not in the 2007 dialog DAT 6524 and left unchanged).
+-----------------------------------
+-- Area: Jugner_Forest
+-----------------------------------
+zones = zones or {}
+
+zones[xi.zone.JUGNER_FOREST] =
+{
+    text =
+    {
+        NOTHING_HAPPENS               = 122,   -- Nothing happens...
+        ITEM_CANNOT_BE_OBTAINED       = 6378,  -- You cannot obtain the <item>. Come back after sorting your inventory.
+        ITEM_OBTAINED                 = 6381,  -- Obtained: <item>.
+        GIL_OBTAINED                  = 6383,  -- Obtained <number> gil.
+        KEYITEM_OBTAINED              = 6420,  -- Obtained key item: <keyitem>.
+        KEYITEM_LOST                  = 6421,  -- Lost key item: <keyitem>.
+        NOTHING_OUT_OF_ORDINARY       = 6395,  -- There is nothing out of the ordinary here.
+        FELLOW_MESSAGE_OFFSET         = 6409,  -- I'm ready. I suppose.
+        CARRIED_OVER_POINTS           = 7028,  -- You have carried over <number> login point[/s].
+        LOGIN_CAMPAIGN_UNDERWAY       = 7029,  -- The [/January/February/March/April/May/June/July/August/September/October/November/December] <number> Login Campaign is currently underway!
+        LOGIN_NUMBER                  = 7030,  -- In celebration of your most recent login (login no. <number>), we have provided you with <number> points! You currently have a total of <number> points.
+        MEMBERS_LEVELS_ARE_RESTRICTED = 7050,  -- Your party is unable to participate because certain members' levels are restricted.
+        CONQUEST_BASE                 = 6997,  -- Tallying conquest results...
+        REGION_POINTS_SANDORIA        = 7062,  -- San d'Oria's region points have increased!
+        EXP_FORCE_KILL_SANDORIA       = 7065,  -- San d'Orian E.F. defeats beastmen hordes... Maintain current momentum.
+        BEASTMEN_BANNER_CURSE         = 7076,  -- There was a curse on the beastmen's banner!
+        BEASTMEN_BANNER_LIFTED        = 7077,  -- The curse of the beastmen's banner has been lifted!
+        BEASTMEN_BANNER               = 7078,  -- There is a beastmen's banner.
+        FISHING_MESSAGE_OFFSET        = 7628,  -- You can't fish here.
+        DIG_THROW_AWAY                = 7641,  -- You dig up <item>, but your inventory is full. You regretfully throw the <item> away.
+        FIND_NOTHING                  = 7643,  -- You dig and you dig, but find nothing.
+        AMK_DIGGING_OFFSET            = 7709,  -- You spot some familiar footprints. You are convinced that your moogle friend has been digging in the immediate vicinity.
+        FOUND_ITEM_WITH_EASE          = 7718,  -- It appears your chocobo found this item with ease.
+        BEASTMEN_CACHE_OFFSET         = 7823,  -- You discover a cache of beastman resources and receive <number> conquest point[/s]!
+        SIGNPOST_NEW                  = 7791,  -- The signpost looks as good as new!
+        ALEXIUS_ORDERS                = 7912,  -- Take that <keyitem> back and hand it to the master at the weapons shop. Got it?
+        LOGGING_IS_POSSIBLE_HERE      = 7812,  -- Logging is possible here if you have <item>.
+        VOIDWALKER_OBTAIN_KI          = 7929,  -- Obtained key item: <keyitem>!
+        DUG_UP                        = 7923,  -- Something was dug up here...
+        UNABLE_TO_INVESTIGATE         = 7924,  -- For some reason, you are unable to investigate this spot. There is a preternatural force at work here...
+        SENSE_OF_FOREBODING           = 7925,  -- A sense of foreboding fills the air...
+        CONQUEST                      = 7963,  -- You've earned conquest points!
+        GARRISON_BASE                 = 8331,  -- Hm? What is this? %? How do I know this is not some [San d'Orian/Bastokan/Windurstian] trick?
+        TIME_ELAPSED                  = 8390,  -- Time elapsed: <number> [hour/hours] (Vana'diel time) <number> [minute/minutes] and <number> [second/seconds] (Earth time)
+        PLAYER_OBTAINS_ITEM           = 8554,  -- <name> obtains <item>!
+        UNABLE_TO_OBTAIN_ITEM         = 8555,  -- You were unable to obtain the item.
+        PLAYER_OBTAINS_TEMP_ITEM      = 8556,  -- <name> obtains the temporary item: <item>!
+        ALREADY_POSSESS_TEMP          = 8557,  -- You already possess that temporary item.
+        NO_COMBINATION                = 8562,  -- You were unable to enter a combination.
+        VOIDWALKER_DESPAWN            = 8593,  -- The monster fades before your eyes, a look of disappointment on its face.
+        UNITY_WANTED_BATTLE_INTERACT  = 13001, -- Those who have accepted % must pay # Unity accolades to participate. The content for this Wanted battle is #. [Ready to begin?/You do not have the appropriate object set, so your rewards will be limited.]
+        REGIME_REGISTERED             = 10745, -- New training regime registered!
+        DRAWN_UNWANTED_ATTENTION      = 11799, -- Your presence has drawn unwanted attention!
+        SENSE_UNUSUAL_PRESENCE        = 11801, -- You sense an unusual presence in the area...
+        DELIVER_TO_AMAURE             = 11935, -- You must deliver the <item> to Amaura in Southern San d'Oria.
+        VOIDWALKER_NO_MOB             = 12095, -- The <keyitem> quivers ever so slightly, but emits no light. There seem to be no monsters in the area.
+        VOIDWALKER_MOB_TOO_FAR        = 12096, -- The <keyitem> quivers ever so slightly and emits a faint light. There seem to be no monsters in the immediate vicinity.
+        VOIDWALKER_MOB_HINT           = 12097, -- The <keyitem> resonates [feebly/softly/solidly/strongly/very strongly/furiously], sending a radiant beam of light lancing towards a spot roughly <number> [yalm/yalms] [east/southeast/south/southwest/west/northwest/north/northeast] of here.
+        VOIDWALKER_SPAWN_MOB          = 11964, -- A monster materializes out of nowhere!
+        VOIDWALKER_UPGRADE_KI_1       = 12100, -- The <keyitem> takes on a slightly deeper hue and becomes <keyitem>!
+        VOIDWALKER_UPGRADE_KI_2       = 12101, -- The <keyitem> takes on a deeper, richer hue and becomes <keyitem>!
+        VOIDWALKER_BREAK_KI           = 12102, -- The <keyitem> shatters into tiny fragments.
+        COMMON_SENSE_SURVIVAL         = 13106, -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
+    },
+
+    mob =
+    {
+        CERNUNNOS             = GetFirstID('Cernunnos'),
+        FRADUBIO              = GetFirstID('Fradubio'),
+        FRAELISSA             = GetFirstID('Fraelissa'),
+        GIOLLEMITTE           = GetFirstID('Giollemitte_B_Feroun'),
+        HALFORC_BLACK_MAGE    = GetFirstID('Halforc_Black_Mage'),
+        HALFORC_DARK_KNIGHT   = GetFirstID('Halforc_Dark_Knight'),
+        HALFORC_DRAGOON       = GetFirstID('Halforc_Dragoon'),
+        HALFORC_MONK          = GetFirstID('Halforc_Monk'),
+        HALFORC_PALADIN       = GetFirstID('Halforc_Paladin'),
+        HALFORC_RANGER        = GetFirstID('Halforc_Ranger'),
+        HALFORC_WARRIOR       = GetFirstID('Halforc_Warrior'),
+        HOBGOBLIN_BEASTMASTER = GetFirstID('Hobgoblin_Beastmaster'),
+        HOBGOBLIN_BLACK_MAGE  = GetFirstID('Hobgoblin_Black_Mage'),
+        HOBGOBLIN_DARK_KNIGHT = GetFirstID('Hobgoblin_Dark_Knight'),
+        HOBGOBLIN_RANGER      = GetFirstID('Hobgoblin_Ranger'),
+        HOBGOBLIN_RED_MAGE    = GetFirstID('Hobgoblin_Red_Mage'),
+        HOBGOBLIN_THIEF       = GetFirstID('Hobgoblin_Thief'),
+        HOBGOBLIN_WARRIOR     = GetFirstID('Hobgoblin_Warrior'),
+        HOBGOBLIN_WHITE_MAGE  = GetFirstID('Hobgoblin_White_Mage'),
+        KING_ARTHRO           = GetFirstID('King_Arthro'),
+        METEORMAULER          = GetFirstID('Meteormauler_Zhagtegg'),
+        PANZER_PERCIVAL       = GetTableOfIDs('Panzer_Percival'), -- 2 NMs
+        SUPPLESPINE_MUJWUJ    = GetFirstID('Supplespine_Mujwuj'),
+
+        VOIDWALKER =
+        {
+            [xi.keyItem.CLEAR_ABYSSITE] =
+            {
+                17203695, -- Sunderclaw
+                17203694, -- Sunderclaw
+                17203693, -- Sunderclaw
+                17203692, -- Sunderclaw
+                17203691, -- Quagmire Pugil
+                17203690, -- Quagmire Pugil
+                17203689, -- Quagmire Pugil
+                17203688, -- Quagmire Pugil
+            },
+
+            [xi.keyItem.COLORFUL_ABYSSITE] =
+            {
+                17203687, -- Capricornus
+                17203686, -- Yacumama
+            },
+
+            [xi.keyItem.BLUE_ABYSSITE] =
+            {
+                17203685, -- Krabkatoa
+            },
+
+            [xi.keyItem.BLACK_ABYSSITE] =
+            {
+                17203684, -- Yilbegan
+            }
+        },
+
+    },
+
+    npc =
+    {
+        BEASTMENS_BANNER = GetFirstID('Beastmens_Banner'),
+        LOGGING          = GetTableOfIDs('Logging_Point'),
+        OVERSEER_BASE    = GetFirstID('Chaplion_RK'),
+        SIGNPOST         = GetTableOfIDs('Signpost'),
+        TIMELYVISITQM    = GetFirstID('qm1'),
+    },
+}
+
+return zones[xi.zone.JUGNER_FOREST]

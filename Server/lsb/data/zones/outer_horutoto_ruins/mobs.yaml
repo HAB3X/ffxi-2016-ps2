@@ -1,0 +1,4036 @@
+# yaml-language-server: $schema=../../schemas/mobs.schema.json
+
+templates:
+
+  Ah_Puch:
+    id:            4568
+    species:       skeleton
+    type:          [notorious]
+    spell_list_id: 28
+    skill_list_id: 227
+    attributes:
+      combat:
+        skill: scythe
+      jobs: [blm, blm]
+      resists:
+        immune_status: [gravity, bind, light_sleep, dark_sleep]
+      render:
+        look:
+          type:  standard
+          model: 576
+        model_size:  1
+        hitbox:     12
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [lottery]
+    loot:
+      drops:
+        - chance: very_common
+          item:   spiro_staff
+    content: wotg
+
+  Balloon_OHR:
+    id:            6584
+    species:       bomb
+    skill_list_id: 56
+    attributes:
+      combat:
+        skill: club
+      render:
+        look:
+          type:  standard
+          model: 280
+        entity_flags: 131
+        model_size:     1
+        hitbox:        12
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   pinch_of_bomb_ash
+        - chance: uncommon
+          item:   bomb_arm
+        - chance: rare
+          item:   coarse_boomerang
+      steal: [pinch_of_bomb_ash, bomb_arm] # audit needed
+      despoil:
+        pinch_of_bomb_ash: 0
+
+  Battue_Bats:
+    id:            372
+    species:       flock_bat
+    skill_list_id: 47
+    attributes:
+      combat:
+        skill: club
+      render:
+        look:
+          type:  standard
+          model: 260
+        entity_flags:  641
+        animation_sub:   8
+        name_prefix:    64
+        hitbox:         13
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   bat_wing
+      despoil:
+        bat_wing: 0
+
+  Black_Slime:
+    id:            439
+    species:       slime
+    skill_list_id: 229
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 292
+        entity_flags: 131
+        model_size:     1
+        hitbox:        24
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   vial_of_slime_oil
+      despoil:
+        vial_of_slime_oil: 0
+
+  Blade_Bat:
+    id:            443
+    species:       bat
+    skill_list_id: 46
+    attributes:
+      combat:
+        skill: club
+      render:
+        look:
+          type:  standard
+          model: 256
+        entity_flags:  641
+        animation_sub:   8
+        hitbox:         11
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   bat_wing
+        - chance: very_rare
+          item:   vial_of_fiend_blood
+      despoil:
+        bat_wing: 0
+
+  Bomb_King:
+    id:            495
+    species:       bomb
+    type:          [notorious]
+    skill_list_id: 56
+    attributes:
+      combat:
+        skill: axe
+      render:
+        look:
+          type:  standard
+          model: 280
+        entity_flags: 133
+        model_size:     2
+        hitbox:        13
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+      stats:
+        hp: 1050
+    loot:
+      drops:
+        - chance: always
+          item:   pinch_of_bomb_ash
+        - chance: common
+          item:   bomb_ring
+        - chance: very_common
+          item:   bomb_arm
+      steal: bomb_arm
+
+  Combat_OH:
+    id:            644
+    display_name:  Combat
+    species:       bat
+    skill_list_id: 46
+    attributes:
+      combat:
+        skill: club
+      render:
+        look:
+          type:  standard
+          model: 256
+        entity_flags: 131
+        model_size:     1
+        hitbox:        12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: very_rare
+          item:   horutoto_chest_key
+        - chance: common
+          item:   bat_wing
+        - chance: very_rare
+          item:   vial_of_fiend_blood
+      despoil:
+        bat_wing: 0
+
+  Custom_Cardian:
+    id:            870
+    species:       batons
+    type:          [notorious]
+    spell_list_id: 21
+    skill_list_id: 61
+    attributes:
+      combat:
+        skill: staff
+      jobs: [blm, whm]
+      render:
+        look:
+          type:  standard
+          model: 431
+        entity_flags: 131
+        model_size:     1
+        hitbox:        12
+      behaviors:
+        aggressive:     true
+        links:          true
+        true_detection: true
+      spawn:
+        type: [scripted]
+
+  Dancing_Weapon:
+    id:            900
+    species:       evil_weapon
+    skill_list_id: 110
+    attributes:
+      combat:
+        skill: sword
+      render:
+        look:
+          type:  standard
+          model: 451
+        entity_flags:  643
+        animation_sub:   8
+        model_size:      1
+        hitbox:         20
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+
+  Desmodont:
+    id:            1011
+    species:       bat
+    type:          [notorious]
+    skill_list_id: 46
+    attributes:
+      combat:
+        skill: great_axe
+      resists:
+        immune_status: [gravity, bind, blind, light_sleep, dark_sleep]
+      render:
+        look:
+          type:  standard
+          model: 256
+        entity_flags: 131
+        model_size:     1
+        hitbox:        12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [lottery]
+    loot:
+      drops:
+        - chance: common
+          item:   fidelity_mantle
+    content: wotg
+
+  Doppelganger_Dio:
+    id:            1089
+    species:       shadow
+    type:          [notorious]
+    skill_list_id: 221
+    attributes:
+      combat:
+        skill: sword
+        delay: 360
+      resists:
+        rank_element:
+          fire:  -2
+          ice:    4
+          light: -2
+          dark:   4
+        rank_status:
+          paralyze:     4
+          bind:         4
+          light_sleep: -2
+          dark_sleep:   4
+          blind:        4
+      render:
+        look:
+          type:  standard
+          model: 548
+        entity_flags: 155
+        name_prefix:   32
+        model_size:     1
+        hitbox:        20
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+      stats:
+        hp: 750
+    loot:
+      drops:
+        - chance: always
+          item:   revival_tree_root
+        - chance: common
+          item:   cruel_scythe
+
+  Doppelganger_Gog:
+    id:            1090
+    species:       shadow
+    type:          [notorious]
+    skill_list_id: 221
+    attributes:
+      combat:
+        skill: axe
+        delay: 360
+      resists:
+        rank_element:
+          fire:  -2
+          ice:    4
+          light: -2
+          dark:   4
+        rank_status:
+          paralyze:     4
+          bind:         4
+          light_sleep: -2
+          dark_sleep:   4
+          blind:        4
+      render:
+        look:
+          type:  standard
+          model: 547
+        entity_flags: 155
+        name_prefix:   32
+        model_size:     1
+        hitbox:        20
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+      stats:
+        hp: 650
+    loot:
+      drops:
+        - chance: always
+          item:   revival_tree_root
+        - chance: common
+          item:   cruel_spear
+
+  Eight_of_Batons:
+    id:            1183
+    species:       batons
+    spell_list_id: 21
+    skill_list_id: 61
+    attributes:
+      combat:
+        skill: staff
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 431
+        entity_flags:  1155
+        animation_sub:    8
+        model_size:       1
+        hitbox:          12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   eight_of_batons_card
+
+  Eight_of_Coins:
+    id:            1184
+    species:       coins
+    spell_list_id: 3
+    skill_list_id: 61
+    attributes:
+      combat:
+        skill: club
+      jobs: [rdm, rdm]
+      render:
+        look:
+          type:  standard
+          model: 431
+        entity_flags:  1155
+        animation_sub:    8
+        model_size:       1
+        hitbox:          12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   eight_of_coins_card
+
+  Eight_of_Cups:
+    id:            1185
+    species:       cups
+    spell_list_id: 20
+    skill_list_id: 61
+    attributes:
+      combat:
+        skill: staff
+      jobs: [whm, whm]
+      render:
+        look:
+          type:  standard
+          model: 431
+        entity_flags:  1155
+        animation_sub:    8
+        model_size:       1
+        hitbox:          12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   eight_of_cups_card
+
+  Eight_of_Swords:
+    id:            1186
+    species:       swords
+    spell_list_id: 4
+    skill_list_id: 61
+    attributes:
+      combat:
+        skill: staff
+      jobs: [pld, pld]
+      render:
+        look:
+          type:  standard
+          model: 431
+        entity_flags:  1155
+        animation_sub:    8
+        model_size:       1
+        hitbox:          12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   eight_of_swords_card
+
+  Fetor_Bats:
+    id:            6429
+    species:       flock_bat
+    skill_list_id: 47
+    attributes:
+      combat:
+        skill: club
+      render:
+        look:
+          type:  standard
+          model: 260
+        entity_flags:  643
+        animation_sub:   8
+        name_prefix:    64
+        model_size:      1
+        hitbox:         16
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   bat_wing
+      despoil:
+        bat_wing: 0
+    content: abyssea
+
+  Five_of_Batons:
+    id:            1350
+    species:       batons
+    spell_list_id: 21
+    skill_list_id: 61
+    attributes:
+      combat:
+        skill: staff
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 431
+        entity_flags:  131
+        animation_sub:   8
+        model_size:      1
+        hitbox:         12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: rare
+          item:   horutoto_chest_key
+        - chance: uncommon
+          item:   five_of_batons_card
+
+  Five_of_Coins:
+    id:            1351
+    species:       coins
+    spell_list_id: 3
+    skill_list_id: 61
+    attributes:
+      combat:
+        skill: club
+      jobs: [rdm, rdm]
+      render:
+        look:
+          type:  standard
+          model: 431
+        entity_flags:  131
+        animation_sub:   8
+        model_size:      1
+        hitbox:         12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: rare
+          item:   horutoto_chest_key
+        - chance: uncommon
+          item:   five_of_coins_card
+
+  Five_of_Cups:
+    id:            1352
+    species:       cups
+    spell_list_id: 20
+    skill_list_id: 61
+    attributes:
+      combat:
+        skill: staff
+      jobs: [whm, whm]
+      render:
+        look:
+          type:  standard
+          model: 431
+        entity_flags:  131
+        animation_sub:   8
+        model_size:      1
+        hitbox:         12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: rare
+          item:   horutoto_chest_key
+        - chance: uncommon
+          item:   five_of_cups_card
+
+  Five_of_Swords:
+    id:            1353
+    species:       swords
+    spell_list_id: 4
+    skill_list_id: 61
+    attributes:
+      combat:
+        skill: staff
+      jobs: [pld, pld]
+      render:
+        look:
+          type:  standard
+          model: 431
+        entity_flags:  131
+        animation_sub:   8
+        model_size:      1
+        hitbox:         12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: rare
+          item:   horutoto_chest_key
+        - chance: uncommon
+          item:   five_of_swords_card
+
+  Four_of_Batons:
+    id:            1415
+    species:       batons
+    spell_list_id: 21
+    skill_list_id: 61
+    attributes:
+      combat:
+        skill: staff
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 431
+        entity_flags:  131
+        animation_sub:   8
+        model_size:      1
+        hitbox:         12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   four_of_batons_card
+
+  Four_of_Coins:
+    id:            1416
+    species:       coins
+    spell_list_id: 3
+    skill_list_id: 61
+    attributes:
+      combat:
+        skill: club
+      jobs: [rdm, rdm]
+      render:
+        look:
+          type:  standard
+          model: 431
+        entity_flags:  131
+        animation_sub:   8
+        model_size:      1
+        hitbox:         12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   four_of_coins_card
+
+  Four_of_Cups:
+    id:            1417
+    species:       cups
+    spell_list_id: 20
+    skill_list_id: 61
+    attributes:
+      combat:
+        skill: staff
+      jobs: [whm, whm]
+      render:
+        look:
+          type:  standard
+          model: 431
+        entity_flags:  131
+        animation_sub:   8
+        model_size:      1
+        hitbox:         12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   four_of_cups_card
+
+  Four_of_Swords:
+    id:            1418
+    species:       swords
+    spell_list_id: 4
+    skill_list_id: 61
+    attributes:
+      combat:
+        skill: staff
+      jobs: [pld, pld]
+      render:
+        look:
+          type:  standard
+          model: 431
+        entity_flags:  131
+        animation_sub:   8
+        model_size:      1
+        hitbox:         12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   four_of_swords_card
+
+  Fuligo:
+    id:            6413
+    display_name:  Rotten_Jam
+    species:       slime
+    skill_list_id: 229
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 292
+        entity_flags: 131
+        model_size:     1
+        hitbox:        24
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   vial_of_slime_oil
+      despoil:
+        vial_of_slime_oil: 0
+    content: abyssea
+
+  Ghoul_blm:
+    id:            1518
+    species:       skeleton
+    spell_list_id: 28
+    skill_list_id: 227
+    attributes:
+      combat:
+        skill: great_katana
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 564
+        entity_flags: 131
+        model_size:     1
+        hitbox:        12
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   bone_chip
+        - chance: rare
+          item:   scroll_of_gravity
+        - chance: rare
+          item:   magicked_skull
+      steal: bone_chip
+      despoil:
+        bone_chip: 0
+
+  Ghoul_war:
+    id:            1517
+    species:       skeleton
+    skill_list_id: 227
+    attributes:
+      combat:
+        skill: axe
+      render:
+        look:
+          type:  standard
+          model: 572
+        entity_flags: 131
+        model_size:     1
+        hitbox:        12
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   bone_chip
+        - chance: rare
+          item:   scroll_of_gravity
+        - chance: rare
+          item:   magicked_skull
+      steal: bone_chip
+      despoil:
+        bone_chip: 0
+
+  Goblin_Ambusher:
+    id:            1635
+    species:       goblin
+    skill_list_id: 133
+    attributes:
+      combat:
+        skill: dagger
+      jobs: [rng, rng]
+      render:
+        look:
+          type:  standard
+          model: 486
+        entity_flags: 131
+        model_size:     1
+        hitbox:        12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   block_of_animal_glue
+        - chance: very_rare
+          item:   leather_bandana
+        - chance: very_rare
+          item:   leather_gloves
+        - chance: very_rare
+          item:   leather_trousers
+        - chance: very_rare
+          item:   leather_highboots
+      steal: crossbow_bolt
+      despoil:
+        loaf_of_goblin_bread:      0
+        chunk_of_goblin_chocolate: 0
+        bowl_of_goblin_stew:       0
+        goblin_mushpot:            0
+
+  Goblin_Butcher:
+    id:            1643
+    species:       armored_goblin
+    skill_list_id: 133
+    attributes:
+      combat:
+        skill: great_sword
+      render:
+        look:
+          type:  standard
+          model: 495
+        entity_flags: 131
+        model_size:     1
+        hitbox:        12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: very_rare
+          item:   faceguard
+        - chance: very_rare
+          item:   scale_finger_gauntlets
+        - chance: very_rare
+          item:   scale_cuisses
+        - chance: very_rare
+          item:   scale_greaves
+      steal: beastcoin
+      despoil:
+        loaf_of_goblin_bread:      0
+        chunk_of_goblin_chocolate: 0
+        bowl_of_goblin_stew:       0
+        goblin_mushpot:            0
+
+  Goblin_Thug:
+    id:            1737
+    species:       goblin
+    skill_list_id: 133
+    attributes:
+      combat:
+        skill: dagger
+      jobs: [thf, thf]
+      render:
+        look:
+          type:  standard
+          model: 484
+        entity_flags: 129
+        hitbox:        10
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   wild_onion
+        - chance: very_rare
+          item:   bronze_cap
+        - chance: very_rare
+          item:   bronze_mittens
+        - chance: very_rare
+          item:   bronze_subligar
+        - chance: very_rare
+          item:   bronze_leggings
+      steal: beastcoin
+      despoil:
+        loaf_of_goblin_bread:      0
+        chunk_of_goblin_chocolate: 0
+        bowl_of_goblin_stew:       0
+        goblin_mushpot:            0
+
+  Goblin_Tinkerer:
+    id:            1738
+    species:       armored_goblin
+    spell_list_id: 5
+    skill_list_id: 133
+    attributes:
+      combat:
+        skill: sword
+      jobs: [drk, drk]
+      render:
+        look:
+          type:  standard
+          model: 491
+        entity_flags: 131
+        model_size:     1
+        hitbox:        12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: very_rare
+          item:   faceguard
+        - chance: very_rare
+          item:   scale_finger_gauntlets
+        - chance: very_rare
+          item:   scale_cuisses
+        - chance: very_rare
+          item:   scale_greaves
+      steal: beastcoin
+      despoil:
+        loaf_of_goblin_bread:      0
+        chunk_of_goblin_chocolate: 0
+        bowl_of_goblin_stew:       0
+        goblin_mushpot:            0
+
+  Goblin_Weaver:
+    id:            1744
+    species:       goblin
+    spell_list_id: 3
+    skill_list_id: 133
+    attributes:
+      combat:
+        skill: dagger
+      jobs: [rdm, rdm]
+      render:
+        look:
+          type:  standard
+          model: 489
+        entity_flags: 129
+        hitbox:        10
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: rare
+          item:   spool_of_grass_thread
+        - chance: very_rare
+          item:   square_of_grass_cloth
+        - chance: very_rare
+          item:   spool_of_cotton_thread
+        - chance: very_rare
+          item:   square_of_cotton_cloth
+        - chance: very_rare
+          item:   circlet
+        - chance: very_rare
+          item:   cuffs
+        - chance: very_rare
+          item:   slops
+        - chance: very_rare
+          item:   ash_clogs
+      steal: spool_of_grass_thread
+      despoil:
+        loaf_of_goblin_bread:      0
+        chunk_of_goblin_chocolate: 0
+        bowl_of_goblin_stew:       0
+        goblin_mushpot:            0
+
+  Jack_of_Batons:
+    id:            2118
+    species:       batons
+    type:          [notorious]
+    spell_list_id: 21
+    skill_list_id: 2109
+    attributes:
+      combat:
+        skill: staff
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 431
+        entity_flags: 133
+        model_size:     2
+        hitbox:        13
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: uncommon
+          item:   jack_of_batons_card
+
+  Jack_of_Coins:
+    id:            2119
+    species:       coins
+    type:          [notorious]
+    spell_list_id: 3
+    skill_list_id: 2109
+    attributes:
+      combat:
+        skill: club
+      jobs: [rdm, rdm]
+      render:
+        look:
+          type:  standard
+          model: 431
+        entity_flags: 133
+        model_size:     2
+        hitbox:        13
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: uncommon
+          item:   jack_of_coins_card
+
+  Jack_of_Cups:
+    id:            2120
+    species:       cups
+    type:          [notorious]
+    spell_list_id: 20
+    skill_list_id: 2109
+    attributes:
+      combat:
+        skill: staff
+      jobs: [whm, whm]
+      render:
+        look:
+          type:  standard
+          model: 431
+        entity_flags: 133
+        model_size:     2
+        hitbox:        13
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: uncommon
+          item:   jack_of_cups_card
+
+  Jack_of_Swords:
+    id:            2121
+    species:       swords
+    type:          [notorious]
+    spell_list_id: 4
+    skill_list_id: 2109
+    attributes:
+      combat:
+        skill: staff
+      jobs: [pld, pld]
+      render:
+        look:
+          type:  standard
+          model: 431
+        entity_flags: 133
+        model_size:     2
+        hitbox:        13
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: uncommon
+          item:   jack_of_swords_card
+
+  Legalox_Heftyhind:
+    id:            5874
+    species:       armored_goblin
+    type:          [notorious]
+    skill_list_id: 133
+    attributes:
+      combat:
+        skill: great_sword
+      resists:
+        immune_status: [gravity, bind, light_sleep, dark_sleep]
+        rank_element:
+          fire:    -1
+          ice:     -1
+          wind:    -1
+          earth:   -1
+          thunder: -1
+          water:   -1
+          light:   -2
+          dark:     1
+        rank_status:
+          paralyze:    -1
+          bind:        -1
+          silence:     -1
+          slow:        -1
+          poison:      -1
+          light_sleep: -2
+          dark_sleep:   1
+          blind:        1
+      render:
+        look:
+          type:  standard
+          model: 497
+        entity_flags: 155
+        name_prefix:   32
+        model_size:     1
+        hitbox:        12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 1200
+      stats:
+        hp: 1800
+    loot:
+      drops:
+        - chance: common
+          item:   piece_of_hefty_oak_lumber
+    content: wotg
+
+  Nine_of_Batons:
+    id:            2883
+    species:       batons
+    spell_list_id: 21
+    skill_list_id: 61
+    attributes:
+      combat:
+        skill: staff
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 431
+        entity_flags:  131
+        animation_sub:   8
+        model_size:      1
+        hitbox:         12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   nine_of_batons_card
+
+  Nine_of_Coins:
+    id:            2884
+    species:       coins
+    spell_list_id: 3
+    skill_list_id: 61
+    attributes:
+      combat:
+        skill: club
+      jobs: [rdm, rdm]
+      render:
+        look:
+          type:  standard
+          model: 431
+        entity_flags:  131
+        animation_sub:   8
+        model_size:      1
+        hitbox:         12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   nine_of_coins_card
+
+  Nine_of_Cups:
+    id:            2885
+    species:       cups
+    spell_list_id: 20
+    skill_list_id: 61
+    attributes:
+      combat:
+        skill: staff
+      jobs: [whm, whm]
+      render:
+        look:
+          type:  standard
+          model: 431
+        entity_flags:  131
+        animation_sub:   8
+        model_size:      1
+        hitbox:         12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   nine_of_cups_card
+
+  Nine_of_Swords:
+    id:            2886
+    species:       swords
+    spell_list_id: 4
+    skill_list_id: 61
+    attributes:
+      combat:
+        skill: staff
+      jobs: [pld, pld]
+      render:
+        look:
+          type:  standard
+          model: 431
+        entity_flags:  131
+        animation_sub:   8
+        model_size:      1
+        hitbox:         12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   nine_of_swords_card
+
+  Queen_of_Coins:
+    id:            3284
+    species:       coins
+    type:          [notorious]
+    spell_list_id: 3
+    skill_list_id: 61
+    attributes:
+      combat:
+        skill: club
+      jobs: [rdm, rdm]
+      resists:
+        immune_status: [silence, light_sleep, dark_sleep]
+      render:
+        look:
+          type:  standard
+          model: 431
+        entity_flags:  645
+        animation_sub:   8
+        model_size:      2
+        hitbox:         13
+      behaviors:
+        aggressive:     true
+        links:          true
+        true_detection: true
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: uncommon
+          item:   queen_of_coins_card
+
+  Queen_of_Swords:
+    id:            3286
+    species:       swords
+    type:          [notorious]
+    spell_list_id: 4
+    skill_list_id: 61
+    attributes:
+      combat:
+        skill: staff
+      jobs: [pld, pld]
+      resists:
+        immune_status: [silence, light_sleep, dark_sleep]
+      render:
+        look:
+          type:  standard
+          model: 431
+        entity_flags:  645
+        animation_sub:   8
+        model_size:      2
+        hitbox:         13
+      behaviors:
+        aggressive:     true
+        links:          true
+        true_detection: true
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: uncommon
+          item:   queen_of_swords_card
+
+  Rotten_Jam:
+    id:            3395
+    species:       slime
+    skill_list_id: 229
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 292
+        entity_flags: 641
+        hitbox:        20
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: very_rare
+          item:   horutoto_chest_key
+      despoil:
+        vial_of_slime_oil: 0
+
+  Seven_of_Batons:
+    id:            3553
+    species:       batons
+    spell_list_id: 21
+    skill_list_id: 61
+    attributes:
+      combat:
+        skill: staff
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 431
+        entity_flags:  131
+        animation_sub:   8
+        model_size:      1
+        hitbox:         12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   seven_of_batons_card
+
+  Seven_of_Coins:
+    id:            3554
+    species:       coins
+    spell_list_id: 3
+    skill_list_id: 61
+    attributes:
+      combat:
+        skill: club
+      jobs: [rdm, rdm]
+      render:
+        look:
+          type:  standard
+          model: 431
+        entity_flags:  131
+        animation_sub:   8
+        model_size:      1
+        hitbox:         12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   seven_of_coins_card
+
+  Seven_of_Cups:
+    id:            3555
+    species:       cups
+    spell_list_id: 20
+    skill_list_id: 61
+    attributes:
+      combat:
+        skill: staff
+      jobs: [whm, whm]
+      render:
+        look:
+          type:  standard
+          model: 431
+        entity_flags:  131
+        animation_sub:   8
+        model_size:      1
+        hitbox:         12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   seven_of_cups_card
+
+  Seven_of_Swords:
+    id:            3556
+    species:       swords
+    spell_list_id: 4
+    skill_list_id: 61
+    attributes:
+      combat:
+        skill: staff
+      jobs: [pld, pld]
+      render:
+        look:
+          type:  standard
+          model: 431
+        entity_flags:  131
+        animation_sub:   8
+        model_size:      1
+        hitbox:         12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   seven_of_swords_card
+
+  Six_of_Batons:
+    id:            3637
+    species:       batons
+    spell_list_id: 21
+    skill_list_id: 61
+    attributes:
+      combat:
+        skill: staff
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 431
+        entity_flags:  131
+        animation_sub:   8
+        model_size:      1
+        hitbox:         12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: very_rare
+          item:   horutoto_chest_key
+        - chance: uncommon
+          item:   six_of_batons_card
+
+  Six_of_Coins:
+    id:            3638
+    species:       coins
+    spell_list_id: 3
+    skill_list_id: 61
+    attributes:
+      combat:
+        skill: club
+      jobs: [rdm, rdm]
+      render:
+        look:
+          type:  standard
+          model: 431
+        entity_flags:  131
+        animation_sub:   8
+        model_size:      1
+        hitbox:         12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: very_rare
+          item:   horutoto_chest_key
+        - chance: uncommon
+          item:   six_of_coins_card
+
+  Six_of_Cups:
+    id:            3639
+    species:       cups
+    spell_list_id: 20
+    skill_list_id: 61
+    attributes:
+      combat:
+        skill: staff
+      jobs: [whm, whm]
+      render:
+        look:
+          type:  standard
+          model: 431
+        entity_flags:  131
+        animation_sub:   8
+        model_size:      1
+        hitbox:         12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: very_rare
+          item:   horutoto_chest_key
+        - chance: uncommon
+          item:   six_of_cups_card
+
+  Six_of_Swords:
+    id:            3640
+    species:       swords
+    spell_list_id: 4
+    skill_list_id: 61
+    attributes:
+      combat:
+        skill: staff
+      jobs: [pld, pld]
+      render:
+        look:
+          type:  standard
+          model: 431
+        entity_flags:  131
+        animation_sub:   8
+        model_size:      1
+        hitbox:         12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: very_rare
+          item:   horutoto_chest_key
+        - chance: uncommon
+          item:   six_of_swords_card
+
+  Stink_Bats_OHR:
+    id:            6438
+    species:       flock_bat
+    skill_list_id: 47
+    attributes:
+      combat:
+        skill: club
+      render:
+        look:
+          type:  standard
+          model: 260
+        entity_flags:  643
+        animation_sub:   8
+        name_prefix:    64
+        model_size:      1
+        hitbox:         16
+      behaviors:
+        links: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   bat_wing
+        - chance: rare
+          item:   horutoto_chest_key
+      despoil:
+        bat_wing: 0
+
+  Ten_of_Batons:
+    id:            3876
+    species:       batons
+    spell_list_id: 21
+    skill_list_id: 61
+    attributes:
+      combat:
+        skill: staff
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 431
+        entity_flags:  131
+        animation_sub:   8
+        model_size:      1
+        hitbox:         12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   ten_of_batons_card
+
+  Ten_of_Coins:
+    id:            3877
+    species:       coins
+    spell_list_id: 3
+    skill_list_id: 61
+    attributes:
+      combat:
+        skill: club
+      jobs: [rdm, rdm]
+      render:
+        look:
+          type:  standard
+          model: 431
+        entity_flags:  131
+        animation_sub:   8
+        model_size:      1
+        hitbox:         12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   ten_of_coins_card
+
+  Ten_of_Cups:
+    id:            3878
+    species:       cups
+    spell_list_id: 20
+    skill_list_id: 61
+    attributes:
+      combat:
+        skill: staff
+      jobs: [whm, whm]
+      render:
+        look:
+          type:  standard
+          model: 431
+        entity_flags:  131
+        animation_sub:   8
+        model_size:      1
+        hitbox:         12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   ten_of_cups_card
+        - chance: rare
+          item:   scroll_of_regen_ii
+
+  Ten_of_Swords:
+    id:            3879
+    species:       swords
+    spell_list_id: 4
+    skill_list_id: 61
+    attributes:
+      combat:
+        skill: staff
+      jobs: [pld, pld]
+      render:
+        look:
+          type:  standard
+          model: 431
+        entity_flags:  131
+        animation_sub:   8
+        model_size:      1
+        hitbox:         12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   ten_of_swords_card
+
+  Thorn_Bat:
+    id:            6462
+    species:       bat
+    skill_list_id: 46
+    attributes:
+      combat:
+        skill: club
+      render:
+        look:
+          type:  standard
+          model: 256
+        entity_flags:  643
+        animation_sub:   8
+        model_size:      1
+        hitbox:         12
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   bat_wing
+        - chance: very_rare
+          item:   vial_of_fiend_blood
+      despoil:
+        bat_wing: 0
+    content: abyssea
+
+  Three_of_Batons:
+    id:            3903
+    species:       batons
+    spell_list_id: 21
+    skill_list_id: 61
+    attributes:
+      combat:
+        skill: staff
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 431
+        entity_flags:  129
+        animation_sub:   8
+        hitbox:         10
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   three_of_batons_card
+
+  Three_of_Coins:
+    id:            3904
+    species:       coins
+    spell_list_id: 3
+    skill_list_id: 61
+    attributes:
+      combat:
+        skill: club
+      jobs: [rdm, rdm]
+      render:
+        look:
+          type:  standard
+          model: 431
+        entity_flags:  129
+        animation_sub:   8
+        hitbox:         10
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   three_of_coins_card
+
+  Three_of_Cups:
+    id:            3905
+    species:       cups
+    spell_list_id: 20
+    skill_list_id: 61
+    attributes:
+      combat:
+        skill: staff
+      jobs: [whm, whm]
+      render:
+        look:
+          type:  standard
+          model: 431
+        entity_flags:  129
+        animation_sub:   8
+        hitbox:         10
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   three_of_cups_card
+
+  Three_of_Swords:
+    id:            3906
+    species:       swords
+    spell_list_id: 4
+    skill_list_id: 61
+    attributes:
+      combat:
+        skill: staff
+      jobs: [pld, pld]
+      render:
+        look:
+          type:  standard
+          model: 431
+        entity_flags:  129
+        animation_sub:   8
+        hitbox:         10
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   three_of_swords_card
+
+  Thunder_Elemental_SA:
+    id:            5529
+    display_name:  Thunder_Elemental
+    species:       thunder_elemental
+    type:          [notorious]
+    spell_list_id: 16
+    skill_list_id: 105
+    attributes:
+      combat:
+        skill: staff
+      jobs: [blm, rdm]
+      resists:
+        immune_status: [stun, poison]
+      render:
+        look:
+          type:  standard
+          model: 13
+        entity_flags: 131
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+        type:    [weather]
+    loot:
+      drops:
+        - chance: always
+          item:   lightning_cluster
+        - chance: common
+          item:   lightning_cluster
+        - chance: common
+          item:   lightning_cluster
+
+  Two_of_Batons:
+    id:            4059
+    species:       batons
+    spell_list_id: 21
+    skill_list_id: 61
+    attributes:
+      combat:
+        skill: staff
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 431
+        entity_flags: 129
+        hitbox:        10
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   two_of_batons_card
+
+  Two_of_Coins:
+    id:            4060
+    species:       coins
+    spell_list_id: 3
+    skill_list_id: 61
+    attributes:
+      combat:
+        skill: club
+      jobs: [rdm, rdm]
+      render:
+        look:
+          type:  standard
+          model: 431
+        entity_flags:  129
+        animation_sub:   8
+        hitbox:         10
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   two_of_coins_card
+
+  Two_of_Cups:
+    id:            4061
+    species:       cups
+    spell_list_id: 20
+    skill_list_id: 61
+    attributes:
+      combat:
+        skill: staff
+      jobs: [whm, whm]
+      render:
+        look:
+          type:  standard
+          model: 431
+        entity_flags:  129
+        animation_sub:   8
+        hitbox:         10
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   two_of_cups_card
+
+  Two_of_Swords:
+    id:            4062
+    species:       swords
+    spell_list_id: 4
+    skill_list_id: 61
+    attributes:
+      combat:
+        skill: staff
+      jobs: [pld, pld]
+      render:
+        look:
+          type:  standard
+          model: 431
+        entity_flags:  129
+        animation_sub:   8
+        hitbox:         10
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   two_of_swords_card
+
+  Voidwrought:
+    id:      6724
+    species: iron_giant
+    type:    [notorious]
+    attributes:
+      combat:
+        skill: great_sword
+      jobs: [blm, rdm]
+      render:
+        look:
+          type:  standard
+          model: 2136
+        entity_flags: 135
+        model_size:     3
+        hitbox:        41
+      behaviors:
+        aggressive:     true
+        true_detection: true
+      spawn:
+        type: [scripted]
+
+
+  Beta_bat_Blade_Bat:
+    id:            40012
+    species:       bat
+    skill_list_id: 46
+    attributes:
+      combat:
+        skill: club
+      render:
+        look:
+          type:  standard
+          model: 2443
+        entity_flags:  641
+        animation_sub:   8
+        hitbox:         11
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: rare
+          item:   beta_18889
+        - chance: rare
+          item:   beta_20009
+        - chance: rare
+          item:   beta_20025
+        - chance: rare
+          item:   beta_20055
+        - chance: rare
+          item:   beta_20073
+        - chance: uncommon
+          item:   beta_162
+        - chance: uncommon
+          item:   beta_4786
+        - chance: uncommon
+          item:   beta_6760
+        - chance: uncommon
+          item:   beta_6910
+        - chance: common
+          item:   bat_wing
+        - chance: very_rare
+          item:   vial_of_fiend_blood
+      despoil:
+        bat_wing: 0
+
+  Beta_bat2_Blade_Bat:
+    id:            40013
+    species:       bat
+    skill_list_id: 46
+    attributes:
+      combat:
+        skill: club
+      render:
+        look:
+          type:  standard
+          model: 2948
+        entity_flags:  641
+        animation_sub:   8
+        hitbox:         11
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: rare
+          item:   beta_19970
+        - chance: rare
+          item:   beta_20010
+        - chance: rare
+          item:   beta_20026
+        - chance: rare
+          item:   beta_20056
+        - chance: rare
+          item:   beta_20074
+        - chance: uncommon
+          item:   beta_288
+        - chance: uncommon
+          item:   beta_4975
+        - chance: uncommon
+          item:   beta_6803
+        - chance: common
+          item:   bat_wing
+        - chance: very_rare
+          item:   vial_of_fiend_blood
+      despoil:
+        bat_wing: 0
+
+  Beta_slim_Rotten_Jam:
+    id:            40019
+    species:       slime
+    skill_list_id: 229
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 2954
+        entity_flags: 641
+        hitbox:        20
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: rare
+          item:   beta_10956
+        - chance: rare
+          item:   beta_10859
+        - chance: uncommon
+          item:   beta_163
+        - chance: uncommon
+          item:   beta_4790
+        - chance: uncommon
+          item:   beta_6761
+        - chance: uncommon
+          item:   beta_6911
+        - chance: very_rare
+          item:   horutoto_chest_key
+      despoil:
+        vial_of_slime_oil: 0
+
+spawns:
+  17571841:
+    template: Goblin_Ambusher
+    region:   nw_1
+    level:    [10, 14]
+  17571842:
+    template: Goblin_Tinkerer
+    region:   nw_1
+    level:    [10, 14]
+  17571843:
+    template: Goblin_Butcher
+    region:   nw_1
+    level:    [10, 14]
+  17571844:
+    template: Stink_Bats_OHR
+    script:   Stink_Bats
+    region:   nw_1
+    level:    [15, 18]
+  17571845:
+    template: Goblin_Ambusher
+    region:   nw_5
+    level:    [10, 14]
+  17571846:
+    template: Goblin_Ambusher
+    region:   nw_5
+    level:    [10, 14]
+  17571847:
+    template: Goblin_Tinkerer
+    region:   nw_5
+    level:    [10, 14]
+  17571848:
+    template: Goblin_Tinkerer
+    region:   nw_5
+    level:    [10, 14]
+  17571849:
+    template: Goblin_Butcher
+    region:   nw_5
+    level:    [10, 14]
+  17571850:
+    template: Goblin_Butcher
+    region:   nw_5
+    level:    [10, 14]
+  17571851:
+    template: Stink_Bats_OHR
+    script:   Stink_Bats
+    region:   nw_5
+    level:    [15, 18]
+  17571852:
+    template: Stink_Bats_OHR
+    script:   Stink_Bats
+    region:   nw_5
+    level:    [15, 18]
+  17571853:
+    template: Goblin_Ambusher
+    region:   nw_13
+    level:    [10, 14]
+  17571854:
+    template: Goblin_Ambusher
+    region:   nw_5
+    level:    [10, 14]
+  17571855:
+    template: Goblin_Tinkerer
+    region:   nw_13
+    level:    [10, 14]
+  17571856:
+    template: Goblin_Tinkerer
+    region:   nw_13
+    level:    [10, 14]
+  17571857:
+    template: Goblin_Butcher
+    region:   nw_13
+    level:    [10, 14]
+  17571858:
+    template: Goblin_Butcher
+    region:   nw_13
+    level:    [10, 14]
+  17571859:
+    template: Stink_Bats_OHR
+    script:   Stink_Bats
+    region:   nw_13
+    level:    [15, 18]
+  17571860:
+    template: Stink_Bats_OHR
+    script:   Stink_Bats
+    region:   nw_13
+    level:    [15, 18]
+  17571861:
+    template: Goblin_Ambusher
+    region:   nw_21
+    level:    [10, 14]
+  17571862:
+    template: Goblin_Tinkerer
+    region:   nw_21
+    level:    [10, 14]
+  17571863:
+    template: Goblin_Butcher
+    region:   nw_21
+    level:    [10, 14]
+  17571864:
+    template: Stink_Bats_OHR
+    script:   Stink_Bats
+    region:   nw_21
+    level:    [15, 18]
+  17571865:
+    template: Goblin_Ambusher
+    region:   nw_25
+    level:    [10, 14]
+  17571866:
+    template: Goblin_Tinkerer
+    region:   nw_25
+    level:    [10, 14]
+  17571867:
+    template: Goblin_Butcher
+    region:   nw_25
+    level:    [10, 14]
+  17571868:
+    template: Stink_Bats_OHR
+    script:   Stink_Bats
+    region:   nw_25
+    level:    [15, 18]
+  17571869:
+    template: Stink_Bats_OHR
+    script:   Stink_Bats
+    region:   nw_25
+    level:    [15, 18]
+  17571870:
+    template: Desmodont
+    region:   nw_25
+    level:    [26, 27]
+  17571871:
+    template: Rotten_Jam
+    region:   nw_31
+    level:    [12, 15]
+  17571872:
+    template: Rotten_Jam
+    region:   nw_31
+    level:    [12, 15]
+  17571873:
+    template: Legalox_Heftyhind
+    region:   nw_31
+    level:    [32, 33]
+  17571874:
+    template: Fetor_Bats
+    region:   nw_34
+    level:    [81, 83]
+  17571875:
+    template: Fetor_Bats
+    region:   nw_34
+    level:    [81, 83]
+  17571876:
+    template: Fetor_Bats
+    region:   nw_34
+    level:    [81, 83]
+  17571877:
+    template: Fetor_Bats
+    region:   nw_34
+    level:    [81, 83]
+  17571878:
+    template: Fetor_Bats
+    region:   nw_38
+    level:    [81, 83]
+  17571879:
+    template: Fetor_Bats
+    region:   nw_38
+    level:    [81, 83]
+  17571880:
+    template: Fetor_Bats
+    region:   nw_38
+    level:    [81, 83]
+  17571881:
+    template: Fetor_Bats
+    region:   nw_41
+    level:    [81, 83]
+  17571882:
+    template: Fetor_Bats
+    region:   nw_41
+    level:    [81, 83]
+  17571883:
+    template: Fuligo
+    region:   nw_43
+    level:    [84, 85]
+  17571884:
+    template: Fuligo
+    region:   nw_43
+    level:    [84, 85]
+  17571885:
+    template: Fuligo
+    region:   nw_43
+    level:    [84, 85]
+  17571886:
+    template: Fetor_Bats
+    region:   nw_46
+    level:    [81, 83]
+  17571887:
+    template: Fetor_Bats
+    region:   nw_46
+    level:    [81, 83]
+  17571888:
+    template: Fetor_Bats
+    region:   nw_46
+    level:    [81, 83]
+  17571889:
+    template: Fetor_Bats
+    region:   nw_49
+    level:    [81, 83]
+  17571890:
+    template: Fetor_Bats
+    region:   nw_49
+    level:    [81, 83]
+  17571891:
+    template: Black_Slime
+    region:   region_63
+    level:    [23, 25]
+  17571892:
+    template: Black_Slime
+    region:   region_63
+    level:    [23, 25]
+  17571893:
+    template: Ghoul_blm
+    script:   Ghoul
+    region:   nw_53
+    level:    [23, 26]
+  17571894:
+    template: Ghoul_war
+    script:   Ghoul
+    region:   nw_53
+    level:    [23, 26]
+  17571895:
+    template: Ghoul_blm
+    script:   Ghoul
+    region:   nw_53
+    level:    [23, 26]
+  17571896:
+    template: Ghoul_war
+    script:   Ghoul
+    region:   nw_53
+    level:    [23, 26]
+  17571897:
+    template: Ghoul_blm
+    script:   Ghoul
+    region:   nw_53
+    level:    [23, 26]
+  17571898:
+    template: Ghoul_war
+    script:   Ghoul
+    region:   nw_53
+    level:    [23, 26]
+  17571899:
+    template: Ghoul_blm
+    script:   Ghoul
+    region:   nw_53
+    level:    [23, 26]
+  17571900:
+    template: Ghoul_war
+    script:   Ghoul
+    region:   nw_53
+    level:    [23, 26]
+  17571901:
+    template: Combat_OH
+    script:   Combat
+    region:   nw_53
+    level:    [20, 23]
+  17571902:
+    template: Combat_OH
+    script:   Combat
+    region:   nw_53
+    level:    [20, 23]
+  17571903:
+    template: Ah_Puch
+    region:   nw_53
+    level:    [29, 30]
+  17571904:
+    template: Thorn_Bat
+    region:   nw_64
+    level:    [82, 84]
+  17571905:
+    template: Thorn_Bat
+    region:   nw_64
+    level:    [82, 84]
+  17571906:
+    template: Thorn_Bat
+    region:   nw_66
+    level:    [84, 84]
+  17571907:
+    template: Thorn_Bat
+    region:   nw_66
+    level:    [82, 84]
+  17571908:
+    template: Thorn_Bat
+    region:   nw_66
+    level:    [82, 84]
+  17571909:
+    template: Thorn_Bat
+    region:   nw_66
+    level:    [82, 84]
+  17571910:
+    template: Thorn_Bat
+    region:   nw_66
+    level:    [84, 84]
+  17571911:
+    template: Thorn_Bat
+    region:   nw_66
+    level:    [82, 84]
+  17571912:
+    template: Thorn_Bat
+    region:   nw_66
+    level:    [82, 84]
+  17571913:
+    template: Thorn_Bat
+    region:   nw_66
+    level:    [82, 84]
+  17571914:
+    template: Thorn_Bat
+    region:   nw_66
+    level:    [84, 84]
+  17571915:
+    template: Thorn_Bat
+    region:   nw_66
+    level:    [82, 84]
+  17571916:
+    template: Fetor_Bats
+    region:   nw_76
+    level:    [81, 83]
+  17571917:
+    template: Fetor_Bats
+    region:   nw_76
+    level:    [81, 83]
+  17571918:
+    template: Fetor_Bats
+    region:   nw_76
+    level:    [81, 83]
+  17571919:
+    template: Fetor_Bats
+    region:   nw_76
+    level:    [81, 83]
+  17571920:
+    template: Fetor_Bats
+    region:   nw_76
+    level:    [81, 83]
+  17571921:
+    template: Fuligo
+    region:   nw_81
+    level:    [84, 85]
+  17571922:
+    template: Fuligo
+    region:   nw_81
+    level:    [84, 85]
+  17571923:
+    template: Fuligo
+    region:   nw_81
+    level:    [84, 85]
+  17571924:
+    template: Fuligo
+    region:   nw_84
+    level:    [84, 85]
+  17571925:
+    template: Fuligo
+    region:   nw_84
+    level:    [84, 85]
+  17571926:
+    template: Fuligo
+    region:   nw_84
+    level:    [84, 85]
+  17571927:
+    template: Fuligo
+    region:   nw_87
+    level:    [84, 85]
+  17571928:
+    template: Fuligo
+    region:   nw_87
+    level:    [84, 85]
+  17571929:
+    template: Two_of_Cups
+    region:   sw_90
+    level:    [1, 5]
+  17571930:
+    template: Two_of_Batons
+    region:   sw_90
+    level:    [1, 5]
+  17571931:
+    template: Two_of_Swords
+    region:   sw_90
+    level:    [1, 5]
+  17571932:
+    template: Two_of_Coins
+    region:   sw_90
+    level:    [1, 5]
+  17571933:
+    template: Two_of_Cups
+    region:   sw_90
+    level:    [1, 5]
+  17571934:
+    template: Two_of_Batons
+    region:   sw_90
+    level:    [1, 5]
+  17571935:
+    template: Two_of_Swords
+    region:   sw_90
+    level:    [1, 5]
+  17571936:
+    template: Two_of_Coins
+    region:   sw_90
+    level:    [1, 5]
+  17571937:
+    template: Two_of_Cups
+    region:   sw_98
+    level:    [1, 5]
+  17571938:
+    template: Two_of_Batons
+    region:   sw_98
+    level:    [1, 5]
+  17571939:
+    template: Two_of_Swords
+    region:   sw_98
+    level:    [1, 5]
+  17571940:
+    template: Two_of_Coins
+    region:   sw_98
+    level:    [1, 5]
+  17571941:
+    template: Three_of_Cups
+    region:   sw_101
+    level:    [5, 9]
+  17571942:
+    template: Three_of_Batons
+    region:   sw_101
+    level:    [5, 9]
+  17571943:
+    template: Three_of_Swords
+    region:   sw_101
+    level:    [5, 9]
+  17571944:
+    template: Three_of_Coins
+    region:   sw_101
+    level:    [5, 9]
+  17571945:
+    template: Three_of_Cups
+    region:   sw_101
+    level:    [5, 9]
+  17571946:
+    template: Three_of_Batons
+    region:   sw_101
+    level:    [5, 9]
+  17571947:
+    template: Three_of_Swords
+    region:   sw_101
+    level:    [5, 9]
+  17571948:
+    template: Three_of_Coins
+    region:   sw_101
+    level:    [5, 9]
+  17571949:
+    template: Three_of_Cups
+    region:   sw_109
+    level:    [5, 9]
+  17571950:
+    template: Three_of_Batons
+    region:   sw_109
+    level:    [5, 9]
+  17571951:
+    template: Three_of_Swords
+    region:   sw_109
+    level:    [5, 9]
+  17571952:
+    template: Three_of_Coins
+    region:   sw_109
+    level:    [5, 9]
+  17571953:
+    template: Four_of_Cups
+    region:   sw_113
+    level:    [10, 14]
+  17571954:
+    template: Four_of_Batons
+    region:   sw_113
+    level:    [10, 14]
+  17571955:
+    template: Four_of_Swords
+    region:   sw_113
+    level:    [10, 14]
+  17571956:
+    template: Four_of_Coins
+    region:   sw_113
+    level:    [10, 14]
+  17571957:
+    template: Four_of_Cups
+    region:   sw_113
+    level:    [10, 14]
+  17571958:
+    template: Four_of_Batons
+    region:   sw_113
+    level:    [10, 14]
+  17571959:
+    template: Four_of_Swords
+    region:   sw_113
+    level:    [10, 14]
+  17571960:
+    template: Four_of_Coins
+    region:   sw_113
+    level:    [10, 14]
+  17571961:
+    template: Five_of_Cups
+    region:   sw_121
+    level:    [15, 19]
+  17571962:
+    template: Five_of_Batons
+    region:   sw_121
+    level:    [15, 19]
+  17571963:
+    template: Five_of_Swords
+    region:   sw_121
+    level:    [15, 19]
+  17571964:
+    template: Five_of_Coins
+    region:   sw_121
+    level:    [15, 19]
+  17571965:
+    template: Five_of_Cups
+    region:   sw_121
+    level:    [15, 19]
+  17571966:
+    template: Five_of_Batons
+    region:   sw_121
+    level:    [15, 19]
+  17571967:
+    template: Five_of_Swords
+    region:   sw_121
+    level:    [15, 19]
+  17571968:
+    template: Five_of_Coins
+    region:   sw_121
+    level:    [15, 19]
+  17571969:
+    template: Five_of_Cups
+    region:   sw_130
+    level:    [15, 19]
+  17571970:
+    template: Five_of_Batons
+    region:   sw_130
+    level:    [15, 19]
+  17571971:
+    template: Five_of_Swords
+    region:   sw_130
+    level:    [15, 19]
+  17571972:
+    template: Five_of_Coins
+    region:   sw_130
+    level:    [15, 19]
+  17571973:
+    template: Six_of_Cups
+    region:   sw_134
+    level:    [20, 24]
+  17571974:
+    template: Six_of_Batons
+    region:   sw_134
+    level:    [20, 24]
+  17571975:
+    template: Six_of_Swords
+    region:   sw_134
+    level:    [20, 24]
+  17571976:
+    template: Six_of_Coins
+    region:   sw_134
+    level:    [20, 24]
+  17571977:
+    template: Six_of_Cups
+    region:   sw_137
+    level:    [20, 24]
+  17571978:
+    template: Six_of_Batons
+    region:   sw_137
+    level:    [20, 24]
+  17571979:
+    template: Six_of_Swords
+    region:   sw_137
+    level:    [20, 24]
+  17571980:
+    template: Six_of_Coins
+    region:   sw_137
+    level:    [20, 24]
+  17571981:
+    template: Six_of_Cups
+    region:   sw_137
+    level:    [20, 24]
+  17571982:
+    template: Six_of_Batons
+    region:   sw_137
+    level:    [20, 24]
+  17571983:
+    template: Six_of_Swords
+    region:   sw_137
+    level:    [20, 24]
+  17571984:
+    template: Six_of_Coins
+    region:   sw_137
+    level:    [20, 24]
+  17571985:
+    template: Eight_of_Cups
+    region:   sw_145
+    level:    [30, 34]
+  17571986:
+    template: Eight_of_Batons
+    region:   sw_145
+    level:    [30, 34]
+  17571987:
+    template: Eight_of_Swords
+    region:   sw_145
+    level:    [30, 34]
+  17571988:
+    template: Eight_of_Coins
+    region:   sw_145
+    level:    [30, 34]
+  17571989:
+    template: Eight_of_Cups
+    region:   sw_145
+    level:    [30, 34]
+  17571990:
+    template: Eight_of_Batons
+    region:   sw_145
+    level:    [30, 34]
+  17571991:
+    template: Eight_of_Swords
+    region:   sw_145
+    level:    [30, 34]
+  17571992:
+    template: Eight_of_Coins
+    region:   sw_145
+    level:    [30, 34]
+  17571993:
+    template: Eight_of_Cups
+    region:   sw_145
+    level:    [30, 34]
+  17571994:
+    template: Eight_of_Batons
+    region:   sw_145
+    level:    [30, 34]
+  17571995:
+    template: Eight_of_Swords
+    region:   sw_145
+    level:    [30, 34]
+  17571996:
+    template: Eight_of_Coins
+    region:   sw_145
+    level:    [30, 34]
+  17571997:
+    template: Eight_of_Cups
+    region:   sw_145
+    level:    [30, 34]
+  17571998:
+    template: Eight_of_Batons
+    region:   sw_145
+    level:    [30, 34]
+  17571999:
+    template: Eight_of_Swords
+    region:   sw_145
+    level:    [30, 34]
+  17572000:
+    template: Eight_of_Coins
+    region:   sw_145
+    level:    [30, 34]
+  17572001:
+    template: Dancing_Weapon
+    region:   sw_145
+    level:    [28, 30]
+  17572002:
+    template: Dancing_Weapon
+    region:   sw_145
+    level:    [28, 30]
+  17572003:
+    template: Dancing_Weapon
+    region:   sw_145
+    level:    [28, 30]
+  17572004:
+    template: Dancing_Weapon
+    region:   sw_145
+    level:    [28, 30]
+  17572005:
+    template: Seven_of_Cups
+    region:   sw_165
+    level:    [25, 29]
+  17572006:
+    template: Seven_of_Batons
+    region:   sw_165
+    level:    [25, 29]
+  17572007:
+    template: Seven_of_Swords
+    region:   sw_165
+    level:    [25, 29]
+  17572008:
+    template: Seven_of_Coins
+    region:   sw_165
+    level:    [25, 29]
+  17572009:
+    template: Seven_of_Cups
+    region:   sw_165
+    level:    [25, 29]
+  17572010:
+    template: Seven_of_Batons
+    region:   sw_165
+    level:    [25, 29]
+  17572011:
+    template: Seven_of_Swords
+    region:   sw_165
+    level:    [25, 29]
+  17572012:
+    template: Seven_of_Coins
+    region:   sw_165
+    level:    [25, 29]
+  17572013:
+    template: Seven_of_Cups
+    region:   sw_165
+    level:    [25, 29]
+  17572014:
+    template: Seven_of_Batons
+    region:   sw_165
+    level:    [25, 29]
+  17572015:
+    template: Seven_of_Swords
+    region:   sw_165
+    level:    [25, 29]
+  17572016:
+    template: Seven_of_Coins
+    region:   sw_165
+    level:    [25, 29]
+  17572017:
+    template: Seven_of_Cups
+    region:   sw_165
+    level:    [25, 29]
+  17572018:
+    template: Seven_of_Batons
+    region:   sw_165
+    level:    [25, 29]
+  17572019:
+    template: Seven_of_Swords
+    region:   sw_165
+    level:    [25, 29]
+  17572020:
+    template: Seven_of_Coins
+    region:   sw_165
+    level:    [25, 29]
+  17572021:
+    template: Dancing_Weapon
+    region:   sw_165
+    level:    [28, 30]
+  17572022:
+    template: Dancing_Weapon
+    region:   sw_165
+    level:    [28, 30]
+  17572023:
+    template: Dancing_Weapon
+    region:   sw_165
+    level:    [28, 30]
+  17572024:
+    template: Dancing_Weapon
+    region:   sw_165
+    level:    [28, 30]
+  17572025:
+    template: Nine_of_Batons
+    region:   sw_187
+    level:    [35, 39]
+  17572026:
+    template: Nine_of_Cups
+    region:   sw_187
+    level:    [35, 39]
+  17572027:
+    template: Nine_of_Swords
+    region:   sw_187
+    level:    [35, 39]
+  17572028:
+    template: Nine_of_Coins
+    region:   sw_187
+    level:    [35, 39]
+  17572029:
+    template: Nine_of_Batons
+    region:   sw_187
+    level:    [35, 39]
+  17572030:
+    template: Nine_of_Cups
+    region:   sw_187
+    level:    [35, 39]
+  17572031:
+    template: Nine_of_Swords
+    region:   sw_187
+    level:    [35, 39]
+  17572032:
+    template: Nine_of_Coins
+    region:   sw_187
+    level:    [35, 39]
+  17572033:
+    template: Nine_of_Batons
+    region:   sw_187
+    level:    [35, 39]
+  17572034:
+    template: Nine_of_Cups
+    region:   sw_187
+    level:    [35, 39]
+  17572035:
+    template: Nine_of_Swords
+    region:   sw_187
+    level:    [35, 39]
+  17572036:
+    template: Nine_of_Coins
+    region:   sw_187
+    level:    [35, 39]
+  17572037:
+    template: Nine_of_Batons
+    region:   sw_187
+    level:    [35, 39]
+  17572038:
+    template: Nine_of_Cups
+    region:   sw_187
+    level:    [35, 39]
+  17572039:
+    template: Nine_of_Swords
+    region:   sw_187
+    level:    [35, 39]
+  17572040:
+    template: Nine_of_Coins
+    region:   sw_187
+    level:    [35, 39]
+  17572041:
+    template: Dancing_Weapon
+    region:   sw_187
+    level:    [28, 30]
+  17572042:
+    template: Dancing_Weapon
+    region:   sw_187
+    level:    [28, 30]
+  17572043:
+    template: Dancing_Weapon
+    region:   sw_187
+    level:    [28, 30]
+  17572044:
+    template: Dancing_Weapon
+    region:   sw_187
+    level:    [28, 30]
+  17572045:
+    template: Ten_of_Cups
+    region:   sw_206
+    level:    [40, 44]
+  17572046:
+    template: Ten_of_Batons
+    region:   sw_206
+    level:    [40, 44]
+  17572047:
+    template: Ten_of_Swords
+    region:   sw_206
+    level:    [40, 44]
+  17572048:
+    template: Ten_of_Coins
+    region:   sw_206
+    level:    [40, 44]
+  17572049:
+    template: Ten_of_Cups
+    region:   sw_206
+    level:    [40, 44]
+  17572050:
+    template: Ten_of_Batons
+    region:   sw_206
+    level:    [40, 44]
+  17572051:
+    template: Ten_of_Swords
+    region:   sw_206
+    level:    [40, 44]
+  17572052:
+    template: Ten_of_Coins
+    region:   sw_206
+    level:    [40, 44]
+  17572053:
+    template: Two_of_Cups
+    region:   ne_213
+    level:    [1, 5]
+  17572054:
+    template: Two_of_Batons
+    region:   ne_213
+    level:    [1, 5]
+  17572055:
+    template: Two_of_Swords
+    region:   ne_213
+    level:    [1, 5]
+  17572056:
+    template: Two_of_Coins
+    region:   ne_213
+    level:    [1, 5]
+  17572057:
+    template: Two_of_Cups
+    region:   ne_213
+    level:    [1, 5]
+  17572058:
+    template: Two_of_Batons
+    region:   ne_213
+    level:    [1, 5]
+  17572059:
+    template: Two_of_Swords
+    region:   ne_213
+    level:    [1, 5]
+  17572060:
+    template: Two_of_Coins
+    region:   ne_213
+    level:    [1, 5]
+  17572061:
+    template: Two_of_Cups
+    region:   ne_213
+    level:    [1, 5]
+  17572062:
+    template: Two_of_Batons
+    region:   ne_213
+    level:    [1, 5]
+  17572063:
+    template: Two_of_Swords
+    region:   ne_213
+    level:    [1, 5]
+  17572064:
+    template: Two_of_Coins
+    region:   ne_213
+    level:    [1, 5]
+  17572065:
+    template: Two_of_Cups
+    region:   ne_227
+    level:    [1, 5]
+  17572066:
+    template: Two_of_Batons
+    region:   ne_227
+    level:    [1, 5]
+  17572067:
+    template: Two_of_Swords
+    region:   ne_227
+    level:    [1, 5]
+  17572068:
+    template: Two_of_Coins
+    region:   ne_227
+    level:    [1, 5]
+  17572069:
+    template: Two_of_Cups
+    region:   ne_227
+    level:    [1, 5]
+  17572070:
+    template: Two_of_Batons
+    region:   ne_227
+    level:    [1, 5]
+  17572071:
+    template: Two_of_Swords
+    region:   ne_227
+    level:    [1, 5]
+  17572072:
+    template: Two_of_Coins
+    region:   ne_227
+    level:    [1, 5]
+  17572073:
+    template: Two_of_Cups
+    region:   ne_227
+    level:    [1, 5]
+  17572074:
+    template: Two_of_Batons
+    region:   ne_227
+    level:    [1, 5]
+  17572075:
+    template: Two_of_Swords
+    region:   ne_227
+    level:    [1, 5]
+  17572076:
+    template: Two_of_Coins
+    region:   ne_227
+    level:    [1, 5]
+  17572077:
+    template: Three_of_Cups
+    region:   region_49
+    level:    [1, 5]
+  17572078:
+    template: Three_of_Batons
+    region:   region_51
+    level:    [5, 9]
+  17572079:
+    template: Three_of_Swords
+    region:   region_56
+    level:    [5, 9]
+  17572080:
+    template: Three_of_Coins
+    region:   region_58
+    level:    [5, 9]
+  17572081:
+    template: Three_of_Cups
+    region:   region_56
+    level:    [5, 9]
+  17572082:
+    template: Three_of_Batons
+    region:   region_57
+    level:    [5, 9]
+  17572083:
+    template: Three_of_Swords
+    region:   region_57
+    level:    [5, 9]
+  17572084:
+    template: Three_of_Coins
+    region:   region_57
+    level:    [5, 9]
+  17572085:
+    template: Three_of_Cups
+    region:   region_57
+    level:    [5, 9]
+  17572086:
+    template: Three_of_Batons
+    region:   region_58
+    level:    [5, 9]
+  17572087:
+    template: Three_of_Swords
+    region:   region_58
+    level:    [5, 9]
+  17572088:
+    template: Three_of_Coins
+    region:   region_56
+    level:    [5, 9]
+  17572089:
+    template: Three_of_Cups
+    region:   region_58
+    level:    [5, 9]
+  17572090:
+    template: Three_of_Batons
+    region:   region_56
+    level:    [5, 9]
+  17572091:
+    template: Three_of_Swords
+    region:   region_51
+    level:    [5, 9]
+  17572092:
+    template: Three_of_Coins
+    region:   region_51
+    level:    [5, 9]
+  17572093:
+    template: Balloon_OHR
+    script:   Balloon
+    region:   region_55
+    level:    [8, 10]
+  17572094:
+    template: Bomb_King
+    region:   region_55
+    level:    [16, 18]
+  17572095:
+    template: Doppelganger_Gog
+    region:   region_55
+    level:    [23, 25]
+  17572096:
+    template: Doppelganger_Dio
+    region:   region_55
+    level:    [23, 25]
+  17572097:
+    template: Three_of_Cups
+    region:   region_51
+    level:    [5, 9]
+  17572098:
+    template: Three_of_Batons
+    region:   region_49
+    level:    [5, 9]
+  17572099:
+    template: Three_of_Swords
+    region:   region_49
+    level:    [5, 9]
+  17572100:
+    template: Three_of_Coins
+    region:   region_49
+    level:    [5, 9]
+  17572101:
+    template: Three_of_Cups
+    region:   ne_261
+    level:    [5, 9]
+  17572102:
+    template: Three_of_Batons
+    region:   ne_261
+    level:    [5, 9]
+  17572103:
+    template: Three_of_Swords
+    region:   ne_261
+    level:    [5, 9]
+  17572104:
+    template: Three_of_Coins
+    region:   ne_261
+    level:    [5, 9]
+  17572105:
+    template: Two_of_Cups
+    region:   ne_265
+    level:    [1, 5]
+  17572106:
+    template: Two_of_Batons
+    region:   ne_265
+    level:    [1, 5]
+  17572107:
+    template: Two_of_Swords
+    region:   ne_265
+    level:    [1, 5]
+  17572108:
+    template: Two_of_Coins
+    region:   ne_265
+    level:    [1, 5]
+  17572109:
+    template: Two_of_Cups
+    region:   ne_265
+    level:    [1, 5]
+  17572110:
+    template: Two_of_Batons
+    region:   ne_265
+    level:    [1, 5]
+  17572111:
+    template: Two_of_Swords
+    region:   ne_265
+    level:    [1, 5]
+  17572112:
+    template: Two_of_Coins
+    region:   ne_265
+    level:    [1, 5]
+  17572113:
+    template: Two_of_Cups
+    region:   ne_265
+    level:    [1, 5]
+  17572114:
+    template: Two_of_Batons
+    region:   ne_265
+    level:    [1, 5]
+  17572115:
+    template: Two_of_Swords
+    region:   ne_265
+    level:    [1, 5]
+  17572116:
+    template: Two_of_Coins
+    region:   ne_265
+    level:    [1, 5]
+  17572117:
+    template: Two_of_Cups
+    region:   ne_277
+    level:    [1, 5]
+  17572118:
+    template: Two_of_Batons
+    region:   ne_277
+    level:    [1, 5]
+  17572119:
+    template: Two_of_Swords
+    region:   ne_277
+    level:    [1, 5]
+  17572120:
+    template: Two_of_Coins
+    region:   ne_277
+    level:    [1, 5]
+  17572121:
+    template: Two_of_Cups
+    region:   ne_277
+    level:    [1, 5]
+  17572122:
+    template: Two_of_Batons
+    region:   ne_277
+    level:    [1, 5]
+  17572123:
+    template: Two_of_Swords
+    region:   ne_277
+    level:    [1, 5]
+  17572124:
+    template: Two_of_Coins
+    region:   ne_277
+    level:    [1, 5]
+  17572125:
+    template: Two_of_Cups
+    region:   ne_277
+    level:    [1, 5]
+  17572126:
+    template: Two_of_Batons
+    region:   ne_277
+    level:    [1, 5]
+  17572127:
+    template: Two_of_Swords
+    region:   ne_277
+    level:    [1, 5]
+  17572128:
+    template: Two_of_Coins
+    region:   ne_277
+    level:    [1, 5]
+  17572129:
+    template: Three_of_Cups
+    region:   region_52
+    level:    [5, 9]
+  17572130:
+    template: Three_of_Batons
+    region:   region_52
+    level:    [5, 9]
+  17572131:
+    template: Three_of_Swords
+    region:   region_52
+    level:    [5, 9]
+  17572132:
+    template: Three_of_Coins
+    region:   region_52
+    level:    [5, 9]
+  17572133:
+    template: Three_of_Cups
+    region:   region_60
+    level:    [5, 9]
+  17572134:
+    template: Three_of_Batons
+    region:   region_60
+    level:    [5, 9]
+  17572135:
+    template: Three_of_Swords
+    region:   region_59
+    level:    [5, 9]
+  17572136:
+    template: Three_of_Coins
+    region:   region_59
+    level:    [5, 9]
+  17572137:
+    template: Three_of_Cups
+    region:   region_59
+    level:    [5, 9]
+  17572138:
+    template: Three_of_Batons
+    region:   region_59
+    level:    [5, 9]
+  17572139:
+    template: Three_of_Swords
+    region:   region_60
+    level:    [5, 9]
+  17572140:
+    template: Three_of_Coins
+    region:   region_62
+    level:    [5, 9]
+  17572141:
+    template: Balloon_OHR
+    script:   Balloon
+    region:   region_61
+    level:    [8, 10]
+  17572142:
+    template: Bomb_King
+    region:   region_61
+    level:    [16, 18]
+  17572143:
+    template: Doppelganger_Gog
+    region:   region_61
+    level:    [23, 25]
+  17572144:
+    template: Doppelganger_Dio
+    region:   region_61
+    level:    [23, 25]
+  17572145:
+    template: Balloon_OHR
+    script:   Balloon
+    region:   region_53
+    level:    [8, 10]
+  17572146:
+    template: Bomb_King
+    region:   region_53
+    level:    [16, 18]
+  17572147:
+    template: Doppelganger_Gog
+    region:   region_53
+    level:    [23, 25]
+  17572148:
+    template: Doppelganger_Dio
+    region:   region_53
+    level:    [23, 25]
+  17572149:
+    template: Three_of_Cups
+    region:   region_62
+    level:    [5, 9]
+  17572150:
+    template: Three_of_Batons
+    region:   region_54
+    level:    [5, 9]
+  17572151:
+    template: Three_of_Swords
+    region:   region_54
+    level:    [5, 9]
+  17572152:
+    template: Three_of_Coins
+    region:   region_50
+    level:    [5, 9]
+  17572153:
+    template: Three_of_Cups
+    region:   region_54
+    level:    [5, 9]
+  17572154:
+    template: Three_of_Batons
+    region:   region_62
+    level:    [5, 9]
+  17572155:
+    template: Three_of_Swords
+    region:   region_62
+    level:    [5, 9]
+  17572156:
+    template: Three_of_Coins
+    region:   region_54
+    level:    [5, 9]
+  17572157:
+    template: Three_of_Cups
+    region:   region_50
+    level:    [5, 9]
+  17572158:
+    template: Three_of_Batons
+    region:   region_50
+    level:    [5, 9]
+  17572159:
+    template: Three_of_Swords
+    region:   region_50
+    level:    [5, 9]
+  17572160:
+    template: Three_of_Coins
+    region:   region_60
+    level:    [5, 9]
+  17572161:
+    template: Battue_Bats
+    region:   se_321
+    level:    [2, 4]
+  17572162:
+    template: Battue_Bats
+    region:   se_321
+    level:    [2, 4]
+  17572163:
+    template: Battue_Bats
+    region:   se_321
+    level:    [2, 4]
+  17572164:
+    template: Goblin_Thug
+    region:   se_325
+    level:    [4, 7]
+  17572165:
+    template: Goblin_Thug
+    region:   se_325
+    level:    [4, 7]
+  17572166:
+    template: Goblin_Weaver
+    region:   se_325
+    level:    [4, 7]
+  17572167:
+    template: Goblin_Thug
+    region:   se_327
+    level:    [4, 7]
+  17572168:
+    template: Goblin_Thug
+    region:   se_327
+    level:    [4, 7]
+  17572169:
+    template: Goblin_Weaver
+    region:   se_327
+    level:    [4, 7]
+  17572170:
+    template: Goblin_Thug
+    region:   se_327
+    level:    [4, 7]
+  17572171:
+    template: Goblin_Thug
+    region:   se_331
+    level:    [4, 7]
+  17572172:
+    template: Goblin_Weaver
+    region:   se_331
+    level:    [4, 7]
+  17572173:
+    template: Goblin_Thug
+    region:   se_333
+    level:    [4, 7]
+  17572174:
+    template: Goblin_Weaver
+    region:   se_333
+    level:    [4, 7]
+  17572175:
+    template: Battue_Bats
+    region:   se_333
+    level:    [2, 4]
+  17572176:
+    template: Battue_Bats
+    region:   se_333
+    level:    [2, 4]
+  17572177:
+    template: Goblin_Thug
+    region:   se_338
+    level:    [4, 7]
+  17572178:
+    template: Goblin_Weaver
+    region:   se_338
+    level:    [4, 7]
+  17572179:
+    template: Battue_Bats
+    region:   se_338
+    level:    [2, 4]
+  17572180:
+    template: Battue_Bats
+    region:   se_338
+    level:    [2, 4]
+  17572181:
+    template: Goblin_Thug
+    region:   se_342
+    level:    [4, 7]
+  17572182:
+    template: Goblin_Weaver
+    region:   se_342
+    level:    [4, 7]
+  17572183:
+    template: Blade_Bat
+    region:   se_342
+    level:    [4, 6]
+  17572184:
+    template: Blade_Bat
+    region:   se_342
+    level:    [4, 6]
+  17572185:
+    template: Blade_Bat
+    region:   se_342
+    level:    [4, 6]
+  17572186:
+    template: Goblin_Thug
+    region:   se_346
+    level:    [4, 7]
+  17572187:
+    template: Goblin_Weaver
+    region:   se_346
+    level:    [4, 7]
+  17572188:
+    template: Blade_Bat
+    region:   se_346
+    level:    [4, 6]
+  17572189:
+    template: Blade_Bat
+    region:   se_346
+    level:    [4, 6]
+  17572190:
+    template: Blade_Bat
+    region:   se_346
+    level:    [4, 6]
+  17572191:
+    template: Balloon_OHR
+    script:   Balloon
+    region:   se_351
+    level:    [8, 10]
+  17572192:
+    template: Goblin_Weaver
+    region:   se_351
+    level:    [4, 7]
+  17572193:
+    template: Balloon_OHR
+    script:   Balloon
+    region:   se_353
+    level:    [8, 10]
+  17572194:
+    template: Goblin_Weaver
+    region:   se_351
+    level:    [4, 7]
+  17572195:
+    template: Balloon_OHR
+    script:   Balloon
+    region:   se_355
+    level:    [8, 10]
+  17572196:
+    template: Goblin_Weaver
+    region:   se_351
+    level:    [4, 7]
+  17572197:
+    template: Jack_of_Cups
+    at:       [-291.000, 0.001, -663.000, 129]
+    level:    [62, 62]
+  17572198:
+    template: Jack_of_Batons
+    at:       [-291.000, 0.001, -657.000, 126]
+    level:    [62, 62]
+  17572199:
+    template: Jack_of_Swords
+    at:       [-291.000, 0.001, -659.000, 130]
+    level:    [62, 62]
+  17572200:
+    template: Jack_of_Coins
+    at:       [-291.000, 0.001, -661.000, 127]
+    level:    [62, 62]
+  17572201:
+    template: Queen_of_Swords
+    at:       [-423.000, -0.500, 621.000]
+    level:    [72, 72]
+  17572202:
+    template: Queen_of_Coins
+    at:       [-423.000, -0.500, 619.000, 217]
+    level:    [72, 72]
+  17572203:
+    template: Thunder_Elemental_SA
+    script:   Thunder_Elemental
+    at:       [-576.613, -1.014, 739.999]
+    level:    [75, 75]
+  17572204:
+    template: Custom_Cardian
+    at:       [427.215, -8.021, 732.387, 27]
+    level:    [1, 1]
+  17572205:
+    template: Custom_Cardian
+    at:       [429.615, -8.000, 731.649, 69]
+    level:    [1, 1]
+  17572206:
+    template: Custom_Cardian
+    at:       [428.483, -8.013, 733.525, 51]
+    level:    [1, 1]
+  17572207:
+    template: Custom_Cardian
+    at:       [428.788, -8.002, 733.112, 53]
+    level:    [1, 1]
+  17572208:
+    template: Custom_Cardian
+    at:       [421.585, -8.082, 735.479, 6]
+    level:    [1, 1]
+  17572209:
+    template: Custom_Cardian
+    at:       [428.737, -8.000, 733.022, 52]
+    level:    [1, 1]
+  17572210:
+    template: Custom_Cardian
+    at:       [429.116, -8.000, 732.739, 57]
+    level:    [1, 1]
+  17572211:
+    template: Custom_Cardian
+    at:       [428.619, -8.000, 733.418, 52]
+    level:    [1, 1]
+  17572212:
+    template: Custom_Cardian
+    at:       [429.425, -8.000, 732.082, 63]
+    level:    [1, 1]
+  17572213:
+    template: Custom_Cardian
+    at:       [428.411, -8.000, 733.524, 50]
+    level:    [1, 1]
+  17572214:
+    template: Custom_Cardian
+    at:       [428.713, -8.500, 733.322, 53]
+    level:    [1, 1]
+  17572215:
+    template: Custom_Cardian
+    at:       [428.626, -8.500, 733.197, 51]
+    level:    [1, 1]
+  17572216:
+    template: Custom_Cardian
+    at:       [421.892, -8.503, 734.855, 4]
+    level:    [1, 1]
+  17572217:
+    template: Custom_Cardian
+    at:       [428.744, -8.500, 733.430, 54]
+    level:    [1, 1]
+  17572218:
+    template: Custom_Cardian
+    at:       [428.410, -8.001, 733.538, 50]
+    level:    [1, 1]
+  17572219:
+    template: Voidwrought
+    at:       [-260.682, -0.528, 740.146, 254]
+  17572220:
+    template: Voidwrought
+    at:       [-380.000, -0.508, 740.000, 26]
+  17572221:
+    template: Voidwrought
+
+  17572320:
+    template: Beta_bat_Blade_Bat
+    region:   se_342
+    level:    [4, 6]
+  17572321:
+    template: Beta_bat_Blade_Bat
+    region:   se_342
+    level:    [4, 6]
+  17572322:
+    template: Beta_bat2_Blade_Bat
+    region:   se_342
+    level:    [4, 6]
+  17572323:
+    template: Beta_bat2_Blade_Bat
+    region:   se_342
+    level:    [4, 6]
+  17572324:
+    template: Beta_slim_Rotten_Jam
+    region:   nw_31
+    level:    [12, 15]
+  17572325:
+    template: Beta_slim_Rotten_Jam
+    region:   nw_31
+    level:    [12, 15]
+slots:
+  - members:
+      17571846: {} # Goblin_Ambusher
+      17571854: {} # Goblin_Ambusher
+  - members:
+      17571848: {} # Goblin_Tinkerer
+      17571850: {} # Goblin_Butcher
+  - members:
+      17571856: {} # Goblin_Tinkerer
+      17571858: {} # Goblin_Butcher
+  - members:
+      17571866: {} # Goblin_Tinkerer
+      17571867: {} # Goblin_Butcher
+  - members:
+      17571868: {} # Stink_Bats
+      17571870: {} # Desmodont
+  - members:
+      17571896: {} # Ghoul
+      17571900: {} # Ghoul
+  - members:
+      17571929: {} # Two_of_Cups
+      17571930: {} # Two_of_Batons
+      17571931: {} # Two_of_Swords
+  - members:
+      17571932: {} # Two_of_Coins
+      17571933: {} # Two_of_Cups
+      17571934: {} # Two_of_Batons
+  - members:
+      17571935: {} # Two_of_Swords
+      17571936: {} # Two_of_Coins
+  - members:
+      17571937: {} # Two_of_Cups
+      17571938: {} # Two_of_Batons
+  - members:
+      17571939: {} # Two_of_Swords
+      17571940: {} # Two_of_Coins
+  - members:
+      17571941: {} # Three_of_Cups
+      17571942: {} # Three_of_Batons
+  - members:
+      17571943: {} # Three_of_Swords
+      17571944: {} # Three_of_Coins
+      17571945: {} # Three_of_Cups
+  - members:
+      17571946: {} # Three_of_Batons
+      17571947: {} # Three_of_Swords
+      17571948: {} # Three_of_Coins
+  - members:
+      17571949: {} # Three_of_Cups
+      17571951: {} # Three_of_Swords
+  - members:
+      17571950: {} # Three_of_Batons
+      17571952: {} # Three_of_Coins
+  - members:
+      17571953: {} # Four_of_Cups
+      17571954: {} # Four_of_Batons
+      17571955: {} # Four_of_Swords
+  - members:
+      17571956: {} # Four_of_Coins
+      17571957: {} # Four_of_Cups
+  - members:
+      17571958: {} # Four_of_Batons
+      17571959: {} # Four_of_Swords
+      17571960: {} # Four_of_Coins
+  - members:
+      17571961: {} # Five_of_Cups
+      17571962: {} # Five_of_Batons
+      17571963: {} # Five_of_Swords
+  - members:
+      17571964: {} # Five_of_Coins
+      17571965: {} # Five_of_Cups
+      17571966: {} # Five_of_Batons
+  - members:
+      17571967: {} # Five_of_Swords
+      17571968: {} # Five_of_Coins
+  - members:
+      17571969: {} # Five_of_Cups
+      17571972: {} # Five_of_Coins
+  - members:
+      17571970: {} # Five_of_Batons
+      17571971: {} # Five_of_Swords
+  - members:
+      17571973: {} # Six_of_Cups
+      17571974: {} # Six_of_Batons
+  - members:
+      17571975: {} # Six_of_Swords
+      17571976: {} # Six_of_Coins
+  - members:
+      17571977: {} # Six_of_Cups
+      17571978: {} # Six_of_Batons
+  - members:
+      17571979: {} # Six_of_Swords
+      17571980: {} # Six_of_Coins
+      17571981: {} # Six_of_Cups
+  - members:
+      17571982: {} # Six_of_Batons
+      17571983: {} # Six_of_Swords
+      17571984: {} # Six_of_Coins
+  - members:
+      17571985: {} # Eight_of_Cups
+      17571986: {} # Eight_of_Batons
+      17571987: {} # Eight_of_Swords
+      17571988: {} # Eight_of_Coins
+  - members:
+      17571989: {} # Eight_of_Cups
+      17571990: {} # Eight_of_Batons
+      17571991: {} # Eight_of_Swords
+      17571992: {} # Eight_of_Coins
+  - members:
+      17571993: {} # Eight_of_Cups
+      17571994: {} # Eight_of_Batons
+      17571995: {} # Eight_of_Swords
+      17571996: {} # Eight_of_Coins
+  - members:
+      17571997: {} # Eight_of_Cups
+      17571998: {} # Eight_of_Batons
+      17571999: {} # Eight_of_Swords
+      17572000: {} # Eight_of_Coins
+  - members:
+      17572001: {} # Dancing_Weapon
+      17572002: {} # Dancing_Weapon
+  - members:
+      17572003: {} # Dancing_Weapon
+      17572004: {} # Dancing_Weapon
+  - members:
+      17572005: {} # Seven_of_Cups
+      17572006: {} # Seven_of_Batons
+      17572007: {} # Seven_of_Swords
+      17572008: {} # Seven_of_Coins
+  - members:
+      17572009: {} # Seven_of_Cups
+      17572010: {} # Seven_of_Batons
+      17572011: {} # Seven_of_Swords
+      17572012: {} # Seven_of_Coins
+  - members:
+      17572013: {} # Seven_of_Cups
+      17572014: {} # Seven_of_Batons
+      17572015: {} # Seven_of_Swords
+      17572016: {} # Seven_of_Coins
+  - members:
+      17572017: {} # Seven_of_Cups
+      17572018: {} # Seven_of_Batons
+      17572019: {} # Seven_of_Swords
+      17572020: {} # Seven_of_Coins
+  - members:
+      17572021: {} # Dancing_Weapon
+      17572022: {} # Dancing_Weapon
+  - members:
+      17572023: {} # Dancing_Weapon
+      17572024: {} # Dancing_Weapon
+  - members:
+      17572025: {} # Nine_of_Batons
+      17572026: {} # Nine_of_Cups
+      17572027: {} # Nine_of_Swords
+      17572028: {} # Nine_of_Coins
+  - members:
+      17572029: {} # Nine_of_Batons
+      17572030: {} # Nine_of_Cups
+      17572031: {} # Nine_of_Swords
+      17572032: {} # Nine_of_Coins
+  - members:
+      17572033: {} # Nine_of_Batons
+      17572034: {} # Nine_of_Cups
+      17572035: {} # Nine_of_Swords
+      17572036: {} # Nine_of_Coins
+  - members:
+      17572037: {} # Nine_of_Batons
+      17572038: {} # Nine_of_Cups
+      17572039: {} # Nine_of_Swords
+      17572040: {} # Nine_of_Coins
+  - members:
+      17572041: {} # Dancing_Weapon
+      17572042: {} # Dancing_Weapon
+  - members:
+      17572043: {} # Dancing_Weapon
+      17572044: {} # Dancing_Weapon
+  - members:
+      17572045: {} # Ten_of_Cups
+      17572046: {} # Ten_of_Batons
+      17572047: {} # Ten_of_Swords
+  - members:
+      17572048: {} # Ten_of_Coins
+      17572049: {} # Ten_of_Cups
+  - members:
+      17572050: {} # Ten_of_Batons
+      17572051: {} # Ten_of_Swords
+      17572052: {} # Ten_of_Coins
+  - members:
+      17572053: {} # Two_of_Cups
+      17572054: {} # Two_of_Batons
+      17572055: {} # Two_of_Swords
+  - members:
+      17572056: {} # Two_of_Coins
+      17572057: {} # Two_of_Cups
+      17572058: {} # Two_of_Batons
+  - members:
+      17572059: {} # Two_of_Swords
+      17572060: {} # Two_of_Coins
+      17572061: {} # Two_of_Cups
+  - members:
+      17572062: {} # Two_of_Batons
+      17572063: {} # Two_of_Swords
+      17572064: {} # Two_of_Coins
+  - members:
+      17572065: {} # Two_of_Cups
+      17572066: {} # Two_of_Batons
+      17572067: {} # Two_of_Swords
+  - members:
+      17572068: {} # Two_of_Coins
+      17572069: {} # Two_of_Cups
+      17572070: {} # Two_of_Batons
+  - members:
+      17572071: {} # Two_of_Swords
+      17572072: {} # Two_of_Coins
+      17572073: {} # Two_of_Cups
+  - members:
+      17572074: {} # Two_of_Batons
+      17572075: {} # Two_of_Swords
+      17572076: {} # Two_of_Coins
+  - members:
+      17572077: {} # Three_of_Cups
+      17572078: {} # Three_of_Batons
+      17572079: {} # Three_of_Swords
+      17572080: {} # Three_of_Coins
+      17572089: {} # Three_of_Cups
+      17572090: {} # Three_of_Batons
+      17572091: {} # Three_of_Swords
+      17572092: {} # Three_of_Coins
+  - members:
+      17572081: {} # Three_of_Cups
+      17572082: {} # Three_of_Batons
+      17572083: {} # Three_of_Swords
+      17572084: {} # Three_of_Coins
+      17572085: {} # Three_of_Cups
+      17572086: {} # Three_of_Batons
+      17572087: {} # Three_of_Swords
+      17572088: {} # Three_of_Coins
+      17572097: {} # Three_of_Cups
+      17572098: {} # Three_of_Batons
+      17572099: {} # Three_of_Swords
+      17572100: {} # Three_of_Coins
+  - members:
+      17572093: {} # Balloon
+      17572094: {} # Bomb_King
+      17572095: {} # Doppelganger_Gog
+      17572096: {} # Doppelganger_Dio
+      17572141: {} # Balloon
+      17572142: {} # Bomb_King
+      17572143: {} # Doppelganger_Gog
+      17572144: {} # Doppelganger_Dio
+      17572145: {} # Balloon
+      17572146: {} # Bomb_King
+      17572147: {} # Doppelganger_Gog
+      17572148: {} # Doppelganger_Dio
+  - members:
+      17572101: {} # Three_of_Cups
+      17572102: {} # Three_of_Batons
+  - members:
+      17572103: {} # Three_of_Swords
+      17572104: {} # Three_of_Coins
+  - members:
+      17572105: {} # Two_of_Cups
+      17572106: {} # Two_of_Batons
+      17572107: {} # Two_of_Swords
+  - members:
+      17572108: {} # Two_of_Coins
+      17572109: {} # Two_of_Cups
+      17572110: {} # Two_of_Batons
+  - members:
+      17572111: {} # Two_of_Swords
+      17572112: {} # Two_of_Coins
+      17572113: {} # Two_of_Cups
+  - members:
+      17572114: {} # Two_of_Batons
+      17572115: {} # Two_of_Swords
+      17572116: {} # Two_of_Coins
+  - members:
+      17572117: {} # Two_of_Cups
+      17572118: {} # Two_of_Batons
+      17572119: {} # Two_of_Swords
+  - members:
+      17572120: {} # Two_of_Coins
+      17572121: {} # Two_of_Cups
+      17572122: {} # Two_of_Batons
+  - members:
+      17572123: {} # Two_of_Swords
+      17572124: {} # Two_of_Coins
+      17572125: {} # Two_of_Cups
+  - members:
+      17572126: {} # Two_of_Batons
+      17572127: {} # Two_of_Swords
+      17572128: {} # Two_of_Coins
+  - members:
+      17572129: {} # Three_of_Cups
+      17572130: {} # Three_of_Batons
+      17572131: {} # Three_of_Swords
+      17572132: {} # Three_of_Coins
+      17572149: {} # Three_of_Cups
+      17572150: {} # Three_of_Batons
+      17572151: {} # Three_of_Swords
+      17572152: {} # Three_of_Coins
+  - members:
+      17572133: {} # Three_of_Cups
+      17572134: {} # Three_of_Batons
+      17572135: {} # Three_of_Swords
+      17572136: {} # Three_of_Coins
+      17572153: {} # Three_of_Cups
+      17572154: {} # Three_of_Batons
+      17572155: {} # Three_of_Swords
+      17572156: {} # Three_of_Coins
+  - members:
+      17572137: {} # Three_of_Cups
+      17572138: {} # Three_of_Batons
+      17572139: {} # Three_of_Swords
+      17572140: {} # Three_of_Coins
+      17572157: {} # Three_of_Cups
+      17572158: {} # Three_of_Batons
+      17572159: {} # Three_of_Swords
+      17572160: {} # Three_of_Coins
+  - members:
+      17572167: {} # Goblin_Thug
+      17572170: {} # Goblin_Thug
+  - members:
+      17572173: {} # Goblin_Thug
+      17572174: {} # Goblin_Weaver
+  - members:
+      17572177: {} # Goblin_Thug
+      17572178: {} # Goblin_Weaver
+  - members:
+      17572181: {} # Goblin_Thug
+      17572182: {} # Goblin_Weaver
+  - members:
+      17572186: {} # Goblin_Thug
+      17572188: {} # Blade_Bat
+  - members:
+      17572192: {} # Goblin_Weaver
+      17572194: {} # Goblin_Weaver
+      17572196: {} # Goblin_Weaver

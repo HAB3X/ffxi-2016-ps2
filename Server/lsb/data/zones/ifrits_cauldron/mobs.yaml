@@ -1,0 +1,2418 @@
+# yaml-language-server: $schema=../../schemas/mobs.schema.json
+
+templates:
+
+  Ash_Dragon:
+    id:            265
+    species:       dragon
+    type:          [notorious]
+    skill_list_id: 2069
+    attributes:
+      combat:
+        skill: staff
+      render:
+        look:
+          type:  standard
+          model: 420
+        entity_flags: 1157
+        model_size:      2
+        hitbox:         39
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 60000
+        mp: 10000
+    loot:
+      drops:
+        - chance: always
+          item:   dragon_talon
+        - chance: common
+          item:   handful_of_dragon_scales
+        - chance: rare
+          item:   vial_of_dragon_blood
+        - chance: rare
+          item:   dragon_heart
+        - chance: very_rare
+          item:   murasame
+
+  Ash_Lizard:
+    id:            266
+    species:       ash_lizard
+    skill_list_id: 174
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 329
+        entity_flags: 1155
+        model_size:      1
+        hitbox:         16
+      behaviors:
+        links: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: very_rare
+          item:   rattling_egg
+        - chance: common
+          item:   lizard_tail
+        - chance: uncommon
+          item:   lizard_skin
+        - chance: common
+          item:   lizard_egg
+      despoil:
+        lizard_skin: 0
+        lizard_tail: 0
+        lizard_egg:  0
+
+  Bomb_Bastard:
+    id:            494
+    species:       bomb
+    type:          [notorious]
+    skill_list_id: 56
+    attributes:
+      combat:
+        skill: club
+        delay: 480
+      render:
+        look:
+          type:  standard
+          model: 280
+        entity_flags: 3
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 1120
+
+  Bomb_Prince:
+    id:            496
+    species:       bomb
+    type:          [notorious]
+    skill_list_id: 56
+    attributes:
+      combat:
+        skill: club
+        delay: 480
+      render:
+        look:
+          type:  standard
+          model: 280
+        entity_flags: 641
+        hitbox:        10
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 1120
+
+  Bomb_Princess:
+    id:            497
+    species:       bomb
+    type:          [notorious]
+    skill_list_id: 56
+    attributes:
+      combat:
+        skill: club
+        delay: 480
+      render:
+        look:
+          type:  standard
+          model: 280
+        entity_flags: 641
+        hitbox:        10
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 1120
+
+  Bomb_Queen:
+    id:            498
+    species:       bomb
+    type:          [notorious]
+    spell_list_id: 295
+    attributes:
+      combat:
+        skill: staff
+      jobs: [blm, war]
+      render:
+        look:
+          type:  standard
+          model: 280
+        entity_flags: 647
+        model_size:     3
+        hitbox:        16
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 47000
+        mp: 47000
+    loot:
+      drops:
+        - chance: always
+          item:   bomb_queen_ring
+        - chance: always
+          item:   pinch_of_bomb_ash
+        - chance: always
+          item:   bomb_arm
+        - chance: uncommon
+          item:   avengers
+      steal: bomb_arm
+
+  Cailleach_Bheur:
+    id:            607
+    species:       skeleton
+    spell_list_id: 28
+    skill_list_id: 227
+    attributes:
+      combat:
+        skill: great_katana
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 564
+        entity_flags: 131
+        model_size:     1
+        hitbox:        12
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 9300
+        mp: 9300
+
+  Coca:
+    id:            6897
+    species:       wyvern
+    type:          [notorious]
+    skill_list_id: 1140
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 398
+        entity_flags: 133
+        name_prefix:   32
+        model_size:     2
+        hitbox:        36
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+
+  Dire_Bat:
+    id:            1044
+    species:       bat
+    skill_list_id: 46
+    attributes:
+      combat:
+        skill: club
+      render:
+        look:
+          type:  standard
+          model: 256
+        entity_flags:  643
+        animation_sub:   8
+        model_size:      1
+        hitbox:         12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+        type:    [at_evening]
+    loot:
+      drops:
+        - chance: rare
+          item:   cauldron_coffer_key
+        - chance: common
+          item:   bat_wing
+        - chance: uncommon
+          item:   bat_fang
+        - chance: uncommon
+          item:   vial_of_fiend_blood
+        - chance: very_rare
+          item:   vial_of_beastman_blood
+      despoil:
+        bat_wing: 0
+
+  Dodomeki:
+    id:            1073
+    species:       hecteye
+    spell_list_id: 10
+    skill_list_id: 139
+    attributes:
+      combat:
+        skill: staff
+        delay: 280
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 384
+        entity_flags: 131
+        model_size:     1
+        hitbox:        12
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   hecteyes_eye
+        - chance: uncommon
+          item:   scroll_of_fire_iii
+        - chance: rare
+          item:   damp_hakutaku_eye
+        - chance: rare
+          item:   cauldron_coffer_key
+      despoil:
+        hecteyes_eye: 0
+
+  Eotyrannus:
+    id:            1238
+    species:       raptor
+    skill_list_id: 210
+    attributes:
+      combat:
+        skill: scythe
+        delay: 220
+      render:
+        look:
+          type:  standard
+          model: 316
+        entity_flags: 1155
+        model_size:      1
+        hitbox:         18
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   raptor_skin
+      despoil:
+        raptor_skin: 0
+
+  Foreseer_Oramix:
+    id:            1401
+    species:       goblin
+    type:          [notorious]
+    spell_list_id: 20
+    skill_list_id: 133
+    attributes:
+      combat:
+        skill: staff
+      jobs: [whm, whm]
+      render:
+        look:
+          type:  standard
+          model: 493
+        entity_flags: 157
+        name_prefix:   32
+        model_size:     2
+        hitbox:        13
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [lottery]
+      stats:
+        hp: 7400
+        mp: 7400
+    loot:
+      drops:
+        - chance: common
+          item:   power_staff
+        - chance: always
+          item:   goblin_mask
+        - chance: always
+          item:   goblin_armor
+        - chance: uncommon
+          item:   scroll_of_regen_iii
+        - chance: uncommon
+          item:   scroll_of_cure_v
+        - chance: rare
+          item:   scroll_of_curaga_iv
+        - chance: common
+          item:   scroll_of_shellra_iv
+
+  Goblin_Alchemist:
+    id:            1634
+    species:       goblin
+    spell_list_id: 20
+    skill_list_id: 133
+    attributes:
+      combat:
+        skill: staff
+      jobs: [whm, whm]
+      render:
+        look:
+          type:  standard
+          model: 493
+        entity_flags: 133
+        model_size:     2
+        hitbox:        13
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   white_mages_testimony
+        - chance: uncommon
+          item:   scroll_of_sacrifice
+        - chance: rare
+          item:   scroll_of_regen_iii
+        - chance: very_rare
+          item:   scroll_of_cure_v
+        - chance: very_rare
+          item:   scroll_of_curaga_iv
+        - chance: rare
+          item:   scroll_of_shellra_iv
+        - chance: rare
+          item:   scroll_of_reraise_iii
+      steal: beastcoin
+      despoil:
+        loaf_of_goblin_bread:      0
+        chunk_of_goblin_chocolate: 0
+        bowl_of_goblin_stew:       0
+        goblin_mushpot:            0
+
+  Goblin_Bandit:
+    id:            1637
+    species:       goblin
+    skill_list_id: 133
+    attributes:
+      combat:
+        skill: dagger
+      jobs: [thf, thf]
+      render:
+        look:
+          type:  standard
+          model: 505
+        entity_flags: 133
+        model_size:     2
+        hitbox:        13
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: rare
+          item:   goblin_mask
+        - chance: very_rare
+          item:   goblin_armor
+        - chance: very_rare
+          item:   gold_beastcoin
+      steal: thiefs_testimony
+      despoil:
+        loaf_of_goblin_bread:      0
+        chunk_of_goblin_chocolate: 0
+        bowl_of_goblin_stew:       0
+        goblin_mushpot:            0
+
+  Goblin_Mercenary:
+    id:            1687
+    species:       armored_goblin
+    skill_list_id: 133
+    attributes:
+      combat:
+        skill: axe
+      render:
+        look:
+          type:  standard
+          model: 508
+        entity_flags: 133
+        model_size:     2
+        hitbox:        13
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: rare
+          item:   warriors_testimony
+        - chance: rare
+          item:   goblin_helm
+        - chance: very_rare
+          item:   goblin_mail
+      steal: beastcoin
+      despoil:
+        loaf_of_goblin_bread:      0
+        chunk_of_goblin_chocolate: 0
+        bowl_of_goblin_stew:       0
+        goblin_mushpot:            0
+
+  Goblin_Shepherd:
+    id:            1711
+    species:       goblin
+    skill_list_id: 133
+    attributes:
+      combat:
+        skill: axe
+      jobs: [bst, bst]
+      render:
+        look:
+          type:  standard
+          model: 506
+        entity_flags: 133
+        model_size:     2
+        hitbox:        13
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: very_common
+          item:   ash_staff
+        - chance: common
+          item:   ram_skin
+        - chance: uncommon
+          item:   beastmasters_testimony
+        - chance: rare
+          item:   jug_of_singing_herbal_broth
+      steal: mythril_beastcoin
+      despoil:
+        loaf_of_goblin_bread:      0
+        chunk_of_goblin_chocolate: 0
+        bowl_of_goblin_stew:       0
+        goblin_mushpot:            0
+
+  Goblins_Bats:
+    id:            1721
+    species:       flock_bat
+    skill_list_id: 47
+    attributes:
+      combat:
+        skill: club
+      render:
+        look:
+          type:  standard
+          model: 260
+        entity_flags:  643
+        animation_sub:   8
+        name_prefix:    64
+        model_size:      1
+        hitbox:         16
+      behaviors:
+        links: true
+      spawn:
+        type: [scripted]
+
+  Hraun_Dragon:
+    id:            5176
+    species:       dragon
+    type:          [notorious]
+    skill_list_id: 2087
+    attributes:
+      combat:
+        skill: staff
+      render:
+        look:
+          type:  standard
+          model: 420
+        entity_flags: 129
+        hitbox:        28
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+
+  Hurricane_Wyvern:
+    id:            2015
+    species:       wyvern
+    skill_list_id: 266
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 398
+        entity_flags: 1155
+        model_size:      1
+        hitbox:         32
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   wyvern_skull
+        - chance: uncommon
+          item:   wyvern_skin
+        - chance: very_rare
+          item:   wyvern_wing
+      despoil:
+        handful_of_wyvern_scales: 0
+
+  Ildebrann:
+    id:            5175
+    species:       earth_wyrm
+    type:          [notorious]
+    spell_list_id: 21
+    skill_list_id: 263
+    attributes:
+      combat:
+        skill: scythe
+      jobs: [blm, blm]
+      resists:
+        rank_element:
+          fire:  11
+          ice:   11
+          water: -2
+          light: -2
+        rank_status:
+          poison:      -2
+          light_sleep:  6
+          dark_sleep:   6
+      render:
+        look:
+          type:  standard
+          model: 608
+        entity_flags:  1183
+        animation_sub:    4
+        name_vis:         4
+        name_prefix:     32
+        model_size:       3
+        hitbox:          70
+      behaviors:
+        aggressive:     true
+        true_detection: true
+      spawn:
+        type: [scripted]
+      stats:
+        mp: 9999
+
+  Lindwurm:
+    id:            2420
+    species:       raptor
+    type:          [notorious]
+    skill_list_id: 210
+    attributes:
+      combat:
+        skill: scythe
+      jobs: [thf, war]
+      render:
+        look:
+          type:  standard
+          model: 317
+        entity_flags:  3
+        model_size:    2
+        hitbox:       21
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [lottery]
+      stats:
+        hp: 15300
+    loot:
+      drops:
+        - chance: always
+          item:   lindwurm_skin
+        - chance: uncommon
+          item:   lindwurm_skin
+        - chance: uncommon
+          item:   valiant_knife
+        - chance: uncommon
+          item:   raptor_skin
+
+  Magma:
+    id:            2484
+    species:       bomb
+    type:          [notorious]
+    skill_list_id: 56
+    attributes:
+      combat:
+        skill: axe
+      render:
+        look:
+          type:  standard
+          model: 281
+        entity_flags: 135
+        model_size:     3
+        hitbox:        16
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 8000
+    loot:
+      drops:
+        - chance: always
+          item:   frag_rock
+        - chance: always
+          item:   frag_rock
+        - chance: always
+          item:   frag_rock
+        - chance: always
+          item:   frag_rock
+        - chance: always
+          item:   frag_rock
+        - chance: always
+          item:   frag_rock
+
+  Mimic:
+    id:            2664
+    species:       mimic
+    type:          [notorious]
+    skill_list_id: 183
+    attributes:
+      combat:
+        skill: scythe
+        delay: 170
+      resists:
+        dmg_physical:
+          slashing: -5000
+          piercing: -5000
+          blunt:    -5000
+          h2h:      -5000
+      render:
+        look:
+          type:  standard
+          model: 259
+        entity_flags:  131
+        animation_sub:  13
+        model_size:      1
+        hitbox:         12
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: always
+          item:   cauldron_coffer_key
+
+  Nightmare_Bats_Ifrits_Cauldron:
+    id:            2842
+    display_name:  Nightmare_Bats
+    species:       flock_bat
+    skill_list_id: 47
+    attributes:
+      combat:
+        skill: axe
+      render:
+        look:
+          type:  standard
+          model: 260
+        entity_flags:  643
+        animation_sub:   8
+        name_prefix:    64
+        model_size:      1
+        hitbox:         16
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   bat_wing
+        - chance: uncommon
+          item:   bat_fang
+        - chance: rare
+          item:   vial_of_beastman_blood
+        - chance: very_rare
+          item:   vial_of_dragon_blood
+      despoil:
+        bat_wing: 0
+
+  Old_Opo-opo:
+    id:            2963
+    species:       opo_opo
+    skill_list_id: 188
+    attributes:
+      combat:
+        skill: scythe
+        delay: 200
+      render:
+        look:
+          type:  standard
+          model: 416
+        entity_flags: 1155
+        model_size:      1
+        hitbox:         18
+      behaviors:
+        links: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   pebble
+        - chance: uncommon
+          item:   bunch_of_pamamas
+        - chance: rare
+          item:   cauldron_coffer_key
+        - chance: rare
+          item:   kazham_pineapple
+        - chance: very_rare
+          item:   thundermelon
+      steal: bunch_of_pamamas
+      despoil:
+        bunch_of_pamamas: 0
+
+  Salamander:
+    id:            3444
+    species:       ash_lizard
+    type:          [notorious]
+    skill_list_id: 174
+    attributes:
+      combat:
+        skill: scythe
+        delay: 180
+      render:
+        look:
+          type:  standard
+          model: 329
+        entity_flags: 645
+        model_size:     2
+        hitbox:        18
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 8000
+
+  Sulfur_Scorpion:
+    id:            3808
+    species:       scorpion
+    skill_list_id: 217
+    attributes:
+      combat:
+        skill: scythe
+        delay: 280
+      render:
+        look:
+          type:  standard
+          model: 284
+        entity_flags: 131
+        model_size:     1
+        hitbox:        27
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: very_common
+          item:   scorpion_claw
+        - chance: uncommon
+          item:   scorpion_shell
+        - chance: very_rare
+          item:   high-quality_scorpion_shell
+      despoil:
+        scorpion_shell: 0
+        scorpion_claw:  0
+
+  Tarasque:
+    id:            3844
+    species:       hill_lizard
+    type:          [notorious]
+    skill_list_id: 174
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 328
+        entity_flags: 645
+        model_size:     2
+        hitbox:        18
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 7600
+    loot:
+      drops:
+        - chance: uncommon
+          item:   ascention
+        - chance: always
+          item:   tarasque_skin
+        - chance: common
+          item:   tarasque_skin
+        - chance: uncommon
+          item:   tarasque_skin
+
+  Tyrannic_Tunnok:
+    id:            4066
+    species:       scorpion
+    type:          [notorious]
+    skill_list_id: 217
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 284
+        entity_flags:  3
+        model_size:    2
+        hitbox:       32
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [lottery]
+      stats:
+        hp: 19450
+    loot:
+      drops:
+        - chance: always
+          item:   lohar
+        - chance: always
+          item:   scorpion_claw
+        - chance: always
+          item:   scorpion_shell
+        - chance: very_rare
+          item:   venomous_claw
+
+  Volcanic_Bomb:
+    id:            4245
+    species:       bomb
+    skill_list_id: 56
+    attributes:
+      combat:
+        skill: club
+      render:
+        look:
+          type:  standard
+          model: 281
+        entity_flags:  645
+        animation_sub:   8
+        model_size:      2
+        hitbox:         13
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: very_common
+          item:   pinch_of_bomb_ash
+        - chance: very_common
+          item:   pinch_of_bomb_ash
+        - chance: very_common
+          item:   bomb_arm
+        - chance: rare
+          item:   bomb_queen_core
+      steal: bomb_arm
+
+  Volcanic_Gas:
+    id:            4246
+    species:       bomb
+    skill_list_id: 56
+    attributes:
+      combat:
+        skill: club
+      render:
+        look:
+          type:  standard
+          model: 281
+        entity_flags:  131
+        animation_sub:  16
+        model_size:      1
+        hitbox:         12
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: rare
+          item:   cauldron_coffer_key
+        - chance: very_common
+          item:   pinch_of_bomb_ash
+        - chance: very_common
+          item:   pinch_of_bomb_ash
+        - chance: very_common
+          item:   bomb_arm
+        - chance: rare
+          item:   pinch_of_bomb_queen_ash
+
+  Volcano_Wasp:
+    id:            4248
+    species:       yellow_bee
+    skill_list_id: 48
+    attributes:
+      combat:
+        skill: dagger
+      render:
+        look:
+          type:  standard
+          model: 273
+        entity_flags:  643
+        animation_sub:   8
+        model_size:      1
+        hitbox:         10
+      behaviors:
+        links: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: rare
+          item:   cauldron_coffer_key
+        - chance: common
+          item:   beehive_chip
+        - chance: uncommon
+          item:   pot_of_honey
+        - chance: rare
+          item:   insect_wing
+        - chance: very_rare
+          item:   giant_stinger
+      despoil:
+        beehive_chip:  0
+        giant_stinger: 0
+        pot_of_honey:  0
+
+  Vouivre:
+    id:            4258
+    species:       wyvern
+    type:          [notorious]
+    skill_list_id: 266
+    attributes:
+      combat:
+        skill: scythe
+        delay: 480
+      jobs: [war, thf]
+      resists:
+        immune_status: [light_sleep, dark_sleep]
+      render:
+        look:
+          type:  standard
+          model: 398
+        entity_flags: 645
+        model_size:     2
+        hitbox:        36
+      spawn:
+        type: [lottery]
+      stats:
+        hp: 31000
+    loot:
+      drops:
+        - chance: always
+          item:   gae_bolg
+        - chance: always
+          item:   wyvern_wing
+        - chance: very_common
+          item:   wyvern_wing
+        - chance: very_common
+          item:   wyvern_skin
+        - chance: always
+          item:   handful_of_wyvern_scales
+
+
+  Beta_eys_Dodomeki:
+    id:            40091
+    species:       hecteye
+    spell_list_id: 10
+    skill_list_id: 139
+    attributes:
+      combat:
+        skill: staff
+        delay: 280
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 2969
+        entity_flags: 131
+        model_size:     1
+        hitbox:        12
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   beta_25
+        - chance: uncommon
+          item:   beta_3602
+        - chance: uncommon
+          item:   beta_6454
+        - chance: uncommon
+          item:   beta_6857
+        - chance: common
+          item:   hecteyes_eye
+        - chance: uncommon
+          item:   scroll_of_fire_iii
+        - chance: rare
+          item:   damp_hakutaku_eye
+        - chance: rare
+          item:   cauldron_coffer_key
+      despoil:
+        hecteyes_eye: 0
+
+  Beta_bom_Volcanic_Bomb:
+    id:            40104
+    species:       bomb
+    skill_list_id: 56
+    attributes:
+      combat:
+        skill: club
+      render:
+        look:
+          type:  standard
+          model: 2952
+        entity_flags:  645
+        animation_sub:   8
+        model_size:      2
+        hitbox:         13
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   beta_306
+        - chance: uncommon
+          item:   beta_5107
+        - chance: uncommon
+          item:   beta_6816
+        - chance: very_common
+          item:   pinch_of_bomb_ash
+        - chance: very_common
+          item:   pinch_of_bomb_ash
+        - chance: very_common
+          item:   bomb_arm
+        - chance: rare
+          item:   bomb_queen_core
+      steal: bomb_arm
+
+spawns:
+  17616897:
+    template: Salamander
+    at:       [168.791, 0.900, -19.828, 7]
+    level:    [64, 66]
+  17616898:
+    template: Magma
+    at:       [173.160, -0.900, -26.986, 185]
+    level:    [65, 65]
+  17616899:
+    template: Volcanic_Gas
+    region:   s_3
+    level:    [62, 65]
+  17616900:
+    template: Old_Opo-opo
+    region:   s_3
+    level:    [61, 64]
+  17616901:
+    template: Old_Opo-opo
+    region:   s_3
+    level:    [61, 64]
+  17616902:
+    template: Old_Opo-opo
+    region:   s_3
+    level:    [61, 64]
+  17616903:
+    template: Dire_Bat
+    region:   s_3
+    level:    [60, 63]
+  17616904:
+    template: Volcanic_Gas
+    region:   s_8
+    level:    [62, 65]
+  17616905:
+    template: Old_Opo-opo
+    region:   s_8
+    level:    [61, 64]
+  17616906:
+    template: Old_Opo-opo
+    region:   s_8
+    level:    [61, 64]
+  17616907:
+    template: Old_Opo-opo
+    region:   s_8
+    level:    [61, 64]
+  17616908:
+    template: Dire_Bat
+    region:   s_8
+    level:    [60, 63]
+  17616909:
+    template: Old_Opo-opo
+    region:   s_13
+    level:    [61, 64]
+  17616910:
+    template: Old_Opo-opo
+    region:   s_13
+    level:    [61, 64]
+  17616911:
+    template: Dire_Bat
+    region:   s_13
+    level:    [60, 63]
+  17616912:
+    template: Volcanic_Gas
+    region:   s_16
+    level:    [62, 65]
+  17616913:
+    template: Old_Opo-opo
+    region:   s_16
+    level:    [61, 64]
+  17616914:
+    template: Old_Opo-opo
+    region:   s_16
+    level:    [61, 64]
+  17616915:
+    template: Old_Opo-opo
+    region:   s_16
+    level:    [61, 64]
+  17616916:
+    template: Dire_Bat
+    region:   s_16
+    level:    [60, 63]
+  17616917:
+    template: Volcanic_Gas
+    region:   s_21
+    level:    [62, 65]
+  17616918:
+    template: Old_Opo-opo
+    region:   s_21
+    level:    [61, 64]
+  17616919:
+    template: Old_Opo-opo
+    region:   s_21
+    level:    [61, 64]
+  17616920:
+    template: Old_Opo-opo
+    region:   s_21
+    level:    [61, 64]
+  17616921:
+    template: Old_Opo-opo
+    region:   s_16
+    level:    [61, 64]
+  17616922:
+    template: Dire_Bat
+    region:   s_21
+    level:    [60, 63]
+  17616923:
+    template: Old_Opo-opo
+    region:   s_21
+    level:    [61, 64]
+  17616924:
+    template: Dire_Bat
+    region:   se_28
+    level:    [60, 63]
+  17616925:
+    template: Volcanic_Gas
+    region:   se_29
+    level:    [62, 65]
+  17616926:
+    template: Old_Opo-opo
+    region:   se_29
+    level:    [61, 64]
+  17616927:
+    template: Old_Opo-opo
+    region:   se_29
+    level:    [61, 64]
+  17616928:
+    template: Old_Opo-opo
+    region:   se_29
+    level:    [61, 64]
+  17616929:
+    template: Dire_Bat
+    region:   se_29
+    level:    [60, 63]
+  17616930:
+    template: Volcanic_Gas
+    region:   s_34
+    level:    [63, 66]
+  17616931:
+    template: Volcanic_Gas
+    region:   c_38
+    level:    [63, 66]
+  17616932:
+    template: Old_Opo-opo
+    region:   c_38
+    level:    [63, 65]
+  17616933:
+    template: Old_Opo-opo
+    region:   s_34
+    level:    [63, 65]
+  17616934:
+    template: Volcanic_Gas
+    region:   c_38
+    level:    [63, 66]
+  17616935:
+    template: Volcanic_Gas
+    region:   c_38
+    level:    [63, 66]
+  17616936:
+    template: Old_Opo-opo
+    region:   c_38
+    level:    [63, 65]
+  17616937:
+    template: Old_Opo-opo
+    region:   c_38
+    level:    [63, 65]
+  17616938:
+    template: Volcanic_Gas
+    region:   s_42
+    level:    [63, 66]
+  17616939:
+    template: Volcanic_Gas
+    region:   s_42
+    level:    [63, 66]
+  17616940:
+    template: Old_Opo-opo
+    region:   s_42
+    level:    [63, 65]
+  17616941:
+    template: Old_Opo-opo
+    region:   s_42
+    level:    [63, 65]
+  17616942:
+    template: Volcanic_Gas
+    region:   c_46
+    level:    [63, 66]
+  17616943:
+    template: Volcanic_Gas
+    region:   s_42
+    level:    [63, 66]
+  17616944:
+    template: Old_Opo-opo
+    region:   c_46
+    level:    [63, 65]
+  17616945:
+    template: Volcanic_Gas
+    region:   c_49
+    level:    [63, 66]
+  17616946:
+    template: Volcanic_Gas
+    region:   s_42
+    level:    [63, 66]
+  17616947:
+    template: Volcano_Wasp
+    region:   e_51
+    level:    [61, 64]
+  17616948:
+    template: Volcano_Wasp
+    region:   e_51
+    level:    [61, 64]
+  17616949:
+    template: Volcano_Wasp
+    region:   e_53
+    level:    [61, 64]
+  17616950:
+    template: Volcano_Wasp
+    region:   e_53
+    level:    [61, 64]
+  17616951:
+    template: Volcanic_Gas
+    region:   region_91
+    level:    [63, 65]
+  17616952:
+    template: Volcanic_Gas
+    region:   se_58
+    level:    [62, 64]
+  17616953:
+    template: Volcano_Wasp
+    region:   se_57
+    level:    [61, 64]
+  17616954:
+    template: Volcanic_Gas
+    region:   se_58
+    level:    [62, 64]
+  17616955:
+    template: Volcano_Wasp
+    region:   se_58
+    level:    [61, 64]
+  17616956:
+    template: Dire_Bat
+    region:   se_58
+    level:    [60, 63]
+  17616957:
+    template: Volcanic_Gas
+    region:   e_61
+    level:    [63, 65]
+  17616958:
+    template: Volcano_Wasp
+    region:   e_61
+    level:    [61, 64]
+  17616959:
+    template: Volcano_Wasp
+    region:   e_61
+    level:    [61, 64]
+  17616960:
+    template: Dire_Bat
+    region:   e_61
+    level:    [60, 63]
+  17616961:
+    template: Volcanic_Gas
+    region:   e_65
+    level:    [63, 65]
+  17616962:
+    template: Volcano_Wasp
+    region:   e_66
+    level:    [61, 64]
+  17616963:
+    template: Dire_Bat
+    region:   e_66
+    level:    [60, 63]
+  17616964:
+    template: Volcano_Wasp
+    region:   e_68
+    level:    [61, 64]
+  17616965:
+    template: Dire_Bat
+    region:   e_68
+    level:    [60, 63]
+  17616966:
+    template: Volcanic_Gas
+    region:   e_70
+    level:    [63, 65]
+  17616967:
+    template: Dire_Bat
+    region:   e_70
+    level:    [60, 63]
+  17616968:
+    template: Volcanic_Gas
+    region:   e_72
+    level:    [63, 65]
+  17616969:
+    template: Volcanic_Gas
+    region:   e_73
+    level:    [63, 65]
+  17616970:
+    template: Volcanic_Gas
+    region:   e_72
+    level:    [64, 66]
+  17616971:
+    template: Volcanic_Gas
+    region:   c_75
+    level:    [64, 66]
+  17616972:
+    template: Volcanic_Gas
+    region:   c_76
+    level:    [64, 66]
+  17616973:
+    template: Volcanic_Gas
+    region:   c_77
+    level:    [64, 66]
+  17616974:
+    template: Goblin_Bandit
+    region:   s_78
+    level:    [66, 69]
+  17616975:
+    template: Goblin_Shepherd
+    region:   s_78
+    level:    [66, 69]
+  17616976:
+    template: Goblins_Bats
+    at:       [1.000, 1.000, 1.000, 127]
+    level:    [53, 55]
+  17616977:
+    template: Dodomeki
+    region:   s_78
+    level:    [63, 66]
+  17616978:
+    template: Goblin_Alchemist
+    region:   s_83
+    level:    [66, 69]
+  17616979:
+    template: Goblin_Mercenary
+    region:   s_83
+    level:    [66, 69]
+  17616980:
+    template: Dodomeki
+    region:   s_83
+    level:    [63, 66]
+  17616981:
+    template: Volcanic_Gas
+    region:   s_83
+    level:    [64, 66]
+  17616982:
+    template: Sulfur_Scorpion
+    region:   s_86
+    level:    [70, 73]
+  17616983:
+    template: Dodomeki
+    region:   s_86
+    level:    [63, 66]
+  17616984:
+    template: Volcanic_Gas
+    region:   s_86
+    level:    [64, 66]
+  17616985:
+    template: Volcanic_Gas
+    region:   region_99
+    level:    [64, 66]
+  17616986:
+    template: Sulfur_Scorpion
+    region:   region_99
+    level:    [70, 73]
+  17616987:
+    template: Dodomeki
+    region:   region_100
+    level:    [63, 66]
+  17616988:
+    template: Volcanic_Gas
+    region:   region_99
+    level:    [64, 66]
+  17616989:
+    template: Dodomeki
+    region:   region_100
+    level:    [63, 66]
+  17616990:
+    template: Volcanic_Gas
+    region:   region_101
+    level:    [64, 66]
+  17616991:
+    template: Volcanic_Gas
+    region:   region_101
+    level:    [64, 66]
+  17616992:
+    template: Volcanic_Gas
+    region:   c_96
+    level:    [64, 66]
+  17616993:
+    template: Volcanic_Gas
+    region:   c_98
+    level:    [64, 66]
+  17616994:
+    template: Volcanic_Gas
+    region:   c_98
+    level:    [64, 66]
+  17616995:
+    template: Sulfur_Scorpion
+    region:   c_99
+    level:    [70, 73]
+  17616996:
+    template: Sulfur_Scorpion
+    region:   c_99
+    level:    [70, 73]
+  17616997:
+    template: Volcanic_Gas
+    region:   c_99
+    level:    [67, 68]
+  17616998:
+    template: Volcanic_Gas
+    region:   c_102
+    level:    [67, 68]
+  17616999:
+    template: Tyrannic_Tunnok
+    region:   region_102
+    level:    [74, 76]
+  17617000:
+    template: Sulfur_Scorpion
+    region:   s_104
+    level:    [70, 73]
+  17617001:
+    template: Sulfur_Scorpion
+    region:   c_99
+    level:    [70, 73]
+  17617002:
+    template: Volcanic_Gas
+    region:   c_99
+    level:    [67, 68]
+  17617003:
+    template: Volcanic_Gas
+    region:   s_108
+    level:    [67, 68]
+  17617004:
+    template: Volcanic_Gas
+    region:   s_108
+    level:    [64, 66]
+  17617005:
+    template: Volcanic_Gas
+    region:   sw_109
+    level:    [64, 66]
+  17617006:
+    template: Sulfur_Scorpion
+    region:   sw_109
+    level:    [70, 73]
+  17617007:
+    template: Eotyrannus
+    region:   sw_109
+    level:    [70, 73]
+  17617008:
+    template: Eotyrannus
+    region:   sw_109
+    level:    [70, 73]
+  17617009:
+    template: Volcanic_Gas
+    region:   sw_113
+    level:    [67, 68]
+  17617010:
+    template: Sulfur_Scorpion
+    region:   sw_113
+    level:    [70, 73]
+  17617011:
+    template: Eotyrannus
+    region:   sw_113
+    level:    [70, 73]
+  17617012:
+    template: Eotyrannus
+    region:   sw_113
+    level:    [70, 73]
+  17617013:
+    template: Lindwurm
+    region:   region_97
+    level:    [74, 76]
+  17617014:
+    template: Goblin_Bandit
+    region:   sw_121
+    level:    [66, 69]
+  17617015:
+    template: Goblin_Shepherd
+    region:   sw_121
+    level:    [66, 69]
+  17617016:
+    template: Goblins_Bats
+    at:       [1.000, 1.000, 1.000]
+    level:    [53, 55]
+  17617017:
+    template: Goblin_Alchemist
+    region:   sw_121
+    level:    [66, 69]
+  17617018:
+    template: Goblin_Mercenary
+    region:   sw_123
+    level:    [66, 69]
+  17617019:
+    template: Goblin_Bandit
+    region:   sw_123
+    level:    [66, 69]
+  17617020:
+    template: Goblin_Shepherd
+    region:   sw_123
+    level:    [66, 69]
+  17617021:
+    template: Goblins_Bats
+    at:       [-277.146, 3.968, -106.612, 218]
+    level:    [53, 55]
+  17617022:
+    template: Goblin_Alchemist
+    region:   sw_123
+    level:    [66, 69]
+  17617023:
+    template: Goblin_Mercenary
+    region:   sw_123
+    level:    [66, 69]
+  17617024:
+    template: Goblin_Bandit
+    region:   sw_123
+    level:    [66, 69]
+  17617025:
+    template: Goblin_Shepherd
+    region:   w_131
+    level:    [66, 69]
+  17617026:
+    template: Goblins_Bats
+    at:       [-269.227, 3.602, -77.686, 127]
+    level:    [53, 55]
+  17617027:
+    template: Goblin_Alchemist
+    region:   w_131
+    level:    [66, 69]
+  17617028:
+    template: Goblin_Mercenary
+    region:   w_131
+    level:    [66, 69]
+  17617029:
+    template: Volcanic_Gas
+    region:   w_133
+    level:    [64, 66]
+  17617030:
+    template: Sulfur_Scorpion
+    region:   w_133
+    level:    [70, 73]
+  17617031:
+    template: Eotyrannus
+    region:   w_133
+    level:    [70, 73]
+  17617032:
+    template: Eotyrannus
+    region:   w_133
+    level:    [70, 73]
+  17617033:
+    template: Volcanic_Gas
+    region:   w_137
+    level:    [64, 66]
+  17617034:
+    template: Volcanic_Gas
+    region:   w_138
+    level:    [66, 68]
+  17617035:
+    template: Volcanic_Gas
+    region:   w_139
+    level:    [66, 68]
+  17617036:
+    template: Volcanic_Gas
+    at:       [-179.198, 0.047, -76.405, 38]
+    level:    [66, 68]
+  17617037:
+    template: Eotyrannus
+    region:   region_98
+    level:    [70, 73]
+  17617038:
+    template: Volcanic_Gas
+    region:   region_98
+    level:    [66, 68]
+  17617039:
+    template: Volcanic_Gas
+    region:   region_92
+    level:    [66, 68]
+  17617040:
+    template: Volcanic_Gas
+    region:   region_92
+    level:    [66, 68]
+  17617041:
+    template: Dodomeki
+    region:   region_93
+    level:    [66, 68]
+  17617042:
+    template: Volcanic_Gas
+    region:   region_93
+    level:    [66, 68]
+  17617043:
+    template: Volcanic_Gas
+    region:   region_93
+    level:    [66, 68]
+  17617044:
+    template: Dodomeki
+    region:   region_94
+    level:    [66, 68]
+  17617045:
+    template: Volcanic_Gas
+    region:   region_94
+    level:    [64, 66]
+  17617046:
+    template: Eotyrannus
+    region:   region_95
+    level:    [70, 73]
+  17617047:
+    template: Eotyrannus
+    region:   n_155
+    level:    [70, 73]
+  17617048:
+    template: Volcanic_Gas
+    region:   n_152
+    level:    [64, 66]
+  17617049:
+    template: Eotyrannus
+    region:   n_152
+    level:    [70, 73]
+  17617050:
+    template: Eotyrannus
+    region:   n_155
+    level:    [70, 73]
+  17617051:
+    template: Volcanic_Gas
+    region:   n_155
+    level:    [64, 66]
+  17617052:
+    template: Eotyrannus
+    region:   n_155
+    level:    [70, 73]
+  17617053:
+    template: Goblin_Shepherd
+    region:   n_157
+    level:    [66, 69]
+  17617054:
+    template: Goblins_Bats
+    at:       [-109.376, 3.932, 133.455, 70]
+    level:    [53, 55]
+  17617055:
+    template: Goblin_Alchemist
+    region:   n_166
+    level:    [66, 69]
+  17617056:
+    template: Goblin_Alchemist
+    region:   n_166
+    level:    [66, 69]
+  17617057:
+    template: Goblin_Mercenary
+    region:   n_171
+    level:    [66, 69]
+  17617058:
+    template: Goblin_Bandit
+    region:   n_167
+    level:    [66, 69]
+  17617059:
+    template: Goblin_Shepherd
+    region:   n_157
+    level:    [66, 69]
+  17617060:
+    template: Goblins_Bats
+    at:       [1.000, 1.000, 1.000, 125]
+    level:    [53, 55]
+  17617061:
+    template: Goblin_Mercenary
+    region:   n_171
+    level:    [66, 69]
+  17617062:
+    template: Foreseer_Oramix
+    region:   n_166
+    level:    [69, 72]
+  17617063:
+    template: Goblin_Bandit
+    region:   n_167
+    level:    [66, 69]
+  17617064:
+    template: Goblin_Shepherd
+    region:   n_157
+    level:    [66, 69]
+  17617065:
+    template: Goblins_Bats
+    at:       [1.000, 1.000, 1.000]
+    level:    [53, 55]
+  17617066:
+    template: Goblin_Alchemist
+    region:   n_166
+    level:    [66, 69]
+  17617067:
+    template: Goblin_Mercenary
+    region:   n_171
+    level:    [66, 69]
+  17617068:
+    template: Goblin_Bandit
+    region:   n_167
+    level:    [66, 69]
+  17617069:
+    template: Goblin_Alchemist
+    region:   n_166
+    level:    [66, 69]
+  17617070:
+    template: Volcanic_Gas
+    region:   c_174
+    level:    [64, 66]
+  17617071:
+    template: Volcanic_Gas
+    region:   n_176
+    level:    [64, 66]
+  17617072:
+    template: Volcanic_Gas
+    region:   n_176
+    level:    [64, 66]
+  17617073:
+    template: Eotyrannus
+    region:   n_176
+    level:    [70, 73]
+  17617074:
+    template: Volcanic_Gas
+    region:   c_179
+    level:    [64, 66]
+  17617075:
+    template: Volcanic_Bomb
+    region:   c_179
+    level:    [71, 75]
+  17617076:
+    template: Volcanic_Bomb
+    region:   n_180
+    level:    [71, 75]
+  17617077:
+    template: Volcanic_Bomb
+    region:   ne_181
+    level:    [71, 75]
+  17617078:
+    template: Nightmare_Bats_Ifrits_Cauldron
+    script:   Nightmare_Bats
+    region:   ne_182
+    level:    [68, 72]
+  17617079:
+    template: Volcanic_Bomb
+    region:   ne_182
+    level:    [71, 75]
+  17617080:
+    template: Nightmare_Bats_Ifrits_Cauldron
+    script:   Nightmare_Bats
+    region:   ne_184
+    level:    [68, 72]
+  17617081:
+    template: Volcanic_Bomb
+    region:   ne_181
+    level:    [71, 75]
+  17617082:
+    template: Nightmare_Bats_Ifrits_Cauldron
+    script:   Nightmare_Bats
+    region:   ne_186
+    level:    [68, 72]
+  17617083:
+    template: Nightmare_Bats_Ifrits_Cauldron
+    script:   Nightmare_Bats
+    region:   n_187
+    level:    [68, 72]
+  17617084:
+    template: Volcanic_Bomb
+    region:   n_187
+    level:    [71, 75]
+  17617085:
+    template: Nightmare_Bats_Ifrits_Cauldron
+    script:   Nightmare_Bats
+    region:   c_189
+    level:    [68, 72]
+  17617086:
+    template: Volcanic_Bomb
+    region:   n_187
+    level:    [71, 75]
+  17617087:
+    template: Volcanic_Bomb
+    region:   c_191
+    level:    [71, 75]
+  17617088:
+    template: Volcanic_Bomb
+    region:   c_192
+    level:    [71, 75]
+  17617089:
+    template: Volcanic_Bomb
+    region:   e_193
+    level:    [71, 75]
+  17617090:
+    template: Volcanic_Bomb
+    region:   e_193
+    level:    [71, 75]
+  17617091:
+    template: Nightmare_Bats_Ifrits_Cauldron
+    script:   Nightmare_Bats
+    region:   e_193
+    level:    [68, 72]
+  17617092:
+    template: Nightmare_Bats_Ifrits_Cauldron
+    script:   Nightmare_Bats
+    region:   e_193
+    level:    [68, 72]
+  17617093:
+    template: Nightmare_Bats_Ifrits_Cauldron
+    script:   Nightmare_Bats
+    region:   e_193
+    level:    [68, 72]
+  17617094:
+    template: Volcanic_Bomb
+    region:   e_200
+    level:    [71, 75]
+  17617095:
+    template: Nightmare_Bats_Ifrits_Cauldron
+    script:   Nightmare_Bats
+    region:   e_199
+    level:    [68, 72]
+  17617096:
+    template: Volcanic_Bomb
+    region:   e_200
+    level:    [71, 75]
+  17617097:
+    template: Nightmare_Bats_Ifrits_Cauldron
+    script:   Nightmare_Bats
+    region:   e_200
+    level:    [68, 72]
+  17617098:
+    template: Volcanic_Bomb
+    region:   ne_202
+    level:    [71, 75]
+  17617099:
+    template: Nightmare_Bats_Ifrits_Cauldron
+    script:   Nightmare_Bats
+    region:   ne_202
+    level:    [68, 72]
+  17617100:
+    template: Ash_Lizard
+    region:   ne_202
+    level:    [73, 76]
+  17617101:
+    template: Ash_Lizard
+    region:   ne_202
+    level:    [73, 76]
+  17617102:
+    template: Volcanic_Bomb
+    region:   ne_206
+    level:    [71, 75]
+  17617103:
+    template: Volcanic_Bomb
+    region:   ne_202
+    level:    [71, 75]
+  17617104:
+    template: Nightmare_Bats_Ifrits_Cauldron
+    script:   Nightmare_Bats
+    region:   ne_208
+    level:    [68, 72]
+  17617105:
+    template: Ash_Lizard
+    region:   ne_208
+    level:    [73, 76]
+  17617106:
+    template: Ash_Lizard
+    region:   ne_208
+    level:    [73, 76]
+  17617107:
+    template: Volcanic_Bomb
+    region:   ne_213
+    level:    [71, 75]
+  17617108:
+    template: Nightmare_Bats_Ifrits_Cauldron
+    script:   Nightmare_Bats
+    region:   ne_212
+    level:    [68, 72]
+  17617109:
+    template: Volcanic_Bomb
+    region:   ne_213
+    level:    [71, 75]
+  17617110:
+    template: Nightmare_Bats_Ifrits_Cauldron
+    script:   Nightmare_Bats
+    region:   ne_213
+    level:    [68, 72]
+  17617111:
+    template: Volcanic_Bomb
+    region:   ne_215
+    level:    [71, 75]
+  17617112:
+    template: Volcanic_Bomb
+    region:   ne_215
+    level:    [71, 75]
+  17617113:
+    template: Ash_Lizard
+    region:   ne_215
+    level:    [73, 76]
+  17617114:
+    template: Volcanic_Bomb
+    region:   n_236
+    level:    [71, 75]
+  17617115:
+    template: Ash_Lizard
+    region:   n_219
+    level:    [73, 76]
+  17617116:
+    template: Ash_Lizard
+    region:   n_219
+    level:    [73, 76]
+  17617117:
+    template: Hurricane_Wyvern
+    region:   n_219
+    level:    [75, 78]
+  17617118:
+    template: Hurricane_Wyvern
+    region:   n_223
+    level:    [75, 78]
+  17617119:
+    template: Volcanic_Bomb
+    region:   n_223
+    level:    [71, 75]
+  17617120:
+    template: Ash_Lizard
+    region:   n_223
+    level:    [73, 76]
+  17617121:
+    template: Hurricane_Wyvern
+    region:   n_223
+    level:    [75, 78]
+  17617122:
+    template: Hurricane_Wyvern
+    region:   n_223
+    level:    [75, 78]
+  17617123:
+    template: Volcanic_Bomb
+    region:   n_227
+    level:    [71, 75]
+  17617124:
+    template: Ash_Lizard
+    region:   n_227
+    level:    [73, 76]
+  17617125:
+    template: Hurricane_Wyvern
+    region:   n_227
+    level:    [75, 78]
+  17617126:
+    template: Volcanic_Bomb
+    region:   n_230
+    level:    [71, 75]
+  17617127:
+    template: Ash_Lizard
+    region:   n_230
+    level:    [73, 76]
+  17617128:
+    template: Ash_Lizard
+    region:   n_230
+    level:    [73, 76]
+  17617129:
+    template: Hurricane_Wyvern
+    region:   n_230
+    level:    [75, 78]
+  17617130:
+    template: Vouivre
+    region:   region_96
+    level:    [79, 81]
+  17617131:
+    template: Volcanic_Bomb
+    region:   n_223
+    level:    [71, 75]
+  17617132:
+    template: Volcanic_Bomb
+    region:   n_236
+    level:    [71, 75]
+  17617133:
+    template: Volcanic_Bomb
+    region:   n_237
+    level:    [71, 75]
+  17617134:
+    template: Volcanic_Bomb
+    region:   n_238
+    level:    [71, 75]
+  17617135:
+    template: Volcanic_Bomb
+    region:   c_239
+    level:    [74, 78]
+  17617136:
+    template: Volcanic_Bomb
+    region:   c_240
+    level:    [74, 78]
+  17617137:
+    template: Ash_Lizard
+    region:   c_240
+    level:    [73, 76]
+  17617138:
+    template: Volcanic_Bomb
+    region:   c_240
+    level:    [74, 78]
+  17617139:
+    template: Ash_Lizard
+    region:   c_243
+    level:    [73, 76]
+  17617140:
+    template: Volcanic_Bomb
+    region:   region_103
+    level:    [74, 78]
+  17617141:
+    template: Hurricane_Wyvern
+    region:   w_245
+    level:    [75, 78]
+  17617142:
+    template: Volcanic_Bomb
+    region:   w_245
+    level:    [74, 78]
+  17617143:
+    template: Volcanic_Bomb
+    region:   w_245
+    level:    [74, 78]
+  17617144:
+    template: Volcanic_Bomb
+    region:   nw_248
+    level:    [74, 78]
+  17617145:
+    template: Ash_Lizard
+    region:   nw_248
+    level:    [73, 76]
+  17617146:
+    template: Ash_Lizard
+    region:   nw_248
+    level:    [73, 76]
+  17617147:
+    template: Ash_Dragon
+    region:   nw_251
+    level:    [82, 82]
+  17617148:
+    template: Volcanic_Bomb
+    region:   nw_251
+    level:    [74, 78]
+  17617149:
+    template: Volcanic_Bomb
+    region:   nw_251
+    level:    [74, 78]
+  17617150:
+    template: Volcanic_Bomb
+    region:   region_104
+    level:    [74, 78]
+  17617151:
+    template: Volcanic_Bomb
+    region:   nw_255
+    level:    [74, 78]
+  17617152:
+    template: Volcanic_Bomb
+    region:   nw_256
+    level:    [74, 78]
+  17617153:
+    template: Volcanic_Bomb
+    region:   nw_257
+    level:    [74, 78]
+  17617154:
+    template: Volcanic_Bomb
+    region:   nw_258
+    level:    [74, 78]
+  17617155:
+    template: Volcanic_Bomb
+    region:   c_259
+    level:    [72, 75]
+  17617156:
+    template: Volcanic_Bomb
+    region:   n_260
+    level:    [72, 75]
+  17617157:
+    template: Mimic
+    at:       [1.000, 1.000, 1.000]
+    level:    [60, 60]
+  17617158:
+    template: Bomb_Queen
+    at:       [21.128, 19.687, -110.232]
+    level:    [79, 81]
+  17617159:
+    template: Bomb_Princess
+    at:       [1.000, 1.000, 1.000]
+    level:    [72, 74]
+  17617160:
+    template: Bomb_Prince
+    at:       [1.000, 1.000, 1.000]
+    level:    [72, 74]
+  17617161:
+    template: Bomb_Princess
+    at:       [1.000, 1.000, 1.000]
+    level:    [72, 74]
+  17617162:
+    template: Bomb_Prince
+    at:       [1.000, 1.000, 1.000]
+    level:    [72, 74]
+  17617163:
+    template: Bomb_Bastard
+    at:       [1.000, 1.000, 1.000]
+    level:    [72, 74]
+  17617164:
+    template: Tarasque
+    at:       [118.000, 19.000, 163.000, 250]
+    level:    [72, 74]
+  17617165:
+    template: Cailleach_Bheur
+    at:       [117.074, 19.403, 144.834, 218]
+    level:    [82, 82]
+  17617166:
+    template: Ildebrann
+    at:       [-269.000, 3.141, -169.000]
+    level:    [98, 99]
+  17617167:
+    template: Hraun_Dragon
+    at:       [-271.551, 3.275, -168.513, 136]
+    level:    [95, 96]
+  17617168:
+    template: Hraun_Dragon
+    at:       [-271.642, 3.274, -169.118, 129]
+    level:    [95, 96]
+  17617169:
+    template: Ildebrann
+    at:       [-135.182, 3.358, 168.949, 10]
+    level:    [98, 99]
+  17617170:
+    template: Hraun_Dragon
+    at:       [-114.419, 2.620, 169.613, 191]
+    level:    [95, 96]
+  17617171:
+    template: Hraun_Dragon
+    at:       [-112.295, 3.603, 164.095, 113]
+    level:    [95, 96]
+  17617172:
+    template: Ildebrann
+    at:       [8.217, 3.526, 293.694, 254]
+    level:    [98, 99]
+  17617173:
+    template: Hraun_Dragon
+    at:       [8.217, 3.526, 293.694, 254]
+    level:    [95, 96]
+  17617174:
+    template: Hraun_Dragon
+    at:       [8.217, 3.526, 293.694, 254]
+    level:    [95, 96]
+  17617175:
+    template: Coca
+    at:       [7.380, 3.462, 232.399, 119]
+    level:    [125, 125]
+  17617176:
+    template: Coca
+    at:       [-115.277, 3.450, 114.605, 163]
+    level:    [125, 125]
+  17617177:
+    template: Coca
+    level:    [125, 125]
+
+  17617293:
+    template: Beta_eys_Dodomeki
+    region:   s_78
+    level:    [63, 66]
+  17617294:
+    template: Beta_eys_Dodomeki
+    region:   s_78
+    level:    [63, 66]
+  17617295:
+    template: Beta_bom_Volcanic_Bomb
+    region:   c_179
+    level:    [71, 75]
+  17617296:
+    template: Beta_bom_Volcanic_Bomb
+    region:   c_179
+    level:    [71, 75]
+slots:
+  - members:
+      17616907: {} # Old_Opo-opo
+      17616908: {} # Dire_Bat
+  - members:
+      17616915: {} # Old_Opo-opo
+      17616916: {} # Dire_Bat
+  - members:
+      17616922: {} # Dire_Bat
+      17616923: {} # Old_Opo-opo
+  - members:
+      17616931: {} # Volcanic_Gas
+      17616932: {} # Old_Opo-opo
+      17616935: {} # Volcanic_Gas
+  - members:
+      17616939: {} # Volcanic_Gas
+      17616940: {} # Old_Opo-opo
+      17616943: {} # Volcanic_Gas
+      17616946: {} # Volcanic_Gas
+  - members:
+      17616952: {} # Volcanic_Gas
+      17616954: {} # Volcanic_Gas
+  - members:
+      17616968: {} # Volcanic_Gas
+      17616970: {} # Volcanic_Gas
+  - members:
+      17616974: {} # Goblin_Bandit
+      17616977: {} # Dodomeki
+  - members:
+      17616978: {} # Goblin_Alchemist
+      17616981: {} # Volcanic_Gas
+  - members:
+      17616984: {} # Volcanic_Gas
+      17616988: {} # Volcanic_Gas
+  - members:
+      17616993: {} # Volcanic_Gas
+      17616994: {} # Volcanic_Gas
+  - members:
+      17616997: {} # Volcanic_Gas
+      17617002: {} # Volcanic_Gas
+  - members:
+      17617003: {} # Volcanic_Gas
+      17617004: {} # Volcanic_Gas
+  - members:
+      17617014: {} # Goblin_Bandit
+      17617015: {} # Goblin_Shepherd
+      17617017: {} # Goblin_Alchemist
+  - members:
+      17617018: {} # Goblin_Mercenary
+      17617019: {} # Goblin_Bandit
+      17617020: {} # Goblin_Shepherd
+  - members:
+      17617022: {} # Goblin_Alchemist
+      17617023: {} # Goblin_Mercenary
+      17617024: {} # Goblin_Bandit
+  - members:
+      17617025: {} # Goblin_Shepherd
+      17617027: {} # Goblin_Alchemist
+      17617028: {} # Goblin_Mercenary
+  - members:
+      17617031: {} # Eotyrannus
+      17617032: {} # Eotyrannus
+  - members:
+      17617033: {} # Volcanic_Gas
+      17617035: {} # Volcanic_Gas
+  - members:
+      17617037: {} # Eotyrannus
+      17617038: {} # Volcanic_Gas
+  - members:
+      17617040: {} # Volcanic_Gas
+      17617043: {} # Volcanic_Gas
+  - members:
+      17617047: {} # Eotyrannus
+      17617050: {} # Eotyrannus
+      17617052: {} # Eotyrannus
+  - members:
+      17617053: {} # Goblin_Shepherd
+      17617059: {} # Goblin_Shepherd
+      17617064: {} # Goblin_Shepherd
+  - members:
+      17616996: {} # Sulfur_Scorpion
+      17617001: {} # Sulfur_Scorpion
+  - members:
+      17617055: {} # Goblin_Alchemist
+      17617056: {} # Goblin_Alchemist
+      17617066: {} # Goblin_Alchemist
+      17617069: {} # Goblin_Alchemist
+  - members:
+      17617057: {} # Goblin_Mercenary
+      17617061: {} # Goblin_Mercenary
+      17617067: {} # Goblin_Mercenary
+  - members:
+      17617058: {} # Goblin_Bandit
+      17617063: {} # Goblin_Bandit
+      17617068: {} # Goblin_Bandit
+  - members:
+      17617071: {} # Volcanic_Gas
+      17617072: {} # Volcanic_Gas
+  - members:
+      17617074: {} # Volcanic_Gas
+      17617075: {} # Volcanic_Bomb
+  - members:
+      17617077: {} # Volcanic_Bomb
+      17617081: {} # Volcanic_Bomb
+  - members:
+      17617084: {} # Volcanic_Bomb
+      17617086: {} # Volcanic_Bomb
+  - members:
+      17617090: {} # Volcanic_Bomb
+      17617093: {} # Nightmare_Bats
+  - members:
+      17617094: {} # Volcanic_Bomb
+      17617096: {} # Volcanic_Bomb
+  - members:
+      17617098: {} # Volcanic_Bomb
+      17617103: {} # Volcanic_Bomb
+  - members:
+      17617107: {} # Volcanic_Bomb
+      17617109: {} # Volcanic_Bomb
+  - members:
+      17617112: {} # Volcanic_Bomb
+      17617113: {} # Ash_Lizard
+  - members:
+      17617114: {} # Volcanic_Bomb
+      17617132: {} # Volcanic_Bomb
+  - members:
+      17617118: {} # Hurricane_Wyvern
+      17617122: {} # Hurricane_Wyvern
+  - members:
+      17617119: {} # Volcanic_Bomb
+      17617131: {} # Volcanic_Bomb
+  - members:
+      17617123: {} # Volcanic_Bomb
+      17617133: {} # Volcanic_Bomb
+  - members:
+      17617126: {} # Volcanic_Bomb
+      17617134: {} # Volcanic_Bomb
+  - members:
+      17617136: {} # Volcanic_Bomb
+      17617138: {} # Volcanic_Bomb

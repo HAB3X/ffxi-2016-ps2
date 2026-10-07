@@ -1,0 +1,68 @@
+-----------------------------------
+-- Buckets of Gold
+-----------------------------------
+-- Log ID: 1, Quest ID: 41
+-- Foss : !pos -283 -12 -37 235
+-----------------------------------
+
+local quest = Quest:new(xi.questLog.BASTOK, xi.quest.id.bastok.BUCKETS_OF_GOLD)
+
+quest.reward =
+{
+    fame     = 10,
+    fameArea = xi.fameArea.BASTOK,
+    gil      = 300,
+    title    = xi.title.BUCKET_FISHER,
+}
+
+quest.sections =
+{
+    {
+        check = function(player, status, vars)
+            return status == xi.questStatus.QUEST_AVAILABLE
+        end,
+
+        [xi.zone.BASTOK_MARKETS] =
+        {
+            ['Foss'] = quest:progressEvent(271),
+
+            onEventFinish =
+            {
+                [271] = function(player, csid, option, npc)
+                    if option == 0 then
+                        quest:begin(player)
+                    end
+                end,
+            },
+        },
+    },
+
+    {
+        check = function(player, status, vars)
+            return status ~= xi.questStatus.QUEST_AVAILABLE
+        end,
+
+        [xi.zone.BASTOK_MARKETS] =
+        {
+            ['Foss'] =
+            {
+                onTrade = function(player, npc, trade)
+                    if npcUtil.tradeMatches(trade, { { xi.item.RUSTY_BUCKET, 5 } }) then
+                        return quest:progressEvent(272)
+                    end
+                end,
+            },
+
+            onEventFinish =
+            {
+                [272] = function(player, csid, option, npc)
+                    if quest:complete(player) then
+                        player:tradeComplete()
+                    end
+                end,
+            },
+        },
+    },
+}
+
+return quest

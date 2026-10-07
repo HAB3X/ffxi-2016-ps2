@@ -1,0 +1,3135 @@
+# yaml-language-server: $schema=../../schemas/mobs.schema.json
+
+templates:
+
+  Air_Elemental:
+    id:            71
+    species:       air_elemental
+    spell_list_id: 12
+    skill_list_id: 99
+    attributes:
+      combat:
+        skill: staff
+      jobs: [blm, rdm]
+      resists:
+        immune_status: [gravity, silence, slow, elegy]
+      render:
+        look:
+          type:  standard
+          model: 438
+        entity_flags:  1155
+        animation_sub:   16
+        model_size:       1
+        hitbox:           3
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+        type:    [weather]
+    loot:
+      drops:
+        - chance: always
+          item:   wind_cluster
+        - chance: common
+          item:   wind_cluster
+        - chance: common
+          item:   wind_cluster
+
+  Axesarion_the_Wanderer:
+    id:            302
+    species:       shadow
+    type:          [notorious]
+    skill_list_id: 221
+    attributes:
+      combat:
+        skill: sword
+      resists:
+        rank_element:
+          fire:  -2
+          ice:    4
+          light: -2
+          dark:   4
+        rank_status:
+          paralyze:     4
+          bind:         4
+          light_sleep: -2
+          dark_sleep:   4
+          blind:        4
+      render:
+        look:
+          type:  standard
+          model: 538
+        entity_flags: 1179
+        name_prefix:    32
+        model_size:      1
+        hitbox:         20
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 8170
+
+  Beach_Bunny:
+    id:            378
+    species:       rabbit
+    skill_list_id: 206
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 268
+        entity_flags: 133
+        model_size:     2
+        hitbox:        14
+      behaviors:
+        links: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   slice_of_hare_meat
+        - chance: uncommon
+          item:   rabbit_hide
+      steal: slice_of_hare_meat
+      despoil:
+        rabbit_hide:        0
+        slice_of_hare_meat: 0
+
+  Devil_Manta_fished:
+    id:            6778
+    display_name:  Devil_Manta
+    species:       sea_monk
+    type:          [fished]
+    skill_list_id: 218
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 352
+        entity_flags: 133
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+
+  Doom_Mage:
+    id:            1083
+    species:       skeleton
+    spell_list_id: 28
+    skill_list_id: 227
+    attributes:
+      combat:
+        skill: great_katana
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 564
+        entity_flags: 131
+        model_size:     1
+        hitbox:        12
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+        type:    [at_night]
+    loot:
+      drops:
+        - chance: common
+          item:   bone_chip
+        - chance: uncommon
+          item:   revival_tree_root
+        - chance: rare
+          item:   scroll_of_blizzard_iii
+      steal: bone_chip
+      despoil:
+        bone_chip: 0
+
+  Doom_Soldier:
+    id:            1085
+    species:       skeleton
+    spell_list_id: 5
+    skill_list_id: 227
+    attributes:
+      combat:
+        skill: polearm
+      jobs: [drk, drk]
+      render:
+        look:
+          type:  standard
+          model: 572
+        entity_flags: 131
+        model_size:     1
+        hitbox:        12
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+        type:    [at_night]
+    loot:
+      drops:
+        - chance: always
+          item:   bone_chip
+        - chance: rare
+          item:   cold_bone
+        - chance: rare
+          item:   revival_tree_root
+        - chance: rare
+          item:   dark_knights_testimony
+      steal: bone_chip
+      despoil:
+        bone_chip: 0
+
+  Enna-enna:
+    id:            1235
+    species:       bomb
+    skill_list_id: 56
+    attributes:
+      combat:
+        skill: club
+      render:
+        look:
+          type:  standard
+          model: 280
+        entity_flags:  1667
+        animation_sub:    8
+        model_size:       1
+        hitbox:          12
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+        type:    [fog]
+    loot:
+      drops:
+        - chance: common
+          item:   pinch_of_bomb_ash
+        - chance: uncommon
+          item:   bomb_arm
+      despoil:
+        pinch_of_bomb_ash: 0
+
+  Fantasma:
+    id:            1295
+    species:       ghost
+    spell_list_id: 28
+    skill_list_id: 121
+    attributes:
+      combat:
+        skill: staff
+      jobs: [war, blm]
+      render:
+        look:
+          type:  standard
+          model: 368
+        entity_flags: 131
+        model_size:     1
+        hitbox:         8
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+        type:    [at_night]
+    loot:
+      drops:
+        - chance: common
+          item:   revival_tree_root
+        - chance: uncommon
+          item:   square_of_wool_cloth
+      despoil:
+        square_of_cotton_cloth: 0
+
+  Fire_Elemental:
+    id:            1341
+    species:       fire_elemental
+    spell_list_id: 17
+    skill_list_id: 102
+    attributes:
+      combat:
+        skill: staff
+      jobs: [blm, rdm]
+      resists:
+        immune_status: [bind, paralyze]
+      render:
+        look:
+          type:  standard
+          model: 436
+        entity_flags:  131
+        animation_sub:  16
+        model_size:      1
+        hitbox:          3
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+        type:    [weather]
+    loot:
+      drops:
+        - chance: always
+          item:   fire_cluster
+        - chance: common
+          item:   fire_cluster
+        - chance: common
+          item:   fire_cluster
+
+  Frostmane:
+    id:            1429
+    species:       manticore
+    type:          [notorious]
+    skill_list_id: 179
+    attributes:
+      combat:
+        skill: scythe
+        delay: 350
+      render:
+        look:
+          type:  standard
+          model: 402
+        entity_flags: 157
+        name_prefix:   32
+        model_size:     2
+        hitbox:        36
+      behaviors:
+        aggressive: true
+      mob_mods:
+        exp_bonus: 10
+      spawn:
+        type: [lottery]
+      stats:
+        hp: 10500
+    loot:
+      drops:
+        - chance: always
+          item:   manticore_hide
+        - chance: very_common
+          item:   lock_of_manticore_hair
+        - chance: very_common
+          item:   lock_of_manticore_hair
+        - chance: very_common
+          item:   lock_of_manticore_hair
+        - chance: very_common
+          item:   manticore_fang
+        - chance: rare
+          item:   lockheart
+
+  Glazemane:
+    id:            6837
+    species:       manticore
+    type:          [notorious]
+    skill_list_id: 179
+    attributes:
+      combat:
+        skill: scythe
+        delay: 360
+      render:
+        look:
+          type:  standard
+          model: 402
+        entity_flags: 157
+        name_prefix:   32
+        model_size:     2
+        hitbox:        36
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+
+  Goblin_Alchemist:
+    id:            1634
+    species:       goblin
+    spell_list_id: 20
+    skill_list_id: 133
+    attributes:
+      combat:
+        skill: staff
+      jobs: [whm, whm]
+      render:
+        look:
+          type:  standard
+          model: 493
+        entity_flags: 133
+        model_size:     2
+        hitbox:        13
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   white_mages_testimony
+        - chance: uncommon
+          item:   scroll_of_esuna
+        - chance: rare
+          item:   scroll_of_reraise_iii
+        - chance: rare
+          item:   scroll_of_regen_iii
+        - chance: rare
+          item:   scroll_of_shellra_iv
+        - chance: very_rare
+          item:   scroll_of_cure_v
+        - chance: super_rare
+          item:   scroll_of_curaga_iv
+      steal: [beastcoin, loaf_of_goblin_bread] # audit needed
+      despoil:
+        chunk_of_goblin_chocolate: 0
+        bowl_of_goblin_stew:       0
+        goblin_mushpot:            0
+
+  Goblin_Bandit:
+    id:            1637
+    species:       goblin
+    skill_list_id: 133
+    attributes:
+      combat:
+        skill: dagger
+      jobs: [thf, thf]
+      render:
+        look:
+          type:  standard
+          model: 505
+        entity_flags: 133
+        model_size:     2
+        hitbox:        13
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: rare
+          item:   goblin_mask
+        - chance: very_rare
+          item:   goblin_armor
+        - chance: very_rare
+          item:   gold_beastcoin
+      steal: thiefs_testimony
+      despoil:
+        loaf_of_goblin_bread:      0
+        chunk_of_goblin_chocolate: 0
+        bowl_of_goblin_stew:       0
+        goblin_mushpot:            0
+
+  Goblin_Boss:
+    id:            1640
+    species:       goblin
+    skill_list_id: 133
+    attributes:
+      combat:
+        skill: sword
+      render:
+        look:
+          type:  standard
+          model: 492
+        entity_flags:  3
+        model_size:    2
+        hitbox:       13
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: uncommon
+          item:   mannequin_legs
+        - chance: uncommon
+          item:   mannequin_feet
+
+  Goblin_Doctor:
+    id:            1649
+    species:       goblin
+    spell_list_id: 20
+    skill_list_id: 133
+    attributes:
+      combat:
+        skill: staff
+      jobs: [whm, whm]
+      render:
+        look:
+          type:  standard
+          model: 488
+        entity_flags:  3
+        model_size:    1
+        hitbox:       12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: uncommon
+          item:   mannequin_legs
+        - chance: uncommon
+          item:   mannequin_feet
+
+  Goblin_Duelist:
+    id:            1653
+    species:       goblin
+    spell_list_id: 3
+    skill_list_id: 133
+    attributes:
+      combat:
+        skill: sword
+      jobs: [rdm, rdm]
+      render:
+        look:
+          type:  standard
+          model: 489
+        entity_flags:  3
+        model_size:    1
+        hitbox:       12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: uncommon
+          item:   mannequin_legs
+        - chance: uncommon
+          item:   mannequin_feet
+
+  Goblin_Mercenary:
+    id:            1687
+    species:       armored_goblin
+    skill_list_id: 133
+    attributes:
+      combat:
+        skill: axe
+      render:
+        look:
+          type:  standard
+          model: 508
+        entity_flags: 133
+        model_size:     2
+        hitbox:        13
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: rare
+          item:   warriors_testimony
+        - chance: rare
+          item:   goblin_helm
+        - chance: very_rare
+          item:   goblin_mail
+        - chance: very_rare
+          item:   gold_beastcoin
+      steal: beastcoin
+      despoil:
+        loaf_of_goblin_bread:      0
+        chunk_of_goblin_chocolate: 0
+        bowl_of_goblin_stew:       0
+        goblin_mushpot:            0
+
+  Goblin_Pirate:
+    id:            1699
+    species:       goblin
+    skill_list_id: 133
+    attributes:
+      combat:
+        skill: dagger
+      jobs: [thf, thf]
+      render:
+        look:
+          type:  standard
+          model: 484
+        entity_flags:  3
+        model_size:    1
+        hitbox:       12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: uncommon
+          item:   mannequin_legs
+        - chance: uncommon
+          item:   mannequin_feet
+
+  Goblin_Professor:
+    id:            1704
+    species:       goblin
+    spell_list_id: 21
+    skill_list_id: 133
+    attributes:
+      combat:
+        skill: club
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 494
+        entity_flags:  3
+        model_size:    1
+        hitbox:       12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: uncommon
+          item:   mannequin_legs
+        - chance: uncommon
+          item:   mannequin_feet
+
+  Goblin_Shepherd:
+    id:            1711
+    species:       goblin
+    skill_list_id: 133
+    attributes:
+      combat:
+        skill: axe
+      jobs: [bst, bst]
+      render:
+        look:
+          type:  standard
+          model: 506
+        entity_flags: 133
+        model_size:     2
+        hitbox:        13
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: very_common
+          item:   ash_staff
+        - chance: common
+          item:   ram_skin
+        - chance: uncommon
+          item:   beastmasters_testimony
+        - chance: rare
+          item:   jug_of_singing_herbal_broth
+      steal: mythril_beastcoin
+      despoil:
+        loaf_of_goblin_bread:      0
+        chunk_of_goblin_chocolate: 0
+        bowl_of_goblin_stew:       0
+        goblin_mushpot:            0
+
+  Goblins_Rabbit:
+    id:            1730
+    species:       rabbit
+    skill_list_id: 206
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 268
+        entity_flags: 133
+        model_size:     2
+        hitbox:        14
+      behaviors:
+        links: true
+      spawn:
+        type: [scripted]
+
+  Greater_Manticore:
+    id:            1806
+    species:       manticore
+    skill_list_id: 179
+    attributes:
+      combat:
+        skill: scythe
+        delay: 360
+      render:
+        look:
+          type:  standard
+          model: 402
+        entity_flags: 643
+        model_size:     1
+        hitbox:        32
+      behaviors:
+        aggressive: true
+      mob_mods:
+        exp_bonus: 10
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   lock_of_manticore_hair
+        - chance: uncommon
+          item:   manticore_hide
+        - chance: rare
+          item:   manticore_fang
+      despoil:
+        manticore_hide:         0
+        lock_of_manticore_hair: 0
+
+  Hobgoblin_Beastmaster:
+    id:            1971
+    species:       goblin
+    type:          [notorious]
+    skill_list_id: 133
+    attributes:
+      combat:
+        skill: sword
+      jobs: [bst, bst]
+      render:
+        look:
+          type:  standard
+          model: 492
+        entity_flags:  3
+        model_size:    1
+        hitbox:       12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+
+  Hobgoblin_Black_Mage:
+    id:            1972
+    species:       goblin
+    type:          [notorious]
+    spell_list_id: 21
+    skill_list_id: 133
+    attributes:
+      combat:
+        skill: club
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 507
+        entity_flags:  3
+        model_size:    1
+        hitbox:       12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+
+  Hobgoblin_Dark_Knight:
+    id:            1974
+    species:       goblin
+    type:          [notorious]
+    spell_list_id: 5
+    skill_list_id: 133
+    attributes:
+      combat:
+        skill: sword
+      jobs: [drk, drk]
+      render:
+        look:
+          type:  standard
+          model: 509
+        model_size:  1
+        hitbox:     12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+
+  Hobgoblin_Ranger:
+    id:            1978
+    species:       goblin
+    type:          [notorious]
+    skill_list_id: 133
+    attributes:
+      combat:
+        skill: axe
+      jobs: [rng, rng]
+      render:
+        look:
+          type:  standard
+          model: 499
+        entity_flags:  3
+        model_size:    1
+        hitbox:       12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+
+  Hobgoblin_Red_Mage:
+    id:            1979
+    species:       goblin
+    type:          [notorious]
+    spell_list_id: 3
+    skill_list_id: 133
+    attributes:
+      combat:
+        skill: dagger
+      jobs: [rdm, rdm]
+      render:
+        look:
+          type:  standard
+          model: 504
+        model_size:  1
+        hitbox:     12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+
+  Hobgoblin_Thief:
+    id:            1980
+    species:       goblin
+    type:          [notorious]
+    skill_list_id: 133
+    attributes:
+      combat:
+        skill: dagger
+      jobs: [thf, thf]
+      render:
+        look:
+          type:  standard
+          model: 485
+        entity_flags:  3
+        model_size:    1
+        hitbox:       12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+
+  Hobgoblin_Warrior:
+    id:            1983
+    species:       goblin
+    type:          [notorious]
+    skill_list_id: 133
+    attributes:
+      combat:
+        skill: sword
+      render:
+        look:
+          type:  standard
+          model: 508
+        entity_flags:  3
+        model_size:    1
+        hitbox:       12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+
+  Hobgoblin_White_Mage:
+    id:            1984
+    species:       goblin
+    type:          [notorious]
+    spell_list_id: 20
+    skill_list_id: 133
+    attributes:
+      combat:
+        skill: staff
+      jobs: [whm, whm]
+      render:
+        look:
+          type:  standard
+          model: 488
+        entity_flags:  3
+        model_size:    1
+        hitbox:       12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+
+  Kaneakeluh:
+    id:            2185
+    species:       cockatrice
+    type:          [notorious]
+    skill_list_id: 70
+    attributes:
+      combat:
+        skill: great_axe
+      jobs: [war, drk]
+      render:
+        look:
+          type:  standard
+          model: 288
+        entity_flags: 133
+        model_size:     2
+        hitbox:        43
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+
+  Killer_Jonny:
+    id:            5889
+    species:       cockatrice
+    type:          [notorious]
+    skill_list_id: 362
+    attributes:
+      combat:
+        skill: club
+      render:
+        look:
+          type:  standard
+          model: 288
+        entity_flags: 155
+        name_prefix:   32
+        model_size:     1
+        hitbox:        37
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [lottery]
+    loot:
+      drops:
+        - chance: uncommon
+          item:   fendoir
+    content: wotg
+
+  Kreutzet:
+    id:            2287
+    species:       legendary_roc
+    type:          [notorious]
+    skill_list_id: 1004
+    attributes:
+      combat:
+        skill: staff
+      render:
+        look:
+          type:  standard
+          model: 336
+        entity_flags: 133
+        model_size:     2
+        hitbox:        36
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 13000
+    loot:
+      drops:
+        - chance: very_common
+          item:   sirocco_kukri
+        - chance: very_common
+          item:   giant_bird_feather
+        - chance: uncommon
+          item:   giant_bird_plume
+
+  Razorjaw_Pugil_fished:
+    id:            6776
+    display_name:  Razorjaw_Pugil
+    species:       pugil
+    type:          [fished]
+    skill_list_id: 197
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 348
+        entity_flags: 133
+        model_size:     2
+        hitbox:        32
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+    loot:
+      steal: handful_of_fish_scales
+      despoil:
+        handful_of_pugil_scales: 0
+        handful_of_fish_scales:  0
+
+  Robber_Crab:
+    id:            3375
+    species:       crab
+    skill_list_id: 77
+    attributes:
+      combat:
+        skill: great_sword
+      jobs: [pld, pld]
+      render:
+        look:
+          type:  standard
+          model: 356
+        entity_flags:  131
+        animation_sub:   8
+        model_size:      1
+        hitbox:         13
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   slice_of_land_crab_meat
+        - chance: uncommon
+          item:   crab_shell
+      despoil:
+        slice_of_land_crab_meat: 0
+        crab_shell:              0
+
+  Rock_Crab_fished:
+    id:            6777
+    display_name:  Rock_Crab
+    species:       crab
+    type:          [fished]
+    skill_list_id: 77
+    attributes:
+      combat:
+        skill: great_sword
+      jobs: [pld, pld]
+      render:
+        look:
+          type:  standard
+          model: 356
+        entity_flags:  133
+        animation_sub:   8
+        model_size:      2
+        hitbox:         16
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: common
+          item:   chunk_of_rock_salt
+        - chance: uncommon
+          item:   slice_of_land_crab_meat
+        - chance: very_rare
+          item:   crab_shell
+      despoil:
+        slice_of_land_crab_meat: 0
+        crab_shell:              0
+
+  Sand_Cockatrice:
+    id:            3451
+    species:       cockatrice
+    skill_list_id: 70
+    attributes:
+      combat:
+        skill: club
+      render:
+        look:
+          type:  standard
+          model: 288
+        entity_flags:  131
+        animation_sub:   8
+        model_size:      1
+        hitbox:         37
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   slice_of_cockatrice_meat
+        - chance: uncommon
+          item:   cockatrice_skin
+      steal: giant_bird_feather
+      despoil:
+        giant_bird_feather: 0
+
+  Sand_Lizard_CT:
+    id:            5643
+    species:       hill_lizard
+    skill_list_id: 174
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 328
+        entity_flags: 133
+        model_size:     2
+        hitbox:        18
+      behaviors:
+        links: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   lizard_tail
+        - chance: uncommon
+          item:   lizard_egg
+        - chance: rare
+          item:   lizard_skin
+        - chance: rare
+          item:   lizard_egg
+        - chance: rare
+          item:   lizard_egg
+        - chance: rare
+          item:   lizard_skin
+      steal: lizard_egg
+      despoil:
+        lizard_skin: 0
+        lizard_tail: 0
+        lizard_egg:  0
+
+  Stolas:
+    id:            3777
+    species:       bird
+    type:          [notorious]
+    skill_list_id: 55
+    attributes:
+      combat:
+        skill: sword
+      jobs: [thf, war]
+      render:
+        look:
+          type:  standard
+          model: 444
+        entity_flags: 157
+        name_prefix:   32
+        model_size:     2
+        hitbox:        22
+      behaviors:
+        aggressive:     true
+        links:          true
+        true_detection: true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 8500
+
+  Stygian_Pugil_fished:
+    id:            6768
+    display_name:  Stygian_Pugil
+    species:       pugil
+    type:          [fished]
+    skill_list_id: 197
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 348
+        entity_flags: 133
+        model_size:     2
+        hitbox:        32
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+    loot:
+      steal: handful_of_fish_scales
+      despoil:
+        handful_of_pugil_scales: 0
+        handful_of_fish_scales:  0
+
+  Tegmine:
+    id:            5425
+    species:       crab
+    type:          [notorious]
+    skill_list_id: 400
+    attributes:
+      combat:
+        skill: great_sword
+      jobs: [pld, war]
+      render:
+        look:
+          type:  standard
+          model: 356
+        entity_flags:  643
+        animation_sub:   8
+        model_size:      1
+        hitbox:         13
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 7200
+      stats:
+        hp: 10500
+        mp:  5000
+    loot:
+      drops:
+        - chance: uncommon
+          item:   aptant_of_bellum
+        - chance: uncommon
+          item:   aptant_of_durus
+    content: wotg
+
+  Terror_Pugil:
+    id:            3882
+    species:       pugil
+    skill_list_id: 197
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 348
+        entity_flags: 131
+        model_size:     1
+        hitbox:        27
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   handful_of_pugil_scales
+      steal: handful_of_fish_scales
+      despoil:
+        handful_of_pugil_scales: 0
+        handful_of_fish_scales:  0
+
+  Vedrfolnir:
+    id:            6836
+    species:       roc
+    type:          [notorious]
+    skill_list_id: 125
+    attributes:
+      combat:
+        skill: club
+      render:
+        look:
+          type:  standard
+          model: 336
+        entity_flags: 133
+        name_prefix:   32
+        model_size:     2
+        hitbox:        36
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+
+  Velociraptor:
+    id:            4218
+    species:       raptor
+    skill_list_id: 210
+    attributes:
+      combat:
+        skill: scythe
+        delay: 220
+      render:
+        look:
+          type:  standard
+          model: 316
+        entity_flags: 131
+        model_size:     1
+        hitbox:        18
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   raptor_skin
+      despoil:
+        raptor_skin: 0
+
+  Zmey_Gorynych:
+    id:            6835
+    species:       raptor
+    type:          [notorious]
+    skill_list_id: 2001
+    attributes:
+      combat:
+        skill: scythe
+        delay: 220
+      jobs: [thf, thf]
+      render:
+        look:
+          type:  standard
+          model: 316
+        entity_flags: 155
+        name_prefix:   32
+        model_size:     1
+        hitbox:        18
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 3600
+    loot:
+      drops:
+        - chance: uncommon
+          item:   aptant_of_primus
+        - chance: uncommon
+          item:   aptant_of_durus
+    content: wotg
+
+
+  Beta_coka_Sand_Cockatrice:
+    id:            40103
+    species:       cockatrice
+    skill_list_id: 70
+    attributes:
+      combat:
+        skill: club
+      render:
+        look:
+          type:  standard
+          model: 2953
+        entity_flags:  131
+        animation_sub:   8
+        model_size:      1
+        hitbox:         37
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: rare
+          item:   beta_20036
+        - chance: uncommon
+          item:   beta_175
+        - chance: uncommon
+          item:   beta_4831
+        - chance: uncommon
+          item:   beta_6773
+        - chance: common
+          item:   slice_of_cockatrice_meat
+        - chance: uncommon
+          item:   cockatrice_skin
+      steal: giant_bird_feather
+      despoil:
+        giant_bird_feather: 0
+
+spawns:
+  17240065:
+    template: Razorjaw_Pugil_fished
+    script:   Razorjaw_Pugil
+    at:       [1.000, 1.000, 1.000]
+    level:    [59, 60]
+  17240066:
+    template: Rock_Crab_fished
+    script:   Rock_Crab
+    at:       [1.000, 1.000, 1.000]
+    level:    [59, 60]
+  17240067:
+    template: Stygian_Pugil_fished
+    script:   Stygian_Pugil
+    at:       [1.000, 1.000, 1.000]
+    level:    [63, 63]
+  17240068:
+    template: Stygian_Pugil_fished
+    script:   Stygian_Pugil
+    at:       [1.000, 1.000, 1.000]
+    level:    [65, 67]
+  17240069:
+    template: Stygian_Pugil_fished
+    script:   Stygian_Pugil
+    at:       [1.000, 1.000, 1.000]
+    level:    [66, 66]
+  17240070:
+    template: Devil_Manta_fished
+    script:   Devil_Manta
+    at:       [1.000, 1.000, 1.000]
+    level:    [68, 70]
+  17240071:
+    template: Goblin_Mercenary
+    region:   sw_7
+    level:    [65, 68]
+  17240072:
+    template: Sand_Lizard_CT
+    script:   Sand_Lizard
+    region:   sw_7
+    level:    [62, 66]
+  17240073:
+    template: Beach_Bunny
+    region:   sw_7
+    level:    [62, 65]
+  17240074:
+    template: Beach_Bunny
+    region:   sw_7
+    level:    [62, 65]
+  17240075:
+    template: Beach_Bunny
+    region:   sw_7
+    level:    [62, 65]
+  17240076:
+    template: Goblin_Mercenary
+    region:   sw_7
+    level:    [65, 68]
+  17240077:
+    template: Sand_Lizard_CT
+    script:   Sand_Lizard
+    region:   sw_13
+    level:    [62, 66]
+  17240078:
+    template: Sand_Lizard_CT
+    script:   Sand_Lizard
+    region:   sw_13
+    level:    [62, 66]
+  17240079:
+    template: Sand_Lizard_CT
+    script:   Sand_Lizard
+    region:   sw_13
+    level:    [64, 65]
+  17240080:
+    template: Beach_Bunny
+    region:   sw_13
+    level:    [62, 65]
+  17240081:
+    template: Beach_Bunny
+    region:   sw_13
+    level:    [62, 65]
+  17240082:
+    template: Beach_Bunny
+    region:   sw_19
+    level:    [62, 65]
+  17240083:
+    template: Goblin_Shepherd
+    region:   sw_19
+    level:    [65, 68]
+  17240084:
+    template: Goblins_Rabbit
+    at:       [1.000, 1.000, 1.000]
+    level:    [49, 50]
+  17240085:
+    template: Sand_Lizard_CT
+    script:   Sand_Lizard
+    region:   sw_19
+    level:    [62, 66]
+  17240086:
+    template: Sand_Lizard_CT
+    script:   Sand_Lizard
+    region:   sw_19
+    level:    [63, 64]
+  17240087:
+    template: Sand_Lizard_CT
+    script:   Sand_Lizard
+    region:   sw_19
+    level:    [63, 66]
+  17240088:
+    template: Beach_Bunny
+    region:   sw_19
+    level:    [62, 65]
+  17240089:
+    template: Beach_Bunny
+    region:   sw_19
+    level:    [62, 65]
+  17240090:
+    template: Beach_Bunny
+    region:   sw_19
+    level:    [62, 65]
+  17240091:
+    template: Goblin_Shepherd
+    region:   sw_27
+    level:    [65, 68]
+  17240092:
+    template: Goblins_Rabbit
+    at:       [1.000, 1.000, 1.000]
+    level:    [48, 50]
+  17240093:
+    template: Goblin_Bandit
+    region:   sw_27
+    level:    [65, 68]
+  17240094:
+    template: Sand_Lizard_CT
+    script:   Sand_Lizard
+    region:   sw_27
+    level:    [62, 66]
+  17240095:
+    template: Sand_Lizard_CT
+    script:   Sand_Lizard
+    region:   sw_27
+    level:    [65, 66]
+  17240096:
+    template: Beach_Bunny
+    region:   sw_27
+    level:    [62, 65]
+  17240097:
+    template: Beach_Bunny
+    region:   sw_27
+    level:    [62, 65]
+  17240098:
+    template: Beach_Bunny
+    region:   sw_27
+    level:    [62, 65]
+  17240099:
+    template: Beach_Bunny
+    region:   sw_37
+    level:    [62, 65]
+  17240100:
+    template: Doom_Soldier
+    region:   sw_27
+    level:    [66, 70]
+  17240101:
+    template: Goblin_Alchemist
+    region:   sw_37
+    level:    [65, 68]
+  17240102:
+    template: Beach_Bunny
+    region:   sw_37
+    level:    [62, 65]
+  17240103:
+    template: Beach_Bunny
+    region:   sw_37
+    level:    [62, 65]
+  17240104:
+    template: Doom_Mage
+    region:   sw_37
+    level:    [67, 71]
+  17240105:
+    template: Goblin_Mercenary
+    region:   s_41
+    level:    [65, 68]
+  17240106:
+    template: Beach_Bunny
+    region:   s_41
+    level:    [62, 65]
+  17240107:
+    template: Beach_Bunny
+    region:   s_41
+    level:    [62, 65]
+  17240108:
+    template: Beach_Bunny
+    region:   s_41
+    level:    [62, 65]
+  17240109:
+    template: Sand_Lizard_CT
+    script:   Sand_Lizard
+    region:   s_41
+    level:    [62, 65]
+  17240110:
+    template: Sand_Lizard_CT
+    script:   Sand_Lizard
+    region:   s_41
+    level:    [62, 66]
+  17240111:
+    template: Sand_Lizard_CT
+    script:   Sand_Lizard
+    region:   s_41
+    level:    [62, 66]
+  17240112:
+    template: Doom_Soldier
+    region:   s_41
+    level:    [66, 70]
+  17240113:
+    template: Goblin_Mercenary
+    region:   s_49
+    level:    [65, 68]
+  17240114:
+    template: Goblin_Shepherd
+    region:   s_49
+    level:    [65, 68]
+  17240115:
+    template: Goblins_Rabbit
+    at:       [1.000, 1.000, 1.000]
+    level:    [48, 50]
+  17240116:
+    template: Sand_Lizard_CT
+    script:   Sand_Lizard
+    region:   s_49
+    level:    [62, 66]
+  17240117:
+    template: Sand_Lizard_CT
+    script:   Sand_Lizard
+    region:   s_41
+    level:    [62, 66]
+  17240118:
+    template: Beach_Bunny
+    region:   s_49
+    level:    [62, 65]
+  17240119:
+    template: Beach_Bunny
+    region:   s_49
+    level:    [62, 65]
+  17240120:
+    template: Beach_Bunny
+    region:   s_49
+    level:    [62, 65]
+  17240121:
+    template: Doom_Soldier
+    region:   s_49
+    level:    [66, 70]
+  17240122:
+    template: Doom_Soldier
+    region:   s_49
+    level:    [66, 70]
+  17240123:
+    template: Fire_Elemental
+    region:   s_49
+    level:    [67, 69]
+  17240124:
+    template: Goblin_Mercenary
+    region:   w_60
+    level:    [65, 68]
+  17240125:
+    template: Goblin_Bandit
+    region:   w_60
+    level:    [65, 68]
+  17240126:
+    template: Sand_Lizard_CT
+    script:   Sand_Lizard
+    region:   w_60
+    level:    [62, 66]
+  17240127:
+    template: Sand_Lizard_CT
+    script:   Sand_Lizard
+    region:   w_60
+    level:    [62, 66]
+  17240128:
+    template: Beach_Bunny
+    region:   w_60
+    level:    [62, 65]
+  17240129:
+    template: Beach_Bunny
+    region:   w_60
+    level:    [62, 65]
+  17240130:
+    template: Velociraptor
+    region:   w_60
+    level:    [66, 69]
+  17240131:
+    template: Doom_Soldier
+    region:   w_60
+    level:    [66, 70]
+  17240132:
+    template: Fantasma
+    region:   w_60
+    level:    [65, 68]
+  17240133:
+    template: Goblin_Bandit
+    region:   s_69
+    level:    [65, 68]
+  17240134:
+    template: Goblin_Alchemist
+    region:   s_69
+    level:    [65, 68]
+  17240135:
+    template: Robber_Crab
+    region:   s_69
+    level:    [64, 67]
+  17240136:
+    template: Robber_Crab
+    region:   s_69
+    level:    [64, 67]
+  17240137:
+    template: Sand_Lizard_CT
+    script:   Sand_Lizard
+    region:   s_69
+    level:    [62, 66]
+  17240138:
+    template: Sand_Lizard_CT
+    script:   Sand_Lizard
+    region:   s_69
+    level:    [62, 66]
+  17240139:
+    template: Sand_Lizard_CT
+    script:   Sand_Lizard
+    region:   s_69
+    level:    [62, 65]
+  17240140:
+    template: Sand_Lizard_CT
+    script:   Sand_Lizard
+    region:   s_69
+    level:    [62, 66]
+  17240141:
+    template: Velociraptor
+    region:   s_69
+    level:    [66, 69]
+  17240142:
+    template: Doom_Soldier
+    region:   s_69
+    level:    [66, 70]
+  17240143:
+    template: Doom_Mage
+    region:   s_69
+    level:    [67, 71]
+  17240144:
+    template: Fire_Elemental
+    region:   s_69
+    level:    [67, 69]
+  17240145:
+    template: Goblin_Shepherd
+    region:   c_81
+    level:    [65, 68]
+  17240146:
+    template: Goblins_Rabbit
+    at:       [1.000, 1.000, 1.000]
+    level:    [48, 50]
+  17240147:
+    template: Sand_Lizard_CT
+    script:   Sand_Lizard
+    region:   c_81
+    level:    [62, 66]
+  17240148:
+    template: Sand_Lizard_CT
+    script:   Sand_Lizard
+    region:   c_81
+    level:    [62, 66]
+  17240149:
+    template: Sand_Lizard_CT
+    script:   Sand_Lizard
+    region:   c_81
+    level:    [62, 66]
+  17240150:
+    template: Sand_Lizard_CT
+    script:   Sand_Lizard
+    region:   c_81
+    level:    [62, 66]
+  17240151:
+    template: Sand_Lizard_CT
+    script:   Sand_Lizard
+    region:   c_81
+    level:    [62, 66]
+  17240152:
+    template: Velociraptor
+    region:   c_81
+    level:    [66, 69]
+  17240153:
+    template: Doom_Mage
+    region:   c_81
+    level:    [67, 71]
+  17240154:
+    template: Fantasma
+    region:   c_81
+    level:    [65, 68]
+  17240155:
+    template: Goblin_Bandit
+    region:   c_92
+    level:    [65, 68]
+  17240156:
+    template: Goblin_Shepherd
+    region:   c_92
+    level:    [65, 68]
+  17240157:
+    template: Goblins_Rabbit
+    at:       [1.000, 1.000, 1.000]
+    level:    [48, 50]
+  17240158:
+    template: Velociraptor
+    region:   c_92
+    level:    [66, 69]
+  17240159:
+    template: Velociraptor
+    region:   s_69
+    level:    [66, 69]
+  17240160:
+    template: Sand_Lizard_CT
+    script:   Sand_Lizard
+    region:   c_92
+    level:    [63, 66]
+  17240161:
+    template: Sand_Lizard_CT
+    script:   Sand_Lizard
+    region:   c_92
+    level:    [62, 65]
+  17240162:
+    template: Sand_Lizard_CT
+    script:   Sand_Lizard
+    region:   c_92
+    level:    [62, 66]
+  17240163:
+    template: Sand_Lizard_CT
+    script:   Sand_Lizard
+    region:   c_92
+    level:    [62, 66]
+  17240164:
+    template: Sand_Lizard_CT
+    script:   Sand_Lizard
+    region:   c_92
+    level:    [62, 66]
+  17240165:
+    template: Goblin_Mercenary
+    region:   c_101
+    level:    [65, 68]
+  17240166:
+    template: Velociraptor
+    region:   c_101
+    level:    [66, 69]
+  17240167:
+    template: Velociraptor
+    region:   c_101
+    level:    [66, 69]
+  17240168:
+    template: Velociraptor
+    region:   c_101
+    level:    [66, 69]
+  17240169:
+    template: Sand_Lizard_CT
+    script:   Sand_Lizard
+    region:   c_101
+    level:    [62, 66]
+  17240170:
+    template: Sand_Lizard_CT
+    script:   Sand_Lizard
+    region:   c_101
+    level:    [62, 66]
+  17240171:
+    template: Sand_Lizard_CT
+    script:   Sand_Lizard
+    region:   c_101
+    level:    [63, 65]
+  17240172:
+    template: Enna-enna
+    at:       [-32.322, -1.542, 136.790, 127]
+    level:    [65, 67]
+  17240173:
+    template: Goblin_Alchemist
+    region:   c_109
+    level:    [65, 68]
+  17240174:
+    template: Sand_Lizard_CT
+    script:   Sand_Lizard
+    region:   c_109
+    level:    [62, 66]
+  17240175:
+    template: Sand_Lizard_CT
+    script:   Sand_Lizard
+    region:   c_109
+    level:    [63, 66]
+  17240176:
+    template: Sand_Lizard_CT
+    script:   Sand_Lizard
+    region:   c_109
+    level:    [62, 65]
+  17240177:
+    template: Sand_Cockatrice
+    region:   c_109
+    level:    [71, 74]
+  17240178:
+    template: Sand_Cockatrice
+    region:   c_109
+    level:    [71, 74]
+  17240179:
+    template: Enna-enna
+    at:       [-13.332, 0.079, 126.550, 127]
+    level:    [65, 69]
+  17240180:
+    template: Killer_Jonny
+    region:   c_252
+    level:    [85, 85]
+  17240181:
+    template: Velociraptor
+    region:   s_117
+    level:    [66, 69]
+  17240182:
+    template: Velociraptor
+    region:   s_117
+    level:    [66, 69]
+  17240183:
+    template: Robber_Crab
+    region:   s_117
+    level:    [64, 67]
+  17240184:
+    template: Robber_Crab
+    region:   s_117
+    level:    [64, 67]
+  17240185:
+    template: Robber_Crab
+    region:   s_117
+    level:    [64, 67]
+  17240186:
+    template: Robber_Crab
+    region:   se_140
+    level:    [64, 67]
+  17240187:
+    template: Robber_Crab
+    region:   s_117
+    level:    [64, 67]
+  17240188:
+    template: Beach_Bunny
+    region:   s_117
+    level:    [62, 65]
+  17240189:
+    template: Beach_Bunny
+    region:   s_117
+    level:    [62, 65]
+  17240190:
+    template: Sand_Cockatrice
+    region:   s_117
+    level:    [71, 74]
+  17240191:
+    template: Velociraptor
+    region:   s_127
+    level:    [66, 69]
+  17240192:
+    template: Velociraptor
+    region:   s_127
+    level:    [66, 69]
+  17240193:
+    template: Sand_Cockatrice
+    region:   s_127
+    level:    [71, 74]
+  17240194:
+    template: Sand_Cockatrice
+    region:   s_127
+    level:    [71, 74]
+  17240195:
+    template: Velociraptor
+    region:   c_131
+    level:    [66, 69]
+  17240196:
+    template: Velociraptor
+    region:   c_131
+    level:    [66, 69]
+  17240197:
+    template: Sand_Cockatrice
+    region:   c_131
+    level:    [71, 74]
+  17240198:
+    template: Sand_Cockatrice
+    region:   c_131
+    level:    [71, 74]
+  17240199:
+    template: Velociraptor
+    region:   e_135
+    level:    [66, 69]
+  17240200:
+    template: Velociraptor
+    region:   e_135
+    level:    [66, 69]
+  17240201:
+    template: Velociraptor
+    region:   e_135
+    level:    [66, 69]
+  17240202:
+    template: Sand_Cockatrice
+    region:   e_135
+    level:    [71, 74]
+  17240203:
+    template: Sand_Cockatrice
+    region:   e_135
+    level:    [71, 74]
+  17240204:
+    template: Velociraptor
+    region:   se_140
+    level:    [66, 69]
+  17240205:
+    template: Velociraptor
+    region:   se_140
+    level:    [66, 69]
+  17240206:
+    template: Velociraptor
+    region:   se_140
+    level:    [66, 69]
+  17240207:
+    template: Velociraptor
+    region:   se_155
+    level:    [66, 69]
+  17240208:
+    template: Velociraptor
+    region:   se_140
+    level:    [66, 69]
+  17240209:
+    template: Velociraptor
+    region:   se_140
+    level:    [66, 69]
+  17240210:
+    template: Beach_Bunny
+    region:   se_140
+    level:    [62, 65]
+  17240211:
+    template: Beach_Bunny
+    region:   se_140
+    level:    [62, 65]
+  17240212:
+    template: Robber_Crab
+    region:   se_140
+    level:    [64, 67]
+  17240213:
+    template: Robber_Crab
+    region:   se_155
+    level:    [64, 67]
+  17240214:
+    template: Robber_Crab
+    region:   se_140
+    level:    [64, 67]
+  17240215:
+    template: Terror_Pugil
+    region:   se_155
+    level:    [66, 70]
+  17240216:
+    template: Terror_Pugil
+    region:   se_155
+    level:    [66, 70]
+  17240217:
+    template: Terror_Pugil
+    region:   se_140
+    level:    [66, 70]
+  17240218:
+    template: Air_Elemental
+    region:   se_140
+    level:    [67, 69]
+  17240219:
+    template: Robber_Crab
+    region:   se_155
+    level:    [64, 67]
+  17240220:
+    template: Robber_Crab
+    region:   se_140
+    level:    [64, 67]
+  17240221:
+    template: Robber_Crab
+    region:   se_155
+    level:    [64, 67]
+  17240222:
+    template: Terror_Pugil
+    region:   se_155
+    level:    [66, 70]
+  17240223:
+    template: Terror_Pugil
+    region:   se_155
+    level:    [66, 70]
+  17240224:
+    template: Terror_Pugil
+    region:   se_155
+    level:    [66, 70]
+  17240225:
+    template: Terror_Pugil
+    region:   se_155
+    level:    [66, 70]
+  17240226:
+    template: Fantasma
+    region:   se_155
+    level:    [65, 68]
+  17240227:
+    template: Beach_Bunny
+    region:   s_163
+    level:    [62, 65]
+  17240228:
+    template: Beach_Bunny
+    region:   s_163
+    level:    [62, 65]
+  17240229:
+    template: Robber_Crab
+    region:   s_163
+    level:    [64, 67]
+  17240230:
+    template: Robber_Crab
+    region:   s_163
+    level:    [64, 67]
+  17240231:
+    template: Robber_Crab
+    region:   s_163
+    level:    [64, 67]
+  17240232:
+    template: Tegmine
+    region:   s_163
+    level:    [71, 72]
+  17240233:
+    template: Beach_Bunny
+    region:   se_169
+    level:    [62, 65]
+  17240234:
+    template: Beach_Bunny
+    region:   se_169
+    level:    [62, 65]
+  17240235:
+    template: Robber_Crab
+    region:   se_169
+    level:    [64, 67]
+  17240236:
+    template: Robber_Crab
+    region:   se_169
+    level:    [64, 67]
+  17240237:
+    template: Beach_Bunny
+    region:   se_173
+    level:    [62, 65]
+  17240238:
+    template: Robber_Crab
+    region:   se_173
+    level:    [64, 67]
+  17240239:
+    template: Robber_Crab
+    region:   se_169
+    level:    [64, 67]
+  17240240:
+    template: Terror_Pugil
+    region:   se_169
+    level:    [66, 70]
+  17240241:
+    template: Velociraptor
+    region:   e_177
+    level:    [66, 69]
+  17240242:
+    template: Velociraptor
+    region:   e_177
+    level:    [66, 69]
+  17240243:
+    template: Velociraptor
+    region:   e_177
+    level:    [66, 69]
+  17240244:
+    template: Sand_Cockatrice
+    region:   e_177
+    level:    [71, 74]
+  17240245:
+    template: Sand_Cockatrice
+    region:   e_177
+    level:    [71, 74]
+  17240246:
+    template: Sand_Cockatrice
+    region:   e_177
+    level:    [71, 74]
+  17240247:
+    template: Sand_Cockatrice
+    region:   e_177
+    level:    [71, 74]
+  17240248:
+    template: Sand_Cockatrice
+    region:   e_177
+    level:    [71, 74]
+  17240249:
+    template: Sand_Cockatrice
+    region:   e_177
+    level:    [71, 74]
+  17240250:
+    template: Sand_Cockatrice
+    region:   e_177
+    level:    [71, 74]
+  17240251:
+    template: Velociraptor
+    region:   e_187
+    level:    [66, 69]
+  17240252:
+    template: Velociraptor
+    region:   e_187
+    level:    [66, 69]
+  17240253:
+    template: Sand_Cockatrice
+    region:   e_187
+    level:    [71, 74]
+  17240254:
+    template: Sand_Cockatrice
+    region:   e_187
+    level:    [71, 74]
+  17240255:
+    template: Sand_Cockatrice
+    region:   e_187
+    level:    [71, 74]
+  17240256:
+    template: Sand_Cockatrice
+    region:   e_187
+    level:    [71, 74]
+  17240257:
+    template: Sand_Cockatrice
+    region:   e_187
+    level:    [71, 74]
+  17240258:
+    template: Velociraptor
+    region:   region_54
+    level:    [66, 69]
+  17240259:
+    template: Sand_Cockatrice
+    region:   region_54
+    level:    [71, 74]
+  17240260:
+    template: Sand_Cockatrice
+    region:   region_54
+    level:    [71, 74]
+  17240261:
+    template: Velociraptor
+    region:   ne_197
+    level:    [66, 69]
+  17240262:
+    template: Velociraptor
+    region:   ne_197
+    level:    [66, 69]
+  17240263:
+    template: Sand_Cockatrice
+    region:   ne_197
+    level:    [71, 74]
+  17240264:
+    template: Sand_Cockatrice
+    region:   ne_197
+    level:    [71, 74]
+  17240265:
+    template: Air_Elemental
+    region:   ne_197
+    level:    [52, 54]
+  17240266:
+    template: Velociraptor
+    region:   ne_202
+    level:    [66, 69]
+  17240267:
+    template: Velociraptor
+    region:   ne_202
+    level:    [66, 69]
+  17240268:
+    template: Sand_Cockatrice
+    region:   ne_202
+    level:    [71, 74]
+  17240269:
+    template: Sand_Cockatrice
+    region:   ne_202
+    level:    [71, 74]
+  17240270:
+    template: Velociraptor
+    region:   ne_206
+    level:    [66, 69]
+  17240271:
+    template: Velociraptor
+    region:   ne_202
+    level:    [66, 69]
+  17240272:
+    template: Sand_Cockatrice
+    region:   ne_206
+    level:    [71, 74]
+  17240273:
+    template: Sand_Cockatrice
+    region:   ne_206
+    level:    [71, 74]
+  17240274:
+    template: Goblin_Mercenary
+    region:   n_210
+    level:    [65, 68]
+  17240275:
+    template: Goblin_Alchemist
+    region:   n_210
+    level:    [65, 68]
+  17240276:
+    template: Velociraptor
+    region:   n_210
+    level:    [66, 69]
+  17240277:
+    template: Velociraptor
+    region:   n_210
+    level:    [66, 69]
+  17240278:
+    template: Velociraptor
+    region:   n_210
+    level:    [66, 69]
+  17240279:
+    template: Doom_Soldier
+    region:   n_210
+    level:    [66, 70]
+  17240280:
+    template: Doom_Mage
+    region:   n_210
+    level:    [67, 71]
+  17240281:
+    template: Goblin_Alchemist
+    region:   n_217
+    level:    [65, 68]
+  17240282:
+    template: Velociraptor
+    region:   n_217
+    level:    [66, 69]
+  17240283:
+    template: Velociraptor
+    region:   n_210
+    level:    [66, 69]
+  17240284:
+    template: Velociraptor
+    region:   n_217
+    level:    [66, 69]
+  17240285:
+    template: Velociraptor
+    region:   n_217
+    level:    [66, 69]
+  17240286:
+    template: Doom_Mage
+    region:   n_217
+    level:    [67, 71]
+  17240287:
+    template: Fantasma
+    region:   n_217
+    level:    [65, 68]
+  17240288:
+    template: Goblin_Mercenary
+    region:   c_224
+    level:    [65, 68]
+  17240289:
+    template: Goblin_Mercenary
+    region:   c_224
+    level:    [65, 68]
+  17240290:
+    template: Goblin_Shepherd
+    region:   c_224
+    level:    [65, 68]
+  17240291:
+    template: Goblins_Rabbit
+    at:       [1.000, 1.000, 1.000]
+    level:    [48, 50]
+  17240292:
+    template: Velociraptor
+    region:   c_224
+    level:    [66, 69]
+  17240293:
+    template: Velociraptor
+    region:   w_240
+    level:    [66, 69]
+  17240294:
+    template: Doom_Soldier
+    region:   c_224
+    level:    [66, 70]
+  17240295:
+    template: Doom_Soldier
+    region:   c_224
+    level:    [66, 70]
+  17240296:
+    template: Goblin_Shepherd
+    region:   c_232
+    level:    [65, 68]
+  17240297:
+    template: Goblins_Rabbit
+    at:       [1.000, 1.000, 1.000]
+    level:    [49, 50]
+  17240298:
+    template: Goblin_Alchemist
+    region:   c_232
+    level:    [66, 68]
+  17240299:
+    template: Goblin_Bandit
+    region:   c_232
+    level:    [65, 68]
+  17240300:
+    template: Velociraptor
+    region:   c_232
+    level:    [66, 69]
+  17240301:
+    template: Velociraptor
+    region:   w_240
+    level:    [66, 69]
+  17240302:
+    template: Velociraptor
+    region:   n_260
+    level:    [66, 69]
+  17240303:
+    template: Fire_Elemental
+    region:   c_232
+    level:    [67, 69]
+  17240304:
+    template: Goblin_Shepherd
+    region:   w_240
+    level:    [65, 68]
+  17240305:
+    template: Goblins_Rabbit
+    at:       [1.000, 1.000, 1.000]
+    level:    [48, 50]
+  17240306:
+    template: Goblin_Mercenary
+    region:   w_240
+    level:    [65, 68]
+  17240307:
+    template: Goblin_Mercenary
+    region:   w_240
+    level:    [65, 68]
+  17240308:
+    template: Goblin_Alchemist
+    region:   w_240
+    level:    [65, 68]
+  17240309:
+    template: Velociraptor
+    region:   w_240
+    level:    [66, 69]
+  17240310:
+    template: Velociraptor
+    region:   w_240
+    level:    [66, 69]
+  17240311:
+    template: Velociraptor
+    region:   w_240
+    level:    [66, 69]
+  17240312:
+    template: Doom_Soldier
+    region:   w_240
+    level:    [66, 70]
+  17240313:
+    template: Doom_Mage
+    region:   w_240
+    level:    [67, 71]
+  17240314:
+    template: Fire_Elemental
+    region:   w_240
+    level:    [67, 69]
+  17240315:
+    template: Zmey_Gorynych
+    region:   w_240
+    level:    [78, 78]
+  17240316:
+    template: Goblin_Mercenary
+    region:   c_252
+    level:    [65, 68]
+  17240317:
+    template: Velociraptor
+    region:   c_252
+    level:    [66, 69]
+  17240318:
+    template: Sand_Cockatrice
+    region:   c_252
+    level:    [71, 74]
+  17240319:
+    template: Sand_Cockatrice
+    region:   c_252
+    level:    [71, 74]
+  17240320:
+    template: Sand_Cockatrice
+    region:   c_252
+    level:    [71, 74]
+  17240321:
+    template: Sand_Cockatrice
+    region:   c_252
+    level:    [71, 74]
+  17240322:
+    template: Doom_Soldier
+    region:   c_252
+    level:    [66, 70]
+  17240323:
+    template: Enna-enna
+    region:   c_252
+    level:    [65, 69]
+  17240324:
+    template: Robber_Crab
+    region:   n_260
+    level:    [64, 67]
+  17240325:
+    template: Robber_Crab
+    region:   n_260
+    level:    [64, 67]
+  17240326:
+    template: Robber_Crab
+    region:   n_260
+    level:    [64, 67]
+  17240327:
+    template: Robber_Crab
+    region:   c_267
+    level:    [64, 67]
+  17240328:
+    template: Robber_Crab
+    region:   n_260
+    level:    [64, 67]
+  17240329:
+    template: Robber_Crab
+    region:   c_267
+    level:    [64, 67]
+  17240330:
+    template: Robber_Crab
+    region:   c_252
+    level:    [64, 67]
+  17240331:
+    template: Robber_Crab
+    region:   c_267
+    level:    [64, 67]
+  17240332:
+    template: Robber_Crab
+    region:   c_267
+    level:    [64, 67]
+  17240333:
+    template: Robber_Crab
+    region:   n_260
+    level:    [64, 67]
+  17240334:
+    template: Robber_Crab
+    region:   n_260
+    level:    [64, 67]
+  17240335:
+    template: Goblin_Shepherd
+    region:   w_271
+    level:    [65, 68]
+  17240336:
+    template: Goblins_Rabbit
+    at:       [1.000, 1.000, 1.000]
+    level:    [48, 50]
+  17240337:
+    template: Goblin_Alchemist
+    region:   w_271
+    level:    [65, 68]
+  17240338:
+    template: Goblin_Bandit
+    region:   w_271
+    level:    [65, 68]
+  17240339:
+    template: Velociraptor
+    region:   w_271
+    level:    [66, 69]
+  17240340:
+    template: Velociraptor
+    region:   w_271
+    level:    [66, 69]
+  17240341:
+    template: Velociraptor
+    region:   w_240
+    level:    [66, 69]
+  17240342:
+    template: Enna-enna
+    region:   w_271
+    level:    [65, 69]
+  17240343:
+    template: Doom_Soldier
+    region:   w_271
+    level:    [66, 70]
+  17240344:
+    template: Doom_Soldier
+    region:   w_271
+    level:    [66, 70]
+  17240345:
+    template: Goblin_Bandit
+    region:   w_281
+    level:    [65, 68]
+  17240346:
+    template: Goblin_Bandit
+    region:   w_281
+    level:    [65, 68]
+  17240347:
+    template: Goblin_Mercenary
+    region:   w_281
+    level:    [65, 68]
+  17240348:
+    template: Goblin_Shepherd
+    region:   w_284
+    level:    [65, 68]
+  17240349:
+    template: Goblins_Rabbit
+    at:       [1.000, 1.000, 1.000]
+    level:    [48, 50]
+  17240350:
+    template: Goblin_Alchemist
+    region:   w_284
+    level:    [65, 68]
+  17240351:
+    template: Doom_Soldier
+    region:   w_284
+    level:    [66, 70]
+  17240352:
+    template: Goblin_Shepherd
+    region:   nw_290
+    level:    [65, 68]
+  17240353:
+    template: Goblins_Rabbit
+    at:       [1.000, 1.000, 1.000]
+    level:    [48, 50]
+  17240354:
+    template: Goblin_Mercenary
+    region:   nw_290
+    level:    [65, 68]
+  17240355:
+    template: Goblin_Bandit
+    region:   nw_290
+    level:    [65, 68]
+  17240356:
+    template: Goblin_Alchemist
+    region:   nw_290
+    level:    [65, 67]
+  17240357:
+    template: Sand_Cockatrice
+    region:   ne_293
+    level:    [71, 74]
+  17240358:
+    template: Sand_Cockatrice
+    region:   ne_293
+    level:    [71, 74]
+  17240359:
+    template: Greater_Manticore
+    region:   ne_293
+    level:    [76, 79]
+  17240360:
+    template: Greater_Manticore
+    region:   ne_293
+    level:    [76, 79]
+  17240361:
+    template: Greater_Manticore
+    region:   ne_293
+    level:    [76, 79]
+  17240362:
+    template: Greater_Manticore
+    region:   ne_293
+    level:    [76, 79]
+  17240363:
+    template: Sand_Cockatrice
+    region:   nw_299
+    level:    [71, 74]
+  17240364:
+    template: Greater_Manticore
+    region:   nw_299
+    level:    [76, 79]
+  17240365:
+    template: Greater_Manticore
+    region:   nw_299
+    level:    [76, 79]
+  17240366:
+    template: Sand_Cockatrice
+    region:   nw_302
+    level:    [71, 74]
+  17240367:
+    template: Greater_Manticore
+    region:   nw_302
+    level:    [76, 79]
+  17240368:
+    template: Greater_Manticore
+    region:   nw_302
+    level:    [76, 79]
+  17240369:
+    template: Greater_Manticore
+    region:   nw_302
+    level:    [76, 79]
+  17240370:
+    template: Sand_Cockatrice
+    region:   nw_306
+    level:    [71, 74]
+  17240371:
+    template: Greater_Manticore
+    region:   nw_306
+    level:    [76, 79]
+  17240372:
+    template: Greater_Manticore
+    region:   nw_306
+    level:    [76, 79]
+  17240373:
+    template: Greater_Manticore
+    region:   nw_306
+    level:    [76, 79]
+  17240374:
+    template: Greater_Manticore
+    region:   nw_306
+    level:    [76, 79]
+  17240375:
+    template: Greater_Manticore
+    region:   nw_306
+    level:    [76, 79]
+  17240376:
+    template: Frostmane
+    region:   nw_306
+    level:    [80, 80]
+  17240377:
+    template: Air_Elemental
+    region:   nw_306
+    level:    [52, 54]
+  17240378:
+    template: Sand_Cockatrice
+    region:   nw_314
+    level:    [71, 74]
+  17240379:
+    template: Greater_Manticore
+    region:   nw_314
+    level:    [76, 79]
+  17240380:
+    template: Greater_Manticore
+    region:   nw_314
+    level:    [76, 79]
+  17240381:
+    template: Greater_Manticore
+    region:   nw_314
+    level:    [76, 79]
+  17240382:
+    template: Greater_Manticore
+    region:   nw_318
+    level:    [76, 79]
+  17240383:
+    template: Greater_Manticore
+    region:   nw_318
+    level:    [76, 79]
+  17240384:
+    template: Air_Elemental
+    region:   nw_318
+    level:    [52, 54]
+  17240385:
+    template: Goblin_Mercenary
+    region:   n_322
+    level:    [65, 68]
+  17240386:
+    template: Goblin_Alchemist
+    region:   n_322
+    level:    [66, 67]
+  17240387:
+    template: Goblin_Bandit
+    region:   n_323
+    level:    [65, 68]
+  17240388:
+    template: Goblin_Mercenary
+    region:   n_323
+    level:    [65, 68]
+  17240389:
+    template: Sand_Cockatrice
+    region:   e_326
+    level:    [71, 74]
+  17240390:
+    template: Sand_Cockatrice
+    region:   e_326
+    level:    [71, 74]
+  17240391:
+    template: Sand_Cockatrice
+    region:   e_326
+    level:    [71, 74]
+  17240392:
+    template: Greater_Manticore
+    region:   e_326
+    level:    [76, 79]
+  17240393:
+    template: Greater_Manticore
+    region:   e_326
+    level:    [76, 79]
+  17240394:
+    template: Sand_Cockatrice
+    region:   e_333
+    level:    [71, 74]
+  17240395:
+    template: Sand_Cockatrice
+    region:   e_333
+    level:    [71, 74]
+  17240396:
+    template: Sand_Cockatrice
+    region:   e_333
+    level:    [71, 74]
+  17240397:
+    template: Greater_Manticore
+    region:   e_333
+    level:    [76, 79]
+  17240398:
+    template: Greater_Manticore
+    region:   e_333
+    level:    [76, 79]
+  17240399:
+    template: Greater_Manticore
+    region:   e_335
+    level:    [76, 79]
+  17240400:
+    template: Greater_Manticore
+    region:   e_335
+    level:    [76, 79]
+  17240401:
+    template: Sand_Cockatrice
+    region:   e_335
+    level:    [71, 74]
+  17240402:
+    template: Sand_Cockatrice
+    region:   e_335
+    level:    [71, 74]
+  17240403:
+    template: Sand_Cockatrice
+    region:   e_335
+    level:    [71, 74]
+  17240404:
+    template: Sand_Cockatrice
+    region:   e_335
+    level:    [71, 74]
+  17240405:
+    template: Greater_Manticore
+    region:   e_341
+    level:    [76, 79]
+  17240406:
+    template: Greater_Manticore
+    region:   e_341
+    level:    [76, 79]
+  17240407:
+    template: Greater_Manticore
+    region:   e_335
+    level:    [76, 79]
+  17240408:
+    template: Greater_Manticore
+    region:   e_341
+    level:    [76, 79]
+  17240409:
+    template: Sand_Cockatrice
+    region:   e_341
+    level:    [71, 74]
+  17240410:
+    template: Sand_Cockatrice
+    region:   e_341
+    level:    [71, 74]
+  17240411:
+    template: Sand_Cockatrice
+    region:   e_341
+    level:    [71, 74]
+  17240412:
+    template: Sand_Cockatrice
+    region:   e_335
+    level:    [71, 74]
+  17240413:
+    template: Kreutzet
+    region:   region_53
+    level:    [79, 80]
+  17240414:
+    template: Axesarion_the_Wanderer
+    at:       [-107.000, -8.000, 454.000, 64]
+    level:    [68, 68]
+  17240415:
+    template: Hobgoblin_Warrior
+    at:       [1.000, 1.000, 1.000]
+    level:    [70, 73]
+  17240416:
+    template: Hobgoblin_White_Mage
+    at:       [1.000, 1.000, 1.000]
+    level:    [70, 73]
+  17240417:
+    template: Hobgoblin_Black_Mage
+    at:       [1.000, 1.000, 1.000]
+    level:    [70, 73]
+  17240418:
+    template: Hobgoblin_Red_Mage
+    at:       [1.000, 1.000, 1.000]
+    level:    [70, 73]
+  17240419:
+    template: Hobgoblin_Thief
+    at:       [1.000, 1.000, 1.000]
+    level:    [70, 73]
+  17240420:
+    template: Hobgoblin_Dark_Knight
+    at:       [1.000, 1.000, 1.000]
+    level:    [70, 73]
+  17240421:
+    template: Hobgoblin_Ranger
+    at:       [1.000, 1.000, 1.000]
+    level:    [70, 73]
+  17240422:
+    template: Hobgoblin_Beastmaster
+    at:       [1.000, 1.000, 1.000]
+    level:    [70, 73]
+  17240423:
+    template: Goblins_Rabbit
+    at:       [1.000, 1.000, 1.000]
+    level:    [68, 70]
+  17240424:
+    template: Stolas
+    at:       [-151.650, -8.500, 191.370, 166]
+    level:    [80, 80]
+  17240425:
+    template: Goblin_Pirate
+    at:       [-181.930, 8.902, -81.113, 175]
+    level:    [75, 80]
+  17240426:
+    template: Goblin_Pirate
+    at:       [-173.886, 7.802, -55.598, 180]
+    level:    [75, 80]
+  17240427:
+    template: Goblin_Duelist
+    at:       [-173.117, 8.507, -82.060, 185]
+    level:    [75, 80]
+  17240428:
+    template: Goblin_Duelist
+    at:       [-169.039, 7.808, -59.505, 190]
+    level:    [75, 80]
+  17240429:
+    template: Goblin_Doctor
+    at:       [-172.107, 8.404, -77.371, 185]
+    level:    [75, 80]
+  17240430:
+    template: Goblin_Doctor
+    at:       [-167.227, 7.740, -64.635, 175]
+    level:    [75, 80]
+  17240431:
+    template: Goblin_Professor
+    at:       [-167.709, 8.088, -73.085, 170]
+    level:    [75, 80]
+  17240432:
+    template: Goblin_Professor
+    at:       [-166.489, 7.922, -66.968, 175]
+    level:    [75, 80]
+  17240433:
+    template: Goblin_Boss
+    at:       [-145.696, 8.626, -82.030, 180]
+    level:    [80, 80]
+  17240434:
+    template: Kaneakeluh
+    level:    [1, 1]
+  17240435:
+    template: Vedrfolnir
+    at:       [162.949, 7.500, 156.080, 29]
+    level:    [99, 99]
+  17240436:
+    template: Vedrfolnir
+    at:       [-31.690, -0.843, 79.870, 252]
+    level:    [99, 99]
+  17240437:
+    template: Vedrfolnir
+    at:       [195.529, 7.462, -3.789, 99]
+    level:    [99, 99]
+  17240438:
+    template: Glazemane
+    at:       [162.949, 7.500, 156.080, 198]
+  17240439:
+    template: Glazemane
+    at:       [-31.690, -0.843, 79.870, 99]
+  17240440:
+    template: Glazemane
+    at:       [195.529, 7.462, -3.789]
+
+  17240535:
+    template: Beta_coka_Sand_Cockatrice
+    region:   c_109
+    level:    [71, 74]
+  17240536:
+    template: Beta_coka_Sand_Cockatrice
+    region:   c_109
+    level:    [71, 74]
+slots:
+  - members:
+      17240071: {} # Goblin_Mercenary
+      17240076: {} # Goblin_Mercenary
+  - members:
+      17240072: {} # Sand_Lizard
+      17240075: {} # Beach_Bunny
+  - members:
+      17240079: {} # Sand_Lizard
+      17240081: {} # Beach_Bunny
+  - members:
+      17240082: {} # Beach_Bunny
+      17240090: {} # Beach_Bunny
+  - members:
+      17240083: {} # Goblin_Shepherd
+      17240086: {} # Sand_Lizard
+      17240095: {} # Sand_Lizard
+  - members:
+      17240087: {} # Sand_Lizard
+      17240089: {} # Beach_Bunny
+  - members:
+      17240091: {} # Goblin_Shepherd
+      17240093: {} # Goblin_Bandit
+      17240100: {} # Doom_Soldier
+  - members:
+      17240099: {} # Beach_Bunny
+      17240103: {} # Beach_Bunny
+  - members:
+      17240101: {} # Goblin_Alchemist
+      17240104: {} # Doom_Mage
+  - members:
+      17240105: {} # Goblin_Mercenary
+      17240112: {} # Doom_Soldier
+  - members:
+      17240108: {} # Beach_Bunny
+      17240110: {} # Sand_Lizard
+  - members:
+      17240111: {} # Sand_Lizard
+      17240117: {} # Sand_Lizard
+  - members:
+      17240113: {} # Goblin_Mercenary
+      17240121: {} # Doom_Soldier
+  - members:
+      17240114: {} # Goblin_Shepherd
+      17240122: {} # Doom_Soldier
+  - members:
+      17240124: {} # Goblin_Mercenary
+      17240125: {} # Goblin_Bandit
+      17240131: {} # Doom_Soldier
+  - members:
+      17240127: {} # Sand_Lizard
+      17240132: {} # Fantasma
+  - members:
+      17240130: {} # Velociraptor
+      17240152: {} # Velociraptor
+  - members:
+      17240133: {} # Goblin_Bandit
+      17240142: {} # Doom_Soldier
+  - members:
+      17240134: {} # Goblin_Alchemist
+      17240143: {} # Doom_Mage
+  - members:
+      17240136: {} # Robber_Crab
+      17240140: {} # Sand_Lizard
+  - members:
+      17240139: {} # Sand_Lizard
+      17240141: {} # Velociraptor
+  - members:
+      17240145: {} # Goblin_Shepherd
+      17240153: {} # Doom_Mage
+  - members:
+      17240151: {} # Sand_Lizard
+      17240154: {} # Fantasma
+  - members:
+      17240158: {} # Velociraptor
+      17240164: {} # Sand_Lizard
+  - members:
+      17240159: {} # Velociraptor
+      17240160: {} # Sand_Lizard
+  - members:
+      17240167: {} # Velociraptor
+      17240177: {} # Sand_Cockatrice
+      17240320: {} # Sand_Cockatrice
+  - members:
+      17240168: {} # Velociraptor
+      17240171: {} # Sand_Lizard
+  - members:
+      17240176: {} # Sand_Lizard
+      17240178: {} # Sand_Cockatrice
+  - members:
+      17240182: {} # Velociraptor
+      17240187: {} # Robber_Crab
+      17240190: {} # Sand_Cockatrice
+  - members:
+      17240186: {} # Robber_Crab
+      17240206: {} # Velociraptor
+      17240208: {} # Velociraptor
+  - members:
+      17240192: {} # Velociraptor
+      17240194: {} # Sand_Cockatrice
+  - members:
+      17240196: {} # Velociraptor
+      17240198: {} # Sand_Cockatrice
+  - members:
+      17240201: {} # Velociraptor
+      17240203: {} # Sand_Cockatrice
+  - members:
+      17240205: {} # Velociraptor
+      17240209: {} # Velociraptor
+      17240212: {} # Robber_Crab
+  - members:
+      17240207: {} # Velociraptor
+      17240213: {} # Robber_Crab
+      17240216: {} # Terror_Pugil
+      17240224: {} # Terror_Pugil
+  - members:
+      17240214: {} # Robber_Crab
+      17240217: {} # Terror_Pugil
+      17240220: {} # Robber_Crab
+  - members:
+      17240215: {} # Terror_Pugil
+      17240221: {} # Robber_Crab
+      17240225: {} # Terror_Pugil
+      17240226: {} # Fantasma
+  - members:
+      17240227: {} # Beach_Bunny
+      17240231: {} # Robber_Crab
+  - members:
+      17240236: {} # Robber_Crab
+      17240239: {} # Robber_Crab
+      17240240: {} # Terror_Pugil
+  - members:
+      17240243: {} # Velociraptor
+      17240244: {} # Sand_Cockatrice
+  - members:
+      17240252: {} # Velociraptor
+      17240253: {} # Sand_Cockatrice
+  - members:
+      17240258: {} # Velociraptor
+      17240259: {} # Sand_Cockatrice
+  - members:
+      17240262: {} # Velociraptor
+      17240263: {} # Sand_Cockatrice
+  - members:
+      17240267: {} # Velociraptor
+      17240271: {} # Velociraptor
+  - members:
+      17240274: {} # Goblin_Mercenary
+      17240279: {} # Doom_Soldier
+  - members:
+      17240275: {} # Goblin_Alchemist
+      17240280: {} # Doom_Mage
+  - members:
+      17240278: {} # Velociraptor
+      17240283: {} # Velociraptor
+  - members:
+      17240281: {} # Goblin_Alchemist
+      17240286: {} # Doom_Mage
+  - members:
+      17240285: {} # Velociraptor
+      17240287: {} # Fantasma
+  - members:
+      17240288: {} # Goblin_Mercenary
+      17240299: {} # Goblin_Bandit
+  - members:
+      17240289: {} # Goblin_Mercenary
+      17240294: {} # Doom_Soldier
+  - members:
+      17240290: {} # Goblin_Shepherd
+      17240295: {} # Doom_Soldier
+  - members:
+      17240293: {} # Velociraptor
+      17240301: {} # Velociraptor
+      17240310: {} # Velociraptor
+  - members:
+      17240296: {} # Goblin_Shepherd
+      17240298: {} # Goblin_Alchemist
+  - members:
+      17240302: {} # Velociraptor
+      17240325: {} # Robber_Crab
+      17240333: {} # Robber_Crab
+  - members:
+      17240304: {} # Goblin_Shepherd
+      17240312: {} # Doom_Soldier
+  - members:
+      17240307: {} # Goblin_Mercenary
+      17240313: {} # Doom_Mage
+  - members:
+      17240311: {} # Velociraptor
+      17240341: {} # Velociraptor
+  - members:
+      17240316: {} # Goblin_Mercenary
+      17240322: {} # Doom_Soldier
+  - members:
+      17240317: {} # Velociraptor
+      17240319: {} # Sand_Cockatrice
+      17240330: {} # Robber_Crab
+  - members:
+      17240324: {} # Robber_Crab
+      17240326: {} # Robber_Crab
+      17240331: {} # Robber_Crab
+  - members:
+      17240327: {} # Robber_Crab
+      17240329: {} # Robber_Crab
+      17240332: {} # Robber_Crab
+  - members:
+      17240328: {} # Robber_Crab
+      17240334: {} # Robber_Crab
+  - members:
+      17240335: {} # Goblin_Shepherd
+      17240344: {} # Doom_Soldier
+  - members:
+      17240337: {} # Goblin_Alchemist
+      17240343: {} # Doom_Soldier
+  - members:
+      17240346: {} # Goblin_Bandit
+      17240347: {} # Goblin_Mercenary
+  - members:
+      17240348: {} # Goblin_Shepherd
+      17240351: {} # Doom_Soldier
+  - members:
+      17240350: {} # Goblin_Alchemist
+      17240352: {} # Goblin_Shepherd
+  - members:
+      17240354: {} # Goblin_Mercenary
+      17240355: {} # Goblin_Bandit
+      17240356: {} # Goblin_Alchemist
+  - members:
+      17240366: {} # Sand_Cockatrice
+      17240367: {} # Greater_Manticore
+  - members:
+      17240370: {} # Sand_Cockatrice
+      17240371: {} # Greater_Manticore
+  - members:
+      17240378: {} # Sand_Cockatrice
+      17240379: {} # Greater_Manticore
+  - members:
+      17240385: {} # Goblin_Mercenary
+      17240386: {} # Goblin_Alchemist
+  - members:
+      17240387: {} # Goblin_Bandit
+      17240388: {} # Goblin_Mercenary
+  - members:
+      17240389: {} # Sand_Cockatrice
+      17240391: {} # Sand_Cockatrice
+      17240393: {} # Greater_Manticore
+  - members:
+      17240395: {} # Sand_Cockatrice
+      17240400: {} # Greater_Manticore
+      17240406: {} # Greater_Manticore
+  - members:
+      17240396: {} # Sand_Cockatrice
+      17240402: {} # Sand_Cockatrice
+      17240408: {} # Greater_Manticore
+      17240409: {} # Sand_Cockatrice
+  - members:
+      17240398: {} # Greater_Manticore
+      17240404: {} # Sand_Cockatrice
+  - members:
+      17240403: {} # Sand_Cockatrice
+      17240407: {} # Greater_Manticore
+      17240412: {} # Sand_Cockatrice

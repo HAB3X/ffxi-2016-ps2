@@ -1,0 +1,1876 @@
+# yaml-language-server: $schema=../../schemas/mobs.schema.json
+
+templates:
+
+  Balloon:
+    id:            332
+    species:       bomb
+    skill_list_id: 56
+    attributes:
+      combat:
+        skill: club
+      render:
+        look:
+          type:  standard
+          model: 280
+        entity_flags: 129
+        hitbox:        10
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   pinch_of_bomb_ash
+        - chance: uncommon
+          item:   bomb_arm
+        - chance: rare
+          item:   asbestos_mitts
+      steal: [pinch_of_bomb_ash, bomb_arm] # audit needed
+      despoil:
+        pinch_of_bomb_ash: 0
+
+  Battle_Bat:
+    id:            369
+    species:       bat
+    skill_list_id: 46
+    attributes:
+      combat:
+        skill: club
+      render:
+        look:
+          type:  standard
+          model: 256
+        entity_flags:  643
+        animation_sub:   8
+        model_size:      1
+        hitbox:         12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   bat_wing
+        - chance: rare
+          item:   horutoto_chest_key
+        - chance: very_rare
+          item:   vial_of_fiend_blood
+      despoil:
+        bat_wing: 0
+
+  Battue_Bats:
+    id:            372
+    species:       flock_bat
+    skill_list_id: 47
+    attributes:
+      combat:
+        skill: club
+      render:
+        look:
+          type:  standard
+          model: 260
+        entity_flags:  641
+        animation_sub:   8
+        name_prefix:    64
+        hitbox:         13
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   bat_wing
+      despoil:
+        bat_wing: 0
+
+  Blade_Bat_Inner_Horutoto:
+    id:            7355
+    display_name:  Blade_Bat
+    species:       bat
+    skill_list_id: 46
+    attributes:
+      combat:
+        skill: club
+      render:
+        look:
+          type:  standard
+          model: 256
+        entity_flags:  641
+        animation_sub:   8
+        hitbox:         11
+      behaviors:
+        links: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   bat_wing
+        - chance: very_rare
+          item:   vial_of_fiend_blood
+      despoil:
+        bat_wing: 0
+
+  Blob:
+    id:            455
+    species:       slime
+    skill_list_id: 229
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 292
+        entity_flags: 131
+        model_size:     1
+        hitbox:        24
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: very_rare
+          item:   horutoto_chest_key
+      despoil:
+        vial_of_slime_oil: 0
+
+  Boggart:
+    id:            483
+    species:       evil_weapon
+    skill_list_id: 110
+    attributes:
+      combat:
+        skill: sword
+      render:
+        look:
+          type:  standard
+          model: 451
+        entity_flags: 131
+        model_size:     1
+        hitbox:        20
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: rare
+          item:   scroll_of_regen
+      steal: beastcoin
+
+  Covin_Bat:
+    id:            6461
+    species:       bat
+    skill_list_id: 46
+    attributes:
+      combat:
+        skill: club
+      render:
+        look:
+          type:  standard
+          model: 256
+        entity_flags:  645
+        animation_sub:   8
+        model_size:      2
+        hitbox:         14
+      behaviors:
+        links: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   bat_wing
+        - chance: very_rare
+          item:   vial_of_fiend_blood
+      despoil:
+        bat_wing: 0
+    content: abyssea
+
+  Deathwatch_Beetle:
+    id:            6077
+    species:       beetle
+    skill_list_id: 49
+    attributes:
+      combat:
+        skill: polearm
+      jobs: [pld, pld]
+      render:
+        look:
+          type:  standard
+          model: 408
+        entity_flags: 133
+        model_size:     2
+        hitbox:        14
+      behaviors:
+        links: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   insect_wing
+        - chance: uncommon
+          item:   beetle_shell
+        - chance: rare
+          item:   beetle_jaw
+      despoil:
+        insect_wing:  0
+        beetle_shell: 0
+        beetle_jaw:   0
+    content: abyssea
+
+  Goblin_Flesher:
+    id:            6667
+    species:       armored_goblin
+    skill_list_id: 133
+    attributes:
+      combat:
+        skill: great_sword
+      render:
+        look:
+          type:  standard
+          model: 495
+        entity_flags: 131
+        model_size:     1
+        hitbox:        12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: very_rare
+          item:   faceguard
+        - chance: very_rare
+          item:   scale_finger_gauntlets
+        - chance: very_rare
+          item:   scale_cuisses
+        - chance: very_rare
+          item:   scale_greaves
+      steal: beastcoin
+      despoil:
+        loaf_of_goblin_bread:      0
+        chunk_of_goblin_chocolate: 0
+        bowl_of_goblin_stew:       0
+        goblin_mushpot:            0
+    content: abyssea
+
+  Goblin_Gambler:
+    id:            1666
+    species:       goblin
+    spell_list_id: 21
+    skill_list_id: 133
+    attributes:
+      combat:
+        skill: club
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 494
+        entity_flags: 131
+        model_size:     1
+        hitbox:        12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: very_rare
+          item:   horutoto_chest_key
+        - chance: rare
+          item:   bag_of_poison_flour
+        - chance: super_rare
+          item:   poets_circlet
+        - chance: super_rare
+          item:   linen_cuffs
+        - chance: super_rare
+          item:   linen_slops
+        - chance: super_rare
+          item:   holly_clogs
+      steal: silver_beastcoin
+      despoil:
+        loaf_of_goblin_bread:      0
+        chunk_of_goblin_chocolate: 0
+        bowl_of_goblin_stew:       0
+        goblin_mushpot:            0
+
+  Goblin_Leecher:
+    id:            1683
+    species:       goblin
+    spell_list_id: 20
+    skill_list_id: 133
+    attributes:
+      combat:
+        skill: staff
+      jobs: [whm, whm]
+      render:
+        look:
+          type:  standard
+          model: 488
+        entity_flags: 131
+        model_size:     1
+        hitbox:        12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: rare
+          item:   block_of_yagudo_caulk
+        - chance: very_rare
+          item:   horutoto_chest_key
+        - chance: rare
+          item:   scroll_of_paralyze
+        - chance: rare
+          item:   scroll_of_barsleep
+        - chance: rare
+          item:   scroll_of_silence
+        - chance: very_rare
+          item:   scroll_of_barpoison
+        - chance: rare
+          item:   scroll_of_protectra
+        - chance: rare
+          item:   scroll_of_sneak
+        - chance: very_rare
+          item:   scroll_of_invisible
+        - chance: very_rare
+          item:   scroll_of_deodorize
+        - chance: very_rare
+          item:   poets_circlet
+        - chance: very_rare
+          item:   linen_cuffs
+        - chance: very_rare
+          item:   linen_slops
+        - chance: very_rare
+          item:   holly_clogs
+      steal: silver_beastcoin
+      despoil:
+        loaf_of_goblin_bread:      0
+        chunk_of_goblin_chocolate: 0
+        bowl_of_goblin_stew:       0
+        goblin_mushpot:            0
+
+  Goblin_Lurcher:
+    id:            6654
+    species:       goblin
+    skill_list_id: 133
+    attributes:
+      combat:
+        skill: dagger
+      jobs: [thf, thf]
+      render:
+        look:
+          type:  standard
+          model: 484
+        entity_flags: 131
+        model_size:     1
+        hitbox:        12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   wild_onion
+        - chance: very_rare
+          item:   bronze_cap
+        - chance: very_rare
+          item:   bronze_mittens
+        - chance: very_rare
+          item:   bronze_subligar
+        - chance: very_rare
+          item:   bronze_leggings
+      steal: beastcoin
+      despoil:
+        loaf_of_goblin_bread:      0
+        chunk_of_goblin_chocolate: 0
+        bowl_of_goblin_stew:       0
+        goblin_mushpot:            0
+    content: abyssea
+
+  Goblin_Metallurgist:
+    id:            6663
+    species:       armored_goblin
+    spell_list_id: 5
+    skill_list_id: 133
+    attributes:
+      combat:
+        skill: sword
+      jobs: [drk, drk]
+      render:
+        look:
+          type:  standard
+          model: 491
+        entity_flags: 131
+        model_size:     1
+        hitbox:        12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: very_rare
+          item:   faceguard
+        - chance: very_rare
+          item:   scale_finger_gauntlets
+        - chance: very_rare
+          item:   scale_cuisses
+        - chance: very_rare
+          item:   scale_greaves
+      steal: beastcoin
+      despoil:
+        loaf_of_goblin_bread:      0
+        chunk_of_goblin_chocolate: 0
+        bowl_of_goblin_stew:       0
+        goblin_mushpot:            0
+    content: abyssea
+
+  Goblin_Mugger:
+    id:            1690
+    species:       goblin
+    skill_list_id: 133
+    attributes:
+      combat:
+        skill: dagger
+      jobs: [thf, thf]
+      render:
+        look:
+          type:  standard
+          model: 485
+        entity_flags: 131
+        model_size:     1
+        hitbox:        12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: rare
+          item:   block_of_yagudo_caulk
+        - chance: very_rare
+          item:   horutoto_chest_key
+        - chance: very_rare
+          item:   brass_cap
+        - chance: very_rare
+          item:   brass_mittens
+        - chance: very_rare
+          item:   brass_subligar
+        - chance: very_rare
+          item:   brass_leggings
+      steal: silver_beastcoin
+      despoil:
+        loaf_of_goblin_bread:      0
+        chunk_of_goblin_chocolate: 0
+        bowl_of_goblin_stew:       0
+        goblin_mushpot:            0
+
+  Goblin_Thug:
+    id:            1737
+    species:       goblin
+    skill_list_id: 133
+    attributes:
+      combat:
+        skill: dagger
+      jobs: [thf, thf]
+      render:
+        look:
+          type:  standard
+          model: 484
+        entity_flags: 129
+        hitbox:        10
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   wild_onion
+        - chance: very_rare
+          item:   bronze_cap
+        - chance: very_rare
+          item:   bronze_mittens
+        - chance: very_rare
+          item:   bronze_subligar
+        - chance: very_rare
+          item:   bronze_leggings
+      steal: beastcoin
+      despoil:
+        loaf_of_goblin_bread:      0
+        chunk_of_goblin_chocolate: 0
+        bowl_of_goblin_stew:       0
+        goblin_mushpot:            0
+
+  Goblin_Trailblazer:
+    id:            6656
+    species:       goblin
+    skill_list_id: 133
+    attributes:
+      combat:
+        skill: dagger
+      jobs: [rng, rng]
+      render:
+        look:
+          type:  standard
+          model: 486
+        entity_flags: 131
+        model_size:     1
+        hitbox:        12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   block_of_animal_glue
+        - chance: very_rare
+          item:   leather_bandana
+        - chance: very_rare
+          item:   leather_gloves
+        - chance: very_rare
+          item:   leather_trousers
+        - chance: very_rare
+          item:   leather_highboots
+      steal: crossbow_bolt
+      despoil:
+        loaf_of_goblin_bread:      0
+        chunk_of_goblin_chocolate: 0
+        bowl_of_goblin_stew:       0
+        goblin_mushpot:            0
+    content: abyssea
+
+  Goblin_Weaver:
+    id:            1744
+    species:       goblin
+    spell_list_id: 3
+    skill_list_id: 133
+    attributes:
+      combat:
+        skill: dagger
+      jobs: [rdm, rdm]
+      render:
+        look:
+          type:  standard
+          model: 489
+        entity_flags: 129
+        hitbox:        10
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: rare
+          item:   spool_of_grass_thread
+        - chance: very_rare
+          item:   square_of_grass_cloth
+        - chance: very_rare
+          item:   spool_of_cotton_thread
+        - chance: very_rare
+          item:   square_of_cotton_cloth
+        - chance: very_rare
+          item:   circlet
+        - chance: very_rare
+          item:   cuffs
+        - chance: very_rare
+          item:   slops
+        - chance: very_rare
+          item:   ash_clogs
+      steal: spool_of_grass_thread
+      despoil:
+        loaf_of_goblin_bread:      0
+        chunk_of_goblin_chocolate: 0
+        bowl_of_goblin_stew:       0
+        goblin_mushpot:            0
+
+  Magicked_Bones_club:
+    id:            2475
+    species:       skeleton
+    skill_list_id: 227
+    attributes:
+      combat:
+        skill: axe
+      render:
+        look:
+          type:  standard
+          model: 572
+        entity_flags: 129
+        hitbox:        10
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   bone_chip
+        - chance: very_rare
+          item:   ceremonial_dagger
+      steal: bone_chip
+      despoil:
+        bone_chip: 0
+
+  Magicked_Bones_dagger:
+    id:            7072
+    species:       skeleton
+    skill_list_id: 227
+    attributes:
+      combat:
+        skill: axe
+      render:
+        look:
+          type:  standard
+          model: 1096
+        entity_flags: 129
+        hitbox:        10
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   bone_chip
+        - chance: very_rare
+          item:   ceremonial_dagger
+      steal: bone_chip
+      despoil:
+        bone_chip: 0
+
+  Maltha:
+    id:            2498
+    species:       slime
+    type:          [notorious]
+    spell_list_id: 5
+    skill_list_id: 228
+    attributes:
+      combat:
+        skill: scythe
+        delay: 150
+      jobs: [drk, drk]
+      resists:
+        immune_status: [light_sleep, dark_sleep]
+      render:
+        look:
+          type:  standard
+          model: 292
+        entity_flags: 133
+        model_size:     2
+        hitbox:        27
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 3600
+      stats:
+        hp: 850
+    loot:
+      drops:
+        - chance: very_common
+          item:   trailers_tunica
+        - chance: very_common
+          item:   vial_of_slime_oil
+
+  Nocuous_Weapon:
+    id:            4567
+    species:       evil_weapon
+    type:          [notorious]
+    spell_list_id: 42
+    skill_list_id: 110
+    attributes:
+      combat:
+        skill: club
+      jobs: [rdm, rdm]
+      render:
+        look:
+          type:  standard
+          model: 451
+        entity_flags:  643
+        animation_sub:   8
+        model_size:      1
+        hitbox:         20
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [lottery]
+      stats:
+        hp: 550
+    loot:
+      drops:
+        - chance: common
+          item:   disciple_grip
+    content: wotg
+
+  Skinnymajinx:
+    id:            6535
+    species:       skeleton
+    spell_list_id: 28
+    skill_list_id: 227
+    attributes:
+      combat:
+        skill: great_katana
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 564
+        entity_flags: 133
+        model_size:     2
+        hitbox:        13
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   bone_chip
+      steal: bone_chip
+      despoil:
+        bone_chip: 0
+    content: abyssea
+
+  Skinnymalinks:
+    id:            6530
+    species:       skeleton
+    skill_list_id: 227
+    attributes:
+      combat:
+        skill: polearm
+      render:
+        look:
+          type:  standard
+          model: 572
+        entity_flags: 133
+        model_size:     2
+        hitbox:        13
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   bone_chip
+        - chance: uncommon
+          item:   revival_tree_root
+      steal: bone_chip
+      despoil:
+        bone_chip: 0
+    content: abyssea
+
+  Slendlix_Spindlethumb:
+    id:            3669
+    species:       goblin
+    type:          [notorious]
+    spell_list_id: 499
+    skill_list_id: 133
+    attributes:
+      combat:
+        skill: staff
+      jobs: [whm, whm]
+      render:
+        look:
+          type:  standard
+          model: 493
+        entity_flags: 155
+        name_prefix:   32
+        model_size:     1
+        hitbox:        12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [lottery]
+      stats:
+        hp: 900
+    loot:
+      drops:
+        - chance: uncommon
+          item:   circes_hat
+      steal: silver_beastcoin
+
+  Troika_Bats:
+    id:            4915
+    species:       flock_bat
+    skill_list_id: 47
+    attributes:
+      combat:
+        skill: club
+      render:
+        look:
+          type:  standard
+          model: 260
+        entity_flags:  645
+        animation_sub:   8
+        name_prefix:    64
+        model_size:      2
+        hitbox:         18
+      behaviors:
+        links: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   bat_wing
+      despoil:
+        bat_wing: 0
+    content: abyssea
+
+  Wendigo_blm:
+    id:            4320
+    species:       skeleton
+    spell_list_id: 28
+    skill_list_id: 227
+    attributes:
+      combat:
+        skill: great_katana
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 564
+        entity_flags: 131
+        model_size:     1
+        hitbox:        12
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   bone_chip
+        - chance: rare
+          item:   pile_of_answer_sheets
+        - chance: very_rare
+          item:   scroll_of_gravity
+      steal: bone_chip
+      despoil:
+        bone_chip: 0
+
+  Wendigo_war:
+    id:            4319
+    species:       skeleton
+    skill_list_id: 227
+    attributes:
+      combat:
+        skill: axe
+      render:
+        look:
+          type:  standard
+          model: 572
+        entity_flags: 131
+        model_size:     1
+        hitbox:        12
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   bone_chip
+        - chance: uncommon
+          item:   rusty_dagger
+      steal: bone_chip
+      despoil:
+        bone_chip: 0
+
+  Will-o-the-Wisp:
+    id:            4345
+    species:       bomb
+    skill_list_id: 56
+    attributes:
+      combat:
+        skill: club
+      render:
+        look:
+          type:  standard
+          model: 280
+        entity_flags: 131
+        model_size:     1
+        hitbox:        12
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   pinch_of_bomb_ash
+        - chance: uncommon
+          item:   bomb_arm
+      despoil:
+        pinch_of_bomb_ash: 0
+
+
+  Beta_bom_Balloon:
+    id:            40016
+    species:       bomb
+    skill_list_id: 56
+    attributes:
+      combat:
+        skill: club
+      render:
+        look:
+          type:  standard
+          model: 2952
+        entity_flags: 129
+        hitbox:        10
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: rare
+          item:   beta_20027
+        - chance: rare
+          item:   beta_20057
+        - chance: rare
+          item:   beta_10387
+        - chance: rare
+          item:   beta_20033
+        - chance: uncommon
+          item:   beta_234
+        - chance: uncommon
+          item:   beta_4865
+        - chance: uncommon
+          item:   beta_6782
+        - chance: common
+          item:   pinch_of_bomb_ash
+        - chance: uncommon
+          item:   bomb_arm
+        - chance: rare
+          item:   asbestos_mitts
+      steal: [pinch_of_bomb_ash, bomb_arm] # audit needed
+      despoil:
+        pinch_of_bomb_ash: 0
+
+  Beta_beet_Deathwatch_Beetle:
+    id:            40117
+    species:       beetle
+    skill_list_id: 49
+    attributes:
+      combat:
+        skill: polearm
+      jobs: [pld, pld]
+      render:
+        look:
+          type:  standard
+          model: 2971
+        entity_flags: 133
+        model_size:     2
+        hitbox:        14
+      behaviors:
+        links: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: rare
+          item:   beta_11577
+        - chance: uncommon
+          item:   beta_227
+        - chance: uncommon
+          item:   beta_4835
+        - chance: uncommon
+          item:   beta_6775
+        - chance: common
+          item:   insect_wing
+        - chance: uncommon
+          item:   beetle_shell
+        - chance: rare
+          item:   beetle_jaw
+      despoil:
+        insect_wing:  0
+        beetle_shell: 0
+        beetle_jaw:   0
+    content: abyssea
+
+spawns:
+  17563649:
+    template: Battue_Bats
+    region:   ne_1
+    level:    [1, 3]
+  17563650:
+    template: Battue_Bats
+    region:   ne_1
+    level:    [1, 3]
+  17563651:
+    template: Battue_Bats
+    region:   ne_3
+    level:    [1, 3]
+  17563652:
+    template: Battue_Bats
+    region:   ne_3
+    level:    [1, 3]
+  17563653:
+    template: Goblin_Thug
+    region:   ne_5
+    level:    [1, 3]
+  17563654:
+    template: Goblin_Thug
+    region:   e_6
+    level:    [1, 3]
+  17563655:
+    template: Goblin_Thug
+    region:   ne_7
+    level:    [1, 3]
+  17563656:
+    template: Goblin_Thug
+    region:   ne_7
+    level:    [1, 3]
+  17563657:
+    template: Goblin_Thug
+    region:   ne_7
+    level:    [1, 3]
+  17563658:
+    template: Battue_Bats
+    region:   ne_7
+    level:    [1, 3]
+  17563659:
+    template: Battue_Bats
+    region:   ne_7
+    level:    [1, 3]
+  17563660:
+    template: Goblin_Thug
+    region:   ne_12
+    level:    [1, 3]
+  17563661:
+    template: Goblin_Thug
+    region:   ne_12
+    level:    [1, 3]
+  17563662:
+    template: Goblin_Thug
+    region:   ne_12
+    level:    [1, 3]
+  17563663:
+    template: Goblin_Thug
+    region:   ne_12
+    level:    [1, 3]
+  17563664:
+    template: Battue_Bats
+    region:   ne_12
+    level:    [1, 3]
+  17563665:
+    template: Battue_Bats
+    region:   ne_12
+    level:    [1, 3]
+  17563666:
+    template: Blade_Bat_Inner_Horutoto
+    script:   Blade_Bat
+    region:   e_18
+    level:    [4, 6]
+  17563667:
+    template: Blade_Bat_Inner_Horutoto
+    script:   Blade_Bat
+    region:   e_18
+    level:    [4, 6]
+  17563668:
+    template: Goblin_Thug
+    region:   e_20
+    level:    [3, 6]
+  17563669:
+    template: Goblin_Weaver
+    region:   e_20
+    level:    [3, 6]
+  17563670:
+    template: Magicked_Bones_club
+    script:   Magicked_Bones
+    region:   e_20
+    level:    [3, 8]
+  17563671:
+    template: Magicked_Bones_dagger
+    script:   Magicked_Bones
+    region:   e_20
+    level:    [3, 8]
+  17563672:
+    template: Goblin_Weaver
+    region:   e_30
+    level:    [3, 6]
+  17563673:
+    template: Goblin_Thug
+    region:   ne_25
+    level:    [3, 4]
+  17563674:
+    template: Goblin_Weaver
+    region:   ne_28
+    level:    [3, 4]
+  17563675:
+    template: Goblin_Thug
+    region:   e_27
+    level:    [3, 4]
+  17563676:
+    template: Goblin_Weaver
+    region:   ne_28
+    level:    [3, 4]
+  17563677:
+    template: Goblin_Thug
+    region:   ne_28
+    level:    [3, 4]
+  17563678:
+    template: Goblin_Weaver
+    region:   e_30
+    level:    [3, 4]
+  17563679:
+    template: Goblin_Thug
+    region:   e_30
+    level:    [3, 4]
+  17563680:
+    template: Troika_Bats
+    region:   ne_32
+    level:    [79, 80]
+  17563681:
+    template: Troika_Bats
+    region:   ne_32
+    level:    [78, 80]
+  17563682:
+    template: Deathwatch_Beetle
+    region:   ne_32
+    level:    [79, 80]
+  17563683:
+    template: Deathwatch_Beetle
+    region:   ne_32
+    level:    [79, 81]
+  17563684:
+    template: Goblin_Flesher
+    region:   ne_37
+    level:    [80, 82]
+  17563685:
+    template: Goblin_Metallurgist
+    region:   ne_37
+    level:    [80, 82]
+  17563686:
+    template: Goblin_Lurcher
+    region:   ne_37
+    level:    [83, 84]
+  17563687:
+    template: Goblin_Lurcher
+    region:   ne_37
+    level:    [83, 84]
+  17563688:
+    template: Skinnymalinks
+    region:   n_40
+    level:    [81, 83]
+  17563689:
+    template: Skinnymalinks
+    region:   n_40
+    level:    [81, 83]
+  17563690:
+    template: Skinnymajinx
+    region:   n_40
+    level:    [81, 83]
+  17563691:
+    template: Troika_Bats
+    region:   e_43
+    level:    [79, 80]
+  17563692:
+    template: Troika_Bats
+    region:   e_43
+    level:    [78, 80]
+  17563693:
+    template: Troika_Bats
+    region:   e_43
+    level:    [79, 80]
+  17563694:
+    template: Troika_Bats
+    region:   e_43
+    level:    [78, 79]
+  17563695:
+    template: Deathwatch_Beetle
+    region:   e_43
+    level:    [79, 80]
+  17563696:
+    template: Deathwatch_Beetle
+    region:   e_43
+    level:    [79, 81]
+  17563697:
+    template: Deathwatch_Beetle
+    region:   e_43
+    level:    [79, 81]
+  17563698:
+    template: Troika_Bats
+    region:   e_50
+    level:    [78, 80]
+  17563699:
+    template: Troika_Bats
+    region:   e_50
+    level:    [78, 80]
+  17563700:
+    template: Troika_Bats
+    region:   e_50
+    level:    [79, 80]
+  17563701:
+    template: Troika_Bats
+    region:   c_53
+    level:    [79, 80]
+  17563702:
+    template: Troika_Bats
+    region:   c_53
+    level:    [78, 80]
+  17563703:
+    template: Troika_Bats
+    region:   c_53
+    level:    [78, 80]
+  17563704:
+    template: Deathwatch_Beetle
+    region:   c_53
+    level:    [79, 81]
+  17563705:
+    template: Deathwatch_Beetle
+    region:   c_53
+    level:    [79, 81]
+  17563706:
+    template: Deathwatch_Beetle
+    region:   c_58
+    level:    [79, 80]
+  17563707:
+    template: Deathwatch_Beetle
+    region:   c_58
+    level:    [80, 81]
+  17563708:
+    template: Covin_Bat
+    region:   c_60
+    level:    [81, 83]
+  17563709:
+    template: Goblin_Metallurgist
+    region:   c_61
+    level:    [80, 82]
+  17563710:
+    template: Goblin_Trailblazer
+    region:   c_61
+    level:    [80, 82]
+  17563711:
+    template: Goblin_Lurcher
+    region:   c_61
+    level:    [83, 84]
+  17563712:
+    template: Skinnymalinks
+    region:   n_64
+    level:    [81, 83]
+  17563713:
+    template: Skinnymalinks
+    region:   n_64
+    level:    [81, 83]
+  17563714:
+    template: Skinnymajinx
+    region:   n_64
+    level:    [81, 83]
+  17563715:
+    template: Skinnymajinx
+    region:   n_64
+    level:    [81, 83]
+  17563716:
+    template: Deathwatch_Beetle
+    region:   n_68
+    level:    [80, 81]
+  17563717:
+    template: Deathwatch_Beetle
+    region:   n_68
+    level:    [80, 81]
+  17563718:
+    template: Deathwatch_Beetle
+    region:   n_68
+    level:    [79, 81]
+  17563719:
+    template: Covin_Bat
+    region:   n_71
+    level:    [81, 83]
+  17563720:
+    template: Covin_Bat
+    region:   n_71
+    level:    [81, 83]
+  17563721:
+    template: Covin_Bat
+    region:   c_73
+    level:    [81, 83]
+  17563722:
+    template: Covin_Bat
+    region:   c_73
+    level:    [81, 83]
+  17563723:
+    template: Covin_Bat
+    region:   c_73
+    level:    [81, 83]
+  17563724:
+    template: Deathwatch_Beetle
+    region:   c_73
+    level:    [79, 81]
+  17563725:
+    template: Deathwatch_Beetle
+    region:   c_73
+    level:    [80, 81]
+  17563726:
+    template: Deathwatch_Beetle
+    region:   c_73
+    level:    [79, 81]
+  17563727:
+    template: Goblin_Metallurgist
+    region:   s_79
+    level:    [80, 82]
+  17563728:
+    template: Goblin_Trailblazer
+    region:   s_79
+    level:    [80, 82]
+  17563729:
+    template: Goblin_Flesher
+    region:   s_79
+    level:    [81, 82]
+  17563730:
+    template: Goblin_Lurcher
+    region:   s_79
+    level:    [83, 84]
+  17563731:
+    template: Goblin_Lurcher
+    region:   s_79
+    level:    [83, 84]
+  17563732:
+    template: Covin_Bat
+    region:   s_79
+    level:    [81, 83]
+  17563733:
+    template: Covin_Bat
+    region:   s_79
+    level:    [81, 83]
+  17563734:
+    template: Covin_Bat
+    region:   s_86
+    level:    [81, 83]
+  17563735:
+    template: Covin_Bat
+    region:   s_86
+    level:    [81, 83]
+  17563736:
+    template: Deathwatch_Beetle
+    region:   s_86
+    level:    [79, 80]
+  17563737:
+    template: Deathwatch_Beetle
+    region:   s_86
+    level:    [79, 80]
+  17563738:
+    template: Deathwatch_Beetle
+    region:   s_86
+    level:    [79, 81]
+  17563739:
+    template: Goblin_Metallurgist
+    region:   sw_91
+    level:    [80, 81]
+  17563740:
+    template: Goblin_Trailblazer
+    region:   sw_91
+    level:    [81, 82]
+  17563741:
+    template: Goblin_Flesher
+    region:   sw_91
+    level:    [80, 82]
+  17563742:
+    template: Goblin_Lurcher
+    region:   sw_91
+    level:    [83, 84]
+  17563743:
+    template: Goblin_Lurcher
+    region:   sw_91
+    level:    [83, 84]
+  17563744:
+    template: Goblin_Lurcher
+    region:   sw_91
+    level:    [83, 84]
+  17563745:
+    template: Covin_Bat
+    region:   sw_91
+    level:    [81, 83]
+  17563746:
+    template: Covin_Bat
+    region:   sw_91
+    level:    [81, 83]
+  17563747:
+    template: Blob
+    region:   c_99
+    level:    [15, 18]
+  17563748:
+    template: Blob
+    region:   c_99
+    level:    [15, 18]
+  17563749:
+    template: Maltha
+    region:   c_99
+    level:    [22, 23]
+  17563750:
+    template: Balloon
+    region:   s_102
+    level:    [8, 10]
+  17563751:
+    template: Balloon
+    region:   s_102
+    level:    [8, 10]
+  17563752:
+    template: Goblin_Mugger
+    region:   sw_104
+    level:    [20, 23]
+  17563753:
+    template: Goblin_Leecher
+    region:   sw_104
+    level:    [20, 23]
+  17563754:
+    template: Goblin_Gambler
+    region:   sw_104
+    level:    [20, 23]
+  17563755:
+    template: Battle_Bat
+    region:   sw_104
+    level:    [17, 20]
+  17563756:
+    template: Battle_Bat
+    region:   sw_104
+    level:    [17, 20]
+  17563757:
+    template: Goblin_Mugger
+    region:   sw_109
+    level:    [20, 23]
+  17563758:
+    template: Goblin_Leecher
+    region:   sw_109
+    level:    [20, 23]
+  17563759:
+    template: Goblin_Gambler
+    region:   sw_109
+    level:    [20, 23]
+  17563760:
+    template: Battle_Bat
+    region:   sw_109
+    level:    [17, 20]
+  17563761:
+    template: Battle_Bat
+    region:   sw_109
+    level:    [17, 20]
+  17563762:
+    template: Goblin_Mugger
+    region:   sw_114
+    level:    [20, 23]
+  17563763:
+    template: Goblin_Leecher
+    region:   sw_114
+    level:    [20, 23]
+  17563764:
+    template: Goblin_Gambler
+    region:   sw_114
+    level:    [20, 23]
+  17563765:
+    template: Goblin_Mugger
+    region:   sw_114
+    level:    [20, 23]
+  17563766:
+    template: Goblin_Leecher
+    region:   sw_114
+    level:    [20, 23]
+  17563767:
+    template: Goblin_Gambler
+    region:   sw_114
+    level:    [20, 23]
+  17563768:
+    template: Battle_Bat
+    region:   sw_114
+    level:    [17, 20]
+  17563769:
+    template: Battle_Bat
+    region:   sw_114
+    level:    [17, 20]
+  17563770:
+    template: Goblin_Mugger
+    region:   sw_123
+    level:    [20, 23]
+  17563771:
+    template: Goblin_Leecher
+    region:   sw_123
+    level:    [20, 23]
+  17563772:
+    template: Goblin_Gambler
+    region:   sw_123
+    level:    [20, 23]
+  17563773:
+    template: Goblin_Mugger
+    region:   sw_123
+    level:    [20, 23]
+  17563774:
+    template: Goblin_Leecher
+    region:   sw_123
+    level:    [20, 23]
+  17563775:
+    template: Goblin_Gambler
+    region:   sw_123
+    level:    [20, 23]
+  17563776:
+    template: Goblin_Mugger
+    region:   sw_129
+    level:    [20, 23]
+  17563777:
+    template: Goblin_Leecher
+    region:   sw_129
+    level:    [20, 23]
+  17563778:
+    template: Goblin_Gambler
+    region:   sw_129
+    level:    [20, 23]
+  17563779:
+    template: Goblin_Mugger
+    region:   sw_129
+    level:    [20, 23]
+  17563780:
+    template: Goblin_Leecher
+    region:   sw_129
+    level:    [20, 23]
+  17563781:
+    template: Goblin_Gambler
+    region:   sw_129
+    level:    [20, 23]
+  17563782:
+    template: Goblin_Mugger
+    region:   sw_134
+    level:    [20, 23]
+  17563783:
+    template: Goblin_Leecher
+    region:   sw_134
+    level:    [20, 23]
+  17563784:
+    template: Goblin_Gambler
+    region:   sw_134
+    level:    [20, 23]
+  17563785:
+    template: Slendlix_Spindlethumb
+    region:   sw_109
+    level:    [33, 34]
+  17563786:
+    template: Battle_Bat
+    region:   sw_138
+    level:    [17, 20]
+  17563787:
+    template: Battle_Bat
+    region:   sw_138
+    level:    [17, 20]
+  17563788:
+    template: Battle_Bat
+    region:   sw_138
+    level:    [17, 20]
+  17563789:
+    template: Will-o-the-Wisp
+    region:   sw_141
+    level:    [24, 25]
+  17563790:
+    template: Boggart
+    region:   sw_142
+    level:    [22, 26]
+  17563791:
+    template: Boggart
+    region:   sw_142
+    level:    [22, 26]
+  17563792:
+    template: Will-o-the-Wisp
+    region:   region_51
+    level:    [23, 25]
+  17563793:
+    template: Boggart
+    region:   w_145
+    level:    [22, 26]
+  17563794:
+    template: Boggart
+    region:   w_145
+    level:    [22, 26]
+  17563795:
+    template: Boggart
+    region:   w_145
+    level:    [22, 26]
+  17563796:
+    template: Boggart
+    region:   w_145
+    level:    [22, 26]
+  17563797:
+    template: Boggart
+    region:   w_149
+    level:    [22, 26]
+  17563798:
+    template: Boggart
+    region:   w_149
+    level:    [22, 26]
+  17563799:
+    template: Boggart
+    region:   w_149
+    level:    [22, 26]
+  17563800:
+    template: Boggart
+    region:   w_149
+    level:    [22, 26]
+  17563801:
+    template: Nocuous_Weapon
+    region:   w_149
+    level:    [25, 27]
+  17563802:
+    template: Will-o-the-Wisp
+    region:   w_154
+    level:    [23, 25]
+  17563803:
+    template: Battue_Bats
+    region:   w_155
+    level:    [1, 3]
+  17563804:
+    template: Battue_Bats
+    region:   w_155
+    level:    [1, 3]
+  17563805:
+    template: Will-o-the-Wisp
+    region:   w_158
+    level:    [23, 25]
+  17563806:
+    template: Will-o-the-Wisp
+    region:   w_158
+    level:    [23, 25]
+  17563807:
+    template: Boggart
+    region:   w_158
+    level:    [22, 26]
+  17563808:
+    template: Boggart
+    region:   w_158
+    level:    [22, 26]
+  17563809:
+    template: Wendigo_war
+    script:   Wendigo
+    region:   nw_161
+    level:    [25, 28]
+  17563810:
+    template: Wendigo_war
+    script:   Wendigo
+    region:   nw_161
+    level:    [25, 28]
+  17563811:
+    template: Wendigo_blm
+    script:   Wendigo
+    region:   nw_161
+    level:    [25, 28]
+  17563812:
+    template: Battle_Bat
+    region:   nw_166
+    level:    [17, 20]
+  17563813:
+    template: Battle_Bat
+    region:   nw_161
+    level:    [17, 20]
+  17563814:
+    template: Wendigo_war
+    script:   Wendigo
+    region:   nw_166
+    level:    [25, 28]
+  17563815:
+    template: Wendigo_war
+    script:   Wendigo
+    region:   nw_166
+    level:    [25, 28]
+  17563816:
+    template: Wendigo_blm
+    script:   Wendigo
+    region:   nw_166
+    level:    [25, 28]
+  17563817:
+    template: Battle_Bat
+    region:   nw_166
+    level:    [17, 20]
+  17563818:
+    template: Battle_Bat
+    region:   nw_171
+    level:    [17, 20]
+  17563819:
+    template: Wendigo_war
+    script:   Wendigo
+    region:   nw_171
+    level:    [25, 28]
+  17563820:
+    template: Wendigo_blm
+    script:   Wendigo
+    region:   nw_171
+    level:    [25, 28]
+  17563821:
+    template: Wendigo_blm
+    script:   Wendigo
+    region:   nw_171
+    level:    [25, 28]
+  17563822:
+    template: Battle_Bat
+    region:   nw_171
+    level:    [17, 20]
+  17563823:
+    template: Battle_Bat
+    region:   nw_171
+    level:    [17, 20]
+  17563824:
+    template: Wendigo_war
+    script:   Wendigo
+    region:   nw_171
+    level:    [25, 28]
+  17563825:
+    template: Wendigo_blm
+    script:   Wendigo
+    region:   nw_177
+    level:    [25, 28]
+  17563826:
+    template: Wendigo_blm
+    script:   Wendigo
+    region:   nw_177
+    level:    [25, 28]
+  17563827:
+    template: Battle_Bat
+    region:   nw_177
+    level:    [17, 20]
+  17563828:
+    template: Battle_Bat
+    region:   nw_177
+    level:    [19, 20]
+  17563829:
+    template: Wendigo_war
+    script:   Wendigo
+    region:   region_52
+    level:    [25, 28]
+  17563830:
+    template: Wendigo_war
+    script:   Wendigo
+    region:   nw_177
+    level:    [25, 28]
+  17563831:
+    template: Wendigo_blm
+    script:   Wendigo
+    region:   region_53
+    level:    [25, 28]
+  17563832:
+    template: Wendigo_blm
+    script:   Wendigo
+    region:   nw_161
+    level:    [25, 28]
+  17563833:
+    template: Wendigo_war
+    script:   Wendigo
+    region:   nw_185
+    level:    [25, 28]
+  17563834:
+    template: Wendigo_blm
+    script:   Wendigo
+    region:   nw_185
+    level:    [25, 28]
+  17563835:
+    template: Wendigo_war
+    script:   Wendigo
+    region:   nw_187
+    level:    [25, 28]
+  17563836:
+    template: Wendigo_war
+    script:   Wendigo
+    region:   nw_187
+    level:    [25, 28]
+  17563837:
+    template: Wendigo_blm
+    script:   Wendigo
+    region:   nw_187
+    level:    [25, 28]
+
+  17563929:
+    template: Beta_bom_Balloon
+    region:   s_102
+    level:    [8, 10]
+  17563930:
+    template: Beta_bom_Balloon
+    region:   s_102
+    level:    [8, 10]
+  17563931:
+    template: Beta_beet_Deathwatch_Beetle
+    region:   ne_32
+    level:    [79, 80]
+  17563932:
+    template: Beta_beet_Deathwatch_Beetle
+    region:   ne_32
+    level:    [79, 80]
+slots:
+  - members:
+      17563668: {} # Goblin_Thug
+      17563670: {} # Magicked_Bones
+  - members:
+      17563669: {} # Goblin_Weaver
+      17563671: {} # Magicked_Bones
+  - members:
+      17563672: {} # Goblin_Weaver
+      17563678: {} # Goblin_Weaver
+  - members:
+      17563674: {} # Goblin_Weaver
+      17563676: {} # Goblin_Weaver
+  - members:
+      17563770: {} # Goblin_Mugger
+      17563771: {} # Goblin_Leecher
+      17563772: {} # Goblin_Gambler
+  - members:
+      17563773: {} # Goblin_Mugger
+      17563774: {} # Goblin_Leecher
+      17563775: {} # Goblin_Gambler
+  - members:
+      17563776: {} # Goblin_Mugger
+      17563777: {} # Goblin_Leecher
+      17563778: {} # Goblin_Gambler
+  - members:
+      17563779: {} # Goblin_Mugger
+      17563780: {} # Goblin_Leecher
+      17563781: {} # Goblin_Gambler
+  - members:
+      17563793: {} # Boggart
+      17563795: {} # Boggart
+  - members:
+      17563797: {} # Boggart
+      17563799: {} # Boggart
+  - members:
+      17563805: {} # Will-o-the-Wisp
+      17563806: {} # Will-o-the-Wisp
+  - members:
+      17563811: {} # Wendigo
+      17563832: {} # Wendigo
+  - members:
+      17563812: {} # Battle_Bat
+      17563817: {} # Battle_Bat
+  - members:
+      17563813: {} # Battle_Bat
+  - members:
+      17563816: {} # Wendigo
+      17563831: {} # Wendigo
+  - members:
+      17563818: {} # Battle_Bat
+      17563819: {} # Wendigo
+      17563823: {} # Battle_Bat
+  - members:
+      17563822: {} # Battle_Bat
+      17563824: {} # Wendigo
+  - members:
+      17563827: {} # Battle_Bat
+  - members:
+      17563828: {} # Battle_Bat
+      17563830: {} # Wendigo
+  - members:
+      17563829: {} # Wendigo

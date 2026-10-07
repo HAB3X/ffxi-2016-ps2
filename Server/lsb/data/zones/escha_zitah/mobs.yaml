@@ -1,0 +1,3571 @@
+# yaml-language-server: $schema=../../schemas/mobs.schema.json
+
+templates:
+
+  Abyssdiver:
+    id:            4853
+    species:       bird
+    type:          [notorious]
+    skill_list_id: 55
+    attributes:
+      combat:
+        skill: axe
+      render:
+        look:
+          type:  standard
+          model: 445
+        entity_flags: 133
+        name_prefix:   32
+        model_size:     2
+        hitbox:        22
+      behaviors:
+        links: true
+      spawn:
+        type: [scripted]
+
+  Aglaophotis:
+    id:            5618
+    species:       rafflesia
+    skill_list_id: 207
+    attributes:
+      combat:
+        skill: scythe
+      jobs: [bst, drk]
+      render:
+        look:
+          type:  standard
+          model: 2026
+        entity_flags: 133
+        name_prefix:   32
+        model_size:     2
+        hitbox:        20
+      spawn:
+        type: [scripted]
+
+  Alpluachra:
+    id:            5711
+    species:       pixie
+    type:          [notorious]
+    spell_list_id: 21
+    skill_list_id: 195
+    attributes:
+      jobs: [blm, blm]
+      resists:
+        dmg_physical:
+          slashing: -6250
+          piercing: -6250
+          blunt:    -6250
+          h2h:      -6250
+      render:
+        look:
+          type:  standard
+          model: 2064
+        entity_flags:  647
+        animation_sub:   8
+        name_prefix:    32
+        model_size:      3
+        hitbox:         11
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+
+  Angrboda:
+    id:            5703
+    species:       red_golems
+    type:          [notorious]
+    spell_list_id: 20
+    skill_list_id: 135
+    attributes:
+      combat:
+        skill: club
+        delay: 320
+      jobs: [whm, whm]
+      render:
+        look:
+          type:  standard
+          model: 433
+        entity_flags: 133
+        name_prefix:   32
+        model_size:     2
+        hitbox:        22
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+      stats:
+        mp: 99999
+
+  Azi_Dahaka:
+    id:            5699
+    species:       orange_wyrm
+    type:          [notorious]
+    spell_list_id: 78
+    skill_list_id: 393
+    attributes:
+      combat:
+        skill:    scythe
+        dmg_mult: 125
+      jobs: [war, blm]
+      render:
+        look:
+          type:  standard
+          model: 608
+        entity_flags:  135
+        animation_sub:   4
+        name_prefix:    32
+        model_size:      3
+        hitbox:         70
+      behaviors:
+        flags:          [no_turn]
+        aggressive:     true
+        true_detection: true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 200000
+        mp:  99999
+
+  Azi_Dahakas_Dragon:
+    id:            5700
+    species:       dragon
+    type:          [notorious]
+    spell_list_id: 6
+    skill_list_id: 87
+    attributes:
+      combat:
+        skill: staff
+      jobs: [brd, brd]
+      render:
+        look:
+          type:  standard
+          model: 421
+        entity_flags: 129
+        hitbox:        28
+      behaviors:
+        aggressive:     true
+        true_detection: true
+      spawn:
+        type: [scripted]
+
+  Beist:
+    id:            4857
+    species:       dragon
+    type:          [notorious, battlefield]
+    skill_list_id: 87
+    attributes:
+      combat:
+        skill: great_axe
+      render:
+        look:
+          type:  standard
+          model: 420
+        entity_flags: 133
+        name_prefix:   32
+        model_size:     2
+        hitbox:        39
+      behaviors:
+        aggressive:     true
+        links:          true
+        true_detection: true
+      spawn:
+        type: [scripted]
+
+  Blazewing:
+    id:            5709
+    species:       red_mantid
+    skill_list_id: 340
+    attributes:
+      combat:
+        skill: staff
+      render:
+        look:
+          type:  standard
+          model: 2066
+        entity_flags: 135
+        name_prefix:   32
+        model_size:     3
+        hitbox:        27
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+
+  Brittlis:
+    id:            5717
+    species:       gnat
+    skill_list_id: 61
+    attributes:
+      combat:
+        skill: sword
+      jobs: [thf, thf]
+      render:
+        look:
+          type:  standard
+          model: 516
+        entity_flags: 135
+        name_prefix:   32
+        model_size:     3
+        hitbox:        35
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+
+  Bucca:
+    id:            5710
+    species:       pixie
+    type:          [notorious]
+    spell_list_id: 21
+    attributes:
+      combat:
+        skill: staff
+      jobs: [blm, blm]
+      resists:
+        dmg_physical:
+          slashing: -6250
+          piercing: -6250
+          blunt:    -6250
+          h2h:      -6250
+      render:
+        look:
+          type:  standard
+          model: 2032
+        entity_flags:  519
+        animation_sub:   8
+        name_prefix:    32
+        model_size:      3
+        hitbox:         11
+      behaviors:
+        links: true
+      spawn:
+        type: [scripted]
+
+  Cunnast:
+    id:            5704
+    species:       wyvern
+    type:          [notorious]
+    skill_list_id: 266
+    attributes:
+      combat:
+        skill: scythe
+      resists:
+        immune_status: [light_sleep, dark_sleep]
+      render:
+        look:
+          type:  standard
+          model: 1935
+        entity_flags: 133
+        name_prefix:   32
+        model_size:     2
+        hitbox:        36
+      spawn:
+        type: [scripted]
+
+  Eschan_Bugard:
+    id:            5637
+    species:       bugard
+    skill_list_id: 58
+    attributes:
+      combat:
+        skill: great_axe
+        delay: 300
+      render:
+        look:
+          type:  standard
+          model: 1351
+        entity_flags: 129
+        hitbox:        10
+      behaviors:
+        aggressive:     true
+        true_detection: true
+      spawn:
+        respawn: 300
+
+  Eschan_Coeurl:
+    id:            5349
+    species:       coeurl
+    skill_list_id: 71
+    attributes:
+      combat:
+        skill: dagger
+      render:
+        look:
+          type:  standard
+          model: 367
+        entity_flags: 131
+        model_size:     1
+        hitbox:        16
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+
+  Eschan_Corse:
+    id:            6482
+    species:       corse
+    spell_list_id: 28
+    skill_list_id: 74
+    attributes:
+      combat:
+        skill: club
+        delay: 290
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 1363
+        entity_flags: 129
+        hitbox:        10
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+      stats:
+        mp: 9999
+
+  Eschan_Crawler:
+    id:            6317
+    species:       crawler
+    skill_list_id: 79
+    attributes:
+      combat:
+        skill: club
+      render:
+        look:
+          type:  standard
+          model: 396
+        entity_flags: 131
+        model_size:     1
+        hitbox:        15
+      behaviors:
+        links: true
+      spawn:
+        respawn: 300
+
+  Eschan_Dhalmel:
+    id:            5350
+    species:       dhalmel
+    skill_list_id: 80
+    attributes:
+      combat:
+        skill: staff
+      render:
+        look:
+          type:  standard
+          model: 332
+        entity_flags: 129
+        hitbox:        32
+      behaviors:
+        links: true
+      spawn:
+        respawn: 300
+
+  Eschan_Goobbue:
+    id:            5540
+    species:       goobbue
+    skill_list_id: 136
+    attributes:
+      combat:
+        skill: staff
+        delay: 320
+      render:
+        look:
+          type:  standard
+          model: 296
+        entity_flags: 129
+        hitbox:        25
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+
+  Eschan_Jewelweed:
+    id:            5429
+    species:       jewelweed
+    skill_list_id: 464
+    attributes:
+      combat:
+        skill: scythe
+      jobs: [mnk, mnk]
+      render:
+        look:
+          type:  standard
+          model: 2551
+        entity_flags: 133
+        model_size:     2
+        hitbox:        17
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+
+  Eschan_Mosquito:
+    id:            5543
+    species:       mosquito
+    skill_list_id: 48
+    attributes:
+      combat:
+        skill: dagger
+      render:
+        look:
+          type:  standard
+          model: 2919
+        entity_flags: 131
+        model_size:     1
+        hitbox:        10
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+
+  Eschan_Obdella:
+    id:            6406
+    species:       leech
+    skill_list_id: 172
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 1934
+        entity_flags: 131
+        model_size:     1
+        hitbox:        11
+      behaviors:
+        links: true
+      spawn:
+        respawn: 300
+
+  Eschan_Opo-Opo:
+    id:            4849
+    species:       opo_opo
+    skill_list_id: 188
+    attributes:
+      combat:
+        delay: 220
+      render:
+        look:
+          type:  standard
+          model: 416
+        entity_flags: 131
+        model_size:     1
+        hitbox:        18
+      spawn:
+        respawn: 180
+
+  Eschan_Puk:
+    id:            4848
+    species:       puk
+    skill_list_id: 198
+    attributes:
+      combat:
+        skill: sword
+      render:
+        look:
+          type:  standard
+          model: 1744
+        entity_flags: 131
+        model_size:     1
+        hitbox:        12
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 180
+
+  Eschan_Shadow_Dragon:
+    id:            5541
+    species:       dragon
+    skill_list_id: 2071
+    attributes:
+      combat:
+        skill: staff
+      render:
+        look:
+          type:  standard
+          model: 420
+        entity_flags: 129
+        hitbox:        28
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+
+  Eschan_Snapweed:
+    id:            4652
+    species:       snapweed
+    skill_list_id: 464
+    attributes:
+      combat:
+        skill: scythe
+      jobs: [mnk, mnk]
+      render:
+        look:
+          type:  standard
+          model: 2550
+        entity_flags: 131
+        model_size:     1
+        hitbox:        15
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+
+  Eschan_Sorcerer:
+    id:            6569
+    species:       skeleton
+    spell_list_id: 28
+    skill_list_id: 227
+    attributes:
+      combat:
+        skill: great_katana
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 564
+        entity_flags: 131
+        model_size:     1
+        hitbox:        12
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+      stats:
+        mp: 9999
+
+  Eschan_Tarichuk:
+    id:            5542
+    species:       eft
+    skill_list_id: 98
+    attributes:
+      combat:
+        skill: polearm
+      render:
+        look:
+          type:  standard
+          model: 1350
+        entity_flags: 131
+        model_size:     1
+        hitbox:        12
+      behaviors:
+        links: true
+      spawn:
+        respawn: 300
+
+  Eschan_Vulture:
+    id:            6446
+    species:       bird
+    skill_list_id: 55
+    attributes:
+      combat:
+        skill: dagger
+      render:
+        look:
+          type:  standard
+          model: 445
+        entity_flags: 131
+        model_size:     1
+        hitbox:        20
+      behaviors:
+        links: true
+      spawn:
+        respawn: 300
+
+  Eschan_Warrior:
+    id:            6553
+    species:       skeleton
+    skill_list_id: 227
+    attributes:
+      combat:
+        skill: axe
+      render:
+        look:
+          type:  standard
+          model: 572
+        entity_flags: 131
+        model_size:     1
+        hitbox:        12
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+
+  Eschan_Wasp:
+    id:            5539
+    species:       yellow_bee
+    skill_list_id: 48
+    attributes:
+      combat:
+        skill: axe
+      render:
+        look:
+          type:  standard
+          model: 1936
+        entity_flags: 131
+        model_size:     1
+        hitbox:        10
+      behaviors:
+        links: true
+      spawn:
+        respawn: 300
+
+  Eschan_Weapon:
+    id:            6591
+    species:       evil_weapon
+    skill_list_id: 110
+    attributes:
+      combat:
+        skill: sword
+      render:
+        look:
+          type:  standard
+          model: 451
+        entity_flags: 131
+        model_size:     1
+        hitbox:        20
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+      stats:
+        mp: 9999
+
+  Eschan_Worm:
+    id:            5538
+    species:       worm
+    roam:          [worm]
+    spell_list_id: 9
+    skill_list_id: 258
+    attributes:
+      combat:
+        skill: scythe
+      jobs: [blm, rdm]
+      render:
+        look:
+          type:  standard
+          model: 424
+        entity_flags: 131
+        model_size:     1
+        hitbox:        12
+      behaviors:
+        links: true
+      spawn:
+        respawn: 300
+      stats:
+        mp: 9999
+
+  Eschan_Yztarg:
+    id:            5365
+    species:       yztarg
+    skill_list_id: 459
+    attributes:
+      combat:
+        skill: scythe
+        delay: 200
+      render:
+        look:
+          type:  standard
+          model: 2195
+        entity_flags:  129
+        animation_sub:   4
+        hitbox:         38
+      behaviors:
+        aggressive:     true
+        links:          true
+        true_detection: true
+      spawn:
+        respawn: 300
+
+  Ferrodon:
+    id:            5706
+    species:       wivre
+    skill_list_id: 257
+    attributes:
+      combat:
+        skill: axe
+      render:
+        look:
+          type:  standard
+          model: 1788
+        entity_flags: 133
+        name_prefix:   32
+        model_size:     2
+        hitbox:        34
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+
+  Fleetstalker:
+    id:            5720
+    species:       red_yztarg
+    skill_list_id: 459
+    attributes:
+      combat:
+        skill: scythe
+        delay: 200
+      render:
+        look:
+          type:  standard
+          model: 2922
+        entity_flags:  135
+        animation_sub:   4
+        name_prefix:    32
+        model_size:      3
+        hitbox:         63
+      behaviors:
+        aggressive:     true
+        links:          true
+        true_detection: true
+      spawn:
+        type: [scripted]
+
+  Gestalt:
+    id:            5702
+    species:       hecteye
+    type:          [notorious]
+    spell_list_id: 10
+    skill_list_id: 139
+    attributes:
+      combat:
+        skill: staff
+        delay: 280
+      jobs: [blm, rdm]
+      render:
+        look:
+          type:  standard
+          model: 385
+        entity_flags: 133
+        name_prefix:   32
+        model_size:     2
+        hitbox:        22
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+      stats:
+        mp: 99999
+
+  Gulltop:
+    id:            5707
+    species:       beetle
+    skill_list_id: 49
+    attributes:
+      combat:
+        skill: polearm
+      jobs: [pld, pld]
+      render:
+        look:
+          type:  standard
+          model: 410
+        entity_flags: 133
+        name_prefix:   32
+        model_size:     2
+        hitbox:        14
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+
+  Hugemaw_Harold:
+    id:            4850
+    species:       worm
+    type:          [notorious]
+    roam:          [worm]
+    spell_list_id: 9
+    skill_list_id: 258
+    attributes:
+      combat:
+        skill: scythe
+      jobs: [blm, rdm]
+      render:
+        look:
+          type:  standard
+          model: 424
+        entity_flags: 133
+        name_prefix:   32
+        model_size:     2
+        hitbox:        14
+      behaviors:
+        links: true
+      spawn:
+        type: [scripted]
+      stats:
+        mp: 99999
+
+  Immanibugard:
+    id:            4856
+    species:       bugard
+    type:          [notorious]
+    skill_list_id: 58
+    attributes:
+      combat:
+        skill: great_axe
+      render:
+        look:
+          type:  standard
+          model: 1351
+        entity_flags: 133
+        name_prefix:   32
+        model_size:     2
+        hitbox:        13
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+
+  Ionos:
+    id:            5714
+    species:       diremite
+    type:          [notorious]
+    skill_list_id: 81
+    attributes:
+      combat:
+        skill: axe
+        delay: 210
+      jobs: [drk, drk]
+      render:
+        look:
+          type:  standard
+          model: 2924
+        entity_flags: 135
+        name_prefix:   32
+        model_size:     3
+        hitbox:        16
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+
+  Jester_Malatrix:
+    id:            4855
+    species:       evil_weapon
+    type:          [notorious]
+    skill_list_id: 110
+    attributes:
+      combat:
+        skill: axe
+      render:
+        look:
+          type:  standard
+          model: 451
+        entity_flags: 133
+        name_prefix:   32
+        model_size:     2
+        hitbox:        22
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+
+  Kamohoalii:
+    id:            5718
+    species:       orobon
+    type:          [notorious]
+    skill_list_id: 191
+    attributes:
+      combat:
+        skill: great_axe
+      render:
+        look:
+          type:  standard
+          model: 1730
+        entity_flags:  135
+        animation_sub:   4
+        name_prefix:    32
+        model_size:      3
+        hitbox:         40
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+
+  Keeper_of_Heiligtum:
+    id:            4854
+    species:       goobbue
+    type:          [notorious]
+    skill_list_id: 136
+    attributes:
+      combat:
+        skill: staff
+        delay: 320
+      render:
+        look:
+          type:  standard
+          model: 296
+        entity_flags: 133
+        model_size:     2
+        hitbox:        34
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+
+  Lustful_Lydia:
+    id:            5617
+    species:       morbol
+    type:          [notorious]
+    skill_list_id: 186
+    attributes:
+      combat:
+        skill:    scythe
+        delay:    200
+        dmg_mult: 125
+      render:
+        look:
+          type:  standard
+          model: 378
+        entity_flags: 133
+        name_prefix:   32
+        model_size:     2
+        hitbox:        52
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+
+  Muut:
+    id:            6816
+    species:       corse
+    type:          [notorious]
+    spell_list_id: 21
+    skill_list_id: 74
+    attributes:
+      combat:
+        skill: staff
+        delay: 290
+      jobs: [blm, blm]
+      resists:
+        dmg_physical:
+          blunt: 2500
+      render:
+        look:
+          type:  standard
+          model: 1364
+        entity_flags: 135
+        name_prefix:   32
+        model_size:     3
+        hitbox:        16
+      behaviors:
+        aggressive:     true
+        links:          true
+        true_detection: true
+      spawn:
+        type: [scripted]
+
+  Muuts_Hound_Warrior:
+    id:            5724
+    species:       skeleton
+    type:          [notorious]
+    skill_list_id: 227
+    attributes:
+      combat:
+        skill: axe
+      render:
+        look:
+          type:  standard
+          model: 564
+        entity_flags: 135
+        name_prefix:   32
+        model_size:     3
+        hitbox:        16
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+
+  Muuts_Sacrifice:
+    id:            5723
+    species:       skeleton
+    type:          [notorious]
+    spell_list_id: 5
+    skill_list_id: 227
+    attributes:
+      combat:
+        skill: polearm
+      jobs: [drk, drk]
+      render:
+        look:
+          type:  standard
+          model: 572
+        entity_flags: 135
+        name_prefix:   32
+        model_size:     3
+        hitbox:        16
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+      stats:
+        mp: 99999
+
+  Nosoi:
+    id:            5716
+    species:       blue_tulfaire
+    type:          [notorious]
+    skill_list_id: 454
+    attributes:
+      combat:
+        skill: dagger
+      resists:
+        dmg_physical:
+          piercing: 2500
+      render:
+        look:
+          type:  standard
+          model: 2596
+        entity_flags: 135
+        name_prefix:   32
+        model_size:     3
+        hitbox:        16
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+
+  Pazuzu:
+    id:            5712
+    species:       gallu
+    type:          [notorious]
+    spell_list_id: 21
+    skill_list_id: 467
+    attributes:
+      combat:
+        skill: staff
+      jobs: [war, blm]
+      render:
+        look:
+          type:  standard
+          model: 2059
+        entity_flags: 135
+        name_prefix:   32
+        model_size:     3
+        hitbox:        41
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+
+  Prickly_Pitriv:
+    id:            4851
+    species:       crawler
+    type:          [notorious]
+    skill_list_id: 79
+    attributes:
+      combat:
+        skill: club
+      render:
+        look:
+          type:  standard
+          model: 396
+        entity_flags: 133
+        name_prefix:   32
+        model_size:     2
+        hitbox:        17
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+      stats:
+        mp: 99999
+
+  Puca:
+    id:            6993
+    species:       pixie
+    type:          [notorious]
+    skill_list_id: 812
+    attributes:
+      combat:
+        skill: scythe
+      jobs: [rdm, rdm]
+      resists:
+        dmg_physical:
+          slashing: -6250
+          piercing: -6250
+          blunt:    -6250
+          h2h:      -6250
+      render:
+        look:
+          type:  standard
+          model: 2031
+        entity_flags:  519
+        animation_sub:   8
+        name_prefix:    32
+        model_size:      3
+        hitbox:         11
+      behaviors:
+        aggressive:     true
+        true_detection: true
+      spawn:
+        type: [scripted]
+
+  Revetaur:
+    id:            5705
+    species:       taurus
+    type:          [notorious]
+    spell_list_id: 21
+    skill_list_id: 240
+    attributes:
+      combat:
+        skill: staff
+      jobs: [blm, blm]
+      resists:
+        dmg_physical:
+          blunt: 5000
+          h2h:   2500
+      render:
+        look:
+          type:  standard
+          model: 2390
+        entity_flags: 133
+        name_prefix:   32
+        model_size:     2
+        hitbox:        22
+      behaviors:
+        aggressive:     true
+        true_detection: true
+      spawn:
+        type: [scripted]
+      stats:
+        mp: 99999
+
+  Sensual_Sandy:
+    id:            5715
+    species:       morbol
+    type:          [notorious]
+    skill_list_id: 186
+    attributes:
+      combat:
+        skill: scythe
+        delay: 200
+      jobs: [sam, sam]
+      render:
+        look:
+          type:  standard
+          model: 2923
+        entity_flags: 135
+        name_prefix:   32
+        model_size:     3
+        hitbox:        44
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+
+  Serpopard_Ninlil:
+    id:            4852
+    species:       dhalmel
+    type:          [notorious]
+    skill_list_id: 80
+    attributes:
+      combat:
+        skill: staff
+      render:
+        look:
+          type:  standard
+          model: 332
+        entity_flags: 133
+        name_prefix:   32
+        model_size:     2
+        hitbox:        43
+      behaviors:
+        links: true
+      spawn:
+        type: [scripted]
+
+  Shockmaw:
+    id:            5721
+    species:       pteraketo
+    type:          [notorious]
+    skill_list_id: 451
+    attributes:
+      combat:
+        skill: dagger
+      render:
+        look:
+          type:  standard
+          model: 2092
+        entity_flags: 131
+        name_prefix:   32
+        model_size:     1
+        hitbox:        40
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+
+  Tangata_Manu:
+    id:            5619
+    species:       harpeia
+    type:          [notorious]
+    spell_list_id: 21
+    skill_list_id: 471
+    attributes:
+      combat:
+        skill: great_axe
+      jobs: [blm, blm]
+      resists:
+        dmg_physical:
+          slashing: -2500
+          piercing:  2500
+          blunt:    -2500
+      render:
+        look:
+          type:  standard
+          model: 2067
+        entity_flags: 133
+        name_prefix:   32
+        model_size:     2
+        hitbox:        32
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+      stats:
+        mp: 99999
+
+  Umdhlebi:
+    id:            5719
+    species:       belladonna
+    type:          [notorious]
+    skill_list_id: 453
+    attributes:
+      combat:
+        skill: dagger
+      jobs: [thf, thf]
+      resists:
+        rank_element:
+          fire:  -2
+          wind:  -1
+          earth:  3
+          light:  2
+        rank_status:
+          silence:     -1
+          slow:         3
+          light_sleep:  2
+      render:
+        look:
+          type:  standard
+          model: 2091
+        entity_flags: 135
+        name_prefix:   32
+        model_size:     3
+        hitbox:        35
+      behaviors:
+        aggressive:     true
+        links:          true
+        true_detection: true
+      spawn:
+        type: [scripted]
+
+  Urmahlullu:
+    id:            5722
+    species:       skormoth
+    type:          [notorious]
+    skill_list_id: 51
+    attributes:
+      combat:
+        skill:    great_axe
+        delay:    380
+        dmg_mult: 125
+      render:
+        look:
+          type:  standard
+          model: 2866
+        entity_flags: 135
+        name_prefix:   32
+        model_size:     3
+        hitbox:        63
+      behaviors:
+        flags:          [no_turn]
+        aggressive:     true
+        true_detection: true
+      spawn:
+        type: [scripted]
+
+  Vidala:
+    id:            5701
+    species:       tiger
+    type:          [notorious]
+    skill_list_id: 242
+    attributes:
+      combat:
+        skill: great_axe
+      jobs: [war, blm]
+      render:
+        look:
+          type:  standard
+          model: 2248
+        entity_flags: 133
+        name_prefix:   32
+        model_size:     2
+        hitbox:        29
+      spawn:
+        type: [scripted]
+      stats:
+        mp: 99999
+
+  Voso:
+    id:            6907
+    species:       coeurl
+    type:          [notorious]
+    skill_list_id: 71
+    attributes:
+      combat:
+        skill: dagger
+      render:
+        look:
+          type:  standard
+          model: 367
+        entity_flags: 133
+        name_prefix:   32
+        model_size:     2
+        hitbox:        18
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+
+  Vyala:
+    id:            5708
+    species:       coeurl
+    type:          [notorious]
+    skill_list_id: 71
+    attributes:
+      combat:
+        skill: great_axe
+      jobs: [war, thf]
+      render:
+        look:
+          type:  standard
+          model: 2108
+        entity_flags: 133
+        name_prefix:   32
+        model_size:     2
+        hitbox:        18
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+
+  Wepwawet:
+    id:            5616
+    species:       cerberus
+    type:          [notorious]
+    spell_list_id: 5
+    skill_list_id: 62
+    attributes:
+      combat:
+        skill: scythe
+        delay: 380
+      jobs: [drk, drk]
+      resists:
+        rank_element:
+          fire:  11
+          light: 10
+          dark:  10
+        rank_status:
+          light_sleep: 10
+          dark_sleep:  10
+          blind:       10
+      render:
+        look:
+          type:  standard
+          model: 1793
+        entity_flags: 133
+        name_prefix:   32
+        model_size:     2
+        hitbox:        45
+      behaviors:
+        aggressive:     true
+        true_detection: true
+      spawn:
+        type: [scripted]
+      stats:
+        mp: 99999
+
+  Wrathare:
+    id:            5713
+    species:       rabbit
+    type:          [notorious]
+    skill_list_id: 206
+    attributes:
+      combat:
+        skill: dagger
+      jobs: [thf, war]
+      render:
+        look:
+          type:  standard
+          model: 268
+        entity_flags: 135
+        name_prefix:   32
+        model_size:     3
+        hitbox:        18
+      spawn:
+        type: [scripted]
+
+spawns:
+  17956865:
+    script: Eschan_Pugil
+    at:     [1.000, 1.000, 1.000]
+  17956866:
+    script: Eschan_Pugil
+    at:     [1.000, 1.000, 1.000]
+  17956867:
+    script: Eschan_Crab
+    at:     [1.000, 1.000, 1.000]
+  17956868:
+    script: Eschan_Crab
+    at:     [1.000, 1.000, 1.000]
+  17956869:
+    script: Eschan_Crab
+    at:     [1.000, 1.000, 1.000]
+  17956870:
+    script: Emperor_Arthro
+    at:     [1.000, 1.000, 1.000]
+  17956871:
+    template: Eschan_Worm
+    region:   w_7
+    level:    [50, 59]
+  17956872:
+    template: Eschan_Worm
+    region:   w_7
+    level:    [50, 59]
+  17956873:
+    template: Eschan_Worm
+    region:   w_7
+    level:    [50, 59]
+  17956874:
+    template: Eschan_Worm
+    region:   w_7
+    level:    [50, 59]
+  17956875:
+    template: Eschan_Worm
+    region:   w_7
+    level:    [50, 59]
+  17956876:
+    template: Eschan_Obdella
+    region:   w_7
+    level:    [50, 59]
+  17956877:
+    template: Eschan_Obdella
+    region:   w_7
+    level:    [50, 59]
+  17956878:
+    template: Eschan_Obdella
+    region:   w_7
+    level:    [50, 59]
+  17956879:
+    template: Eschan_Obdella
+    region:   w_7
+    level:    [50, 59]
+  17956880:
+    template: Eschan_Obdella
+    region:   w_7
+    level:    [50, 59]
+  17956881:
+    template: Eschan_Worm
+    region:   w_17
+    level:    [50, 59]
+  17956882:
+    template: Eschan_Worm
+    region:   w_17
+    level:    [50, 59]
+  17956883:
+    template: Eschan_Worm
+    region:   w_17
+    level:    [50, 59]
+  17956884:
+    template: Eschan_Obdella
+    region:   w_17
+    level:    [50, 59]
+  17956885:
+    template: Eschan_Obdella
+    region:   w_17
+    level:    [50, 59]
+  17956886:
+    template: Eschan_Obdella
+    region:   w_17
+    level:    [50, 59]
+  17956887:
+    template: Eschan_Obdella
+    region:   w_17
+    level:    [50, 59]
+  17956888:
+    template: Eschan_Worm
+    region:   w_24
+    level:    [50, 59]
+  17956889:
+    template: Eschan_Worm
+    region:   w_24
+    level:    [50, 59]
+  17956890:
+    template: Eschan_Worm
+    region:   w_24
+    level:    [50, 59]
+  17956891:
+    template: Eschan_Obdella
+    region:   w_24
+    level:    [50, 59]
+  17956892:
+    template: Eschan_Obdella
+    region:   w_24
+    level:    [50, 59]
+  17956893:
+    template: Eschan_Obdella
+    region:   w_24
+    level:    [50, 59]
+  17956894:
+    template: Eschan_Obdella
+    region:   w_24
+    level:    [50, 59]
+  17956895:
+    template: Eschan_Worm
+    region:   w_31
+    level:    [50, 59]
+  17956896:
+    template: Eschan_Worm
+    region:   w_31
+    level:    [50, 59]
+  17956897:
+    template: Eschan_Worm
+    region:   w_31
+    level:    [50, 59]
+  17956898:
+    template: Eschan_Worm
+    region:   w_31
+    level:    [50, 59]
+  17956899:
+    template: Eschan_Crawler
+    region:   w_31
+    level:    [50, 59]
+  17956900:
+    template: Eschan_Crawler
+    region:   w_31
+    level:    [50, 59]
+  17956901:
+    template: Eschan_Crawler
+    region:   w_31
+    level:    [50, 59]
+  17956902:
+    template: Eschan_Crawler
+    region:   w_31
+    level:    [50, 59]
+  17956903:
+    template: Eschan_Crawler
+    region:   w_31
+    level:    [50, 59]
+  17956904:
+    template: Eschan_Worm
+    region:   w_40
+    level:    [50, 59]
+  17956905:
+    template: Eschan_Worm
+    region:   w_40
+    level:    [50, 59]
+  17956906:
+    template: Eschan_Worm
+    region:   w_40
+    level:    [50, 59]
+  17956907:
+    template: Eschan_Worm
+    region:   w_40
+    level:    [50, 59]
+  17956908:
+    template: Eschan_Worm
+    region:   w_40
+    level:    [50, 59]
+  17956909:
+    template: Eschan_Worm
+    region:   w_40
+    level:    [50, 59]
+  17956910:
+    template: Eschan_Crawler
+    region:   w_40
+    level:    [50, 59]
+  17956911:
+    template: Eschan_Crawler
+    region:   w_40
+    level:    [50, 59]
+  17956912:
+    template: Eschan_Crawler
+    region:   w_40
+    level:    [50, 59]
+  17956913:
+    template: Eschan_Crawler
+    region:   w_40
+    level:    [50, 59]
+  17956914:
+    template: Eschan_Crawler
+    region:   w_40
+    level:    [50, 59]
+  17956915:
+    template: Eschan_Crawler
+    region:   w_40
+    level:    [50, 59]
+  17956916:
+    template: Eschan_Crawler
+    region:   w_40
+    level:    [50, 59]
+  17956917:
+    template: Eschan_Worm
+    region:   w_53
+    level:    [50, 59]
+  17956918:
+    template: Eschan_Worm
+    region:   w_53
+    level:    [50, 59]
+  17956919:
+    template: Eschan_Worm
+    region:   w_53
+    level:    [50, 59]
+  17956920:
+    template: Eschan_Worm
+    region:   w_53
+    level:    [50, 59]
+  17956921:
+    template: Eschan_Worm
+    region:   w_53
+    level:    [50, 59]
+  17956922:
+    template: Eschan_Crawler
+    region:   w_53
+    level:    [50, 59]
+  17956923:
+    template: Eschan_Crawler
+    region:   w_53
+    level:    [50, 59]
+  17956924:
+    template: Eschan_Crawler
+    region:   w_53
+    level:    [50, 59]
+  17956925:
+    template: Eschan_Crawler
+    region:   w_53
+    level:    [50, 59]
+  17956926:
+    template: Eschan_Crawler
+    region:   w_53
+    level:    [50, 59]
+  17956927:
+    template: Eschan_Crawler
+    region:   w_53
+    level:    [50, 59]
+  17956928:
+    template: Eschan_Crawler
+    region:   w_53
+    level:    [50, 59]
+  17956929:
+    template: Eschan_Crawler
+    region:   w_53
+    level:    [50, 59]
+  17956930:
+    template: Eschan_Worm
+    region:   w_66
+    level:    [50, 59]
+  17956931:
+    template: Eschan_Worm
+    region:   w_66
+    level:    [50, 59]
+  17956932:
+    template: Eschan_Worm
+    region:   w_66
+    level:    [50, 59]
+  17956933:
+    template: Eschan_Crawler
+    region:   w_66
+    level:    [50, 59]
+  17956934:
+    template: Eschan_Crawler
+    region:   w_66
+    level:    [50, 59]
+  17956935:
+    template: Eschan_Crawler
+    region:   w_66
+    level:    [50, 59]
+  17956936:
+    template: Eschan_Crawler
+    region:   w_66
+    level:    [50, 59]
+  17956937:
+    template: Eschan_Crawler
+    region:   w_66
+    level:    [50, 59]
+  17956938:
+    template: Eschan_Crawler
+    region:   w_66
+    level:    [50, 59]
+  17956939:
+    template: Eschan_Crawler
+    region:   w_66
+    level:    [50, 59]
+  17956940:
+    template: Eschan_Weapon
+    region:   w_76
+    level:    [60, 69]
+  17956941:
+    template: Eschan_Weapon
+    region:   w_76
+    level:    [60, 69]
+  17956942:
+    template: Eschan_Weapon
+    region:   w_76
+    level:    [60, 69]
+  17956943:
+    template: Eschan_Weapon
+    region:   w_76
+    level:    [60, 69]
+  17956944:
+    template: Eschan_Dhalmel
+    region:   w_76
+    level:    [60, 69]
+  17956945:
+    template: Eschan_Dhalmel
+    region:   w_76
+    level:    [60, 69]
+  17956946:
+    template: Eschan_Dhalmel
+    region:   w_76
+    level:    [60, 69]
+  17956947:
+    template: Eschan_Dhalmel
+    region:   w_76
+    level:    [60, 69]
+  17956948:
+    template: Eschan_Weapon
+    region:   w_84
+    level:    [60, 69]
+  17956949:
+    template: Eschan_Weapon
+    region:   w_84
+    level:    [60, 69]
+  17956950:
+    template: Eschan_Weapon
+    region:   w_84
+    level:    [60, 69]
+  17956951:
+    template: Eschan_Weapon
+    region:   w_84
+    level:    [60, 69]
+  17956952:
+    template: Eschan_Dhalmel
+    region:   w_84
+    level:    [60, 69]
+  17956953:
+    template: Eschan_Dhalmel
+    region:   w_84
+    level:    [60, 69]
+  17956954:
+    template: Eschan_Dhalmel
+    region:   w_84
+    level:    [60, 69]
+  17956955:
+    template: Eschan_Weapon
+    region:   nw_91
+    level:    [60, 69]
+  17956956:
+    template: Eschan_Weapon
+    region:   nw_91
+    level:    [60, 69]
+  17956957:
+    template: Eschan_Weapon
+    region:   nw_91
+    level:    [60, 69]
+  17956958:
+    template: Eschan_Weapon
+    region:   nw_91
+    level:    [60, 69]
+  17956959:
+    template: Eschan_Weapon
+    region:   nw_91
+    level:    [60, 69]
+  17956960:
+    template: Eschan_Dhalmel
+    region:   nw_91
+    level:    [60, 69]
+  17956961:
+    template: Eschan_Dhalmel
+    region:   nw_91
+    level:    [60, 69]
+  17956962:
+    template: Eschan_Dhalmel
+    region:   nw_91
+    level:    [60, 69]
+  17956963:
+    template: Eschan_Dhalmel
+    region:   nw_91
+    level:    [60, 69]
+  17956964:
+    template: Eschan_Dhalmel
+    region:   nw_91
+    level:    [60, 69]
+  17956965:
+    template: Eschan_Weapon
+    region:   nw_101
+    level:    [60, 69]
+  17956966:
+    template: Eschan_Weapon
+    region:   nw_101
+    level:    [60, 69]
+  17956967:
+    template: Eschan_Weapon
+    region:   nw_101
+    level:    [60, 69]
+  17956968:
+    template: Eschan_Weapon
+    region:   nw_101
+    level:    [60, 69]
+  17956969:
+    template: Eschan_Weapon
+    region:   nw_101
+    level:    [60, 69]
+  17956970:
+    template: Eschan_Dhalmel
+    region:   nw_101
+    level:    [60, 69]
+  17956971:
+    template: Eschan_Dhalmel
+    region:   nw_101
+    level:    [60, 69]
+  17956972:
+    template: Eschan_Dhalmel
+    region:   nw_101
+    level:    [60, 69]
+  17956973:
+    template: Eschan_Dhalmel
+    region:   nw_101
+    level:    [60, 69]
+  17956974:
+    template: Eschan_Coeurl
+    region:   nw_110
+    level:    [60, 69]
+  17956975:
+    template: Eschan_Coeurl
+    region:   nw_110
+    level:    [60, 69]
+  17956976:
+    template: Eschan_Coeurl
+    region:   nw_110
+    level:    [60, 69]
+  17956977:
+    template: Eschan_Coeurl
+    region:   w_113
+    level:    [60, 69]
+  17956978:
+    template: Eschan_Coeurl
+    region:   w_113
+    level:    [60, 69]
+  17956979:
+    template: Eschan_Coeurl
+    region:   w_113
+    level:    [60, 69]
+  17956980:
+    template: Eschan_Coeurl
+    region:   w_113
+    level:    [60, 69]
+  17956981:
+    template: Eschan_Coeurl
+    region:   w_113
+    level:    [60, 69]
+  17956982:
+    template: Eschan_Coeurl
+    region:   nw_118
+    level:    [60, 69]
+  17956983:
+    template: Eschan_Coeurl
+    region:   nw_118
+    level:    [60, 69]
+  17956984:
+    template: Eschan_Coeurl
+    region:   nw_118
+    level:    [60, 69]
+  17956985:
+    template: Eschan_Coeurl
+    region:   nw_118
+    level:    [60, 69]
+  17956986:
+    template: Eschan_Coeurl
+    region:   nw_118
+    level:    [60, 69]
+  17956987:
+    template: Eschan_Vulture
+    region:   c_123
+    level:    [70, 79]
+  17956988:
+    template: Eschan_Vulture
+    region:   c_123
+    level:    [70, 79]
+  17956989:
+    template: Eschan_Vulture
+    region:   c_123
+    level:    [70, 79]
+  17956990:
+    template: Eschan_Vulture
+    region:   c_123
+    level:    [70, 79]
+  17956991:
+    template: Eschan_Vulture
+    region:   c_123
+    level:    [70, 79]
+  17956992:
+    template: Eschan_Warrior
+    region:   c_128
+    level:    [70, 79]
+  17956993:
+    template: Eschan_Warrior
+    region:   c_128
+    level:    [70, 79]
+  17956994:
+    template: Eschan_Warrior
+    region:   c_128
+    level:    [70, 79]
+  17956995:
+    template: Eschan_Warrior
+    region:   c_128
+    level:    [70, 79]
+  17956996:
+    template: Eschan_Warrior
+    region:   c_128
+    level:    [70, 79]
+  17956997:
+    template: Eschan_Corse
+    region:   c_128
+    level:    [70, 79]
+  17956998:
+    template: Eschan_Corse
+    region:   c_128
+    level:    [70, 79]
+  17956999:
+    template: Eschan_Warrior
+    region:   c_135
+    level:    [70, 79]
+  17957000:
+    template: Eschan_Warrior
+    region:   c_135
+    level:    [70, 79]
+  17957001:
+    template: Eschan_Warrior
+    region:   c_135
+    level:    [70, 79]
+  17957002:
+    template: Eschan_Warrior
+    region:   c_135
+    level:    [70, 79]
+  17957003:
+    template: Eschan_Warrior
+    region:   c_135
+    level:    [70, 79]
+  17957004:
+    template: Eschan_Corse
+    region:   c_135
+    level:    [70, 79]
+  17957005:
+    template: Eschan_Corse
+    region:   c_135
+    level:    [70, 79]
+  17957006:
+    template: Eschan_Warrior
+    region:   c_142
+    level:    [70, 79]
+  17957007:
+    template: Eschan_Warrior
+    region:   c_142
+    level:    [70, 79]
+  17957008:
+    template: Eschan_Warrior
+    region:   c_142
+    level:    [70, 79]
+  17957009:
+    template: Eschan_Warrior
+    region:   c_142
+    level:    [70, 79]
+  17957010:
+    template: Eschan_Corse
+    region:   c_142
+    level:    [70, 79]
+  17957011:
+    template: Eschan_Warrior
+    region:   c_147
+    level:    [70, 79]
+  17957012:
+    template: Eschan_Warrior
+    region:   c_147
+    level:    [70, 79]
+  17957013:
+    template: Eschan_Warrior
+    region:   c_147
+    level:    [70, 79]
+  17957014:
+    template: Eschan_Corse
+    region:   c_147
+    level:    [70, 79]
+  17957015:
+    template: Eschan_Vulture
+    region:   c_151
+    level:    [70, 79]
+  17957016:
+    template: Eschan_Vulture
+    region:   c_151
+    level:    [70, 79]
+  17957017:
+    template: Eschan_Vulture
+    region:   c_151
+    level:    [70, 79]
+  17957018:
+    template: Eschan_Vulture
+    region:   c_154
+    level:    [70, 79]
+  17957019:
+    template: Eschan_Sorcerer
+    region:   c_154
+    level:    [70, 79]
+  17957020:
+    template: Eschan_Sorcerer
+    region:   c_154
+    level:    [70, 79]
+  17957021:
+    template: Eschan_Sorcerer
+    region:   c_154
+    level:    [70, 79]
+  17957022:
+    template: Eschan_Corse
+    region:   c_154
+    level:    [70, 79]
+  17957023:
+    template: Eschan_Corse
+    region:   c_154
+    level:    [70, 79]
+  17957024:
+    template: Eschan_Vulture
+    region:   c_160
+    level:    [70, 79]
+  17957025:
+    template: Eschan_Vulture
+    region:   c_160
+    level:    [70, 79]
+  17957026:
+    template: Eschan_Vulture
+    region:   c_160
+    level:    [70, 79]
+  17957027:
+    template: Eschan_Vulture
+    region:   c_160
+    level:    [70, 79]
+  17957028:
+    template: Eschan_Vulture
+    region:   c_160
+    level:    [70, 79]
+  17957029:
+    template: Eschan_Corse
+    region:   c_160
+    level:    [70, 79]
+  17957030:
+    template: Eschan_Corse
+    region:   c_160
+    level:    [70, 79]
+  17957031:
+    template: Eschan_Sorcerer
+    region:   c_167
+    level:    [70, 79]
+  17957032:
+    template: Eschan_Sorcerer
+    region:   c_167
+    level:    [70, 79]
+  17957033:
+    template: Eschan_Sorcerer
+    region:   c_167
+    level:    [70, 79]
+  17957034:
+    template: Eschan_Sorcerer
+    region:   c_167
+    level:    [70, 79]
+  17957035:
+    template: Eschan_Sorcerer
+    region:   c_167
+    level:    [70, 79]
+  17957036:
+    template: Eschan_Corse
+    region:   c_167
+    level:    [70, 79]
+  17957037:
+    template: Eschan_Corse
+    region:   c_167
+    level:    [70, 79]
+  17957038:
+    template: Eschan_Corse
+    region:   c_167
+    level:    [70, 79]
+  17957039:
+    template: Eschan_Corse
+    region:   c_167
+    level:    [70, 79]
+  17957040:
+    template: Eschan_Wasp
+    region:   s_176
+    level:    [80, 89]
+  17957041:
+    template: Eschan_Wasp
+    region:   s_176
+    level:    [80, 89]
+  17957042:
+    template: Eschan_Wasp
+    region:   s_176
+    level:    [80, 89]
+  17957043:
+    template: Eschan_Wasp
+    region:   s_176
+    level:    [80, 89]
+  17957044:
+    template: Eschan_Wasp
+    region:   s_176
+    level:    [80, 89]
+  17957045:
+    template: Eschan_Snapweed
+    region:   s_176
+    level:    [80, 89]
+  17957046:
+    template: Eschan_Snapweed
+    region:   s_176
+    level:    [80, 89]
+  17957047:
+    template: Eschan_Snapweed
+    region:   s_176
+    level:    [80, 89]
+  17957048:
+    template: Eschan_Goobbue
+    region:   s_176
+    level:    [80, 89]
+  17957049:
+    template: Eschan_Goobbue
+    region:   s_176
+    level:    [80, 89]
+  17957050:
+    template: Eschan_Goobbue
+    region:   s_176
+    level:    [80, 89]
+  17957051:
+    template: Eschan_Goobbue
+    region:   s_176
+    level:    [80, 89]
+  17957052:
+    template: Eschan_Snapweed
+    region:   sw_188
+    level:    [80, 89]
+  17957053:
+    template: Eschan_Snapweed
+    region:   sw_188
+    level:    [80, 89]
+  17957054:
+    template: Eschan_Snapweed
+    region:   sw_188
+    level:    [80, 89]
+  17957055:
+    template: Eschan_Snapweed
+    region:   sw_188
+    level:    [80, 89]
+  17957056:
+    template: Eschan_Snapweed
+    region:   sw_188
+    level:    [80, 89]
+  17957057:
+    template: Eschan_Snapweed
+    region:   sw_188
+    level:    [80, 89]
+  17957058:
+    template: Eschan_Wasp
+    region:   sw_194
+    level:    [80, 89]
+  17957059:
+    template: Eschan_Wasp
+    region:   sw_194
+    level:    [80, 89]
+  17957060:
+    template: Eschan_Wasp
+    region:   sw_194
+    level:    [80, 89]
+  17957061:
+    template: Eschan_Wasp
+    region:   sw_194
+    level:    [80, 89]
+  17957062:
+    template: Eschan_Wasp
+    region:   sw_194
+    level:    [80, 89]
+  17957063:
+    template: Eschan_Goobbue
+    region:   sw_194
+    level:    [80, 89]
+  17957064:
+    template: Eschan_Goobbue
+    region:   sw_194
+    level:    [80, 89]
+  17957065:
+    template: Eschan_Goobbue
+    region:   sw_194
+    level:    [80, 89]
+  17957066:
+    template: Eschan_Wasp
+    region:   sw_202
+    level:    [80, 89]
+  17957067:
+    template: Eschan_Wasp
+    region:   sw_202
+    level:    [80, 89]
+  17957068:
+    template: Eschan_Wasp
+    region:   sw_202
+    level:    [80, 89]
+  17957069:
+    template: Eschan_Wasp
+    region:   sw_202
+    level:    [80, 89]
+  17957070:
+    template: Eschan_Wasp
+    region:   sw_202
+    level:    [80, 89]
+  17957071:
+    template: Eschan_Goobbue
+    region:   sw_202
+    level:    [80, 89]
+  17957072:
+    template: Eschan_Goobbue
+    region:   sw_202
+    level:    [80, 89]
+  17957073:
+    template: Eschan_Goobbue
+    region:   sw_202
+    level:    [80, 89]
+  17957074:
+    template: Eschan_Wasp
+    region:   sw_210
+    level:    [80, 89]
+  17957075:
+    template: Eschan_Wasp
+    region:   sw_210
+    level:    [80, 89]
+  17957076:
+    template: Eschan_Wasp
+    region:   sw_210
+    level:    [80, 89]
+  17957077:
+    template: Eschan_Wasp
+    region:   sw_210
+    level:    [80, 89]
+  17957078:
+    template: Eschan_Wasp
+    region:   sw_210
+    level:    [80, 89]
+  17957079:
+    template: Eschan_Snapweed
+    region:   sw_210
+    level:    [80, 89]
+  17957080:
+    template: Eschan_Snapweed
+    region:   sw_210
+    level:    [80, 89]
+  17957081:
+    template: Eschan_Snapweed
+    region:   sw_210
+    level:    [80, 89]
+  17957082:
+    template: Eschan_Snapweed
+    region:   sw_210
+    level:    [80, 89]
+  17957083:
+    template: Eschan_Wasp
+    region:   sw_219
+    level:    [80, 89]
+  17957084:
+    template: Eschan_Wasp
+    region:   sw_219
+    level:    [80, 89]
+  17957085:
+    template: Eschan_Wasp
+    region:   sw_219
+    level:    [80, 89]
+  17957086:
+    template: Eschan_Wasp
+    region:   sw_219
+    level:    [80, 89]
+  17957087:
+    template: Eschan_Wasp
+    region:   sw_219
+    level:    [80, 89]
+  17957088:
+    template: Eschan_Wasp
+    region:   sw_219
+    level:    [80, 89]
+  17957089:
+    template: Eschan_Goobbue
+    region:   sw_219
+    level:    [80, 89]
+  17957090:
+    template: Eschan_Goobbue
+    region:   sw_219
+    level:    [80, 89]
+  17957091:
+    template: Eschan_Goobbue
+    region:   sw_219
+    level:    [80, 89]
+  17957092:
+    template: Eschan_Goobbue
+    region:   sw_219
+    level:    [80, 89]
+  17957093:
+    template: Eschan_Wasp
+    region:   sw_229
+    level:    [80, 89]
+  17957094:
+    template: Eschan_Wasp
+    region:   sw_229
+    level:    [80, 89]
+  17957095:
+    template: Eschan_Wasp
+    region:   sw_229
+    level:    [80, 89]
+  17957096:
+    template: Eschan_Wasp
+    region:   sw_229
+    level:    [80, 89]
+  17957097:
+    template: Eschan_Wasp
+    region:   sw_229
+    level:    [80, 89]
+  17957098:
+    template: Eschan_Wasp
+    region:   sw_229
+    level:    [80, 89]
+  17957099:
+    template: Eschan_Goobbue
+    region:   sw_229
+    level:    [80, 89]
+  17957100:
+    template: Eschan_Goobbue
+    region:   sw_229
+    level:    [80, 89]
+  17957101:
+    template: Eschan_Goobbue
+    region:   sw_229
+    level:    [80, 89]
+  17957102:
+    template: Eschan_Wasp
+    region:   s_238
+    level:    [80, 89]
+  17957103:
+    template: Eschan_Wasp
+    region:   s_238
+    level:    [80, 89]
+  17957104:
+    template: Eschan_Wasp
+    region:   s_238
+    level:    [80, 89]
+  17957105:
+    template: Eschan_Snapweed
+    region:   s_238
+    level:    [80, 89]
+  17957106:
+    template: Eschan_Snapweed
+    region:   s_238
+    level:    [80, 89]
+  17957107:
+    template: Eschan_Snapweed
+    region:   s_238
+    level:    [80, 89]
+  17957108:
+    template: Eschan_Goobbue
+    region:   s_238
+    level:    [80, 89]
+  17957109:
+    template: Eschan_Goobbue
+    region:   s_238
+    level:    [80, 89]
+  17957110:
+    template: Eschan_Goobbue
+    region:   s_238
+    level:    [80, 89]
+  17957111:
+    template: Eschan_Wasp
+    region:   s_247
+    level:    [80, 89]
+  17957112:
+    template: Eschan_Wasp
+    region:   s_247
+    level:    [80, 89]
+  17957113:
+    template: Eschan_Snapweed
+    region:   s_247
+    level:    [80, 89]
+  17957114:
+    template: Eschan_Snapweed
+    region:   s_247
+    level:    [80, 89]
+  17957115:
+    template: Eschan_Snapweed
+    region:   s_247
+    level:    [80, 89]
+  17957116:
+    template: Eschan_Snapweed
+    region:   s_247
+    level:    [80, 89]
+  17957117:
+    template: Eschan_Snapweed
+    region:   s_253
+    level:    [80, 89]
+  17957118:
+    template: Eschan_Snapweed
+    region:   s_253
+    level:    [80, 89]
+  17957119:
+    template: Eschan_Snapweed
+    region:   s_253
+    level:    [80, 89]
+  17957120:
+    template: Eschan_Snapweed
+    region:   s_253
+    level:    [80, 89]
+  17957121:
+    template: Eschan_Puk
+    region:   nw_257
+    level:    [107, 109]
+  17957122:
+    template: Eschan_Puk
+    region:   nw_257
+    level:    [107, 109]
+  17957123:
+    template: Eschan_Puk
+    region:   nw_257
+    level:    [107, 109]
+  17957124:
+    template: Eschan_Puk
+    region:   nw_257
+    level:    [107, 109]
+  17957125:
+    template: Eschan_Puk
+    region:   nw_257
+    level:    [107, 109]
+  17957126:
+    template: Eschan_Shadow_Dragon
+    region:   nw_262
+    level:    [107, 110]
+  17957127:
+    template: Eschan_Shadow_Dragon
+    region:   nw_262
+    level:    [107, 110]
+  17957128:
+    template: Eschan_Puk
+    region:   nw_262
+    level:    [107, 109]
+  17957129:
+    template: Eschan_Puk
+    region:   nw_262
+    level:    [107, 109]
+  17957130:
+    template: Eschan_Puk
+    region:   nw_262
+    level:    [107, 109]
+  17957131:
+    template: Eschan_Puk
+    region:   nw_262
+    level:    [107, 109]
+  17957132:
+    template: Eschan_Puk
+    region:   nw_262
+    level:    [107, 109]
+  17957133:
+    template: Eschan_Shadow_Dragon
+    region:   nw_269
+    level:    [107, 110]
+  17957134:
+    template: Eschan_Shadow_Dragon
+    region:   nw_269
+    level:    [107, 110]
+  17957135:
+    template: Eschan_Shadow_Dragon
+    region:   nw_269
+    level:    [107, 110]
+  17957136:
+    template: Eschan_Shadow_Dragon
+    region:   nw_269
+    level:    [107, 110]
+  17957137:
+    template: Eschan_Puk
+    region:   nw_269
+    level:    [107, 109]
+  17957138:
+    template: Eschan_Puk
+    region:   nw_269
+    level:    [107, 109]
+  17957139:
+    template: Eschan_Puk
+    region:   nw_269
+    level:    [107, 109]
+  17957140:
+    template: Eschan_Puk
+    region:   nw_269
+    level:    [107, 109]
+  17957141:
+    template: Eschan_Puk
+    region:   nw_269
+    level:    [107, 109]
+  17957142:
+    template: Eschan_Shadow_Dragon
+    region:   nw_278
+    level:    [107, 110]
+  17957143:
+    template: Eschan_Shadow_Dragon
+    region:   nw_278
+    level:    [107, 110]
+  17957144:
+    template: Eschan_Shadow_Dragon
+    region:   nw_278
+    level:    [107, 110]
+  17957145:
+    template: Eschan_Puk
+    region:   nw_278
+    level:    [107, 109]
+  17957146:
+    template: Eschan_Puk
+    region:   nw_278
+    level:    [107, 109]
+  17957147:
+    template: Eschan_Puk
+    region:   nw_278
+    level:    [107, 109]
+  17957148:
+    template: Eschan_Puk
+    region:   nw_278
+    level:    [107, 109]
+  17957149:
+    template: Eschan_Puk
+    region:   nw_278
+    level:    [107, 109]
+  17957150:
+    template: Eschan_Shadow_Dragon
+    region:   nw_286
+    level:    [107, 110]
+  17957151:
+    template: Eschan_Shadow_Dragon
+    region:   nw_286
+    level:    [107, 110]
+  17957152:
+    template: Eschan_Puk
+    region:   nw_286
+    level:    [107, 109]
+  17957153:
+    template: Eschan_Puk
+    region:   nw_286
+    level:    [107, 109]
+  17957154:
+    template: Eschan_Puk
+    region:   nw_286
+    level:    [107, 109]
+  17957155:
+    template: Eschan_Puk
+    region:   nw_286
+    level:    [107, 109]
+  17957156:
+    template: Eschan_Shadow_Dragon
+    region:   nw_292
+    level:    [107, 110]
+  17957157:
+    template: Eschan_Shadow_Dragon
+    region:   nw_292
+    level:    [107, 110]
+  17957158:
+    template: Eschan_Shadow_Dragon
+    region:   nw_292
+    level:    [107, 110]
+  17957159:
+    template: Eschan_Puk
+    region:   nw_292
+    level:    [107, 109]
+  17957160:
+    template: Eschan_Puk
+    region:   nw_292
+    level:    [107, 109]
+  17957161:
+    template: Eschan_Puk
+    region:   nw_292
+    level:    [107, 109]
+  17957162:
+    template: Eschan_Puk
+    region:   nw_292
+    level:    [107, 109]
+  17957163:
+    template: Eschan_Tarichuk
+    region:   c_299
+    level:    [107, 109]
+  17957164:
+    template: Eschan_Tarichuk
+    region:   c_299
+    level:    [107, 109]
+  17957165:
+    template: Eschan_Tarichuk
+    region:   c_299
+    level:    [107, 109]
+  17957166:
+    template: Eschan_Tarichuk
+    region:   e_302
+    level:    [107, 109]
+  17957167:
+    template: Eschan_Tarichuk
+    region:   e_302
+    level:    [107, 109]
+  17957168:
+    template: Eschan_Tarichuk
+    region:   e_302
+    level:    [107, 109]
+  17957169:
+    template: Eschan_Tarichuk
+    region:   e_302
+    level:    [107, 109]
+  17957170:
+    template: Eschan_Tarichuk
+    region:   e_302
+    level:    [107, 109]
+  17957171:
+    template: Eschan_Tarichuk
+    region:   e_302
+    level:    [107, 109]
+  17957172:
+    template: Eschan_Bugard
+    region:   e_302
+    level:    [107, 110]
+  17957173:
+    template: Eschan_Bugard
+    region:   e_302
+    level:    [107, 110]
+  17957174:
+    template: Eschan_Tarichuk
+    region:   e_310
+    level:    [107, 109]
+  17957175:
+    template: Eschan_Tarichuk
+    region:   e_310
+    level:    [107, 109]
+  17957176:
+    template: Eschan_Tarichuk
+    region:   e_310
+    level:    [107, 109]
+  17957177:
+    template: Eschan_Tarichuk
+    region:   e_310
+    level:    [107, 109]
+  17957178:
+    template: Eschan_Bugard
+    region:   e_310
+    level:    [107, 110]
+  17957179:
+    template: Eschan_Bugard
+    region:   e_310
+    level:    [107, 110]
+  17957180:
+    template: Eschan_Tarichuk
+    region:   se_316
+    level:    [107, 109]
+  17957181:
+    template: Eschan_Tarichuk
+    region:   se_316
+    level:    [107, 109]
+  17957182:
+    template: Eschan_Tarichuk
+    region:   se_316
+    level:    [107, 109]
+  17957183:
+    template: Eschan_Tarichuk
+    region:   se_316
+    level:    [107, 109]
+  17957184:
+    template: Eschan_Tarichuk
+    region:   se_316
+    level:    [107, 109]
+  17957185:
+    template: Eschan_Bugard
+    region:   se_316
+    level:    [107, 110]
+  17957186:
+    template: Eschan_Bugard
+    region:   se_316
+    level:    [107, 110]
+  17957187:
+    template: Eschan_Tarichuk
+    region:   se_323
+    level:    [107, 109]
+  17957188:
+    template: Eschan_Tarichuk
+    region:   se_323
+    level:    [107, 109]
+  17957189:
+    template: Eschan_Tarichuk
+    region:   se_323
+    level:    [107, 109]
+  17957190:
+    template: Eschan_Tarichuk
+    region:   se_323
+    level:    [107, 109]
+  17957191:
+    template: Eschan_Tarichuk
+    region:   se_323
+    level:    [107, 109]
+  17957192:
+    template: Eschan_Tarichuk
+    region:   se_323
+    level:    [107, 109]
+  17957193:
+    template: Eschan_Tarichuk
+    region:   se_329
+    level:    [107, 109]
+  17957194:
+    template: Eschan_Tarichuk
+    region:   se_329
+    level:    [107, 109]
+  17957195:
+    template: Eschan_Tarichuk
+    region:   se_329
+    level:    [107, 109]
+  17957196:
+    template: Eschan_Tarichuk
+    region:   se_329
+    level:    [107, 109]
+  17957197:
+    template: Eschan_Tarichuk
+    region:   se_329
+    level:    [107, 109]
+  17957198:
+    template: Eschan_Bugard
+    region:   se_329
+    level:    [107, 110]
+  17957199:
+    template: Eschan_Bugard
+    region:   se_329
+    level:    [107, 110]
+  17957200:
+    template: Eschan_Tarichuk
+    region:   se_336
+    level:    [107, 109]
+  17957201:
+    template: Eschan_Tarichuk
+    region:   se_336
+    level:    [107, 109]
+  17957202:
+    template: Eschan_Tarichuk
+    region:   se_336
+    level:    [107, 109]
+  17957203:
+    template: Eschan_Bugard
+    region:   se_336
+    level:    [107, 110]
+  17957204:
+    template: Eschan_Bugard
+    region:   se_336
+    level:    [107, 110]
+  17957205:
+    template: Eschan_Bugard
+    region:   s_341
+    level:    [107, 110]
+  17957206:
+    template: Eschan_Bugard
+    region:   s_341
+    level:    [107, 110]
+  17957207:
+    template: Eschan_Bugard
+    region:   s_341
+    level:    [107, 110]
+  17957208:
+    template: Eschan_Tarichuk
+    region:   s_344
+    level:    [107, 109]
+  17957209:
+    template: Eschan_Tarichuk
+    region:   s_344
+    level:    [107, 109]
+  17957210:
+    template: Eschan_Tarichuk
+    region:   s_344
+    level:    [107, 109]
+  17957211:
+    template: Eschan_Tarichuk
+    region:   s_344
+    level:    [107, 109]
+  17957212:
+    template: Eschan_Tarichuk
+    region:   s_344
+    level:    [107, 109]
+  17957213:
+    template: Eschan_Tarichuk
+    region:   s_349
+    level:    [107, 109]
+  17957214:
+    template: Eschan_Tarichuk
+    region:   s_349
+    level:    [107, 109]
+  17957215:
+    template: Eschan_Tarichuk
+    region:   s_349
+    level:    [107, 109]
+  17957216:
+    template: Eschan_Opo-Opo
+    script:   Eschan_Opo-opo
+    region:   e_352
+    level:    [107, 109]
+  17957217:
+    template: Eschan_Opo-Opo
+    script:   Eschan_Opo-opo
+    region:   e_352
+    level:    [107, 109]
+  17957218:
+    template: Eschan_Opo-Opo
+    script:   Eschan_Opo-opo
+    region:   e_352
+    level:    [107, 109]
+  17957219:
+    template: Eschan_Opo-Opo
+    script:   Eschan_Opo-opo
+    region:   e_352
+    level:    [107, 109]
+  17957220:
+    template: Eschan_Opo-Opo
+    script:   Eschan_Opo-opo
+    region:   e_352
+    level:    [107, 109]
+  17957221:
+    template: Eschan_Opo-Opo
+    script:   Eschan_Opo-opo
+    region:   e_352
+    level:    [107, 109]
+  17957222:
+    template: Eschan_Opo-Opo
+    script:   Eschan_Opo-opo
+    region:   e_352
+    level:    [107, 109]
+  17957223:
+    template: Eschan_Opo-Opo
+    script:   Eschan_Opo-opo
+    region:   e_352
+    level:    [107, 109]
+  17957224:
+    template: Eschan_Yztarg
+    region:   e_352
+    level:    [107, 110]
+  17957225:
+    template: Eschan_Yztarg
+    region:   e_352
+    level:    [107, 110]
+  17957226:
+    template: Eschan_Yztarg
+    region:   e_352
+    level:    [107, 110]
+  17957227:
+    template: Eschan_Yztarg
+    region:   e_352
+    level:    [107, 110]
+  17957228:
+    template: Eschan_Yztarg
+    region:   e_352
+    level:    [107, 110]
+  17957229:
+    template: Eschan_Yztarg
+    region:   e_352
+    level:    [107, 110]
+  17957230:
+    template: Eschan_Yztarg
+    region:   e_352
+    level:    [107, 110]
+  17957231:
+    template: Eschan_Opo-Opo
+    script:   Eschan_Opo-opo
+    region:   se_367
+    level:    [107, 109]
+  17957232:
+    template: Eschan_Opo-Opo
+    script:   Eschan_Opo-opo
+    region:   se_367
+    level:    [107, 109]
+  17957233:
+    template: Eschan_Opo-Opo
+    script:   Eschan_Opo-opo
+    region:   se_367
+    level:    [107, 109]
+  17957234:
+    template: Eschan_Opo-Opo
+    script:   Eschan_Opo-opo
+    region:   se_367
+    level:    [107, 109]
+  17957235:
+    template: Eschan_Yztarg
+    region:   se_367
+    level:    [107, 110]
+  17957236:
+    template: Eschan_Opo-Opo
+    script:   Eschan_Opo-opo
+    region:   se_372
+    level:    [107, 109]
+  17957237:
+    template: Eschan_Opo-Opo
+    script:   Eschan_Opo-opo
+    region:   se_372
+    level:    [107, 109]
+  17957238:
+    template: Eschan_Opo-Opo
+    script:   Eschan_Opo-opo
+    region:   se_374
+    level:    [107, 109]
+  17957239:
+    template: Eschan_Opo-Opo
+    script:   Eschan_Opo-opo
+    region:   se_374
+    level:    [107, 109]
+  17957240:
+    template: Eschan_Opo-Opo
+    script:   Eschan_Opo-opo
+    region:   se_374
+    level:    [107, 109]
+  17957241:
+    template: Eschan_Opo-Opo
+    script:   Eschan_Opo-opo
+    region:   se_374
+    level:    [107, 109]
+  17957242:
+    template: Eschan_Yztarg
+    region:   se_372
+    level:    [107, 110]
+  17957243:
+    template: Eschan_Yztarg
+    region:   se_374
+    level:    [107, 110]
+  17957244:
+    template: Eschan_Yztarg
+    region:   se_374
+    level:    [107, 110]
+  17957245:
+    template: Eschan_Opo-Opo
+    script:   Eschan_Opo-opo
+    region:   se_381
+    level:    [107, 109]
+  17957246:
+    template: Eschan_Opo-Opo
+    script:   Eschan_Opo-opo
+    region:   se_381
+    level:    [107, 109]
+  17957247:
+    template: Eschan_Opo-Opo
+    script:   Eschan_Opo-opo
+    region:   se_381
+    level:    [107, 109]
+  17957248:
+    template: Eschan_Opo-Opo
+    script:   Eschan_Opo-opo
+    region:   se_381
+    level:    [107, 109]
+  17957249:
+    template: Eschan_Yztarg
+    region:   se_381
+    level:    [107, 110]
+  17957250:
+    template: Eschan_Yztarg
+    region:   se_381
+    level:    [107, 110]
+  17957251:
+    template: Eschan_Opo-Opo
+    script:   Eschan_Opo-opo
+    region:   se_387
+    level:    [107, 109]
+  17957252:
+    template: Eschan_Opo-Opo
+    script:   Eschan_Opo-opo
+    region:   se_387
+    level:    [107, 109]
+  17957253:
+    template: Eschan_Yztarg
+    region:   se_387
+    level:    [107, 110]
+  17957254:
+    template: Eschan_Opo-Opo
+    script:   Eschan_Opo-opo
+    region:   se_390
+    level:    [107, 109]
+  17957255:
+    template: Eschan_Opo-Opo
+    script:   Eschan_Opo-opo
+    region:   se_390
+    level:    [107, 109]
+  17957256:
+    template: Eschan_Opo-Opo
+    script:   Eschan_Opo-opo
+    region:   se_390
+    level:    [107, 109]
+  17957257:
+    template: Eschan_Opo-Opo
+    script:   Eschan_Opo-opo
+    region:   se_390
+    level:    [107, 109]
+  17957258:
+    template: Eschan_Yztarg
+    region:   se_390
+    level:    [107, 110]
+  17957259:
+    template: Eschan_Yztarg
+    region:   se_390
+    level:    [107, 110]
+  17957260:
+    template: Eschan_Opo-Opo
+    script:   Eschan_Opo-opo
+    region:   se_396
+    level:    [107, 109]
+  17957261:
+    template: Eschan_Opo-Opo
+    script:   Eschan_Opo-opo
+    region:   se_396
+    level:    [107, 109]
+  17957262:
+    template: Eschan_Opo-Opo
+    script:   Eschan_Opo-opo
+    region:   se_396
+    level:    [107, 109]
+  17957263:
+    template: Eschan_Opo-Opo
+    script:   Eschan_Opo-opo
+    region:   se_396
+    level:    [107, 109]
+  17957264:
+    template: Eschan_Yztarg
+    region:   se_396
+    level:    [107, 110]
+  17957265:
+    template: Eschan_Yztarg
+    region:   se_396
+    level:    [107, 110]
+  17957266:
+    template: Eschan_Opo-Opo
+    script:   Eschan_Opo-opo
+    region:   se_402
+    level:    [107, 109]
+  17957267:
+    template: Eschan_Opo-Opo
+    script:   Eschan_Opo-opo
+    region:   se_402
+    level:    [107, 109]
+  17957268:
+    template: Eschan_Opo-Opo
+    script:   Eschan_Opo-opo
+    region:   se_402
+    level:    [107, 109]
+  17957269:
+    template: Eschan_Opo-Opo
+    script:   Eschan_Opo-opo
+    region:   se_402
+    level:    [107, 109]
+  17957270:
+    template: Eschan_Yztarg
+    region:   se_402
+    level:    [107, 110]
+  17957271:
+    template: Eschan_Yztarg
+    region:   se_402
+    level:    [107, 110]
+  17957272:
+    template: Eschan_Mosquito
+    region:   nw_257
+    level:    [119, 119]
+  17957273:
+    template: Eschan_Mosquito
+    region:   se_409
+    level:    [119, 119]
+  17957274:
+    template: Eschan_Mosquito
+    region:   se_409
+    level:    [119, 119]
+  17957275:
+    template: Eschan_Mosquito
+    region:   e_352
+    level:    [119, 119]
+  17957276:
+    template: Eschan_Mosquito
+    at:       [467.800, -0.001, -441.140, 50]
+    level:    [119, 119]
+  17957277:
+    template: Hugemaw_Harold
+    at:       [-357.500, 0.238, 14.435, 176]
+    level:    [80, 80]
+  17957278:
+    template: Prickly_Pitriv
+    at:       [-129.400, -0.268, 34.275, 4]
+    level:    [75, 75]
+  17957279:
+    template: Serpopard_Ninlil
+    at:       [-493.900, 0.180, 231.925, 42]
+    level:    [99, 99]
+  17957280:
+    template: Abyssdiver
+    at:       [-19.010, 0.475, 80.188, 45]
+    level:    [119, 119]
+  17957281:
+    template: Keeper_of_Heiligtum
+    at:       [-36.690, -0.328, -350.240, 133]
+    level:    [122, 122]
+  17957282:
+    template: Muut
+    at:       [-44.051, -0.341, -150.481, 95]
+  17957283:
+    template: Muuts_Hound_Warrior
+    at:       [68.281, 0.963, 52.595, 86]
+    level:    [103, 104]
+  17957284:
+    template: Muuts_Sacrifice
+    at:       [68.307, 0.959, 52.759, 88]
+    level:    [103, 104]
+  17957285:
+    template: Muuts_Hound_Warrior
+    at:       [68.106, 0.959, 52.885, 88]
+    level:    [103, 104]
+  17957286:
+    template: Muuts_Sacrifice
+    at:       [67.907, 0.959, 53.024, 87]
+    level:    [103, 104]
+  17957287:
+    template: Muuts_Hound_Warrior
+    at:       [-12.000, -0.123, 48.996, 145]
+    level:    [103, 104]
+  17957288:
+    template: Muuts_Sacrifice
+    at:       [-12.050, -0.330, 54.473, 27]
+    level:    [103, 104]
+  17957289:
+    template: Muuts_Hound_Warrior
+    at:       [-9.482, -0.070, 48.096, 212]
+    level:    [103, 104]
+  17957290:
+    template: Muuts_Sacrifice
+    at:       [-10.860, -0.096, 48.427, 105]
+    level:    [103, 104]
+  17957291:
+    template: Voso
+    at:       [-340.230, 2.046, 166.833, 52]
+  17957292:
+    template: Jester_Malatrix
+    at:       [-517.700, 0.430, 180.716, 192]
+    level:    [119, 119]
+  17957293:
+    template: Immanibugard
+    at:       [237.140, -1.708, -305.540, 235]
+    level:    [119, 119]
+  17957294:
+    template: Beist
+    at:       [-306.500, 0.125, 419.835, 203]
+    level:    [125, 125]
+  17957295:
+    template: Eschan_Jewelweed
+    at:       [15.017, 0.201, 81.826, 77]
+    level:    [99, 99]
+  17957296:
+    template: Eschan_Jewelweed
+    at:       [-143.200, 0.285, -452.150, 35]
+    level:    [99, 99]
+  17957297:
+    template: Eschan_Jewelweed
+    at:       [359.430, 0.136, -593.600, 225]
+    level:    [99, 99]
+  17957298:
+    template: Wepwawet
+    at:       [324.260, -0.386, -126.010, 253]
+    level:    [119, 119]
+  17957299:
+    template: Wepwawet
+    at:       [39.548, -0.273, 127.708, 241]
+    level:    [119, 119]
+  17957300:
+    template: Wepwawet
+    level:    [119, 119]
+  17957301:
+    template: Lustful_Lydia
+    at:       [319.880, -0.456, -124.860, 206]
+    level:    [119, 119]
+  17957302:
+    template: Lustful_Lydia
+    at:       [240.270, -0.307, -289.120, 69]
+    level:    [119, 119]
+  17957303:
+    template: Lustful_Lydia
+    level:    [119, 119]
+  17957304:
+    template: Aglaophotis
+    at:       [-360.000, -0.500, -440.000, 119]
+    level:    [119, 119]
+  17957305:
+    template: Aglaophotis
+    level:    [119, 119]
+  17957306:
+    template: Aglaophotis
+    level:    [119, 119]
+  17957307:
+    template: Tangata_Manu
+    at:       [316.710, -0.500, -118.680, 246]
+    level:    [119, 119]
+  17957308:
+    template: Tangata_Manu
+    at:       [-6.698, -0.363, -443.500, 82]
+    level:    [119, 119]
+  17957309:
+    template: Tangata_Manu
+    level:    [119, 119]
+  17957310:
+    template: Vidala
+    at:       [321.000, -0.500, -119.900, 202]
+    level:    [119, 119]
+  17957311:
+    template: Vidala
+    at:       [463.290, 0.335, -277.760, 224]
+    level:    [119, 119]
+  17957312:
+    template: Vidala
+    level:    [119, 119]
+  17957313:
+    template: Gestalt
+    at:       [321.000, -0.500, -119.900, 186]
+    level:    [119, 119]
+  17957314:
+    template: Gestalt
+    at:       [461.000, 0.450, -278.390, 27]
+    level:    [119, 119]
+  17957315:
+    template: Gestalt
+    level:    [119, 119]
+  17957316:
+    template: Angrboda
+    at:       [461.000, 0.450, -278.390, 98]
+    level:    [119, 119]
+  17957317:
+    template: Angrboda
+    at:       [243.600, 0.240, -295.390, 196]
+    level:    [119, 119]
+  17957318:
+    template: Angrboda
+    level:    [119, 119]
+  17957319:
+    template: Cunnast
+    at:       [321.000, -0.500, -119.900, 227]
+    level:    [119, 119]
+  17957320:
+    template: Cunnast
+    at:       [35.000, -0.349, 126.000, 158]
+    level:    [119, 119]
+  17957321:
+    template: Cunnast
+    level:    [119, 119]
+  17957322:
+    template: Revetaur
+    at:       [309.140, -0.157, -119.780, 105]
+    level:    [119, 119]
+  17957323:
+    template: Revetaur
+    level:    [119, 119]
+  17957324:
+    template: Revetaur
+    level:    [119, 119]
+  17957325:
+    template: Ferrodon
+    at:       [321.000, -0.500, -119.900, 93]
+    level:    [119, 119]
+  17957326:
+    template: Ferrodon
+    at:       [-6.698, -0.363, -443.500, 202]
+    level:    [119, 119]
+  17957327:
+    template: Ferrodon
+    level:    [119, 119]
+  17957328:
+    template: Gulltop
+    at:       [461.000, 0.450, -278.390, 239]
+    level:    [119, 119]
+  17957329:
+    template: Gulltop
+    at:       [458.780, 0.439, -278.850, 128]
+    level:    [119, 119]
+  17957330:
+    template: Gulltop
+    level:    [119, 119]
+  17957331:
+    template: Vyala
+    at:       [459.660, 0.483, -281.410, 7]
+    level:    [119, 119]
+  17957332:
+    template: Vyala
+    at:       [461.000, 0.450, -278.390, 185]
+    level:    [119, 119]
+  17957333:
+    template: Vyala
+    level:    [119, 119]
+  17957334:
+    template: Blazewing
+    at:       [243.600, 0.240, -295.390, 196]
+    level:    [135, 135]
+  17957335:
+    template: Blazewing
+    level:    [135, 135]
+  17957336:
+    template: Blazewing
+    level:    [135, 135]
+  17957337:
+    template: Bucca
+    at:       [238.620, -0.115, -291.690, 164]
+    level:    [135, 135]
+  17957338:
+    template: Bucca
+    level:    [135, 135]
+  17957339:
+    template: Bucca
+    level:    [135, 135]
+  17957340:
+    template: Puca
+    at:       [-12.416, -0.058, -441.622, 4]
+    level:    [135, 135]
+  17957341:
+    template: Puca
+    level:    [135, 135]
+  17957342:
+    template: Puca
+    level:    [135, 135]
+  17957343:
+    template: Alpluachra
+    at:       [238.900, -0.112, -291.720, 104]
+    level:    [135, 135]
+  17957344:
+    template: Alpluachra
+    level:    [135, 135]
+  17957345:
+    template: Alpluachra
+    level:    [135, 135]
+  17957346:
+    template: Pazuzu
+    at:       [463.180, 0.340, -277.680, 233]
+    level:    [135, 135]
+  17957347:
+    template: Pazuzu
+    at:       [464.770, 0.222, -277.080, 232]
+    level:    [135, 135]
+  17957348:
+    template: Pazuzu
+    level:    [135, 135]
+  17957349:
+    template: Wrathare
+    at:       [41.645, -0.056, 132.436, 199]
+    level:    [135, 135]
+  17957350:
+    template: Wrathare
+    level:    [135, 135]
+  17957351:
+    template: Wrathare
+    level:    [135, 135]
+  17957352:
+    template: Ionos
+    at:       [461.720, 0.413, -278.700, 245]
+    level:    [125, 125]
+  17957353:
+    template: Ionos
+    level:    [125, 125]
+  17957354:
+    template: Ionos
+    level:    [125, 125]
+  17957355:
+    template: Sensual_Sandy
+    at:       [238.260, 0.180, -294.800, 21]
+    level:    [125, 125]
+  17957356:
+    template: Sensual_Sandy
+    level:    [125, 125]
+  17957357:
+    template: Sensual_Sandy
+    level:    [125, 125]
+  17957358:
+    template: Nosoi
+    at:       [458.770, 0.439, -282.420, 45]
+    level:    [125, 125]
+  17957359:
+    template: Nosoi
+    level:    [125, 125]
+  17957360:
+    template: Nosoi
+    level:    [125, 125]
+  17957361:
+    template: Brittlis
+    at:       [35.000, -0.349, 126.000, 217]
+    level:    [125, 125]
+  17957362:
+    template: Brittlis
+    level:    [125, 125]
+  17957363:
+    template: Brittlis
+    level:    [125, 125]
+  17957364:
+    template: Kamohoalii
+    at:       [35.000, -0.349, 126.000, 73]
+    level:    [125, 125]
+  17957365:
+    template: Kamohoalii
+    at:       [459.281, 0.468, -271.579, 84]
+    level:    [125, 125]
+  17957366:
+    template: Kamohoalii
+    level:    [125, 125]
+  17957367:
+    template: Umdhlebi
+    at:       [460.760, 0.461, -279.160, 105]
+    level:    [125, 125]
+  17957368:
+    template: Umdhlebi
+    level:    [125, 125]
+  17957369:
+    template: Umdhlebi
+    level:    [125, 125]
+  17957370:
+    template: Fleetstalker
+    at:       [243.600, 0.240, -295.390, 198]
+    level:    [135, 135]
+  17957371:
+    template: Fleetstalker
+    at:       [243.600, 0.240, -295.399, 234]
+    level:    [135, 135]
+  17957372:
+    template: Fleetstalker
+    level:    [135, 135]
+  17957373:
+    template: Shockmaw
+    at:       [456.270, 0.417, -262.730, 194]
+    level:    [135, 135]
+  17957374:
+    template: Shockmaw
+    level:    [135, 135]
+  17957375:
+    template: Shockmaw
+    level:    [135, 135]
+  17957376:
+    template: Urmahlullu
+    at:       [35.000, -0.349, 126.000, 18]
+    level:    [135, 135]
+  17957377:
+    template: Urmahlullu
+    at:       [462.360, 0.370, -275.040, 73]
+    level:    [135, 135]
+  17957378:
+    template: Urmahlullu
+    level:    [135, 135]
+  17957379:
+    template: Blazewing
+    at:       [461.000, 0.450, -278.390, 119]
+    level:    [135, 135]
+  17957380:
+    template: Blazewing
+    level:    [135, 135]
+  17957381:
+    template: Blazewing
+    level:    [135, 135]
+  17957382:
+    template: Bucca
+    at:       [461.000, 0.450, -278.399, 98]
+    level:    [135, 135]
+  17957383:
+    template: Bucca
+    level:    [135, 135]
+  17957384:
+    template: Bucca
+    level:    [135, 135]
+  17957385:
+    template: Puca
+    at:       [464.000, 0.300, -278.399, 98]
+    level:    [135, 135]
+  17957386:
+    template: Puca
+    level:    [135, 135]
+  17957387:
+    template: Puca
+    level:    [135, 135]
+  17957388:
+    template: Alpluachra
+    at:       [461.000, 0.442, -275.399, 98]
+    level:    [135, 135]
+  17957389:
+    template: Alpluachra
+    level:    [135, 135]
+  17957390:
+    template: Alpluachra
+    level:    [135, 135]
+  17957391:
+    template: Pazuzu
+    at:       [-365.000, -0.449, 439.000, 193]
+    level:    [135, 135]
+  17957392:
+    template: Pazuzu
+    at:       [464.674, 0.159, -270.494, 99]
+    level:    [135, 135]
+  17957393:
+    template: Pazuzu
+    level:    [135, 135]
+  17957394:
+    template: Wrathare
+    at:       [463.534, 2.425, -374.160, 58]
+    level:    [135, 135]
+  17957395:
+    template: Wrathare
+    at:       [-358.466, -0.500, -440.145, 63]
+    level:    [135, 135]
+  17957396:
+    template: Wrathare
+    level:    [135, 135]
+  17957397:
+    template: Azi_Dahaka
+    at:       [-2.000, -0.425, 34.500, 192]
+    level:    [119, 119]
+  17957398:
+    template: Azi_Dahakas_Dragon
+    at:       [-6.980, 0.086, 29.790, 192]
+    level:    [117, 118]
+  17957399:
+    template: Azi_Dahakas_Dragon
+    at:       [-2.765, -0.093, 30.124, 132]
+    level:    [117, 118]
+  17957400:
+    template: Azi_Dahakas_Dragon
+    at:       [-5.808, -0.330, 37.524, 39]
+    level:    [117, 118]
+  17957401:
+    template: Azi_Dahakas_Dragon
+    at:       [-2.438, -0.101, 33.127, 102]
+    level:    [117, 118]
+  17957402:
+    template: Azi_Dahakas_Dragon
+    at:       [-4.644, -0.238, 26.974, 237]
+    level:    [117, 118]
+  17957403:
+    template: Azi_Dahakas_Dragon
+    at:       [-5.605, -0.035, 29.940, 206]
+    level:    [117, 118]
+  17957404:
+    template: Azi_Dahakas_Dragon
+    at:       [-7.826, -0.017, 36.201, 51]
+    level:    [117, 118]
+  17957405:
+    template: Azi_Dahakas_Dragon
+    at:       [-9.286, -0.234, 42.110, 24]
+    level:    [117, 118]
+  17957406:
+    template: Azi_Dahakas_Dragon
+    at:       [-9.739, -0.092, 34.623, 228]
+    level:    [117, 118]
+  17957407:
+    template: Azi_Dahakas_Dragon
+    at:       [-4.143, -0.090, 34.072, 189]
+    level:    [117, 118]
+  17957408:
+    template: Azi_Dahakas_Dragon
+    at:       [-8.680, 0.156, 32.968, 188]
+    level:    [117, 118]
+  17957409:
+    script: Mireu

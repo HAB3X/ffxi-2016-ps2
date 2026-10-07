@@ -1,0 +1,3181 @@
+# yaml-language-server: $schema=../../schemas/mobs.schema.json
+
+templates:
+
+  Alraune:
+    id:            97
+    species:       mandragora
+    skill_list_id: 178
+    attributes:
+      combat:
+        skill: hand_to_hand
+        delay: 360
+      jobs: [mnk, mnk]
+      render:
+        look:
+          type:  standard
+          model: 301
+        entity_flags: 1155
+        model_size:      1
+        hitbox:          8
+      behaviors:
+        links: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   two-leaf_mandragora_bud
+        - chance: rare
+          item:   four-leaf_mandragora_bud
+      steal: ball_of_saruta_cotton
+      despoil:
+        two-leaf_mandragora_bud: 0
+        ball_of_saruta_cotton:   0
+
+  Apsaras:
+    id:            204
+    species:       pugil
+    type:          [fished]
+    skill_list_id: 197
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 348
+        entity_flags:  3
+        model_size:    1
+        hitbox:       27
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+    loot:
+      steal: handful_of_fish_scales
+      despoil:
+        handful_of_pugil_scales: 0
+        handful_of_fish_scales:  0
+
+  Bight_Rarab:
+    id:            4085
+    species:       rabbit
+    skill_list_id: 206
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 269
+        entity_flags: 133
+      behaviors:
+        links: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   rabbit_hide
+        - chance: common
+          item:   slice_of_hare_meat
+      steal: slice_of_hare_meat
+      despoil:
+        rabbit_hide:        0
+        slice_of_hare_meat: 0
+    content: abyssea
+
+  Bismarck:
+    id:            4669
+    species:       pteraketo
+    type:          [notorious]
+    skill_list_id: 451
+    attributes:
+      combat:
+        skill: dagger
+      resists:
+        rank_element:
+          thunder: 4
+          water:   8
+        rank_status:
+          poison: 8
+      render:
+        look:
+          type:  standard
+          model: 2092
+        entity_flags: 155
+        model_size:     1
+        hitbox:        40
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+      stats:
+        mp: 9999
+
+  Camelopard:
+    id:            5136
+    species:       dhalmel
+    skill_list_id: 80
+    attributes:
+      combat:
+        skill: staff
+      render:
+        look:
+          type:  standard
+          model: 332
+        entity_flags: 133
+      behaviors:
+        links: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   slice_of_dhalmel_meat
+        - chance: uncommon
+          item:   slice_of_dhalmel_meat
+        - chance: rare
+          item:   giant_femur
+        - chance: uncommon
+          item:   catoblepas_hide
+      despoil:
+        slice_of_dhalmel_meat: 0
+        dhalmel_hide:          0
+        giant_femur:           0
+    content: abyssea
+
+  Catoblepas:
+    id:            660
+    species:       dhalmel
+    skill_list_id: 80
+    attributes:
+      combat:
+        skill: staff
+      render:
+        look:
+          type:  standard
+          model: 332
+        entity_flags: 133
+        model_size:     2
+        hitbox:        43
+      behaviors:
+        links: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   slice_of_dhalmel_meat
+        - chance: uncommon
+          item:   slice_of_dhalmel_meat
+        - chance: rare
+          item:   giant_femur
+        - chance: uncommon
+          item:   catoblepas_hide
+      despoil:
+        slice_of_dhalmel_meat: 0
+        dhalmel_hide:          0
+        giant_femur:           0
+
+  Coastal_Opo-opo:
+    id:            751
+    species:       opo_opo
+    skill_list_id: 188
+    attributes:
+      combat:
+        skill: scythe
+        delay: 200
+      render:
+        look:
+          type:  standard
+          model: 416
+        entity_flags: 131
+        model_size:     1
+        hitbox:        18
+      behaviors:
+        links: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   pebble
+        - chance: uncommon
+          item:   bunch_of_pamamas
+        - chance: rare
+          item:   elshimo_coconut
+        - chance: very_rare
+          item:   thundermelon
+      steal: bunch_of_pamamas
+      despoil:
+        bunch_of_pamamas: 0
+
+  Coralline_Uragnite:
+    id:            793
+    species:       uragnite
+    skill_list_id: 251
+    attributes:
+      combat:
+        skill: scythe
+        delay: 290
+      render:
+        look:
+          type:  standard
+          model: 1361
+        entity_flags:  643
+        animation_sub:   4
+        model_size:      1
+        hitbox:         12
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   seashell
+        - chance: uncommon
+          item:   sack_of_white_sand
+        - chance: rare
+          item:   uragnite_shell
+
+  Dalham:
+    id:            895
+    species:       sea_monk
+    type:          [notorious]
+    skill_list_id: 218
+    attributes:
+      combat:
+        skill: scythe
+        delay: 280
+      render:
+        look:
+          type:  standard
+          model: 353
+        entity_flags: 159
+        name_prefix:   32
+        model_size:     3
+        hitbox:        25
+      behaviors:
+        aggressive:     true
+        true_detection: true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 14000
+
+  Eft:
+    id:            1181
+    species:       eft
+    skill_list_id: 98
+    attributes:
+      combat:
+        skill: polearm
+        delay: 210
+      render:
+        look:
+          type:  standard
+          model: 1349
+        entity_flags: 1155
+        model_size:      1
+        hitbox:         12
+      behaviors:
+        links: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   lizard_egg
+        - chance: rare
+          item:   eft_skin
+        - chance: very_rare
+          item:   high-quality_eft_skin
+      steal: lizard_egg
+      despoil:
+        lizard_egg: 0
+        eft_skin:   0
+
+  Ghost_Crab_fished:
+    id:            1516
+    display_name:  Ghost_Crab
+    species:       crab
+    type:          [fished]
+    skill_list_id: 77
+    attributes:
+      combat:
+        skill: great_sword
+      jobs: [pld, pld]
+      render:
+        look:
+          type:  standard
+          model: 356
+        entity_flags:  131
+        animation_sub:   8
+        model_size:      1
+        hitbox:         13
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: always
+          item:   chunk_of_rock_salt
+        - chance: common
+          item:   slice_of_land_crab_meat
+        - chance: uncommon
+          item:   crab_shell
+      steal: chunk_of_rock_salt
+
+  Goblin_Pathfinder:
+    id:            1694
+    species:       goblin
+    skill_list_id: 133
+    attributes:
+      combat:
+        skill: axe
+      jobs: [bst, bst]
+      render:
+        look:
+          type:  standard
+          model: 487
+        entity_flags: 131
+        model_size:     1
+        hitbox:        12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: rare
+          item:   handful_of_counterfeit_gil
+        - chance: rare
+          item:   goblin_mask
+        - chance: very_rare
+          item:   goblin_armor
+        - chance: very_rare
+          item:   mythril_beastcoin
+      steal: silver_beastcoin
+      despoil:
+        loaf_of_goblin_bread:      0
+        chunk_of_goblin_chocolate: 0
+        bowl_of_goblin_stew:       0
+        goblin_mushpot:            0
+
+  Goblin_Shaman:
+    id:            1710
+    species:       goblin
+    spell_list_id: 21
+    skill_list_id: 133
+    attributes:
+      combat:
+        skill: dagger
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 507
+        entity_flags: 131
+        model_size:     1
+        hitbox:        12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: rare
+          item:   goblin_mask
+        - chance: very_rare
+          item:   goblin_armor
+        - chance: very_rare
+          item:   mythril_beastcoin
+      steal: silver_beastcoin
+      despoil:
+        loaf_of_goblin_bread:      0
+        chunk_of_goblin_chocolate: 0
+        bowl_of_goblin_stew:       0
+        goblin_mushpot:            0
+
+  Goblins_Rarab:
+    id:            1731
+    species:       rabbit
+    skill_list_id: 404
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 269
+        entity_flags: 131
+        model_size:     2
+        hitbox:        14
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+
+  Greater_Pugil_fished:
+    id:            5868
+    display_name:  Greater_Pugil
+    species:       pugil
+    type:          [fished]
+    skill_list_id: 197
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 348
+        entity_flags: 131
+        model_size:     1
+        hitbox:        27
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+
+  Grindylow:
+    id:            1817
+    species:       crab
+    type:          [fished]
+    skill_list_id: 77
+    attributes:
+      combat:
+        skill: great_sword
+      jobs: [pld, pld]
+      render:
+        look:
+          type:  standard
+          model: 357
+        entity_flags: 131
+        model_size:     1
+        hitbox:        13
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: always
+          item:   chunk_of_rock_salt
+        - chance: common
+          item:   slice_of_land_crab_meat
+        - chance: uncommon
+          item:   crab_shell
+      steal: chunk_of_rock_salt
+
+  Hobgoblin_Alastor:
+    id:            1968
+    species:       armored_goblin
+    spell_list_id: 5
+    skill_list_id: 133
+    attributes:
+      combat:
+        skill: sword
+      jobs: [drk, drk]
+      render:
+        look:
+          type:  standard
+          model: 491
+        entity_flags: 133
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+
+  Hobgoblin_Angler:
+    id:            1969
+    species:       goblin
+    skill_list_id: 133
+    attributes:
+      combat:
+        skill: axe
+      render:
+        look:
+          type:  standard
+          model: 492
+        entity_flags: 133
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+
+  Hobgoblin_Animalier:
+    id:            1970
+    species:       goblin
+    skill_list_id: 133
+    attributes:
+      combat:
+        skill: axe
+      jobs: [bst, bst]
+      render:
+        look:
+          type:  standard
+          model: 506
+        entity_flags: 133
+        model_size:     2
+        hitbox:        13
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: rare
+          item:   goblin_mask
+        - chance: very_rare
+          item:   goblin_armor
+      steal: gold_beastcoin
+      despoil:
+        loaf_of_goblin_bread:      0
+        chunk_of_goblin_chocolate: 0
+        bowl_of_goblin_stew:       0
+        goblin_mushpot:            0
+
+  Hobgoblin_Blagger:
+    id:            1973
+    species:       goblin
+    skill_list_id: 133
+    attributes:
+      combat:
+        skill: dagger
+      jobs: [thf, thf]
+      render:
+        look:
+          type:  standard
+          model: 502
+        entity_flags: 133
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+
+  Hobgoblin_Fascinator:
+    id:            1975
+    species:       goblin
+    spell_list_id: 21
+    skill_list_id: 133
+    attributes:
+      combat:
+        skill: dagger
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 507
+        entity_flags: 133
+        model_size:     2
+        hitbox:        13
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: rare
+          item:   goblin_mask
+        - chance: very_rare
+          item:   goblin_armor
+      steal: gold_beastcoin
+      despoil:
+        loaf_of_goblin_bread:      0
+        chunk_of_goblin_chocolate: 0
+        bowl_of_goblin_stew:       0
+        goblin_mushpot:            0
+
+  Hobgoblin_Martialist:
+    id:            1976
+    species:       armored_goblin
+    skill_list_id: 133
+    attributes:
+      combat:
+        skill: axe
+      render:
+        look:
+          type:  standard
+          model: 508
+        entity_flags: 133
+        model_size:     2
+        hitbox:        13
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: rare
+          item:   goblin_helm
+        - chance: very_rare
+          item:   goblin_mail
+      steal: gold_beastcoin
+      despoil:
+        loaf_of_goblin_bread:      0
+        chunk_of_goblin_chocolate: 0
+        bowl_of_goblin_stew:       0
+        goblin_mushpot:            0
+
+  Hobgoblin_Physician:
+    id:            1977
+    species:       goblin
+    spell_list_id: 20
+    skill_list_id: 133
+    attributes:
+      combat:
+        skill: staff
+      jobs: [whm, whm]
+      render:
+        look:
+          type:  standard
+          model: 493
+        entity_flags: 133
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+
+  Hobgoblin_Toreador:
+    id:            1981
+    species:       goblin
+    spell_list_id: 3
+    skill_list_id: 133
+    attributes:
+      combat:
+        skill: sword
+      jobs: [rdm, rdm]
+      render:
+        look:
+          type:  standard
+          model: 504
+        entity_flags: 133
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: rare
+          item:   goblin_mask
+        - chance: very_rare
+          item:   goblin_armor
+      steal: gold_beastcoin
+      despoil:
+        loaf_of_goblin_bread:      0
+        chunk_of_goblin_chocolate: 0
+        bowl_of_goblin_stew:       0
+        goblin_mushpot:            0
+
+  Hobgoblin_Venerer:
+    id:            1982
+    species:       goblin
+    skill_list_id: 133
+    attributes:
+      combat:
+        skill: dagger
+      jobs: [rng, rng]
+      render:
+        look:
+          type:  standard
+          model: 486
+        entity_flags: 133
+        model_size:     2
+        hitbox:        13
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: rare
+          item:   goblin_mask
+        - chance: very_rare
+          item:   goblin_armor
+        - chance: rare
+          item:   air_tank
+      steal: gold_beastcoin
+      despoil:
+        loaf_of_goblin_bread:      0
+        chunk_of_goblin_chocolate: 0
+        bowl_of_goblin_stew:       0
+        goblin_mushpot:            0
+
+  Hypnos_Eft:
+    id:            6172
+    species:       eft
+    skill_list_id: 98
+    attributes:
+      combat:
+        skill: polearm
+        delay: 210
+      render:
+        look:
+          type:  standard
+          model: 1349
+        entity_flags: 133
+      behaviors:
+        links: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   high-quality_eft_skin
+        - chance: uncommon
+          item:   lizard_egg
+        - chance: rare
+          item:   eft_skin
+      steal: lizard_egg
+      despoil:
+        lizard_egg: 0
+        eft_skin:   0
+    content: abyssea
+
+  Ignis_Fatuus_Bibiki_Bay:
+    id:            7338
+    display_name:  Ignis_Fatuus
+    species:       bomb
+    skill_list_id: 499
+    attributes:
+      combat:
+        skill: club
+      render:
+        look:
+          type:  standard
+          model: 280
+        entity_flags: 1155
+        model_size:      1
+        hitbox:         12
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+        type:    [fog]
+    loot:
+      drops:
+        - chance: always
+          item:   pinch_of_bomb_ash
+        - chance: common
+          item:   bomb_arm
+      steal: bomb_arm
+      despoil:
+        pinch_of_bomb_ash: 0
+
+  Intuila:
+    id:            6810
+    species:       eft
+    type:          [notorious]
+    skill_list_id: 98
+    attributes:
+      combat:
+        skill: polearm
+      render:
+        look:
+          type:  standard
+          model: 1349
+        entity_flags: 133
+        name_prefix:   32
+        model_size:     2
+        hitbox:        13
+      behaviors:
+        links: true
+      spawn:
+        type: [scripted]
+
+  Intulo:
+    id:            2083
+    species:       eft
+    type:          [notorious]
+    skill_list_id: 98
+    attributes:
+      combat:
+        skill: polearm
+        delay: 210
+      render:
+        look:
+          type:  standard
+          model: 1349
+        entity_flags: 1181
+        name_prefix:    32
+        model_size:      2
+        hitbox:         13
+      behaviors:
+        links: true
+      mods:
+        mdef: 25
+      spawn:
+        type: [lottery]
+      stats:
+        hp: 4400
+    loot:
+      drops:
+        - chance: common
+          item:   curaga_earring
+        - chance: uncommon
+          item:   magic_slacks
+        - chance: uncommon
+          item:   eft_skin
+      steal: lizard_egg
+
+  Island_Rarab:
+    id:            2107
+    species:       onyx_rabbit
+    skill_list_id: 404
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 269
+        entity_flags: 1155
+        model_size:      1
+        hitbox:         12
+      behaviors:
+        links: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   rabbit_hide
+        - chance: common
+          item:   slice_of_hare_meat
+      steal: slice_of_hare_meat
+      despoil:
+        rabbit_hide:        0
+        slice_of_hare_meat: 0
+
+  Jagil:
+    id:            2128
+    species:       pugil
+    skill_list_id: 709
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 349
+        entity_flags: 131
+        model_size:     1
+        hitbox:        27
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   handful_of_pugil_scales
+        - chance: rare
+          item:   shall_shell
+      steal: handful_of_fish_scales
+      despoil:
+        handful_of_pugil_scales: 0
+        handful_of_fish_scales:  0
+
+  Kraken:
+    id:            2286
+    species:       sea_monk
+    skill_list_id: 218
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 352
+        entity_flags: 131
+        model_size:     1
+        hitbox:        17
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   seashell
+        - chance: very_rare
+          item:   shall_shell
+      despoil:
+        seashell: 0
+
+  Kraken_fished:
+    id:            6029
+    display_name:  Kraken
+    species:       sea_monk
+    type:          [fished]
+    skill_list_id: 218
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 352
+        entity_flags: 131
+        model_size:     1
+        hitbox:        17
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: common
+          item:   seashell
+        - chance: very_rare
+          item:   shall_shell
+      despoil:
+        seashell: 0
+
+  Lancet_Jagil:
+    id:            2371
+    species:       pugil
+    type:          [notorious, fished]
+    skill_list_id: 709
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 349
+        entity_flags:  3
+        model_size:    2
+        hitbox:       32
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: always
+          item:   cleanly_snapped_rod
+      steal: handful_of_fish_scales
+
+  Locus_Bight_Rarab:
+    id:            7062
+    species:       rabbit
+    skill_list_id: 206
+    attributes:
+      combat:
+        skill: scythe
+      jobs: [thf, thf]
+      render:
+        look:
+          type:  standard
+          model: 269
+        entity_flags: 133
+        model_size:     2
+        hitbox:        14
+      behaviors:
+        links: true
+      spawn:
+        respawn: 60
+      stats:
+        hp: 308300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   rabbit_hide
+        - chance: common
+          item:   slice_of_hare_meat
+      steal: slice_of_hare_meat
+      despoil:
+        rabbit_hide:        0
+        slice_of_hare_meat: 0
+    content: rov
+
+  Locus_Camelopard:
+    id:            7063
+    species:       dhalmel
+    skill_list_id: 80
+    attributes:
+      combat:
+        skill: staff
+      render:
+        look:
+          type:  standard
+          model: 332
+        entity_flags: 133
+        model_size:     2
+        hitbox:        43
+      behaviors:
+        links: true
+      spawn:
+        respawn: 60
+      stats:
+        hp: 308300
+    loot:
+      drops:
+        - chance: common
+          item:   slice_of_dhalmel_meat
+        - chance: uncommon
+          item:   slice_of_dhalmel_meat
+        - chance: rare
+          item:   giant_femur
+        - chance: uncommon
+          item:   catoblepas_hide
+      despoil:
+        slice_of_dhalmel_meat: 0
+        dhalmel_hide:          0
+        giant_femur:           0
+    content: rov
+
+  Locus_Fiddler_Crab:
+    id:            7357
+    species:       crab
+    type:          [fished]
+    skill_list_id: 77
+    attributes:
+      combat:
+        skill: great_sword
+      jobs: [pld, pld]
+      render:
+        look:
+          type:  standard
+          model: 2966
+        entity_flags:  131
+        animation_sub:   8
+        model_size:      1
+        hitbox:         27
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 3600
+        type:    [scripted]
+      stats:
+        hp: 327500
+    content: rov
+
+  Locus_Ghost_Crab:
+    id:            7061
+    species:       crab
+    skill_list_id: 77
+    attributes:
+      combat:
+        skill: great_sword
+      jobs: [pld, pld]
+      render:
+        look:
+          type:  standard
+          model: 2965
+        entity_flags:  131
+        animation_sub:   8
+        model_size:      1
+        hitbox:         13
+      spawn:
+        respawn: 60
+      stats:
+        hp: 308300
+    loot:
+      drops:
+        - chance: always
+          item:   chunk_of_rock_salt
+        - chance: common
+          item:   slice_of_land_crab_meat
+        - chance: uncommon
+          item:   crab_shell
+      steal: chunk_of_rock_salt
+    content: rov
+
+  Locus_Hypnos_Eft:
+    id:            7064
+    species:       eft
+    skill_list_id: 98
+    attributes:
+      combat:
+        skill: polearm
+        delay: 210
+      render:
+        look:
+          type:  standard
+          model: 1349
+        entity_flags: 133
+        model_size:     2
+        hitbox:        13
+      behaviors:
+        links: true
+      spawn:
+        respawn: 60
+      stats:
+        hp: 308300
+    loot:
+      drops:
+        - chance: common
+          item:   high-quality_eft_skin
+        - chance: uncommon
+          item:   lizard_egg
+        - chance: rare
+          item:   eft_skin
+      steal: lizard_egg
+      despoil:
+        lizard_egg: 0
+        eft_skin:   0
+    content: rov
+
+  Marine_Dhalmel:
+    id:            2565
+    species:       dhalmel
+    skill_list_id: 80
+    attributes:
+      combat:
+        skill: staff
+      render:
+        look:
+          type:  standard
+          model: 332
+        entity_flags: 131
+        model_size:     1
+        hitbox:        37
+      behaviors:
+        links: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: rare
+          item:   giant_femur
+        - chance: uncommon
+          item:   slice_of_dhalmel_meat
+        - chance: uncommon
+          item:   slice_of_dhalmel_meat
+        - chance: very_rare
+          item:   dhalmel_hide
+        - chance: very_rare
+          item:   dhalmel_hide
+        - chance: very_rare
+          item:   sprig_of_papaka_grass
+      despoil:
+        slice_of_dhalmel_meat: 0
+        dhalmel_hide:          0
+        giant_femur:           0
+
+  Peerifool:
+    id:            3111
+    species:       mandragora
+    type:          [notorious]
+    skill_list_id: 178
+    attributes:
+      combat:
+        skill: hand_to_hand
+        delay: 480
+      jobs: [mnk, mnk]
+      render:
+        look:
+          type:  standard
+          model: 301
+        entity_flags: 157
+        name_prefix:   32
+        model_size:     2
+        hitbox:         9
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 3000
+
+  Primordial_Pugil:
+    id:            4733
+    species:       pugil
+    type:          [notorious]
+    skill_list_id: 197
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 349
+        entity_flags: 133
+        model_size:     2
+        hitbox:        32
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+
+  Raven:
+    id:            3330
+    species:       bird
+    skill_list_id: 2089
+    attributes:
+      combat:
+        skill: dagger
+      render:
+        look:
+          type:  standard
+          model: 445
+        entity_flags:  129
+        animation_sub:   8
+        hitbox:         17
+      behaviors:
+        links: true
+      detects: [hearing]
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   bird_feather
+        - chance: rare
+          item:   bird_egg
+      steal: bird_feather
+      despoil:
+        bird_feather: 0
+        bird_egg:     0
+
+  Rohemolipaud:
+    id:            3384
+    species:       elvaan
+    type:          [notorious]
+    skill_list_id: 145
+    attributes:
+      combat:
+        skill: dagger
+      jobs: [rng, rng]
+      render:
+        look:
+          type:   equipped
+          race:   3
+          face:   5
+          head:   4103
+          body:   8199
+          hands:  12295
+          legs:   16391
+          feet:   20487
+          main:   24576
+          sub:    28672
+          ranged: 32821
+        entity_flags:  3
+        model_size:    1
+        hitbox:       12
+      behaviors:
+        aggressive:     true
+        links:          true
+        true_detection: true
+      spawn:
+        type: [scripted]
+
+  Serra:
+    id:            3551
+    species:       pugil
+    type:          [notorious]
+    skill_list_id: 709
+    attributes:
+      combat:
+        skill: scythe
+      jobs: [war, drg]
+      render:
+        look:
+          type:  standard
+          model: 349
+        entity_flags: 133
+        model_size:     2
+        hitbox:        32
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [lottery]
+      stats:
+        hp: 4400
+    loot:
+      drops:
+        - chance: uncommon
+          item:   volans_greaves
+        - chance: rare
+          item:   handful_of_pugil_scales
+        - chance: very_rare
+          item:   shall_shell
+
+  Shankha:
+    id:            5875
+    species:       uragnite
+    type:          [notorious]
+    skill_list_id: 264
+    attributes:
+      combat:
+        skill: scythe
+        delay: 290
+      resists:
+        immune_status: [gravity, bind, light_sleep, dark_sleep]
+      render:
+        look:
+          type:  standard
+          model: 1361
+        entity_flags:  131
+        animation_sub:   4
+        model_size:      1
+        hitbox:         12
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 5400
+      stats:
+        hp: 4800
+    loot:
+      drops:
+        - chance: uncommon
+          item:   adoubeurs_pavise
+    content: wotg
+
+  Shen:
+    id:            3591
+    species:       uragnite
+    type:          [notorious]
+    spell_list_id: 2
+    skill_list_id: 251
+    attributes:
+      combat:
+        skill: scythe
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 1361
+        entity_flags:  6
+        name_prefix:  32
+        model_size:    3
+        hitbox:       16
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 20000
+        mp: 10000
+    loot:
+      drops:
+        - chance: always
+          item:   reverend_mail
+
+  Shens_Filtrate:
+    id:            3592
+    species:       water_elemental
+    type:          [notorious]
+    spell_list_id: 2
+    skill_list_id: 106
+    attributes:
+      combat:
+        skill: staff
+      jobs: [blm, war]
+      render:
+        look:
+          type:  standard
+          model: 12
+        name_prefix: 32
+        model_size:   1
+        hitbox:       8
+      behaviors:
+        links: true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 2300
+
+  Splacknuck:
+    id:            5762
+    species:       eft
+    type:          [notorious]
+    skill_list_id: 33
+    attributes:
+      combat:
+        skill: polearm
+        delay: 210
+      jobs: [thf, thf]
+      resists:
+        immune_status: [gravity, bind, light_sleep, dark_sleep]
+      render:
+        look:
+          type:  standard
+          model: 1349
+        entity_flags: 131
+        model_size:     1
+        hitbox:        12
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [lottery]
+      stats:
+        hp: 7720
+    loot:
+      drops:
+        - chance: uncommon
+          item:   knack_pendant
+    content: wotg
+
+  Tartarus_Eft:
+    id:            3848
+    species:       eft
+    skill_list_id: 98
+    attributes:
+      combat:
+        skill: polearm
+        delay: 210
+      render:
+        look:
+          type:  standard
+          model: 1349
+        entity_flags: 133
+        model_size:     2
+        hitbox:        13
+      behaviors:
+        links: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   high-quality_eft_skin
+        - chance: uncommon
+          item:   lizard_egg
+        - chance: rare
+          item:   eft_skin
+      steal: lizard_egg
+      despoil:
+        lizard_egg: 0
+        eft_skin:   0
+
+  Teine_Sith:
+    id:            3860
+    species:       bomb
+    skill_list_id: 499
+    attributes:
+      combat:
+        skill: club
+      render:
+        look:
+          type:  standard
+          model: 280
+        entity_flags:  645
+        animation_sub:   8
+        model_size:      2
+        hitbox:         13
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+        type:    [fog]
+
+  Toucan:
+    id:            3980
+    species:       bird
+    skill_list_id: 2089
+    attributes:
+      combat:
+        skill: dagger
+      render:
+        look:
+          type:  standard
+          model: 444
+        entity_flags: 129
+        hitbox:        17
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   bird_feather
+        - chance: rare
+          item:   bird_egg
+      steal: bird_feather
+      despoil:
+        bird_feather: 0
+        bird_egg:     0
+
+  Tragopan:
+    id:            3984
+    species:       bird
+    skill_list_id: 2089
+    attributes:
+      combat:
+        skill: dagger
+      render:
+        look:
+          type:  standard
+          model: 445
+        entity_flags: 133
+        model_size:     2
+        hitbox:        22
+      behaviors:
+        links: true
+      detects: [hearing]
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   bird_feather
+        - chance: rare
+          item:   bird_egg
+      steal: bird_feather
+      despoil:
+        bird_feather: 0
+        bird_egg:     0
+
+  Tropical_Rarab:
+    id:            4040
+    species:       rabbit
+    skill_list_id: 404
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 269
+        entity_flags: 133
+        model_size:     2
+        hitbox:        14
+      behaviors:
+        links: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   rabbit_hide
+        - chance: common
+          item:   slice_of_hare_meat
+      steal: slice_of_hare_meat
+      despoil:
+        rabbit_hide:        0
+        slice_of_hare_meat: 0
+
+  Viscous_Clot:
+    id:            4240
+    species:       clot
+    skill_list_id: 66
+    attributes:
+      combat:
+        skill: club
+      render:
+        look:
+          type:  standard
+          model: 294
+        entity_flags: 131
+        model_size:     1
+        hitbox:        24
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: rare
+          item:   handful_of_clot_plasma
+      despoil:
+        vial_of_slime_oil: 0
+
+
+  Beta_taka_Toucan:
+    id:            40051
+    species:       bird
+    skill_list_id: 2089
+    attributes:
+      combat:
+        skill: dagger
+      render:
+        look:
+          type:  standard
+          model: 2442
+        entity_flags: 129
+        hitbox:        17
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: rare
+          item:   beta_10449
+        - chance: uncommon
+          item:   beta_239
+        - chance: uncommon
+          item:   beta_4907
+        - chance: uncommon
+          item:   beta_6787
+        - chance: common
+          item:   bird_feather
+        - chance: rare
+          item:   bird_egg
+      steal: bird_feather
+      despoil:
+        bird_feather: 0
+        bird_egg:     0
+
+  Beta_usa_Locus_Bight_Rarab:
+    id:            40143
+    species:       rabbit
+    skill_list_id: 206
+    attributes:
+      combat:
+        skill: scythe
+      jobs: [thf, thf]
+      render:
+        look:
+          type:  standard
+          model: 2950
+        entity_flags: 133
+        model_size:     2
+        hitbox:        14
+      behaviors:
+        links: true
+      spawn:
+        respawn: 60
+      stats:
+        hp: 308300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   beta_1080
+        - chance: uncommon
+          item:   beta_6435
+        - chance: uncommon
+          item:   beta_6843
+        - chance: uncommon
+          item:   rabbit_hide
+        - chance: common
+          item:   slice_of_hare_meat
+      steal: slice_of_hare_meat
+      despoil:
+        rabbit_hide:        0
+        slice_of_hare_meat: 0
+    content: rov
+
+  Beta_kani_Locus_Ghost_Crab:
+    id:            40148
+    species:       crab
+    skill_list_id: 77
+    attributes:
+      combat:
+        skill: great_sword
+      jobs: [pld, pld]
+      render:
+        look:
+          type:  standard
+          model: 2962
+        entity_flags:  131
+        animation_sub:   8
+        model_size:      1
+        hitbox:         13
+      spawn:
+        respawn: 60
+      stats:
+        hp: 308300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   beta_160
+        - chance: uncommon
+          item:   beta_4693
+        - chance: uncommon
+          item:   beta_6758
+        - chance: uncommon
+          item:   beta_6908
+        - chance: always
+          item:   chunk_of_rock_salt
+        - chance: common
+          item:   slice_of_land_crab_meat
+        - chance: uncommon
+          item:   crab_shell
+      steal: chunk_of_rock_salt
+    content: rov
+
+spawns:
+  16793601:
+    template: Ghost_Crab_fished
+    script:   Ghost_Crab
+    at:       [1.000, 1.000, 1.000]
+    level:    [30, 34]
+  16793602:
+    template: Grindylow
+    at:       [1.000, 1.000, 1.000]
+    level:    [34, 34]
+  16793603:
+    template: Greater_Pugil_fished
+    script:   Greater_Pugil
+    at:       [1.000, 1.000, 1.000]
+    level:    [36, 38]
+  16793604:
+    template: Apsaras
+    at:       [1.000, 1.000, 1.000]
+    level:    [40, 42]
+  16793605:
+    template: Kraken_fished
+    script:   Kraken
+    at:       [1.000, 1.000, 1.000]
+    level:    [44, 46]
+  16793606:
+    template: Lancet_Jagil
+    at:       [1.000, 1.000, 1.000]
+    level:    [40, 42]
+  16793607:
+    template: Jagil
+    region:   sw_7
+    level:    [35, 38]
+  16793608:
+    template: Coralline_Uragnite
+    region:   sw_8
+    level:    [32, 34]
+  16793609:
+    template: Coralline_Uragnite
+    region:   sw_9
+    level:    [32, 34]
+  16793610:
+    template: Coralline_Uragnite
+    region:   sw_9
+    level:    [32, 34]
+  16793611:
+    template: Coralline_Uragnite
+    region:   sw_12
+    level:    [32, 34]
+  16793612:
+    template: Kraken
+    region:   sw_12
+    level:    [37, 40]
+  16793613:
+    template: Viscous_Clot
+    region:   sw_13
+    level:    [38, 40]
+  16793614:
+    template: Coralline_Uragnite
+    region:   sw_13
+    level:    [32, 34]
+  16793615:
+    template: Coralline_Uragnite
+    region:   sw_13
+    level:    [32, 34]
+  16793616:
+    template: Viscous_Clot
+    region:   sw_13
+    level:    [38, 40]
+  16793617:
+    template: Coralline_Uragnite
+    region:   sw_17
+    level:    [32, 34]
+  16793618:
+    template: Ignis_Fatuus_Bibiki_Bay
+    script:   Ignis_Fatuus
+    region:   sw_17
+    level:    [35, 37]
+  16793619:
+    template: Coastal_Opo-opo
+    region:   sw_19
+    level:    [37, 39]
+  16793620:
+    template: Coastal_Opo-opo
+    region:   sw_19
+    level:    [37, 39]
+  16793621:
+    template: Alraune
+    region:   sw_21
+    level:    [38, 40]
+  16793622:
+    template: Toucan
+    region:   sw_22
+    level:    [38, 40]
+  16793623:
+    template: Alraune
+    region:   sw_23
+    level:    [38, 40]
+  16793624:
+    template: Alraune
+    region:   sw_24
+    level:    [38, 40]
+  16793625:
+    template: Coastal_Opo-opo
+    region:   sw_25
+    level:    [37, 39]
+  16793626:
+    template: Coastal_Opo-opo
+    region:   sw_26
+    level:    [37, 39]
+  16793627:
+    template: Coastal_Opo-opo
+    region:   sw_27
+    level:    [37, 39]
+  16793628:
+    template: Toucan
+    region:   sw_28
+    level:    [38, 40]
+  16793629:
+    template: Coastal_Opo-opo
+    region:   sw_29
+    level:    [37, 39]
+  16793630:
+    template: Coastal_Opo-opo
+    region:   sw_29
+    level:    [37, 39]
+  16793631:
+    template: Toucan
+    region:   sw_31
+    level:    [38, 40]
+  16793632:
+    template: Ignis_Fatuus_Bibiki_Bay
+    script:   Ignis_Fatuus
+    region:   sw_31
+    level:    [35, 37]
+  16793633:
+    template: Alraune
+    region:   sw_33
+    level:    [38, 40]
+  16793634:
+    template: Alraune
+    region:   sw_34
+    level:    [38, 40]
+  16793635:
+    template: Alraune
+    region:   sw_34
+    level:    [38, 40]
+  16793636:
+    template: Jagil
+    region:   sw_36
+    level:    [35, 38]
+  16793637:
+    template: Coralline_Uragnite
+    region:   sw_37
+    level:    [32, 34]
+  16793638:
+    template: Coralline_Uragnite
+    region:   sw_37
+    level:    [33, 35]
+  16793639:
+    template: Viscous_Clot
+    region:   sw_37
+    level:    [38, 40]
+  16793640:
+    template: Jagil
+    region:   sw_40
+    level:    [35, 38]
+  16793641:
+    template: Jagil
+    region:   sw_40
+    level:    [35, 38]
+  16793642:
+    template: Coralline_Uragnite
+    region:   sw_40
+    level:    [33, 35]
+  16793643:
+    template: Coralline_Uragnite
+    region:   sw_44
+    level:    [33, 35]
+  16793644:
+    template: Kraken
+    region:   sw_44
+    level:    [37, 40]
+  16793645:
+    template: Jagil
+    region:   sw_45
+    level:    [35, 38]
+  16793646:
+    template: Serra
+    region:   sw_45
+    level:    [44, 46]
+  16793647:
+    template: Viscous_Clot
+    region:   sw_37
+    level:    [38, 40]
+  16793648:
+    template: Coastal_Opo-opo
+    region:   sw_48
+    level:    [37, 39]
+  16793649:
+    template: Jagil
+    region:   sw_48
+    level:    [35, 38]
+  16793650:
+    template: Toucan
+    region:   sw_50
+    level:    [38, 40]
+  16793651:
+    template: Jagil
+    region:   sw_50
+    level:    [35, 38]
+  16793652:
+    template: Alraune
+    region:   sw_52
+    level:    [38, 40]
+  16793653:
+    template: Coastal_Opo-opo
+    region:   sw_53
+    level:    [37, 39]
+  16793654:
+    template: Coastal_Opo-opo
+    region:   sw_53
+    level:    [37, 39]
+  16793655:
+    template: Alraune
+    region:   sw_55
+    level:    [38, 40]
+  16793656:
+    template: Coastal_Opo-opo
+    region:   sw_55
+    level:    [37, 39]
+  16793657:
+    template: Alraune
+    region:   sw_57
+    level:    [38, 40]
+  16793658:
+    template: Alraune
+    region:   sw_57
+    level:    [38, 40]
+  16793659:
+    template: Coastal_Opo-opo
+    region:   sw_59
+    level:    [37, 39]
+  16793660:
+    template: Alraune
+    region:   sw_60
+    level:    [38, 40]
+  16793661:
+    template: Alraune
+    region:   sw_60
+    level:    [38, 40]
+  16793662:
+    template: Coralline_Uragnite
+    region:   sw_62
+    level:    [33, 35]
+  16793663:
+    template: Coralline_Uragnite
+    region:   sw_62
+    level:    [33, 35]
+  16793664:
+    template: Jagil
+    region:   sw_62
+    level:    [35, 38]
+  16793665:
+    template: Coralline_Uragnite
+    region:   sw_65
+    level:    [33, 35]
+  16793666:
+    template: Coralline_Uragnite
+    region:   sw_65
+    level:    [33, 35]
+  16793667:
+    template: Kraken
+    region:   sw_67
+    level:    [37, 40]
+  16793668:
+    template: Toucan
+    region:   sw_68
+    level:    [38, 40]
+  16793669:
+    template: Toucan
+    region:   sw_68
+    level:    [38, 40]
+  16793670:
+    template: Viscous_Clot
+    region:   sw_68
+    level:    [38, 40]
+  16793671:
+    template: Viscous_Clot
+    region:   sw_68
+    level:    [38, 40]
+  16793672:
+    template: Alraune
+    region:   sw_72
+    level:    [38, 40]
+  16793673:
+    template: Coastal_Opo-opo
+    region:   sw_73
+    level:    [37, 39]
+  16793674:
+    template: Coastal_Opo-opo
+    region:   sw_73
+    level:    [37, 39]
+  16793675:
+    template: Toucan
+    region:   sw_75
+    level:    [38, 40]
+  16793676:
+    template: Jagil
+    region:   sw_75
+    level:    [35, 38]
+  16793677:
+    template: Toucan
+    region:   sw_75
+    level:    [38, 40]
+  16793678:
+    template: Jagil
+    region:   sw_75
+    level:    [35, 38]
+  16793679:
+    template: Toucan
+    region:   sw_79
+    level:    [38, 40]
+  16793680:
+    template: Alraune
+    region:   sw_79
+    level:    [38, 40]
+  16793681:
+    template: Alraune
+    region:   s_81
+    level:    [38, 40]
+  16793682:
+    template: Alraune
+    region:   s_81
+    level:    [38, 40]
+  16793683:
+    template: Coastal_Opo-opo
+    region:   sw_83
+    level:    [37, 39]
+  16793684:
+    template: Coastal_Opo-opo
+    region:   s_84
+    level:    [37, 39]
+  16793685:
+    template: Coastal_Opo-opo
+    region:   s_84
+    level:    [37, 39]
+  16793686:
+    template: Coralline_Uragnite
+    region:   s_86
+    level:    [33, 35]
+  16793687:
+    template: Coralline_Uragnite
+    region:   s_86
+    level:    [33, 35]
+  16793688:
+    template: Viscous_Clot
+    region:   s_93
+    level:    [38, 40]
+  16793689:
+    template: Coralline_Uragnite
+    region:   s_89
+    level:    [33, 35]
+  16793690:
+    template: Coralline_Uragnite
+    region:   s_89
+    level:    [33, 35]
+  16793691:
+    template: Kraken
+    region:   s_91
+    level:    [37, 40]
+  16793692:
+    template: Toucan
+    region:   s_92
+    level:    [38, 40]
+  16793693:
+    template: Alraune
+    region:   s_93
+    level:    [38, 40]
+  16793694:
+    template: Ignis_Fatuus_Bibiki_Bay
+    script:   Ignis_Fatuus
+    region:   s_93
+    level:    [35, 37]
+  16793695:
+    template: Viscous_Clot
+    region:   s_93
+    level:    [38, 40]
+  16793696:
+    template: Coastal_Opo-opo
+    region:   s_96
+    level:    [37, 39]
+  16793697:
+    template: Coastal_Opo-opo
+    region:   s_96
+    level:    [37, 39]
+  16793698:
+    template: Shankha
+    region:   s_96
+    level:    [52, 53]
+  16793699:
+    template: Jagil
+    region:   s_99
+    level:    [35, 38]
+  16793700:
+    template: Jagil
+    region:   s_99
+    level:    [35, 38]
+  16793701:
+    template: Toucan
+    region:   s_99
+    level:    [38, 40]
+  16793702:
+    template: Coastal_Opo-opo
+    region:   s_102
+    level:    [37, 39]
+  16793703:
+    template: Alraune
+    region:   s_103
+    level:    [38, 40]
+  16793704:
+    template: Alraune
+    region:   s_103
+    level:    [38, 40]
+  16793705:
+    template: Toucan
+    region:   sw_105
+    level:    [38, 40]
+  16793706:
+    template: Jagil
+    region:   sw_105
+    level:    [35, 38]
+  16793707:
+    template: Alraune
+    region:   sw_107
+    level:    [38, 40]
+  16793708:
+    template: Alraune
+    region:   sw_107
+    level:    [38, 40]
+  16793709:
+    template: Coastal_Opo-opo
+    region:   sw_109
+    level:    [37, 39]
+  16793710:
+    template: Ignis_Fatuus_Bibiki_Bay
+    script:   Ignis_Fatuus
+    region:   sw_109
+    level:    [35, 37]
+  16793711:
+    template: Peerifool
+    at:       [-320.547, -5.747, -731.893, 65]
+    level:    [48, 48]
+  16793712:
+    template: Peerifool
+    at:       [-319.358, -5.852, -732.097, 65]
+    level:    [48, 48]
+  16793713:
+    template: Peerifool
+    at:       [-319.040, -7.065, -729.927, 65]
+    level:    [48, 48]
+  16793714:
+    template: Peerifool
+    at:       [-319.513, -7.492, -728.548, 65]
+    level:    [48, 48]
+  16793715:
+    template: Peerifool
+    at:       [-320.216, -7.246, -729.706, 65]
+    level:    [48, 48]
+  16793716:
+    template: Peerifool
+    at:       [-319.862, -6.798, -730.845, 65]
+    level:    [48, 48]
+  16793717:
+    template: Island_Rarab
+    region:   ne_117
+    level:    [34, 36]
+  16793718:
+    template: Island_Rarab
+    region:   ne_117
+    level:    [34, 36]
+  16793719:
+    template: Marine_Dhalmel
+    region:   ne_119
+    level:    [34, 37]
+  16793720:
+    template: Marine_Dhalmel
+    region:   ne_119
+    level:    [34, 37]
+  16793721:
+    template: Raven
+    region:   ne_119
+    level:    [36, 38]
+  16793722:
+    template: Marine_Dhalmel
+    region:   ne_122
+    level:    [34, 37]
+  16793723:
+    template: Eft
+    region:   ne_122
+    level:    [33, 35]
+  16793724:
+    template: Raven
+    region:   ne_124
+    level:    [36, 38]
+  16793725:
+    template: Island_Rarab
+    region:   ne_124
+    level:    [34, 36]
+  16793726:
+    template: Ignis_Fatuus_Bibiki_Bay
+    script:   Ignis_Fatuus
+    region:   ne_126
+    level:    [35, 37]
+  16793727:
+    template: Marine_Dhalmel
+    region:   ne_127
+    level:    [34, 37]
+  16793728:
+    template: Island_Rarab
+    region:   ne_127
+    level:    [34, 36]
+  16793729:
+    template: Goblin_Shaman
+    region:   ne_129
+    level:    [34, 36]
+  16793730:
+    template: Eft
+    region:   ne_130
+    level:    [33, 35]
+  16793731:
+    template: Eft
+    region:   ne_131
+    level:    [33, 35]
+  16793732:
+    template: Eft
+    region:   ne_131
+    level:    [33, 35]
+  16793733:
+    template: Eft
+    region:   ne_133
+    level:    [33, 35]
+  16793734:
+    template: Eft
+    region:   ne_134
+    level:    [33, 35]
+  16793735:
+    template: Eft
+    region:   ne_134
+    level:    [33, 35]
+  16793736:
+    template: Eft
+    region:   region_118
+    level:    [33, 35]
+  16793737:
+    template: Eft
+    region:   region_118
+    level:    [33, 35]
+  16793738:
+    template: Raven
+    region:   ne_138
+    level:    [36, 38]
+  16793739:
+    template: Raven
+    region:   ne_138
+    level:    [36, 38]
+  16793740:
+    template: Raven
+    region:   ne_138
+    level:    [36, 38]
+  16793741:
+    template: Eft
+    region:   ne_138
+    level:    [33, 35]
+  16793742:
+    template: Intulo
+    region:   ne_134
+    level:    [46, 47]
+  16793743:
+    template: Marine_Dhalmel
+    region:   ne_143
+    level:    [34, 37]
+  16793744:
+    template: Marine_Dhalmel
+    region:   ne_143
+    level:    [34, 37]
+  16793745:
+    template: Eft
+    region:   ne_143
+    level:    [33, 35]
+  16793746:
+    template: Goblin_Pathfinder
+    region:   ne_146
+    level:    [34, 36]
+  16793747:
+    template: Goblins_Rarab
+    at:       [411.956, -26.477, 839.843, 28]
+    level:    [29, 31]
+  16793748:
+    template: Marine_Dhalmel
+    region:   ne_146
+    level:    [34, 37]
+  16793749:
+    template: Island_Rarab
+    region:   ne_146
+    level:    [34, 36]
+  16793750:
+    template: Hobgoblin_Martialist
+    region:   ne_150
+    level:    [72, 74]
+  16793751:
+    template: Hobgoblin_Animalier
+    region:   ne_151
+    level:    [72, 74]
+  16793752:
+    template: Goblins_Rarab
+    at:       [342.198, -28.318, 869.335, 235]
+    level:    [66, 69]
+  16793753:
+    template: Teine_Sith
+    region:   region_119
+    level:    [75, 78]
+  16793754:
+    template: Tropical_Rarab
+    region:   ne_154
+    level:    [73, 76]
+  16793755:
+    template: Tropical_Rarab
+    region:   ne_154
+    level:    [73, 76]
+  16793756:
+    template: Tropical_Rarab
+    region:   ne_156
+    level:    [73, 76]
+  16793757:
+    template: Hobgoblin_Venerer
+    region:   ne_156
+    level:    [72, 74]
+  16793758:
+    template: Catoblepas
+    region:   ne_158
+    level:    [76, 77]
+  16793759:
+    template: Hobgoblin_Fascinator
+    region:   ne_158
+    level:    [72, 74]
+  16793760:
+    template: Tragopan
+    region:   ne_160
+    level:    [71, 73]
+  16793761:
+    template: Tragopan
+    region:   ne_160
+    level:    [71, 73]
+  16793762:
+    template: Tropical_Rarab
+    region:   ne_160
+    level:    [73, 76]
+  16793763:
+    template: Tropical_Rarab
+    region:   ne_160
+    level:    [73, 76]
+  16793764:
+    template: Tropical_Rarab
+    region:   ne_164
+    level:    [73, 76]
+  16793765:
+    template: Tragopan
+    region:   ne_164
+    level:    [71, 73]
+  16793766:
+    template: Tragopan
+    region:   ne_164
+    level:    [71, 73]
+  16793767:
+    template: Teine_Sith
+    region:   ne_164
+    level:    [75, 78]
+  16793768:
+    template: Catoblepas
+    region:   ne_168
+    level:    [76, 77]
+  16793769:
+    template: Catoblepas
+    region:   ne_168
+    level:    [76, 77]
+  16793770:
+    template: Tragopan
+    region:   ne_168
+    level:    [71, 73]
+  16793771:
+    template: Catoblepas
+    region:   ne_171
+    level:    [76, 77]
+  16793772:
+    template: Catoblepas
+    region:   ne_171
+    level:    [76, 77]
+  16793773:
+    template: Tropical_Rarab
+    region:   n_173
+    level:    [73, 76]
+  16793774:
+    template: Tartarus_Eft
+    region:   n_173
+    level:    [76, 77]
+  16793775:
+    template: Tartarus_Eft
+    region:   n_173
+    level:    [76, 77]
+  16793776:
+    template: Splacknuck
+    region:   n_173
+    level:    [69, 70]
+  16793777:
+    template: Hobgoblin_Animalier
+    region:   n_177
+    level:    [72, 74]
+  16793778:
+    template: Goblins_Rarab
+    at:       [192.140, -37.149, 799.647, 157]
+    level:    [66, 69]
+  16793779:
+    template: Tartarus_Eft
+    region:   n_181
+    level:    [76, 77]
+  16793780:
+    template: Hobgoblin_Fascinator
+    region:   n_180
+    level:    [72, 74]
+  16793781:
+    template: Tartarus_Eft
+    region:   n_181
+    level:    [76, 77]
+  16793782:
+    template: Catoblepas
+    region:   n_182
+    level:    [76, 77]
+  16793783:
+    template: Tragopan
+    region:   n_182
+    level:    [71, 73]
+  16793784:
+    template: Hobgoblin_Martialist
+    region:   n_184
+    level:    [72, 74]
+  16793785:
+    template: Hobgoblin_Venerer
+    region:   n_184
+    level:    [72, 74]
+  16793786:
+    template: Tragopan
+    region:   n_186
+    level:    [71, 73]
+  16793787:
+    template: Tropical_Rarab
+    region:   n_186
+    level:    [73, 76]
+  16793788:
+    template: Tartarus_Eft
+    region:   n_181
+    level:    [76, 77]
+  16793789:
+    template: Tartarus_Eft
+    region:   n_181
+    level:    [76, 77]
+  16793790:
+    template: Catoblepas
+    region:   n_190
+    level:    [76, 77]
+  16793791:
+    template: Tropical_Rarab
+    region:   n_190
+    level:    [73, 76]
+  16793792:
+    template: Hobgoblin_Fascinator
+    region:   n_192
+    level:    [72, 74]
+  16793793:
+    template: Tragopan
+    region:   n_192
+    level:    [71, 73]
+  16793794:
+    template: Catoblepas
+    region:   n_194
+    level:    [76, 77]
+  16793795:
+    template: Catoblepas
+    region:   n_194
+    level:    [76, 77]
+  16793796:
+    template: Hobgoblin_Martialist
+    region:   n_194
+    level:    [72, 74]
+  16793797:
+    template: Hobgoblin_Animalier
+    region:   n_197
+    level:    [72, 74]
+  16793798:
+    template: Goblins_Rarab
+    at:       [117.994, -36.772, 678.057, 135]
+    level:    [66, 69]
+  16793799:
+    template: Hobgoblin_Venerer
+    region:   n_197
+    level:    [72, 74]
+  16793800:
+    template: Locus_Bight_Rarab
+    region:   n_200
+    level:    [135, 137]
+  16793801:
+    template: Locus_Bight_Rarab
+    region:   n_200
+    level:    [135, 137]
+  16793802:
+    template: Locus_Bight_Rarab
+    region:   n_200
+    level:    [135, 137]
+  16793803:
+    template: Locus_Bight_Rarab
+    region:   n_203
+    level:    [135, 137]
+  16793804:
+    template: Locus_Bight_Rarab
+    region:   n_203
+    level:    [135, 137]
+  16793805:
+    template: Locus_Bight_Rarab
+    region:   n_203
+    level:    [135, 137]
+  16793806:
+    template: Locus_Camelopard
+    region:   n_206
+    level:    [135, 137]
+  16793807:
+    template: Locus_Camelopard
+    region:   n_206
+    level:    [135, 137]
+  16793808:
+    template: Locus_Camelopard
+    region:   n_206
+    level:    [135, 137]
+  16793809:
+    template: Locus_Bight_Rarab
+    region:   n_209
+    level:    [135, 137]
+  16793810:
+    template: Locus_Bight_Rarab
+    region:   n_209
+    level:    [135, 137]
+  16793811:
+    template: Locus_Bight_Rarab
+    region:   n_209
+    level:    [135, 137]
+  16793812:
+    template: Locus_Bight_Rarab
+    region:   n_209
+    level:    [135, 137]
+  16793813:
+    template: Locus_Camelopard
+    region:   n_213
+    level:    [135, 137]
+  16793814:
+    template: Locus_Camelopard
+    region:   n_213
+    level:    [135, 137]
+  16793815:
+    template: Locus_Camelopard
+    region:   n_213
+    level:    [135, 137]
+  16793816:
+    template: Locus_Camelopard
+    region:   n_213
+    level:    [135, 137]
+  16793817:
+    template: Locus_Bight_Rarab
+    region:   n_217
+    level:    [135, 137]
+  16793818:
+    template: Locus_Bight_Rarab
+    region:   n_217
+    level:    [135, 137]
+  16793819:
+    template: Locus_Bight_Rarab
+    region:   n_217
+    level:    [135, 137]
+  16793820:
+    template: Locus_Bight_Rarab
+    region:   n_217
+    level:    [135, 137]
+  16793821:
+    template: Locus_Bight_Rarab
+    region:   n_221
+    level:    [135, 137]
+  16793822:
+    template: Locus_Bight_Rarab
+    region:   n_221
+    level:    [135, 137]
+  16793823:
+    template: Locus_Bight_Rarab
+    region:   n_221
+    level:    [135, 137]
+  16793824:
+    template: Locus_Bight_Rarab
+    region:   n_221
+    level:    [135, 137]
+  16793825:
+    template: Locus_Bight_Rarab
+    region:   n_221
+    level:    [135, 137]
+  16793826:
+    template: Locus_Bight_Rarab
+    region:   n_221
+    level:    [135, 137]
+  16793827:
+    template: Locus_Camelopard
+    region:   n_227
+    level:    [135, 137]
+  16793828:
+    template: Locus_Camelopard
+    region:   n_227
+    level:    [135, 137]
+  16793829:
+    template: Locus_Camelopard
+    region:   n_227
+    level:    [135, 137]
+  16793830:
+    template: Locus_Camelopard
+    region:   n_227
+    level:    [135, 137]
+  16793831:
+    template: Locus_Camelopard
+    region:   n_231
+    level:    [135, 137]
+  16793832:
+    template: Locus_Camelopard
+    region:   n_231
+    level:    [135, 137]
+  16793833:
+    template: Locus_Camelopard
+    region:   n_231
+    level:    [135, 137]
+  16793834:
+    template: Locus_Camelopard
+    region:   n_231
+    level:    [135, 137]
+  16793835:
+    template: Locus_Bight_Rarab
+    region:   n_235
+    level:    [135, 137]
+  16793836:
+    template: Locus_Bight_Rarab
+    region:   n_235
+    level:    [135, 137]
+  16793837:
+    template: Locus_Bight_Rarab
+    region:   n_235
+    level:    [135, 137]
+  16793838:
+    template: Locus_Bight_Rarab
+    region:   n_235
+    level:    [135, 137]
+  16793839:
+    template: Locus_Camelopard
+    region:   ne_239
+    level:    [135, 137]
+  16793840:
+    template: Locus_Camelopard
+    region:   ne_239
+    level:    [135, 137]
+  16793841:
+    template: Locus_Camelopard
+    region:   ne_239
+    level:    [135, 137]
+  16793842:
+    template: Locus_Camelopard
+    region:   ne_239
+    level:    [135, 137]
+  16793843:
+    template: Locus_Camelopard
+    region:   e_243
+    level:    [135, 137]
+  16793844:
+    template: Locus_Camelopard
+    region:   e_243
+    level:    [135, 137]
+  16793845:
+    template: Locus_Camelopard
+    region:   e_243
+    level:    [135, 137]
+  16793846:
+    template: Locus_Camelopard
+    region:   e_243
+    level:    [135, 137]
+  16793847:
+    template: Locus_Hypnos_Eft
+    region:   n_247
+    level:    [135, 137]
+  16793848:
+    template: Locus_Hypnos_Eft
+    region:   n_247
+    level:    [135, 137]
+  16793849:
+    template: Locus_Hypnos_Eft
+    region:   n_247
+    level:    [135, 137]
+  16793850:
+    template: Locus_Hypnos_Eft
+    region:   n_247
+    level:    [135, 137]
+  16793851:
+    template: Locus_Hypnos_Eft
+    region:   ne_251
+    level:    [135, 137]
+  16793852:
+    template: Locus_Hypnos_Eft
+    region:   ne_251
+    level:    [135, 137]
+  16793853:
+    template: Locus_Hypnos_Eft
+    region:   ne_251
+    level:    [135, 137]
+  16793854:
+    template: Locus_Hypnos_Eft
+    region:   ne_251
+    level:    [135, 137]
+  16793855:
+    template: Locus_Hypnos_Eft
+    region:   ne_255
+    level:    [135, 137]
+  16793856:
+    template: Locus_Hypnos_Eft
+    region:   ne_255
+    level:    [135, 137]
+  16793857:
+    template: Locus_Hypnos_Eft
+    region:   ne_255
+    level:    [135, 137]
+  16793858:
+    template: Locus_Hypnos_Eft
+    region:   ne_255
+    level:    [135, 137]
+  16793859:
+    template: Locus_Ghost_Crab
+    region:   ne_259
+    level:    [137, 139]
+  16793860:
+    template: Locus_Ghost_Crab
+    region:   ne_259
+    level:    [137, 139]
+  16793861:
+    template: Locus_Ghost_Crab
+    region:   ne_259
+    level:    [137, 139]
+  16793862:
+    template: Locus_Ghost_Crab
+    region:   ne_259
+    level:    [137, 139]
+  16793863:
+    template: Locus_Ghost_Crab
+    region:   ne_259
+    level:    [137, 139]
+  16793864:
+    template: Locus_Ghost_Crab
+    region:   ne_259
+    level:    [137, 139]
+  16793865:
+    template: Locus_Ghost_Crab
+    region:   ne_265
+    level:    [137, 139]
+  16793866:
+    template: Locus_Ghost_Crab
+    region:   ne_265
+    level:    [137, 139]
+  16793867:
+    template: Locus_Ghost_Crab
+    region:   ne_265
+    level:    [137, 139]
+  16793868:
+    template: Locus_Ghost_Crab
+    region:   ne_265
+    level:    [137, 139]
+  16793869:
+    template: Locus_Ghost_Crab
+    region:   ne_265
+    level:    [137, 139]
+  16793870:
+    template: Locus_Ghost_Crab
+    region:   ne_265
+    level:    [137, 139]
+  16793871:
+    template: Locus_Ghost_Crab
+    region:   ne_271
+    level:    [137, 139]
+  16793872:
+    template: Locus_Ghost_Crab
+    region:   ne_271
+    level:    [137, 139]
+  16793873:
+    template: Locus_Ghost_Crab
+    region:   ne_271
+    level:    [137, 139]
+  16793874:
+    template: Locus_Ghost_Crab
+    region:   ne_271
+    level:    [137, 139]
+  16793875:
+    template: Locus_Ghost_Crab
+    region:   ne_271
+    level:    [137, 139]
+  16793876:
+    template: Locus_Ghost_Crab
+    region:   ne_271
+    level:    [137, 139]
+  16793877:
+    template: Locus_Ghost_Crab
+    region:   e_277
+    level:    [137, 139]
+  16793878:
+    template: Locus_Ghost_Crab
+    region:   e_277
+    level:    [137, 139]
+  16793879:
+    template: Locus_Ghost_Crab
+    region:   e_277
+    level:    [137, 139]
+  16793880:
+    template: Locus_Ghost_Crab
+    region:   e_277
+    level:    [137, 139]
+  16793881:
+    template: Locus_Ghost_Crab
+    region:   e_277
+    level:    [137, 139]
+  16793882:
+    template: Locus_Ghost_Crab
+    region:   e_277
+    level:    [137, 139]
+  16793883:
+    template: Locus_Ghost_Crab
+    region:   c_283
+    level:    [137, 139]
+  16793884:
+    template: Locus_Ghost_Crab
+    region:   c_283
+    level:    [137, 139]
+  16793885:
+    template: Locus_Ghost_Crab
+    region:   c_283
+    level:    [137, 139]
+  16793886:
+    template: Locus_Ghost_Crab
+    region:   c_283
+    level:    [137, 139]
+  16793887:
+    template: Locus_Ghost_Crab
+    region:   c_287
+    level:    [137, 139]
+  16793888:
+    template: Locus_Ghost_Crab
+    region:   c_287
+    level:    [137, 139]
+  16793889:
+    template: Locus_Ghost_Crab
+    region:   c_287
+    level:    [137, 139]
+  16793890:
+    template: Locus_Ghost_Crab
+    region:   c_287
+    level:    [137, 139]
+  16793891:
+    template: Locus_Ghost_Crab
+    region:   c_287
+    level:    [137, 139]
+  16793892:
+    template: Locus_Ghost_Crab
+    region:   c_287
+    level:    [137, 139]
+  16793893:
+    template: Locus_Fiddler_Crab
+    region:   c_287
+    level:    [137, 139]
+  16793894:
+    template: Locus_Fiddler_Crab
+    region:   c_287
+    level:    [137, 139]
+  16793895:
+    template: Locus_Ghost_Crab
+    region:   e_295
+    level:    [137, 139]
+  16793896:
+    template: Locus_Ghost_Crab
+    region:   e_295
+    level:    [137, 139]
+  16793897:
+    template: Locus_Ghost_Crab
+    region:   e_295
+    level:    [137, 139]
+  16793898:
+    template: Locus_Ghost_Crab
+    region:   e_295
+    level:    [137, 139]
+  16793899:
+    template: Locus_Ghost_Crab
+    region:   e_299
+    level:    [137, 139]
+  16793900:
+    template: Locus_Ghost_Crab
+    region:   e_299
+    level:    [137, 139]
+  16793901:
+    template: Locus_Ghost_Crab
+    region:   e_299
+    level:    [137, 139]
+  16793902:
+    template: Locus_Ghost_Crab
+    region:   e_299
+    level:    [137, 139]
+  16793903:
+    template: Locus_Ghost_Crab
+    region:   e_303
+    level:    [137, 139]
+  16793904:
+    template: Locus_Ghost_Crab
+    region:   e_303
+    level:    [137, 139]
+  16793905:
+    template: Locus_Ghost_Crab
+    region:   e_303
+    level:    [137, 139]
+  16793906:
+    template: Locus_Ghost_Crab
+    region:   e_303
+    level:    [137, 139]
+  16793907:
+    template: Locus_Ghost_Crab
+    region:   e_303
+    level:    [137, 139]
+  16793908:
+    template: Locus_Ghost_Crab
+    region:   e_303
+    level:    [137, 139]
+  16793909:
+    template: Locus_Ghost_Crab
+    region:   e_309
+    level:    [137, 139]
+  16793910:
+    template: Locus_Ghost_Crab
+    region:   e_309
+    level:    [137, 139]
+  16793911:
+    template: Locus_Ghost_Crab
+    region:   e_309
+    level:    [137, 139]
+  16793912:
+    template: Locus_Ghost_Crab
+    region:   e_309
+    level:    [137, 139]
+  16793913:
+    template: Locus_Ghost_Crab
+    region:   e_313
+    level:    [137, 139]
+  16793914:
+    template: Locus_Ghost_Crab
+    region:   e_313
+    level:    [137, 139]
+  16793915:
+    template: Locus_Ghost_Crab
+    region:   e_313
+    level:    [137, 139]
+  16793916:
+    template: Locus_Ghost_Crab
+    region:   e_313
+    level:    [137, 139]
+  16793917:
+    template: Locus_Ghost_Crab
+    region:   e_313
+    level:    [137, 139]
+  16793918:
+    template: Locus_Ghost_Crab
+    region:   e_313
+    level:    [137, 139]
+  16793919:
+    template: Locus_Ghost_Crab
+    region:   e_319
+    level:    [137, 139]
+  16793920:
+    template: Locus_Ghost_Crab
+    region:   e_319
+    level:    [137, 139]
+  16793921:
+    template: Locus_Ghost_Crab
+    region:   e_319
+    level:    [137, 139]
+  16793922:
+    template: Locus_Ghost_Crab
+    region:   e_319
+    level:    [137, 139]
+  16793923:
+    template: Locus_Ghost_Crab
+    region:   e_319
+    level:    [137, 139]
+  16793924:
+    template: Locus_Ghost_Crab
+    region:   e_319
+    level:    [137, 139]
+  16793925:
+    template: Locus_Fiddler_Crab
+    region:   e_319
+    level:    [137, 139]
+  16793926:
+    template: Locus_Fiddler_Crab
+    region:   e_319
+    level:    [137, 139]
+  16793927:
+    template: Rohemolipaud
+    level:    [55, 56]
+  16793928:
+    template: Dalham
+    at:       [95.041, -45.015, 936.651, 243]
+    level:    [65, 65]
+  16793929:
+    template: Shen
+    at:       [-102.540, 2.087, -725.207, 156]
+    level:    [83, 84]
+  16793930:
+    template: Shens_Filtrate
+    at:       [-111.300, 0.001, -729.000, 159]
+    level:    [80, 81]
+  16793931:
+    template: Shens_Filtrate
+    at:       [-111.500, 0.001, -729.000, 159]
+    level:    [80, 81]
+  16793932:
+    template: Bismarck
+    at:       [-616.422, -2.461, -628.633, 108]
+    level:    [95, 98]
+  16793933:
+    template: Primordial_Pugil
+  16793934:
+    template: Primordial_Pugil
+  16793935:
+    template: Primordial_Pugil
+  16793936:
+    template: Primordial_Pugil
+  16793937:
+    template: Primordial_Pugil
+  16793938:
+    template: Primordial_Pugil
+  16793939:
+    template: Primordial_Pugil
+  16793940:
+    template: Primordial_Pugil
+  16793941:
+    template: Primordial_Pugil
+  16793942:
+    template: Primordial_Pugil
+  16793943:
+    template: Bismarck
+    level:    [95, 98]
+  16793944:
+    template: Primordial_Pugil
+  16793945:
+    template: Primordial_Pugil
+  16793946:
+    template: Primordial_Pugil
+  16793947:
+    template: Primordial_Pugil
+  16793948:
+    template: Primordial_Pugil
+  16793949:
+    template: Primordial_Pugil
+  16793950:
+    template: Primordial_Pugil
+  16793951:
+    template: Primordial_Pugil
+  16793952:
+    template: Primordial_Pugil
+  16793953:
+    template: Primordial_Pugil
+  16793954:
+    template: Bismarck
+    level:    [95, 98]
+  16793955:
+    template: Primordial_Pugil
+  16793956:
+    template: Primordial_Pugil
+  16793957:
+    template: Primordial_Pugil
+  16793958:
+    template: Primordial_Pugil
+  16793959:
+    template: Primordial_Pugil
+  16793960:
+    template: Primordial_Pugil
+  16793961:
+    template: Primordial_Pugil
+  16793962:
+    template: Primordial_Pugil
+  16793963:
+    template: Primordial_Pugil
+  16793964:
+    template: Primordial_Pugil
+  16793965:
+    template: Intuila
+    at:       [582.549, -20.954, 847.859, 31]
+    level:    [99, 99]
+  16793966:
+    template: Intuila
+    at:       [198.669, -28.500, 562.659, 21]
+    level:    [99, 99]
+  16793967:
+    template: Intuila
+    at:       [361.160, -20.500, 319.809]
+    level:    [99, 99]
+
+  16794056:
+    template: Beta_taka_Toucan
+    region:   sw_22
+    level:    [38, 40]
+  16794057:
+    template: Beta_taka_Toucan
+    region:   sw_22
+    level:    [38, 40]
+  16794058:
+    template: Beta_usa_Locus_Bight_Rarab
+    region:   n_200
+    level:    [135, 137]
+  16794059:
+    template: Beta_usa_Locus_Bight_Rarab
+    region:   n_200
+    level:    [135, 137]
+  16794060:
+    template: Beta_kani_Locus_Ghost_Crab
+    region:   ne_259
+    level:    [137, 139]
+  16794061:
+    template: Beta_kani_Locus_Ghost_Crab
+    region:   ne_259
+    level:    [137, 139]
+slots:
+  - members:
+      16793611: {} # Coralline_Uragnite
+      16793612: {} # Kraken
+  - members:
+      16793613: {} # Viscous_Clot
+      16793616: {} # Viscous_Clot
+  - members:
+      16793638: {} # Coralline_Uragnite
+      16793642: {} # Coralline_Uragnite
+  - members:
+      16793639: {} # Viscous_Clot
+      16793647: {} # Viscous_Clot
+  - members:
+      16793643: {} # Coralline_Uragnite
+      16793644: {} # Kraken
+  - members:
+      16793663: {} # Coralline_Uragnite
+      16793664: {} # Jagil
+  - members:
+      16793670: {} # Viscous_Clot
+      16793671: {} # Viscous_Clot
+  - members:
+      16793675: {} # Toucan
+      16793676: {} # Jagil
+  - members:
+      16793677: {} # Toucan
+      16793678: {} # Jagil
+  - members:
+      16793688: {} # Viscous_Clot
+      16793695: {} # Viscous_Clot
+  - members:
+      16793705: {} # Toucan
+      16793706: {} # Jagil
+  - members:
+      16793779: {} # Tartarus_Eft
+      16793781: {} # Tartarus_Eft
+  - members:
+      16793796: {} # Hobgoblin_Martialist
+      16793799: {} # Hobgoblin_Venerer

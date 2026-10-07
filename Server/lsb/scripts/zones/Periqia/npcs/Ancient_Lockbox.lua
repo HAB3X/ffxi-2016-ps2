@@ -1,0 +1,50 @@
+-----------------------------------
+-- Area: Periqia
+-- Ancient Lockbox
+-----------------------------------
+---@type TNpcEntity
+local entity = {}
+
+-- Legacy code, for reference use only. Remove assault sections as they are migrated to the new system and when none are left, delete this NPC script.
+--[[
+entity.onTrigger = function(player, npc)
+    local qItem =
+    {
+        [xi.assault.mission.SHOOTING_DOWN_THE_BARON] =
+        {
+            {
+                { itemId = xi.item.UNAPPRAISED_BOW,   weight = 600 },
+                { itemId = xi.item.UNAPPRAISED_BOX,   weight = 400 },
+            },
+        },
+    }
+
+    local regItem =
+    {
+        [xi.assault.mission.SHOOTING_DOWN_THE_BARON] =
+        {
+            {
+                { itemId = xi.item.HI_POTION_P2,      weight = 850 },
+                { itemId = 0,                         weight = 150 },
+            },
+            {
+                { itemId = xi.item.HI_POTION_P3,      weight = 50 },
+                { itemId = 0,                         weight = 950 },
+            },
+            {
+                { itemId = xi.item.HI_POTION_TANK,    weight = 400 },
+                { itemId = 0,                         weight = 600 },
+            },
+            {
+                { itemId = xi.item.HI_RERAISER,       weight = 200 },
+                { itemId = 0,                         weight = 800 },
+            },
+        },
+    }
+
+    local area = player:getCurrentAssault()
+    xi.appraisal.assaultChestTrigger(player, npc, qItem[area], regItem[area])
+end
+--]]
+
+return entity

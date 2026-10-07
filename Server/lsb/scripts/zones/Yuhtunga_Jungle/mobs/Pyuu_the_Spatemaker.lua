@@ -1,0 +1,48 @@
+-----------------------------------
+-- Area: Yuhtunga Jungle
+--  Mob: Pyuu the Spatemaker
+--  WOTG Nov 2009 NM: Immune to Bind, Sleep, Gravity. Uses only 1 TP move.
+-----------------------------------
+---@type TMobEntity
+local entity = {}
+
+entity.onMobInitialize = function(mob)
+    mob:setMobMod(xi.mobMod.ADD_EFFECT, 1)
+    mob:addImmunity(xi.immunity.LIGHT_SLEEP)
+    mob:addImmunity(xi.immunity.DARK_SLEEP)
+    mob:addImmunity(xi.immunity.GRAVITY)
+    mob:addImmunity(xi.immunity.BIND)
+    mob:addImmunity(xi.immunity.SILENCE)
+    mob:addImmunity(xi.immunity.TERROR)
+    mob:setMobMod(xi.mobMod.MAGIC_COOL, 40)
+    mob:setRespawnTime(math.randomInt(5400, 7200))
+end
+
+entity.onMobSpawn = function(mob)
+    mob:setMobMod(xi.mobMod.BASE_DAMAGE_MULTIPLIER, 150)
+    mob:setMod(xi.mod.STORETP, 25)
+end
+
+entity.onAdditionalEffect = function(mob, target, damage)
+    local pTable =
+    {
+        chance         = 100,
+        attackType     = xi.attackType.MAGICAL,
+        magicalElement = xi.element.WATER,
+        basePower      = math.floor(damage / 2),
+        actorStat      = xi.mod.INT,
+    }
+
+    return xi.combat.action.executeAddEffectDamage(mob, target, pTable)
+end
+
+entity.onMobDeath = function(mob, player, optParams)
+    xi.hunts.checkHunt(mob, player, 364)
+    xi.regime.checkRegime(player, mob, 127, 1, xi.regime.type.FIELDS)
+end
+
+entity.onMobDespawn = function(mob)
+    mob:setRespawnTime(math.randomInt(5400, 7200)) -- 1.5 to 2 hours
+end
+
+return entity

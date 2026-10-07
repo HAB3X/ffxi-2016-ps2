@@ -1,0 +1,477 @@
+# yaml-language-server: $schema=../../schemas/mobs.schema.json
+
+templates:
+
+  Blackbeard:
+    id:            428
+    species:       skeleton
+    type:          [notorious]
+    spell_list_id: 1
+    skill_list_id: 227
+    attributes:
+      combat:
+        skill: great_axe
+      jobs: [blm, war]
+      render:
+        look:
+          type:  standard
+          model: 569
+        entity_flags: 159
+        name_prefix:   32
+        model_size:     3
+        hitbox:        16
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 9200
+    loot:
+      drops:
+        - chance: common
+          item:   bone_chip
+        - chance: common
+          item:   sea_robber_cudgel
+      steal: bone_chip
+
+  Crossbones_blm:
+    id:            5878
+    display_name:  Crossbones
+    species:       skeleton
+    spell_list_id: 21
+    skill_list_id: 227
+    attributes:
+      combat:
+        skill: axe
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 564
+        entity_flags: 131
+        model_size:     1
+        hitbox:        12
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: common
+          item:   bone_chip
+        - chance: uncommon
+          item:   sand_charm
+      steal: bone_chip
+
+  Crossbones_war:
+    id:            844
+    display_name:  Crossbones
+    species:       skeleton
+    skill_list_id: 227
+    attributes:
+      combat:
+        skill: axe
+      render:
+        look:
+          type:  standard
+          model: 572
+        entity_flags: 131
+        model_size:     1
+        hitbox:        12
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: common
+          item:   bone_chip
+        - chance: uncommon
+          item:   sand_charm
+      steal: bone_chip
+
+  Enagakure:
+    id:            1213
+    species:       ghost
+    type:          [notorious]
+    spell_list_id: 28
+    skill_list_id: 121
+    attributes:
+      combat:
+        skill: staff
+      jobs: [war, blm]
+      render:
+        look:
+          type:  standard
+          model: 368
+        entity_flags: 1155
+        model_size:      1
+        hitbox:          8
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 2400
+        mp: 2400
+
+  Ocean_Crab:
+    id:            2934
+    species:       crab
+    type:          [fished]
+    skill_list_id: 77
+    attributes:
+      combat:
+        skill: great_sword
+      jobs: [pld, pld]
+      render:
+        look:
+          type:  standard
+          model: 356
+        entity_flags:  1155
+        animation_sub:    8
+        model_size:       1
+        hitbox:          13
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: common
+          item:   chunk_of_rock_salt
+        - chance: very_rare
+          item:   slice_of_land_crab_meat
+      steal: chunk_of_rock_salt
+
+  Ocean_Pugil:
+    id:            2937
+    species:       pugil
+    type:          [fished]
+    skill_list_id: 197
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 348
+        entity_flags: 131
+        model_size:     1
+        hitbox:        27
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+    loot:
+      steal: handful_of_fish_scales
+      despoil:
+        handful_of_pugil_scales: 0
+        handful_of_fish_scales:  0
+
+  Phantom:
+    id:            3127
+    species:       ghost
+    spell_list_id: 28
+    skill_list_id: 121
+    attributes:
+      combat:
+        skill: staff
+      jobs: [war, blm]
+      render:
+        look:
+          type:  standard
+          model: 368
+        entity_flags:  131
+        animation_sub:  16
+        model_size:      1
+        hitbox:          8
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+        type:    [at_night]
+    loot:
+      drops:
+        - chance: common
+          item:   square_of_cotton_cloth
+        - chance: uncommon
+          item:   revival_tree_root
+        - chance: rare
+          item:   scroll_of_ice_spikes
+        - chance: very_rare
+          item:   luminicloth
+      despoil:
+        square_of_cotton_cloth: 0
+
+  Pirate_Pugil:
+    id:            3138
+    species:       pugil
+    type:          [fished]
+    skill_list_id: 197
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 348
+        entity_flags: 131
+        model_size:     1
+        hitbox:        27
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+    loot:
+      steal: handful_of_fish_scales
+      despoil:
+        handful_of_pugil_scales: 0
+        handful_of_fish_scales:  0
+
+  Sea_Crab:
+    id:            3520
+    species:       crab
+    skill_list_id: 77
+    attributes:
+      combat:
+        skill: great_sword
+      jobs: [pld, pld]
+      render:
+        look:
+          type:  standard
+          model: 356
+        entity_flags:  131
+        animation_sub:   8
+        model_size:      1
+        hitbox:         13
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   chunk_of_rock_salt
+        - chance: very_rare
+          item:   slice_of_land_crab_meat
+      steal: chunk_of_rock_salt
+
+  Sea_Monk:
+    id:            3523
+    species:       sea_monk
+    skill_list_id: 218
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 352
+        entity_flags: 131
+        model_size:     1
+        hitbox:        17
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   seashell
+        - chance: very_rare
+          item:   shall_shell
+      despoil:
+        seashell: 0
+
+  Sea_Monk_fished:
+    id:            6791
+    display_name:  Sea_Monk
+    species:       sea_monk
+    type:          [fished]
+    skill_list_id: 218
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 352
+        entity_flags: 131
+        model_size:     1
+        hitbox:        17
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: common
+          item:   seashell
+        - chance: very_rare
+          item:   shall_shell
+      despoil:
+        seashell: 0
+
+  Sea_Pugil:
+    id:            3524
+    species:       pugil
+    skill_list_id: 197
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 348
+        entity_flags: 131
+        model_size:     1
+        hitbox:        27
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   handful_of_pugil_scales
+      steal: handful_of_fish_scales
+      despoil:
+        handful_of_pugil_scales: 0
+        handful_of_fish_scales:  0
+
+  Sea_Pugil_fished:
+    id:            6790
+    display_name:  Sea_Pugil
+    species:       pugil
+    type:          [fished]
+    skill_list_id: 197
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 348
+        entity_flags: 131
+        model_size:     1
+        hitbox:        27
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: uncommon
+          item:   handful_of_pugil_scales
+      steal: handful_of_fish_scales
+      despoil:
+        handful_of_pugil_scales: 0
+        handful_of_fish_scales:  0
+
+  Ship_Wight:
+    id:            3605
+    species:       skeleton
+    spell_list_id: 28
+    skill_list_id: 227
+    attributes:
+      combat:
+        skill: great_katana
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 576
+        entity_flags: 643
+        model_size:     1
+        hitbox:        12
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: common
+          item:   bone_chip
+      steal: bone_chip
+      despoil:
+        bone_chip: 0
+
+spawns:
+  17707009:
+    template: Sea_Pugil_fished
+    script:   Sea_Pugil
+    at:       [1.000, 1.000, 1.000]
+    level:    [10, 14]
+  17707010:
+    template: Ocean_Crab
+    at:       [1.000, 1.000, 1.000]
+    level:    [10, 14]
+  17707011:
+    template: Ocean_Pugil
+    at:       [1.000, 1.000, 1.000]
+    level:    [15, 19]
+  17707012:
+    template: Pirate_Pugil
+    at:       [1.000, 1.000, 1.000]
+    level:    [20, 22]
+  17707013:
+    template: Sea_Monk_fished
+    script:   Sea_Monk
+    at:       [1.000, 1.000, 1.000]
+    level:    [21, 29]
+  17707014:
+    template: Sea_Crab
+    region:   region_1
+    level:    [10, 20]
+  17707015:
+    template: Sea_Crab
+    region:   region_1
+    level:    [10, 20]
+  17707016:
+    template: Sea_Pugil
+    region:   region_1
+    level:    [10, 14]
+  17707017:
+    template: Sea_Pugil
+    region:   region_1
+    level:    [10, 14]
+  17707018:
+    template: Sea_Monk
+    region:   region_1
+    level:    [21, 29]
+  17707019:
+    template: Phantom
+    region:   region_1
+    level:    [22, 25]
+  17707020:
+    template: Crossbones_blm
+    script:   Crossbones
+    region:   region_1
+    level:    [28, 31]
+  17707021:
+    template: Crossbones_blm
+    script:   Crossbones
+    region:   region_1
+    level:    [28, 31]
+  17707022:
+    template: Crossbones_war
+    script:   Crossbones
+    region:   region_1
+    level:    [28, 31]
+  17707023:
+    template: Crossbones_war
+    script:   Crossbones
+    region:   region_1
+    level:    [28, 31]
+  17707024:
+    template: Ship_Wight
+    region:   region_1
+    level:    [36, 39]
+  17707025:
+    template: Blackbeard
+    region:   region_1
+    level:    [67, 68]
+  17707026:
+    template: Enagakure
+    region:   region_1
+    level:    [55, 55]
+    attributes:
+      spawn:
+        window:
+          start: 20
+          end:    4

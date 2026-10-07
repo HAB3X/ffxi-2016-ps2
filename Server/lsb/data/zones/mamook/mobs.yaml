@@ -1,0 +1,4113 @@
+# yaml-language-server: $schema=../../schemas/mobs.schema.json
+
+templates:
+
+  Air_Elemental:
+    id:            71
+    species:       air_elemental
+    spell_list_id: 12
+    skill_list_id: 99
+    attributes:
+      combat:
+        skill: staff
+      jobs: [blm, rdm]
+      resists:
+        immune_status: [gravity, silence, slow, elegy]
+      render:
+        look:
+          type:  standard
+          model: 438
+        entity_flags:  1155
+        animation_sub:   16
+        model_size:       1
+        hitbox:           3
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 960
+        type:    [weather]
+    loot:
+      drops:
+        - chance: always
+          item:   wind_cluster
+        - chance: common
+          item:   wind_cluster
+        - chance: common
+          item:   wind_cluster
+
+  Archaic_Mirror:
+    id:      220
+    species: mirrors
+    attributes:
+      render:
+        look:
+          type:  automaton
+          model: 1557
+        entity_flags:  1155
+        animation_sub:    4
+        model_size:       1
+        hitbox:          12
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: always
+          item:   archaic_mirror
+
+  Battle_Bugard:
+    id:            370
+    species:       bugard
+    skill_list_id: 58
+    attributes:
+      combat:
+        skill: sword
+        delay: 300
+      render:
+        look:
+          type:  standard
+          model: 1351
+        entity_flags: 133
+        model_size:     2
+        hitbox:        13
+      behaviors:
+        aggressive: true
+      mob_mods:
+        exp_bonus: 5
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: common
+          item:   bugard_skin
+        - chance: very_rare
+          item:   bugard_tusk
+        - chance: rare
+          item:   high-quality_bugard_skin
+      despoil:
+        bugard_skin: 0
+        bugard_tusk: 0
+
+  Brei:
+    id:            527
+    species:       slime
+    skill_list_id: 229
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 292
+        entity_flags: 131
+        model_size:     1
+        hitbox:        24
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: common
+          item:   vial_of_slime_oil
+      despoil:
+        vial_of_slime_oil: 0
+
+  Carpophagous_Puk:
+    id:            647
+    species:       puk
+    skill_list_id: 198
+    attributes:
+      combat:
+        skill: scythe
+        delay: 200
+      render:
+        look:
+          type:  standard
+          model: 1744
+        entity_flags:  3
+        hitbox:       10
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+
+  Carriage_Lizard:
+    id:            648
+    species:       hill_lizard
+    skill_list_id: 174
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 328
+        entity_flags: 133
+        model_size:     2
+        hitbox:        18
+      behaviors:
+        links: true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: common
+          item:   lizard_tail
+        - chance: uncommon
+          item:   lizard_skin
+        - chance: common
+          item:   lizard_egg
+      despoil:
+        lizard_skin: 0
+        lizard_tail: 0
+        lizard_egg:  0
+
+  Chamrosh:
+    id:            691
+    species:       colibri
+    type:          [notorious]
+    skill_list_id: 287
+    attributes:
+      combat:
+        skill: dagger
+        delay: 220
+      jobs: [rdm, blm]
+      resists:
+        immune_status: [stun, silence, paralyze]
+      render:
+        look:
+          type:  standard
+          model: 1720
+        entity_flags:  157
+        animation_sub:   5
+        name_prefix:    32
+        model_size:      2
+        hitbox:         13
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 9000
+    loot:
+      drops:
+        - chance: always
+          item:   chamroshs_beak
+        - chance: common
+          item:   eratos_cape
+        - chance: common
+          item:   dragoons_earring
+
+  Colibri:
+    id:            765
+    species:       colibri
+    skill_list_id: 72
+    attributes:
+      combat:
+        skill: dagger
+        delay: 220
+      jobs: [rdm, rdm]
+      render:
+        look:
+          type:  standard
+          model: 1720
+        entity_flags: 131
+        model_size:     1
+        hitbox:        12
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: very_common
+          item:   colibri_feather
+        - chance: uncommon
+          item:   colibri_beak
+      steal: colibri_feather
+      despoil:
+        colibri_feather: 0
+        colibri_beak:    0
+
+  Darting_Kachaal_Ja:
+    id:            921
+    species:       sage
+    type:          [notorious]
+    spell_list_id: 21
+    skill_list_id: 176
+    attributes:
+      combat:
+        skill: axe
+        delay: 280
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  automaton
+          model: 1626
+        entity_flags:  159
+        animation_sub:   4
+        name_prefix:    32
+        model_size:      3
+        hitbox:         12
+      behaviors:
+        aggressive:     true
+        links:          true
+        true_detection: true
+      spawn:
+        respawn: 259200
+    loot:
+      drops:
+        - chance: common
+          item:   volunteers_belt
+        - chance: rare
+          item:   mamool_ja_collar
+
+  Devout_Radol_Ja:
+    id:            1019
+    species:       sage
+    type:          [notorious]
+    spell_list_id: 20
+    skill_list_id: 176
+    attributes:
+      combat:
+        skill: great_axe
+        delay: 280
+      jobs: [whm, whm]
+      render:
+        look:
+          type:  automaton
+          model: 1626
+        entity_flags:  159
+        animation_sub:   4
+        name_prefix:    32
+        model_size:      3
+        hitbox:         12
+      behaviors:
+        aggressive:     true
+        links:          true
+        true_detection: true
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: common
+          item:   volunteers_khud
+        - chance: rare
+          item:   mamool_ja_collar
+
+  Dragonscaled_Bugaal_Ja:
+    id:            1102
+    species:       warrior
+    type:          [notorious]
+    skill_list_id: 176
+    attributes:
+      combat:
+        skill: dagger
+        delay: 280
+      jobs: [bst, bst]
+      render:
+        look:
+          type:  automaton
+          model: 1614
+        entity_flags:  159
+        animation_sub:   4
+        name_prefix:    32
+        model_size:      3
+        hitbox:         12
+      behaviors:
+        aggressive:     true
+        links:          true
+        true_detection: true
+      spawn:
+        respawn: 100800
+    loot:
+      drops:
+        - chance: uncommon
+          item:   beast_bazubands
+        - chance: rare
+          item:   mamool_ja_helmet
+
+  Firedance_Magmaal_Ja:
+    id:            4737
+    species:       knight_ja
+    type:          [notorious]
+    skill_list_id: 257
+    attributes:
+      render:
+        look:
+          type:  standard
+          model: 1781
+        entity_flags: 155
+        name_prefix:   32
+      spawn:
+        type: [lottery]
+    loot:
+      drops:
+        - chance: uncommon
+          item:   lyft_hexagun
+    content: wotg
+
+  Forbidding_Koheel_Ja:
+    id:            1400
+    species:       warrior
+    skill_list_id: 176
+    attributes:
+      combat:
+        skill: katana
+        delay: 280
+      jobs: [thf, thf]
+      render:
+        look:
+          type:  automaton
+          model: 1604
+        entity_flags:  157
+        animation_sub:   4
+        name_prefix:    32
+      behaviors:
+        aggressive:     true
+        links:          true
+        true_detection: true
+      spawn:
+        type: [scripted]
+
+  Gulool_Ja_Ja:
+    id:            1846
+    species:       warrior
+    type:          [notorious]
+    spell_list_id: 7
+    skill_list_id: 285
+    attributes:
+      combat:
+        skill:    sword
+        delay:    280
+        dmg_mult: 125
+      jobs: [nin, nin]
+      resists:
+        rank_element:
+          fire:    4
+          ice:     2
+          wind:    9
+          earth:   9
+          thunder: 4
+          water:   4
+          light:   4
+          dark:    4
+        rank_status:
+          paralyze:    2
+          bind:        2
+          silence:     9
+          slow:        9
+          poison:      4
+          light_sleep: 4
+          dark_sleep:  4
+          blind:       4
+      render:
+        look:
+          type:  standard
+          model: 1863
+        entity_flags: 157
+        name_prefix:   32
+        model_size:     2
+        hitbox:        17
+      behaviors:
+        aggressive:     true
+        links:          true
+        true_detection: true
+      spawn:
+        respawn: 259200
+      stats:
+        hp: 70000
+    loot:
+      drops:
+        - chance: very_common
+          item:   ja_jas_chestplate
+        - chance: common
+          item:   volunteers_ring
+
+  Hundredfaced_Hapool_Ja:
+    id:            2008
+    species:       warrior
+    type:          [notorious]
+    spell_list_id: 7
+    skill_list_id: 176
+    attributes:
+      combat:
+        skill: hand_to_hand
+        delay: 480
+      jobs: [nin, nin]
+      render:
+        look:
+          type:  automaton
+          model: 1619
+        entity_flags:  159
+        animation_sub:   4
+        name_prefix:    32
+        model_size:      3
+        hitbox:         12
+      behaviors:
+        aggressive:     true
+        links:          true
+        true_detection: true
+      spawn:
+        respawn: 259200
+    loot:
+      drops:
+        - chance: common
+          item:   ryumon
+        - chance: rare
+          item:   mamool_ja_helmet
+
+  Hundredfaced_clone:
+    id:            7056
+    display_name:  Hundredfaced_Hapool_Ja
+    species:       warrior
+    type:          [notorious]
+    spell_list_id: 7
+    skill_list_id: 176
+    attributes:
+      combat:
+        skill: hand_to_hand
+        delay: 480
+      jobs: [nin, nin]
+      render:
+        look:
+          type:  automaton
+          model: 1619
+        entity_flags:  159
+        animation_sub:   4
+        name_prefix:    32
+        model_size:      3
+        hitbox:         12
+      behaviors:
+        aggressive:     true
+        links:          true
+        true_detection: true
+      spawn:
+        type: [scripted]
+
+  Hunting_Raptor:
+    id:            2013
+    species:       green_raptor
+    skill_list_id: 210
+    attributes:
+      combat:
+        skill: scythe
+        delay: 220
+      jobs: [thf, thf]
+      render:
+        look:
+          type:  standard
+          model: 317
+        entity_flags: 131
+        model_size:     1
+        hitbox:        18
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: uncommon
+          item:   raptor_skin
+      despoil:
+        raptor_skin: 0
+
+  Iriri_Samariri:
+    id:            2089
+    species:       blue_poroggo
+    type:          [notorious]
+    spell_list_id: 21
+    skill_list_id: 297
+    attributes:
+      combat:
+        skill: axe
+        delay: 150
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 1811
+        entity_flags: 1181
+        name_prefix:    32
+        model_size:      2
+        hitbox:          9
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 28000
+    loot:
+      drops:
+        - chance: always
+          item:   iriri_samariris_hat
+        - chance: common
+          item:   toad_mittens
+        - chance: common
+          item:   paddock_trousers
+
+  Mamook_Crab:
+    id:            2503
+    species:       crab
+    type:          [fished]
+    skill_list_id: 77
+    attributes:
+      combat:
+        skill: great_sword
+      jobs: [pld, pld]
+      render:
+        look:
+          type:  standard
+          model: 356
+        entity_flags: 3
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: uncommon
+          item:   chunk_of_rock_salt
+        - chance: uncommon
+          item:   slice_of_land_crab_meat
+      despoil:
+        slice_of_land_crab_meat: 0
+        crab_shell:              0
+
+  Mamook_Mush:
+    id:            2504
+    species:       slime
+    type:          [fished]
+    skill_list_id: 229
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 292
+        entity_flags: 3
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+
+  Mamool_Ja:
+    id:            2505
+    species:       warrior
+    type:          [notorious]
+    skill_list_id: 2030
+    attributes:
+      combat:
+        skill: dagger
+        delay: 280
+      jobs: [bst, bst]
+      render:
+        look:
+          type:  automaton
+          model: 1609
+        entity_flags: 131
+        model_size:     1
+        hitbox:        12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+
+  Mamool_Ja_Bloodsucker:
+    id:            2506
+    species:       leech
+    type:          [fished]
+    skill_list_id: 172
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 276
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: uncommon
+          item:   vial_of_fiend_blood
+      despoil:
+        vial_of_fiend_blood:    0
+        vial_of_beastman_blood: 0
+        vial_of_bird_blood:     0
+
+  Mamool_Ja_Blusterer_Mamook:
+    id:            213
+    display_name:  Mamool_Ja_Blusterer
+    species:       sage
+    spell_list_id: 20
+    skill_list_id: 177
+    attributes:
+      combat:
+        skill: great_axe
+        delay: 280
+      jobs: [whm, whm]
+      render:
+        look:
+          type:  automaton
+          model: 1626
+        entity_flags: 133
+        model_size:     2
+        hitbox:        13
+      behaviors:
+        aggressive:     true
+        links:          true
+        true_detection: true
+      mob_mods:
+        exp_bonus: 6
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   mamook_blackscale_key
+        - chance: very_rare
+          item:   mamool_ja_collar
+      despoil:
+        tariqah_-1: 0
+
+  Mamool_Ja_Bounder:
+    id:            2508
+    species:       warrior
+    skill_list_id: 176
+    attributes:
+      combat:
+        skill: katana
+        delay: 280
+      jobs: [thf, thf]
+      render:
+        look:
+          type:  automaton
+          model: 1607
+        entity_flags: 131
+        model_size:     1
+        hitbox:        12
+      behaviors:
+        aggressive: true
+        links:      true
+      mob_mods:
+        exp_bonus: 6
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   blue_mages_testimony
+        - chance: uncommon
+          item:   mamook_tanscale_key
+        - chance: very_rare
+          item:   mamool_ja_helmet
+      despoil:
+        tariqah_-1: 0
+
+  Mamool_Ja_Chamberlain:
+    id:            2511
+    species:       sage
+    spell_list_id: 20
+    skill_list_id: 176
+    attributes:
+      combat:
+        skill: great_axe
+        delay: 280
+      jobs: [whm, whm]
+      render:
+        look:
+          type:  automaton
+          model: 1626
+        entity_flags: 157
+        name_prefix:   32
+        model_size:     2
+        hitbox:        12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+
+  Mamool_Ja_Conservator:
+    id:            2512
+    species:       warrior
+    spell_list_id: 7
+    skill_list_id: 176
+    attributes:
+      combat:
+        skill: great_katana
+        delay: 280
+      jobs: [nin, nin]
+      render:
+        look:
+          type:  automaton
+          model: 1619
+        entity_flags: 157
+        name_prefix:   32
+        model_size:     2
+        hitbox:        13
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+
+  Mamool_Ja_Diver:
+    id:            2513
+    species:       blue_sahagin
+    skill_list_id: 213
+    attributes:
+      combat:
+        skill: hand_to_hand
+        delay: 380
+      jobs: [mnk, mnk]
+      render:
+        look:
+          type:  standard
+          model: 1299
+        entity_flags: 133
+        model_size:     2
+        hitbox:        14
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: very_common
+          item:   mamook_silverscale_key
+        - chance: common
+          item:   seashell
+        - chance: uncommon
+          item:   shall_shell
+        - chance: rare
+          item:   coral_fragment
+      despoil:
+        quus:            0
+        coral_butterfly: 0
+
+  Mamool_Ja_Frogman:
+    id:            2518
+    species:       yellow_sahagin
+    spell_list_id: 6
+    skill_list_id: 213
+    attributes:
+      combat:
+        skill: axe
+      jobs: [brd, brd]
+      render:
+        look:
+          type:  standard
+          model: 1338
+        entity_flags: 133
+        model_size:     2
+        hitbox:        14
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: very_common
+          item:   mamook_silverscale_key
+        - chance: common
+          item:   seashell
+        - chance: uncommon
+          item:   shall_shell
+        - chance: rare
+          item:   coral_fragment
+      despoil:
+        quus:            0
+        coral_butterfly: 0
+
+  Mamool_Ja_Infiltrator_Mamook:
+    id:            212
+    display_name:  Mamool_Ja_Infiltrator
+    species:       warrior
+    spell_list_id: 7
+    skill_list_id: 176
+    attributes:
+      combat:
+        skill: great_katana
+        delay: 280
+      jobs: [nin, nin]
+      render:
+        look:
+          type:  automaton
+          model: 1619
+        entity_flags:  133
+        animation_sub:   4
+        model_size:      2
+        hitbox:         13
+      behaviors:
+        aggressive:     true
+        links:          true
+        true_detection: true
+      mob_mods:
+        exp_bonus: 6
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   mamook_blackscale_key
+        - chance: very_rare
+          item:   mamool_ja_helmet
+      despoil:
+        tariqah_-1: 0
+
+  Mamool_Ja_Lurker_Mamook:
+    id:            209
+    display_name:  Mamool_Ja_Lurker
+    species:       warrior
+    skill_list_id: 176
+    attributes:
+      combat:
+        skill: katana
+        delay: 280
+      jobs: [thf, thf]
+      render:
+        look:
+          type:  automaton
+          model: 1603
+        entity_flags: 133
+        model_size:     2
+        hitbox:        13
+      behaviors:
+        aggressive:     true
+        links:          true
+        true_detection: true
+      mob_mods:
+        exp_bonus: 6
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: very_common
+          item:   macuahuitl_-1
+        - chance: uncommon
+          item:   tariqah_-1
+        - chance: very_rare
+          item:   mamool_ja_helmet
+      despoil:
+        tariqah_-1: 0
+
+  Mamool_Ja_Mimer_Mamook:
+    id:            211
+    display_name:  Mamool_Ja_Mimer
+    species:       warrior
+    spell_list_id: 8
+    skill_list_id: 176
+    attributes:
+      combat:
+        skill: dagger
+        delay: 280
+      jobs: [blu, blu]
+      render:
+        look:
+          type:  automaton
+          model: 1603
+        entity_flags: 133
+        model_size:     2
+        hitbox:        13
+      behaviors:
+        aggressive:     true
+        links:          true
+        true_detection: true
+      mob_mods:
+        exp_bonus: 6
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: very_common
+          item:   macuahuitl_-1
+        - chance: uncommon
+          item:   tariqah_-1
+        - chance: very_rare
+          item:   mamool_ja_helmet
+      despoil:
+        tariqah_-1: 0
+
+  Mamool_Ja_Mimicker:
+    id:            2526
+    species:       warrior
+    spell_list_id: 8
+    skill_list_id: 176
+    attributes:
+      combat:
+        skill: dagger
+        delay: 280
+      jobs: [blu, blu]
+      render:
+        look:
+          type:  automaton
+          model: 1607
+        entity_flags: 131
+        model_size:     1
+        hitbox:        12
+      behaviors:
+        aggressive: true
+        links:      true
+      mob_mods:
+        exp_bonus: 6
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   blue_mages_testimony
+        - chance: uncommon
+          item:   mamook_tanscale_key
+        - chance: very_rare
+          item:   mamool_ja_helmet
+      despoil:
+        tariqah_-1: 0
+
+  Mamool_Ja_Palatine:
+    id:            2527
+    species:       warrior
+    skill_list_id: 176
+    attributes:
+      combat:
+        skill: katana
+        delay: 280
+      jobs: [thf, thf]
+      render:
+        look:
+          type:  automaton
+          model: 1603
+        entity_flags: 157
+        name_prefix:   32
+        model_size:     2
+        hitbox:        12
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+
+  Mamool_Ja_Philosopher_Mamook:
+    id:            210
+    display_name:  Mamool_Ja_Philosopher
+    species:       sage
+    spell_list_id: 21
+    skill_list_id: 177
+    attributes:
+      combat:
+        skill: axe
+        delay: 280
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  automaton
+          model: 1626
+        entity_flags: 133
+        model_size:     2
+        hitbox:        13
+      behaviors:
+        aggressive:     true
+        links:          true
+        true_detection: true
+      mob_mods:
+        exp_bonus: 6
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   mamook_blackscale_key
+        - chance: very_rare
+          item:   mamool_ja_collar
+      despoil:
+        tariqah_-1: 0
+
+  Mamool_Ja_Pikeman_Mamook:
+    id:            214
+    display_name:  Mamool_Ja_Pikeman
+    species:       warrior
+    skill_list_id: 176
+    attributes:
+      combat:
+        skill: polearm
+        delay: 280
+      jobs: [drg, drg]
+      render:
+        look:
+          type:  automaton
+          model: 1618
+        entity_flags: 133
+        model_size:     2
+        hitbox:        13
+      behaviors:
+        aggressive:     true
+        links:          true
+        true_detection: true
+      mob_mods:
+        exp_bonus: 6
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   mamook_blackscale_key
+        - chance: very_rare
+          item:   mamool_ja_helmet
+      despoil:
+        tariqah_-1: 0
+
+  Mamool_Ja_Savant:
+    id:            2533
+    species:       sage
+    spell_list_id: 20
+    skill_list_id: 177
+    attributes:
+      combat:
+        skill: great_axe
+        delay: 280
+      jobs: [whm, whm]
+      render:
+        look:
+          type:  automaton
+          model: 1627
+        entity_flags: 131
+        model_size:     1
+        hitbox:        12
+      behaviors:
+        aggressive: true
+        links:      true
+      mob_mods:
+        exp_bonus: 6
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   blue_mages_testimony
+        - chance: uncommon
+          item:   mamook_tanscale_key
+        - chance: very_rare
+          item:   mamool_ja_collar
+      despoil:
+        tariqah_-1: 0
+
+  Mamool_Ja_Sophist:
+    id:            2534
+    species:       sage
+    spell_list_id: 21
+    skill_list_id: 177
+    attributes:
+      combat:
+        skill: axe
+        delay: 280
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  automaton
+          model: 1631
+        entity_flags: 131
+        model_size:     1
+        hitbox:        12
+      behaviors:
+        aggressive: true
+        links:      true
+      mob_mods:
+        exp_bonus: 6
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   blue_mages_testimony
+        - chance: uncommon
+          item:   mamook_tanscale_key
+        - chance: very_rare
+          item:   mamool_ja_collar
+      despoil:
+        tariqah_-1: 0
+
+  Mamool_Ja_Spearman:
+    id:            2535
+    species:       warrior
+    skill_list_id: 176
+    attributes:
+      combat:
+        skill: polearm
+        delay: 280
+      jobs: [drg, drg]
+      render:
+        look:
+          type:  automaton
+          model: 1616
+        entity_flags: 131
+        model_size:     1
+        hitbox:        12
+      behaviors:
+        aggressive: true
+        links:      true
+      mob_mods:
+        exp_bonus: 6
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   blue_mages_testimony
+        - chance: uncommon
+          item:   mamook_tanscale_key
+        - chance: very_rare
+          item:   mamool_ja_helmet
+      despoil:
+        tariqah_-1: 0
+
+  Mamool_Ja_Stabler_Mamook:
+    id:            248
+    display_name:  Mamool_Ja_Stabler
+    species:       warrior
+    skill_list_id: 176
+    attributes:
+      combat:
+        skill: dagger
+        delay: 280
+      jobs: [bst, bst]
+      render:
+        look:
+          type:  automaton
+          model: 1614
+        entity_flags: 133
+        model_size:     2
+        hitbox:        13
+      behaviors:
+        aggressive:     true
+        links:          true
+        true_detection: true
+      mob_mods:
+        exp_bonus: 6
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   mamook_blackscale_key
+        - chance: uncommon
+          item:   tariqah_-1
+        - chance: very_rare
+          item:   mamool_ja_helmet
+      despoil:
+        tariqah_-1: 0
+
+  Mamool_Ja_Strapper:
+    id:            2538
+    species:       warrior
+    skill_list_id: 176
+    attributes:
+      combat:
+        skill: dagger
+        delay: 280
+      jobs: [bst, bst]
+      render:
+        look:
+          type:  automaton
+          model: 1609
+        entity_flags: 131
+        model_size:     1
+        hitbox:        12
+      behaviors:
+        aggressive: true
+        links:      true
+      mob_mods:
+        exp_bonus: 6
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   blue_mages_testimony
+        - chance: uncommon
+          item:   mamook_tanscale_key
+        - chance: very_rare
+          item:   mamool_ja_helmet
+      despoil:
+        tariqah_-1: 0
+
+  Mamool_Ja_Treasurer:
+    id:            2543
+    species:       sage
+    spell_list_id: 21
+    skill_list_id: 176
+    attributes:
+      combat:
+        skill: axe
+        delay: 280
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  automaton
+          model: 1626
+        entity_flags: 157
+        name_prefix:   32
+        model_size:     2
+        hitbox:        13
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+
+  Mamool_Ja_Zenist:
+    id:            2545
+    species:       warrior
+    spell_list_id: 7
+    skill_list_id: 176
+    attributes:
+      combat:
+        skill: great_katana
+        delay: 280
+      jobs: [nin, nin]
+      render:
+        look:
+          type:  automaton
+          model: 1619
+        entity_flags: 131
+        model_size:     1
+        hitbox:        12
+      behaviors:
+        aggressive: true
+        links:      true
+      mob_mods:
+        exp_bonus: 6
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   blue_mages_testimony
+        - chance: uncommon
+          item:   mamook_tanscale_key
+        - chance: very_rare
+          item:   mamool_ja_collar
+      despoil:
+        tariqah_-1: 0
+
+  Mamool_Jas_Lizard:
+    id:            2539
+    species:       hill_lizard
+    skill_list_id: 174
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 328
+        entity_flags: 129
+        model_size:     1
+        hitbox:        16
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+
+  Mamool_Jas_Raptor:
+    id:            2540
+    species:       raptor
+    skill_list_id: 210
+    attributes:
+      combat:
+        skill: scythe
+        delay: 220
+      jobs: [thf, thf]
+      render:
+        look:
+          type:  standard
+          model: 317
+        entity_flags: 131
+        model_size:     1
+        hitbox:        18
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+
+  Mamool_Jas_Wyvern:
+    id:            2541
+    species:       blue_wyvern
+    skill_list_id: 714
+    attributes:
+      combat:
+        skill: scythe
+        delay: 200
+      render:
+        look:
+          type:  standard
+          model: 24
+        entity_flags: 131
+        model_size:     1
+        hitbox:         8
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+
+  Mikilulu:
+    id:            2656
+    species:       toad
+    type:          [notorious]
+    skill_list_id: 196
+    attributes:
+      combat:
+        skill: scythe
+        delay: 150
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 1812
+        entity_flags: 153
+        name_vis:       1
+        name_prefix:   32
+        hitbox:         6
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+
+  Mikiluru:
+    id:            2657
+    species:       toad
+    type:          [notorious]
+    skill_list_id: 196
+    attributes:
+      combat:
+        skill: scythe
+        delay: 150
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 1812
+        entity_flags: 153
+        name_vis:       1
+        name_prefix:   32
+        hitbox:         6
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+
+  Mikirulu:
+    id:            2658
+    species:       toad
+    type:          [notorious]
+    skill_list_id: 196
+    attributes:
+      combat:
+        skill: scythe
+        delay: 150
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 1812
+        entity_flags: 153
+        name_vis:       1
+        name_prefix:   32
+        hitbox:         6
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+
+  Mikiruru:
+    id:            2659
+    species:       toad
+    type:          [notorious]
+    skill_list_id: 196
+    attributes:
+      combat:
+        skill: scythe
+        delay: 150
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 1812
+        entity_flags: 153
+        name_vis:       1
+        name_prefix:   32
+        hitbox:         6
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+
+  Nikilulu:
+    id:            2881
+    species:       toad
+    type:          [notorious]
+    skill_list_id: 196
+    attributes:
+      combat:
+        skill: scythe
+        delay: 150
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 1812
+        entity_flags: 153
+        name_vis:       1
+        name_prefix:   32
+        hitbox:         6
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+
+  Nipper_M:
+    id:            6363
+    species:       crab
+    skill_list_id: 77
+    attributes:
+      combat:
+        skill: great_sword
+      jobs: [pld, pld]
+      render:
+        look:
+          type:  standard
+          model: 357
+        entity_flags:  131
+        animation_sub:   8
+        model_size:      1
+        hitbox:         13
+      behaviors:
+        links: true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: common
+          item:   slice_of_land_crab_meat
+        - chance: uncommon
+          item:   crab_shell
+        - chance: rare
+          item:   sack_of_silica
+        - chance: very_rare
+          item:   high-quality_crab_shell
+      steal: chunk_of_rock_salt
+      despoil:
+        slice_of_land_crab_meat: 0
+        crab_shell:              0
+
+  Poroggo:
+    id:            3177
+    species:       green_poroggo
+    spell_list_id: 21
+    skill_list_id: 196
+    attributes:
+      combat:
+        skill: axe
+        delay: 150
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 1811
+        entity_flags: 129
+        hitbox:         6
+      behaviors:
+        aggressive:     true
+        links:          true
+        true_detection: true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: common
+          item:   poroggo_hat
+      despoil:
+        poroggo_hat: 0
+
+  Poroggo_Casanova:
+    id:            3178
+    species:       green_poroggo
+    spell_list_id: 21
+    skill_list_id: 196
+    attributes:
+      combat:
+        skill: axe
+        delay: 150
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 1811
+        entity_flags: 153
+        hitbox:         6
+      behaviors:
+        aggressive:     true
+        true_detection: true
+      spawn:
+        type: [scripted]
+
+  Predatory_Colibri:
+    id:            6756
+    species:       colibri
+    skill_list_id: 72
+    attributes:
+      combat:
+        skill: dagger
+        delay: 220
+      jobs: [rdm, rdm]
+      render:
+        look:
+          type:  standard
+          model: 1720
+        entity_flags:  643
+        animation_sub:  12
+        model_size:      1
+        hitbox:         12
+      spawn:
+        type: [scripted]
+
+  Puk_M:
+    id:            6604
+    species:       puk
+    skill_list_id: 1175
+    attributes:
+      combat:
+        skill: scythe
+        delay: 200
+      render:
+        look:
+          type:  standard
+          model: 1744
+        entity_flags: 129
+        hitbox:        10
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: common
+          item:   puk_wing
+        - chance: rare
+          item:   puk_egg
+        - chance: very_rare
+          item:   vial_of_chimera_blood
+
+  Qiqirn_Goldsmith:
+    id:            3254
+    species:       qiqirn
+    skill_list_id: 199
+    attributes:
+      combat:
+        skill: dagger
+        delay: 200
+      jobs: [thf, thf]
+      render:
+        look:
+          type:  standard
+          model: 1735
+        entity_flags: 131
+        model_size:     1
+        hitbox:        12
+      behaviors:
+        links: true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: very_common
+          item:   handful_of_almonds
+        - chance: very_rare
+          item:   pebble
+        - chance: very_rare
+          item:   qiqirn_sandbag
+        - chance: very_rare
+          item:   qiqirn_cape
+        - chance: super_rare
+          item:   jar_of_firesand
+        - chance: super_rare
+          item:   handful_of_iron_sand
+        - chance: ultra_rare
+          item:   bowl_of_nashmau_stew
+        - chance: ultra_rare
+          item:   sack_of_silica
+      steal: qiqirn_sandbag
+      despoil:
+        qiqirn_cape:    0
+        qiqirn_sandbag: 0
+
+  Qiqirn_Mine:
+    id:      3258
+    species: fortifications
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 1790
+        entity_flags:  643
+        animation_sub:   8
+        model_size:      1
+        hitbox:         12
+      behaviors:
+        aggressive:     true
+        true_detection: true
+      spawn:
+        type: [scripted]
+
+  Qiqirn_Poulterer:
+    id:            3263
+    species:       qiqirn
+    skill_list_id: 199
+    attributes:
+      combat:
+        skill: axe
+        delay: 200
+      jobs: [rng, rng]
+      render:
+        look:
+          type:  standard
+          model: 1735
+        entity_flags: 131
+        model_size:     1
+        hitbox:        12
+      behaviors:
+        links: true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: very_common
+          item:   handful_of_almonds
+        - chance: very_rare
+          item:   pebble
+        - chance: very_rare
+          item:   qiqirn_sandbag
+        - chance: very_rare
+          item:   qiqirn_cape
+        - chance: super_rare
+          item:   jar_of_firesand
+        - chance: super_rare
+          item:   handful_of_iron_sand
+        - chance: ultra_rare
+          item:   bowl_of_nashmau_stew
+        - chance: ultra_rare
+          item:   sack_of_silica
+      steal: qiqirn_sandbag
+      despoil:
+        qiqirn_cape:    0
+        qiqirn_sandbag: 0
+
+  Sagelord_Molaal_Ja_M:
+    id:            6969
+    display_name:  Sagelord_Molaal_Ja
+    species:       sage
+    spell_list_id: 21
+    skill_list_id: 176
+    attributes:
+      combat:
+        skill: axe
+        delay: 280
+      jobs: [blm, whm]
+      render:
+        look:
+          type:  automaton
+          model: 1626
+        entity_flags:  159
+        animation_sub:   4
+        name_prefix:    32
+      behaviors:
+        aggressive:     true
+        links:          true
+        true_detection: true
+      spawn:
+        type: [scripted]
+
+  Sea_Puk_M:
+    id:            6605
+    species:       puk
+    skill_list_id: 1175
+    attributes:
+      combat:
+        skill: scythe
+        delay: 200
+      render:
+        look:
+          type:  standard
+          model: 1744
+        entity_flags: 131
+        model_size:     1
+        hitbox:        12
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: very_common
+          item:   puk_wing
+        - chance: common
+          item:   puk_egg
+        - chance: uncommon
+          item:   vial_of_chimera_blood
+      steal: puk_wing
+      despoil:
+        puk_wing:              0
+        puk_egg:               0
+        vial_of_chimera_blood: 0
+
+  Shadelurking_Zolool_Ja:
+    id:            3560
+    species:       warrior
+    spell_list_id: 7
+    skill_list_id: 176
+    attributes:
+      combat:
+        skill: great_katana
+        delay: 280
+      jobs: [nin, nin]
+      render:
+        look:
+          type:  automaton
+          model: 1619
+        entity_flags:  157
+        animation_sub:   4
+        name_prefix:    32
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+
+  Spinner:
+    id:            3732
+    species:       spider
+    skill_list_id: 236
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 312
+        entity_flags:  645
+        animation_sub:   8
+        model_size:      2
+        hitbox:         16
+      behaviors:
+        links: true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: common
+          item:   spider_web
+      steal: spider_web
+      despoil:
+        spool_of_rainbow_thread: 0
+        spider_web:              0
+
+  Suhur_Mas:
+    id:            3807
+    species:       pugil
+    skill_list_id: 197
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 348
+        entity_flags: 131
+        model_size:     1
+        hitbox:        27
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: common
+          item:   sack_of_silica
+        - chance: uncommon
+          item:   handful_of_pugil_scales
+      steal: handful_of_fish_scales
+      despoil:
+        handful_of_pugil_scales: 0
+        handful_of_fish_scales:  0
+
+  Suhur_Mas_fished:
+    id:            6767
+    display_name:  Suhur_Mas
+    species:       pugil
+    type:          [fished]
+    skill_list_id: 197
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 348
+        entity_flags: 131
+        model_size:     2
+        hitbox:        32
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+    loot:
+      steal: handful_of_fish_scales
+      despoil:
+        handful_of_pugil_scales: 0
+        handful_of_fish_scales:  0
+
+  Tyrannobugard:
+    id:            4067
+    species:       bugard
+    type:          [called]
+    skill_list_id: 58
+    attributes:
+      combat:
+        skill: sword
+        delay: 300
+      render:
+        look:
+          type:  standard
+          model: 1351
+        entity_flags: 131
+        model_size:     1
+        hitbox:        12
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+
+  Venomfang:
+    id:            6754
+    species:       raptor
+    type:          [notorious]
+    skill_list_id: 210
+    attributes:
+      combat:
+        skill: scythe
+        delay: 200
+      jobs: [thf, thf]
+      render:
+        look:
+          type:  standard
+          model: 317
+        entity_flags: 131
+        model_size:     1
+        hitbox:        18
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+    content: wotg
+
+  Wartkin:
+    id:            4295
+    species:       toad
+    type:          [called]
+    spell_list_id: 21
+    skill_list_id: 196
+    attributes:
+      combat:
+        skill: scythe
+        delay: 150
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 1812
+        entity_flags: 3
+      behaviors:
+        links: true
+      spawn:
+        type: [scripted]
+
+  Watch_Wyvern:
+    id:            4308
+    species:       wyvern
+    skill_list_id: 266
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 318
+        entity_flags: 133
+        model_size:     2
+        hitbox:        36
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: rare
+          item:   wyvern_wing
+        - chance: uncommon
+          item:   wyvern_skin
+      steal: qiqirn_cape
+      despoil:
+        handful_of_wyvern_scales: 0
+
+  Yalungur:
+    id:            6755
+    species:       toucalibri
+    skill_list_id: 72
+    attributes:
+      combat:
+        skill: dagger
+        delay: 220
+      jobs: [rdm, rdm]
+      render:
+        look:
+          type:  standard
+          model: 1721
+        entity_flags:  159
+        animation_sub:   4
+        name_prefix:    32
+        model_size:      3
+        hitbox:         16
+      spawn:
+        type: [scripted]
+
+  Ziz:
+    id:            4508
+    species:       ziz
+    skill_list_id: 70
+    attributes:
+      combat:
+        skill: club
+      render:
+        look:
+          type:  standard
+          model: 289
+        entity_flags:  131
+        animation_sub:  13
+        model_size:      1
+        hitbox:         37
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: uncommon
+          item:   giant_bird_feather
+        - chance: common
+          item:   slice_of_ziz_meat
+      steal: giant_bird_feather
+      despoil:
+        giant_bird_feather: 0
+
+  Zizzy_Zillah:
+    id:            4509
+    species:       cockatrice
+    type:          [notorious]
+    skill_list_id: 70
+    attributes:
+      combat:
+        skill: axe
+      resists:
+        immune_status: [light_sleep, dark_sleep]
+      render:
+        look:
+          type:  standard
+          model: 289
+        entity_flags:  3
+        name_prefix:  32
+        model_size:    2
+        hitbox:       43
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [lottery]
+      stats:
+        hp: 15000
+    loot:
+      drops:
+        - chance: uncommon
+          item:   namikirimaru
+        - chance: common
+          item:   fencing_bracers
+
+
+  Beta_liza_Carriage_Lizard:
+    id:            40102
+    species:       hill_lizard
+    skill_list_id: 174
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 2959
+        entity_flags: 133
+        model_size:     2
+        hitbox:        18
+      behaviors:
+        links: true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: rare
+          item:   beta_19411
+        - chance: uncommon
+          item:   beta_64
+        - chance: uncommon
+          item:   beta_3767
+        - chance: uncommon
+          item:   beta_6730
+        - chance: uncommon
+          item:   beta_6880
+        - chance: common
+          item:   lizard_tail
+        - chance: uncommon
+          item:   lizard_skin
+        - chance: common
+          item:   lizard_egg
+      despoil:
+        lizard_skin: 0
+        lizard_tail: 0
+        lizard_egg:  0
+
+  Beta_wyve_Watch_Wyvern:
+    id:            40119
+    species:       wyvern
+    skill_list_id: 266
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 2958
+        entity_flags: 133
+        model_size:     2
+        hitbox:        36
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: rare
+          item:   beta_15765
+        - chance: uncommon
+          item:   beta_35
+        - chance: uncommon
+          item:   beta_3606
+        - chance: uncommon
+          item:   beta_6491
+        - chance: uncommon
+          item:   beta_6861
+        - chance: rare
+          item:   wyvern_wing
+        - chance: uncommon
+          item:   wyvern_skin
+      steal: qiqirn_cape
+      despoil:
+        handful_of_wyvern_scales: 0
+
+  Beta_drak_Watch_Wyvern:
+    id:            40120
+    species:       wyvern
+    skill_list_id: 266
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 2957
+        entity_flags: 133
+        model_size:     2
+        hitbox:        36
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 960
+    loot:
+      drops:
+        - chance: rare
+          item:   beta_19969
+        - chance: uncommon
+          item:   beta_156
+        - chance: uncommon
+          item:   beta_4645
+        - chance: uncommon
+          item:   beta_6754
+        - chance: uncommon
+          item:   beta_6904
+        - chance: rare
+          item:   wyvern_wing
+        - chance: uncommon
+          item:   wyvern_skin
+      steal: qiqirn_cape
+      despoil:
+        handful_of_wyvern_scales: 0
+
+spawns:
+  17043457:
+    template: Suhur_Mas_fished
+    script:   Suhur_Mas
+    at:       [1.000, 1.000, 1.000]
+    level:    [70, 71]
+  17043458:
+    template: Suhur_Mas_fished
+    script:   Suhur_Mas
+    at:       [1.000, 1.000, 1.000]
+    level:    [70, 71]
+  17043459:
+    template: Mamool_Ja_Bloodsucker
+    at:       [1.000, 1.000, 1.000]
+    level:    [69, 70]
+  17043460:
+    template: Mamook_Mush
+    at:       [1.000, 1.000, 1.000]
+    level:    [78, 82]
+  17043461:
+    template: Mamook_Crab
+    at:       [1.000, 1.000, 1.000]
+    level:    [75, 76]
+  17043462:
+    template: Mamool_Ja_Mimicker
+    region:   se_6
+    level:    [73, 75]
+  17043463:
+    template: Hunting_Raptor
+    region:   se_7
+    level:    [73, 74]
+  17043464:
+    template: Hunting_Raptor
+    region:   se_7
+    level:    [73, 74]
+  17043465:
+    template: Hunting_Raptor
+    region:   se_7
+    level:    [73, 74]
+  17043466:
+    template: Venomfang
+    region:   se_7
+    level:    [78, 78]
+  17043467:
+    template: Hunting_Raptor
+    region:   se_11
+    level:    [73, 74]
+  17043468:
+    template: Hunting_Raptor
+    region:   se_11
+    level:    [73, 74]
+  17043469:
+    template: Colibri
+    region:   se_11
+    level:    [70, 71]
+  17043470:
+    template: Colibri
+    region:   se_14
+    level:    [70, 71]
+  17043471:
+    template: Mamool_Ja_Zenist
+    region:   se_15
+    level:    [73, 75]
+  17043472:
+    template: Mamool_Ja_Savant
+    region:   se_16
+    level:    [74, 75]
+  17043473:
+    template: Mamool_Ja_Sophist
+    region:   se_17
+    level:    [74, 75]
+  17043474:
+    template: Mamool_Ja_Bounder
+    region:   se_18
+    level:    [73, 75]
+  17043475:
+    template: Mamool_Ja_Mimicker
+    region:   se_19
+    level:    [73, 75]
+  17043476:
+    template: Colibri
+    region:   se_19
+    level:    [70, 71]
+  17043477:
+    template: Mamool_Ja_Strapper
+    region:   region_183
+    level:    [73, 75]
+  17043478:
+    template: Mamool_Jas_Lizard
+    at:       [1.000, 1.000, 1.000, 174]
+    level:    [66, 68]
+  17043479:
+    template: Carriage_Lizard
+    region:   e_23
+    level:    [70, 72]
+  17043480:
+    template: Carriage_Lizard
+    region:   e_23
+    level:    [70, 72]
+  17043481:
+    template: Mamool_Ja_Zenist
+    region:   e_25
+    level:    [73, 75]
+  17043482:
+    template: Mamool_Ja_Zenist
+    region:   se_26
+    level:    [73, 75]
+  17043483:
+    template: Mamool_Ja_Savant
+    region:   se_26
+    level:    [74, 75]
+  17043484:
+    template: Mamool_Ja_Sophist
+    region:   se_26
+    level:    [74, 75]
+  17043485:
+    template: Ziz
+    region:   se_29
+    level:    [76, 77]
+  17043486:
+    template: Ziz
+    region:   se_29
+    level:    [76, 77]
+  17043487:
+    template: Ziz
+    region:   se_31
+    level:    [76, 77]
+  17043488:
+    template: Ziz
+    region:   se_31
+    level:    [76, 77]
+  17043489:
+    template: Ziz
+    region:   se_29
+    level:    [76, 77]
+  17043490:
+    template: Ziz
+    region:   se_34
+    level:    [76, 77]
+  17043491:
+    template: Ziz
+    region:   se_34
+    level:    [76, 77]
+  17043492:
+    template: Mamool_Ja_Savant
+    region:   se_36
+    level:    [74, 75]
+  17043493:
+    template: Mamool_Ja_Sophist
+    region:   se_36
+    level:    [74, 75]
+  17043494:
+    template: Ziz
+    region:   se_38
+    level:    [76, 77]
+  17043495:
+    template: Ziz
+    region:   se_38
+    level:    [76, 77]
+  17043496:
+    template: Suhur_Mas
+    region:   se_40
+    level:    [71, 71]
+  17043497:
+    template: Suhur_Mas
+    region:   se_41
+    level:    [70, 71]
+  17043498:
+    template: Suhur_Mas
+    region:   se_41
+    level:    [70, 71]
+  17043499:
+    template: Suhur_Mas
+    region:   se_43
+    level:    [70, 71]
+  17043500:
+    template: Colibri
+    region:   se_44
+    level:    [70, 71]
+  17043501:
+    template: Colibri
+    region:   se_45
+    level:    [70, 71]
+  17043502:
+    template: Colibri
+    region:   se_46
+    level:    [70, 71]
+  17043503:
+    template: Colibri
+    region:   se_47
+    level:    [70, 71]
+  17043504:
+    template: Colibri
+    region:   s_48
+    level:    [70, 71]
+  17043505:
+    template: Mamool_Ja_Spearman
+    region:   s_49
+    level:    [73, 75]
+  17043506:
+    template: Mamool_Jas_Wyvern
+    region:   s_49
+    level:    [66, 68]
+  17043507:
+    template: Mamool_Ja_Savant
+    region:   se_51
+    level:    [74, 75]
+  17043508:
+    template: Mamool_Ja_Sophist
+    region:   se_52
+    level:    [74, 75]
+  17043509:
+    template: Mamool_Ja_Bounder
+    region:   s_53
+    level:    [73, 75]
+  17043510:
+    template: Mamool_Ja_Spearman
+    region:   s_54
+    level:    [73, 75]
+  17043511:
+    template: Mamool_Jas_Wyvern
+    region:   s_54
+    level:    [66, 68]
+  17043512:
+    template: Mamool_Ja_Mimicker
+    region:   se_56
+    level:    [73, 75]
+  17043513:
+    template: Mamool_Ja_Zenist
+    region:   se_57
+    level:    [73, 75]
+  17043514:
+    template: Mamool_Ja_Sophist
+    region:   se_58
+    level:    [74, 75]
+  17043515:
+    template: Mamool_Ja_Savant
+    region:   se_59
+    level:    [74, 75]
+  17043516:
+    template: Mamool_Ja_Bounder
+    region:   se_60
+    level:    [73, 75]
+  17043517:
+    template: Mamool_Ja_Zenist
+    region:   region_184
+    level:    [73, 75]
+  17043518:
+    template: Mamool_Ja_Savant
+    region:   se_62
+    level:    [74, 75]
+  17043519:
+    template: Carriage_Lizard
+    region:   se_62
+    level:    [70, 72]
+  17043520:
+    template: Carriage_Lizard
+    region:   se_62
+    level:    [72, 72]
+  17043521:
+    template: Mamool_Ja_Sophist
+    region:   se_65
+    level:    [74, 75]
+  17043522:
+    template: Carriage_Lizard
+    region:   se_65
+    level:    [70, 72]
+  17043523:
+    template: Carriage_Lizard
+    region:   se_62
+    level:    [70, 72]
+  17043524:
+    template: Carriage_Lizard
+    region:   region_185
+    level:    [70, 72]
+  17043525:
+    template: Mamool_Ja_Bounder
+    region:   region_185
+    level:    [73, 75]
+  17043526:
+    template: Carriage_Lizard
+    region:   se_70
+    level:    [70, 72]
+  17043527:
+    template: Carriage_Lizard
+    region:   se_70
+    level:    [70, 72]
+  17043528:
+    template: Mamool_Ja_Zenist
+    region:   e_72
+    level:    [73, 75]
+  17043529:
+    template: Hunting_Raptor
+    region:   c_73
+    level:    [73, 74]
+  17043530:
+    template: Hunting_Raptor
+    region:   c_73
+    level:    [73, 74]
+  17043531:
+    template: Puk_M
+    script:   Puk
+    region:   c_73
+    level:    [70, 72]
+  17043532:
+    template: Devout_Radol_Ja
+    at:       [106.430, -3.784, -79.590, 19]
+    level:    [83, 83]
+  17043533:
+    template: Hunting_Raptor
+    region:   c_77
+    level:    [73, 74]
+  17043534:
+    template: Hunting_Raptor
+    region:   c_77
+    level:    [73, 74]
+  17043535:
+    template: Hunting_Raptor
+    region:   c_77
+    level:    [73, 74]
+  17043536:
+    template: Hunting_Raptor
+    region:   c_80
+    level:    [73, 74]
+  17043537:
+    template: Hunting_Raptor
+    region:   c_80
+    level:    [73, 74]
+  17043538:
+    template: Puk_M
+    script:   Puk
+    region:   c_80
+    level:    [70, 72]
+  17043539:
+    template: Mamool_Ja_Mimicker
+    region:   region_203
+    level:    [73, 75]
+  17043540:
+    template: Colibri
+    region:   c_84
+    level:    [70, 71]
+  17043541:
+    template: Mamool_Ja_Strapper
+    region:   c_85
+    level:    [73, 75]
+  17043542:
+    template: Mamool_Jas_Lizard
+    at:       [1.000, 1.000, 1.000, 189]
+    level:    [66, 68]
+  17043543:
+    template: Mamool_Ja_Savant
+    region:   region_204
+    level:    [74, 75]
+  17043544:
+    template: Mamool_Ja_Sophist
+    region:   region_205
+    level:    [74, 75]
+  17043545:
+    template: Mamool_Ja_Bounder
+    region:   c_89
+    level:    [73, 75]
+  17043546:
+    template: Mamool_Ja_Zenist
+    region:   region_206
+    level:    [73, 75]
+  17043547:
+    template: Mamool_Ja_Mimicker
+    region:   c_91
+    level:    [73, 75]
+  17043548:
+    template: Puk_M
+    script:   Puk
+    region:   c_91
+    level:    [70, 72]
+  17043549:
+    template: Mamool_Ja_Mimicker
+    region:   c_93
+    level:    [73, 75]
+  17043550:
+    template: Carriage_Lizard
+    region:   c_93
+    level:    [70, 72]
+  17043551:
+    template: Carriage_Lizard
+    region:   c_93
+    level:    [72, 72]
+  17043552:
+    template: Ziz
+    region:   s_96
+    level:    [76, 77]
+  17043553:
+    template: Ziz
+    region:   s_96
+    level:    [76, 77]
+  17043554:
+    template: Zizzy_Zillah
+    region:   s_104
+    level:    [83, 83]
+  17043555:
+    template: Ziz
+    region:   s_99
+    level:    [76, 77]
+  17043556:
+    template: Puk_M
+    script:   Puk
+    region:   s_99
+    level:    [70, 72]
+  17043557:
+    template: Ziz
+    region:   s_101
+    level:    [76, 77]
+  17043558:
+    template: Ziz
+    region:   s_101
+    level:    [76, 77]
+  17043559:
+    template: Puk_M
+    script:   Puk
+    region:   s_101
+    level:    [70, 72]
+  17043560:
+    template: Ziz
+    region:   s_104
+    level:    [76, 77]
+  17043561:
+    template: Ziz
+    region:   s_104
+    level:    [76, 77]
+  17043562:
+    template: Ziz
+    region:   s_104
+    level:    [76, 77]
+  17043563:
+    template: Ziz
+    region:   s_107
+    level:    [76, 77]
+  17043564:
+    template: Ziz
+    region:   s_108
+    level:    [76, 77]
+  17043565:
+    template: Suhur_Mas
+    region:   s_109
+    level:    [70, 71]
+  17043566:
+    template: Suhur_Mas
+    region:   s_109
+    level:    [70, 71]
+  17043567:
+    template: Suhur_Mas
+    region:   s_111
+    level:    [70, 71]
+  17043568:
+    template: Colibri
+    region:   s_112
+    level:    [70, 71]
+  17043569:
+    template: Colibri
+    region:   s_113
+    level:    [70, 71]
+  17043570:
+    template: Colibri
+    region:   s_114
+    level:    [70, 71]
+  17043571:
+    template: Mamool_Ja_Spearman
+    region:   s_115
+    level:    [73, 75]
+  17043572:
+    template: Mamool_Jas_Wyvern
+    region:   s_115
+    level:    [66, 68]
+  17043573:
+    template: Mamool_Ja_Sophist
+    region:   s_117
+    level:    [74, 75]
+  17043574:
+    template: Mamool_Ja_Bounder
+    region:   s_117
+    level:    [73, 75]
+  17043575:
+    template: Mamool_Ja_Savant
+    region:   s_119
+    level:    [74, 75]
+  17043576:
+    template: Mamool_Ja_Mimicker
+    region:   s_120
+    level:    [73, 75]
+  17043577:
+    template: Mamool_Ja_Zenist
+    region:   s_121
+    level:    [73, 75]
+  17043578:
+    template: Mamool_Ja_Savant
+    region:   s_121
+    level:    [74, 75]
+  17043579:
+    template: Mamool_Ja_Sophist
+    region:   s_123
+    level:    [74, 75]
+  17043580:
+    template: Mamool_Ja_Bounder
+    region:   s_124
+    level:    [73, 75]
+  17043581:
+    template: Mamool_Ja_Spearman
+    region:   s_125
+    level:    [73, 75]
+  17043582:
+    template: Mamool_Jas_Wyvern
+    region:   s_125
+    level:    [66, 68]
+  17043583:
+    template: Mamool_Ja_Mimicker
+    region:   c_127
+    level:    [73, 75]
+  17043584:
+    template: Mamool_Ja_Savant
+    region:   c_127
+    level:    [74, 75]
+  17043585:
+    template: Mamool_Ja_Zenist
+    region:   s_129
+    level:    [73, 75]
+  17043586:
+    template: Mamool_Ja_Bounder
+    region:   s_129
+    level:    [73, 75]
+  17043587:
+    template: Mamool_Ja_Sophist
+    region:   s_131
+    level:    [74, 75]
+  17043588:
+    template: Carriage_Lizard
+    region:   s_131
+    level:    [70, 72]
+  17043589:
+    template: Carriage_Lizard
+    region:   s_131
+    level:    [70, 72]
+  17043590:
+    template: Mamool_Ja_Bounder
+    region:   c_134
+    level:    [73, 75]
+  17043591:
+    template: Mamool_Ja_Savant
+    region:   c_134
+    level:    [74, 75]
+  17043592:
+    template: Carriage_Lizard
+    region:   c_134
+    level:    [70, 72]
+  17043593:
+    template: Suhur_Mas
+    region:   c_137
+    level:    [71, 71]
+  17043594:
+    template: Mamool_Ja_Frogman
+    region:   c_137
+    level:    [75, 76]
+  17043595:
+    template: Suhur_Mas
+    region:   region_207
+    level:    [70, 71]
+  17043596:
+    template: Suhur_Mas
+    region:   region_208
+    level:    [70, 71]
+  17043597:
+    template: Suhur_Mas
+    region:   region_209
+    level:    [70, 71]
+  17043598:
+    template: Mamool_Ja_Diver
+    region:   w_142
+    level:    [75, 76]
+  17043599:
+    template: Mamool_Ja_Diver
+    region:   c_143
+    level:    [75, 76]
+  17043600:
+    template: Mamool_Ja_Frogman
+    region:   c_143
+    level:    [75, 76]
+  17043601:
+    template: Mamool_Ja_Diver
+    region:   c_145
+    level:    [75, 76]
+  17043602:
+    template: Mamool_Ja_Frogman
+    region:   c_145
+    level:    [75, 76]
+  17043603:
+    template: Mamool_Ja_Strapper
+    region:   c_147
+    level:    [73, 75]
+  17043604:
+    template: Mamool_Jas_Lizard
+    at:       [1.000, 1.000, 1.000, 104]
+    level:    [66, 68]
+  17043605:
+    template: Mamool_Ja_Spearman
+    region:   w_149
+    level:    [73, 75]
+  17043606:
+    template: Mamool_Jas_Wyvern
+    region:   w_149
+    level:    [66, 68]
+  17043607:
+    template: Poroggo
+    region:   c_151
+    level:    [75, 77]
+  17043608:
+    template: Poroggo
+    region:   c_152
+    level:    [75, 77]
+  17043609:
+    template: Poroggo
+    region:   c_153
+    level:    [75, 77]
+  17043610:
+    template: Poroggo
+    region:   w_154
+    level:    [75, 77]
+  17043611:
+    template: Poroggo
+    region:   w_155
+    level:    [75, 77]
+  17043612:
+    template: Poroggo
+    region:   region_210
+    level:    [75, 77]
+  17043613:
+    template: Poroggo
+    region:   c_157
+    level:    [75, 77]
+  17043614:
+    template: Air_Elemental
+    region:   region_211
+    level:    [75, 80]
+  17043615:
+    template: Poroggo
+    region:   region_212
+    level:    [75, 77]
+  17043616:
+    template: Mamool_Ja_Mimicker
+    region:   w_160
+    level:    [73, 75]
+  17043617:
+    template: Carriage_Lizard
+    region:   w_160
+    level:    [70, 72]
+  17043618:
+    template: Carriage_Lizard
+    region:   w_160
+    level:    [70, 72]
+  17043619:
+    template: Mamool_Ja_Zenist
+    region:   w_165
+    level:    [73, 75]
+  17043620:
+    template: Carriage_Lizard
+    region:   w_165
+    level:    [70, 72]
+  17043621:
+    template: Carriage_Lizard
+    region:   w_165
+    level:    [72, 72]
+  17043622:
+    template: Battle_Bugard
+    region:   w_166
+    level:    [78, 79]
+  17043623:
+    template: Battle_Bugard
+    region:   w_167
+    level:    [78, 79]
+  17043624:
+    template: Battle_Bugard
+    region:   w_167
+    level:    [78, 79]
+  17043625:
+    template: Puk_M
+    script:   Puk
+    region:   w_167
+    level:    [70, 72]
+  17043626:
+    template: Dragonscaled_Bugaal_Ja
+    region:   w_167
+    level:    [75, 83]
+  17043627:
+    template: Tyrannobugard
+    region:   w_167
+    level:    [112, 112]
+  17043628:
+    template: Tyrannobugard
+    region:   w_167
+    level:    [112, 112]
+  17043629:
+    template: Tyrannobugard
+    at:       [-273.781, 14.232, -78.504, 254]
+    level:    [112, 112]
+  17043630:
+    template: Mamool_Ja_Strapper
+    region:   w_174
+    level:    [73, 75]
+  17043631:
+    template: Mamool_Jas_Lizard
+    at:       [1.000, 1.000, 1.000, 146]
+    level:    [66, 68]
+  17043632:
+    template: Mamool_Ja_Zenist
+    region:   region_213
+    level:    [73, 75]
+  17043633:
+    template: Mamool_Ja_Savant
+    region:   w_177
+    level:    [74, 75]
+  17043634:
+    template: Mamool_Ja_Sophist
+    region:   region_214
+    level:    [74, 75]
+  17043635:
+    template: Mamool_Ja_Zenist
+    region:   region_215
+    level:    [73, 75]
+  17043636:
+    template: Mamool_Ja_Sophist
+    region:   w_180
+    level:    [74, 75]
+  17043637:
+    template: Carriage_Lizard
+    region:   w_181
+    level:    [70, 72]
+  17043638:
+    template: Carriage_Lizard
+    region:   w_182
+    level:    [70, 72]
+  17043639:
+    template: Carriage_Lizard
+    region:   w_182
+    level:    [70, 72]
+  17043640:
+    template: Mamool_Ja_Bounder
+    region:   region_216
+    level:    [73, 75]
+  17043641:
+    template: Carriage_Lizard
+    region:   region_216
+    level:    [70, 72]
+  17043642:
+    template: Carriage_Lizard
+    region:   w_186
+    level:    [70, 72]
+  17043643:
+    template: Carriage_Lizard
+    region:   w_186
+    level:    [70, 72]
+  17043644:
+    template: Carriage_Lizard
+    region:   w_188
+    level:    [70, 72]
+  17043645:
+    template: Carriage_Lizard
+    region:   w_188
+    level:    [70, 72]
+  17043646:
+    template: Mamool_Ja_Mimicker
+    region:   w_190
+    level:    [73, 75]
+  17043647:
+    template: Carriage_Lizard
+    region:   w_190
+    level:    [72, 72]
+  17043648:
+    template: Carriage_Lizard
+    region:   w_190
+    level:    [70, 72]
+  17043649:
+    template: Carriage_Lizard
+    region:   w_190
+    level:    [70, 72]
+  17043650:
+    template: Mamool_Ja_Savant
+    region:   w_194
+    level:    [74, 75]
+  17043651:
+    template: Mamool_Ja_Mimicker
+    region:   w_194
+    level:    [73, 75]
+  17043652:
+    template: Carriage_Lizard
+    region:   w_194
+    level:    [70, 72]
+  17043653:
+    template: Air_Elemental
+    region:   w_197
+    level:    [75, 80]
+  17043654:
+    template: Puk_M
+    script:   Puk
+    region:   w_198
+    level:    [70, 72]
+  17043655:
+    template: Puk_M
+    script:   Puk
+    region:   w_198
+    level:    [70, 72]
+  17043656:
+    template: Puk_M
+    script:   Puk
+    region:   w_200
+    level:    [70, 72]
+  17043657:
+    template: Puk_M
+    script:   Puk
+    region:   w_200
+    level:    [70, 72]
+  17043658:
+    template: Brei
+    region:   region_217
+    level:    [77, 78]
+  17043659:
+    template: Brei
+    region:   region_217
+    level:    [77, 78]
+  17043660:
+    template: Brei
+    region:   region_217
+    level:    [77, 78]
+  17043661:
+    template: Puk_M
+    script:   Puk
+    region:   sw_205
+    level:    [70, 72]
+  17043662:
+    template: Puk_M
+    script:   Puk
+    region:   sw_206
+    level:    [70, 72]
+  17043663:
+    template: Battle_Bugard
+    region:   sw_207
+    level:    [78, 79]
+  17043664:
+    template: Battle_Bugard
+    region:   sw_207
+    level:    [78, 79]
+  17043665:
+    template: Hundredfaced_Hapool_Ja
+    at:       [-160.301, 14.121, -157.572, 158]
+    level:    [75, 90]
+  17043666:
+    template: Hundredfaced_clone
+    script:   Hundredfaced_Hapool_Ja
+    at:       [-159.159, 14.148, -161.583, 23]
+    level:    [75, 90]
+  17043667:
+    template: Hundredfaced_clone
+    script:   Hundredfaced_Hapool_Ja
+    at:       [-178.667, 9.582, -148.625, 156]
+    level:    [75, 90]
+  17043668:
+    template: Hundredfaced_clone
+    script:   Hundredfaced_Hapool_Ja
+    at:       [-176.140, 5.758, -138.451, 123]
+    level:    [75, 90]
+  17043669:
+    template: Hundredfaced_clone
+    script:   Hundredfaced_Hapool_Ja
+    at:       [-178.569, 5.858, -144.616, 103]
+    level:    [75, 90]
+  17043670:
+    template: Battle_Bugard
+    region:   sw_214
+    level:    [78, 79]
+  17043671:
+    template: Battle_Bugard
+    region:   sw_215
+    level:    [78, 79]
+  17043672:
+    template: Suhur_Mas
+    region:   sw_216
+    level:    [71, 71]
+  17043673:
+    template: Suhur_Mas
+    region:   sw_217
+    level:    [70, 71]
+  17043674:
+    template: Suhur_Mas
+    region:   sw_218
+    level:    [70, 71]
+  17043675:
+    template: Suhur_Mas
+    region:   sw_218
+    level:    [70, 71]
+  17043676:
+    template: Colibri
+    region:   s_220
+    level:    [70, 71]
+  17043677:
+    template: Colibri
+    region:   sw_221
+    level:    [70, 71]
+  17043678:
+    template: Colibri
+    region:   sw_222
+    level:    [70, 71]
+  17043679:
+    template: Mamool_Ja_Spearman
+    region:   s_223
+    level:    [73, 75]
+  17043680:
+    template: Mamool_Jas_Wyvern
+    region:   s_223
+    level:    [66, 68]
+  17043681:
+    template: Mamool_Ja_Spearman
+    region:   s_223
+    level:    [73, 75]
+  17043682:
+    template: Mamool_Jas_Wyvern
+    region:   s_223
+    level:    [66, 68]
+  17043683:
+    template: Mamool_Ja_Strapper
+    region:   sw_227
+    level:    [73, 75]
+  17043684:
+    template: Mamool_Jas_Lizard
+    at:       [1.000, 1.000, 1.000, 84]
+    level:    [66, 68]
+  17043685:
+    template: Mamool_Ja_Strapper
+    region:   sw_227
+    level:    [73, 75]
+  17043686:
+    template: Mamool_Jas_Lizard
+    at:       [1.000, 1.000, 1.000, 76]
+    level:    [66, 68]
+  17043687:
+    template: Mamool_Ja_Zenist
+    region:   sw_231
+    level:    [73, 75]
+  17043688:
+    template: Mamool_Ja_Bounder
+    region:   region_223
+    level:    [73, 75]
+  17043689:
+    template: Mamool_Ja_Savant
+    region:   sw_233
+    level:    [74, 75]
+  17043690:
+    template: Mamool_Ja_Sophist
+    region:   region_221
+    level:    [74, 75]
+  17043691:
+    template: Mamool_Ja_Mimicker
+    region:   w_235
+    level:    [73, 75]
+  17043692:
+    template: Mamool_Ja_Bounder
+    region:   region_222
+    level:    [73, 75]
+  17043693:
+    template: Mamool_Ja_Mimicker
+    region:   c_237
+    level:    [73, 75]
+  17043694:
+    template: Puk_M
+    script:   Puk
+    region:   sw_238
+    level:    [70, 72]
+  17043695:
+    template: Puk_M
+    script:   Puk
+    region:   sw_238
+    level:    [70, 72]
+  17043696:
+    template: Qiqirn_Poulterer
+    region:   sw_240
+    level:    [77, 77]
+  17043697:
+    template: Qiqirn_Goldsmith
+    region:   sw_240
+    level:    [77, 77]
+  17043698:
+    template: Qiqirn_Mine
+    level:    [75, 75]
+  17043699:
+    template: Spinner
+    region:   s_243
+    level:    [79, 81]
+  17043700:
+    template: Spinner
+    region:   s_243
+    level:    [79, 81]
+  17043701:
+    template: Spinner
+    region:   s_245
+    level:    [79, 81]
+  17043702:
+    template: Spinner
+    region:   s_245
+    level:    [79, 81]
+  17043703:
+    template: Spinner
+    region:   s_247
+    level:    [79, 81]
+  17043704:
+    template: Spinner
+    region:   s_247
+    level:    [79, 81]
+  17043705:
+    template: Spinner
+    region:   s_247
+    level:    [79, 81]
+  17043706:
+    template: Spinner
+    region:   s_250
+    level:    [79, 81]
+  17043707:
+    template: Spinner
+    region:   s_250
+    level:    [79, 81]
+  17043708:
+    template: Spinner
+    region:   s_252
+    level:    [79, 81]
+  17043709:
+    template: Spinner
+    region:   s_252
+    level:    [79, 81]
+  17043710:
+    template: Spinner
+    region:   s_254
+    level:    [79, 81]
+  17043711:
+    template: Spinner
+    region:   s_254
+    level:    [79, 81]
+  17043712:
+    template: Mamool_Ja_Lurker_Mamook
+    script:   Mamool_Ja_Lurker
+    region:   s_256
+    level:    [81, 83]
+  17043713:
+    template: Spinner
+    at:       [56.619, 4.236, -295.211, 139]
+    level:    [79, 81]
+  17043714:
+    template: Spinner
+    at:       [93.539, 5.798, -339.003, 127]
+    level:    [79, 81]
+  17043715:
+    template: Spinner
+    at:       [100.324, 8.026, -340.093, 169]
+    level:    [79, 81]
+  17043716:
+    template: Mamool_Ja_Lurker_Mamook
+    script:   Mamool_Ja_Lurker
+    at:       [99.207, 8.898, -376.548, 116]
+    level:    [81, 83]
+  17043717:
+    template: Spinner
+    at:       [101.574, 7.873, -378.060, 220]
+    level:    [79, 81]
+  17043718:
+    template: Mamool_Ja_Philosopher_Mamook
+    script:   Mamool_Ja_Philosopher
+    region:   s_262
+    level:    [81, 83]
+  17043719:
+    template: Spinner
+    region:   s_262
+    level:    [79, 81]
+  17043720:
+    template: Spinner
+    region:   s_262
+    level:    [79, 81]
+  17043721:
+    template: Mamool_Ja_Mimer_Mamook
+    script:   Mamool_Ja_Mimer
+    region:   se_265
+    level:    [81, 83]
+  17043722:
+    template: Mamool_Ja_Infiltrator_Mamook
+    script:   Mamool_Ja_Infiltrator
+    region:   se_265
+    level:    [81, 83]
+  17043723:
+    template: Spinner
+    region:   se_265
+    level:    [79, 81]
+  17043724:
+    template: Spinner
+    region:   se_265
+    level:    [79, 81]
+  17043725:
+    template: Mamool_Ja_Infiltrator_Mamook
+    script:   Mamool_Ja_Infiltrator
+    region:   s_269
+    level:    [81, 83]
+  17043726:
+    template: Mamool_Ja_Blusterer_Mamook
+    script:   Mamool_Ja_Blusterer
+    region:   s_269
+    level:    [81, 83]
+  17043727:
+    template: Mamool_Ja_Philosopher_Mamook
+    script:   Mamool_Ja_Philosopher
+    region:   s_271
+    level:    [81, 83]
+  17043728:
+    template: Mamool_Ja_Lurker_Mamook
+    script:   Mamool_Ja_Lurker
+    region:   s_271
+    level:    [81, 83]
+  17043729:
+    template: Mamool_Ja_Mimer_Mamook
+    script:   Mamool_Ja_Mimer
+    region:   region_200
+    level:    [81, 83]
+  17043730:
+    template: Mamool_Ja_Infiltrator_Mamook
+    script:   Mamool_Ja_Infiltrator
+    region:   s_274
+    level:    [81, 83]
+  17043731:
+    template: Mamool_Ja_Blusterer_Mamook
+    script:   Mamool_Ja_Blusterer
+    region:   s_274
+    level:    [81, 83]
+  17043732:
+    template: Watch_Wyvern
+    region:   s_276
+    level:    [81, 83]
+  17043733:
+    template: Watch_Wyvern
+    region:   s_276
+    level:    [81, 83]
+  17043734:
+    template: Sea_Puk_M
+    script:   Sea_Puk
+    region:   s_278
+    level:    [76, 77]
+  17043735:
+    template: Sea_Puk_M
+    script:   Sea_Puk
+    region:   s_278
+    level:    [76, 77]
+  17043736:
+    template: Darting_Kachaal_Ja
+    region:   s_278
+    level:    [75, 83]
+  17043737:
+    template: Watch_Wyvern
+    region:   s_281
+    level:    [81, 83]
+  17043738:
+    template: Watch_Wyvern
+    region:   s_282
+    level:    [81, 83]
+  17043739:
+    template: Sea_Puk_M
+    script:   Sea_Puk
+    region:   s_282
+    level:    [76, 77]
+  17043740:
+    template: Sea_Puk_M
+    script:   Sea_Puk
+    region:   s_284
+    level:    [76, 77]
+  17043741:
+    template: Watch_Wyvern
+    region:   s_285
+    level:    [81, 83]
+  17043742:
+    template: Sea_Puk_M
+    script:   Sea_Puk
+    region:   s_285
+    level:    [76, 77]
+  17043743:
+    template: Sea_Puk_M
+    script:   Sea_Puk
+    region:   s_287
+    level:    [76, 77]
+  17043744:
+    template: Watch_Wyvern
+    region:   s_288
+    level:    [81, 83]
+  17043745:
+    template: Nipper_M
+    script:   Nipper
+    region:   s_289
+    level:    [77, 78]
+  17043746:
+    template: Nipper_M
+    script:   Nipper
+    region:   s_289
+    level:    [77, 78]
+  17043747:
+    template: Nipper_M
+    script:   Nipper
+    region:   s_291
+    level:    [77, 78]
+  17043748:
+    template: Nipper_M
+    script:   Nipper
+    region:   s_291
+    level:    [77, 78]
+  17043749:
+    template: Mamool_Ja_Pikeman_Mamook
+    script:   Mamool_Ja_Pikeman
+    region:   s_293
+    level:    [81, 83]
+  17043750:
+    template: Mamool_Jas_Wyvern
+    region:   s_293
+    level:    [77, 78]
+  17043751:
+    template: Sea_Puk_M
+    script:   Sea_Puk
+    region:   s_296
+    level:    [77, 78]
+  17043752:
+    template: Sea_Puk_M
+    script:   Sea_Puk
+    region:   s_296
+    level:    [77, 78]
+  17043753:
+    template: Mamool_Ja_Stabler_Mamook
+    script:   Mamool_Ja_Stabler
+    region:   s_297
+    level:    [81, 83]
+  17043754:
+    template: Mamool_Jas_Raptor
+    at:       [1.000, 1.000, 1.000, 170]
+    level:    [76, 78]
+  17043755:
+    template: Mamool_Ja_Pikeman_Mamook
+    script:   Mamool_Ja_Pikeman
+    region:   s_299
+    level:    [81, 83]
+  17043756:
+    template: Mamool_Jas_Wyvern
+    region:   s_299
+    level:    [77, 78]
+  17043757:
+    template: Mamool_Ja_Mimer_Mamook
+    script:   Mamool_Ja_Mimer
+    region:   s_301
+    level:    [81, 83]
+  17043758:
+    template: Mamool_Ja_Blusterer_Mamook
+    script:   Mamool_Ja_Blusterer
+    region:   s_302
+    level:    [81, 83]
+  17043759:
+    template: Mamool_Ja_Philosopher_Mamook
+    script:   Mamool_Ja_Philosopher
+    region:   s_303
+    level:    [81, 83]
+  17043760:
+    template: Mamool_Ja_Lurker_Mamook
+    script:   Mamool_Ja_Lurker
+    region:   s_303
+    level:    [81, 83]
+  17043761:
+    template: Mamool_Ja_Lurker_Mamook
+    script:   Mamool_Ja_Lurker
+    region:   s_305
+    level:    [81, 83]
+  17043762:
+    template: Mamool_Ja_Mimer_Mamook
+    script:   Mamool_Ja_Mimer
+    region:   s_306
+    level:    [81, 83]
+  17043763:
+    template: Mamool_Ja_Infiltrator_Mamook
+    script:   Mamool_Ja_Infiltrator
+    region:   s_307
+    level:    [81, 83]
+  17043764:
+    template: Mamool_Ja_Philosopher_Mamook
+    script:   Mamool_Ja_Philosopher
+    region:   s_307
+    level:    [81, 83]
+  17043765:
+    template: Mamool_Ja_Mimer_Mamook
+    script:   Mamool_Ja_Mimer
+    region:   region_201
+    level:    [81, 83]
+  17043766:
+    template: Mamool_Ja_Blusterer_Mamook
+    script:   Mamool_Ja_Blusterer
+    region:   s_310
+    level:    [81, 83]
+  17043767:
+    template: Mamool_Ja_Philosopher_Mamook
+    script:   Mamool_Ja_Philosopher
+    region:   s_311
+    level:    [81, 83]
+  17043768:
+    template: Spinner
+    region:   s_312
+    level:    [79, 81]
+  17043769:
+    template: Spinner
+    region:   s_312
+    level:    [79, 81]
+  17043770:
+    template: Watch_Wyvern
+    region:   s_314
+    level:    [81, 83]
+  17043771:
+    template: Watch_Wyvern
+    region:   s_314
+    level:    [81, 83]
+  17043772:
+    template: Watch_Wyvern
+    region:   sw_316
+    level:    [81, 83]
+  17043773:
+    template: Watch_Wyvern
+    region:   s_314
+    level:    [81, 83]
+  17043774:
+    template: Watch_Wyvern
+    region:   sw_318
+    level:    [81, 83]
+  17043775:
+    template: Mamool_Ja_Stabler_Mamook
+    script:   Mamool_Ja_Stabler
+    region:   sw_319
+    level:    [81, 83]
+  17043776:
+    template: Mamool_Jas_Raptor
+    at:       [1.000, 1.000, 1.000, 135]
+    level:    [76, 78]
+  17043777:
+    template: Mamool_Ja_Stabler_Mamook
+    script:   Mamool_Ja_Stabler
+    region:   sw_319
+    level:    [81, 83]
+  17043778:
+    template: Mamool_Jas_Raptor
+    at:       [1.000, 1.000, 1.000, 171]
+    level:    [76, 78]
+  17043779:
+    template: Firedance_Magmaal_Ja
+    at:       [-209.000, 19.000, -388.000, 217]
+    level:    [80, 82]
+  17043780:
+    template: Nipper_M
+    script:   Nipper
+    region:   sw_324
+    level:    [77, 78]
+  17043781:
+    template: Nipper_M
+    script:   Nipper
+    region:   sw_324
+    level:    [77, 78]
+  17043782:
+    template: Nipper_M
+    script:   Nipper
+    region:   sw_326
+    level:    [77, 78]
+  17043783:
+    template: Nipper_M
+    script:   Nipper
+    region:   sw_326
+    level:    [77, 78]
+  17043784:
+    template: Sea_Puk_M
+    script:   Sea_Puk
+    region:   s_328
+    level:    [77, 78]
+  17043785:
+    template: Sea_Puk_M
+    script:   Sea_Puk
+    region:   sw_316
+    level:    [77, 78]
+  17043786:
+    template: Sea_Puk_M
+    script:   Sea_Puk
+    region:   sw_330
+    level:    [77, 78]
+  17043787:
+    template: Sea_Puk_M
+    script:   Sea_Puk
+    region:   sw_331
+    level:    [77, 78]
+  17043788:
+    template: Mamool_Ja_Philosopher_Mamook
+    script:   Mamool_Ja_Philosopher
+    region:   s_332
+    level:    [81, 83]
+  17043789:
+    template: Mamool_Ja_Blusterer_Mamook
+    script:   Mamool_Ja_Blusterer
+    region:   s_332
+    level:    [81, 83]
+  17043790:
+    template: Mamool_Ja_Lurker_Mamook
+    script:   Mamool_Ja_Lurker
+    region:   sw_334
+    level:    [81, 83]
+  17043791:
+    template: Mamool_Ja_Mimer_Mamook
+    script:   Mamool_Ja_Mimer
+    region:   sw_335
+    level:    [81, 83]
+  17043792:
+    template: Mamool_Ja_Infiltrator_Mamook
+    script:   Mamool_Ja_Infiltrator
+    region:   sw_335
+    level:    [81, 83]
+  17043793:
+    template: Mamool_Ja_Infiltrator_Mamook
+    script:   Mamool_Ja_Infiltrator
+    region:   sw_337
+    level:    [81, 83]
+  17043794:
+    template: Mamool_Ja_Pikeman_Mamook
+    script:   Mamool_Ja_Pikeman
+    region:   region_202
+    level:    [81, 83]
+  17043795:
+    template: Mamool_Jas_Wyvern
+    at:       [1.000, 1.000, 1.000, 166]
+    level:    [77, 78]
+  17043796:
+    template: Hunting_Raptor
+    region:   ne_340
+    level:    [75, 76]
+  17043797:
+    template: Hunting_Raptor
+    region:   ne_340
+    level:    [75, 76]
+  17043798:
+    template: Hunting_Raptor
+    region:   ne_342
+    level:    [75, 76]
+  17043799:
+    template: Mamool_Ja_Lurker_Mamook
+    script:   Mamool_Ja_Lurker
+    region:   ne_343
+    level:    [81, 83]
+  17043800:
+    template: Mamool_Ja_Mimer_Mamook
+    script:   Mamool_Ja_Mimer
+    region:   ne_343
+    level:    [81, 83]
+  17043801:
+    template: Hunting_Raptor
+    region:   ne_345
+    level:    [75, 76]
+  17043802:
+    template: Mamool_Ja_Blusterer_Mamook
+    script:   Mamool_Ja_Blusterer
+    region:   ne_345
+    level:    [81, 83]
+  17043803:
+    template: Mamool_Ja_Infiltrator_Mamook
+    script:   Mamool_Ja_Infiltrator
+    region:   region_186
+    level:    [81, 83]
+  17043804:
+    template: Air_Elemental
+    region:   region_187
+    level:    [75, 80]
+  17043805:
+    template: Hunting_Raptor
+    region:   region_190
+    level:    [75, 76]
+  17043806:
+    template: Hunting_Raptor
+    at:       [381.678, 42.055, 399.134, 190]
+    level:    [75, 76]
+  17043807:
+    template: Spinner
+    at:       [423.364, 44.935, 374.484, 42]
+    level:    [79, 81]
+  17043808:
+    template: Spinner
+    region:   ne_352
+    level:    [79, 81]
+  17043809:
+    template: Spinner
+    region:   ne_352
+    level:    [79, 81]
+  17043810:
+    template: Spinner
+    region:   ne_352
+    level:    [79, 81]
+  17043811:
+    template: Mamool_Ja_Pikeman_Mamook
+    script:   Mamool_Ja_Pikeman
+    region:   region_188
+    level:    [81, 83]
+  17043812:
+    template: Mamool_Jas_Wyvern
+    at:       [1.000, 1.000, 1.000, 54]
+    level:    [66, 68]
+  17043813:
+    template: Mamool_Ja_Blusterer_Mamook
+    script:   Mamool_Ja_Blusterer
+    region:   region_189
+    level:    [81, 83]
+  17043814:
+    template: Mamool_Ja_Philosopher_Mamook
+    script:   Mamool_Ja_Philosopher
+    region:   region_182
+    level:    [81, 83]
+  17043815:
+    template: Mamool_Ja_Mimer_Mamook
+    script:   Mamool_Ja_Mimer
+    region:   ne_358
+    level:    [81, 83]
+  17043816:
+    template: Spinner
+    region:   ne_360
+    level:    [79, 81]
+  17043817:
+    template: Spinner
+    region:   ne_360
+    level:    [79, 81]
+  17043818:
+    template: Spinner
+    region:   ne_360
+    level:    [79, 81]
+  17043819:
+    template: Spinner
+    region:   ne_363
+    level:    [79, 81]
+  17043820:
+    template: Mamool_Ja_Lurker_Mamook
+    script:   Mamool_Ja_Lurker
+    region:   ne_363
+    level:    [81, 83]
+  17043821:
+    template: Mamool_Ja_Blusterer_Mamook
+    script:   Mamool_Ja_Blusterer
+    region:   region_191
+    level:    [81, 83]
+  17043822:
+    template: Mamool_Ja_Mimer_Mamook
+    script:   Mamool_Ja_Mimer
+    region:   region_192
+    level:    [81, 83]
+  17043823:
+    template: Mamool_Ja_Philosopher_Mamook
+    script:   Mamool_Ja_Philosopher
+    region:   ne_367
+    level:    [81, 83]
+  17043824:
+    template: Hunting_Raptor
+    region:   ne_367
+    level:    [75, 76]
+  17043825:
+    template: Ziz
+    region:   region_193
+    level:    [77, 78]
+  17043826:
+    template: Mamool_Ja_Stabler_Mamook
+    script:   Mamool_Ja_Stabler
+    region:   region_194
+    level:    [81, 83]
+  17043827:
+    template: Mamool_Jas_Raptor
+    at:       [1.000, 1.000, 1.000, 87]
+    level:    [76, 78]
+  17043828:
+    template: Ziz
+    region:   region_195
+    level:    [77, 78]
+  17043829:
+    template: Spinner
+    at:       [259.400, 48.155, 324.643, 56]
+    level:    [79, 81]
+  17043830:
+    template: Spinner
+    at:       [257.444, 47.957, 333.961, 96]
+    level:    [79, 81]
+  17043831:
+    template: Spinner
+    at:       [257.948, 47.968, 303.653, 193]
+    level:    [79, 81]
+  17043832:
+    template: Spinner
+    at:       [261.117, 47.822, 299.611, 36]
+    level:    [79, 81]
+  17043833:
+    template: Spinner
+    at:       [261.535, 47.809, 299.330, 33]
+    level:    [79, 81]
+  17043834:
+    template: Spinner
+    at:       [305.385, 44.849, 256.281, 16]
+    level:    [79, 81]
+  17043835:
+    template: Air_Elemental
+    at:       [287.929, 44.980, 257.925, 133]
+    level:    [75, 80]
+  17043836:
+    template: Ziz
+    region:   ne_382
+    level:    [77, 78]
+  17043837:
+    template: Mamool_Ja_Lurker_Mamook
+    script:   Mamool_Ja_Lurker
+    region:   ne_382
+    level:    [81, 83]
+  17043838:
+    template: Mamool_Ja_Infiltrator_Mamook
+    script:   Mamool_Ja_Infiltrator
+    region:   ne_382
+    level:    [81, 83]
+  17043839:
+    template: Mamool_Ja_Philosopher_Mamook
+    script:   Mamool_Ja_Philosopher
+    region:   ne_383
+    level:    [81, 83]
+  17043840:
+    template: Mamool_Ja_Lurker_Mamook
+    script:   Mamool_Ja_Lurker
+    region:   region_196
+    level:    [81, 83]
+  17043841:
+    template: Mamool_Ja_Blusterer_Mamook
+    script:   Mamool_Ja_Blusterer
+    region:   region_197
+    level:    [81, 83]
+  17043842:
+    template: Mamool_Ja_Philosopher_Mamook
+    script:   Mamool_Ja_Philosopher
+    region:   region_198
+    level:    [81, 83]
+  17043843:
+    template: Mamool_Ja_Lurker_Mamook
+    script:   Mamool_Ja_Lurker
+    region:   region_199
+    level:    [81, 83]
+  17043844:
+    template: Mamool_Ja_Infiltrator_Mamook
+    script:   Mamool_Ja_Infiltrator
+    region:   e_388
+    level:    [81, 83]
+  17043845:
+    template: Mamool_Ja_Stabler_Mamook
+    script:   Mamool_Ja_Stabler
+    region:   e_389
+    level:    [81, 83]
+  17043846:
+    template: Mamool_Jas_Raptor
+    at:       [1.000, 1.000, 1.000, 241]
+    level:    [76, 78]
+  17043847:
+    template: Archaic_Mirror
+    region:   region_219
+    level:    [75, 75]
+  17043848:
+    template: Archaic_Mirror
+    region:   se_36
+    level:    [75, 75]
+  17043849:
+    template: Archaic_Mirror
+    region:   region_203
+    level:    [75, 75]
+  17043850:
+    template: Archaic_Mirror
+    region:   region_220
+    level:    [75, 75]
+  17043851:
+    template: Archaic_Mirror
+    region:   sw_206
+    level:    [75, 75]
+  17043852:
+    template: Archaic_Mirror
+    region:   w_165
+    level:    [75, 75]
+  17043853:
+    template: Archaic_Mirror
+    region:   w_166
+    level:    [75, 75]
+  17043854:
+    template: Archaic_Mirror
+    region:   w_167
+    level:    [75, 75]
+  17043855:
+    template: Mamool_Ja_Conservator
+    region:   se_399
+    level:    [81, 83]
+  17043856:
+    template: Mamool_Ja_Treasurer
+    region:   region_219
+    level:    [81, 83]
+  17043857:
+    template: Mamool_Ja_Conservator
+    region:   region_219
+    level:    [81, 83]
+  17043858:
+    template: Mamool_Ja_Treasurer
+    region:   region_219
+    level:    [81, 83]
+  17043859:
+    template: Mamool_Ja_Conservator
+    region:   se_36
+    level:    [81, 83]
+  17043860:
+    template: Mamool_Ja_Treasurer
+    region:   se_36
+    level:    [81, 83]
+  17043861:
+    template: Mamool_Ja_Conservator
+    region:   region_203
+    level:    [81, 83]
+  17043862:
+    template: Mamool_Ja_Treasurer
+    region:   region_220
+    level:    [81, 83]
+  17043863:
+    template: Mamool_Ja_Conservator
+    region:   region_220
+    level:    [81, 83]
+  17043864:
+    template: Mamool_Ja_Treasurer
+    region:   sw_206
+    level:    [81, 83]
+  17043865:
+    template: Mamool_Ja_Conservator
+    region:   sw_206
+    level:    [81, 83]
+  17043866:
+    template: Mamool_Ja_Treasurer
+    region:   w_165
+    level:    [81, 83]
+  17043867:
+    template: Mamool_Ja_Conservator
+    region:   w_165
+    level:    [81, 83]
+  17043868:
+    template: Mamool_Ja_Treasurer
+    region:   w_165
+    level:    [81, 83]
+  17043869:
+    template: Mamool_Ja_Conservator
+    region:   w_166
+    level:    [81, 83]
+  17043870:
+    template: Mamool_Ja_Treasurer
+    region:   w_160
+    level:    [81, 83]
+  17043871:
+    template: Mamool_Ja
+    at:       [-260.382, 5.070, -142.875, 62]
+    level:    [75, 83]
+  17043872:
+    template: Sagelord_Molaal_Ja_M
+    script:   Sagelord_Molaal_Ja
+    at:       [83.000, 48.194, 157.000, 32]
+    level:    [80, 83]
+  17043873:
+    template: Shadelurking_Zolool_Ja
+    at:       [82.000, 47.999, 162.000, 32]
+    level:    [80, 83]
+  17043874:
+    template: Forbidding_Koheel_Ja
+    at:       [78.000, 48.000, 158.000, 32]
+    level:    [80, 83]
+  17043875:
+    template: Gulool_Ja_Ja
+    at:       [-301.000, 15.000, -380.000, 1]
+    level:    [85, 88]
+  17043876:
+    template: Mamool_Ja_Chamberlain
+    at:       [-297.000, 15.000, -378.000, 253]
+    level:    [80, 80]
+  17043877:
+    template: Mamool_Ja_Chamberlain
+    at:       [-297.000, 15.000, -380.000, 253]
+    level:    [80, 80]
+  17043878:
+    template: Mamool_Ja_Palatine
+    at:       [-295.000, 18.000, -384.000, 253]
+    level:    [80, 80]
+  17043879:
+    template: Mamool_Ja_Palatine
+    at:       [-295.000, 18.000, -376.000, 253]
+    level:    [80, 80]
+  17043880:
+    template: Carpophagous_Puk
+    level:    [77, 82]
+  17043881:
+    template: Poroggo_Casanova
+    at:       [-41.097, 5.669, -101.364, 168]
+    level:    [60, 60]
+  17043882:
+    template: Mikilulu
+    at:       [-41.259, 5.428, -100.736, 230]
+    level:    [50, 50]
+  17043883:
+    template: Mikiruru
+    at:       [-41.932, 5.901, -101.432, 171]
+    level:    [50, 50]
+  17043884:
+    template: Nikilulu
+    at:       [-42.418, 5.925, -101.577, 181]
+    level:    [50, 50]
+  17043885:
+    template: Mikiluru
+    at:       [-41.663, 5.870, -100.629, 201]
+    level:    [50, 50]
+  17043886:
+    template: Mikirulu
+    at:       [-41.620, 5.868, -101.489, 167]
+    level:    [50, 50]
+  17043887:
+    template: Chamrosh
+    at:       [206.000, 14.000, -285.000, 249]
+    level:    [78, 80]
+  17043888:
+    template: Iriri_Samariri
+    at:       [-118.000, 7.000, -80.000, 193]
+    level:    [84, 84]
+  17043889:
+    template: Wartkin
+    level:    [72, 73]
+  17043890:
+    template: Wartkin
+    level:    [72, 73]
+  17043891:
+    template: Wartkin
+    level:    [72, 73]
+  17043892:
+    template: Wartkin
+    level:    [72, 73]
+  17043893:
+    template: Yalungur
+    at:       [322.559, -3.598, -186.538, 206]
+    level:    [99, 99]
+  17043894:
+    template: Predatory_Colibri
+    at:       [321.315, -3.673, -183.084, 67]
+    level:    [99, 99]
+  17043895:
+    template: Predatory_Colibri
+    at:       [319.988, -3.675, -183.062, 47]
+    level:    [99, 99]
+  17043896:
+    template: Predatory_Colibri
+    at:       [323.019, -3.597, -184.990, 116]
+    level:    [99, 99]
+  17043897:
+    template: Predatory_Colibri
+    at:       [321.228, -3.707, -182.696, 112]
+    level:    [99, 99]
+  17043898:
+    template: Predatory_Colibri
+    at:       [318.220, -3.501, -186.018, 48]
+    level:    [99, 99]
+  17043899:
+    template: Yalungur
+    at:       [182.634, 13.860, -194.985, 8]
+    level:    [99, 99]
+  17043900:
+    template: Predatory_Colibri
+    at:       [183.711, 13.838, -194.356, 119]
+    level:    [99, 99]
+  17043901:
+    template: Predatory_Colibri
+    at:       [184.092, 13.844, -194.292, 130]
+    level:    [99, 99]
+  17043902:
+    template: Predatory_Colibri
+    at:       [184.898, 14.369, -197.526, 170]
+    level:    [99, 99]
+  17043903:
+    template: Predatory_Colibri
+    at:       [185.733, 14.160, -196.305, 125]
+    level:    [99, 99]
+  17043904:
+    template: Predatory_Colibri
+    level:    [99, 99]
+  17043905:
+    template: Yalungur
+    at:       [61.315, -4.382, -85.856, 19]
+    level:    [99, 99]
+  17043906:
+    template: Predatory_Colibri
+    at:       [61.839, -4.512, -86.987, 202]
+    level:    [99, 99]
+  17043907:
+    template: Predatory_Colibri
+    at:       [63.393, -3.880, -83.427, 255]
+    level:    [99, 99]
+  17043908:
+    template: Predatory_Colibri
+    at:       [62.314, -3.761, -82.124, 28]
+    level:    [99, 99]
+  17043909:
+    template: Predatory_Colibri
+    level:    [99, 99]
+  17043910:
+    template: Predatory_Colibri
+    level:    [99, 99]
+
+  17044060:
+    template: Beta_liza_Carriage_Lizard
+    region:   e_23
+    level:    [70, 72]
+  17044061:
+    template: Beta_liza_Carriage_Lizard
+    region:   e_23
+    level:    [70, 72]
+  17044062:
+    template: Beta_wyve_Watch_Wyvern
+    region:   s_276
+    level:    [81, 83]
+  17044063:
+    template: Beta_wyve_Watch_Wyvern
+    region:   s_276
+    level:    [81, 83]
+  17044064:
+    template: Beta_drak_Watch_Wyvern
+    region:   s_276
+    level:    [81, 83]
+  17044065:
+    template: Beta_drak_Watch_Wyvern
+    region:   s_276
+    level:    [81, 83]
+slots:
+  - members:
+      17043486: {} # Ziz
+      17043489: {} # Ziz
+  - members:
+      17043520: {} # Carriage_Lizard
+      17043523: {} # Carriage_Lizard
+  - members:
+      17043751: {} # Sea_Puk
+      17043752: {} # Sea_Puk
+  - members:
+      17043770: {} # Watch_Wyvern
+      17043773: {} # Watch_Wyvern

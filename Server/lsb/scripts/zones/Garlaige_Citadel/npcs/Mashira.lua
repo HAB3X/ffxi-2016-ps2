@@ -1,0 +1,32 @@
+-----------------------------------
+-- Area: Garlaige Citadel
+--  NPC: Mashira
+-- Involved in Quests: Rubbish day, Making Amens!
+-- !pos 141 -6 138 200
+-----------------------------------
+---@type TNpcEntity
+local entity = {}
+
+entity.onTrigger = function(player, npc)
+    if player:getQuestStatus(xi.questLog.WINDURST, xi.quest.id.windurst.MAKING_AMENS) == xi.questStatus.QUEST_ACCEPTED then
+        if player:hasKeyItem(xi.keyItem.BROKEN_WAND) then
+            player:startEvent(11, 3)
+        else player:startEvent(11, 0) -- Making Amens dialogue
+        end
+    else
+        player:startEvent(11, 3) -- Standard dialog and menu
+    end
+end
+
+entity.onEventFinish = function(player, csid, option, npc)
+    if
+        csid == 11 and
+        option == 0 and
+        player:getQuestStatus(xi.questLog.WINDURST, xi.quest.id.windurst.MAKING_AMENS) == xi.questStatus.QUEST_ACCEPTED
+    then
+        npcUtil.giveKeyItem(player, xi.keyItem.BROKEN_WAND)
+        player:tradeComplete()
+    end
+end
+
+return entity

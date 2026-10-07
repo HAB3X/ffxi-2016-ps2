@@ -1,0 +1,58 @@
+-- Text ids rebuilt for the 2007 PS2 client data tooling: PROFILE 2012 = the 2012 client data (report 28) by research/tools/lsb_textids_2007.py (9 changed, 10 not in the 2007 dialog DAT 6453 and left unchanged).
+-----------------------------------
+-- Area: AlTaieu
+-----------------------------------
+zones = zones or {}
+
+zones[xi.zone.ALTAIEU] =
+{
+    text =
+    {
+        ITEM_CANNOT_BE_OBTAINED       = 6375, -- You cannot obtain the <item>. Come back after sorting your inventory.
+        ITEM_OBTAINED                 = 6378, -- Obtained: <item>.
+        GIL_OBTAINED                  = 6379, -- Obtained <number> gil.
+        KEYITEM_OBTAINED              = 6398, -- Obtained key item: <keyitem>.
+        NOTHING_OUT_OF_ORDINARY       = 6392, -- There is nothing out of the ordinary here.
+        CARRIED_OVER_POINTS           = 7006, -- You have carried over <number> login point[/s].
+        LOGIN_CAMPAIGN_UNDERWAY       = 7007, -- The [/January/February/March/April/May/June/July/August/September/October/November/December] <number> Login Campaign is currently underway!
+        LOGIN_NUMBER                  = 7008, -- In celebration of your most recent login (login no. <number>), we have provided you with <number> points! You currently have a total of <number> points.
+        MEMBERS_LEVELS_ARE_RESTRICTED = 7028, -- Your party is unable to participate because certain members' levels are restricted.
+        CONQUEST_BASE                 = 7086, -- Tallying conquest results...
+        QUASILUMIN_01                 = 7302, -- This is Al'Taieu. The celestial capital overflowing with the blessings of Altana.
+        IMPERVIOUS_FIELD_BLOCKS       = 7383, -- An impervious field of energy blocks your path...
+        NOTHING_OF_INTEREST           = 7412, -- There is nothing of interest here.
+        OMINOUS_SHADOW                = 7413, -- An ominous shadow falls over you...
+        AMULET_SHATTERED              = 7522, -- The <item> held by <name> has shattered...
+        LIGHT_STOLEN                  = 7523, -- The <item> was stolen by Nag'molada...
+        OBTAIN_BUT_STOLEN             = 7524, -- You obtain the <item>, only to have it stolen by Nag'molada...
+        RETURN_AMULET_TO_PRISHE       = 7548, -- You return the <item> to Prishe.
+        HOMEPOINT_SET                 = 7589, -- Home point set!
+    },
+    mob =
+    {
+        AERNS_ELEMENTAL    = GetTableOfIDs('Aerns_Elemental'),
+        AERNS_WYNAV        = GetTableOfIDs('Aerns_Wynav'),
+        AERNS_XZOMIT       = GetTableOfIDs('Aerns_Xzomit'),
+        EUVHIS_OFFSET      = GetFirstID('Aweuvhi'),
+        ULXZOMIT_OFFSET    = GetTableOfIDs('Ulxzomit'),
+        OMXZOMIT_OFFSET    = GetTableOfIDs('Omxzomit'),
+        OMAERN_BST         = GetTableOfIDs('Omaern_BST'),
+        OMAERN_DRG         = GetTableOfIDs('Omaern_DRG'),
+        OMAERN_SMN         = GetTableOfIDs('Omaern_SMN'),
+        RUAERN             = GetFirstID('Ruaern'),
+        JAILER_OF_HOPE     = GetFirstID('Jailer_of_Hope'),
+        JAILER_OF_JUSTICE  = GetFirstID('Jailer_of_Justice'),
+        JAILER_OF_PRUDENCE = GetFirstID('Jailer_of_Prudence'),
+        JAILER_OF_LOVE     = GetFirstID('Jailer_of_Love'),
+        ABSOLUTE_VIRTUE    = GetFirstID('Absolute_Virtue'),
+    },
+    npc =
+    {
+        RUBIOUS_CRYSTAL           = GetFirstID('_0x1'),
+        AURORAL_UPDRAFT_OFFSET    = GetFirstID('Auroral_Updraft'),
+        SWIRLING_VORTEX_OFFSET    = GetFirstID('Swirling_Vortex'),
+        DIMENSIONAL_PORTAL_OFFSET = GetFirstID('Dimensional_Portal'),
+    },
+}
+
+return zones[xi.zone.ALTAIEU]

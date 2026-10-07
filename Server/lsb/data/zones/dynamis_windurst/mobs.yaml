@@ -1,0 +1,3960 @@
+# yaml-language-server: $schema=../../schemas/mobs.schema.json
+
+templates:
+
+  Arch_Tzee_Xicu_Idol:
+    id:            6092
+    species:       yagudo_statue
+    type:          [notorious]
+    spell_list_id: 50
+    skill_list_id: 95
+    attributes:
+      combat:
+        skill: staff
+      jobs:  [blm, blm]
+      speed: 30
+      resists:
+        immune_status: [silence, slow, elegy, light_sleep, dark_sleep]
+        dmg_physical:
+          slashing: -5000
+          piercing: -5000
+          blunt:    -5000
+          h2h:      -5000
+      render:
+        look:
+          type:  standard
+          model: 1061
+        entity_flags: 159
+        hitbox:        30
+      behaviors:
+        aggressive:     true
+        links:          true
+        true_detection: true
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: uncommon
+          item:   mujin_necklace
+        - chance: uncommon
+          item:   mujin_tanto
+        - chance: uncommon
+          item:   oneiros_headgear
+        - chance: uncommon
+          item:   infinity_core
+        - chance: very_rare
+          item:   gold_beastcoin
+        - chance: rare
+          item:   mythril_beastcoin
+        - chance: very_rare
+          item:   sparkling_stone
+        - chance: uncommon
+          item:   forgotten_step
+        - chance: very_rare
+          item:   lungo-nango_jadeshell
+
+  Avatar_Icon:
+    id:            294
+    species:       yagudo_statue
+    spell_list_id: 21
+    skill_list_id: 95
+    attributes:
+      combat:
+        skill: staff
+      jobs: [blm, blm]
+      resists:
+        immune_status: [silence, slow, elegy, light_sleep, dark_sleep]
+      render:
+        look:
+          type:  standard
+          model: 1060
+        entity_flags: 1153
+        hitbox:         15
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 1000
+        mp: 1000
+    loot:
+      drops:
+        - chance: uncommon
+          item:   infinity_core
+        - chance: very_rare
+          item:   mythril_beastcoin
+        - chance: very_rare
+          item:   sparkling_stone
+        - chance: very_rare
+          item:   gold_beastcoin
+        - chance: very_rare
+          item:   tukuku_whiteshell
+
+  Avatar_Idol:
+    id:            295
+    species:       yagudo_statue
+    type:          [notorious]
+    spell_list_id: 21
+    skill_list_id: 95
+    attributes:
+      combat:
+        skill: staff
+      jobs: [blm, blm]
+      resists:
+        immune_status: [silence, slow, elegy, light_sleep, dark_sleep]
+        dmg_physical:
+          slashing: -5000
+          piercing: -5000
+          blunt:    -5000
+          h2h:      -5000
+      render:
+        look:
+          type:  standard
+          model: 1060
+        entity_flags: 1665
+        hitbox:         15
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 1000
+        mp: 1000
+
+  Fuu_Tzapo_the_Blessed:
+    id:            6089
+    species:       dynamis_yagudo
+    type:          [notorious]
+    spell_list_id: 20
+    skill_list_id: 710
+    attributes:
+      combat:
+        skill: club
+      jobs: [whm, war]
+      render:
+        look:
+          type:  standard
+          model: 1084
+        entity_flags: 159
+        name_prefix:   32
+        model_size:     3
+        hitbox:        20
+      behaviors:
+        aggressive:     true
+        links:          true
+        true_detection: true
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: always
+          item:   fiendish_tome_chapter_13
+        - chance: common
+          item:   oneiros_earring
+        - chance: very_rare
+          item:   pile_of_relic_iron
+        - chance: very_rare
+          item:   lancewood_log
+        - chance: very_rare
+          item:   colossal_skull
+        - chance: very_rare
+          item:   lungo-nango_jadeshell
+        - chance: common
+          item:   forgotten_step
+        - chance: very_rare
+          one_of: [relic_knuckles, relic_dagger, relic_sword, relic_maul]
+        - chance: rare
+          one_of: [warriors_mask, assassins_bonnet, monster_helm, koga_hatsuburi, sorcerers_gloves, abyss_gauntlets, scouts_bracers, saotome_haidate, summoners_spats, clerics_duckbills, valor_leggings]
+        - chance: very_rare
+          one_of: [mirage_charuqs, argute_loafers, pantin_dastanas, etoile_bangles]
+
+  Haa_Pevi_the_Stentorian:
+    id:            1864
+    species:       dynamis_yagudo
+    type:          [notorious]
+    spell_list_id: 141
+    skill_list_id: 710
+    attributes:
+      combat:
+        skill: great_axe
+      jobs: [smn, smn]
+      render:
+        look:
+          type:  standard
+          model: 1084
+        entity_flags: 159
+        name_prefix:   32
+        model_size:     3
+        hitbox:        20
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 900
+      stats:
+        hp: 8000
+    loot:
+      drops:
+        - chance: very_common
+          item:   divine_bijou
+        - chance: very_rare
+          item:   pile_of_relic_iron
+        - chance: very_rare
+          item:   lancewood_log
+        - chance: very_rare
+          item:   colossal_skull
+        - chance: very_rare
+          item:   lungo-nango_jadeshell
+        - chance: rare
+          item:   forgotten_step
+        - chance: very_rare
+          one_of: [relic_knuckles, relic_dagger, relic_sword, relic_maul]
+        - chance: rare
+          one_of: [warriors_mask, assassins_bonnet, monster_helm, koga_hatsuburi, sorcerers_gloves, abyss_gauntlets, scouts_bracers, saotome_haidate, summoners_spats, clerics_duckbills, valor_leggings]
+        - chance: very_rare
+          one_of: [mirage_charuqs, argute_loafers, pantin_dastanas, etoile_bangles]
+      steal: tukuku_whiteshell
+
+  Loo_Hepe_the_Eyepiercer:
+    id:            2437
+    species:       dynamis_yagudo
+    type:          [notorious]
+    spell_list_id: 3
+    skill_list_id: 710
+    attributes:
+      combat:
+        skill: great_sword
+      jobs: [rdm, rdm]
+      render:
+        look:
+          type:  standard
+          model: 1085
+        entity_flags: 159
+        name_prefix:   32
+        model_size:     3
+        hitbox:        20
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 900
+      stats:
+        hp: 8000
+    loot:
+      drops:
+        - chance: very_common
+          item:   divine_bijou
+        - chance: very_rare
+          item:   pile_of_relic_iron
+        - chance: very_rare
+          item:   lancewood_log
+        - chance: very_rare
+          item:   colossal_skull
+        - chance: very_rare
+          item:   lungo-nango_jadeshell
+        - chance: rare
+          item:   forgotten_step
+        - chance: very_rare
+          one_of: [relic_knuckles, relic_dagger, relic_sword, relic_maul]
+        - chance: rare
+          one_of: [warriors_mask, assassins_bonnet, monster_helm, koga_hatsuburi, sorcerers_gloves, abyss_gauntlets, scouts_bracers, saotome_haidate, summoners_spats, clerics_duckbills, valor_leggings]
+        - chance: very_rare
+          one_of: [mirage_charuqs, argute_loafers, pantin_dastanas, etoile_bangles]
+      steal: tukuku_whiteshell
+
+  Maa_Febi_the_Steadfast:
+    id:            2464
+    species:       dynamis_yagudo
+    type:          [notorious]
+    spell_list_id: 4
+    skill_list_id: 710
+    attributes:
+      combat:
+        skill: great_katana
+      jobs: [pld, sam]
+      render:
+        look:
+          type:  standard
+          model: 1082
+        entity_flags: 159
+        name_prefix:   32
+        model_size:     3
+        hitbox:        20
+      behaviors:
+        aggressive:     true
+        links:          true
+        true_detection: true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 8000
+
+  Muu_Febi_the_Steadfast:
+    id:            2777
+    species:       dynamis_yagudo
+    type:          [notorious]
+    spell_list_id: 4
+    skill_list_id: 710
+    attributes:
+      combat:
+        skill: great_katana
+      jobs: [pld, sam]
+      render:
+        look:
+          type:  standard
+          model: 1082
+        entity_flags: 159
+        name_prefix:   32
+        model_size:     3
+        hitbox:        20
+      behaviors:
+        aggressive:     true
+        links:          true
+        true_detection: true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 8000
+
+  Naa_Yixo_the_Stillrage:
+    id:            6090
+    species:       dynamis_yagudo
+    type:          [notorious]
+    spell_list_id: 3
+    skill_list_id: 710
+    attributes:
+      combat:
+        skill: dagger
+      jobs: [rdm, rdm]
+      render:
+        look:
+          type:  standard
+          model: 1082
+        entity_flags: 159
+        name_prefix:   32
+        model_size:     3
+        hitbox:        20
+      behaviors:
+        aggressive:     true
+        links:          true
+        true_detection: true
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: always
+          item:   fiendish_tome_chapter_14
+        - chance: common
+          item:   mujin_band
+        - chance: very_rare
+          item:   pile_of_relic_iron
+        - chance: very_rare
+          item:   lancewood_log
+        - chance: very_rare
+          item:   colossal_skull
+        - chance: very_rare
+          item:   lungo-nango_jadeshell
+        - chance: common
+          item:   forgotten_step
+        - chance: very_rare
+          one_of: [relic_knuckles, relic_dagger, relic_sword, relic_maul]
+        - chance: rare
+          one_of: [warriors_mask, assassins_bonnet, monster_helm, koga_hatsuburi, sorcerers_gloves, abyss_gauntlets, scouts_bracers, saotome_haidate, summoners_spats, clerics_duckbills, valor_leggings]
+        - chance: very_rare
+          one_of: [mirage_charuqs, argute_loafers, pantin_dastanas, etoile_bangles]
+
+  Tee_Zaksa_the_Ceaseless:
+    id:            6091
+    species:       dynamis_yagudo
+    type:          [notorious]
+    spell_list_id: 4
+    skill_list_id: 710
+    attributes:
+      combat:
+        skill: great_katana
+      jobs: [pld, pld]
+      render:
+        look:
+          type:  standard
+          model: 1083
+        entity_flags: 159
+        name_prefix:   32
+        model_size:     3
+        hitbox:        20
+      behaviors:
+        aggressive:     true
+        links:          true
+        true_detection: true
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: always
+          item:   fiendish_tome_chapter_15
+        - chance: common
+          item:   oneiros_torque
+        - chance: very_rare
+          item:   pile_of_relic_iron
+        - chance: very_rare
+          item:   lancewood_log
+        - chance: very_rare
+          item:   colossal_skull
+        - chance: very_rare
+          item:   lungo-nango_jadeshell
+        - chance: common
+          item:   forgotten_step
+        - chance: very_rare
+          one_of: [relic_knuckles, relic_dagger, relic_sword, relic_maul]
+        - chance: rare
+          one_of: [warriors_mask, assassins_bonnet, monster_helm, koga_hatsuburi, sorcerers_gloves, abyss_gauntlets, scouts_bracers, saotome_haidate, summoners_spats, clerics_duckbills, valor_leggings]
+        - chance: very_rare
+          one_of: [mirage_charuqs, argute_loafers, pantin_dastanas, etoile_bangles]
+
+  Tzee_Xicu_Idol:
+    id:            4070
+    species:       yagudo_statue
+    type:          [notorious]
+    spell_list_id: 50
+    skill_list_id: 95
+    attributes:
+      combat:
+        skill: staff
+      jobs:  [blm, blm]
+      speed: 30
+      resists:
+        immune_status: [silence, slow, elegy, light_sleep, dark_sleep]
+        dmg_physical:
+          slashing: -5000
+          piercing: -5000
+          blunt:    -5000
+          h2h:      -5000
+      render:
+        look:
+          type:  standard
+          model: 1061
+        hitbox: 30
+      behaviors:
+        aggressive:     true
+        links:          true
+        true_detection: true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 12500
+        mp: 12500
+    loot:
+      drops:
+        - chance: always
+          item:   fiendish_tome_chapter_11
+        - chance: uncommon
+          item:   infinity_core
+        - chance: very_rare
+          item:   gold_beastcoin
+        - chance: rare
+          item:   mythril_beastcoin
+        - chance: very_rare
+          item:   sparkling_stone
+        - chance: rare
+          item:   forgotten_step
+        - chance: very_rare
+          item:   lungo-nango_jadeshell
+
+  Vanguard_Assassin:
+    id:            4137
+    species:       dynamis_yagudo
+    spell_list_id: 7
+    skill_list_id: 2106
+    attributes:
+      combat:
+        skill: katana
+      jobs: [nin, war]
+      render:
+        look:
+          type:  standard
+          model: 1083
+        entity_flags: 131
+        model_size:     1
+        hitbox:        15
+      behaviors:
+        aggressive: true
+        links:      true
+      mob_mods:
+        can_parry: 3
+      spawn:
+        respawn: 300
+      stats:
+        hp: 4000
+    loot:
+      drops:
+        - chance: very_rare
+          item:   lancewood_log
+        - chance: very_rare
+          item:   pile_of_relic_iron
+        - chance: very_rare
+          item:   colossal_skull
+        - chance: very_rare
+          item:   forgotten_step
+        - chance: very_rare
+          one_of: [relic_knuckles, relic_dagger, relic_sword, relic_maul]
+        - chance: rare
+          one_of: [warriors_mask, assassins_bonnet, monster_helm, koga_hatsuburi, sorcerers_gloves, abyss_gauntlets, scouts_bracers, saotome_haidate, summoners_spats, clerics_duckbills, valor_leggings]
+        - chance: very_rare
+          one_of: [mirage_charuqs, argute_loafers, pantin_dastanas, etoile_bangles]
+      steal: tukuku_whiteshell
+
+  Vanguard_Assassin_2:
+    id:            4137
+    display_name:  Vanguard_Assassin
+    species:       dynamis_yagudo
+    spell_list_id: 7
+    skill_list_id: 2106
+    attributes:
+      combat:
+        skill: katana
+      jobs: [nin, war]
+      render:
+        look:
+          type:  standard
+          model: 1083
+        entity_flags: 131
+        model_size:     1
+        hitbox:        15
+      behaviors:
+        aggressive: true
+        links:      true
+      mob_mods:
+        can_parry: 3
+      spawn:
+        respawn: 300
+      stats:
+        hp: 4000
+    loot:
+      drops:
+        - chance: rare
+          item:   canteen_of_odious_holy_water
+        - chance: very_rare
+          item:   lancewood_log
+        - chance: very_rare
+          item:   pile_of_relic_iron
+        - chance: very_rare
+          item:   colossal_skull
+        - chance: uncommon
+          item:   forgotten_step
+        - chance: very_rare
+          one_of: [relic_knuckles, relic_dagger, relic_sword, relic_maul]
+        - chance: rare
+          one_of: [warriors_mask, assassins_bonnet, monster_helm, koga_hatsuburi, sorcerers_gloves, abyss_gauntlets, scouts_bracers, saotome_haidate, summoners_spats, clerics_duckbills, valor_leggings]
+        - chance: very_rare
+          one_of: [mirage_charuqs, argute_loafers, pantin_dastanas, etoile_bangles]
+      steal: tukuku_whiteshell
+
+  Vanguard_Assassin_Large:
+    id:            7229
+    display_name:  Vanguard_Assassin
+    species:       dynamis_yagudo
+    spell_list_id: 7
+    skill_list_id: 2106
+    attributes:
+      combat:
+        skill: katana
+      jobs: [nin, nin]
+      render:
+        look:
+          type:  standard
+          model: 1083
+        entity_flags: 131
+        model_size:     2
+        hitbox:        17
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+      stats:
+        hp: 4000
+    loot:
+      drops:
+        - chance: rare
+          item:   canteen_of_odious_holy_water
+        - chance: very_rare
+          item:   lancewood_log
+        - chance: very_rare
+          item:   pile_of_relic_iron
+        - chance: very_rare
+          item:   colossal_skull
+        - chance: uncommon
+          item:   forgotten_step
+        - chance: very_rare
+          one_of: [relic_knuckles, relic_dagger, relic_sword, relic_maul]
+        - chance: rare
+          one_of: [warriors_mask, assassins_bonnet, monster_helm, koga_hatsuburi, sorcerers_gloves, abyss_gauntlets, scouts_bracers, saotome_haidate, summoners_spats, clerics_duckbills, valor_leggings]
+        - chance: very_rare
+          one_of: [mirage_charuqs, argute_loafers, pantin_dastanas, etoile_bangles]
+      steal: tukuku_whiteshell
+
+  Vanguard_Chanter:
+    id:            4141
+    species:       dynamis_yagudo
+    spell_list_id: 6
+    skill_list_id: 2106
+    attributes:
+      combat:
+        skill: dagger
+      jobs: [brd, brd]
+      render:
+        look:
+          type:  standard
+          model: 1085
+        entity_flags: 131
+        model_size:     1
+        hitbox:        15
+      behaviors:
+        aggressive: true
+        links:      true
+      mob_mods:
+        can_parry: 3
+      spawn:
+        respawn: 300
+      stats:
+        hp: 4000
+    loot:
+      drops:
+        - chance: very_rare
+          item:   lancewood_log
+        - chance: very_rare
+          item:   pile_of_relic_iron
+        - chance: very_rare
+          item:   colossal_skull
+        - chance: very_rare
+          item:   forgotten_step
+        - chance: very_rare
+          one_of: [relic_knuckles, relic_dagger, relic_sword, relic_maul]
+        - chance: rare
+          one_of: [warriors_mask, assassins_bonnet, monster_helm, koga_hatsuburi, sorcerers_gloves, abyss_gauntlets, scouts_bracers, saotome_haidate, summoners_spats, clerics_duckbills, valor_leggings]
+        - chance: very_rare
+          one_of: [mirage_charuqs, argute_loafers, pantin_dastanas, etoile_bangles]
+      steal: tukuku_whiteshell
+
+  Vanguard_Chanter_2:
+    id:            4141
+    display_name:  Vanguard_Chanter
+    species:       dynamis_yagudo
+    spell_list_id: 6
+    skill_list_id: 2106
+    attributes:
+      combat:
+        skill: dagger
+      jobs: [brd, brd]
+      render:
+        look:
+          type:  standard
+          model: 1085
+        entity_flags: 131
+        model_size:     1
+        hitbox:        15
+      behaviors:
+        aggressive: true
+        links:      true
+      mob_mods:
+        can_parry: 3
+      spawn:
+        respawn: 300
+      stats:
+        hp: 4000
+    loot:
+      drops:
+        - chance: rare
+          item:   canteen_of_odious_holy_water
+        - chance: very_rare
+          item:   lancewood_log
+        - chance: very_rare
+          item:   pile_of_relic_iron
+        - chance: very_rare
+          item:   colossal_skull
+        - chance: uncommon
+          item:   forgotten_step
+        - chance: very_rare
+          one_of: [relic_knuckles, relic_dagger, relic_sword, relic_maul]
+        - chance: rare
+          one_of: [warriors_mask, assassins_bonnet, monster_helm, koga_hatsuburi, sorcerers_gloves, abyss_gauntlets, scouts_bracers, saotome_haidate, summoners_spats, clerics_duckbills, valor_leggings]
+        - chance: very_rare
+          one_of: [mirage_charuqs, argute_loafers, pantin_dastanas, etoile_bangles]
+      steal: tukuku_whiteshell
+
+  Vanguard_Chanter_Large:
+    id:            7237
+    display_name:  Vanguard_Chanter
+    species:       dynamis_yagudo
+    spell_list_id: 6
+    skill_list_id: 2106
+    attributes:
+      combat:
+        skill: dagger
+      jobs: [brd, brd]
+      render:
+        look:
+          type:  standard
+          model: 1085
+        entity_flags: 131
+        model_size:     2
+        hitbox:        17
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+      stats:
+        hp: 4000
+    loot:
+      drops:
+        - chance: rare
+          item:   canteen_of_odious_holy_water
+        - chance: very_rare
+          item:   lancewood_log
+        - chance: very_rare
+          item:   pile_of_relic_iron
+        - chance: very_rare
+          item:   colossal_skull
+        - chance: uncommon
+          item:   forgotten_step
+        - chance: very_rare
+          one_of: [relic_knuckles, relic_dagger, relic_sword, relic_maul]
+        - chance: rare
+          one_of: [warriors_mask, assassins_bonnet, monster_helm, koga_hatsuburi, sorcerers_gloves, abyss_gauntlets, scouts_bracers, saotome_haidate, summoners_spats, clerics_duckbills, valor_leggings]
+        - chance: very_rare
+          one_of: [mirage_charuqs, argute_loafers, pantin_dastanas, etoile_bangles]
+      steal: tukuku_whiteshell
+
+  Vanguard_Exemplar:
+    id:            4148
+    species:       dynamis_yagudo
+    spell_list_id: 4
+    skill_list_id: 2106
+    attributes:
+      combat:
+        skill: great_katana
+      jobs: [pld, pld]
+      render:
+        look:
+          type:  standard
+          model: 1082
+        entity_flags: 131
+        model_size:     1
+        hitbox:        15
+      behaviors:
+        aggressive: true
+        links:      true
+      mob_mods:
+        can_parry: 3
+      spawn:
+        respawn: 300
+      stats:
+        hp: 4000
+    loot:
+      drops:
+        - chance: very_rare
+          item:   lancewood_log
+        - chance: very_rare
+          item:   pile_of_relic_iron
+        - chance: very_rare
+          item:   colossal_skull
+        - chance: very_rare
+          item:   forgotten_step
+        - chance: very_rare
+          one_of: [relic_knuckles, relic_dagger, relic_sword, relic_maul]
+        - chance: rare
+          one_of: [warriors_mask, assassins_bonnet, monster_helm, koga_hatsuburi, sorcerers_gloves, abyss_gauntlets, scouts_bracers, saotome_haidate, summoners_spats, clerics_duckbills, valor_leggings]
+        - chance: very_rare
+          one_of: [mirage_charuqs, argute_loafers, pantin_dastanas, etoile_bangles]
+      steal: tukuku_whiteshell
+
+  Vanguard_Exemplar_2:
+    id:            4148
+    display_name:  Vanguard_Exemplar
+    species:       dynamis_yagudo
+    spell_list_id: 4
+    skill_list_id: 2106
+    attributes:
+      combat:
+        skill: great_katana
+      jobs: [pld, pld]
+      render:
+        look:
+          type:  standard
+          model: 1082
+        entity_flags: 131
+        model_size:     1
+        hitbox:        15
+      behaviors:
+        aggressive: true
+        links:      true
+      mob_mods:
+        can_parry: 3
+      spawn:
+        respawn: 300
+      stats:
+        hp: 4000
+    loot:
+      drops:
+        - chance: rare
+          item:   odious_feather
+        - chance: very_rare
+          item:   lancewood_log
+        - chance: very_rare
+          item:   pile_of_relic_iron
+        - chance: very_rare
+          item:   colossal_skull
+        - chance: uncommon
+          item:   forgotten_step
+        - chance: very_rare
+          one_of: [relic_knuckles, relic_dagger, relic_sword, relic_maul]
+        - chance: rare
+          one_of: [warriors_mask, assassins_bonnet, monster_helm, koga_hatsuburi, sorcerers_gloves, abyss_gauntlets, scouts_bracers, saotome_haidate, summoners_spats, clerics_duckbills, valor_leggings]
+        - chance: very_rare
+          one_of: [mirage_charuqs, argute_loafers, pantin_dastanas, etoile_bangles]
+      steal: tukuku_whiteshell
+
+  Vanguard_Exemplar_Large:
+    id:            7233
+    display_name:  Vanguard_Exemplar
+    species:       dynamis_yagudo
+    spell_list_id: 4
+    skill_list_id: 2106
+    attributes:
+      combat:
+        skill: great_katana
+      jobs: [pld, pld]
+      render:
+        look:
+          type:  standard
+          model: 1082
+        entity_flags: 131
+        model_size:     2
+        hitbox:        17
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+      stats:
+        hp: 4000
+    loot:
+      drops:
+        - chance: rare
+          item:   odious_feather
+        - chance: very_rare
+          item:   lancewood_log
+        - chance: very_rare
+          item:   pile_of_relic_iron
+        - chance: very_rare
+          item:   colossal_skull
+        - chance: uncommon
+          item:   forgotten_step
+        - chance: very_rare
+          one_of: [relic_knuckles, relic_dagger, relic_sword, relic_maul]
+        - chance: rare
+          one_of: [warriors_mask, assassins_bonnet, monster_helm, koga_hatsuburi, sorcerers_gloves, abyss_gauntlets, scouts_bracers, saotome_haidate, summoners_spats, clerics_duckbills, valor_leggings]
+        - chance: very_rare
+          one_of: [mirage_charuqs, argute_loafers, pantin_dastanas, etoile_bangles]
+      steal: tukuku_whiteshell
+
+  Vanguard_Inciter:
+    id:            4157
+    species:       dynamis_yagudo
+    spell_list_id: 5
+    skill_list_id: 2106
+    attributes:
+      combat:
+        skill: great_katana
+      jobs: [drk, drk]
+      render:
+        look:
+          type:  standard
+          model: 1082
+        entity_flags: 131
+        model_size:     1
+        hitbox:        15
+      behaviors:
+        aggressive: true
+        links:      true
+      mob_mods:
+        can_parry: 3
+      spawn:
+        respawn: 300
+      stats:
+        hp: 4000
+    loot:
+      drops:
+        - chance: very_rare
+          item:   lancewood_log
+        - chance: very_rare
+          item:   pile_of_relic_iron
+        - chance: very_rare
+          item:   colossal_skull
+        - chance: very_rare
+          item:   forgotten_step
+        - chance: very_rare
+          one_of: [relic_knuckles, relic_dagger, relic_sword, relic_maul]
+        - chance: rare
+          one_of: [warriors_mask, assassins_bonnet, monster_helm, koga_hatsuburi, sorcerers_gloves, abyss_gauntlets, scouts_bracers, saotome_haidate, summoners_spats, clerics_duckbills, valor_leggings]
+        - chance: very_rare
+          one_of: [mirage_charuqs, argute_loafers, pantin_dastanas, etoile_bangles]
+      steal: tukuku_whiteshell
+
+  Vanguard_Inciter_2:
+    id:            4157
+    display_name:  Vanguard_Inciter
+    species:       dynamis_yagudo
+    spell_list_id: 5
+    skill_list_id: 2106
+    attributes:
+      combat:
+        skill: great_katana
+      jobs: [drk, drk]
+      render:
+        look:
+          type:  standard
+          model: 1082
+        entity_flags: 131
+        model_size:     1
+        hitbox:        15
+      behaviors:
+        aggressive: true
+        links:      true
+      mob_mods:
+        can_parry: 3
+      spawn:
+        respawn: 300
+      stats:
+        hp: 4000
+    loot:
+      drops:
+        - chance: rare
+          item:   odious_necklace
+        - chance: very_rare
+          item:   lancewood_log
+        - chance: very_rare
+          item:   pile_of_relic_iron
+        - chance: very_rare
+          item:   colossal_skull
+        - chance: uncommon
+          item:   forgotten_step
+        - chance: very_rare
+          one_of: [relic_knuckles, relic_dagger, relic_sword, relic_maul]
+        - chance: rare
+          one_of: [warriors_mask, assassins_bonnet, monster_helm, koga_hatsuburi, sorcerers_gloves, abyss_gauntlets, scouts_bracers, saotome_haidate, summoners_spats, clerics_duckbills, valor_leggings]
+        - chance: very_rare
+          one_of: [mirage_charuqs, argute_loafers, pantin_dastanas, etoile_bangles]
+      steal: tukuku_whiteshell
+
+  Vanguard_Inciter_Large:
+    id:            7236
+    display_name:  Vanguard_Inciter
+    species:       dynamis_yagudo
+    spell_list_id: 5
+    skill_list_id: 2106
+    attributes:
+      combat:
+        skill: great_katana
+      jobs: [drk, drk]
+      render:
+        look:
+          type:  standard
+          model: 1082
+        entity_flags: 131
+        model_size:     2
+        hitbox:        17
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+      stats:
+        hp: 4000
+    loot:
+      drops:
+        - chance: rare
+          item:   odious_necklace
+        - chance: very_rare
+          item:   lancewood_log
+        - chance: very_rare
+          item:   pile_of_relic_iron
+        - chance: very_rare
+          item:   colossal_skull
+        - chance: uncommon
+          item:   forgotten_step
+        - chance: very_rare
+          one_of: [relic_knuckles, relic_dagger, relic_sword, relic_maul]
+        - chance: rare
+          one_of: [warriors_mask, assassins_bonnet, monster_helm, koga_hatsuburi, sorcerers_gloves, abyss_gauntlets, scouts_bracers, saotome_haidate, summoners_spats, clerics_duckbills, valor_leggings]
+        - chance: very_rare
+          one_of: [mirage_charuqs, argute_loafers, pantin_dastanas, etoile_bangles]
+      steal: tukuku_whiteshell
+
+  Vanguard_Liberator:
+    id:            4159
+    species:       dynamis_yagudo
+    skill_list_id: 2106
+    attributes:
+      combat:
+        skill: dagger
+      jobs: [thf, thf]
+      render:
+        look:
+          type:  standard
+          model: 1081
+        entity_flags: 131
+        model_size:     1
+        hitbox:        15
+      behaviors:
+        aggressive: true
+        links:      true
+      mob_mods:
+        can_parry: 3
+      spawn:
+        respawn: 300
+      stats:
+        hp: 4000
+    loot:
+      drops:
+        - chance: very_rare
+          item:   lancewood_log
+        - chance: very_rare
+          item:   pile_of_relic_iron
+        - chance: very_rare
+          item:   colossal_skull
+        - chance: very_rare
+          item:   forgotten_step
+        - chance: very_rare
+          one_of: [relic_knuckles, relic_dagger, relic_sword, relic_maul]
+        - chance: rare
+          one_of: [warriors_mask, assassins_bonnet, monster_helm, koga_hatsuburi, sorcerers_gloves, abyss_gauntlets, scouts_bracers, saotome_haidate, summoners_spats, clerics_duckbills, valor_leggings]
+        - chance: very_rare
+          one_of: [mirage_charuqs, argute_loafers, pantin_dastanas, etoile_bangles]
+      steal: tukuku_whiteshell
+
+  Vanguard_Liberator_2:
+    id:            4159
+    display_name:  Vanguard_Liberator
+    species:       dynamis_yagudo
+    skill_list_id: 2106
+    attributes:
+      combat:
+        skill: dagger
+      jobs: [thf, thf]
+      render:
+        look:
+          type:  standard
+          model: 1081
+        entity_flags: 131
+        model_size:     1
+        hitbox:        15
+      behaviors:
+        aggressive: true
+        links:      true
+      mob_mods:
+        can_parry: 3
+      spawn:
+        respawn: 300
+      stats:
+        hp: 4000
+    loot:
+      drops:
+        - chance: rare
+          item:   odious_feather
+        - chance: very_rare
+          item:   lancewood_log
+        - chance: very_rare
+          item:   pile_of_relic_iron
+        - chance: very_rare
+          item:   colossal_skull
+        - chance: uncommon
+          item:   forgotten_step
+        - chance: very_rare
+          one_of: [relic_knuckles, relic_dagger, relic_sword, relic_maul]
+        - chance: rare
+          one_of: [warriors_mask, assassins_bonnet, monster_helm, koga_hatsuburi, sorcerers_gloves, abyss_gauntlets, scouts_bracers, saotome_haidate, summoners_spats, clerics_duckbills, valor_leggings]
+        - chance: very_rare
+          one_of: [mirage_charuqs, argute_loafers, pantin_dastanas, etoile_bangles]
+      steal: tukuku_whiteshell
+
+  Vanguard_Liberator_Large:
+    id:            7232
+    display_name:  Vanguard_Liberator
+    species:       dynamis_yagudo
+    skill_list_id: 2106
+    attributes:
+      combat:
+        skill: dagger
+      jobs: [thf, thf]
+      render:
+        look:
+          type:  standard
+          model: 1081
+        entity_flags: 131
+        model_size:     2
+        hitbox:        17
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+      stats:
+        hp: 4000
+    loot:
+      drops:
+        - chance: rare
+          item:   odious_feather
+        - chance: very_rare
+          item:   lancewood_log
+        - chance: very_rare
+          item:   pile_of_relic_iron
+        - chance: very_rare
+          item:   colossal_skull
+        - chance: uncommon
+          item:   forgotten_step
+        - chance: very_rare
+          one_of: [relic_knuckles, relic_dagger, relic_sword, relic_maul]
+        - chance: rare
+          one_of: [warriors_mask, assassins_bonnet, monster_helm, koga_hatsuburi, sorcerers_gloves, abyss_gauntlets, scouts_bracers, saotome_haidate, summoners_spats, clerics_duckbills, valor_leggings]
+        - chance: very_rare
+          one_of: [mirage_charuqs, argute_loafers, pantin_dastanas, etoile_bangles]
+      steal: tukuku_whiteshell
+
+  Vanguard_Ogresoother:
+    id:            4167
+    species:       dynamis_yagudo
+    skill_list_id: 2106
+    attributes:
+      combat:
+        skill: axe
+      jobs: [bst, bst]
+      render:
+        look:
+          type:  standard
+          model: 1081
+        entity_flags: 131
+        model_size:     1
+        hitbox:        15
+      behaviors:
+        aggressive: true
+        links:      true
+      mob_mods:
+        can_parry: 3
+      spawn:
+        respawn: 300
+      stats:
+        hp: 4000
+    loot:
+      drops:
+        - chance: very_rare
+          item:   lancewood_log
+        - chance: very_rare
+          item:   pile_of_relic_iron
+        - chance: very_rare
+          item:   colossal_skull
+        - chance: very_rare
+          item:   forgotten_step
+        - chance: very_rare
+          one_of: [relic_knuckles, relic_dagger, relic_sword, relic_maul]
+        - chance: rare
+          one_of: [warriors_mask, assassins_bonnet, monster_helm, koga_hatsuburi, sorcerers_gloves, abyss_gauntlets, scouts_bracers, saotome_haidate, summoners_spats, clerics_duckbills, valor_leggings]
+        - chance: very_rare
+          one_of: [mirage_charuqs, argute_loafers, pantin_dastanas, etoile_bangles]
+      steal: tukuku_whiteshell
+
+  Vanguard_Ogresoother_2:
+    id:            4167
+    display_name:  Vanguard_Ogresoother
+    species:       dynamis_yagudo
+    skill_list_id: 2106
+    attributes:
+      combat:
+        skill: axe
+      jobs: [bst, bst]
+      render:
+        look:
+          type:  standard
+          model: 1081
+        entity_flags: 131
+        model_size:     1
+        hitbox:        15
+      behaviors:
+        aggressive: true
+        links:      true
+      mob_mods:
+        can_parry: 3
+      spawn:
+        respawn: 300
+      stats:
+        hp: 4000
+    loot:
+      drops:
+        - chance: rare
+          item:   odious_quipu
+        - chance: very_rare
+          item:   lancewood_log
+        - chance: very_rare
+          item:   pile_of_relic_iron
+        - chance: very_rare
+          item:   colossal_skull
+        - chance: uncommon
+          item:   forgotten_step
+        - chance: very_rare
+          one_of: [relic_knuckles, relic_dagger, relic_sword, relic_maul]
+        - chance: rare
+          one_of: [warriors_mask, assassins_bonnet, monster_helm, koga_hatsuburi, sorcerers_gloves, abyss_gauntlets, scouts_bracers, saotome_haidate, summoners_spats, clerics_duckbills, valor_leggings]
+        - chance: very_rare
+          one_of: [mirage_charuqs, argute_loafers, pantin_dastanas, etoile_bangles]
+      steal: tukuku_whiteshell
+
+  Vanguard_Ogresoother_Large:
+    id:            7234
+    display_name:  Vanguard_Ogresoother
+    species:       dynamis_yagudo
+    skill_list_id: 2106
+    attributes:
+      combat:
+        skill: axe
+      jobs: [bst, bst]
+      render:
+        look:
+          type:  standard
+          model: 1081
+        entity_flags: 131
+        model_size:     2
+        hitbox:        17
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+      stats:
+        hp: 4000
+    loot:
+      drops:
+        - chance: rare
+          item:   odious_quipu
+        - chance: very_rare
+          item:   lancewood_log
+        - chance: very_rare
+          item:   pile_of_relic_iron
+        - chance: very_rare
+          item:   colossal_skull
+        - chance: uncommon
+          item:   forgotten_step
+        - chance: very_rare
+          one_of: [relic_knuckles, relic_dagger, relic_sword, relic_maul]
+        - chance: rare
+          one_of: [warriors_mask, assassins_bonnet, monster_helm, koga_hatsuburi, sorcerers_gloves, abyss_gauntlets, scouts_bracers, saotome_haidate, summoners_spats, clerics_duckbills, valor_leggings]
+        - chance: very_rare
+          one_of: [mirage_charuqs, argute_loafers, pantin_dastanas, etoile_bangles]
+      steal: tukuku_whiteshell
+
+  Vanguard_Oracle:
+    id:            4168
+    species:       dynamis_yagudo
+    spell_list_id: 141
+    skill_list_id: 2106
+    attributes:
+      combat:
+        skill: club
+      jobs: [smn, smn]
+      render:
+        look:
+          type:  standard
+          model: 1084
+        entity_flags:  131
+        animation_sub:  16
+        model_size:      1
+        hitbox:         15
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+      stats:
+        hp: 4000
+    loot:
+      drops:
+        - chance: very_rare
+          item:   lancewood_log
+        - chance: very_rare
+          item:   pile_of_relic_iron
+        - chance: very_rare
+          item:   colossal_skull
+        - chance: very_rare
+          item:   forgotten_step
+        - chance: very_rare
+          one_of: [relic_knuckles, relic_dagger, relic_sword, relic_maul]
+        - chance: rare
+          one_of: [warriors_mask, assassins_bonnet, monster_helm, koga_hatsuburi, sorcerers_gloves, abyss_gauntlets, scouts_bracers, saotome_haidate, summoners_spats, clerics_duckbills, valor_leggings]
+        - chance: very_rare
+          one_of: [mirage_charuqs, argute_loafers, pantin_dastanas, etoile_bangles]
+      steal: tukuku_whiteshell
+
+  Vanguard_Oracle_2:
+    id:            4168
+    display_name:  Vanguard_Oracle
+    species:       dynamis_yagudo
+    spell_list_id: 141
+    skill_list_id: 2106
+    attributes:
+      combat:
+        skill: club
+      jobs: [smn, smn]
+      render:
+        look:
+          type:  standard
+          model: 1084
+        entity_flags:  131
+        animation_sub:  16
+        model_size:      1
+        hitbox:         15
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+      stats:
+        hp: 4000
+    loot:
+      drops:
+        - chance: rare
+          item:   odious_necklace
+        - chance: very_rare
+          item:   lancewood_log
+        - chance: very_rare
+          item:   pile_of_relic_iron
+        - chance: very_rare
+          item:   colossal_skull
+        - chance: uncommon
+          item:   forgotten_step
+        - chance: very_rare
+          one_of: [relic_knuckles, relic_dagger, relic_sword, relic_maul]
+        - chance: rare
+          one_of: [warriors_mask, assassins_bonnet, monster_helm, koga_hatsuburi, sorcerers_gloves, abyss_gauntlets, scouts_bracers, saotome_haidate, summoners_spats, clerics_duckbills, valor_leggings]
+        - chance: very_rare
+          one_of: [mirage_charuqs, argute_loafers, pantin_dastanas, etoile_bangles]
+      steal: tukuku_whiteshell
+
+  Vanguard_Oracle_Large:
+    id:            7241
+    display_name:  Vanguard_Oracle
+    species:       dynamis_yagudo
+    spell_list_id: 141
+    skill_list_id: 2106
+    attributes:
+      combat:
+        skill: club
+      jobs: [smn, smn]
+      render:
+        look:
+          type:  standard
+          model: 1084
+        entity_flags:  131
+        animation_sub:  16
+        model_size:      2
+        hitbox:         17
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+      stats:
+        hp: 4000
+    loot:
+      drops:
+        - chance: rare
+          item:   odious_necklace
+        - chance: very_rare
+          item:   lancewood_log
+        - chance: very_rare
+          item:   pile_of_relic_iron
+        - chance: very_rare
+          item:   colossal_skull
+        - chance: uncommon
+          item:   forgotten_step
+        - chance: very_rare
+          one_of: [relic_knuckles, relic_dagger, relic_sword, relic_maul]
+        - chance: rare
+          one_of: [warriors_mask, assassins_bonnet, monster_helm, koga_hatsuburi, sorcerers_gloves, abyss_gauntlets, scouts_bracers, saotome_haidate, summoners_spats, clerics_duckbills, valor_leggings]
+        - chance: very_rare
+          one_of: [mirage_charuqs, argute_loafers, pantin_dastanas, etoile_bangles]
+      steal: tukuku_whiteshell
+
+  Vanguard_Partisan:
+    id:            4169
+    species:       dynamis_yagudo
+    skill_list_id: 2106
+    attributes:
+      combat:
+        skill: polearm
+      jobs: [drg, drg]
+      render:
+        look:
+          type:  standard
+          model: 1081
+        entity_flags: 131
+        model_size:     1
+        hitbox:        15
+      behaviors:
+        aggressive: true
+        links:      true
+      mob_mods:
+        can_parry: 3
+      spawn:
+        respawn: 300
+      stats:
+        hp: 4000
+    loot:
+      drops:
+        - chance: very_rare
+          item:   lancewood_log
+        - chance: very_rare
+          item:   pile_of_relic_iron
+        - chance: very_rare
+          item:   colossal_skull
+        - chance: very_rare
+          item:   forgotten_step
+        - chance: very_rare
+          one_of: [relic_knuckles, relic_dagger, relic_sword, relic_maul]
+        - chance: rare
+          one_of: [warriors_mask, assassins_bonnet, monster_helm, koga_hatsuburi, sorcerers_gloves, abyss_gauntlets, scouts_bracers, saotome_haidate, summoners_spats, clerics_duckbills, valor_leggings]
+        - chance: very_rare
+          one_of: [mirage_charuqs, argute_loafers, pantin_dastanas, etoile_bangles]
+      steal: tukuku_whiteshell
+
+  Vanguard_Partisan_2:
+    id:            4169
+    display_name:  Vanguard_Partisan
+    species:       dynamis_yagudo
+    skill_list_id: 2106
+    attributes:
+      combat:
+        skill: polearm
+      jobs: [drg, drg]
+      render:
+        look:
+          type:  standard
+          model: 1081
+        entity_flags: 131
+        model_size:     1
+        hitbox:        15
+      behaviors:
+        aggressive: true
+        links:      true
+      mob_mods:
+        can_parry: 3
+      spawn:
+        respawn: 300
+      stats:
+        hp: 4000
+    loot:
+      drops:
+        - chance: rare
+          item:   odious_feather
+        - chance: very_rare
+          item:   lancewood_log
+        - chance: very_rare
+          item:   pile_of_relic_iron
+        - chance: very_rare
+          item:   colossal_skull
+        - chance: uncommon
+          item:   forgotten_step
+        - chance: very_rare
+          one_of: [relic_knuckles, relic_dagger, relic_sword, relic_maul]
+        - chance: rare
+          one_of: [warriors_mask, assassins_bonnet, monster_helm, koga_hatsuburi, sorcerers_gloves, abyss_gauntlets, scouts_bracers, saotome_haidate, summoners_spats, clerics_duckbills, valor_leggings]
+        - chance: very_rare
+          one_of: [mirage_charuqs, argute_loafers, pantin_dastanas, etoile_bangles]
+      steal: tukuku_whiteshell
+
+  Vanguard_Partisan_Large:
+    id:            7239
+    display_name:  Vanguard_Partisan
+    species:       dynamis_yagudo
+    skill_list_id: 2106
+    attributes:
+      combat:
+        skill: polearm
+      jobs: [drg, drg]
+      render:
+        look:
+          type:  standard
+          model: 1081
+        entity_flags: 131
+        model_size:     2
+        hitbox:        17
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+      stats:
+        hp: 4000
+    loot:
+      drops:
+        - chance: rare
+          item:   odious_feather
+        - chance: very_rare
+          item:   lancewood_log
+        - chance: very_rare
+          item:   pile_of_relic_iron
+        - chance: very_rare
+          item:   colossal_skull
+        - chance: uncommon
+          item:   forgotten_step
+        - chance: very_rare
+          one_of: [relic_knuckles, relic_dagger, relic_sword, relic_maul]
+        - chance: rare
+          one_of: [warriors_mask, assassins_bonnet, monster_helm, koga_hatsuburi, sorcerers_gloves, abyss_gauntlets, scouts_bracers, saotome_haidate, summoners_spats, clerics_duckbills, valor_leggings]
+        - chance: very_rare
+          one_of: [mirage_charuqs, argute_loafers, pantin_dastanas, etoile_bangles]
+      steal: tukuku_whiteshell
+
+  Vanguard_Persecutor:
+    id:            4171
+    species:       dynamis_yagudo
+    skill_list_id: 2106
+    attributes:
+      combat:
+        skill: great_katana
+      jobs: [sam, sam]
+      render:
+        look:
+          type:  standard
+          model: 1082
+        entity_flags: 131
+        model_size:     1
+        hitbox:        15
+      behaviors:
+        aggressive: true
+        links:      true
+      mob_mods:
+        can_parry: 3
+      spawn:
+        respawn: 300
+      stats:
+        hp: 4000
+    loot:
+      drops:
+        - chance: very_rare
+          item:   lancewood_log
+        - chance: very_rare
+          item:   pile_of_relic_iron
+        - chance: very_rare
+          item:   colossal_skull
+        - chance: very_rare
+          item:   forgotten_step
+        - chance: very_rare
+          one_of: [relic_knuckles, relic_dagger, relic_sword, relic_maul]
+        - chance: rare
+          one_of: [warriors_mask, assassins_bonnet, monster_helm, koga_hatsuburi, sorcerers_gloves, abyss_gauntlets, scouts_bracers, saotome_haidate, summoners_spats, clerics_duckbills, valor_leggings]
+        - chance: very_rare
+          one_of: [mirage_charuqs, argute_loafers, pantin_dastanas, etoile_bangles]
+      steal: tukuku_whiteshell
+
+  Vanguard_Persecutor_2:
+    id:            4171
+    display_name:  Vanguard_Persecutor
+    species:       dynamis_yagudo
+    skill_list_id: 2106
+    attributes:
+      combat:
+        skill: great_katana
+      jobs: [sam, sam]
+      render:
+        look:
+          type:  standard
+          model: 1082
+        entity_flags: 131
+        model_size:     1
+        hitbox:        15
+      behaviors:
+        aggressive: true
+        links:      true
+      mob_mods:
+        can_parry: 3
+      spawn:
+        respawn: 300
+      stats:
+        hp: 4000
+    loot:
+      drops:
+        - chance: rare
+          item:   odious_quipu
+        - chance: very_rare
+          item:   lancewood_log
+        - chance: very_rare
+          item:   pile_of_relic_iron
+        - chance: very_rare
+          item:   colossal_skull
+        - chance: uncommon
+          item:   forgotten_step
+        - chance: very_rare
+          one_of: [relic_knuckles, relic_dagger, relic_sword, relic_maul]
+        - chance: rare
+          one_of: [warriors_mask, assassins_bonnet, monster_helm, koga_hatsuburi, sorcerers_gloves, abyss_gauntlets, scouts_bracers, saotome_haidate, summoners_spats, clerics_duckbills, valor_leggings]
+        - chance: very_rare
+          one_of: [mirage_charuqs, argute_loafers, pantin_dastanas, etoile_bangles]
+      steal: tukuku_whiteshell
+
+  Vanguard_Persecutor_Large:
+    id:            7242
+    display_name:  Vanguard_Persecutor
+    species:       dynamis_yagudo
+    skill_list_id: 2106
+    attributes:
+      combat:
+        skill: great_katana
+      jobs: [sam, sam]
+      render:
+        look:
+          type:  standard
+          model: 1082
+        entity_flags: 131
+        model_size:     2
+        hitbox:        17
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+      stats:
+        hp: 4000
+    loot:
+      drops:
+        - chance: rare
+          item:   odious_quipu
+        - chance: very_rare
+          item:   lancewood_log
+        - chance: very_rare
+          item:   pile_of_relic_iron
+        - chance: very_rare
+          item:   colossal_skull
+        - chance: uncommon
+          item:   forgotten_step
+        - chance: very_rare
+          one_of: [relic_knuckles, relic_dagger, relic_sword, relic_maul]
+        - chance: rare
+          one_of: [warriors_mask, assassins_bonnet, monster_helm, koga_hatsuburi, sorcerers_gloves, abyss_gauntlets, scouts_bracers, saotome_haidate, summoners_spats, clerics_duckbills, valor_leggings]
+        - chance: very_rare
+          one_of: [mirage_charuqs, argute_loafers, pantin_dastanas, etoile_bangles]
+      steal: tukuku_whiteshell
+
+  Vanguard_Prelate:
+    id:            4175
+    species:       dynamis_yagudo
+    spell_list_id: 21
+    skill_list_id: 2106
+    attributes:
+      combat:
+        skill: dagger
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 1085
+        entity_flags: 131
+        model_size:     1
+        hitbox:        15
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+      stats:
+        hp: 4000
+    loot:
+      drops:
+        - chance: very_rare
+          item:   lancewood_log
+        - chance: very_rare
+          item:   pile_of_relic_iron
+        - chance: very_rare
+          item:   colossal_skull
+        - chance: very_rare
+          item:   forgotten_step
+        - chance: very_rare
+          one_of: [relic_knuckles, relic_dagger, relic_sword, relic_maul]
+        - chance: rare
+          one_of: [warriors_mask, assassins_bonnet, monster_helm, koga_hatsuburi, sorcerers_gloves, abyss_gauntlets, scouts_bracers, saotome_haidate, summoners_spats, clerics_duckbills, valor_leggings]
+        - chance: very_rare
+          one_of: [mirage_charuqs, argute_loafers, pantin_dastanas, etoile_bangles]
+      steal: tukuku_whiteshell
+
+  Vanguard_Prelate_2:
+    id:            4175
+    display_name:  Vanguard_Prelate
+    species:       dynamis_yagudo
+    spell_list_id: 21
+    skill_list_id: 2106
+    attributes:
+      combat:
+        skill: dagger
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 1085
+        entity_flags: 131
+        model_size:     1
+        hitbox:        15
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+      stats:
+        hp: 4000
+    loot:
+      drops:
+        - chance: rare
+          item:   odious_feather
+        - chance: very_rare
+          item:   lancewood_log
+        - chance: very_rare
+          item:   pile_of_relic_iron
+        - chance: very_rare
+          item:   colossal_skull
+        - chance: uncommon
+          item:   forgotten_step
+        - chance: very_rare
+          one_of: [relic_knuckles, relic_dagger, relic_sword, relic_maul]
+        - chance: rare
+          one_of: [warriors_mask, assassins_bonnet, monster_helm, koga_hatsuburi, sorcerers_gloves, abyss_gauntlets, scouts_bracers, saotome_haidate, summoners_spats, clerics_duckbills, valor_leggings]
+        - chance: very_rare
+          one_of: [mirage_charuqs, argute_loafers, pantin_dastanas, etoile_bangles]
+      steal: tukuku_whiteshell
+
+  Vanguard_Prelate_Large:
+    id:            7238
+    display_name:  Vanguard_Prelate
+    species:       dynamis_yagudo
+    spell_list_id: 21
+    skill_list_id: 2106
+    attributes:
+      combat:
+        skill: dagger
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 1085
+        entity_flags: 131
+        model_size:     2
+        hitbox:        17
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+      stats:
+        hp: 4000
+    loot:
+      drops:
+        - chance: rare
+          item:   odious_feather
+        - chance: very_rare
+          item:   lancewood_log
+        - chance: very_rare
+          item:   pile_of_relic_iron
+        - chance: very_rare
+          item:   colossal_skull
+        - chance: uncommon
+          item:   forgotten_step
+        - chance: very_rare
+          one_of: [relic_knuckles, relic_dagger, relic_sword, relic_maul]
+        - chance: rare
+          one_of: [warriors_mask, assassins_bonnet, monster_helm, koga_hatsuburi, sorcerers_gloves, abyss_gauntlets, scouts_bracers, saotome_haidate, summoners_spats, clerics_duckbills, valor_leggings]
+        - chance: very_rare
+          one_of: [mirage_charuqs, argute_loafers, pantin_dastanas, etoile_bangles]
+      steal: tukuku_whiteshell
+
+  Vanguard_Priest:
+    id:            4176
+    species:       dynamis_yagudo
+    spell_list_id: 20
+    skill_list_id: 2106
+    attributes:
+      combat:
+        skill: club
+      jobs: [whm, whm]
+      render:
+        look:
+          type:  standard
+          model: 1084
+        entity_flags: 131
+        model_size:     1
+        hitbox:        15
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+      stats:
+        hp: 4000
+    loot:
+      drops:
+        - chance: very_rare
+          item:   lancewood_log
+        - chance: very_rare
+          item:   pile_of_relic_iron
+        - chance: very_rare
+          item:   colossal_skull
+        - chance: very_rare
+          item:   forgotten_step
+        - chance: very_rare
+          one_of: [relic_knuckles, relic_dagger, relic_sword, relic_maul]
+        - chance: rare
+          one_of: [warriors_mask, assassins_bonnet, monster_helm, koga_hatsuburi, sorcerers_gloves, abyss_gauntlets, scouts_bracers, saotome_haidate, summoners_spats, clerics_duckbills, valor_leggings]
+        - chance: very_rare
+          one_of: [mirage_charuqs, argute_loafers, pantin_dastanas, etoile_bangles]
+      steal: tukuku_whiteshell
+
+  Vanguard_Priest_2:
+    id:            4176
+    display_name:  Vanguard_Priest
+    species:       dynamis_yagudo
+    spell_list_id: 20
+    skill_list_id: 2106
+    attributes:
+      combat:
+        skill: club
+      jobs: [whm, whm]
+      render:
+        look:
+          type:  standard
+          model: 1084
+        entity_flags: 131
+        model_size:     1
+        hitbox:        15
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+      stats:
+        hp: 4000
+    loot:
+      drops:
+        - chance: rare
+          item:   canteen_of_odious_holy_water
+        - chance: very_rare
+          item:   lancewood_log
+        - chance: very_rare
+          item:   pile_of_relic_iron
+        - chance: very_rare
+          item:   colossal_skull
+        - chance: uncommon
+          item:   forgotten_step
+        - chance: very_rare
+          one_of: [relic_knuckles, relic_dagger, relic_sword, relic_maul]
+        - chance: rare
+          one_of: [warriors_mask, assassins_bonnet, monster_helm, koga_hatsuburi, sorcerers_gloves, abyss_gauntlets, scouts_bracers, saotome_haidate, summoners_spats, clerics_duckbills, valor_leggings]
+        - chance: very_rare
+          one_of: [mirage_charuqs, argute_loafers, pantin_dastanas, etoile_bangles]
+      steal: tukuku_whiteshell
+
+  Vanguard_Priest_Large:
+    id:            7235
+    display_name:  Vanguard_Priest
+    species:       dynamis_yagudo
+    spell_list_id: 20
+    skill_list_id: 2106
+    attributes:
+      combat:
+        skill: club
+      jobs: [whm, whm]
+      render:
+        look:
+          type:  standard
+          model: 1084
+        entity_flags: 131
+        model_size:     2
+        hitbox:        17
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+      stats:
+        hp: 4000
+    loot:
+      drops:
+        - chance: rare
+          item:   canteen_of_odious_holy_water
+        - chance: very_rare
+          item:   lancewood_log
+        - chance: very_rare
+          item:   pile_of_relic_iron
+        - chance: very_rare
+          item:   colossal_skull
+        - chance: uncommon
+          item:   forgotten_step
+        - chance: very_rare
+          one_of: [relic_knuckles, relic_dagger, relic_sword, relic_maul]
+        - chance: rare
+          one_of: [warriors_mask, assassins_bonnet, monster_helm, koga_hatsuburi, sorcerers_gloves, abyss_gauntlets, scouts_bracers, saotome_haidate, summoners_spats, clerics_duckbills, valor_leggings]
+        - chance: very_rare
+          one_of: [mirage_charuqs, argute_loafers, pantin_dastanas, etoile_bangles]
+      steal: tukuku_whiteshell
+
+  Vanguard_Salvager:
+    id:            4180
+    species:       dynamis_yagudo
+    skill_list_id: 2106
+    attributes:
+      combat:
+        skill: katana
+      jobs: [rng, rng]
+      render:
+        look:
+          type:  standard
+          model: 1083
+        entity_flags: 131
+        model_size:     1
+        hitbox:        15
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+      stats:
+        hp: 4000
+    loot:
+      drops:
+        - chance: very_rare
+          item:   lancewood_log
+        - chance: very_rare
+          item:   pile_of_relic_iron
+        - chance: very_rare
+          item:   colossal_skull
+        - chance: very_rare
+          item:   forgotten_step
+        - chance: very_rare
+          one_of: [relic_knuckles, relic_dagger, relic_sword, relic_maul]
+        - chance: rare
+          one_of: [warriors_mask, assassins_bonnet, monster_helm, koga_hatsuburi, sorcerers_gloves, abyss_gauntlets, scouts_bracers, saotome_haidate, summoners_spats, clerics_duckbills, valor_leggings]
+        - chance: very_rare
+          one_of: [mirage_charuqs, argute_loafers, pantin_dastanas, etoile_bangles]
+      steal: tukuku_whiteshell
+
+  Vanguard_Salvager_2:
+    id:            4180
+    display_name:  Vanguard_Salvager
+    species:       dynamis_yagudo
+    skill_list_id: 2106
+    attributes:
+      combat:
+        skill: katana
+      jobs: [rng, rng]
+      render:
+        look:
+          type:  standard
+          model: 1083
+        entity_flags: 131
+        model_size:     1
+        hitbox:        15
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+      stats:
+        hp: 4000
+    loot:
+      drops:
+        - chance: rare
+          item:   odious_necklace
+        - chance: very_rare
+          item:   lancewood_log
+        - chance: very_rare
+          item:   pile_of_relic_iron
+        - chance: very_rare
+          item:   colossal_skull
+        - chance: uncommon
+          item:   forgotten_step
+        - chance: very_rare
+          one_of: [relic_knuckles, relic_dagger, relic_sword, relic_maul]
+        - chance: rare
+          one_of: [warriors_mask, assassins_bonnet, monster_helm, koga_hatsuburi, sorcerers_gloves, abyss_gauntlets, scouts_bracers, saotome_haidate, summoners_spats, clerics_duckbills, valor_leggings]
+        - chance: very_rare
+          one_of: [mirage_charuqs, argute_loafers, pantin_dastanas, etoile_bangles]
+      steal: tukuku_whiteshell
+
+  Vanguard_Salvager_Large:
+    id:            7240
+    display_name:  Vanguard_Salvager
+    species:       dynamis_yagudo
+    skill_list_id: 2106
+    attributes:
+      combat:
+        skill: katana
+      jobs: [rng, rng]
+      render:
+        look:
+          type:  standard
+          model: 1083
+        entity_flags: 131
+        model_size:     2
+        hitbox:        17
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+      stats:
+        hp: 4000
+    loot:
+      drops:
+        - chance: rare
+          item:   odious_necklace
+        - chance: very_rare
+          item:   lancewood_log
+        - chance: very_rare
+          item:   pile_of_relic_iron
+        - chance: very_rare
+          item:   colossal_skull
+        - chance: uncommon
+          item:   forgotten_step
+        - chance: very_rare
+          one_of: [relic_knuckles, relic_dagger, relic_sword, relic_maul]
+        - chance: rare
+          one_of: [warriors_mask, assassins_bonnet, monster_helm, koga_hatsuburi, sorcerers_gloves, abyss_gauntlets, scouts_bracers, saotome_haidate, summoners_spats, clerics_duckbills, valor_leggings]
+        - chance: very_rare
+          one_of: [mirage_charuqs, argute_loafers, pantin_dastanas, etoile_bangles]
+      steal: tukuku_whiteshell
+
+  Vanguard_Sentinel:
+    id:            4181
+    species:       dynamis_yagudo
+    skill_list_id: 2106
+    attributes:
+      combat:
+        skill: hand_to_hand
+        delay: 240
+      jobs: [mnk, mnk]
+      render:
+        look:
+          type:  standard
+          model: 1081
+        entity_flags: 131
+        model_size:     1
+        hitbox:        15
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+      stats:
+        hp: 4000
+    loot:
+      drops:
+        - chance: very_rare
+          item:   lancewood_log
+        - chance: very_rare
+          item:   pile_of_relic_iron
+        - chance: very_rare
+          item:   colossal_skull
+        - chance: very_rare
+          item:   forgotten_step
+        - chance: very_rare
+          one_of: [relic_knuckles, relic_dagger, relic_sword, relic_maul]
+        - chance: rare
+          one_of: [warriors_mask, assassins_bonnet, monster_helm, koga_hatsuburi, sorcerers_gloves, abyss_gauntlets, scouts_bracers, saotome_haidate, summoners_spats, clerics_duckbills, valor_leggings]
+        - chance: very_rare
+          one_of: [mirage_charuqs, argute_loafers, pantin_dastanas, etoile_bangles]
+      steal: tukuku_whiteshell
+
+  Vanguard_Sentinel_2:
+    id:            4181
+    display_name:  Vanguard_Sentinel
+    species:       dynamis_yagudo
+    skill_list_id: 2106
+    attributes:
+      combat:
+        skill: hand_to_hand
+        delay: 240
+      jobs: [mnk, mnk]
+      render:
+        look:
+          type:  standard
+          model: 1081
+        entity_flags: 131
+        model_size:     1
+        hitbox:        15
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+      stats:
+        hp: 4000
+    loot:
+      drops:
+        - chance: rare
+          item:   odious_quipu
+        - chance: very_rare
+          item:   lancewood_log
+        - chance: very_rare
+          item:   pile_of_relic_iron
+        - chance: very_rare
+          item:   colossal_skull
+        - chance: uncommon
+          item:   forgotten_step
+        - chance: very_rare
+          one_of: [relic_knuckles, relic_dagger, relic_sword, relic_maul]
+        - chance: rare
+          one_of: [warriors_mask, assassins_bonnet, monster_helm, koga_hatsuburi, sorcerers_gloves, abyss_gauntlets, scouts_bracers, saotome_haidate, summoners_spats, clerics_duckbills, valor_leggings]
+        - chance: very_rare
+          one_of: [mirage_charuqs, argute_loafers, pantin_dastanas, etoile_bangles]
+      steal: tukuku_whiteshell
+
+  Vanguard_Sentinel_Large:
+    id:            7228
+    display_name:  Vanguard_Sentinel
+    species:       dynamis_yagudo
+    skill_list_id: 2106
+    attributes:
+      combat:
+        skill: hand_to_hand
+        delay: 240
+      jobs: [mnk, mnk]
+      render:
+        look:
+          type:  standard
+          model: 1081
+        entity_flags: 131
+        model_size:     2
+        hitbox:        17
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+      stats:
+        hp: 4000
+    loot:
+      drops:
+        - chance: rare
+          item:   odious_quipu
+        - chance: very_rare
+          item:   lancewood_log
+        - chance: very_rare
+          item:   pile_of_relic_iron
+        - chance: very_rare
+          item:   colossal_skull
+        - chance: uncommon
+          item:   forgotten_step
+        - chance: very_rare
+          one_of: [relic_knuckles, relic_dagger, relic_sword, relic_maul]
+        - chance: rare
+          one_of: [warriors_mask, assassins_bonnet, monster_helm, koga_hatsuburi, sorcerers_gloves, abyss_gauntlets, scouts_bracers, saotome_haidate, summoners_spats, clerics_duckbills, valor_leggings]
+        - chance: very_rare
+          one_of: [mirage_charuqs, argute_loafers, pantin_dastanas, etoile_bangles]
+      steal: tukuku_whiteshell
+
+  Vanguard_Skirmisher:
+    id:            4183
+    species:       dynamis_yagudo
+    skill_list_id: 2106
+    attributes:
+      combat:
+        skill: great_katana
+      render:
+        look:
+          type:  standard
+          model: 1082
+        entity_flags: 131
+        model_size:     1
+        hitbox:        15
+      behaviors:
+        aggressive: true
+        links:      true
+      mob_mods:
+        can_parry: 3
+      spawn:
+        respawn: 300
+      stats:
+        hp: 4000
+    loot:
+      drops:
+        - chance: very_rare
+          item:   lancewood_log
+        - chance: very_rare
+          item:   pile_of_relic_iron
+        - chance: very_rare
+          item:   colossal_skull
+        - chance: very_rare
+          item:   forgotten_step
+        - chance: very_rare
+          one_of: [relic_knuckles, relic_dagger, relic_sword, relic_maul]
+        - chance: rare
+          one_of: [warriors_mask, assassins_bonnet, monster_helm, koga_hatsuburi, sorcerers_gloves, abyss_gauntlets, scouts_bracers, saotome_haidate, summoners_spats, clerics_duckbills, valor_leggings]
+        - chance: very_rare
+          one_of: [mirage_charuqs, argute_loafers, pantin_dastanas, etoile_bangles]
+      steal: tukuku_whiteshell
+
+  Vanguard_Skirmisher_2:
+    id:            4183
+    display_name:  Vanguard_Skirmisher
+    species:       dynamis_yagudo
+    skill_list_id: 2106
+    attributes:
+      combat:
+        skill: great_katana
+      render:
+        look:
+          type:  standard
+          model: 1082
+        entity_flags: 131
+        model_size:     1
+        hitbox:        15
+      behaviors:
+        aggressive: true
+        links:      true
+      mob_mods:
+        can_parry: 3
+      spawn:
+        respawn: 300
+      stats:
+        hp: 4000
+    loot:
+      drops:
+        - chance: rare
+          item:   odious_quipu
+        - chance: very_rare
+          item:   lancewood_log
+        - chance: very_rare
+          item:   pile_of_relic_iron
+        - chance: very_rare
+          item:   colossal_skull
+        - chance: uncommon
+          item:   forgotten_step
+        - chance: very_rare
+          one_of: [relic_knuckles, relic_dagger, relic_sword, relic_maul]
+        - chance: rare
+          one_of: [warriors_mask, assassins_bonnet, monster_helm, koga_hatsuburi, sorcerers_gloves, abyss_gauntlets, scouts_bracers, saotome_haidate, summoners_spats, clerics_duckbills, valor_leggings]
+        - chance: very_rare
+          one_of: [mirage_charuqs, argute_loafers, pantin_dastanas, etoile_bangles]
+      steal: tukuku_whiteshell
+
+  Vanguard_Skirmisher_Large:
+    id:            7230
+    display_name:  Vanguard_Skirmisher
+    species:       dynamis_yagudo
+    skill_list_id: 2106
+    attributes:
+      combat:
+        skill: great_katana
+      render:
+        look:
+          type:  standard
+          model: 1082
+        entity_flags: 131
+        model_size:     2
+        hitbox:        17
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+      stats:
+        hp: 4000
+    loot:
+      drops:
+        - chance: rare
+          item:   odious_quipu
+        - chance: very_rare
+          item:   lancewood_log
+        - chance: very_rare
+          item:   pile_of_relic_iron
+        - chance: very_rare
+          item:   colossal_skull
+        - chance: uncommon
+          item:   forgotten_step
+        - chance: very_rare
+          one_of: [relic_knuckles, relic_dagger, relic_sword, relic_maul]
+        - chance: rare
+          one_of: [warriors_mask, assassins_bonnet, monster_helm, koga_hatsuburi, sorcerers_gloves, abyss_gauntlets, scouts_bracers, saotome_haidate, summoners_spats, clerics_duckbills, valor_leggings]
+        - chance: very_rare
+          one_of: [mirage_charuqs, argute_loafers, pantin_dastanas, etoile_bangles]
+      steal: tukuku_whiteshell
+
+  Vanguard_Visionary:
+    id:            4198
+    species:       dynamis_yagudo
+    spell_list_id: 3
+    skill_list_id: 2106
+    attributes:
+      combat:
+        skill: dagger
+      jobs: [rdm, rdm]
+      render:
+        look:
+          type:  standard
+          model: 1085
+        entity_flags: 131
+        model_size:     1
+        hitbox:        15
+      behaviors:
+        aggressive: true
+        links:      true
+      mob_mods:
+        can_parry: 3
+      spawn:
+        respawn: 300
+      stats:
+        hp: 4000
+    loot:
+      drops:
+        - chance: very_rare
+          item:   lancewood_log
+        - chance: very_rare
+          item:   pile_of_relic_iron
+        - chance: very_rare
+          item:   colossal_skull
+        - chance: very_rare
+          item:   forgotten_step
+        - chance: very_rare
+          one_of: [relic_knuckles, relic_dagger, relic_sword, relic_maul]
+        - chance: rare
+          one_of: [warriors_mask, assassins_bonnet, monster_helm, koga_hatsuburi, sorcerers_gloves, abyss_gauntlets, scouts_bracers, saotome_haidate, summoners_spats, clerics_duckbills, valor_leggings]
+        - chance: very_rare
+          one_of: [mirage_charuqs, argute_loafers, pantin_dastanas, etoile_bangles]
+      steal: tukuku_whiteshell
+
+  Vanguard_Visionary_2:
+    id:            4198
+    display_name:  Vanguard_Visionary
+    species:       dynamis_yagudo
+    spell_list_id: 3
+    skill_list_id: 2106
+    attributes:
+      combat:
+        skill: dagger
+      jobs: [rdm, rdm]
+      render:
+        look:
+          type:  standard
+          model: 1085
+        entity_flags: 131
+        model_size:     1
+        hitbox:        15
+      behaviors:
+        aggressive: true
+        links:      true
+      mob_mods:
+        can_parry: 3
+      spawn:
+        respawn: 300
+      stats:
+        hp: 4000
+    loot:
+      drops:
+        - chance: rare
+          item:   odious_necklace
+        - chance: very_rare
+          item:   lancewood_log
+        - chance: very_rare
+          item:   pile_of_relic_iron
+        - chance: very_rare
+          item:   colossal_skull
+        - chance: uncommon
+          item:   forgotten_step
+        - chance: very_rare
+          one_of: [relic_knuckles, relic_dagger, relic_sword, relic_maul]
+        - chance: rare
+          one_of: [warriors_mask, assassins_bonnet, monster_helm, koga_hatsuburi, sorcerers_gloves, abyss_gauntlets, scouts_bracers, saotome_haidate, summoners_spats, clerics_duckbills, valor_leggings]
+        - chance: very_rare
+          one_of: [mirage_charuqs, argute_loafers, pantin_dastanas, etoile_bangles]
+      steal: tukuku_whiteshell
+
+  Vanguard_Visionary_Large:
+    id:            7231
+    display_name:  Vanguard_Visionary
+    species:       dynamis_yagudo
+    spell_list_id: 3
+    skill_list_id: 2106
+    attributes:
+      combat:
+        skill: dagger
+      jobs: [rdm, rdm]
+      render:
+        look:
+          type:  standard
+          model: 1085
+        entity_flags: 131
+        model_size:     2
+        hitbox:        17
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+      stats:
+        hp: 4000
+    loot:
+      drops:
+        - chance: rare
+          item:   odious_necklace
+        - chance: very_rare
+          item:   lancewood_log
+        - chance: very_rare
+          item:   pile_of_relic_iron
+        - chance: very_rare
+          item:   colossal_skull
+        - chance: uncommon
+          item:   forgotten_step
+        - chance: very_rare
+          one_of: [relic_knuckles, relic_dagger, relic_sword, relic_maul]
+        - chance: rare
+          one_of: [warriors_mask, assassins_bonnet, monster_helm, koga_hatsuburi, sorcerers_gloves, abyss_gauntlets, scouts_bracers, saotome_haidate, summoners_spats, clerics_duckbills, valor_leggings]
+        - chance: very_rare
+          one_of: [mirage_charuqs, argute_loafers, pantin_dastanas, etoile_bangles]
+      steal: tukuku_whiteshell
+
+  Vanguards_Avatar:
+    id:            4185
+    species:       carbuncle
+    type:          [called]
+    skill_list_id: 34
+    attributes:
+      combat:
+        skill: scythe
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 793
+        entity_flags: 131
+      behaviors:
+        links: true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 2400
+
+  Vanguards_Crow:
+    id:            4186
+    species:       bird
+    type:          [called]
+    spell_list_id: 52
+    skill_list_id: 55
+    attributes:
+      combat:
+        skill: dagger
+      jobs: [rdm, rdm]
+      render:
+        look:
+          type:  standard
+          model: 445
+        entity_flags:  131
+        animation_sub:   8
+        model_size:      1
+        hitbox:         20
+      behaviors:
+        aggressive: true
+        links:      true
+      mods:
+        silenceres: 15
+      mob_mods:
+        magic_cool:     20
+        standback_cool:  0
+      spawn:
+        type: [scripted]
+      stats:
+        hp:  2400
+        str: a
+        dex: a
+        vit: a
+        agi: a
+        int: a
+        mnd: a
+        chr: a
+
+  Vanguards_Wyvern:
+    id:            4190
+    species:       shadow_wyvern
+    type:          [called]
+    skill_list_id: 714
+    attributes:
+      combat:
+        skill: sword
+        delay: 240
+      jobs: [drg, drg]
+      render:
+        look:
+          type:  standard
+          model: 761
+        entity_flags: 131
+        model_size:     1
+        hitbox:         8
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 2400
+
+  Wuu_Qoho_the_Razorclaw:
+    id:            4384
+    species:       dynamis_yagudo
+    type:          [notorious]
+    skill_list_id: 710
+    attributes:
+      combat:
+        skill: hand_to_hand
+        delay: 240
+      jobs: [mnk, mnk]
+      render:
+        look:
+          type:  standard
+          model: 1081
+        entity_flags: 159
+        name_prefix:   32
+        model_size:     3
+        hitbox:        20
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 900
+      stats:
+        hp: 8000
+    loot:
+      drops:
+        - chance: very_common
+          item:   divine_bijou
+        - chance: very_rare
+          item:   pile_of_relic_iron
+        - chance: very_rare
+          item:   lancewood_log
+        - chance: very_rare
+          item:   colossal_skull
+        - chance: very_rare
+          item:   lungo-nango_jadeshell
+        - chance: rare
+          item:   forgotten_step
+        - chance: very_rare
+          one_of: [relic_knuckles, relic_dagger, relic_sword, relic_maul]
+        - chance: rare
+          one_of: [warriors_mask, assassins_bonnet, monster_helm, koga_hatsuburi, sorcerers_gloves, abyss_gauntlets, scouts_bracers, saotome_haidate, summoners_spats, clerics_duckbills, valor_leggings]
+        - chance: very_rare
+          one_of: [mirage_charuqs, argute_loafers, pantin_dastanas, etoile_bangles]
+      steal: tukuku_whiteshell
+
+  Xoo_Kaza_the_Solemn:
+    id:            4399
+    species:       dynamis_yagudo
+    type:          [notorious]
+    spell_list_id: 21
+    skill_list_id: 710
+    attributes:
+      combat:
+        skill: katana
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 1085
+        entity_flags: 159
+        name_prefix:   32
+        model_size:     3
+        hitbox:        20
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 900
+      stats:
+        hp: 8000
+    loot:
+      drops:
+        - chance: very_common
+          item:   divine_bijou
+        - chance: very_rare
+          item:   pile_of_relic_iron
+        - chance: very_rare
+          item:   lancewood_log
+        - chance: very_rare
+          item:   colossal_skull
+        - chance: very_rare
+          item:   lungo-nango_jadeshell
+        - chance: rare
+          item:   forgotten_step
+        - chance: very_rare
+          one_of: [relic_knuckles, relic_dagger, relic_sword, relic_maul]
+        - chance: rare
+          one_of: [warriors_mask, assassins_bonnet, monster_helm, koga_hatsuburi, sorcerers_gloves, abyss_gauntlets, scouts_bracers, saotome_haidate, summoners_spats, clerics_duckbills, valor_leggings]
+        - chance: very_rare
+          one_of: [mirage_charuqs, argute_loafers, pantin_dastanas, etoile_bangles]
+      steal: tukuku_whiteshell
+
+  Xuu_Bhoqa_the_Enigma:
+    id:            4896
+    species:       dynamis_yagudo
+    type:          [notorious]
+    spell_list_id: 141
+    skill_list_id: 710
+    attributes:
+      combat:
+        skill: club
+      jobs: [smn, thf]
+      render:
+        look:
+          type:  standard
+          model: 1084
+        entity_flags: 159
+        name_prefix:   32
+        model_size:     3
+        hitbox:        20
+      behaviors:
+        aggressive:     true
+        links:          true
+        true_detection: true
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: always
+          item:   fiendish_tome_chapter_12
+        - chance: common
+          item:   oneiros_ring
+        - chance: very_rare
+          item:   pile_of_relic_iron
+        - chance: very_rare
+          item:   lancewood_log
+        - chance: very_rare
+          item:   colossal_skull
+        - chance: very_rare
+          item:   lungo-nango_jadeshell
+        - chance: common
+          item:   forgotten_step
+        - chance: very_rare
+          one_of: [relic_knuckles, relic_dagger, relic_sword, relic_maul]
+        - chance: rare
+          one_of: [warriors_mask, assassins_bonnet, monster_helm, koga_hatsuburi, sorcerers_gloves, abyss_gauntlets, scouts_bracers, saotome_haidate, summoners_spats, clerics_duckbills, valor_leggings]
+        - chance: very_rare
+          one_of: [mirage_charuqs, argute_loafers, pantin_dastanas, etoile_bangles]
+
+  Xuu_Bhoqas_Avatar:
+    id:            5732
+    species:       carbuncle
+    type:          [called]
+    skill_list_id: 34
+    attributes:
+      combat:
+        skill: scythe
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 791
+        entity_flags: 155
+        name_prefix:   32
+      behaviors:
+        links: true
+      spawn:
+        type: [scripted]
+
+spawns:
+  17543169:
+    template: Tzee_Xicu_Idol
+    at:       [94.944, -3.171, -147.770, 64]
+    level:    [85, 85]
+  17543170:
+    template: Maa_Febi_the_Steadfast
+    at:       [97.065, -3.142, -146.618, 153]
+    level:    [83, 83]
+  17543171:
+    template: Muu_Febi_the_Steadfast
+    at:       [92.559, -3.152, -147.722, 195]
+    level:    [83, 83]
+  17543172:
+    template: Vanguard_Skirmisher
+    region:   sw_4
+    level:    [75, 77]
+  17543173:
+    template: Vanguard_Priest
+    region:   sw_4
+    level:    [75, 77]
+  17543174:
+    template: Vanguard_Prelate
+    at:       [-177.421, -2.713, -109.203, 107]
+    level:    [75, 77]
+  17543175:
+    template: Vanguard_Chanter
+    at:       [-180.814, -2.296, -108.105, 107]
+    level:    [75, 77]
+  17543176:
+    template: Vanguard_Sentinel
+    region:   sw_8
+    level:    [75, 77]
+  17543177:
+    template: Vanguard_Priest
+    region:   sw_8
+    level:    [75, 77]
+  17543178:
+    template: Vanguard_Visionary
+    at:       [-159.318, -1.715, -112.402, 149]
+    level:    [75, 77]
+  17543179:
+    template: Vanguard_Chanter
+    region:   sw_8
+    level:    [75, 77]
+  17543180:
+    template: Vanguard_Liberator
+    region:   sw_12
+    level:    [75, 77]
+  17543181:
+    template: Vanguard_Sentinel
+    region:   sw_12
+    level:    [75, 77]
+  17543182:
+    template: Vanguard_Inciter
+    at:       [-162.601, -1.725, -124.470, 175]
+    level:    [75, 77]
+  17543183:
+    template: Vanguard_Exemplar
+    at:       [-122.407, -3.080, -136.837, 77]
+    level:    [75, 77]
+  17543184:
+    template: Vanguard_Salvager
+    at:       [-146.424, -2.499, -138.759, 21]
+    level:    [75, 77]
+  17543185:
+    template: Vanguard_Inciter
+    at:       [-123.919, -3.000, -140.605, 237]
+    level:    [75, 77]
+  17543186:
+    template: Vanguard_Ogresoother
+    at:       [-126.314, -3.024, -140.997]
+    level:    [75, 77]
+  17543187:
+    template: Vanguards_Crow
+    at:       [-127.000, -3.025, -141.443, 130]
+    level:    [75, 77]
+  17543188:
+    template: Vanguard_Persecutor
+    at:       [-106.893, -2.950, -124.239, 233]
+    level:    [75, 77]
+  17543189:
+    template: Vanguard_Assassin
+    region:   sw_21
+    level:    [75, 77]
+  17543190:
+    template: Vanguard_Persecutor
+    region:   sw_21
+    level:    [75, 77]
+  17543191:
+    template: Vanguard_Assassin
+    region:   sw_21
+    level:    [75, 77]
+  17543192:
+    template: Vanguard_Partisan
+    at:       [-79.805, -3.863, -119.894, 245]
+    level:    [75, 77]
+  17543193:
+    template: Vanguards_Wyvern
+    at:       [-47.776, -3.000, -101.179, 217]
+    level:    [75, 77]
+  17543194:
+    template: Vanguard_Chanter
+    at:       [-46.870, -3.000, -99.403, 23]
+    level:    [75, 77]
+  17543195:
+    template: Vanguard_Salvager
+    at:       [-68.620, -3.863, -116.798, 245]
+    level:    [75, 77]
+  17543196:
+    template: Vanguard_Oracle
+    at:       [-51.754, -2.981, -110.016, 195]
+    level:    [75, 77]
+  17543197:
+    template: Vanguards_Avatar
+    at:       [-48.050, -2.511, -107.254, 20]
+    level:    [75, 77]
+  17543198:
+    template: Vanguard_Skirmisher
+    region:   s_30
+    level:    [75, 77]
+  17543199:
+    template: Vanguard_Priest
+    region:   s_30
+    level:    [75, 77]
+  17543200:
+    template: Vanguard_Prelate
+    at:       [-41.778, -3.863, -94.702, 85]
+    level:    [75, 77]
+  17543201:
+    template: Vanguard_Visionary
+    at:       [-50.059, -3.000, -114.702, 75]
+    level:    [75, 77]
+  17543202:
+    template: Vanguard_Liberator
+    at:       [-42.438, -3.863, -95.110, 85]
+    level:    [75, 77]
+  17543203:
+    template: Vanguard_Ogresoother
+    region:   se_35
+    level:    [75, 77]
+  17543204:
+    template: Vanguards_Crow
+    at:       [82.078, -3.687, -95.135, 178]
+    level:    [75, 77]
+  17543205:
+    template: Vanguard_Chanter
+    region:   se_35
+    level:    [75, 77]
+  17543206:
+    template: Vanguard_Sentinel
+    at:       [-89.069, -4.187, 40.874, 229]
+    level:    [75, 77]
+  17543207:
+    template: Vanguard_Persecutor
+    at:       [89.473, -2.798, -142.530, 14]
+    level:    [75, 77]
+  17543208:
+    template: Vanguard_Assassin
+    at:       [84.087, -3.687, -113.998, 64]
+    level:    [75, 77]
+  17543209:
+    template: Vanguard_Salvager
+    at:       [24.654, -11.364, 8.553, 108]
+    level:    [75, 77]
+  17543210:
+    template: Vanguard_Skirmisher
+    at:       [5.666, -10.283, 2.543, 64]
+    level:    [75, 77]
+  17543211:
+    template: Vanguard_Exemplar
+    at:       [38.143, -10.500, 16.407, 1]
+    level:    [75, 77]
+  17543212:
+    template: Vanguard_Skirmisher
+    at:       [31.701, -11.360, 12.592, 113]
+    level:    [75, 77]
+  17543213:
+    template: Vanguard_Salvager
+    at:       [76.907, -3.634, 71.703, 77]
+    level:    [75, 77]
+  17543214:
+    template: Vanguard_Salvager
+    at:       [24.031, -8.000, 239.607, 156]
+    level:    [75, 77]
+  17543215:
+    template: Vanguard_Prelate
+    at:       [62.698, -9.287, 206.695, 155]
+    level:    [75, 77]
+  17543216:
+    template: Vanguard_Oracle
+    region:   ne_48
+    level:    [75, 77]
+  17543217:
+    template: Vanguards_Avatar
+    region:   ne_48
+    level:    [75, 77]
+  17543218:
+    template: Vanguard_Skirmisher
+    at:       [45.992, -9.287, 219.587, 52]
+    level:    [75, 77]
+  17543219:
+    template: Vanguard_Priest
+    region:   ne_48
+    level:    [75, 77]
+  17543220:
+    template: Vanguard_Salvager_2
+    script:   Vanguard_Salvager
+    at:       [-43.732, -13.000, 239.603, 105]
+    level:    [90, 92]
+  17543221:
+    template: Vanguard_Assassin_2
+    script:   Vanguard_Assassin
+    at:       [-41.698, -13.613, 240.566, 233]
+    level:    [90, 92]
+  17543222:
+    template: Vanguard_Prelate_2
+    script:   Vanguard_Prelate
+    at:       [-52.816, -13.613, 229.602, 139]
+    level:    [90, 92]
+  17543223:
+    template: Vanguard_Visionary_2
+    script:   Vanguard_Visionary
+    region:   n_55
+    level:    [90, 92]
+  17543224:
+    template: Vanguard_Liberator_2
+    script:   Vanguard_Liberator
+    region:   n_55
+    level:    [90, 92]
+  17543225:
+    template: Vanguard_Salvager_2
+    script:   Vanguard_Salvager
+    at:       [-58.923, -13.613, 216.845, 74]
+    level:    [90, 92]
+  17543226:
+    template: Vanguard_Liberator_2
+    script:   Vanguard_Liberator
+    at:       [-86.489, -12.684, 185.956, 249]
+    level:    [90, 92]
+  17543227:
+    template: Vanguard_Liberator
+    at:       [-85.079, -4.187, 36.043, 248]
+    level:    [75, 77]
+  17543228:
+    template: Vanguard_Sentinel
+    region:   w_60
+    level:    [75, 77]
+  17543229:
+    template: Vanguard_Partisan
+    region:   w_60
+    level:    [75, 77]
+  17543230:
+    template: Vanguards_Wyvern
+    at:       [-87.822, -3.000, 36.638, 141]
+    level:    [75, 77]
+  17543231:
+    template: Vanguard_Exemplar
+    at:       [-86.622, -3.000, 38.319, 112]
+    level:    [75, 77]
+  17543232:
+    template: Vanguard_Inciter
+    at:       [-73.842, -4.187, 28.121, 31]
+    level:    [75, 77]
+  17543233:
+    template: Vanguard_Exemplar
+    at:       [-57.424, -3.000, 11.524, 214]
+    level:    [75, 77]
+  17543234:
+    template: Vanguard_Inciter
+    at:       [-62.019, -4.187, 16.677, 31]
+    level:    [75, 77]
+  17543235:
+    template: Vanguard_Ogresoother
+    at:       [-82.775, -3.853, 36.474, 204]
+    level:    [75, 77]
+  17543236:
+    template: Vanguards_Crow
+    at:       [-81.889, -3.308, 34.222, 189]
+    level:    [75, 77]
+  17543237:
+    template: Vanguard_Partisan
+    at:       [-50.565, -4.187, 7.740, 143]
+    level:    [75, 77]
+  17543238:
+    template: Vanguards_Wyvern
+    at:       [-50.545, -4.187, 7.720, 143]
+    level:    [75, 77]
+  17543239:
+    template: Vanguard_Ogresoother
+    at:       [-37.834, -2.886, 2.252, 9]
+    level:    [75, 77]
+  17543240:
+    template: Vanguards_Crow
+    at:       [-37.778, -3.000, 1.083, 255]
+    level:    [75, 77]
+  17543241:
+    template: Vanguard_Partisan
+    at:       [-34.958, -5.206, 1.268, 143]
+    level:    [75, 77]
+  17543242:
+    template: Vanguards_Wyvern
+    at:       [-31.847, -4.059, -0.008, 164]
+    level:    [75, 77]
+  17543243:
+    template: Vanguard_Salvager_2
+    script:   Vanguard_Salvager
+    at:       [-139.342, -3.613, 149.117, 128]
+    level:    [90, 92]
+  17543244:
+    template: Vanguard_Prelate_2
+    script:   Vanguard_Prelate
+    at:       [-143.838, -3.000, 148.930, 126]
+    level:    [90, 92]
+  17543245:
+    template: Vanguard_Assassin_2
+    script:   Vanguard_Assassin
+    at:       [-164.197, -3.613, 148.654, 127]
+    level:    [90, 92]
+  17543246:
+    template: Vanguard_Persecutor_2
+    script:   Vanguard_Persecutor
+    at:       [-167.559, -3.613, 148.423, 125]
+    level:    [90, 92]
+  17543247:
+    template: Vanguard_Salvager_2
+    script:   Vanguard_Salvager
+    at:       [-58.379, -14.430, 122.768, 234]
+    level:    [90, 92]
+  17543248:
+    template: Vanguard_Prelate_2
+    script:   Vanguard_Prelate
+    at:       [-69.111, -10.500, 116.236, 238]
+    level:    [90, 92]
+  17543249:
+    template: Vanguard_Assassin_2
+    script:   Vanguard_Assassin
+    at:       [-42.078, -15.639, 131.517, 29]
+    level:    [90, 92]
+  17543250:
+    template: Vanguard_Persecutor_2
+    script:   Vanguard_Persecutor
+    at:       [-40.638, -17.049, 132.085, 234]
+    level:    [90, 92]
+  17543251:
+    template: Vanguard_Skirmisher_2
+    script:   Vanguard_Skirmisher
+    region:   nw_83
+    level:    [90, 92]
+  17543252:
+    template: Vanguard_Sentinel_2
+    script:   Vanguard_Sentinel
+    region:   nw_83
+    level:    [90, 92]
+  17543253:
+    template: Vanguard_Priest_2
+    script:   Vanguard_Priest
+    at:       [-184.037, -3.143, 150.975, 3]
+    level:    [90, 92]
+  17543254:
+    template: Vanguard_Prelate_2
+    script:   Vanguard_Prelate
+    region:   nw_83
+    level:    [90, 92]
+  17543255:
+    template: Vanguard_Chanter_2
+    script:   Vanguard_Chanter
+    region:   nw_83
+    level:    [90, 92]
+  17543256:
+    template: Vanguard_Partisan_2
+    script:   Vanguard_Partisan
+    at:       [-183.211, -2.945, 147.832, 58]
+    level:    [90, 92]
+  17543257:
+    template: Vanguards_Wyvern
+    at:       [-190.279, -2.929, 143.972, 70]
+    level:    [75, 77]
+  17543258:
+    template: Avatar_Idol
+    at:       [-50.714, -3.000, -112.800, 130]
+    level:    [65, 65]
+  17543259:
+    template: Avatar_Idol
+    at:       [-189.476, -2.886, 142.428, 210]
+    level:    [80, 80]
+  17543260:
+    template: Vanguard_Skirmisher
+    at:       [-21.187, -2.631, -50.759, 229]
+    level:    [75, 77]
+  17543261:
+    template: Vanguard_Sentinel
+    region:   s_93
+    level:    [75, 77]
+  17543262:
+    template: Vanguard_Priest
+    region:   s_93
+    level:    [75, 77]
+  17543263:
+    template: Vanguard_Prelate
+    at:       [2.305, -4.470, -60.836, 215]
+    level:    [75, 77]
+  17543264:
+    template: Vanguard_Visionary
+    region:   s_96
+    level:    [75, 77]
+  17543265:
+    template: Vanguard_Liberator
+    region:   s_96
+    level:    [75, 77]
+  17543266:
+    template: Vanguard_Partisan
+    region:   s_96
+    level:    [75, 77]
+  17543267:
+    template: Vanguards_Wyvern
+    at:       [13.595, -4.455, -59.012, 234]
+    level:    [75, 77]
+  17543268:
+    template: Avatar_Icon
+    at:       [9.378, -6.935, -37.825, 207]
+    level:    [65, 65]
+  17543269:
+    template: Avatar_Icon
+    at:       [-5.874, -4.307, -55.422, 192]
+    level:    [65, 65]
+  17543270:
+    template: Vanguard_Salvager
+    region:   s_102
+    level:    [75, 77]
+  17543271:
+    template: Vanguard_Persecutor
+    region:   s_102
+    level:    [75, 77]
+  17543272:
+    template: Vanguard_Oracle
+    region:   s_102
+    level:    [75, 77]
+  17543273:
+    template: Vanguards_Avatar
+    region:   s_102
+    level:    [75, 77]
+  17543274:
+    template: Vanguard_Ogresoother
+    at:       [16.565, -2.527, -65.018, 27]
+    level:    [75, 77]
+  17543275:
+    template: Vanguards_Crow
+    at:       [14.941, -3.699, -61.555, 43]
+    level:    [75, 77]
+  17543276:
+    template: Vanguard_Skirmisher
+    at:       [27.565, -2.487, -67.654, 220]
+    level:    [75, 77]
+  17543277:
+    template: Vanguard_Chanter
+    region:   se_109
+    level:    [75, 77]
+  17543278:
+    template: Vanguard_Liberator
+    region:   se_109
+    level:    [75, 77]
+  17543279:
+    template: Vanguard_Assassin
+    region:   se_109
+    level:    [75, 77]
+  17543280:
+    template: Vanguard_Prelate
+    region:   se_109
+    level:    [75, 77]
+  17543281:
+    template: Vanguard_Exemplar
+    at:       [50.934, -2.230, -72.729, 124]
+    level:    [75, 77]
+  17543282:
+    template: Vanguard_Exemplar
+    region:   se_114
+    level:    [75, 77]
+  17543283:
+    template: Vanguard_Inciter
+    region:   se_114
+    level:    [75, 77]
+  17543284:
+    template: Vanguard_Inciter
+    at:       [65.921, -2.992, -66.436, 195]
+    level:    [75, 77]
+  17543285:
+    template: Vanguard_Prelate
+    region:   s_117
+    level:    [75, 77]
+  17543286:
+    template: Vanguard_Oracle
+    region:   s_117
+    level:    [75, 77]
+  17543287:
+    template: Vanguards_Avatar
+    region:   s_117
+    level:    [75, 77]
+  17543288:
+    template: Vanguard_Inciter
+    region:   s_120
+    level:    [75, 77]
+  17543289:
+    template: Vanguard_Exemplar
+    region:   s_120
+    level:    [75, 77]
+  17543290:
+    template: Vanguard_Skirmisher
+    region:   se_122
+    level:    [75, 77]
+  17543291:
+    template: Vanguard_Sentinel
+    region:   se_122
+    level:    [75, 77]
+  17543292:
+    template: Vanguard_Visionary
+    region:   se_122
+    level:    [75, 77]
+  17543293:
+    template: Vanguard_Liberator
+    at:       [53.170, -7.979, -53.979, 221]
+    level:    [75, 77]
+  17543294:
+    template: Haa_Pevi_the_Stentorian
+    region:   se_122
+    level:    [81, 83]
+  17543295:
+    template: Vanguards_Avatar
+    region:   se_122
+    level:    [81, 83]
+  17543296:
+    template: Vanguard_Exemplar
+    region:   se_128
+    level:    [75, 77]
+  17543297:
+    template: Vanguard_Inciter
+    region:   se_128
+    level:    [75, 77]
+  17543298:
+    template: Vanguard_Prelate
+    region:   s_130
+    level:    [75, 77]
+  17543299:
+    template: Vanguard_Oracle
+    region:   s_130
+    level:    [75, 77]
+  17543300:
+    template: Vanguards_Avatar
+    at:       [5.904, -7.298, -34.856, 26]
+    level:    [75, 77]
+  17543301:
+    template: Vanguard_Salvager
+    region:   s_133
+    level:    [75, 77]
+  17543302:
+    template: Vanguard_Chanter
+    at:       [7.291, -9.692, -14.044, 6]
+    level:    [75, 77]
+  17543303:
+    template: Vanguard_Assassin
+    region:   s_133
+    level:    [75, 77]
+  17543304:
+    template: Vanguard_Priest
+    region:   s_133
+    level:    [75, 77]
+  17543305:
+    template: Avatar_Icon
+    region:   s_133
+    level:    [65, 65]
+  17543306:
+    template: Avatar_Icon
+    at:       [-7.098, -8.479, -8.911, 104]
+    level:    [65, 65]
+  17543307:
+    template: Vanguard_Liberator
+    region:   c_139
+    level:    [75, 77]
+  17543308:
+    template: Vanguard_Exemplar
+    region:   c_139
+    level:    [75, 77]
+  17543309:
+    template: Vanguard_Assassin
+    at:       [2.509, -9.674, -3.921, 98]
+    level:    [75, 77]
+  17543310:
+    template: Vanguard_Ogresoother
+    region:   c_139
+    level:    [75, 77]
+  17543311:
+    template: Vanguards_Crow
+    region:   c_139
+    level:    [75, 77]
+  17543312:
+    template: Vanguard_Skirmisher
+    region:   s_144
+    level:    [75, 77]
+  17543313:
+    template: Vanguard_Skirmisher
+    at:       [-15.307, -7.903, -12.895, 52]
+    level:    [75, 77]
+  17543314:
+    template: Vanguard_Persecutor
+    region:   s_144
+    level:    [75, 77]
+  17543315:
+    template: Vanguard_Skirmisher
+    at:       [58.639, -9.942, 21.181, 92]
+    level:    [75, 77]
+  17543316:
+    template: Vanguard_Priest
+    region:   e_148
+    level:    [75, 77]
+  17543317:
+    template: Vanguard_Visionary
+    at:       [56.821, -10.180, 27.057, 225]
+    level:    [75, 77]
+  17543318:
+    template: Vanguard_Prelate
+    at:       [56.376, -10.279, 27.050, 99]
+    level:    [75, 77]
+  17543319:
+    template: Vanguard_Sentinel
+    at:       [53.740, -10.261, 26.781, 164]
+    level:    [75, 77]
+  17543320:
+    template: Vanguard_Liberator
+    region:   e_148
+    level:    [75, 77]
+  17543321:
+    template: Vanguard_Priest
+    region:   e_153
+    level:    [75, 77]
+  17543322:
+    template: Vanguard_Visionary
+    region:   e_153
+    level:    [75, 77]
+  17543323:
+    template: Vanguard_Prelate
+    region:   e_153
+    level:    [75, 77]
+  17543324:
+    template: Vanguard_Skirmisher
+    at:       [86.654, -5.378, 54.784, 187]
+    level:    [75, 77]
+  17543325:
+    template: Vanguard_Sentinel
+    region:   e_157
+    level:    [75, 77]
+  17543326:
+    template: Vanguard_Sentinel
+    region:   e_157
+    level:    [75, 77]
+  17543327:
+    template: Vanguard_Liberator
+    at:       [85.755, -5.328, 56.115, 251]
+    level:    [75, 77]
+  17543328:
+    template: Vanguard_Visionary
+    region:   e_157
+    level:    [75, 77]
+  17543329:
+    template: Vanguard_Exemplar
+    region:   e_161
+    level:    [75, 77]
+  17543330:
+    template: Vanguard_Inciter
+    at:       [90.428, -3.039, 96.794, 163]
+    level:    [75, 77]
+  17543331:
+    template: Vanguard_Inciter
+    region:   e_161
+    level:    [75, 77]
+  17543332:
+    template: Vanguard_Ogresoother
+    at:       [89.162, -3.135, 98.413, 163]
+    level:    [75, 77]
+  17543333:
+    template: Vanguards_Crow
+    at:       [89.395, -3.117, 98.460, 42]
+    level:    [75, 77]
+  17543334:
+    template: Vanguard_Assassin
+    region:   e_161
+    level:    [75, 77]
+  17543335:
+    template: Vanguard_Persecutor
+    region:   e_167
+    level:    [75, 77]
+  17543336:
+    template: Vanguard_Chanter
+    region:   e_167
+    level:    [75, 77]
+  17543337:
+    template: Vanguard_Oracle
+    region:   e_167
+    level:    [75, 77]
+  17543338:
+    template: Vanguards_Avatar
+    region:   e_167
+    level:    [75, 77]
+  17543339:
+    template: Vanguard_Partisan
+    region:   e_167
+    level:    [75, 77]
+  17543340:
+    template: Vanguards_Wyvern
+    at:       [90.495, -3.003, 117.834, 253]
+    level:    [75, 77]
+  17543341:
+    template: Vanguard_Assassin
+    at:       [131.225, -3.669, 101.534, 193]
+    level:    [75, 77]
+  17543342:
+    template: Avatar_Idol
+    at:       [131.100, -3.179, 99.356, 65]
+    level:    [65, 65]
+  17543343:
+    template: Vanguard_Priest
+    region:   e_175
+    level:    [75, 77]
+  17543344:
+    template: Vanguard_Chanter
+    region:   e_175
+    level:    [75, 77]
+  17543345:
+    template: Loo_Hepe_the_Eyepiercer
+    region:   e_175
+    level:    [81, 83]
+  17543346:
+    template: Vanguard_Exemplar
+    region:   e_178
+    level:    [75, 77]
+  17543347:
+    template: Vanguard_Assassin
+    region:   e_178
+    level:    [75, 77]
+  17543348:
+    template: Vanguard_Persecutor
+    region:   e_178
+    level:    [75, 77]
+  17543349:
+    template: Vanguard_Skirmisher
+    region:   e_181
+    level:    [75, 77]
+  17543350:
+    template: Vanguard_Visionary
+    region:   e_181
+    level:    [75, 77]
+  17543351:
+    template: Vanguard_Oracle
+    region:   e_181
+    level:    [75, 77]
+  17543352:
+    template: Vanguards_Avatar
+    region:   e_181
+    level:    [75, 77]
+  17543353:
+    template: Avatar_Icon
+    region:   e_181
+    level:    [65, 65]
+  17543354:
+    template: Avatar_Icon
+    at:       [106.666, -11.323, 145.689, 218]
+    level:    [65, 65]
+  17543355:
+    template: Vanguard_Priest
+    region:   ne_187
+    level:    [75, 77]
+  17543356:
+    template: Vanguard_Chanter
+    region:   ne_187
+    level:    [75, 77]
+  17543357:
+    template: Wuu_Qoho_the_Razorclaw
+    region:   ne_187
+    level:    [81, 83]
+  17543358:
+    template: Vanguard_Sentinel
+    region:   ne_190
+    level:    [75, 77]
+  17543359:
+    template: Vanguard_Persecutor
+    at:       [109.842, -11.433, 162.439, 43]
+    level:    [75, 77]
+  17543360:
+    template: Vanguard_Partisan
+    region:   ne_190
+    level:    [75, 77]
+  17543361:
+    template: Vanguards_Wyvern
+    at:       [112.876, -11.035, 160.415, 188]
+    level:    [75, 77]
+  17543362:
+    template: Avatar_Icon
+    at:       [111.869, -11.483, 164.953, 226]
+    level:    [65, 65]
+  17543363:
+    template: Avatar_Icon
+    at:       [114.118, -11.033, 162.747, 207]
+    level:    [65, 65]
+  17543364:
+    template: Vanguard_Assassin
+    at:       [108.432, -11.016, 172.916, 159]
+    level:    [75, 77]
+  17543365:
+    template: Vanguard_Liberator
+    region:   ne_197
+    level:    [75, 77]
+  17543366:
+    template: Vanguard_Inciter
+    region:   ne_197
+    level:    [75, 77]
+  17543367:
+    template: Vanguard_Ogresoother
+    region:   ne_197
+    level:    [75, 77]
+  17543368:
+    template: Vanguards_Crow
+    region:   ne_197
+    level:    [75, 77]
+  17543369:
+    template: Vanguard_Visionary
+    at:       [104.422, -8.000, 215.529, 141]
+    level:    [75, 77]
+  17543370:
+    template: Vanguard_Persecutor
+    at:       [89.841, -8.019, 205.164, 214]
+    level:    [75, 77]
+  17543371:
+    template: Vanguard_Assassin
+    region:   ne_203
+    level:    [75, 77]
+  17543372:
+    template: Avatar_Idol
+    at:       [101.563, -8.067, 217.563, 213]
+    level:    [65, 65]
+  17543373:
+    template: Vanguard_Priest
+    region:   ne_205
+    level:    [75, 77]
+  17543374:
+    template: Vanguard_Chanter
+    region:   ne_205
+    level:    [75, 77]
+  17543375:
+    template: Xoo_Kaza_the_Solemn
+    region:   ne_205
+    level:    [81, 83]
+  17543376:
+    template: Vanguard_Salvager_Large
+    script:   Vanguard_Salvager
+    at:       [-90.441, -9.204, 93.658, 190]
+    level:    [90, 92]
+  17543377:
+    template: Vanguard_Skirmisher_Large
+    script:   Vanguard_Skirmisher
+    region:   w_209
+    level:    [90, 92]
+  17543378:
+    template: Vanguard_Skirmisher_Large
+    script:   Vanguard_Skirmisher
+    region:   w_209
+    level:    [90, 92]
+  17543379:
+    template: Vanguard_Priest_Large
+    script:   Vanguard_Priest
+    region:   w_209
+    level:    [90, 92]
+  17543380:
+    template: Vanguard_Prelate_Large
+    script:   Vanguard_Prelate
+    region:   w_209
+    level:    [90, 92]
+  17543381:
+    template: Vanguard_Visionary_Large
+    script:   Vanguard_Visionary
+    region:   w_209
+    level:    [90, 92]
+  17543382:
+    template: Vanguard_Sentinel_Large
+    script:   Vanguard_Sentinel
+    region:   w_214
+    level:    [90, 92]
+  17543383:
+    template: Vanguard_Sentinel_Large
+    script:   Vanguard_Sentinel
+    region:   w_214
+    level:    [90, 92]
+  17543384:
+    template: Vanguard_Exemplar_Large
+    script:   Vanguard_Exemplar
+    region:   w_214
+    level:    [90, 92]
+  17543385:
+    template: Vanguard_Ogresoother_Large
+    script:   Vanguard_Ogresoother
+    region:   w_217
+    level:    [90, 92]
+  17543386:
+    template: Vanguards_Crow
+    region:   w_217
+    level:    [90, 92]
+  17543387:
+    template: Vanguard_Inciter_Large
+    script:   Vanguard_Inciter
+    region:   w_219
+    level:    [90, 92]
+  17543388:
+    template: Vanguard_Liberator_Large
+    script:   Vanguard_Liberator
+    region:   w_219
+    level:    [90, 92]
+  17543389:
+    template: Vanguard_Priest_Large
+    script:   Vanguard_Priest
+    region:   w_209
+    level:    [90, 92]
+  17543390:
+    template: Vanguard_Salvager_Large
+    script:   Vanguard_Salvager
+    at:       [-113.931, -5.485, 146.298, 21]
+    level:    [90, 92]
+  17543391:
+    template: Vanguard_Assassin_Large
+    script:   Vanguard_Assassin
+    at:       [-130.130, -5.500, 131.446, 107]
+    level:    [90, 92]
+  17543392:
+    template: Avatar_Icon
+    at:       [-128.634, -6.000, 129.635, 108]
+    level:    [80, 80]
+  17543393:
+    template: Avatar_Icon
+    at:       [-130.739, -5.511, 130.877, 210]
+    level:    [80, 80]
+  17543394:
+    template: Vanguard_Salvager_Large
+    script:   Vanguard_Salvager
+    region:   w_226
+    level:    [90, 92]
+  17543395:
+    template: Vanguard_Inciter_Large
+    script:   Vanguard_Inciter
+    region:   w_226
+    level:    [90, 92]
+  17543396:
+    template: Vanguard_Skirmisher_Large
+    script:   Vanguard_Skirmisher
+    at:       [-96.733, -5.973, 152.086, 72]
+    level:    [90, 92]
+  17543397:
+    template: Vanguard_Priest_Large
+    script:   Vanguard_Priest
+    region:   n_229
+    level:    [90, 92]
+  17543398:
+    template: Vanguard_Prelate_Large
+    script:   Vanguard_Prelate
+    at:       [-72.066, -12.916, 201.008, 142]
+    level:    [90, 92]
+  17543399:
+    template: Vanguard_Prelate_Large
+    script:   Vanguard_Prelate
+    at:       [-72.093, -12.938, 198.457, 85]
+    level:    [90, 92]
+  17543400:
+    template: Vanguard_Visionary_Large
+    script:   Vanguard_Visionary
+    region:   n_229
+    level:    [90, 92]
+  17543401:
+    template: Vanguard_Visionary_Large
+    script:   Vanguard_Visionary
+    region:   n_229
+    level:    [90, 92]
+  17543402:
+    template: Vanguard_Skirmisher_Large
+    script:   Vanguard_Skirmisher
+    at:       [-85.931, -12.987, 190.683, 34]
+    level:    [90, 92]
+  17543403:
+    template: Vanguard_Sentinel_Large
+    script:   Vanguard_Sentinel
+    region:   nw_235
+    level:    [90, 92]
+  17543404:
+    template: Vanguard_Liberator_Large
+    script:   Vanguard_Liberator
+    region:   nw_235
+    level:    [90, 92]
+  17543405:
+    template: Vanguard_Liberator_Large
+    script:   Vanguard_Liberator
+    at:       [-82.671, -12.997, 191.349, 173]
+    level:    [90, 92]
+  17543406:
+    template: Vanguard_Ogresoother_Large
+    script:   Vanguard_Ogresoother
+    region:   nw_235
+    level:    [90, 92]
+  17543407:
+    template: Vanguards_Crow
+    region:   nw_235
+    level:    [90, 92]
+  17543408:
+    template: Vanguard_Assassin_Large
+    script:   Vanguard_Assassin
+    region:   nw_240
+    level:    [90, 92]
+  17543409:
+    template: Avatar_Icon
+    at:       [-101.984, -13.000, 218.182, 164]
+    level:    [80, 80]
+  17543410:
+    template: Avatar_Icon
+    region:   nw_240
+    level:    [80, 80]
+  17543411:
+    template: Vanguard_Salvager_Large
+    script:   Vanguard_Salvager
+    region:   nw_243
+    level:    [90, 92]
+  17543412:
+    template: Vanguard_Inciter_Large
+    script:   Vanguard_Inciter
+    region:   nw_243
+    level:    [90, 92]
+  17543413:
+    template: Vanguard_Persecutor_Large
+    script:   Vanguard_Persecutor
+    region:   n_245
+    level:    [90, 92]
+  17543414:
+    template: Vanguard_Chanter_Large
+    script:   Vanguard_Chanter
+    at:       [-34.980, -13.009, 259.954, 152]
+    level:    [90, 92]
+  17543415:
+    template: Vanguard_Partisan_Large
+    script:   Vanguard_Partisan
+    region:   n_247
+    level:    [90, 92]
+  17543416:
+    template: Vanguards_Wyvern
+    at:       [-22.572, -12.826, 251.694, 152]
+    level:    [90, 92]
+  17543417:
+    template: Vanguard_Chanter_Large
+    script:   Vanguard_Chanter
+    region:   n_247
+    level:    [90, 92]
+  17543418:
+    template: Vanguard_Assassin_Large
+    script:   Vanguard_Assassin
+    at:       [-12.567, -13.000, 270.004, 62]
+    level:    [90, 92]
+  17543419:
+    template: Avatar_Icon
+    at:       [-12.980, -13.000, 282.181, 79]
+    level:    [80, 80]
+  17543420:
+    template: Avatar_Icon
+    at:       [-13.081, -13.000, 287.425, 62]
+    level:    [80, 80]
+  17543421:
+    template: Avatar_Icon
+    at:       [-12.391, -13.000, 278.778, 69]
+    level:    [80, 80]
+  17543422:
+    template: Vanguard_Salvager_Large
+    script:   Vanguard_Salvager
+    region:   n_254
+    level:    [90, 92]
+  17543423:
+    template: Vanguard_Inciter_Large
+    script:   Vanguard_Inciter
+    region:   n_254
+    level:    [90, 92]
+  17543424:
+    template: Vanguard_Oracle_Large
+    script:   Vanguard_Oracle
+    at:       [-8.223, -10.707, 251.155, 103]
+    level:    [90, 92]
+  17543425:
+    template: Vanguards_Avatar
+    at:       [-4.742, -9.728, 251.094, 121]
+    level:    [90, 92]
+  17543426:
+    template: Vanguard_Chanter_Large
+    script:   Vanguard_Chanter
+    at:       [-13.014, -11.917, 250.833, 252]
+    level:    [90, 92]
+  17543427:
+    template: Vanguard_Persecutor_Large
+    script:   Vanguard_Persecutor
+    region:   n_259
+    level:    [90, 92]
+  17543428:
+    template: Vanguard_Assassin_Large
+    script:   Vanguard_Assassin
+    region:   n_259
+    level:    [90, 92]
+  17543429:
+    template: Vanguard_Salvager_Large
+    script:   Vanguard_Salvager
+    region:   n_261
+    level:    [90, 92]
+  17543430:
+    template: Vanguard_Salvager_Large
+    script:   Vanguard_Salvager
+    region:   n_261
+    level:    [90, 92]
+  17543431:
+    template: Vanguard_Partisan_Large
+    script:   Vanguard_Partisan
+    at:       [2.805, -10.499, 292.281, 235]
+    level:    [90, 92]
+  17543432:
+    template: Vanguards_Wyvern
+    at:       [-25.551, -12.989, 256.231, 155]
+    level:    [90, 92]
+  17543433:
+    template: Vanguard_Chanter_Large
+    script:   Vanguard_Chanter
+    region:   n_261
+    level:    [90, 92]
+  17543434:
+    template: Vanguard_Chanter_Large
+    script:   Vanguard_Chanter
+    region:   n_266
+    level:    [90, 92]
+  17543435:
+    template: Vanguard_Persecutor_Large
+    script:   Vanguard_Persecutor
+    region:   n_266
+    level:    [90, 92]
+  17543436:
+    template: Vanguard_Persecutor_Large
+    script:   Vanguard_Persecutor
+    region:   n_266
+    level:    [90, 92]
+  17543437:
+    template: Vanguard_Assassin_Large
+    script:   Vanguard_Assassin
+    at:       [-0.761, -9.791, 269.177, 150]
+    level:    [90, 92]
+  17543438:
+    template: Vanguard_Assassin_Large
+    script:   Vanguard_Assassin
+    region:   ne_270
+    level:    [90, 92]
+  17543439:
+    template: Vanguard_Assassin_Large
+    script:   Vanguard_Assassin
+    region:   ne_270
+    level:    [90, 92]
+  17543440:
+    template: Vanguard_Chanter_Large
+    script:   Vanguard_Chanter
+    at:       [28.731, -2.571, 262.334, 255]
+    level:    [90, 92]
+  17543441:
+    template: Vanguard_Persecutor_Large
+    script:   Vanguard_Persecutor
+    at:       [29.052, -1.674, 259.643, 241]
+    level:    [90, 92]
+  17543442:
+    template: Vanguard_Oracle_Large
+    script:   Vanguard_Oracle
+    region:   n_274
+    level:    [90, 92]
+  17543443:
+    template: Vanguards_Avatar
+    region:   n_274
+    level:    [90, 92]
+  17543444:
+    template: Vanguard_Oracle_Large
+    script:   Vanguard_Oracle
+    region:   n_274
+    level:    [90, 92]
+  17543445:
+    template: Vanguards_Avatar
+    region:   n_274
+    level:    [90, 92]
+  17543446:
+    template: Avatar_Idol
+    at:       [4.959, -3.000, 281.424, 4]
+    level:    [80, 80]
+  17543447:
+    template: Vanguard_Skirmisher_Large
+    script:   Vanguard_Skirmisher
+    region:   n_279
+    level:    [90, 92]
+  17543448:
+    template: Vanguard_Sentinel_Large
+    script:   Vanguard_Sentinel
+    region:   n_279
+    level:    [90, 92]
+  17543449:
+    template: Vanguard_Priest_Large
+    script:   Vanguard_Priest
+    region:   n_279
+    level:    [90, 92]
+  17543450:
+    template: Vanguard_Prelate_Large
+    script:   Vanguard_Prelate
+    region:   n_282
+    level:    [90, 92]
+  17543451:
+    template: Vanguard_Visionary_Large
+    script:   Vanguard_Visionary
+    region:   n_282
+    level:    [90, 92]
+  17543452:
+    template: Vanguard_Liberator_Large
+    script:   Vanguard_Liberator
+    region:   n_284
+    level:    [90, 92]
+  17543453:
+    template: Vanguard_Exemplar_Large
+    script:   Vanguard_Exemplar
+    region:   n_284
+    level:    [90, 92]
+  17543454:
+    template: Vanguard_Inciter_Large
+    script:   Vanguard_Inciter
+    region:   n_284
+    level:    [90, 92]
+  17543455:
+    template: Vanguard_Chanter_Large
+    script:   Vanguard_Chanter
+    region:   ne_287
+    level:    [90, 92]
+  17543456:
+    template: Vanguard_Salvager_Large
+    script:   Vanguard_Salvager
+    region:   ne_287
+    level:    [90, 92]
+  17543457:
+    template: Vanguard_Persecutor_Large
+    script:   Vanguard_Persecutor
+    region:   ne_287
+    level:    [90, 92]
+  17543458:
+    template: Vanguard_Assassin_Large
+    script:   Vanguard_Assassin
+    region:   c_290
+    level:    [90, 92]
+  17543459:
+    template: Vanguard_Oracle_Large
+    script:   Vanguard_Oracle
+    region:   c_290
+    level:    [90, 92]
+  17543460:
+    template: Vanguards_Avatar
+    region:   c_292
+    level:    [90, 92]
+  17543461:
+    template: Avatar_Icon
+    at:       [-8.456, -16.500, 126.628, 16]
+    level:    [80, 80]
+  17543462:
+    template: Avatar_Icon
+    at:       [29.315, -16.500, 187.117, 195]
+    level:    [80, 80]
+  17543463:
+    template: Avatar_Icon
+    region:   c_295
+    level:    [80, 80]
+  17543464:
+    template: Xuu_Bhoqa_the_Enigma
+    at:       [-100.066, -6.000, 132.102, 16]
+    level:    [95, 95]
+  17543465:
+    template: Xuu_Bhoqas_Avatar
+    at:       [-99.331, -5.638, 132.717, 39]
+    level:    [92, 92]
+  17543466:
+    template: Fuu_Tzapo_the_Blessed
+    at:       [-94.000, -13.482, 190.000, 45]
+    level:    [95, 95]
+  17543467:
+    template: Naa_Yixo_the_Stillrage
+    at:       [-26.000, -13.454, 259.000, 56]
+    level:    [95, 95]
+  17543468:
+    template: Tee_Zaksa_the_Ceaseless
+    at:       [0.050, -17.250, 133.415, 59]
+    level:    [95, 95]
+  17543469:
+    template: Arch_Tzee_Xicu_Idol
+    at:       [94.944, -3.171, -147.770, 64]
+    level:    [99, 99]

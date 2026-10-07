@@ -1,0 +1,3871 @@
+# yaml-language-server: $schema=../../schemas/mobs.schema.json
+
+templates:
+
+  Balloon:
+    id:            332
+    species:       bomb
+    skill_list_id: 56
+    attributes:
+      combat:
+        skill: club
+      render:
+        look:
+          type:  standard
+          model: 280
+        entity_flags: 129
+        hitbox:        10
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+        type:    [fog]
+    loot:
+      drops:
+        - chance: common
+          item:   pinch_of_bomb_ash
+        - chance: uncommon
+          item:   bomb_arm
+      steal: [pinch_of_bomb_ash, bomb_arm] # audit needed
+      despoil:
+        pinch_of_bomb_ash: 0
+
+  Bolster:
+    id:            489
+    species:       crawler
+    type:          [notorious]
+    skill_list_id: 79
+    attributes:
+      combat:
+        skill: club
+      render:
+        look:
+          type:  standard
+          model: 396
+        entity_flags:  3
+        model_size:    2
+        hitbox:       17
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+
+  Bull_[Herd1]:
+    id:            579
+    species:       sheep
+    skill_list_id: 226
+    attributes:
+      combat:
+        delay: 0
+      render:
+        look:
+          type:  standard
+          model: 1357
+        entity_flags: 133
+      spawn:
+        type: [scripted]
+
+  Bull_[Herd2]:
+    id:            580
+    species:       sheep
+    skill_list_id: 226
+    attributes:
+      combat:
+        delay: 0
+      render:
+        look:
+          type:  standard
+          model: 1357
+        entity_flags: 133
+      spawn:
+        type: [scripted]
+
+  Bull_[Herd3]:
+    id:            581
+    species:       sheep
+    skill_list_id: 226
+    attributes:
+      combat:
+        delay: 0
+      render:
+        look:
+          type:  standard
+          model: 1357
+        entity_flags: 133
+      spawn:
+        type: [scripted]
+
+  Bumblebee:
+    id:            583
+    species:       yellow_bee
+    skill_list_id: 48
+    attributes:
+      combat:
+        skill: dagger
+      render:
+        look:
+          type:  standard
+          model: 273
+        entity_flags:  641
+        animation_sub:   8
+        hitbox:          8
+      spawn:
+        respawn: 60
+    loot:
+      drops:
+        - chance: uncommon
+          item:   insect_wing
+        - chance: uncommon
+          item:   rarab_tail
+        - chance: rare
+          item:   pot_of_honey
+      steal: pot_of_honey
+      despoil:
+        beehive_chip:  0
+        giant_stinger: 0
+        pot_of_honey:  0
+
+  Calf_[Herd1]:
+    id:            611
+    species:       sheep
+    skill_list_id: 226
+    attributes:
+      combat:
+        delay: 0
+      render:
+        look:
+          type:  standard
+          model: 2920
+        entity_flags:  641
+        animation_sub:  16
+        hitbox:          8
+      spawn:
+        type: [scripted]
+
+  Calf_[Herd2]:
+    id:            612
+    species:       sheep
+    skill_list_id: 226
+    attributes:
+      combat:
+        delay: 0
+      render:
+        look:
+          type:  standard
+          model: 2920
+        entity_flags:  641
+        animation_sub:  16
+      spawn:
+        type: [scripted]
+
+  Calf_[Herd3]:
+    id:            613
+    species:       sheep
+    skill_list_id: 226
+    attributes:
+      combat:
+        delay: 0
+      render:
+        look:
+          type:  standard
+          model: 2920
+        entity_flags:  641
+        animation_sub:  16
+      spawn:
+        type: [scripted]
+
+  Carrion_Crow:
+    id:            650
+    species:       bird
+    skill_list_id: 55
+    attributes:
+      combat:
+        skill: dagger
+      render:
+        look:
+          type:  standard
+          model: 445
+        entity_flags:  129
+        animation_sub:   8
+        hitbox:         17
+      spawn:
+        respawn: 180
+    loot:
+      drops:
+        - chance: common
+          item:   bird_feather
+        - chance: uncommon
+          item:   bird_egg
+      steal: bird_feather
+      despoil:
+        bird_feather: 0
+        bird_egg:     0
+
+  Cow_[Herd1]:
+    id:            821
+    species:       sheep
+    skill_list_id: 226
+    attributes:
+      combat:
+        delay: 0
+      render:
+        look:
+          type:  standard
+          model: 1357
+        entity_flags:  643
+        animation_sub:   8
+      spawn:
+        type: [scripted]
+
+  Cow_[Herd2]:
+    id:            822
+    species:       sheep
+    skill_list_id: 226
+    attributes:
+      combat:
+        delay: 0
+      render:
+        look:
+          type:  standard
+          model: 1357
+        entity_flags:  643
+        animation_sub:   8
+      spawn:
+        type: [scripted]
+
+  Cow_[Herd3]:
+    id:            823
+    species:       sheep
+    skill_list_id: 226
+    attributes:
+      combat:
+        delay: 0
+      render:
+        look:
+          type:  standard
+          model: 1357
+        entity_flags:  643
+        animation_sub:   8
+      spawn:
+        type: [scripted]
+
+  Crawler:
+    id:            831
+    species:       crawler
+    skill_list_id: 79
+    attributes:
+      combat:
+        skill: club
+      render:
+        look:
+          type:  standard
+          model: 396
+        entity_flags: 129
+        hitbox:        12
+      behaviors:
+        links: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   spool_of_silk_thread
+        - chance: uncommon
+          item:   crawler_calculus
+        - chance: rare
+          item:   smooth_stone
+      despoil:
+        piece_of_crawler_cocoon: 0
+        crawler_egg:             0
+
+  Duke_Decapod:
+    id:      4529
+    species: crab
+    type:    [notorious]
+    attributes:
+      combat:
+        skill: axe
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 356
+        entity_flags: 153
+        name_prefix:   32
+        hitbox:        11
+      spawn:
+        type: [scripted]
+      stats:
+        hp: 200
+        mp: 125
+    loot:
+      drops:
+        - chance: common
+          item:   pelte
+    content: wotg
+
+  Fighting_Pugil:
+    id:            1336
+    species:       pugil
+    type:          [fished]
+    skill_list_id: 197
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 348
+        entity_flags: 129
+        hitbox:        23
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: uncommon
+          item:   handful_of_pugil_scales
+      steal: handful_of_fish_scales
+      despoil:
+        handful_of_pugil_scales: 0
+        handful_of_fish_scales:  0
+
+  Giant_Bee:
+    id:            1524
+    species:       yellow_bee
+    skill_list_id: 48
+    attributes:
+      combat:
+        skill: dagger
+      render:
+        look:
+          type:  standard
+          model: 273
+        entity_flags:  641
+        animation_sub:   8
+        hitbox:          8
+      spawn:
+        respawn: 180
+    loot:
+      drops:
+        - chance: common
+          item:   beehive_chip
+        - chance: uncommon
+          item:   pot_of_honey
+        - chance: rare
+          item:   insect_wing
+        - chance: very_rare
+          item:   giant_stinger
+      steal: pot_of_honey
+      despoil:
+        beehive_chip:  0
+        giant_stinger: 0
+        pot_of_honey:  0
+
+  Goblin_Digger_near:
+    id:            1648
+    display_name:  Goblin_Digger
+    species:       goblin
+    skill_list_id: 133
+    attributes:
+      combat:
+        skill: dagger
+      jobs: [thf, thf]
+      render:
+        look:
+          type:  standard
+          model: 484
+        entity_flags: 129
+        hitbox:        10
+      behaviors:
+        aggressive: true
+        links:      true
+      mods:
+        vermin_killer: 5
+      mob_mods:
+        no_despawn: 1
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: rare
+          item:   goblin_mask
+        - chance: very_rare
+          item:   goblin_armor
+      steal: [pickaxe, beastcoin] # audit needed
+      despoil:
+        loaf_of_goblin_bread:      0
+        chunk_of_goblin_chocolate: 0
+        bowl_of_goblin_stew:       0
+        goblin_mushpot:            0
+
+  Goblin_Fisher:
+    id:            1659
+    species:       armored_goblin
+    skill_list_id: 133
+    attributes:
+      combat:
+        skill: axe
+      render:
+        look:
+          type:  standard
+          model: 492
+        entity_flags: 129
+        hitbox:        10
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: very_rare
+          item:   goblin_helm
+        - chance: very_rare
+          item:   goblin_mail
+        - chance: very_rare
+          item:   beastcoin
+        - chance: very_rare
+          item:   yew_fishing_rod
+        - chance: very_rare
+          item:   bamboo_fishing_rod
+        - chance: super_rare
+          item:   clothespole
+        - chance: super_rare
+          item:   fastwater_fishing_rod
+      steal: [beastcoin, willow_fishing_rod] # audit needed
+      despoil:
+        loaf_of_goblin_bread:      0
+        chunk_of_goblin_chocolate: 0
+        bowl_of_goblin_stew:       0
+        goblin_mushpot:            0
+
+  Goblin_Thug:
+    id:            1737
+    species:       goblin
+    skill_list_id: 133
+    attributes:
+      combat:
+        skill: dagger
+      jobs: [thf, thf]
+      render:
+        look:
+          type:  standard
+          model: 484
+        entity_flags: 129
+        hitbox:        10
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   wild_onion
+        - chance: rare
+          item:   goblin_mask
+        - chance: very_rare
+          item:   goblin_armor
+        - chance: very_rare
+          item:   beastcoin
+      steal: beastcoin
+      despoil:
+        loaf_of_goblin_bread:      0
+        chunk_of_goblin_chocolate: 0
+        bowl_of_goblin_stew:       0
+        goblin_mushpot:            0
+
+  Goblin_Weaver:
+    id:            1744
+    species:       goblin
+    spell_list_id: 3
+    skill_list_id: 133
+    attributes:
+      combat:
+        skill: dagger
+      jobs: [rdm, rdm]
+      render:
+        look:
+          type:  standard
+          model: 489
+        entity_flags: 129
+        hitbox:        10
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: rare
+          item:   goblin_mask
+        - chance: very_rare
+          item:   goblin_armor
+        - chance: very_rare
+          item:   spool_of_grass_thread
+        - chance: very_rare
+          item:   square_of_grass_cloth
+        - chance: very_rare
+          item:   spool_of_cotton_thread
+        - chance: super_rare
+          item:   square_of_cotton_cloth
+        - chance: very_rare
+          item:   beastcoin
+      steal: spool_of_grass_thread
+      despoil:
+        loaf_of_goblin_bread:      0
+        chunk_of_goblin_chocolate: 0
+        bowl_of_goblin_stew:       0
+        goblin_mushpot:            0
+
+  King_of_Spades:
+    id:            6162
+    species:       swords
+    type:          [battlefield]
+    spell_list_id: 4
+    skill_list_id: 61
+    attributes:
+      combat:
+        skill: staff
+        delay: 180
+      jobs: [pld, pld]
+      render:
+        look:
+          type:  standard
+          model: 3587
+        entity_flags: 129
+        hitbox:        16
+      behaviors:
+        links:          true
+        true_detection: true
+      spawn:
+        type: [scripted]
+    allegiance: player
+
+  Mad_Fox:
+    id:            2472
+    species:       hound
+    skill_list_id: 143
+    attributes:
+      combat:
+        skill: sword
+      render:
+        look:
+          type:  standard
+          model: 364
+        entity_flags: 129
+        hitbox:        21
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+        type:    [at_night]
+    loot:
+      drops:
+        - chance: uncommon
+          item:   wolf_hide
+        - chance: rare
+          item:   revival_tree_root
+      despoil:
+        wolf_hide:         0
+        revival_tree_root: 0
+
+  Magicked_Bones_blm:
+    id:            6562
+    species:       skeleton
+    spell_list_id: 28
+    skill_list_id: 227
+    attributes:
+      combat:
+        skill: axe
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 564
+        entity_flags: 129
+        hitbox:        10
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+        type:    [at_night]
+    loot:
+      drops:
+        - chance: common
+          item:   bone_chip
+      steal: bone_chip
+      despoil:
+        bone_chip: 0
+
+  Magicked_Bones_club:
+    id:            2475
+    species:       skeleton
+    skill_list_id: 227
+    attributes:
+      combat:
+        skill: axe
+      render:
+        look:
+          type:  standard
+          model: 572
+        entity_flags: 129
+        hitbox:        10
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+        type:    [at_night]
+    loot:
+      drops:
+        - chance: common
+          item:   bone_chip
+      steal: bone_chip
+      despoil:
+        bone_chip: 0
+
+  Mandragora:
+    id:            2546
+    species:       mandragora
+    skill_list_id: 178
+    attributes:
+      combat:
+        skill: hand_to_hand
+        delay: 360
+      jobs: [mnk, mnk]
+      render:
+        look:
+          type:  standard
+          model: 300
+        entity_flags:  641
+        animation_sub:   8
+        hitbox:          6
+      spawn:
+        respawn: 180
+    loot:
+      drops:
+        - chance: uncommon
+          item:   cornette
+        - chance: uncommon
+          item:   two-leaf_mandragora_bud
+        - chance: rare
+          item:   pinch_of_yuhtunga_sulfur
+        - chance: very_rare
+          item:   four-leaf_mandragora_bud
+      steal: ball_of_saruta_cotton
+      despoil:
+        two-leaf_mandragora_bud: 0
+        ball_of_saruta_cotton:   0
+
+  Mud_Pugil:
+    id:            2768
+    species:       pugil
+    type:          [fished]
+    skill_list_id: 197
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 348
+        entity_flags: 129
+        hitbox:        23
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: uncommon
+          item:   handful_of_pugil_scales
+      steal: handful_of_fish_scales
+      despoil:
+        handful_of_pugil_scales: 0
+        handful_of_fish_scales:  0
+
+  Palm_Crab:
+    id:            3088
+    species:       crab
+    type:          [fished]
+    skill_list_id: 77
+    attributes:
+      combat:
+        skill: great_sword
+      jobs: [pld, pld]
+      render:
+        look:
+          type:  standard
+          model: 356
+        entity_flags:  129
+        animation_sub:   8
+        hitbox:         11
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: common
+          item:   chunk_of_rock_salt
+        - chance: very_rare
+          item:   slice_of_land_crab_meat
+      steal: chunk_of_rock_salt
+      despoil:
+        slice_of_land_crab_meat: 0
+        crab_shell:              0
+
+  Pixie:
+    id:            3148
+    species:       pixie
+    spell_list_id: 20
+    skill_list_id: 195
+    attributes:
+      combat:
+        skill: scythe
+      jobs: [whm, whm]
+      render:
+        look:
+          type:  standard
+          model: 2030
+        entity_flags:  513
+        animation_sub:   8
+        hitbox:          6
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: always
+          item:   pinch_of_stygian_ash
+
+  Prickly_Pitriv:
+    id:            4851
+    species:       crawler
+    type:          [notorious]
+    skill_list_id: 79
+    attributes:
+      combat:
+        skill: club
+      render:
+        look:
+          type:  standard
+          model: 396
+        entity_flags: 133
+        name_prefix:   32
+        model_size:     2
+        hitbox:        17
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+
+  Pug_Pugil:
+    id:            3222
+    species:       pugil
+    skill_list_id: 197
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 348
+        entity_flags: 129
+        hitbox:        23
+      spawn:
+        respawn: 180
+    loot:
+      drops:
+        - chance: uncommon
+          item:   handful_of_pugil_scales
+      steal: handful_of_fish_scales
+      despoil:
+        handful_of_pugil_scales: 0
+        handful_of_fish_scales:  0
+
+  Pug_Pugil_fished:
+    id:            6769
+    display_name:  Pug_Pugil
+    species:       pugil
+    type:          [fished]
+    skill_list_id: 197
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 348
+        entity_flags: 129
+        hitbox:        23
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: uncommon
+          item:   handful_of_pugil_scales
+      steal: handful_of_fish_scales
+      despoil:
+        handful_of_pugil_scales: 0
+        handful_of_fish_scales:  0
+
+  Pyracmon:
+    id:            3241
+    species:       ahriman
+    spell_list_id: 11
+    skill_list_id: 4
+    attributes:
+      render:
+        look:
+          type:  standard
+          model: 264
+        entity_flags: 3
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: always
+          one_of: [kingdom_stables_collar, republic_stables_medal, federation_stables_scarf]
+        - chance: always
+          one_of: [kingdom_stables_collar, republic_stables_medal, federation_stables_scarf]
+        - chance: uncommon
+          one_of: [kingdom_stables_collar, republic_stables_medal, federation_stables_scarf]
+        - chance: uncommon
+          one_of: [kingdom_stables_collar, republic_stables_medal, federation_stables_scarf]
+
+  River_Crab:
+    id:            3371
+    species:       crab
+    skill_list_id: 77
+    attributes:
+      combat:
+        skill: great_sword
+      jobs: [pld, pld]
+      render:
+        look:
+          type:  standard
+          model: 356
+        entity_flags:  129
+        animation_sub:   8
+        hitbox:         11
+      spawn:
+        respawn: 180
+    loot:
+      drops:
+        - chance: common
+          item:   chunk_of_rock_salt
+        - chance: uncommon
+          item:   remi_shell
+        - chance: very_rare
+          item:   slice_of_land_crab_meat
+      steal: chunk_of_rock_salt
+      despoil:
+        slice_of_land_crab_meat: 0
+        crab_shell:              0
+
+  Rw_Nw_Prt_M_Hrw:
+    id:            4709
+    species:       grimoire
+    type:          [notorious]
+    skill_list_id: 149
+    attributes:
+      combat:
+        skill: club
+      jobs: [sch, sch]
+      render:
+        look:
+          type:  standard
+          model: 2068
+        entity_flags:  135
+        animation_sub:  16
+        model_size:      3
+        hitbox:         12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+      stats:
+        mp: 5000
+
+  Savanna_Crab:
+    id:            3488
+    species:       crab
+    type:          [fished]
+    skill_list_id: 77
+    attributes:
+      combat:
+        skill: great_sword
+      jobs: [pld, pld]
+      render:
+        look:
+          type:  standard
+          model: 356
+        entity_flags:  129
+        animation_sub:   8
+        hitbox:         11
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: common
+          item:   chunk_of_rock_salt
+        - chance: very_rare
+          item:   slice_of_land_crab_meat
+      steal: chunk_of_rock_salt
+      despoil:
+        slice_of_land_crab_meat: 0
+        crab_shell:              0
+
+  Savanna_Rarab:
+    id:            3490
+    species:       rabbit
+    skill_list_id: 206
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 269
+        entity_flags: 129
+        hitbox:        11
+      spawn:
+        respawn: 180
+    loot:
+      drops:
+        - chance: uncommon
+          item:   rabbit_hide
+        - chance: rare
+          item:   muddy_bar_tab
+      steal: slice_of_hare_meat
+      despoil:
+        rabbit_hide:        0
+        slice_of_hare_meat: 0
+
+  Sharp-Eared_Ropipi:
+    id:            3587
+    species:       rabbit
+    type:          [notorious]
+    skill_list_id: 206
+    attributes:
+      combat:
+        skill: scythe
+      jobs: [thf, thf]
+      resists:
+        immune_status: [light_sleep, dark_sleep]
+      render:
+        look:
+          type:  standard
+          model: 269
+        entity_flags: 157
+        name_prefix:   32
+        model_size:     2
+        hitbox:        14
+      behaviors:
+        links: true
+      spawn:
+        type: [lottery]
+      stats:
+        hp: 290
+    loot:
+      drops:
+        - chance: always
+          item:   entrancing_ribbon
+
+  Spiny_Spipi:
+    id:            3734
+    species:       crawler
+    type:          [notorious]
+    skill_list_id: 79
+    attributes:
+      combat:
+        skill: club
+      render:
+        look:
+          type:  standard
+          model: 396
+        entity_flags: 157
+        name_prefix:   32
+        model_size:     2
+        hitbox:        17
+      behaviors:
+        links: true
+      spawn:
+        type: [lottery]
+      stats:
+        hp: 560
+    loot:
+      drops:
+        - chance: very_common
+          item:   spool_of_silk_thread
+        - chance: common
+          item:   mist_silk_cape
+        - chance: very_common
+          item:   spool_of_silk_thread
+        - chance: very_common
+          item:   spool_of_silk_thread
+      steal: spool_of_silk_thread
+
+  Tiny_Mandragora:
+    id:            3924
+    species:       mandragora
+    skill_list_id: 178
+    attributes:
+      combat:
+        skill: hand_to_hand
+        delay: 360
+      jobs: [mnk, mnk]
+      render:
+        look:
+          type:  standard
+          model: 300
+        entity_flags:  641
+        animation_sub:   8
+        hitbox:          6
+      mob_mods:
+        h2h_single_swing: 1
+      spawn:
+        respawn: 60
+    loot:
+      drops:
+        - chance: rare
+          item:   two-leaf_mandragora_bud
+      steal: two-leaf_mandragora_bud
+      despoil:
+        two-leaf_mandragora_bud: 0
+        ball_of_saruta_cotton:   0
+
+  Wraith_Bat:
+    id:            4381
+    species:       bat
+    skill_list_id: 46
+    attributes:
+      combat:
+        skill: axe
+      render:
+        look:
+          type:  standard
+          model: 256
+        entity_flags: 3
+      spawn:
+        type: [scripted]
+
+  Yagudo_Acolyte:
+    id:            4405
+    species:       yagudo
+    spell_list_id: 20
+    skill_list_id: 270
+    attributes:
+      combat:
+        skill: sword
+      jobs: [whm, whm]
+      render:
+        look:
+          type:  standard
+          model: 583
+        entity_flags: 129
+        hitbox:        12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   yagudo_feather
+        - chance: common
+          item:   yagudo_feather
+        - chance: common
+          item:   yagudo_feather
+        - chance: common
+          item:   yagudo_feather
+        - chance: common
+          item:   yagudo_bead_necklace
+        - chance: very_rare
+          item:   scroll_of_paralyze
+        - chance: very_rare
+          item:   scroll_of_protectra
+        - chance: very_rare
+          item:   scroll_of_barsleep
+        - chance: very_rare
+          item:   scroll_of_sneak
+      steal: beastcoin
+      despoil:
+        roast_carp:       0
+        roast_pipira:     0
+        boiled_tuna_head: 0
+
+  Yagudo_Centurion:
+    id:            6167
+    species:       yagudo
+    type:          [notorious]
+    skill_list_id: 270
+    attributes:
+      combat:
+        skill: sword
+      render:
+        look:
+          type:  standard
+          model: 605
+        entity_flags: 129
+        hitbox:        16
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+
+  Yagudo_Initiate:
+    id:            4426
+    species:       yagudo
+    skill_list_id: 270
+    attributes:
+      combat:
+        skill: hand_to_hand
+        delay: 380
+      jobs: [mnk, mnk]
+      render:
+        look:
+          type:  standard
+          model: 580
+        entity_flags: 129
+        hitbox:        12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   yagudo_feather
+        - chance: common
+          item:   yagudo_feather
+        - chance: uncommon
+          item:   yagudo_feather
+        - chance: uncommon
+          item:   yagudo_feather
+        - chance: uncommon
+          item:   yagudo_bead_necklace
+        - chance: very_rare
+          item:   skull_locust
+      steal: beastcoin
+      despoil:
+        roast_carp:       0
+        roast_pipira:     0
+        boiled_tuna_head: 0
+
+  Yagudo_Scribe:
+    id:            4448
+    species:       yagudo
+    spell_list_id: 21
+    skill_list_id: 270
+    attributes:
+      combat:
+        skill: axe
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 584
+        entity_flags: 129
+        hitbox:        12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   yagudo_feather
+        - chance: common
+          item:   yagudo_feather
+        - chance: common
+          item:   yagudo_feather
+        - chance: common
+          item:   yagudo_feather
+        - chance: common
+          item:   yagudo_bead_necklace
+        - chance: rare
+          item:   scroll_of_blind
+        - chance: rare
+          item:   scroll_of_bind
+      steal: beastcoin
+      despoil:
+        roast_carp:       0
+        roast_pipira:     0
+        boiled_tuna_head: 0
+
+  Yagudo_Underling:
+    id:            6168
+    species:       yagudo
+    type:          [notorious]
+    skill_list_id: 270
+    attributes:
+      combat:
+        skill: sword
+      render:
+        look:
+          type:  standard
+          model: 601
+        entity_flags: 129
+        hitbox:        16
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+
+  Yagudo_Vicar:
+    id:            6166
+    species:       yagudo
+    type:          [notorious]
+    spell_list_id: 20
+    skill_list_id: 270
+    attributes:
+      combat:
+        skill: sword
+      jobs: [whm, war]
+      render:
+        look:
+          type:  standard
+          model: 606
+        entity_flags: 129
+        hitbox:        16
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [scripted]
+
+
+  Beta_mand_Tiny_Mandragora:
+    id:            40000
+    species:       mandragora
+    skill_list_id: 178
+    attributes:
+      combat:
+        skill: hand_to_hand
+        delay: 360
+      jobs: [mnk, mnk]
+      render:
+        look:
+          type:  standard
+          model: 2972
+        entity_flags:  641
+        animation_sub:   8
+        hitbox:          6
+      mob_mods:
+        h2h_single_swing: 1
+      spawn:
+        respawn: 60
+    loot:
+      drops:
+        - chance: rare
+          item:   beta_10843
+        - chance: rare
+          item:   beta_16384
+        - chance: rare
+          item:   beta_18569
+        - chance: rare
+          item:   beta_20005
+        - chance: rare
+          item:   beta_20021
+        - chance: rare
+          item:   beta_20051
+        - chance: rare
+          item:   beta_20069
+        - chance: uncommon
+          item:   beta_0
+        - chance: uncommon
+          item:   beta_1081
+        - chance: uncommon
+          item:   beta_6436
+        - chance: uncommon
+          item:   beta_6844
+        - chance: rare
+          item:   two-leaf_mandragora_bud
+      steal: two-leaf_mandragora_bud
+      despoil:
+        two-leaf_mandragora_bud: 0
+        ball_of_saruta_cotton:   0
+
+  Beta_bee_Bumblebee:
+    id:            40002
+    species:       yellow_bee
+    skill_list_id: 48
+    attributes:
+      combat:
+        skill: dagger
+      render:
+        look:
+          type:  standard
+          model: 2951
+        entity_flags:  641
+        animation_sub:   8
+        hitbox:          8
+      spawn:
+        respawn: 60
+    loot:
+      drops:
+        - chance: rare
+          item:   beta_10923
+        - chance: rare
+          item:   beta_18467
+        - chance: rare
+          item:   beta_18835
+        - chance: rare
+          item:   beta_20007
+        - chance: rare
+          item:   beta_20023
+        - chance: rare
+          item:   beta_20053
+        - chance: rare
+          item:   beta_20071
+        - chance: uncommon
+          item:   beta_232
+        - chance: uncommon
+          item:   beta_4852
+        - chance: uncommon
+          item:   beta_6780
+        - chance: uncommon
+          item:   insect_wing
+        - chance: uncommon
+          item:   rarab_tail
+        - chance: rare
+          item:   pot_of_honey
+      steal: pot_of_honey
+      despoil:
+        beehive_chip:  0
+        giant_stinger: 0
+        pot_of_honey:  0
+
+  Beta_taka_Carrion_Crow:
+    id:            40005
+    species:       bird
+    skill_list_id: 55
+    attributes:
+      combat:
+        skill: dagger
+      render:
+        look:
+          type:  standard
+          model: 2442
+        entity_flags:  129
+        animation_sub:   8
+        hitbox:         17
+      spawn:
+        respawn: 180
+    loot:
+      drops:
+        - chance: rare
+          item:   beta_18527
+        - chance: rare
+          item:   beta_19978
+        - chance: rare
+          item:   beta_20011
+        - chance: rare
+          item:   beta_20028
+        - chance: rare
+          item:   beta_20058
+        - chance: uncommon
+          item:   beta_161
+        - chance: uncommon
+          item:   beta_4785
+        - chance: uncommon
+          item:   beta_6759
+        - chance: uncommon
+          item:   beta_6909
+        - chance: common
+          item:   bird_feather
+        - chance: uncommon
+          item:   bird_egg
+      steal: bird_feather
+      despoil:
+        bird_feather: 0
+        bird_egg:     0
+
+  Beta_craw_Crawler:
+    id:            40008
+    species:       crawler
+    skill_list_id: 79
+    attributes:
+      combat:
+        skill: club
+      render:
+        look:
+          type:  standard
+          model: 2970
+        entity_flags: 129
+        hitbox:        12
+      behaviors:
+        links: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: rare
+          item:   beta_18548
+        - chance: rare
+          item:   beta_19995
+        - chance: rare
+          item:   beta_20016
+        - chance: rare
+          item:   beta_20045
+        - chance: rare
+          item:   beta_20063
+        - chance: uncommon
+          item:   beta_72
+        - chance: uncommon
+          item:   beta_3775
+        - chance: uncommon
+          item:   beta_6738
+        - chance: uncommon
+          item:   beta_6888
+        - chance: uncommon
+          item:   spool_of_silk_thread
+        - chance: uncommon
+          item:   crawler_calculus
+        - chance: rare
+          item:   smooth_stone
+      despoil:
+        piece_of_crawler_cocoon: 0
+        crawler_egg:             0
+
+spawns:
+  17252353:
+    template: Palm_Crab
+    at:       [1.000, 1.000, 1.000]
+    level:    [2, 4]
+  17252354:
+    template: Savanna_Crab
+    at:       [1.000, 1.000, 1.000]
+    level:    [2, 4]
+  17252355:
+    template: Mud_Pugil
+    at:       [1.000, 1.000, 1.000]
+    level:    [5, 6]
+  17252356:
+    template: Pug_Pugil_fished
+    script:   Pug_Pugil
+    at:       [1.000, 1.000, 1.000]
+    level:    [5, 6]
+  17252357:
+    template: Fighting_Pugil
+    at:       [1.000, 1.000, 1.000]
+    level:    [9, 10]
+  17252358:
+    template: Tiny_Mandragora
+    region:   s_6
+    level:    [1, 1]
+  17252359:
+    template: Tiny_Mandragora
+    region:   s_6
+    level:    [1, 1]
+  17252360:
+    template: Tiny_Mandragora
+    region:   s_6
+    level:    [1, 1]
+  17252361:
+    template: Tiny_Mandragora
+    region:   s_6
+    level:    [1, 1]
+  17252362:
+    template: Tiny_Mandragora
+    region:   s_6
+    level:    [1, 1]
+  17252363:
+    template: Bumblebee
+    region:   s_6
+    level:    [1, 1]
+  17252364:
+    template: Bumblebee
+    region:   s_6
+    level:    [1, 1]
+  17252365:
+    template: Bumblebee
+    region:   s_6
+    level:    [1, 1]
+  17252366:
+    template: Bumblebee
+    region:   s_6
+    level:    [1, 1]
+  17252367:
+    template: Savanna_Rarab
+    region:   s_6
+    level:    [2, 3]
+  17252368:
+    template: Savanna_Rarab
+    region:   s_6
+    level:    [2, 3]
+  17252369:
+    template: Tiny_Mandragora
+    region:   s_17
+    level:    [1, 1]
+  17252370:
+    template: Tiny_Mandragora
+    region:   s_17
+    level:    [1, 1]
+  17252371:
+    template: Tiny_Mandragora
+    region:   s_17
+    level:    [1, 1]
+  17252372:
+    template: Tiny_Mandragora
+    region:   s_17
+    level:    [1, 1]
+  17252373:
+    template: Bumblebee
+    region:   s_17
+    level:    [1, 1]
+  17252374:
+    template: Bumblebee
+    region:   s_17
+    level:    [1, 1]
+  17252375:
+    template: Bumblebee
+    region:   s_17
+    level:    [1, 1]
+  17252376:
+    template: Bumblebee
+    region:   s_17
+    level:    [1, 1]
+  17252377:
+    template: Savanna_Rarab
+    region:   s_17
+    level:    [2, 3]
+  17252378:
+    template: Savanna_Rarab
+    region:   s_17
+    level:    [2, 3]
+  17252379:
+    template: Crawler
+    region:   s_27
+    level:    [4, 5]
+  17252380:
+    template: Crawler
+    region:   s_27
+    level:    [4, 5]
+  17252381:
+    template: Savanna_Rarab
+    region:   s_27
+    level:    [2, 3]
+  17252382:
+    template: Savanna_Rarab
+    region:   s_27
+    level:    [2, 3]
+  17252383:
+    template: Savanna_Rarab
+    region:   s_27
+    level:    [2, 3]
+  17252384:
+    template: Savanna_Rarab
+    region:   s_27
+    level:    [2, 3]
+  17252385:
+    template: Savanna_Rarab
+    region:   s_27
+    level:    [2, 3]
+  17252386:
+    template: Savanna_Rarab
+    region:   s_27
+    level:    [2, 3]
+  17252387:
+    template: Carrion_Crow
+    region:   s_27
+    level:    [3, 4]
+  17252388:
+    template: Carrion_Crow
+    region:   s_27
+    level:    [3, 4]
+  17252389:
+    template: Carrion_Crow
+    region:   s_27
+    level:    [3, 4]
+  17252390:
+    template: Yagudo_Initiate
+    region:   s_27
+    level:    [3, 4]
+  17252391:
+    template: Yagudo_Initiate
+    region:   s_27
+    level:    [3, 4]
+  17252392:
+    template: Crawler
+    region:   s_40
+    level:    [4, 5]
+  17252393:
+    template: Crawler
+    region:   s_40
+    level:    [4, 5]
+  17252394:
+    template: Savanna_Rarab
+    region:   s_40
+    level:    [2, 3]
+  17252395:
+    template: Savanna_Rarab
+    region:   s_40
+    level:    [2, 3]
+  17252396:
+    template: Savanna_Rarab
+    region:   s_40
+    level:    [2, 3]
+  17252397:
+    template: Savanna_Rarab
+    region:   s_40
+    level:    [2, 3]
+  17252398:
+    template: Savanna_Rarab
+    region:   s_40
+    level:    [2, 3]
+  17252399:
+    template: Savanna_Rarab
+    region:   s_40
+    level:    [2, 3]
+  17252400:
+    template: Carrion_Crow
+    region:   s_40
+    level:    [3, 4]
+  17252401:
+    template: Carrion_Crow
+    region:   s_40
+    level:    [3, 4]
+  17252402:
+    template: Carrion_Crow
+    region:   s_40
+    level:    [3, 4]
+  17252403:
+    template: Yagudo_Initiate
+    region:   s_40
+    level:    [3, 4]
+  17252404:
+    template: Yagudo_Initiate
+    region:   s_40
+    level:    [3, 4]
+  17252405:
+    template: Crawler
+    region:   s_53
+    level:    [4, 5]
+  17252406:
+    template: Crawler
+    region:   s_53
+    level:    [4, 5]
+  17252407:
+    template: Savanna_Rarab
+    region:   s_53
+    level:    [2, 3]
+  17252408:
+    template: Savanna_Rarab
+    region:   s_53
+    level:    [2, 3]
+  17252409:
+    template: Savanna_Rarab
+    region:   s_53
+    level:    [2, 3]
+  17252410:
+    template: Savanna_Rarab
+    region:   s_53
+    level:    [2, 3]
+  17252411:
+    template: Savanna_Rarab
+    region:   s_53
+    level:    [2, 3]
+  17252412:
+    template: Savanna_Rarab
+    region:   s_53
+    level:    [2, 3]
+  17252413:
+    template: Carrion_Crow
+    region:   s_53
+    level:    [3, 4]
+  17252414:
+    template: Carrion_Crow
+    region:   s_53
+    level:    [3, 4]
+  17252415:
+    template: Carrion_Crow
+    region:   s_53
+    level:    [3, 4]
+  17252416:
+    template: Yagudo_Initiate
+    region:   s_53
+    level:    [3, 4]
+  17252417:
+    template: Yagudo_Acolyte
+    region:   s_53
+    level:    [3, 4]
+  17252418:
+    template: Yagudo_Scribe
+    region:   s_53
+    level:    [3, 4]
+  17252419:
+    template: Mad_Fox
+    region:   s_53
+    level:    [3, 5]
+  17252420:
+    template: Magicked_Bones_club
+    script:   Magicked_Bones
+    region:   s_53
+    level:    [3, 5]
+  17252421:
+    template: Crawler
+    region:   e_69
+    level:    [4, 5]
+  17252422:
+    template: Crawler
+    region:   e_69
+    level:    [4, 5]
+  17252423:
+    template: Crawler
+    region:   e_69
+    level:    [4, 5]
+  17252424:
+    template: Savanna_Rarab
+    region:   e_69
+    level:    [2, 3]
+  17252425:
+    template: Savanna_Rarab
+    region:   e_69
+    level:    [2, 3]
+  17252426:
+    template: Savanna_Rarab
+    region:   e_69
+    level:    [2, 3]
+  17252427:
+    template: Savanna_Rarab
+    region:   e_69
+    level:    [2, 3]
+  17252428:
+    template: Savanna_Rarab
+    region:   e_69
+    level:    [2, 3]
+  17252429:
+    template: Savanna_Rarab
+    region:   e_69
+    level:    [2, 3]
+  17252430:
+    template: Carrion_Crow
+    region:   e_69
+    level:    [3, 4]
+  17252431:
+    template: Carrion_Crow
+    region:   e_69
+    level:    [3, 4]
+  17252432:
+    template: Carrion_Crow
+    region:   e_69
+    level:    [3, 4]
+  17252433:
+    template: Yagudo_Initiate
+    region:   e_69
+    level:    [3, 4]
+  17252434:
+    template: Yagudo_Acolyte
+    region:   e_69
+    level:    [3, 4]
+  17252435:
+    template: Yagudo_Scribe
+    region:   e_69
+    level:    [3, 4]
+  17252436:
+    template: Mad_Fox
+    region:   e_69
+    level:    [3, 5]
+  17252437:
+    template: Magicked_Bones_club
+    script:   Magicked_Bones
+    region:   e_69
+    level:    [3, 5]
+  17252438:
+    template: Crawler
+    region:   c_86
+    level:    [4, 5]
+  17252439:
+    template: Crawler
+    region:   c_86
+    level:    [4, 5]
+  17252440:
+    template: Savanna_Rarab
+    region:   c_86
+    level:    [2, 3]
+  17252441:
+    template: Savanna_Rarab
+    region:   c_86
+    level:    [2, 3]
+  17252442:
+    template: Savanna_Rarab
+    region:   c_86
+    level:    [2, 3]
+  17252443:
+    template: Savanna_Rarab
+    region:   c_86
+    level:    [2, 3]
+  17252444:
+    template: Savanna_Rarab
+    region:   c_86
+    level:    [2, 3]
+  17252445:
+    template: Savanna_Rarab
+    region:   c_86
+    level:    [2, 3]
+  17252446:
+    template: Carrion_Crow
+    region:   c_86
+    level:    [3, 4]
+  17252447:
+    template: Carrion_Crow
+    region:   c_86
+    level:    [3, 4]
+  17252448:
+    template: Carrion_Crow
+    region:   c_86
+    level:    [3, 4]
+  17252449:
+    template: Yagudo_Initiate
+    region:   c_86
+    level:    [3, 4]
+  17252450:
+    template: Yagudo_Acolyte
+    region:   c_86
+    level:    [3, 4]
+  17252451:
+    template: Yagudo_Scribe
+    region:   c_86
+    level:    [3, 4]
+  17252452:
+    template: Mad_Fox
+    region:   c_86
+    level:    [3, 5]
+  17252453:
+    template: Magicked_Bones_club
+    script:   Magicked_Bones
+    region:   c_86
+    level:    [3, 5]
+  17252454:
+    template: Crawler
+    region:   w_102
+    level:    [4, 5]
+  17252455:
+    template: Crawler
+    region:   w_102
+    level:    [4, 5]
+  17252456:
+    template: Savanna_Rarab
+    region:   w_102
+    level:    [2, 3]
+  17252457:
+    template: Savanna_Rarab
+    region:   w_102
+    level:    [2, 3]
+  17252458:
+    template: Savanna_Rarab
+    region:   w_102
+    level:    [2, 3]
+  17252459:
+    template: Savanna_Rarab
+    region:   w_102
+    level:    [2, 3]
+  17252460:
+    template: Savanna_Rarab
+    region:   w_102
+    level:    [2, 3]
+  17252461:
+    template: Savanna_Rarab
+    region:   w_102
+    level:    [2, 3]
+  17252462:
+    template: Carrion_Crow
+    region:   w_102
+    level:    [3, 4]
+  17252463:
+    template: Carrion_Crow
+    region:   w_102
+    level:    [3, 4]
+  17252464:
+    template: Carrion_Crow
+    region:   w_102
+    level:    [3, 4]
+  17252465:
+    template: Yagudo_Initiate
+    region:   w_102
+    level:    [3, 4]
+  17252466:
+    template: Yagudo_Acolyte
+    region:   w_102
+    level:    [3, 4]
+  17252467:
+    template: Yagudo_Scribe
+    region:   w_102
+    level:    [3, 4]
+  17252468:
+    template: Crawler
+    region:   w_116
+    level:    [4, 5]
+  17252469:
+    template: Crawler
+    region:   w_116
+    level:    [4, 5]
+  17252470:
+    template: Crawler
+    region:   w_116
+    level:    [4, 5]
+  17252471:
+    template: Savanna_Rarab
+    region:   w_116
+    level:    [2, 3]
+  17252472:
+    template: Savanna_Rarab
+    region:   w_116
+    level:    [2, 3]
+  17252473:
+    template: Savanna_Rarab
+    region:   w_116
+    level:    [2, 3]
+  17252474:
+    template: Savanna_Rarab
+    region:   w_116
+    level:    [2, 3]
+  17252475:
+    template: Savanna_Rarab
+    region:   w_116
+    level:    [2, 3]
+  17252476:
+    template: Savanna_Rarab
+    region:   w_116
+    level:    [2, 3]
+  17252477:
+    template: Carrion_Crow
+    region:   w_116
+    level:    [3, 4]
+  17252478:
+    template: Carrion_Crow
+    region:   w_116
+    level:    [3, 4]
+  17252479:
+    template: Carrion_Crow
+    region:   w_116
+    level:    [3, 4]
+  17252480:
+    template: Yagudo_Initiate
+    region:   w_116
+    level:    [3, 4]
+  17252481:
+    template: Yagudo_Acolyte
+    region:   w_116
+    level:    [3, 4]
+  17252482:
+    template: Yagudo_Scribe
+    region:   w_116
+    level:    [3, 4]
+  17252483:
+    template: Mad_Fox
+    region:   w_116
+    level:    [3, 5]
+  17252484:
+    template: Magicked_Bones_blm
+    script:   Magicked_Bones
+    region:   w_116
+    level:    [3, 5]
+  17252485:
+    template: Crawler
+    region:   se_133
+    level:    [4, 5]
+  17252486:
+    template: Crawler
+    region:   se_133
+    level:    [4, 5]
+  17252487:
+    template: Savanna_Rarab
+    region:   se_133
+    level:    [2, 3]
+  17252488:
+    template: Savanna_Rarab
+    region:   se_133
+    level:    [2, 3]
+  17252489:
+    template: Sharp-Eared_Ropipi
+    region:   se_152
+    level:    [10, 11]
+  17252490:
+    template: Carrion_Crow
+    region:   se_133
+    level:    [3, 4]
+  17252491:
+    template: Carrion_Crow
+    region:   se_133
+    level:    [3, 4]
+  17252492:
+    template: Carrion_Crow
+    region:   se_133
+    level:    [3, 4]
+  17252493:
+    template: Carrion_Crow
+    region:   se_133
+    level:    [3, 4]
+  17252494:
+    template: Carrion_Crow
+    region:   se_133
+    level:    [3, 4]
+  17252495:
+    template: Goblin_Thug
+    region:   se_133
+    level:    [3, 4]
+  17252496:
+    template: Goblin_Thug
+    region:   se_133
+    level:    [3, 4]
+  17252497:
+    template: Goblin_Weaver
+    region:   se_133
+    level:    [3, 4]
+  17252498:
+    template: Goblin_Weaver
+    region:   se_133
+    level:    [3, 4]
+  17252499:
+    template: Magicked_Bones_blm
+    script:   Magicked_Bones
+    region:   se_133
+    level:    [3, 5]
+  17252500:
+    template: Magicked_Bones_blm
+    script:   Magicked_Bones
+    region:   se_133
+    level:    [3, 5]
+  17252501:
+    template: Goblin_Thug
+    region:   region_42
+    level:    [3, 4]
+  17252502:
+    template: Goblin_Thug
+    region:   region_42
+    level:    [3, 4]
+  17252503:
+    template: Goblin_Weaver
+    region:   region_42
+    level:    [3, 4]
+  17252504:
+    template: Crawler
+    region:   se_152
+    level:    [4, 5]
+  17252505:
+    template: Crawler
+    region:   se_152
+    level:    [4, 5]
+  17252506:
+    template: Savanna_Rarab
+    region:   se_152
+    level:    [2, 3]
+  17252507:
+    template: Savanna_Rarab
+    region:   se_152
+    level:    [2, 3]
+  17252508:
+    template: Sharp-Eared_Ropipi
+    region:   se_152
+    level:    [10, 11]
+  17252509:
+    template: Carrion_Crow
+    region:   se_152
+    level:    [3, 4]
+  17252510:
+    template: Carrion_Crow
+    region:   se_152
+    level:    [3, 4]
+  17252511:
+    template: Carrion_Crow
+    region:   se_152
+    level:    [3, 4]
+  17252512:
+    template: Carrion_Crow
+    region:   se_152
+    level:    [3, 4]
+  17252513:
+    template: Carrion_Crow
+    region:   se_152
+    level:    [3, 4]
+  17252514:
+    template: Goblin_Thug
+    region:   se_152
+    level:    [3, 4]
+  17252515:
+    template: Goblin_Thug
+    region:   se_152
+    level:    [3, 4]
+  17252516:
+    template: Goblin_Weaver
+    region:   se_152
+    level:    [3, 4]
+  17252517:
+    template: Mad_Fox
+    region:   se_152
+    level:    [3, 4]
+  17252518:
+    template: Magicked_Bones_blm
+    script:   Magicked_Bones
+    region:   se_152
+    level:    [3, 5]
+  17252519:
+    template: River_Crab
+    region:   c_167
+    level:    [3, 4]
+  17252520:
+    template: River_Crab
+    region:   c_167
+    level:    [3, 4]
+  17252521:
+    template: River_Crab
+    region:   c_167
+    level:    [3, 4]
+  17252522:
+    template: River_Crab
+    region:   c_167
+    level:    [3, 4]
+  17252523:
+    template: River_Crab
+    region:   c_167
+    level:    [3, 4]
+  17252524:
+    template: Pug_Pugil
+    region:   c_167
+    level:    [5, 6]
+  17252525:
+    template: Pug_Pugil
+    region:   c_167
+    level:    [5, 6]
+  17252526:
+    template: Pug_Pugil
+    region:   c_167
+    level:    [5, 6]
+  17252527:
+    template: Pug_Pugil
+    region:   c_167
+    level:    [5, 6]
+  17252528:
+    template: Pug_Pugil
+    region:   c_167
+    level:    [5, 6]
+  17252529:
+    template: Mandragora
+    region:   c_177
+    level:    [4, 5]
+  17252530:
+    template: Mandragora
+    region:   c_177
+    level:    [4, 5]
+  17252531:
+    template: Mandragora
+    region:   c_177
+    level:    [4, 5]
+  17252532:
+    template: Mandragora
+    region:   c_177
+    level:    [4, 5]
+  17252533:
+    template: Giant_Bee
+    region:   c_177
+    level:    [7, 8]
+  17252534:
+    template: Giant_Bee
+    region:   c_177
+    level:    [7, 8]
+  17252535:
+    template: Giant_Bee
+    region:   c_177
+    level:    [7, 8]
+  17252536:
+    template: Giant_Bee
+    region:   c_177
+    level:    [7, 8]
+  17252537:
+    template: Giant_Bee
+    region:   c_177
+    level:    [7, 8]
+  17252538:
+    template: Giant_Bee
+    region:   c_177
+    level:    [7, 8]
+  17252539:
+    template: Crawler
+    region:   c_177
+    level:    [4, 5]
+  17252540:
+    template: Crawler
+    region:   c_177
+    level:    [5, 6]
+  17252541:
+    template: Savanna_Rarab
+    region:   c_177
+    level:    [4, 5]
+  17252542:
+    template: Savanna_Rarab
+    region:   c_177
+    level:    [4, 5]
+  17252543:
+    template: Yagudo_Initiate
+    region:   c_177
+    level:    [5, 6]
+  17252544:
+    template: Yagudo_Acolyte
+    region:   c_177
+    level:    [5, 6]
+  17252545:
+    template: Yagudo_Scribe
+    region:   c_177
+    level:    [5, 6]
+  17252546:
+    template: Mad_Fox
+    region:   c_177
+    level:    [6, 8]
+  17252547:
+    template: Magicked_Bones_club
+    script:   Magicked_Bones
+    region:   c_177
+    level:    [6, 8]
+  17252548:
+    template: Balloon
+    region:   c_177
+    level:    [8, 10]
+  17252549:
+    template: Mandragora
+    region:   c_197
+    level:    [4, 5]
+  17252550:
+    template: Mandragora
+    region:   c_197
+    level:    [4, 5]
+  17252551:
+    template: Mandragora
+    region:   c_197
+    level:    [4, 5]
+  17252552:
+    template: Giant_Bee
+    region:   c_197
+    level:    [7, 8]
+  17252553:
+    template: Giant_Bee
+    region:   c_197
+    level:    [7, 8]
+  17252554:
+    template: Giant_Bee
+    region:   c_197
+    level:    [7, 8]
+  17252555:
+    template: Giant_Bee
+    region:   c_197
+    level:    [7, 8]
+  17252556:
+    template: Giant_Bee
+    region:   c_197
+    level:    [7, 8]
+  17252557:
+    template: Crawler
+    region:   c_197
+    level:    [5, 6]
+  17252558:
+    template: Crawler
+    region:   c_197
+    level:    [5, 6]
+  17252559:
+    template: Savanna_Rarab
+    region:   c_197
+    level:    [4, 5]
+  17252560:
+    template: Savanna_Rarab
+    region:   c_197
+    level:    [4, 5]
+  17252561:
+    template: Yagudo_Initiate
+    region:   c_197
+    level:    [5, 6]
+  17252562:
+    template: Yagudo_Initiate
+    region:   c_197
+    level:    [5, 6]
+  17252563:
+    template: Yagudo_Acolyte
+    region:   c_197
+    level:    [5, 6]
+  17252564:
+    template: Yagudo_Scribe
+    region:   c_197
+    level:    [5, 6]
+  17252565:
+    template: Mad_Fox
+    region:   c_197
+    level:    [6, 8]
+  17252566:
+    template: Magicked_Bones_club
+    script:   Magicked_Bones
+    region:   c_197
+    level:    [6, 8]
+  17252567:
+    template: Balloon
+    region:   c_197
+    level:    [8, 10]
+  17252568:
+    template: Yagudo_Initiate
+    region:   region_43
+    level:    [5, 6]
+  17252569:
+    template: Yagudo_Acolyte
+    region:   region_43
+    level:    [5, 6]
+  17252570:
+    template: Yagudo_Scribe
+    region:   region_43
+    level:    [5, 6]
+  17252571:
+    template: Mandragora
+    region:   e_219
+    level:    [4, 5]
+  17252572:
+    template: Mandragora
+    region:   e_219
+    level:    [4, 5]
+  17252573:
+    template: Mandragora
+    region:   e_219
+    level:    [4, 5]
+  17252574:
+    template: Giant_Bee
+    region:   e_219
+    level:    [7, 8]
+  17252575:
+    template: Giant_Bee
+    region:   e_219
+    level:    [7, 8]
+  17252576:
+    template: Giant_Bee
+    region:   e_219
+    level:    [7, 8]
+  17252577:
+    template: Giant_Bee
+    region:   e_219
+    level:    [7, 8]
+  17252578:
+    template: Yagudo_Acolyte
+    region:   e_219
+    level:    [5, 6]
+  17252579:
+    template: Yagudo_Scribe
+    region:   e_219
+    level:    [5, 6]
+  17252580:
+    template: River_Crab
+    region:   e_228
+    level:    [3, 4]
+  17252581:
+    template: Pug_Pugil
+    region:   e_228
+    level:    [5, 6]
+  17252582:
+    template: River_Crab
+    region:   e_228
+    level:    [3, 4]
+  17252583:
+    template: River_Crab
+    region:   e_238
+    level:    [3, 4]
+  17252584:
+    template: River_Crab
+    region:   e_232
+    level:    [3, 4]
+  17252585:
+    template: River_Crab
+    region:   e_232
+    level:    [3, 4]
+  17252586:
+    template: Pug_Pugil
+    region:   e_232
+    level:    [5, 6]
+  17252587:
+    template: Pug_Pugil
+    region:   e_238
+    level:    [5, 6]
+  17252588:
+    template: Pug_Pugil
+    region:   e_232
+    level:    [5, 6]
+  17252589:
+    template: Pug_Pugil
+    region:   e_232
+    level:    [5, 6]
+  17252590:
+    template: River_Crab
+    region:   e_238
+    level:    [3, 4]
+  17252591:
+    template: Pug_Pugil
+    region:   e_238
+    level:    [5, 6]
+  17252592:
+    template: Mandragora
+    region:   w_240
+    level:    [4, 5]
+  17252593:
+    template: Mandragora
+    region:   w_240
+    level:    [4, 5]
+  17252594:
+    template: Mandragora
+    region:   w_240
+    level:    [4, 5]
+  17252595:
+    template: Mandragora
+    region:   w_240
+    level:    [4, 5]
+  17252596:
+    template: Mandragora
+    region:   w_240
+    level:    [4, 5]
+  17252597:
+    template: Savanna_Rarab
+    region:   w_240
+    level:    [4, 5]
+  17252598:
+    template: Savanna_Rarab
+    region:   w_240
+    level:    [4, 5]
+  17252599:
+    template: Savanna_Rarab
+    region:   w_240
+    level:    [4, 5]
+  17252600:
+    template: Goblin_Fisher
+    region:   w_240
+    level:    [4, 5]
+  17252601:
+    template: Goblin_Fisher
+    region:   w_240
+    level:    [4, 5]
+  17252602:
+    template: Mandragora
+    region:   c_250
+    level:    [4, 5]
+  17252603:
+    template: Mandragora
+    region:   c_250
+    level:    [4, 5]
+  17252604:
+    template: Mandragora
+    region:   c_250
+    level:    [4, 5]
+  17252605:
+    template: Mandragora
+    region:   c_250
+    level:    [4, 5]
+  17252606:
+    template: Mandragora
+    region:   c_250
+    level:    [4, 5]
+  17252607:
+    template: Savanna_Rarab
+    region:   c_250
+    level:    [4, 5]
+  17252608:
+    template: Savanna_Rarab
+    region:   c_250
+    level:    [4, 5]
+  17252609:
+    template: Savanna_Rarab
+    region:   c_250
+    level:    [4, 5]
+  17252610:
+    template: Goblin_Fisher
+    region:   c_250
+    level:    [4, 5]
+  17252611:
+    template: Goblin_Fisher
+    region:   c_250
+    level:    [4, 5]
+  17252612:
+    template: River_Crab
+    region:   w_260
+    level:    [3, 4]
+  17252613:
+    template: River_Crab
+    region:   w_260
+    level:    [3, 4]
+  17252614:
+    template: River_Crab
+    region:   w_260
+    level:    [3, 4]
+  17252615:
+    template: Pug_Pugil
+    region:   w_260
+    level:    [5, 6]
+  17252616:
+    template: Pug_Pugil
+    region:   w_260
+    level:    [5, 6]
+  17252617:
+    template: Pug_Pugil
+    region:   w_260
+    level:    [5, 5]
+  17252618:
+    template: River_Crab
+    region:   w_260
+    level:    [3, 4]
+  17252619:
+    template: River_Crab
+    region:   c_267
+    level:    [3, 4]
+  17252620:
+    template: Pug_Pugil
+    region:   c_267
+    level:    [5, 6]
+  17252621:
+    template: Pug_Pugil
+    region:   c_267
+    level:    [5, 6]
+  17252622:
+    template: Mandragora
+    region:   e_270
+    level:    [4, 5]
+  17252623:
+    template: Mandragora
+    region:   e_270
+    level:    [4, 5]
+  17252624:
+    template: Mandragora
+    region:   e_270
+    level:    [4, 5]
+  17252625:
+    template: Mandragora
+    region:   e_270
+    level:    [4, 5]
+  17252626:
+    template: Mandragora
+    region:   e_270
+    level:    [4, 5]
+  17252627:
+    template: Giant_Bee
+    region:   e_270
+    level:    [7, 8]
+  17252628:
+    template: Giant_Bee
+    region:   e_270
+    level:    [7, 8]
+  17252629:
+    template: Giant_Bee
+    region:   e_270
+    level:    [7, 8]
+  17252630:
+    template: Giant_Bee
+    region:   e_270
+    level:    [7, 8]
+  17252631:
+    template: Giant_Bee
+    region:   e_270
+    level:    [7, 8]
+  17252632:
+    template: Crawler
+    region:   e_270
+    level:    [5, 6]
+  17252633:
+    template: Crawler
+    region:   e_270
+    level:    [5, 6]
+  17252634:
+    template: Crawler
+    region:   e_270
+    level:    [5, 6]
+  17252635:
+    template: Goblin_Thug
+    region:   e_270
+    level:    [5, 6]
+  17252636:
+    template: Goblin_Thug
+    region:   e_270
+    level:    [5, 6]
+  17252637:
+    template: Goblin_Weaver
+    region:   e_270
+    level:    [5, 6]
+  17252638:
+    template: Goblin_Weaver
+    region:   e_270
+    level:    [5, 6]
+  17252639:
+    template: Magicked_Bones_blm
+    script:   Magicked_Bones
+    region:   e_270
+    level:    [6, 8]
+  17252640:
+    template: Magicked_Bones_blm
+    script:   Magicked_Bones
+    region:   e_270
+    level:    [6, 8]
+  17252641:
+    template: Goblin_Thug
+    region:   region_44
+    level:    [5, 6]
+  17252642:
+    template: Goblin_Thug
+    region:   region_44
+    level:    [5, 6]
+  17252643:
+    template: Goblin_Weaver
+    region:   region_44
+    level:    [5, 6]
+  17252644:
+    template: Mandragora
+    region:   e_292
+    level:    [4, 5]
+  17252645:
+    template: Mandragora
+    region:   e_292
+    level:    [4, 5]
+  17252646:
+    template: Mandragora
+    region:   e_292
+    level:    [4, 5]
+  17252647:
+    template: Mandragora
+    region:   e_292
+    level:    [4, 5]
+  17252648:
+    template: Mandragora
+    region:   e_292
+    level:    [4, 5]
+  17252649:
+    template: Giant_Bee
+    region:   e_292
+    level:    [7, 8]
+  17252650:
+    template: Giant_Bee
+    region:   e_292
+    level:    [7, 8]
+  17252651:
+    template: Giant_Bee
+    region:   e_292
+    level:    [7, 8]
+  17252652:
+    template: Giant_Bee
+    region:   e_292
+    level:    [7, 8]
+  17252653:
+    template: Giant_Bee
+    region:   e_292
+    level:    [7, 8]
+  17252654:
+    template: Crawler
+    region:   e_292
+    level:    [5, 6]
+  17252655:
+    template: Crawler
+    region:   e_292
+    level:    [5, 6]
+  17252656:
+    template: Crawler
+    region:   e_292
+    level:    [5, 6]
+  17252657:
+    template: Spiny_Spipi
+    region:   e_292
+    level:    [9, 10]
+  17252658:
+    template: Goblin_Thug
+    region:   e_292
+    level:    [5, 6]
+  17252659:
+    template: Goblin_Weaver
+    region:   e_292
+    level:    [5, 6]
+  17252660:
+    template: Magicked_Bones_club
+    script:   Magicked_Bones
+    region:   e_292
+    level:    [6, 8]
+  17252661:
+    template: Balloon
+    region:   region_46
+    level:    [8, 10]
+  17252662:
+    template: Mandragora
+    region:   e_310
+    level:    [5, 6]
+  17252663:
+    template: Mandragora
+    region:   e_310
+    level:    [5, 6]
+  17252664:
+    template: Mandragora
+    region:   e_310
+    level:    [5, 6]
+  17252665:
+    template: Mandragora
+    region:   e_310
+    level:    [5, 6]
+  17252666:
+    template: Savanna_Rarab
+    region:   e_310
+    level:    [5, 6]
+  17252667:
+    template: Savanna_Rarab
+    region:   e_310
+    level:    [5, 6]
+  17252668:
+    template: Savanna_Rarab
+    region:   e_310
+    level:    [5, 6]
+  17252669:
+    template: Goblin_Fisher
+    region:   e_310
+    level:    [5, 6]
+  17252670:
+    template: Goblin_Fisher
+    region:   e_310
+    level:    [5, 6]
+  17252671:
+    template: Goblin_Fisher
+    region:   e_310
+    level:    [5, 6]
+  17252672:
+    template: Goblin_Weaver
+    region:   e_310
+    level:    [5, 6]
+  17252673:
+    template: Balloon
+    region:   e_310
+    level:    [8, 10]
+  17252674:
+    template: River_Crab
+    region:   ne_323
+    level:    [4, 5]
+  17252675:
+    template: River_Crab
+    region:   ne_323
+    level:    [4, 5]
+  17252676:
+    template: River_Crab
+    region:   ne_323
+    level:    [4, 5]
+  17252677:
+    template: Pug_Pugil
+    region:   ne_323
+    level:    [6, 7]
+  17252678:
+    template: Pug_Pugil
+    region:   ne_323
+    level:    [6, 7]
+  17252679:
+    template: Pug_Pugil
+    region:   ne_323
+    level:    [6, 7]
+  17252680:
+    template: Mandragora
+    region:   nw_328
+    level:    [4, 5]
+  17252681:
+    template: Mandragora
+    region:   nw_328
+    level:    [4, 5]
+  17252682:
+    template: Mandragora
+    region:   nw_328
+    level:    [4, 5]
+  17252683:
+    template: Mandragora
+    region:   nw_328
+    level:    [4, 5]
+  17252684:
+    template: Savanna_Rarab
+    region:   nw_328
+    level:    [4, 5]
+  17252685:
+    template: Savanna_Rarab
+    region:   nw_328
+    level:    [4, 5]
+  17252686:
+    template: Savanna_Rarab
+    region:   nw_328
+    level:    [4, 5]
+  17252687:
+    template: Goblin_Fisher
+    region:   nw_328
+    level:    [5, 6]
+  17252688:
+    template: Goblin_Fisher
+    region:   nw_328
+    level:    [5, 6]
+  17252689:
+    template: Goblin_Fisher
+    region:   nw_328
+    level:    [5, 6]
+  17252690:
+    template: Goblin_Weaver
+    region:   nw_328
+    level:    [5, 6]
+  17252691:
+    template: River_Crab
+    region:   c_339
+    level:    [4, 5]
+  17252692:
+    template: River_Crab
+    region:   c_339
+    level:    [4, 5]
+  17252693:
+    template: River_Crab
+    region:   c_339
+    level:    [4, 5]
+  17252694:
+    template: River_Crab
+    region:   c_339
+    level:    [4, 5]
+  17252695:
+    template: Pug_Pugil
+    region:   c_339
+    level:    [6, 7]
+  17252696:
+    template: Pug_Pugil
+    region:   c_339
+    level:    [6, 7]
+  17252697:
+    template: Pug_Pugil
+    region:   c_339
+    level:    [6, 7]
+  17252698:
+    template: Pug_Pugil
+    region:   c_339
+    level:    [6, 7]
+  17252699:
+    template: River_Crab
+    region:   nw_347
+    level:    [4, 5]
+  17252700:
+    template: Pug_Pugil
+    region:   nw_347
+    level:    [6, 7]
+  17252701:
+    template: River_Crab
+    region:   nw_349
+    level:    [4, 5]
+  17252702:
+    template: Pug_Pugil
+    region:   nw_349
+    level:    [6, 7]
+  17252703:
+    template: River_Crab
+    region:   nw_347
+    level:    [4, 5]
+  17252704:
+    template: River_Crab
+    region:   nw_349
+    level:    [4, 5]
+  17252705:
+    template: River_Crab
+    region:   nw_353
+    level:    [4, 5]
+  17252706:
+    template: River_Crab
+    region:   nw_353
+    level:    [4, 5]
+  17252707:
+    template: Pug_Pugil
+    region:   nw_347
+    level:    [6, 7]
+  17252708:
+    template: Pug_Pugil
+    region:   nw_349
+    level:    [6, 7]
+  17252709:
+    template: Pug_Pugil
+    region:   nw_353
+    level:    [6, 7]
+  17252710:
+    template: Pug_Pugil
+    region:   nw_353
+    level:    [6, 7]
+  17252711:
+    template: Mandragora
+    region:   nw_362
+    level:    [4, 5]
+  17252712:
+    template: Mandragora
+    region:   nw_362
+    level:    [4, 5]
+  17252713:
+    template: Mandragora
+    region:   nw_362
+    level:    [4, 5]
+  17252714:
+    template: Mandragora
+    region:   nw_362
+    level:    [4, 5]
+  17252715:
+    template: Crawler
+    region:   nw_362
+    level:    [5, 6]
+  17252716:
+    template: Crawler
+    region:   nw_362
+    level:    [5, 6]
+  17252717:
+    template: Savanna_Rarab
+    region:   nw_362
+    level:    [4, 5]
+  17252718:
+    template: Savanna_Rarab
+    region:   nw_362
+    level:    [4, 5]
+  17252719:
+    template: Goblin_Fisher
+    region:   nw_362
+    level:    [5, 6]
+  17252720:
+    template: Goblin_Weaver
+    region:   nw_362
+    level:    [5, 6]
+  17252721:
+    template: River_Crab
+    region:   nw_374
+    level:    [5, 6]
+  17252722:
+    template: River_Crab
+    region:   nw_370
+    level:    [5, 6]
+  17252723:
+    template: Pug_Pugil
+    region:   nw_370
+    level:    [7, 8]
+  17252724:
+    template: Pug_Pugil
+    region:   nw_370
+    level:    [7, 8]
+  17252725:
+    template: Duke_Decapod
+    region:   nw_370
+    level:    [7, 8]
+  17252726:
+    template: River_Crab
+    region:   nw_374
+    level:    [5, 6]
+  17252727:
+    template: Pug_Pugil
+    region:   nw_370
+    level:    [7, 8]
+  17252728:
+    template: River_Crab
+    region:   nw_374
+    level:    [5, 6]
+  17252729:
+    template: Pug_Pugil
+    region:   nw_370
+    level:    [7, 8]
+  17252730:
+    template: Mandragora
+    region:   nw_378
+    level:    [4, 5]
+  17252731:
+    template: Mandragora
+    region:   nw_378
+    level:    [4, 5]
+  17252732:
+    template: Mandragora
+    region:   nw_378
+    level:    [4, 5]
+  17252733:
+    template: Crawler
+    region:   nw_378
+    level:    [5, 6]
+  17252734:
+    template: Crawler
+    region:   nw_378
+    level:    [5, 6]
+  17252735:
+    template: Carrion_Crow
+    region:   nw_378
+    level:    [4, 5]
+  17252736:
+    template: Carrion_Crow
+    region:   nw_378
+    level:    [4, 5]
+  17252737:
+    template: Carrion_Crow
+    region:   nw_378
+    level:    [4, 5]
+  17252738:
+    template: Carrion_Crow
+    region:   nw_378
+    level:    [4, 5]
+  17252739:
+    template: Savanna_Rarab
+    region:   nw_378
+    level:    [4, 5]
+  17252740:
+    template: Savanna_Rarab
+    region:   nw_378
+    level:    [4, 5]
+  17252741:
+    template: Yagudo_Initiate
+    region:   nw_378
+    level:    [5, 6]
+  17252742:
+    template: Yagudo_Acolyte
+    region:   nw_378
+    level:    [5, 6]
+  17252743:
+    template: Yagudo_Scribe
+    region:   nw_378
+    level:    [5, 6]
+  17252744:
+    template: Magicked_Bones_club
+    script:   Magicked_Bones
+    region:   nw_378
+    level:    [6, 8]
+  17252745:
+    template: Magicked_Bones_blm
+    script:   Magicked_Bones
+    region:   nw_378
+    level:    [6, 8]
+  17252746:
+    template: Mandragora
+    region:   n_394
+    level:    [4, 5]
+  17252747:
+    template: Mandragora
+    region:   n_394
+    level:    [4, 5]
+  17252748:
+    template: Crawler
+    region:   n_394
+    level:    [5, 6]
+  17252749:
+    template: Crawler
+    region:   n_394
+    level:    [5, 6]
+  17252750:
+    template: Crawler
+    region:   n_394
+    level:    [5, 6]
+  17252751:
+    template: Savanna_Rarab
+    region:   n_394
+    level:    [4, 5]
+  17252752:
+    template: Savanna_Rarab
+    region:   n_394
+    level:    [4, 5]
+  17252753:
+    template: Carrion_Crow
+    region:   n_394
+    level:    [4, 5]
+  17252754:
+    template: Carrion_Crow
+    region:   n_394
+    level:    [4, 5]
+  17252755:
+    template: Carrion_Crow
+    region:   n_394
+    level:    [4, 5]
+  17252756:
+    template: Carrion_Crow
+    region:   n_394
+    level:    [4, 5]
+  17252757:
+    template: Yagudo_Initiate
+    region:   n_394
+    level:    [5, 6]
+  17252758:
+    template: Yagudo_Initiate
+    region:   n_394
+    level:    [5, 6]
+  17252759:
+    template: Yagudo_Acolyte
+    region:   n_394
+    level:    [5, 6]
+  17252760:
+    template: Yagudo_Scribe
+    region:   n_394
+    level:    [5, 6]
+  17252761:
+    template: Mad_Fox
+    region:   n_394
+    level:    [6, 8]
+  17252762:
+    template: Magicked_Bones_club
+    script:   Magicked_Bones
+    region:   n_394
+    level:    [6, 8]
+  17252763:
+    template: Magicked_Bones_blm
+    script:   Magicked_Bones
+    region:   n_394
+    level:    [6, 8]
+  17252764:
+    template: Balloon
+    region:   n_394
+    level:    [8, 10]
+  17252765:
+    template: Yagudo_Initiate
+    region:   region_45
+    level:    [5, 6]
+  17252766:
+    template: Yagudo_Acolyte
+    region:   region_45
+    level:    [5, 6]
+  17252767:
+    template: Yagudo_Scribe
+    region:   region_45
+    level:    [5, 6]
+  17252768:
+    template: Crawler
+    region:   n_416
+    level:    [5, 6]
+  17252769:
+    template: Crawler
+    region:   n_416
+    level:    [5, 6]
+  17252770:
+    template: Crawler
+    region:   n_416
+    level:    [5, 6]
+  17252771:
+    template: Crawler
+    region:   n_416
+    level:    [5, 6]
+  17252772:
+    template: Savanna_Rarab
+    region:   n_416
+    level:    [4, 5]
+  17252773:
+    template: Savanna_Rarab
+    region:   n_416
+    level:    [4, 5]
+  17252774:
+    template: Carrion_Crow
+    region:   n_416
+    level:    [4, 5]
+  17252775:
+    template: Carrion_Crow
+    region:   n_416
+    level:    [4, 5]
+  17252776:
+    template: Goblin_Thug
+    region:   n_416
+    level:    [5, 6]
+  17252777:
+    template: Goblin_Weaver
+    region:   n_416
+    level:    [5, 6]
+  17252778:
+    template: Goblin_Weaver
+    region:   n_416
+    level:    [5, 6]
+  17252779:
+    template: Mandragora
+    region:   n_427
+    level:    [4, 5]
+  17252780:
+    template: Mandragora
+    region:   n_427
+    level:    [4, 5]
+  17252781:
+    template: Giant_Bee
+    region:   n_427
+    level:    [7, 8]
+  17252782:
+    template: Giant_Bee
+    region:   n_427
+    level:    [7, 8]
+  17252783:
+    template: Giant_Bee
+    region:   n_427
+    level:    [7, 8]
+  17252784:
+    template: Crawler
+    region:   n_427
+    level:    [5, 6]
+  17252785:
+    template: Crawler
+    region:   n_427
+    level:    [5, 6]
+  17252786:
+    template: Savanna_Rarab
+    region:   n_427
+    level:    [4, 5]
+  17252787:
+    template: Savanna_Rarab
+    region:   n_427
+    level:    [4, 5]
+  17252788:
+    template: Yagudo_Initiate
+    region:   n_427
+    level:    [5, 6]
+  17252789:
+    template: Yagudo_Acolyte
+    region:   n_427
+    level:    [5, 6]
+  17252790:
+    template: Yagudo_Scribe
+    region:   n_427
+    level:    [5, 6]
+  17252791:
+    template: Mad_Fox
+    region:   n_427
+    level:    [6, 8]
+  17252792:
+    template: Magicked_Bones_club
+    script:   Magicked_Bones
+    region:   n_427
+    level:    [6, 8]
+  17252793:
+    template: Balloon
+    region:   n_427
+    level:    [8, 10]
+  17252794:
+    template: Mandragora
+    region:   ne_442
+    level:    [4, 5]
+  17252795:
+    template: Mandragora
+    region:   ne_442
+    level:    [4, 5]
+  17252796:
+    template: Giant_Bee
+    region:   ne_442
+    level:    [7, 8]
+  17252797:
+    template: Giant_Bee
+    region:   ne_442
+    level:    [7, 8]
+  17252798:
+    template: Giant_Bee
+    region:   ne_442
+    level:    [7, 8]
+  17252799:
+    template: Crawler
+    region:   ne_442
+    level:    [5, 6]
+  17252800:
+    template: Crawler
+    region:   ne_442
+    level:    [5, 6]
+  17252801:
+    template: Savanna_Rarab
+    region:   ne_442
+    level:    [4, 5]
+  17252802:
+    template: Savanna_Rarab
+    region:   ne_442
+    level:    [4, 5]
+  17252803:
+    template: Yagudo_Initiate
+    region:   ne_442
+    level:    [5, 6]
+  17252804:
+    template: Yagudo_Acolyte
+    region:   ne_442
+    level:    [5, 6]
+  17252805:
+    template: Yagudo_Scribe
+    region:   ne_442
+    level:    [5, 6]
+  17252806:
+    template: Mad_Fox
+    region:   ne_442
+    level:    [6, 8]
+  17252807:
+    template: Magicked_Bones_club
+    script:   Magicked_Bones
+    region:   ne_442
+    level:    [6, 8]
+  17252808:
+    template: Magicked_Bones_blm
+    script:   Magicked_Bones
+    region:   ne_442
+    level:    [6, 8]
+  17252809:
+    template: Goblin_Digger_near
+    script:   Goblin_Digger
+    at:       [112.816, -4.761, -40.004, 6]
+    level:    [6, 7]
+  17252810:
+    template: Pixie
+    level:    [51, 54]
+  17252811:
+    template: Pixie
+    level:    [51, 54]
+  17252812:
+    template: Pixie
+    level:    [51, 54]
+  17252813:
+    template: Pixie
+    level:    [51, 54]
+  17252814:
+    template: Pixie
+    level:    [51, 54]
+  17252815:
+    template: Bolster
+    level:    [1, 1]
+  17252816:
+    template: Rw_Nw_Prt_M_Hrw
+    at:       [-119.596, -5.748, -420.031, 166]
+    level:    [95, 97]
+  17252817:
+    template: Rw_Nw_Prt_M_Hrw
+    level:    [95, 97]
+  17252818:
+    template: Rw_Nw_Prt_M_Hrw
+    level:    [95, 97]
+  17252828:
+    script: Wayward_Worm
+  17252829:
+    script: Wayward_Worm
+  17252830:
+    script: Wayward_Worm
+  17252840:
+    script: Wayward_Worm
+  17252841:
+    script: Wayward_Worm
+  17252842:
+    script: Wayward_Worm
+  17252852:
+    script: Wayward_Worm
+  17252853:
+    script: Wayward_Worm
+  17252854:
+    script: Wayward_Worm
+  17252855:
+    script: Tatenashi_Armor
+  17252856:
+    script: Hizamaru_Armor
+  17252857:
+    script: Ubuginu_Armor
+  17252858:
+    script: Hachiryu_Armor
+  17252859:
+    script: Omodaka_Armor
+  17252860:
+    template: Bull_[Herd1]
+    level:    [1, 1]
+  17252861:
+    template: Cow_[Herd1]
+    level:    [1, 1]
+  17252862:
+    template: Cow_[Herd1]
+    level:    [1, 1]
+  17252863:
+    template: Cow_[Herd1]
+    level:    [1, 1]
+  17252864:
+    template: Calf_[Herd1]
+    level:    [1, 1]
+  17252865:
+    template: Calf_[Herd1]
+    level:    [1, 1]
+  17252866:
+    template: Calf_[Herd1]
+    level:    [1, 1]
+  17252867:
+    template: Calf_[Herd1]
+    level:    [1, 1]
+  17252868:
+    template: Calf_[Herd1]
+    level:    [1, 1]
+  17252869:
+    template: Calf_[Herd1]
+    level:    [1, 1]
+  17252870:
+    template: Bull_[Herd2]
+    level:    [1, 1]
+  17252871:
+    template: Cow_[Herd2]
+    level:    [1, 1]
+  17252872:
+    template: Cow_[Herd2]
+    level:    [1, 1]
+  17252873:
+    template: Cow_[Herd2]
+    level:    [1, 1]
+  17252874:
+    template: Calf_[Herd2]
+    level:    [1, 1]
+  17252875:
+    template: Calf_[Herd2]
+    level:    [1, 1]
+  17252876:
+    template: Calf_[Herd2]
+    level:    [1, 1]
+  17252877:
+    template: Calf_[Herd2]
+    level:    [1, 1]
+  17252878:
+    template: Calf_[Herd2]
+    level:    [1, 1]
+  17252879:
+    template: Calf_[Herd2]
+    level:    [1, 1]
+  17252880:
+    template: Bull_[Herd3]
+    level:    [1, 1]
+  17252881:
+    template: Cow_[Herd3]
+    level:    [1, 1]
+  17252882:
+    template: Cow_[Herd3]
+    level:    [1, 1]
+  17252883:
+    template: Cow_[Herd3]
+    level:    [1, 1]
+  17252884:
+    template: Calf_[Herd3]
+    level:    [1, 1]
+  17252885:
+    template: Calf_[Herd3]
+    level:    [1, 1]
+  17252886:
+    template: Calf_[Herd3]
+    level:    [1, 1]
+  17252887:
+    template: Calf_[Herd3]
+    level:    [1, 1]
+  17252888:
+    template: Calf_[Herd3]
+    level:    [1, 1]
+  17252889:
+    template: Calf_[Herd3]
+    level:    [1, 1]
+  17252900:
+    template: Pyracmon
+    level:    [1, 1]
+  17252901:
+    template: Wraith_Bat
+    level:    [1, 1]
+  17252902:
+    template: Wraith_Bat
+    level:    [1, 1]
+  17252903:
+    template: Wraith_Bat
+    level:    [1, 1]
+  17252904:
+    template: Wraith_Bat
+    level:    [1, 1]
+  17252905:
+    template: Wraith_Bat
+    level:    [1, 1]
+  17252906:
+    template: Wraith_Bat
+    level:    [1, 1]
+  17252907:
+    template: Wraith_Bat
+    level:    [1, 1]
+  17252908:
+    template: Wraith_Bat
+    level:    [1, 1]
+  17252909:
+    template: Wraith_Bat
+    level:    [1, 1]
+  17252910:
+    template: Wraith_Bat
+    level:    [1, 1]
+  17252911:
+    script: Astral_Box
+  17252912:
+    script: Astral_Box
+  17252913:
+    script: Astral_Box
+  17252914:
+    script: Astral_Box
+  17252915:
+    script: Astral_Box
+  17252916:
+    script: Astral_Box
+  17252917:
+    script: Astral_Box
+  17252918:
+    script: Astral_Box
+  17252919:
+    script: Astral_Box
+  17252920:
+    script: Astral_Box
+  17252921:
+    script: Astral_Box
+  17252922:
+    script: Astral_Box
+  17252923:
+    script: Astral_Box
+  17252924:
+    script: Astral_Box
+  17252925:
+    script: Astral_Box
+  17252926:
+    script: Astral_Box
+  17252927:
+    script: Astral_Box
+  17252928:
+    script: Astral_Box
+  17252929:
+    script: Astral_Box
+  17252930:
+    script: Astral_Box
+  17252931:
+    script: Astral_Box
+  17252932:
+    script: Astral_Box
+  17252933:
+    script: Astral_Box
+  17252934:
+    script: Astral_Box
+  17252935:
+    script: Astral_Box
+  17252936:
+    script: Astral_Box
+  17252937:
+    script: Astral_Box
+  17252938:
+    script: Astral_Box
+  17252939:
+    script: Astral_Box
+  17252940:
+    script: Astral_Box
+  17252941:
+    script: Astral_Box
+  17252942:
+    script: Astral_Box
+  17252943:
+    script: Astral_Box
+  17252944:
+    script: Astral_Box
+  17252945:
+    script: Astral_Box
+  17252946:
+    script: Astral_Box
+  17252947:
+    script: Astral_Box
+  17252948:
+    script: Astral_Box
+  17252949:
+    script: Astral_Box
+  17252950:
+    script: Astral_Box
+  17252951:
+    script: Astral_Box
+  17252952:
+    script: Astral_Box
+  17252953:
+    script: Slime
+    region: s_6
+  17252954:
+    script: Slime
+    region: s_6
+  17252955:
+    script: Slime
+    region: s_6
+  17252956:
+    script: Slime
+    region: s_6
+  17252957:
+    script: Slime
+    region: s_6
+  17252958:
+    script: Slime
+    region: s_6
+  17252959:
+    script: Slime
+    region: s_6
+  17252960:
+    script: Slime
+    region: s_40
+  17252961:
+    script: Slime
+    region: s_40
+  17252962:
+    script: Slime
+    region: s_40
+  17252963:
+    script: Slime
+    region: s_40
+  17252964:
+    script: Slime
+    region: s_40
+  17252965:
+    script: Slime
+    region: s_40
+  17252966:
+    script: Slime
+    region: s_17
+  17252967:
+    script: Slime
+    region: s_17
+  17252968:
+    script: Slime
+    region: s_17
+  17252969:
+    script: Slime
+    region: s_17
+  17252970:
+    script: Slime
+    region: s_17
+  17252971:
+    script: Slime
+    region: s_17
+  17252972:
+    script: Slime
+    region: s_17
+  17252973:
+    script: She-Slime
+    region: s_6
+  17252974:
+    script: She-Slime
+    region: s_6
+  17252975:
+    script: She-Slime
+    region: s_6
+  17252976:
+    script: She-Slime
+    region: s_17
+  17252977:
+    script: She-Slime
+    region: s_17
+  17252978:
+    script: She-Slime
+    region: s_17
+  17252979:
+    script: She-Slime
+    region: s_40
+  17252980:
+    script: She-Slime
+  17252981:
+    script: She-Slime
+    region: s_40
+  17252982:
+    script: She-Slime
+    region: s_40
+  17252983:
+    script: Metal_Slime
+  17252984:
+    script: Metal_Slime
+  17252985:
+    script: Metal_Slime
+  17252986:
+    script: Metal_Slime
+  17252987:
+    script: Metal_Slime
+  17252988:
+    template: Prickly_Pitriv
+    at:       [144.007, -13.672, 111.915, 254]
+    level:    [80, 80]
+  17252989:
+    template: Prickly_Pitriv
+    at:       [361.839, -0.394, -195.160, 132]
+    level:    [80, 80]
+  17252990:
+    template: Prickly_Pitriv
+    at:       [-245.729, -1.130, -106.959, 166]
+    level:    [80, 80]
+  17252991:
+    template: Yagudo_Vicar
+    at:       [395.611, -16.229, 46.167, 169]
+    level:    [139, 139]
+  17252992:
+    template: Yagudo_Centurion
+    at:       [394.890, -16.112, 47.102, 117]
+    level:    [139, 139]
+  17252993:
+    template: Yagudo_Underling
+    at:       [394.220, -15.978, 48.349, 95]
+    level:    [139, 139]
+  17252994:
+    template: Yagudo_Underling
+    at:       [393.592, -15.564, 46.948, 228]
+    level:    [139, 139]
+  17252995:
+    template: King_of_Spades
+    at:       [394.467, -16.308, 44.385, 198]
+    level:    [139, 139]
+
+  17253135:
+    template: Beta_mand_Tiny_Mandragora
+    region:   s_6
+    level:    [1, 1]
+  17253136:
+    template: Beta_mand_Tiny_Mandragora
+    region:   s_6
+    level:    [1, 1]
+  17253137:
+    template: Beta_bee_Bumblebee
+    region:   s_6
+    level:    [1, 1]
+  17253138:
+    template: Beta_bee_Bumblebee
+    region:   s_6
+    level:    [1, 1]
+  17253139:
+    template: Beta_taka_Carrion_Crow
+    region:   s_27
+    level:    [3, 4]
+  17253140:
+    template: Beta_taka_Carrion_Crow
+    region:   s_27
+    level:    [3, 4]
+  17253141:
+    template: Beta_craw_Crawler
+    region:   s_27
+    level:    [4, 5]
+  17253142:
+    template: Beta_craw_Crawler
+    region:   s_27
+    level:    [4, 5]
+slots:
+  - members:
+      17252407: {} # Savanna_Rarab
+      17252419: {} # Mad_Fox
+  - members:
+      17252416: {} # Yagudo_Initiate
+      17252420: {} # Magicked_Bones
+  - members:
+      17252424: {} # Savanna_Rarab
+      17252436: {} # Mad_Fox
+  - members:
+      17252433: {} # Yagudo_Initiate
+      17252437: {} # Magicked_Bones
+  - members:
+      17252440: {} # Savanna_Rarab
+      17252452: {} # Mad_Fox
+  - members:
+      17252449: {} # Yagudo_Initiate
+      17252453: {} # Magicked_Bones
+  - members:
+      17252471: {} # Savanna_Rarab
+      17252483: {} # Mad_Fox
+  - members:
+      17252480: {} # Yagudo_Initiate
+      17252484: {} # Magicked_Bones
+  - members:
+      17252495: {} # Goblin_Thug
+      17252497: {} # Goblin_Weaver
+      17252499: {} # Magicked_Bones
+  - members:
+      17252496: {} # Goblin_Thug
+      17252498: {} # Goblin_Weaver
+      17252500: {} # Magicked_Bones
+  - members:
+      17252506: {} # Savanna_Rarab
+  - members:
+      17252514: {} # Goblin_Thug
+      17252518: {} # Magicked_Bones
+  - members:
+      17252519: {} # River_Crab
+      17252524: {} # Pug_Pugil
+  - members:
+      17252541: {} # Savanna_Rarab
+      17252546: {} # Mad_Fox
+  - members:
+      17252543: {} # Yagudo_Initiate
+      17252547: {} # Magicked_Bones
+  - members:
+      17252559: {} # Savanna_Rarab
+      17252565: {} # Mad_Fox
+  - members:
+      17252561: {} # Yagudo_Initiate
+      17252566: {} # Magicked_Bones
+  - members:
+      17252562: {} # Yagudo_Initiate
+      17252568: {} # Yagudo_Initiate
+  - members:
+      17252563: {} # Yagudo_Acolyte
+      17252569: {} # Yagudo_Acolyte
+  - members:
+      17252564: {} # Yagudo_Scribe
+      17252570: {} # Yagudo_Scribe
+  - members:
+      17252580: {} # River_Crab
+      17252582: {} # River_Crab
+  - members:
+      17252581: {} # Pug_Pugil
+      17252586: {} # Pug_Pugil
+  - members:
+      17252583: {} # River_Crab
+      17252590: {} # River_Crab
+  - members:
+      17252587: {} # Pug_Pugil
+      17252591: {} # Pug_Pugil
+  - members:
+      17252612: {} # River_Crab
+      17252618: {} # River_Crab
+  - members:
+      17252615: {} # Pug_Pugil
+      17252620: {} # Pug_Pugil
+  - members:
+      17252635: {} # Goblin_Thug
+      17252639: {} # Magicked_Bones
+      17252641: {} # Goblin_Thug
+  - members:
+      17252636: {} # Goblin_Thug
+      17252642: {} # Goblin_Thug
+  - members:
+      17252637: {} # Goblin_Weaver
+      17252643: {} # Goblin_Weaver
+  - members:
+      17252638: {} # Goblin_Weaver
+      17252640: {} # Magicked_Bones
+  - members:
+      17252658: {} # Goblin_Thug
+      17252660: {} # Magicked_Bones
+  - members:
+      17252674: {} # River_Crab
+      17252677: {} # Pug_Pugil
+  - members:
+      17252691: {} # River_Crab
+      17252695: {} # Pug_Pugil
+  - members:
+      17252699: {} # River_Crab
+      17252703: {} # River_Crab
+  - members:
+      17252700: {} # Pug_Pugil
+      17252707: {} # Pug_Pugil
+  - members:
+      17252701: {} # River_Crab
+      17252704: {} # River_Crab
+  - members:
+      17252702: {} # Pug_Pugil
+      17252708: {} # Pug_Pugil
+  - members:
+      17252721: {} # River_Crab
+      17252726: {} # River_Crab
+      17252728: {} # River_Crab
+  - members:
+      17252723: {} # Pug_Pugil
+      17252727: {} # Pug_Pugil
+      17252729: {} # Pug_Pugil
+  - members:
+      17252741: {} # Yagudo_Initiate
+      17252744: {} # Magicked_Bones
+  - members:
+      17252743: {} # Yagudo_Scribe
+      17252745: {} # Magicked_Bones
+  - members:
+      17252751: {} # Savanna_Rarab
+      17252761: {} # Mad_Fox
+  - members:
+      17252758: {} # Yagudo_Initiate
+      17252762: {} # Magicked_Bones
+  - members:
+      17252760: {} # Yagudo_Scribe
+      17252763: {} # Magicked_Bones
+  - members:
+      17252786: {} # Savanna_Rarab
+      17252791: {} # Mad_Fox
+  - members:
+      17252788: {} # Yagudo_Initiate
+      17252792: {} # Magicked_Bones
+  - members:
+      17252803: {} # Yagudo_Initiate
+      17252807: {} # Magicked_Bones
+  - members:
+      17252805: {} # Yagudo_Scribe
+      17252808: {} # Magicked_Bones

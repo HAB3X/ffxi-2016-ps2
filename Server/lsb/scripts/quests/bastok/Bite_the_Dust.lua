@@ -1,0 +1,77 @@
+-----------------------------------
+-- Bite the Dust
+-----------------------------------
+-- Log ID: 1, Quest ID: 46
+-- Yazan : !pos -20.06 -3.3 24.471 236
+-----------------------------------
+
+local quest = Quest:new(xi.questLog.BASTOK, xi.quest.id.bastok.BITE_THE_DUST)
+
+quest.reward =
+{
+    fame     = 10,
+    fameArea = xi.fameArea.BASTOK,
+    gil      = 350,
+    title    = xi.title.SAND_BLASTER,
+}
+
+quest.sections =
+{
+    {
+        check = function(player, status, vars)
+            return status == xi.questStatus.QUEST_AVAILABLE and
+                player:getFameLevel(xi.fameArea.BASTOK) >= 2
+        end,
+
+        [xi.zone.PORT_BASTOK] =
+        {
+            ['Yazan'] = quest:progressEvent(191),
+
+            onEventFinish =
+            {
+                [191] = function(player, csid, option, npc)
+                    quest:begin(player)
+                end,
+            },
+        },
+    },
+
+    {
+        check = function(player, status, vars)
+            return status ~= xi.questStatus.QUEST_AVAILABLE
+        end,
+
+        [xi.zone.PORT_BASTOK] =
+        {
+            ['Yazan'] =
+            {
+                onTrade = function(player, npc, trade)
+                    if npcUtil.tradeMatches(trade, { { xi.item.SAND_BAT_FANG, 1 } }) then
+                        return quest:progressEvent(193)
+                    end
+                end,
+
+                onTrigger = function(player, npc)
+                    local questStatus = player:getQuestStatus(quest.areaId, quest.questId)
+
+                    if questStatus == xi.questStatus.QUEST_ACCEPTED then
+                        return quest:event(192)
+                    else
+                        return quest:event(194):oncePerZone()
+                    end
+                end,
+            },
+
+            onEventFinish =
+            {
+                [193] = function(player, csid, option, npc)
+                    if quest:complete(player) then
+                        player:tradeComplete()
+                    end
+                end,
+            },
+        },
+    },
+}
+
+return quest

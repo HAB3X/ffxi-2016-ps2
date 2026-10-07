@@ -1,0 +1,4310 @@
+# yaml-language-server: $schema=../../schemas/mobs.schema.json
+
+templates:
+
+  Bigmouth_Billy:
+    id:            414
+    species:       worm
+    type:          [notorious]
+    roam:          [worm]
+    spell_list_id: 9
+    skill_list_id: 258
+    attributes:
+      combat:
+        skill: scythe
+      jobs: [blm, rdm]
+      render:
+        look:
+          type:  standard
+          model: 424
+        entity_flags: 157
+        name_prefix:   32
+        model_size:     2
+        hitbox:        14
+      behaviors:
+        links: true
+      spawn:
+        type: [lottery]
+      stats:
+        hp: 400
+    loot:
+      drops:
+        - chance: very_common
+          item:   chunk_of_iron_ore
+        - chance: very_common
+          item:   chunk_of_mythril_ore
+        - chance: very_rare
+          item:   red_rock
+        - chance: very_rare
+          item:   blue_rock
+        - chance: very_rare
+          item:   yellow_rock
+        - chance: very_rare
+          item:   green_rock
+        - chance: very_rare
+          item:   translucent_rock
+        - chance: very_rare
+          item:   purple_rock
+        - chance: very_rare
+          item:   black_rock
+        - chance: very_rare
+          item:   white_rock
+      steal: chunk_of_gold_ore
+
+  Bomb:
+    id:            490
+    species:       bomb
+    skill_list_id: 56
+    attributes:
+      combat:
+        skill: club
+      render:
+        look:
+          type:  standard
+          model: 280
+        entity_flags:  641
+        animation_sub:   8
+        hitbox:         10
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+        type:    [fog]
+    loot:
+      drops:
+        - chance: common
+          item:   pinch_of_bomb_ash
+        - chance: uncommon
+          item:   bomb_arm
+      steal: [pinch_of_bomb_ash, bomb_arm] # audit needed
+      despoil:
+        pinch_of_bomb_ash: 0
+
+  Bull_[Herd1]:
+    id:            579
+    species:       sheep
+    skill_list_id: 226
+    attributes:
+      combat:
+        delay: 0
+      render:
+        look:
+          type:  standard
+          model: 1357
+        entity_flags: 133
+      spawn:
+        type: [scripted]
+
+  Bull_[Herd2]:
+    id:            580
+    species:       sheep
+    skill_list_id: 226
+    attributes:
+      combat:
+        delay: 0
+      render:
+        look:
+          type:  standard
+          model: 1357
+        entity_flags: 133
+      spawn:
+        type: [scripted]
+
+  Bull_[Herd3]:
+    id:            581
+    species:       sheep
+    skill_list_id: 226
+    attributes:
+      combat:
+        delay: 0
+      render:
+        look:
+          type:  standard
+          model: 1357
+        entity_flags: 133
+      spawn:
+        type: [scripted]
+
+  Calf_[Herd1]:
+    id:            611
+    species:       sheep
+    skill_list_id: 226
+    attributes:
+      combat:
+        delay: 0
+      render:
+        look:
+          type:  standard
+          model: 2920
+        entity_flags:  641
+        animation_sub:  16
+        hitbox:          8
+      spawn:
+        type: [scripted]
+
+  Calf_[Herd2]:
+    id:            612
+    species:       sheep
+    skill_list_id: 226
+    attributes:
+      combat:
+        delay: 0
+      render:
+        look:
+          type:  standard
+          model: 2920
+        entity_flags:  641
+        animation_sub:  16
+      spawn:
+        type: [scripted]
+
+  Calf_[Herd3]:
+    id:            613
+    species:       sheep
+    skill_list_id: 226
+    attributes:
+      combat:
+        delay: 0
+      render:
+        look:
+          type:  standard
+          model: 2920
+        entity_flags:  641
+        animation_sub:  16
+      spawn:
+        type: [scripted]
+
+  Capricornus:
+    id:            6996
+    species:       pugil
+    type:          [notorious]
+    skill_list_id: 1149
+    attributes:
+      combat:
+        skill: axe
+      resists:
+        immune_status: [gravity, bind, light_sleep, dark_sleep]
+      render:
+        look:
+          type:  standard
+          model: 349
+        model_size:  2
+        hitbox:     32
+      spawn:
+        respawn: 3600
+      stats:
+        hp: 13500
+    loot:
+      drops:
+        - chance: uncommon
+          item:   fierce_belt
+    content: wotg
+
+  Carrion_Worm:
+    id:            656
+    species:       worm
+    roam:          [worm]
+    spell_list_id: 9
+    skill_list_id: 258
+    attributes:
+      combat:
+        skill: scythe
+      jobs: [blm, rdm]
+      render:
+        look:
+          type:  standard
+          model: 424
+        entity_flags: 129
+        hitbox:        11
+      spawn:
+        respawn: 180
+    loot:
+      drops:
+        - chance: common
+          item:   flint_stone
+        - chance: uncommon
+          item:   chunk_of_copper_ore
+        - chance: rare
+          item:   chunk_of_zinc_ore
+        - chance: very_rare
+          item:   chunk_of_silver_ore
+      steal: pebble
+      despoil:
+        chunk_of_copper_ore: 0
+        chunk_of_iron_ore:   0
+        chunk_of_silver_ore: 0
+        chunk_of_zinc_ore:   0
+
+  Cheval_Pugil:
+    id:            711
+    species:       pugil
+    skill_list_id: 197
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 348
+        entity_flags: 129
+        hitbox:        23
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: uncommon
+          item:   handful_of_pugil_scales
+      steal: handful_of_fish_scales
+      despoil:
+        handful_of_pugil_scales: 0
+        handful_of_fish_scales:  0
+
+  Cow_[Herd1]:
+    id:            821
+    species:       sheep
+    skill_list_id: 226
+    attributes:
+      combat:
+        delay: 0
+      render:
+        look:
+          type:  standard
+          model: 1357
+        entity_flags:  643
+        animation_sub:   8
+      spawn:
+        type: [scripted]
+
+  Cow_[Herd2]:
+    id:            822
+    species:       sheep
+    skill_list_id: 226
+    attributes:
+      combat:
+        delay: 0
+      render:
+        look:
+          type:  standard
+          model: 1357
+        entity_flags:  643
+        animation_sub:   8
+      spawn:
+        type: [scripted]
+
+  Cow_[Herd3]:
+    id:            823
+    species:       sheep
+    skill_list_id: 226
+    attributes:
+      combat:
+        delay: 0
+      render:
+        look:
+          type:  standard
+          model: 1357
+        entity_flags:  643
+        animation_sub:   8
+      spawn:
+        type: [scripted]
+
+  Ding_Bats:
+    id:            1038
+    species:       flock_bat
+    skill_list_id: 47
+    attributes:
+      combat:
+        skill: club
+      render:
+        look:
+          type:  standard
+          model: 260
+        entity_flags:  641
+        animation_sub:   8
+        name_prefix:    64
+        hitbox:         13
+      spawn:
+        respawn: 180
+        type:    [at_evening]
+    loot:
+      drops:
+        - chance: common
+          item:   bat_wing
+      despoil:
+        bat_wing: 0
+
+  Enchanted_Bones_blm:
+    id:            1214
+    species:       skeleton
+    spell_list_id: 28
+    skill_list_id: 227
+    attributes:
+      combat:
+        skill: axe
+      jobs: [blm, blm]
+      render:
+        look:
+          type:  standard
+          model: 564
+        entity_flags: 1153
+        hitbox:         10
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+        type:    [at_night]
+    loot:
+      drops:
+        - chance: common
+          item:   bone_chip
+      steal: bone_chip
+      despoil:
+        bone_chip: 0
+
+  Enchanted_Bones_war:
+    id:            6543
+    species:       skeleton
+    skill_list_id: 227
+    attributes:
+      combat:
+        skill: axe
+      render:
+        look:
+          type:  standard
+          model: 572
+        entity_flags: 1153
+        hitbox:         10
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+        type:    [at_night]
+    loot:
+      drops:
+        - chance: common
+          item:   bone_chip
+      steal: bone_chip
+      despoil:
+        bone_chip: 0
+
+  Fighting_Pugil:
+    id:            1336
+    species:       pugil
+    type:          [fished]
+    skill_list_id: 197
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 348
+        entity_flags: 129
+        hitbox:        23
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: uncommon
+          item:   handful_of_pugil_scales
+      steal: handful_of_fish_scales
+      despoil:
+        handful_of_pugil_scales: 0
+        handful_of_fish_scales:  0
+
+  Forest_Funguar:
+    id:            1403
+    species:       funguar
+    skill_list_id: 116
+    attributes:
+      combat:
+        skill: club
+      render:
+        look:
+          type:  standard
+          model: 376
+        entity_flags: 129
+        hitbox:        12
+      behaviors:
+        links: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   sleepshroom
+      steal: sleepshroom
+      despoil:
+        woozyshroom:       0
+        sleepshroom:       0
+        danceshroom:       0
+        agaricus_mushroom: 0
+
+  Forest_Hare:
+    id:            1404
+    species:       rabbit
+    skill_list_id: 206
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 268
+        entity_flags: 129
+        hitbox:        11
+      spawn:
+        respawn: 180
+    loot:
+      drops:
+        - chance: common
+          item:   slice_of_hare_meat
+        - chance: uncommon
+          item:   rabbit_hide
+      steal: san_dorian_carrot
+      despoil:
+        rabbit_hide:        0
+        slice_of_hare_meat: 0
+
+  Gawky_Gawain:
+    id:            1479
+    species:       beetle
+    type:          [notorious]
+    spell_list_id: 4
+    skill_list_id: 49
+    attributes:
+      combat:
+        skill: great_sword
+      jobs: [pld, pld]
+      render:
+        look:
+          type:  standard
+          model: 408
+        entity_flags: 157
+        name_prefix:   32
+        model_size:     2
+        hitbox:        14
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+
+  Goblin_Digger_near:
+    id:            1648
+    display_name:  Goblin_Digger
+    species:       goblin
+    skill_list_id: 133
+    attributes:
+      combat:
+        skill: dagger
+      jobs: [thf, thf]
+      render:
+        look:
+          type:  standard
+          model: 484
+        entity_flags: 129
+        hitbox:        10
+      behaviors:
+        aggressive: true
+        links:      true
+      mods:
+        vermin_killer: 5
+      mob_mods:
+        no_despawn: 1
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: rare
+          item:   goblin_mask
+        - chance: very_rare
+          item:   goblin_armor
+      steal: [pickaxe, beastcoin] # audit needed
+      despoil:
+        loaf_of_goblin_bread:      0
+        chunk_of_goblin_chocolate: 0
+        bowl_of_goblin_stew:       0
+        goblin_mushpot:            0
+
+  Goblin_Fisher:
+    id:            1659
+    species:       armored_goblin
+    skill_list_id: 133
+    attributes:
+      combat:
+        skill: axe
+      render:
+        look:
+          type:  standard
+          model: 492
+        entity_flags: 129
+        hitbox:        10
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: very_rare
+          item:   goblin_helm
+        - chance: very_rare
+          item:   goblin_mail
+        - chance: very_rare
+          item:   beastcoin
+        - chance: very_rare
+          item:   yew_fishing_rod
+        - chance: very_rare
+          item:   bamboo_fishing_rod
+        - chance: super_rare
+          item:   clothespole
+        - chance: super_rare
+          item:   fastwater_fishing_rod
+      steal: [beastcoin, willow_fishing_rod] # audit needed
+      despoil:
+        loaf_of_goblin_bread:      0
+        chunk_of_goblin_chocolate: 0
+        bowl_of_goblin_stew:       0
+        goblin_mushpot:            0
+
+  Goblin_Thug:
+    id:            1737
+    species:       goblin
+    skill_list_id: 133
+    attributes:
+      combat:
+        skill: dagger
+      jobs: [thf, thf]
+      render:
+        look:
+          type:  standard
+          model: 484
+        entity_flags: 129
+        hitbox:        10
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   wild_onion
+        - chance: rare
+          item:   goblin_mask
+        - chance: very_rare
+          item:   goblin_armor
+        - chance: very_rare
+          item:   beastcoin
+      steal: beastcoin
+      despoil:
+        loaf_of_goblin_bread:      0
+        chunk_of_goblin_chocolate: 0
+        bowl_of_goblin_stew:       0
+        goblin_mushpot:            0
+
+  Goblin_Weaver:
+    id:            1744
+    species:       goblin
+    spell_list_id: 3
+    skill_list_id: 133
+    attributes:
+      combat:
+        skill: dagger
+      jobs: [rdm, rdm]
+      render:
+        look:
+          type:  standard
+          model: 489
+        entity_flags: 129
+        hitbox:        10
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: rare
+          item:   goblin_mask
+        - chance: very_rare
+          item:   goblin_armor
+        - chance: very_rare
+          item:   spool_of_grass_thread
+        - chance: very_rare
+          item:   square_of_grass_cloth
+        - chance: very_rare
+          item:   spool_of_cotton_thread
+        - chance: super_rare
+          item:   square_of_cotton_cloth
+        - chance: very_rare
+          item:   beastcoin
+      steal: spool_of_grass_thread
+      despoil:
+        loaf_of_goblin_bread:      0
+        chunk_of_goblin_chocolate: 0
+        bowl_of_goblin_stew:       0
+        goblin_mushpot:            0
+
+  Hugemaw_Harold:
+    id:            4850
+    species:       worm
+    type:          [notorious]
+    roam:          [worm]
+    spell_list_id: 9
+    skill_list_id: 258
+    attributes:
+      combat:
+        skill: scythe
+      jobs: [blm, rdm]
+      render:
+        look:
+          type:  standard
+          model: 424
+        entity_flags: 133
+        name_prefix:   32
+        model_size:     2
+        hitbox:        14
+      behaviors:
+        links: true
+      spawn:
+        type: [scripted]
+
+  Krabkatoa:
+    id:            6998
+    species:       crab
+    type:          [notorious]
+    skill_list_id: 1150
+    attributes:
+      combat:
+        skill: scythe
+      jobs: [pld, war]
+      resists:
+        immune_status: [gravity, bind, paralyze, light_sleep, dark_sleep]
+      render:
+        look:
+          type:  standard
+          model: 358
+        model_size:  3
+        hitbox:     35
+      spawn:
+        respawn: 7200
+      stats:
+        hp: 39100
+    loot:
+      drops:
+        - chance: very_common
+          item:   krabkatoa_shell
+        - chance: very_common
+          item:   krabkatoa_shell
+        - chance: uncommon
+          item:   karka_ring
+        - chance: uncommon
+          item:   acubens_helm
+        - chance: common
+          item:   igneous_barnacle
+        - chance: uncommon
+          one_of:
+            petrified_log:             10
+            mahogany_log:               8
+            coral_fragment:           5.5
+            ebony_log:                5.5
+            chunk_of_gold_ore:          5
+            chunk_of_mythril_ore:       5
+            demon_horn:                 5
+            gold_ingot:                 5
+            handful_of_wyvern_scales:   5
+            mythril_ingot:              5
+            platinum_ingot:             5
+            ram_horn:                   5
+            chunk_of_darksteel_ore:     3
+            chunk_of_platinum_ore:      3
+            darksteel_ingot:            3
+            reraiser:                   3
+            spool_of_gold_thread:     2.5
+            square_of_raxa:           2.5
+            vile_elixir:              2.5
+            ram_skin:                   2
+            hi-reraiser:                1
+            square_of_rainbow_cloth:    1
+            vile_elixir_+1:             1
+            chunk_of_dark_ore:        0.5
+            chunk_of_earth_ore:       0.5
+            chunk_of_fire_ore:        0.5
+            chunk_of_ice_ore:         0.5
+            chunk_of_light_ore:       0.5
+            chunk_of_lightning_ore:   0.5
+            chunk_of_water_ore:       0.5
+            chunk_of_wind_ore:        0.5
+            manticore_hide:           0.5
+            philosophers_stone:       0.5
+            phoenix_feather:          0.5
+            slab_of_granite:          0.5
+            wyvern_skin:              0.5
+        - chance: uncommon
+          one_of:
+            petrified_log:             10
+            mahogany_log:               8
+            coral_fragment:           5.5
+            ebony_log:                5.5
+            chunk_of_gold_ore:          5
+            chunk_of_mythril_ore:       5
+            demon_horn:                 5
+            gold_ingot:                 5
+            handful_of_wyvern_scales:   5
+            mythril_ingot:              5
+            platinum_ingot:             5
+            ram_horn:                   5
+            chunk_of_darksteel_ore:     3
+            chunk_of_platinum_ore:      3
+            darksteel_ingot:            3
+            reraiser:                   3
+            spool_of_gold_thread:     2.5
+            square_of_raxa:           2.5
+            vile_elixir:              2.5
+            ram_skin:                   2
+            hi-reraiser:                1
+            square_of_rainbow_cloth:    1
+            vile_elixir_+1:             1
+            chunk_of_dark_ore:        0.5
+            chunk_of_earth_ore:       0.5
+            chunk_of_fire_ore:        0.5
+            chunk_of_ice_ore:         0.5
+            chunk_of_light_ore:       0.5
+            chunk_of_lightning_ore:   0.5
+            chunk_of_water_ore:       0.5
+            chunk_of_wind_ore:        0.5
+            manticore_hide:           0.5
+            philosophers_stone:       0.5
+            phoenix_feather:          0.5
+            slab_of_granite:          0.5
+            wyvern_skin:              0.5
+        - chance: uncommon
+          one_of:
+            petrified_log:             10
+            mahogany_log:               8
+            coral_fragment:           5.5
+            ebony_log:                5.5
+            chunk_of_gold_ore:          5
+            chunk_of_mythril_ore:       5
+            demon_horn:                 5
+            gold_ingot:                 5
+            handful_of_wyvern_scales:   5
+            mythril_ingot:              5
+            platinum_ingot:             5
+            ram_horn:                   5
+            chunk_of_darksteel_ore:     3
+            chunk_of_platinum_ore:      3
+            darksteel_ingot:            3
+            reraiser:                   3
+            spool_of_gold_thread:     2.5
+            square_of_raxa:           2.5
+            vile_elixir:              2.5
+            ram_skin:                   2
+            hi-reraiser:                1
+            square_of_rainbow_cloth:    1
+            vile_elixir_+1:             1
+            chunk_of_dark_ore:        0.5
+            chunk_of_earth_ore:       0.5
+            chunk_of_fire_ore:        0.5
+            chunk_of_ice_ore:         0.5
+            chunk_of_light_ore:       0.5
+            chunk_of_lightning_ore:   0.5
+            chunk_of_water_ore:       0.5
+            chunk_of_wind_ore:        0.5
+            manticore_hide:           0.5
+            philosophers_stone:       0.5
+            phoenix_feather:          0.5
+            slab_of_granite:          0.5
+            wyvern_skin:              0.5
+    content: wotg
+
+  Mouse_Bat_Ronf:
+    id:            2757
+    display_name:  Mouse_Bat
+    species:       bat
+    skill_list_id: 46
+    attributes:
+      combat:
+        skill: club
+      render:
+        look:
+          type:  standard
+          model: 256
+        entity_flags:  641
+        animation_sub:   8
+        hitbox:         11
+      spawn:
+        respawn: 180
+        type:    [at_evening]
+    loot:
+      drops:
+        - chance: very_common
+          item:   bat_wing
+        - chance: very_rare
+          item:   vial_of_fiend_blood
+      despoil:
+        bat_wing: 0
+
+  Mud_Pugil:
+    id:            2768
+    species:       pugil
+    type:          [fished]
+    skill_list_id: 197
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 348
+        entity_flags: 129
+        hitbox:        23
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: uncommon
+          item:   handful_of_pugil_scales
+      steal: handful_of_fish_scales
+      despoil:
+        handful_of_pugil_scales: 0
+        handful_of_fish_scales:  0
+
+  Orcish_Fodder:
+    id:            3013
+    species:       orc
+    skill_list_id: 189
+    attributes:
+      combat:
+        skill: dagger
+      render:
+        look:
+          type:  standard
+          model: 614
+        entity_flags: 1153
+        hitbox:         12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   orcish_axe
+      steal: beastcoin
+      despoil:
+        strip_of_meat_jerky:    0
+        dhalmel_steak:          0
+        strip_of_buffalo_jerky: 0
+
+  Orcish_Grappler:
+    id:            3016
+    species:       orc
+    skill_list_id: 189
+    attributes:
+      combat:
+        skill: hand_to_hand
+        delay: 380
+      jobs: [mnk, war]
+      render:
+        look:
+          type:  standard
+          model: 624
+        entity_flags: 1153
+        hitbox:         12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      steal: beastcoin
+      despoil:
+        strip_of_meat_jerky:    0
+        dhalmel_steak:          0
+        strip_of_buffalo_jerky: 0
+
+  Orcish_Mesmerizer:
+    id:            3022
+    species:       orc
+    spell_list_id: 21
+    skill_list_id: 189
+    attributes:
+      combat:
+        skill: axe
+      jobs: [blm, war]
+      render:
+        look:
+          type:  standard
+          model: 621
+        entity_flags: 1153
+        hitbox:         12
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: rare
+          item:   scroll_of_bind
+        - chance: rare
+          item:   scroll_of_blind
+      steal: beastcoin
+      despoil:
+        strip_of_meat_jerky:    0
+        dhalmel_steak:          0
+        strip_of_buffalo_jerky: 0
+
+  Pixie:
+    id:            3148
+    species:       pixie
+    spell_list_id: 20
+    skill_list_id: 195
+    attributes:
+      combat:
+        skill: scythe
+      jobs: [whm, whm]
+      render:
+        look:
+          type:  standard
+          model: 2030
+        entity_flags:  513
+        animation_sub:   8
+        hitbox:          6
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: always
+          item:   pinch_of_stygian_ash
+
+  Pug_Pugil_fished:
+    id:            6769
+    display_name:  Pug_Pugil
+    species:       pugil
+    type:          [fished]
+    skill_list_id: 197
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 348
+        entity_flags: 129
+        hitbox:        23
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: uncommon
+          item:   handful_of_pugil_scales
+      steal: handful_of_fish_scales
+      despoil:
+        handful_of_pugil_scales: 0
+        handful_of_fish_scales:  0
+
+  Pugil:
+    id:            3221
+    species:       pugil
+    skill_list_id: 197
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 348
+        entity_flags: 129
+        hitbox:        23
+      spawn:
+        respawn: 180
+    loot:
+      drops:
+        - chance: uncommon
+          item:   handful_of_pugil_scales
+      steal: handful_of_fish_scales
+      despoil:
+        handful_of_pugil_scales: 0
+        handful_of_fish_scales:  0
+
+  Pugil_fished:
+    id:            6773
+    display_name:  Pugil
+    species:       pugil
+    type:          [fished]
+    skill_list_id: 197
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 348
+        entity_flags: 129
+        hitbox:        23
+      behaviors:
+        aggressive: true
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: uncommon
+          item:   handful_of_pugil_scales
+      steal: handful_of_fish_scales
+      despoil:
+        handful_of_pugil_scales: 0
+        handful_of_fish_scales:  0
+
+  Pyracmon:
+    id:            3241
+    species:       ahriman
+    spell_list_id: 11
+    skill_list_id: 4
+    attributes:
+      render:
+        look:
+          type:  standard
+          model: 264
+        entity_flags: 3
+      spawn:
+        type: [scripted]
+    loot:
+      drops:
+        - chance: always
+          one_of: [kingdom_stables_collar, republic_stables_medal, federation_stables_scarf]
+        - chance: always
+          one_of: [kingdom_stables_collar, republic_stables_medal, federation_stables_scarf]
+        - chance: uncommon
+          one_of: [kingdom_stables_collar, republic_stables_medal, federation_stables_scarf]
+        - chance: uncommon
+          one_of: [kingdom_stables_collar, republic_stables_medal, federation_stables_scarf]
+
+  Quagmire_Pugil:
+    id:            6995
+    species:       pugil
+    type:          [notorious]
+    skill_list_id: 197
+    attributes:
+      combat:
+        skill: axe
+      resists:
+        immune_status: [gravity, bind, light_sleep, dark_sleep]
+      render:
+        look:
+          type:  standard
+          model: 348
+        hitbox: 23
+      spawn:
+        respawn: 300
+      stats:
+        hp: 5200
+    content: wotg
+
+  Rambukk:
+    id:            5734
+    species:       ram
+    type:          [notorious]
+    skill_list_id: 771
+    attributes:
+      combat:
+        skill: scythe
+        delay: 320
+      resists:
+        immune_status: [gravity, bind, light_sleep, dark_sleep]
+      render:
+        look:
+          type:  standard
+          model: 344
+        entity_flags: 129
+        hitbox:        35
+      spawn:
+        respawn: 3600
+      stats:
+        hp: 420
+    loot:
+      drops:
+        - chance: common
+          item:   bukktooth
+    content: wotg
+
+  Sarimanok:
+    id:            5165
+    species:       puk
+    type:          [notorious]
+    spell_list_id: 21
+    skill_list_id: 198
+    attributes:
+      combat:
+        skill: dagger
+        delay: 200
+      jobs: [thf, blm]
+      resists:
+        dmg_physical:
+          piercing: 2500
+      render:
+        look:
+          type:  standard
+          model: 1745
+        entity_flags: 135
+        model_size:     3
+        hitbox:        24
+      spawn:
+        type: [scripted]
+      stats:
+        mp: 9999
+
+  Scarab_Beetle:
+    id:            3494
+    species:       beetle
+    skill_list_id: 49
+    attributes:
+      combat:
+        skill: polearm
+      jobs: [pld, pld]
+      render:
+        look:
+          type:  standard
+          model: 408
+        entity_flags: 129
+        hitbox:        11
+      behaviors:
+        links: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: uncommon
+          item:   insect_wing
+        - chance: very_rare
+          item:   beetle_jaw
+      despoil:
+        insect_wing:  0
+        beetle_shell: 0
+        beetle_jaw:   0
+
+  Sunderclaw:
+    id:            6994
+    species:       crab
+    type:          [notorious]
+    skill_list_id: 77
+    attributes:
+      combat:
+        skill: great_sword
+      jobs: [pld, pld]
+      resists:
+        immune_status: [bind, light_sleep, dark_sleep]
+      render:
+        look:
+          type:  standard
+          model: 356
+        animation_sub:  8
+        hitbox:        11
+      spawn:
+        respawn: 300
+      stats:
+        hp: 4930
+    content: wotg
+
+  Swamfisk:
+    id:            3818
+    species:       pugil
+    type:          [notorious]
+    skill_list_id: 1185
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 348
+        entity_flags:  3
+        model_size:    2
+        hitbox:       32
+      behaviors:
+        aggressive: true
+        links:      true
+      spawn:
+        type: [lottery]
+    loot:
+      drops:
+        - chance: always
+          item:   gelong_staff
+        - chance: very_common
+          item:   handful_of_pugil_scales
+        - chance: common
+          item:   shall_shell
+
+  Tainted_Hound:
+    id:            3836
+    species:       hound
+    skill_list_id: 143
+    attributes:
+      combat:
+        skill: sword
+      render:
+        look:
+          type:  standard
+          model: 364
+        entity_flags: 129
+        hitbox:        21
+      behaviors:
+        aggressive: true
+      spawn:
+        respawn: 300
+        type:    [at_night]
+    loot:
+      drops:
+        - chance: uncommon
+          item:   wolf_hide
+        - chance: rare
+          item:   revival_tree_root
+      despoil:
+        wolf_hide:         0
+        revival_tree_root: 0
+
+  Tunnel_Worm:
+    id:            4053
+    species:       worm
+    roam:          [worm]
+    spell_list_id: 9
+    skill_list_id: 258
+    attributes:
+      combat:
+        skill: scythe
+      jobs: [blm, rdm]
+      render:
+        look:
+          type:  standard
+          model: 424
+        entity_flags: 129
+        hitbox:        11
+      spawn:
+        respawn: 60
+    loot:
+      drops:
+        - chance: common
+          item:   flint_stone
+      steal: pebble
+      despoil:
+        chunk_of_copper_ore: 0
+        chunk_of_iron_ore:   0
+        chunk_of_silver_ore: 0
+        chunk_of_zinc_ore:   0
+
+  Wild_Rabbit:
+    id:            4343
+    species:       rabbit
+    skill_list_id: 206
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 268
+        entity_flags: 129
+        hitbox:        11
+      spawn:
+        respawn: 60
+    loot:
+      drops:
+        - chance: common
+          item:   rabbit_hide
+        - chance: uncommon
+          item:   rabbit_hide
+      steal: san_dorian_carrot
+      despoil:
+        rabbit_hide:        0
+        slice_of_hare_meat: 0
+
+  Wild_Sheep:
+    id:            4344
+    species:       sheep
+    skill_list_id: 226
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 340
+        entity_flags:  129
+        animation_sub:  16
+        hitbox:         20
+      behaviors:
+        links: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: common
+          item:   slice_of_giant_sheep_meat
+        - chance: rare
+          item:   sheep_tooth
+        - chance: uncommon
+          item:   sheepskin
+      steal: clump_of_sheep_wool
+      despoil:
+        sheep_tooth: 50
+
+  Wraith_Bat:
+    id:            4381
+    species:       bat
+    skill_list_id: 46
+    attributes:
+      combat:
+        skill: axe
+      render:
+        look:
+          type:  standard
+          model: 256
+        entity_flags: 3
+      spawn:
+        type: [scripted]
+
+  Yacumama:
+    id:            6997
+    species:       sea_monk
+    type:          [notorious]
+    skill_list_id: 218
+    attributes:
+      combat:
+        skill: hand_to_hand
+      jobs: [mnk, mnk]
+      resists:
+        immune_status: [gravity, paralyze, slow]
+      render:
+        look:
+          type:  standard
+          model: 352
+        animation_sub: 8
+      spawn:
+        respawn: 3600
+      stats:
+        hp: 13500
+    loot:
+      drops:
+        - chance: uncommon
+          item:   backlash_torque
+    content: wotg
+
+  Yilbegan:
+    id:            6999
+    species:       zilant
+    type:          [notorious]
+    spell_list_id: 454
+    skill_list_id: 470
+    attributes:
+      combat:
+        skill: scythe
+      jobs: [blm, drk]
+      resists:
+        immune_status: [gravity, bind, light_sleep, dark_sleep]
+      render:
+        look:
+          type:  standard
+          model: 2174
+        model_size:  3
+        hitbox:     55
+      spawn:
+        respawn: 86400
+      stats:
+        hp: 90000
+        mp:  5000
+    loot:
+      drops:
+        - chance: uncommon
+          item:   lucky_coin
+        - chance: rare
+          item:   zilant_ring
+        - chance: rare
+          item:   galdr_ring
+        - chance: uncommon
+          item:   agronas_leggings
+        - chance: common
+          item:   square_of_scarlet_kadife
+        - chance: uncommon
+          one_of:
+            petrified_log:             10
+            mahogany_log:               8
+            coral_fragment:           5.5
+            ebony_log:                5.5
+            chunk_of_gold_ore:          5
+            chunk_of_mythril_ore:       5
+            demon_horn:                 5
+            gold_ingot:                 5
+            handful_of_wyvern_scales:   5
+            mythril_ingot:              5
+            platinum_ingot:             5
+            ram_horn:                   5
+            chunk_of_darksteel_ore:     3
+            chunk_of_platinum_ore:      3
+            darksteel_ingot:            3
+            reraiser:                   3
+            spool_of_gold_thread:     2.5
+            square_of_raxa:           2.5
+            vile_elixir:              2.5
+            ram_skin:                   2
+            hi-reraiser:                1
+            square_of_rainbow_cloth:    1
+            vile_elixir_+1:             1
+            chunk_of_dark_ore:        0.5
+            chunk_of_earth_ore:       0.5
+            chunk_of_fire_ore:        0.5
+            chunk_of_ice_ore:         0.5
+            chunk_of_light_ore:       0.5
+            chunk_of_lightning_ore:   0.5
+            chunk_of_water_ore:       0.5
+            chunk_of_wind_ore:        0.5
+            manticore_hide:           0.5
+            philosophers_stone:       0.5
+            phoenix_feather:          0.5
+            slab_of_granite:          0.5
+            wyvern_skin:              0.5
+        - chance: uncommon
+          one_of:
+            petrified_log:             10
+            mahogany_log:               8
+            coral_fragment:           5.5
+            ebony_log:                5.5
+            chunk_of_gold_ore:          5
+            chunk_of_mythril_ore:       5
+            demon_horn:                 5
+            gold_ingot:                 5
+            handful_of_wyvern_scales:   5
+            mythril_ingot:              5
+            platinum_ingot:             5
+            ram_horn:                   5
+            chunk_of_darksteel_ore:     3
+            chunk_of_platinum_ore:      3
+            darksteel_ingot:            3
+            reraiser:                   3
+            spool_of_gold_thread:     2.5
+            square_of_raxa:           2.5
+            vile_elixir:              2.5
+            ram_skin:                   2
+            hi-reraiser:                1
+            square_of_rainbow_cloth:    1
+            vile_elixir_+1:             1
+            chunk_of_dark_ore:        0.5
+            chunk_of_earth_ore:       0.5
+            chunk_of_fire_ore:        0.5
+            chunk_of_ice_ore:         0.5
+            chunk_of_light_ore:       0.5
+            chunk_of_lightning_ore:   0.5
+            chunk_of_water_ore:       0.5
+            chunk_of_wind_ore:        0.5
+            manticore_hide:           0.5
+            philosophers_stone:       0.5
+            phoenix_feather:          0.5
+            slab_of_granite:          0.5
+            wyvern_skin:              0.5
+        - chance: uncommon
+          one_of:
+            petrified_log:             10
+            mahogany_log:               8
+            coral_fragment:           5.5
+            ebony_log:                5.5
+            chunk_of_gold_ore:          5
+            chunk_of_mythril_ore:       5
+            demon_horn:                 5
+            gold_ingot:                 5
+            handful_of_wyvern_scales:   5
+            mythril_ingot:              5
+            platinum_ingot:             5
+            ram_horn:                   5
+            chunk_of_darksteel_ore:     3
+            chunk_of_platinum_ore:      3
+            darksteel_ingot:            3
+            reraiser:                   3
+            spool_of_gold_thread:     2.5
+            square_of_raxa:           2.5
+            vile_elixir:              2.5
+            ram_skin:                   2
+            hi-reraiser:                1
+            square_of_rainbow_cloth:    1
+            vile_elixir_+1:             1
+            chunk_of_dark_ore:        0.5
+            chunk_of_earth_ore:       0.5
+            chunk_of_fire_ore:        0.5
+            chunk_of_ice_ore:         0.5
+            chunk_of_light_ore:       0.5
+            chunk_of_lightning_ore:   0.5
+            chunk_of_water_ore:       0.5
+            chunk_of_wind_ore:        0.5
+            manticore_hide:           0.5
+            philosophers_stone:       0.5
+            phoenix_feather:          0.5
+            slab_of_granite:          0.5
+            wyvern_skin:              0.5
+    content: wotg
+
+
+  Beta_usa_Wild_Rabbit:
+    id:            40001
+    species:       rabbit
+    skill_list_id: 206
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 2950
+        entity_flags: 129
+        hitbox:        11
+      spawn:
+        respawn: 60
+    loot:
+      drops:
+        - chance: rare
+          item:   beta_10858
+        - chance: rare
+          item:   beta_17752
+        - chance: rare
+          item:   beta_18570
+        - chance: rare
+          item:   beta_20006
+        - chance: rare
+          item:   beta_20022
+        - chance: rare
+          item:   beta_20052
+        - chance: rare
+          item:   beta_20070
+        - chance: uncommon
+          item:   beta_71
+        - chance: uncommon
+          item:   beta_3774
+        - chance: uncommon
+          item:   beta_6737
+        - chance: uncommon
+          item:   beta_6887
+        - chance: common
+          item:   rabbit_hide
+        - chance: uncommon
+          item:   rabbit_hide
+      steal: san_dorian_carrot
+      despoil:
+        rabbit_hide:        0
+        slice_of_hare_meat: 0
+
+  Beta_myco_Forest_Funguar:
+    id:            40009
+    species:       funguar
+    skill_list_id: 116
+    attributes:
+      combat:
+        skill: club
+      render:
+        look:
+          type:  standard
+          model: 2967
+        entity_flags: 129
+        hitbox:        12
+      behaviors:
+        links: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: rare
+          item:   beta_18549
+        - chance: rare
+          item:   beta_19996
+        - chance: rare
+          item:   beta_20017
+        - chance: rare
+          item:   beta_20047
+        - chance: rare
+          item:   beta_20064
+        - chance: uncommon
+          item:   beta_233
+        - chance: uncommon
+          item:   beta_4864
+        - chance: uncommon
+          item:   beta_6781
+        - chance: common
+          item:   sleepshroom
+      steal: sleepshroom
+      despoil:
+        woozyshroom:       0
+        sleepshroom:       0
+        danceshroom:       0
+        agaricus_mushroom: 0
+
+  Beta_beet_Scarab_Beetle:
+    id:            40010
+    species:       beetle
+    skill_list_id: 49
+    attributes:
+      combat:
+        skill: polearm
+      jobs: [pld, pld]
+      render:
+        look:
+          type:  standard
+          model: 2971
+        entity_flags: 129
+        hitbox:        11
+      behaviors:
+        links: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: rare
+          item:   beta_18550
+        - chance: rare
+          item:   beta_19997
+        - chance: rare
+          item:   beta_20018
+        - chance: rare
+          item:   beta_20048
+        - chance: rare
+          item:   beta_20065
+        - chance: uncommon
+          item:   beta_468
+        - chance: uncommon
+          item:   beta_5996
+        - chance: uncommon
+          item:   beta_6824
+        - chance: uncommon
+          item:   insect_wing
+        - chance: very_rare
+          item:   beetle_jaw
+      despoil:
+        insect_wing:  0
+        beetle_shell: 0
+        beetle_jaw:   0
+
+  Beta_shee_Wild_Sheep:
+    id:            40015
+    species:       sheep
+    skill_list_id: 226
+    attributes:
+      combat:
+        skill: scythe
+      render:
+        look:
+          type:  standard
+          model: 2960
+        entity_flags:  129
+        animation_sub:  16
+        hitbox:         20
+      behaviors:
+        links: true
+      spawn:
+        respawn: 300
+    loot:
+      drops:
+        - chance: rare
+          item:   beta_20004
+        - chance: rare
+          item:   beta_20020
+        - chance: rare
+          item:   beta_20050
+        - chance: rare
+          item:   beta_20067
+        - chance: rare
+          item:   beta_16310
+        - chance: uncommon
+          item:   beta_73
+        - chance: uncommon
+          item:   beta_3776
+        - chance: uncommon
+          item:   beta_6739
+        - chance: uncommon
+          item:   beta_6889
+        - chance: common
+          item:   slice_of_giant_sheep_meat
+        - chance: rare
+          item:   sheep_tooth
+        - chance: uncommon
+          item:   sheepskin
+      steal: clump_of_sheep_wool
+      despoil:
+        sheep_tooth: 50
+
+spawns:
+  17190913:
+    template: Pugil_fished
+    script:   Pugil
+    at:       [1.000, 1.000, 1.000]
+    level:    [1, 5]
+  17190914:
+    template: Cheval_Pugil
+    at:       [1.000, 1.000, 1.000]
+    level:    [9, 10]
+  17190915:
+    template: Mud_Pugil
+    at:       [1.000, 1.000, 1.000]
+    level:    [9, 10]
+  17190916:
+    template: Pug_Pugil_fished
+    script:   Pug_Pugil
+    at:       [1.000, 1.000, 1.000]
+    level:    [9, 10]
+  17190917:
+    template: Fighting_Pugil
+    at:       [1.000, 1.000, 1.000]
+    level:    [9, 10]
+  17190918:
+    template: Wild_Rabbit
+    region:   w_6
+    level:    [1, 1]
+  17190919:
+    template: Wild_Rabbit
+    region:   w_6
+    level:    [1, 1]
+  17190920:
+    template: Wild_Rabbit
+    region:   w_6
+    level:    [1, 1]
+  17190921:
+    template: Wild_Rabbit
+    region:   w_6
+    level:    [1, 1]
+  17190922:
+    template: Wild_Rabbit
+    region:   w_6
+    level:    [1, 1]
+  17190923:
+    template: Wild_Rabbit
+    region:   w_6
+    level:    [1, 1]
+  17190924:
+    template: Wild_Rabbit
+    region:   w_6
+    level:    [1, 1]
+  17190925:
+    template: Wild_Rabbit
+    region:   w_6
+    level:    [1, 1]
+  17190926:
+    template: Wild_Rabbit
+    region:   w_6
+    level:    [1, 1]
+  17190927:
+    template: Wild_Rabbit
+    region:   w_6
+    level:    [1, 1]
+  17190928:
+    template: Tunnel_Worm
+    region:   w_6
+    level:    [1, 1]
+  17190929:
+    template: Tunnel_Worm
+    region:   w_6
+    level:    [1, 1]
+  17190930:
+    template: Tunnel_Worm
+    region:   w_6
+    level:    [1, 1]
+  17190931:
+    template: Tunnel_Worm
+    region:   w_6
+    level:    [1, 1]
+  17190932:
+    template: Tunnel_Worm
+    region:   w_6
+    level:    [1, 1]
+  17190933:
+    template: Ding_Bats
+    region:   w_6
+    level:    [1, 1]
+    attributes:
+      spawn:
+        window:
+          start: 20
+          end:    6
+  17190934:
+    template: Ding_Bats
+    region:   w_6
+    level:    [1, 1]
+    attributes:
+      spawn:
+        window:
+          start: 19
+          end:    5
+  17190935:
+    template: Ding_Bats
+    region:   w_6
+    level:    [1, 1]
+    attributes:
+      spawn:
+        window:
+          start: 18
+          end:    4
+  17190936:
+    template: Ding_Bats
+    region:   w_6
+    level:    [1, 1]
+    attributes:
+      spawn:
+        window:
+          start: 20
+          end:    6
+  17190937:
+    template: Ding_Bats
+    region:   w_6
+    level:    [1, 1]
+    attributes:
+      spawn:
+        window:
+          start: 19
+          end:    5
+  17190938:
+    template: Wild_Rabbit
+    region:   w_26
+    level:    [1, 1]
+  17190939:
+    template: Wild_Rabbit
+    region:   w_26
+    level:    [1, 1]
+  17190940:
+    template: Wild_Rabbit
+    region:   w_26
+    level:    [1, 1]
+  17190941:
+    template: Wild_Rabbit
+    region:   w_26
+    level:    [1, 1]
+  17190942:
+    template: Wild_Rabbit
+    region:   w_26
+    level:    [1, 1]
+  17190943:
+    template: Wild_Rabbit
+    region:   w_26
+    level:    [1, 1]
+  17190944:
+    template: Wild_Rabbit
+    region:   w_26
+    level:    [1, 1]
+  17190945:
+    template: Wild_Rabbit
+    region:   w_26
+    level:    [1, 1]
+  17190946:
+    template: Wild_Rabbit
+    region:   w_26
+    level:    [1, 1]
+  17190947:
+    template: Wild_Rabbit
+    region:   w_26
+    level:    [1, 1]
+  17190948:
+    template: Tunnel_Worm
+    region:   w_26
+    level:    [1, 1]
+  17190949:
+    template: Tunnel_Worm
+    region:   w_26
+    level:    [1, 1]
+  17190950:
+    template: Tunnel_Worm
+    region:   w_26
+    level:    [1, 1]
+  17190951:
+    template: Tunnel_Worm
+    region:   w_26
+    level:    [1, 1]
+  17190952:
+    template: Tunnel_Worm
+    region:   w_26
+    level:    [1, 1]
+  17190953:
+    template: Ding_Bats
+    region:   c_41
+    level:    [1, 1]
+    attributes:
+      spawn:
+        window:
+          start: 20
+          end:    6
+  17190954:
+    template: Ding_Bats
+    region:   w_26
+    level:    [1, 1]
+    attributes:
+      spawn:
+        window:
+          start: 19
+          end:    5
+  17190955:
+    template: Ding_Bats
+    region:   w_26
+    level:    [1, 1]
+    attributes:
+      spawn:
+        window:
+          start: 18
+          end:    4
+  17190956:
+    template: Ding_Bats
+    region:   w_26
+    level:    [1, 1]
+    attributes:
+      spawn:
+        window:
+          start: 20
+          end:    6
+  17190957:
+    template: Ding_Bats
+    region:   w_26
+    level:    [1, 1]
+    attributes:
+      spawn:
+        window:
+          start: 19
+          end:    5
+  17190958:
+    template: Pugil
+    region:   w_47
+    level:    [1, 1]
+  17190959:
+    template: Pugil
+    region:   w_47
+    level:    [1, 1]
+  17190960:
+    template: Pugil
+    region:   w_47
+    level:    [1, 1]
+  17190961:
+    template: Pugil
+    region:   w_49
+    level:    [1, 1]
+  17190962:
+    template: Pugil
+    region:   w_49
+    level:    [1, 1]
+  17190963:
+    template: Pugil
+    region:   w_49
+    level:    [1, 1]
+  17190964:
+    template: Wild_Rabbit
+    region:   nw_52
+    level:    [1, 1]
+  17190965:
+    template: Wild_Rabbit
+    region:   nw_52
+    level:    [1, 1]
+  17190966:
+    template: Wild_Rabbit
+    region:   nw_52
+    level:    [1, 1]
+  17190967:
+    template: Wild_Rabbit
+    region:   nw_52
+    level:    [1, 1]
+  17190968:
+    template: Wild_Rabbit
+    region:   nw_52
+    level:    [1, 1]
+  17190969:
+    template: Tunnel_Worm
+    region:   nw_52
+    level:    [1, 1]
+  17190970:
+    template: Tunnel_Worm
+    region:   nw_52
+    level:    [1, 1]
+  17190971:
+    template: Tunnel_Worm
+    region:   nw_52
+    level:    [1, 1]
+  17190972:
+    template: Ding_Bats
+    region:   nw_52
+    level:    [1, 1]
+    attributes:
+      spawn:
+        window:
+          start: 20
+          end:    6
+  17190973:
+    template: Ding_Bats
+    region:   nw_52
+    level:    [1, 1]
+    attributes:
+      spawn:
+        window:
+          start: 19
+          end:    5
+  17190974:
+    template: Ding_Bats
+    region:   nw_52
+    level:    [1, 1]
+    attributes:
+      spawn:
+        window:
+          start: 20
+          end:    6
+  17190975:
+    template: Forest_Hare
+    region:   w_63
+    level:    [2, 3]
+  17190976:
+    template: Forest_Hare
+    region:   w_63
+    level:    [2, 3]
+  17190977:
+    template: Forest_Hare
+    region:   w_63
+    level:    [2, 3]
+  17190978:
+    template: Forest_Hare
+    region:   w_63
+    level:    [2, 3]
+  17190979:
+    template: Forest_Hare
+    region:   w_63
+    level:    [2, 3]
+  17190980:
+    template: Forest_Hare
+    region:   w_63
+    level:    [2, 3]
+  17190981:
+    template: Carrion_Worm
+    region:   w_63
+    level:    [2, 3]
+  17190982:
+    template: Carrion_Worm
+    region:   w_63
+    level:    [2, 3]
+  17190983:
+    template: Carrion_Worm
+    region:   w_63
+    level:    [2, 3]
+  17190984:
+    template: Forest_Funguar
+    region:   w_63
+    level:    [4, 5]
+  17190985:
+    template: Scarab_Beetle
+    region:   w_63
+    level:    [4, 5]
+  17190986:
+    template: Scarab_Beetle
+    region:   w_63
+    level:    [4, 5]
+  17190987:
+    template: Orcish_Fodder
+    region:   w_63
+    level:    [3, 4]
+  17190988:
+    template: Orcish_Fodder
+    region:   w_63
+    level:    [3, 4]
+  17190989:
+    template: Ding_Bats
+    region:   w_63
+    level:    [2, 3]
+    attributes:
+      spawn:
+        window:
+          start: 20
+          end:    6
+  17190990:
+    template: Ding_Bats
+    region:   w_63
+    level:    [2, 3]
+    attributes:
+      spawn:
+        window:
+          start: 19
+          end:    5
+  17190991:
+    template: Mouse_Bat_Ronf
+    script:   Mouse_Bat
+    region:   w_63
+    level:    [3, 4]
+    attributes:
+      spawn:
+        window:
+          start: 20
+          end:    6
+  17190992:
+    template: Mouse_Bat_Ronf
+    script:   Mouse_Bat
+    region:   w_63
+    level:    [3, 4]
+    attributes:
+      spawn:
+        window:
+          start: 19
+          end:    5
+  17190993:
+    template: Orcish_Mesmerizer
+    region:   region_41
+    level:    [3, 4]
+  17190994:
+    template: Orcish_Grappler
+    region:   region_41
+    level:    [3, 4]
+  17190995:
+    template: Forest_Hare
+    region:   c_83
+    level:    [2, 3]
+  17190996:
+    template: Forest_Hare
+    region:   c_83
+    level:    [2, 3]
+  17190997:
+    template: Forest_Hare
+    region:   c_83
+    level:    [2, 3]
+  17190998:
+    template: Forest_Hare
+    region:   c_83
+    level:    [2, 3]
+  17190999:
+    template: Forest_Hare
+    region:   c_83
+    level:    [2, 3]
+  17191000:
+    template: Forest_Hare
+    region:   c_83
+    level:    [2, 3]
+  17191001:
+    template: Carrion_Worm
+    region:   c_83
+    level:    [2, 3]
+  17191002:
+    template: Carrion_Worm
+    region:   c_83
+    level:    [2, 3]
+  17191003:
+    template: Carrion_Worm
+    region:   c_83
+    level:    [2, 3]
+  17191004:
+    template: Forest_Funguar
+    region:   c_83
+    level:    [4, 5]
+  17191005:
+    template: Forest_Funguar
+    region:   c_83
+    level:    [4, 5]
+  17191006:
+    template: Scarab_Beetle
+    region:   c_83
+    level:    [4, 5]
+  17191007:
+    template: Orcish_Fodder
+    region:   c_83
+    level:    [3, 4]
+  17191008:
+    template: Orcish_Fodder
+    region:   c_83
+    level:    [3, 4]
+  17191009:
+    template: Ding_Bats
+    region:   c_83
+    level:    [2, 3]
+    attributes:
+      spawn:
+        window:
+          start: 20
+          end:    6
+  17191010:
+    template: Ding_Bats
+    region:   c_83
+    level:    [2, 3]
+    attributes:
+      spawn:
+        window:
+          start: 19
+          end:    5
+  17191011:
+    template: Mouse_Bat_Ronf
+    script:   Mouse_Bat
+    region:   c_83
+    level:    [3, 4]
+    attributes:
+      spawn:
+        window:
+          start: 20
+          end:    6
+  17191012:
+    template: Mouse_Bat_Ronf
+    script:   Mouse_Bat
+    region:   c_83
+    level:    [3, 4]
+    attributes:
+      spawn:
+        window:
+          start: 19
+          end:    5
+  17191013:
+    template: Goblin_Fisher
+    region:   region_47
+    level:    [3, 4]
+  17191014:
+    template: Goblin_Fisher
+    region:   region_47
+    level:    [3, 4]
+  17191015:
+    template: Goblin_Fisher
+    region:   region_47
+    level:    [3, 4]
+  17191016:
+    template: Goblin_Fisher
+    region:   region_47
+    level:    [3, 4]
+  17191017:
+    template: Pugil
+    region:   region_42
+    level:    [2, 3]
+  17191018:
+    template: Pugil
+    region:   c_106
+    level:    [2, 3]
+  17191019:
+    template: Pugil
+    region:   c_106
+    level:    [2, 3]
+  17191020:
+    template: Pugil
+    region:   c_106
+    level:    [2, 3]
+  17191021:
+    template: Pugil
+    region:   c_106
+    level:    [2, 3]
+  17191022:
+    template: Forest_Hare
+    region:   c_110
+    level:    [3, 4]
+  17191023:
+    template: Forest_Hare
+    region:   c_110
+    level:    [3, 4]
+  17191024:
+    template: Forest_Hare
+    region:   c_110
+    level:    [3, 4]
+  17191025:
+    template: Forest_Hare
+    region:   c_110
+    level:    [3, 4]
+  17191026:
+    template: Forest_Hare
+    region:   c_110
+    level:    [3, 4]
+  17191027:
+    template: Forest_Hare
+    region:   c_110
+    level:    [3, 4]
+  17191028:
+    template: Carrion_Worm
+    region:   c_110
+    level:    [3, 4]
+  17191029:
+    template: Carrion_Worm
+    region:   c_110
+    level:    [3, 4]
+  17191030:
+    template: Carrion_Worm
+    region:   c_110
+    level:    [3, 4]
+  17191031:
+    template: Forest_Funguar
+    region:   c_110
+    level:    [4, 5]
+  17191032:
+    template: Scarab_Beetle
+    region:   c_110
+    level:    [4, 5]
+  17191033:
+    template: Scarab_Beetle
+    region:   c_110
+    level:    [4, 5]
+  17191034:
+    template: Wild_Sheep
+    region:   c_110
+    level:    [6, 7]
+  17191035:
+    template: Wild_Sheep
+    region:   c_110
+    level:    [6, 7]
+  17191036:
+    template: Orcish_Fodder
+    region:   c_110
+    level:    [4, 5]
+  17191037:
+    template: Orcish_Mesmerizer
+    region:   c_110
+    level:    [4, 5]
+  17191038:
+    template: Orcish_Grappler
+    region:   c_110
+    level:    [4, 5]
+  17191039:
+    template: Ding_Bats
+    region:   c_110
+    level:    [3, 4]
+    attributes:
+      spawn:
+        window:
+          start: 20
+          end:    6
+  17191040:
+    template: Ding_Bats
+    region:   c_110
+    level:    [3, 4]
+    attributes:
+      spawn:
+        window:
+          start: 19
+          end:    5
+  17191041:
+    template: Mouse_Bat_Ronf
+    script:   Mouse_Bat
+    region:   c_110
+    level:    [4, 5]
+    attributes:
+      spawn:
+        window:
+          start: 20
+          end:    6
+  17191042:
+    template: Mouse_Bat_Ronf
+    script:   Mouse_Bat
+    region:   c_110
+    level:    [4, 5]
+    attributes:
+      spawn:
+        window:
+          start: 19
+          end:    5
+  17191043:
+    template: Tainted_Hound
+    region:   c_110
+    level:    [6, 7]
+  17191044:
+    template: Rambukk
+    region:   c_110
+    level:    [12, 13]
+  17191045:
+    template: Pugil
+    region:   region_43
+    level:    [2, 3]
+  17191046:
+    template: Pugil
+    region:   region_48
+    level:    [2, 3]
+  17191047:
+    template: Pugil
+    region:   region_48
+    level:    [2, 3]
+  17191048:
+    template: Pugil
+    region:   region_48
+    level:    [2, 3]
+  17191049:
+    template: Forest_Hare
+    region:   n_137
+    level:    [2, 3]
+  17191050:
+    template: Forest_Hare
+    region:   n_137
+    level:    [2, 3]
+  17191051:
+    template: Forest_Hare
+    region:   n_137
+    level:    [2, 3]
+  17191052:
+    template: Forest_Hare
+    region:   n_137
+    level:    [2, 3]
+  17191053:
+    template: Forest_Hare
+    region:   n_137
+    level:    [2, 3]
+  17191054:
+    template: Carrion_Worm
+    region:   n_137
+    level:    [2, 3]
+  17191055:
+    template: Carrion_Worm
+    region:   n_137
+    level:    [2, 3]
+  17191056:
+    template: Carrion_Worm
+    region:   n_137
+    level:    [2, 3]
+  17191057:
+    template: Scarab_Beetle
+    region:   n_137
+    level:    [4, 5]
+  17191058:
+    template: Goblin_Thug
+    region:   n_137
+    level:    [3, 4]
+  17191059:
+    template: Ding_Bats
+    region:   n_137
+    level:    [2, 3]
+    attributes:
+      spawn:
+        window:
+          start: 20
+          end:    6
+  17191060:
+    template: Ding_Bats
+    region:   n_137
+    level:    [2, 3]
+    attributes:
+      spawn:
+        window:
+          start: 19
+          end:    5
+  17191061:
+    template: Mouse_Bat_Ronf
+    script:   Mouse_Bat
+    region:   n_137
+    level:    [3, 4]
+    attributes:
+      spawn:
+        window:
+          start: 20
+          end:    6
+  17191062:
+    template: Forest_Hare
+    region:   n_150
+    level:    [3, 4]
+  17191063:
+    template: Forest_Hare
+    region:   n_150
+    level:    [3, 4]
+  17191064:
+    template: Forest_Hare
+    region:   n_150
+    level:    [3, 4]
+  17191065:
+    template: Forest_Hare
+    region:   n_150
+    level:    [3, 4]
+  17191066:
+    template: Forest_Hare
+    region:   n_150
+    level:    [3, 4]
+  17191067:
+    template: Forest_Hare
+    region:   n_150
+    level:    [3, 4]
+  17191068:
+    template: Carrion_Worm
+    region:   n_150
+    level:    [4, 5]
+  17191069:
+    template: Carrion_Worm
+    region:   n_150
+    level:    [4, 5]
+  17191070:
+    template: Carrion_Worm
+    region:   n_150
+    level:    [4, 5]
+  17191071:
+    template: Carrion_Worm
+    region:   n_150
+    level:    [4, 5]
+  17191072:
+    template: Forest_Funguar
+    region:   n_150
+    level:    [4, 5]
+  17191073:
+    template: Forest_Funguar
+    region:   n_150
+    level:    [4, 5]
+  17191074:
+    template: Scarab_Beetle
+    region:   n_150
+    level:    [4, 5]
+  17191075:
+    template: Goblin_Thug
+    region:   n_150
+    level:    [3, 4]
+  17191076:
+    template: Goblin_Thug
+    region:   n_150
+    level:    [3, 4]
+  17191077:
+    template: Goblin_Weaver
+    region:   n_150
+    level:    [4, 5]
+  17191078:
+    template: Ding_Bats
+    region:   n_150
+    level:    [4, 5]
+    attributes:
+      spawn:
+        window:
+          start: 20
+          end:    6
+  17191079:
+    template: Ding_Bats
+    region:   n_150
+    level:    [4, 5]
+    attributes:
+      spawn:
+        window:
+          start: 19
+          end:    5
+  17191080:
+    template: Mouse_Bat_Ronf
+    script:   Mouse_Bat
+    region:   n_150
+    level:    [4, 5]
+    attributes:
+      spawn:
+        window:
+          start: 20
+          end:    6
+  17191081:
+    template: Mouse_Bat_Ronf
+    script:   Mouse_Bat
+    region:   n_150
+    level:    [4, 5]
+    attributes:
+      spawn:
+        window:
+          start: 19
+          end:    5
+  17191082:
+    template: Enchanted_Bones_blm
+    script:   Enchanted_Bones
+    region:   n_150
+    level:    [4, 5]
+  17191083:
+    template: Forest_Hare
+    region:   ne_171
+    level:    [4, 5]
+  17191084:
+    template: Forest_Hare
+    region:   ne_171
+    level:    [4, 5]
+  17191085:
+    template: Forest_Hare
+    region:   ne_171
+    level:    [4, 5]
+  17191086:
+    template: Forest_Hare
+    region:   ne_171
+    level:    [4, 5]
+  17191087:
+    template: Forest_Hare
+    region:   ne_171
+    level:    [4, 5]
+  17191088:
+    template: Carrion_Worm
+    region:   ne_171
+    level:    [4, 5]
+  17191089:
+    template: Carrion_Worm
+    region:   ne_171
+    level:    [4, 5]
+  17191090:
+    template: Carrion_Worm
+    region:   ne_171
+    level:    [4, 5]
+  17191091:
+    template: Scarab_Beetle
+    region:   ne_171
+    level:    [5, 6]
+  17191092:
+    template: Scarab_Beetle
+    region:   ne_171
+    level:    [5, 6]
+  17191093:
+    template: Goblin_Thug
+    region:   ne_171
+    level:    [6, 7]
+  17191094:
+    template: Goblin_Thug
+    region:   ne_171
+    level:    [6, 7]
+  17191095:
+    template: Goblin_Weaver
+    region:   ne_171
+    level:    [6, 7]
+  17191096:
+    template: Ding_Bats
+    region:   ne_171
+    level:    [4, 5]
+    attributes:
+      spawn:
+        window:
+          start: 20
+          end:    6
+  17191097:
+    template: Ding_Bats
+    region:   ne_171
+    level:    [4, 5]
+    attributes:
+      spawn:
+        window:
+          start: 19
+          end:    5
+  17191098:
+    template: Mouse_Bat_Ronf
+    script:   Mouse_Bat
+    region:   ne_171
+    level:    [5, 6]
+    attributes:
+      spawn:
+        window:
+          start: 20
+          end:    6
+  17191099:
+    template: Mouse_Bat_Ronf
+    script:   Mouse_Bat
+    region:   ne_171
+    level:    [5, 6]
+    attributes:
+      spawn:
+        window:
+          start: 19
+          end:    5
+  17191100:
+    template: Enchanted_Bones_blm
+    script:   Enchanted_Bones
+    region:   ne_171
+    level:    [6, 7]
+  17191101:
+    template: Bomb
+    region:   ne_171
+    level:    [8, 10]
+  17191102:
+    template: Goblin_Thug
+    region:   region_45
+    level:    [4, 5]
+  17191103:
+    template: Goblin_Weaver
+    region:   region_45
+    level:    [5, 6]
+  17191104:
+    template: Forest_Hare
+    region:   ne_192
+    level:    [5, 6]
+  17191105:
+    template: Forest_Hare
+    region:   ne_192
+    level:    [5, 6]
+  17191106:
+    template: Forest_Hare
+    region:   ne_192
+    level:    [5, 6]
+  17191107:
+    template: Carrion_Worm
+    region:   ne_192
+    level:    [5, 6]
+  17191108:
+    template: Carrion_Worm
+    region:   ne_192
+    level:    [5, 6]
+  17191109:
+    template: Goblin_Thug
+    region:   ne_192
+    level:    [7, 8]
+  17191110:
+    template: Goblin_Thug
+    region:   ne_192
+    level:    [7, 8]
+  17191111:
+    template: Goblin_Weaver
+    region:   ne_192
+    level:    [7, 8]
+  17191112:
+    template: Ding_Bats
+    region:   ne_192
+    level:    [4, 5]
+    attributes:
+      spawn:
+        window:
+          start: 20
+          end:    6
+  17191113:
+    template: Ding_Bats
+    region:   ne_192
+    level:    [4, 5]
+    attributes:
+      spawn:
+        window:
+          start: 19
+          end:    5
+  17191114:
+    template: Mouse_Bat_Ronf
+    script:   Mouse_Bat
+    region:   ne_192
+    level:    [6, 7]
+    attributes:
+      spawn:
+        window:
+          start: 20
+          end:    6
+  17191115:
+    template: Mouse_Bat_Ronf
+    script:   Mouse_Bat
+    region:   ne_192
+    level:    [6, 7]
+    attributes:
+      spawn:
+        window:
+          start: 19
+          end:    5
+  17191116:
+    template: Goblin_Thug
+    region:   region_46
+    level:    [6, 7]
+  17191117:
+    template: Goblin_Weaver
+    region:   region_46
+    level:    [6, 7]
+  17191118:
+    template: Pugil
+    region:   c_206
+    level:    [3, 4]
+  17191119:
+    template: Pugil
+    region:   c_208
+    level:    [3, 4]
+  17191120:
+    template: Pugil
+    region:   c_208
+    level:    [3, 4]
+  17191121:
+    template: Forest_Hare
+    region:   c_209
+    level:    [3, 4]
+  17191122:
+    template: Forest_Hare
+    region:   c_209
+    level:    [3, 4]
+  17191123:
+    template: Forest_Hare
+    region:   c_209
+    level:    [3, 4]
+  17191124:
+    template: Forest_Hare
+    region:   c_209
+    level:    [3, 4]
+  17191125:
+    template: Carrion_Worm
+    region:   c_209
+    level:    [3, 4]
+  17191126:
+    template: Carrion_Worm
+    region:   c_209
+    level:    [3, 4]
+  17191127:
+    template: Scarab_Beetle
+    region:   c_209
+    level:    [4, 5]
+  17191128:
+    template: Wild_Sheep
+    region:   c_209
+    level:    [6, 7]
+  17191129:
+    template: Wild_Sheep
+    region:   c_209
+    level:    [6, 7]
+  17191130:
+    template: Wild_Sheep
+    region:   c_209
+    level:    [6, 7]
+  17191131:
+    template: Wild_Sheep
+    region:   c_209
+    level:    [6, 7]
+  17191132:
+    template: Wild_Sheep
+    region:   c_209
+    level:    [6, 7]
+  17191133:
+    template: Goblin_Thug
+    region:   c_209
+    level:    [4, 5]
+  17191134:
+    template: Goblin_Thug
+    region:   c_209
+    level:    [4, 5]
+  17191135:
+    template: Goblin_Weaver
+    region:   c_209
+    level:    [4, 5]
+  17191136:
+    template: Tainted_Hound
+    region:   c_209
+    level:    [6, 7]
+  17191137:
+    template: Enchanted_Bones_war
+    script:   Enchanted_Bones
+    region:   c_209
+    level:    [5, 6]
+  17191138:
+    template: Forest_Hare
+    region:   c_226
+    level:    [3, 4]
+  17191139:
+    template: Forest_Hare
+    region:   c_226
+    level:    [3, 4]
+  17191140:
+    template: Forest_Hare
+    region:   c_226
+    level:    [3, 4]
+  17191141:
+    template: Forest_Hare
+    region:   c_226
+    level:    [3, 4]
+  17191142:
+    template: Carrion_Worm
+    region:   c_226
+    level:    [3, 4]
+  17191143:
+    template: Carrion_Worm
+    region:   c_226
+    level:    [3, 4]
+  17191144:
+    template: Scarab_Beetle
+    region:   c_226
+    level:    [4, 5]
+  17191145:
+    template: Wild_Sheep
+    region:   c_226
+    level:    [6, 7]
+  17191146:
+    template: Wild_Sheep
+    region:   c_226
+    level:    [6, 7]
+  17191147:
+    template: Wild_Sheep
+    region:   c_226
+    level:    [6, 7]
+  17191148:
+    template: Wild_Sheep
+    region:   c_226
+    level:    [6, 7]
+  17191149:
+    template: Wild_Sheep
+    region:   c_226
+    level:    [6, 7]
+  17191150:
+    template: Goblin_Thug
+    region:   c_226
+    level:    [4, 5]
+  17191151:
+    template: Goblin_Thug
+    region:   c_226
+    level:    [4, 5]
+  17191152:
+    template: Goblin_Weaver
+    region:   c_226
+    level:    [4, 5]
+  17191153:
+    template: Orcish_Fodder
+    region:   c_226
+    level:    [4, 5]
+  17191154:
+    template: Orcish_Mesmerizer
+    region:   c_226
+    level:    [4, 5]
+  17191155:
+    template: Orcish_Grappler
+    region:   c_226
+    level:    [4, 5]
+  17191156:
+    template: Bomb
+    region:   c_226
+    level:    [8, 10]
+  17191157:
+    template: Tainted_Hound
+    region:   c_226
+    level:    [6, 7]
+  17191158:
+    template: Enchanted_Bones_blm
+    script:   Enchanted_Bones
+    region:   c_226
+    level:    [5, 6]
+  17191159:
+    template: Enchanted_Bones_blm
+    script:   Enchanted_Bones
+    region:   c_226
+    level:    [5, 6]
+  17191160:
+    template: Forest_Hare
+    region:   s_248
+    level:    [4, 5]
+  17191161:
+    template: Forest_Hare
+    region:   s_248
+    level:    [4, 5]
+  17191162:
+    template: Forest_Hare
+    region:   s_248
+    level:    [4, 5]
+  17191163:
+    template: Forest_Hare
+    region:   s_248
+    level:    [4, 5]
+  17191164:
+    template: Forest_Hare
+    region:   s_248
+    level:    [4, 5]
+  17191165:
+    template: Carrion_Worm
+    region:   s_248
+    level:    [4, 5]
+  17191166:
+    template: Forest_Funguar
+    region:   s_248
+    level:    [5, 6]
+  17191167:
+    template: Forest_Funguar
+    region:   s_248
+    level:    [5, 6]
+  17191168:
+    template: Forest_Funguar
+    region:   s_248
+    level:    [5, 6]
+  17191169:
+    template: Scarab_Beetle
+    region:   s_248
+    level:    [5, 6]
+  17191170:
+    template: Scarab_Beetle
+    region:   s_248
+    level:    [5, 6]
+  17191171:
+    template: Wild_Sheep
+    region:   s_248
+    level:    [7, 8]
+  17191172:
+    template: Wild_Sheep
+    region:   s_248
+    level:    [7, 8]
+  17191173:
+    template: Wild_Sheep
+    region:   s_248
+    level:    [7, 8]
+  17191174:
+    template: Orcish_Fodder
+    region:   s_248
+    level:    [5, 6]
+  17191175:
+    template: Orcish_Mesmerizer
+    region:   s_248
+    level:    [5, 6]
+  17191176:
+    template: Orcish_Grappler
+    region:   s_248
+    level:    [5, 6]
+  17191177:
+    template: Ding_Bats
+    region:   s_248
+    level:    [4, 5]
+    attributes:
+      spawn:
+        window:
+          start: 20
+          end:    6
+  17191178:
+    template: Ding_Bats
+    region:   s_248
+    level:    [4, 5]
+    attributes:
+      spawn:
+        window:
+          start: 19
+          end:    5
+  17191179:
+    template: Mouse_Bat_Ronf
+    script:   Mouse_Bat
+    region:   s_248
+    level:    [5, 6]
+    attributes:
+      spawn:
+        window:
+          start: 20
+          end:    6
+  17191180:
+    template: Mouse_Bat_Ronf
+    script:   Mouse_Bat
+    region:   s_248
+    level:    [5, 6]
+    attributes:
+      spawn:
+        window:
+          start: 19
+          end:    5
+  17191181:
+    template: Tainted_Hound
+    region:   s_248
+    level:    [7, 8]
+  17191182:
+    template: Enchanted_Bones_blm
+    script:   Enchanted_Bones
+    region:   s_248
+    level:    [4, 5]
+  17191183:
+    template: Enchanted_Bones_blm
+    script:   Enchanted_Bones
+    region:   s_248
+    level:    [6, 7]
+  17191184:
+    template: Orcish_Fodder
+    region:   s_248
+    level:    [5, 6]
+  17191185:
+    template: Orcish_Mesmerizer
+    region:   s_248
+    level:    [5, 6]
+  17191186:
+    template: Orcish_Grappler
+    region:   s_248
+    level:    [5, 6]
+  17191187:
+    template: Pugil
+    region:   c_275
+    level:    [4, 5]
+  17191188:
+    template: Pugil
+    region:   region_44
+    level:    [4, 5]
+  17191189:
+    template: Swamfisk
+    region:   s_375
+    level:    [11, 15]
+  17191190:
+    template: Forest_Hare
+    region:   s_278
+    level:    [4, 5]
+  17191191:
+    template: Forest_Hare
+    region:   s_278
+    level:    [4, 5]
+  17191192:
+    template: Forest_Hare
+    region:   s_278
+    level:    [4, 5]
+  17191193:
+    template: Forest_Hare
+    region:   s_278
+    level:    [4, 5]
+  17191194:
+    template: Carrion_Worm
+    region:   s_278
+    level:    [4, 5]
+  17191195:
+    template: Carrion_Worm
+    region:   s_278
+    level:    [4, 5]
+  17191196:
+    template: Bigmouth_Billy
+    region:   c_226
+    level:    [9, 10]
+  17191197:
+    template: Scarab_Beetle
+    region:   s_278
+    level:    [5, 6]
+  17191198:
+    template: Wild_Sheep
+    region:   s_278
+    level:    [7, 8]
+  17191199:
+    template: Wild_Sheep
+    region:   s_278
+    level:    [7, 8]
+  17191200:
+    template: Wild_Sheep
+    region:   s_278
+    level:    [7, 8]
+  17191201:
+    template: Goblin_Thug
+    region:   s_278
+    level:    [5, 6]
+  17191202:
+    template: Goblin_Weaver
+    region:   s_278
+    level:    [5, 6]
+  17191203:
+    template: Goblin_Weaver
+    region:   s_278
+    level:    [5, 6]
+  17191204:
+    template: Orcish_Fodder
+    region:   s_278
+    level:    [5, 6]
+  17191205:
+    template: Orcish_Mesmerizer
+    region:   s_278
+    level:    [5, 6]
+  17191206:
+    template: Orcish_Grappler
+    region:   s_278
+    level:    [5, 6]
+  17191207:
+    template: Ding_Bats
+    region:   s_278
+    level:    [4, 5]
+    attributes:
+      spawn:
+        window:
+          start: 20
+          end:    6
+  17191208:
+    template: Ding_Bats
+    region:   s_278
+    level:    [4, 5]
+    attributes:
+      spawn:
+        window:
+          start: 19
+          end:    5
+  17191209:
+    template: Mouse_Bat_Ronf
+    script:   Mouse_Bat
+    region:   s_278
+    level:    [5, 6]
+    attributes:
+      spawn:
+        window:
+          start: 20
+          end:    6
+  17191210:
+    template: Mouse_Bat_Ronf
+    script:   Mouse_Bat
+    region:   s_278
+    level:    [5, 6]
+    attributes:
+      spawn:
+        window:
+          start: 19
+          end:    5
+  17191211:
+    template: Tainted_Hound
+    region:   s_278
+    level:    [7, 8]
+  17191212:
+    template: Enchanted_Bones_blm
+    script:   Enchanted_Bones
+    region:   s_278
+    level:    [6, 7]
+  17191213:
+    template: Enchanted_Bones_blm
+    script:   Enchanted_Bones
+    region:   s_278
+    level:    [6, 7]
+  17191214:
+    template: Forest_Hare
+    region:   sw_302
+    level:    [4, 5]
+  17191215:
+    template: Forest_Hare
+    region:   sw_302
+    level:    [4, 5]
+  17191216:
+    template: Forest_Hare
+    region:   sw_302
+    level:    [4, 5]
+  17191217:
+    template: Forest_Hare
+    region:   sw_302
+    level:    [4, 5]
+  17191218:
+    template: Forest_Hare
+    region:   sw_302
+    level:    [4, 5]
+  17191219:
+    template: Carrion_Worm
+    region:   sw_302
+    level:    [5, 6]
+  17191220:
+    template: Forest_Funguar
+    region:   sw_302
+    level:    [5, 6]
+  17191221:
+    template: Forest_Funguar
+    region:   sw_302
+    level:    [5, 6]
+  17191222:
+    template: Forest_Funguar
+    region:   sw_302
+    level:    [5, 6]
+  17191223:
+    template: Scarab_Beetle
+    region:   sw_302
+    level:    [5, 6]
+  17191224:
+    template: Scarab_Beetle
+    region:   sw_302
+    level:    [5, 6]
+  17191225:
+    template: Wild_Sheep
+    region:   sw_302
+    level:    [7, 8]
+  17191226:
+    template: Wild_Sheep
+    region:   sw_302
+    level:    [7, 8]
+  17191227:
+    template: Wild_Sheep
+    region:   sw_302
+    level:    [7, 8]
+  17191228:
+    template: Orcish_Fodder
+    region:   sw_302
+    level:    [7, 8]
+  17191229:
+    template: Orcish_Mesmerizer
+    region:   sw_302
+    level:    [7, 8]
+  17191230:
+    template: Orcish_Grappler
+    region:   sw_302
+    level:    [7, 8]
+  17191231:
+    template: Ding_Bats
+    region:   sw_302
+    level:    [4, 5]
+    attributes:
+      spawn:
+        window:
+          start: 20
+          end:    6
+  17191232:
+    template: Ding_Bats
+    region:   sw_302
+    level:    [4, 5]
+    attributes:
+      spawn:
+        window:
+          start: 19
+          end:    5
+  17191233:
+    template: Mouse_Bat_Ronf
+    script:   Mouse_Bat
+    region:   sw_302
+    level:    [5, 6]
+    attributes:
+      spawn:
+        window:
+          start: 20
+          end:    6
+  17191234:
+    template: Mouse_Bat_Ronf
+    script:   Mouse_Bat
+    region:   sw_302
+    level:    [5, 6]
+    attributes:
+      spawn:
+        window:
+          start: 19
+          end:    5
+  17191235:
+    template: Bomb
+    region:   sw_302
+    level:    [8, 10]
+  17191236:
+    template: Tainted_Hound
+    region:   sw_302
+    level:    [7, 8]
+  17191237:
+    template: Enchanted_Bones_blm
+    script:   Enchanted_Bones
+    region:   sw_302
+    level:    [6, 6]
+  17191238:
+    template: Forest_Hare
+    region:   sw_326
+    level:    [5, 6]
+  17191239:
+    template: Forest_Hare
+    region:   sw_326
+    level:    [5, 6]
+  17191240:
+    template: Forest_Hare
+    region:   sw_326
+    level:    [5, 6]
+  17191241:
+    template: Goblin_Thug
+    region:   sw_326
+    level:    [7, 8]
+  17191242:
+    template: Goblin_Weaver
+    region:   sw_326
+    level:    [7, 8]
+  17191243:
+    template: Ding_Bats
+    region:   sw_326
+    level:    [4, 5]
+    attributes:
+      spawn:
+        window:
+          start: 20
+          end:    6
+  17191244:
+    template: Ding_Bats
+    region:   sw_326
+    level:    [4, 5]
+    attributes:
+      spawn:
+        window:
+          start: 19
+          end:    5
+  17191245:
+    template: Enchanted_Bones_blm
+    script:   Enchanted_Bones
+    region:   sw_326
+    level:    [7, 8]
+  17191246:
+    template: Forest_Hare
+    region:   s_334
+    level:    [5, 6]
+  17191247:
+    template: Forest_Hare
+    region:   s_334
+    level:    [5, 6]
+  17191248:
+    template: Forest_Hare
+    region:   s_334
+    level:    [5, 6]
+  17191249:
+    template: Wild_Sheep
+    region:   s_334
+    level:    [7, 8]
+  17191250:
+    template: Wild_Sheep
+    region:   s_334
+    level:    [7, 8]
+  17191251:
+    template: Wild_Sheep
+    region:   s_334
+    level:    [7, 8]
+  17191252:
+    template: Goblin_Thug
+    region:   s_334
+    level:    [7, 8]
+  17191253:
+    template: Goblin_Weaver
+    region:   s_334
+    level:    [7, 8]
+  17191254:
+    template: Goblin_Weaver
+    region:   s_334
+    level:    [7, 8]
+  17191255:
+    template: Ding_Bats
+    region:   s_334
+    level:    [4, 5]
+    attributes:
+      spawn:
+        window:
+          start: 20
+          end:    6
+  17191256:
+    template: Ding_Bats
+    region:   s_334
+    level:    [4, 5]
+    attributes:
+      spawn:
+        window:
+          start: 19
+          end:    5
+  17191257:
+    template: Tainted_Hound
+    region:   s_334
+    level:    [7, 8]
+  17191258:
+    template: Enchanted_Bones_blm
+    script:   Enchanted_Bones
+    region:   s_334
+    level:    [6, 7]
+  17191259:
+    template: Enchanted_Bones_blm
+    script:   Enchanted_Bones
+    region:   s_334
+    level:    [6, 7]
+  17191260:
+    template: Goblin_Thug
+    region:   s_334
+    level:    [7, 8]
+  17191261:
+    template: Goblin_Weaver
+    region:   s_334
+    level:    [7, 8]
+  17191262:
+    template: Forest_Hare
+    region:   s_350
+    level:    [5, 6]
+  17191263:
+    template: Forest_Hare
+    region:   s_350
+    level:    [5, 6]
+  17191264:
+    template: Forest_Hare
+    region:   s_350
+    level:    [5, 6]
+  17191265:
+    template: Forest_Funguar
+    region:   s_350
+    level:    [5, 6]
+  17191266:
+    template: Forest_Funguar
+    region:   s_350
+    level:    [5, 6]
+  17191267:
+    template: Forest_Funguar
+    region:   s_350
+    level:    [5, 6]
+  17191268:
+    template: Scarab_Beetle
+    region:   s_350
+    level:    [6, 7]
+  17191269:
+    template: Scarab_Beetle
+    region:   s_350
+    level:    [6, 7]
+  17191270:
+    template: Wild_Sheep
+    region:   s_350
+    level:    [7, 8]
+  17191271:
+    template: Wild_Sheep
+    region:   s_350
+    level:    [7, 8]
+  17191272:
+    template: Wild_Sheep
+    region:   s_350
+    level:    [7, 8]
+  17191273:
+    template: Orcish_Fodder
+    region:   s_350
+    level:    [7, 8]
+  17191274:
+    template: Orcish_Mesmerizer
+    region:   s_350
+    level:    [7, 8]
+  17191275:
+    template: Orcish_Grappler
+    region:   s_350
+    level:    [7, 8]
+  17191276:
+    template: Ding_Bats
+    region:   s_350
+    level:    [4, 5]
+    attributes:
+      spawn:
+        window:
+          start: 20
+          end:    6
+  17191277:
+    template: Ding_Bats
+    region:   s_350
+    level:    [4, 5]
+    attributes:
+      spawn:
+        window:
+          start: 19
+          end:    5
+  17191278:
+    template: Mouse_Bat_Ronf
+    script:   Mouse_Bat
+    region:   s_350
+    level:    [5, 6]
+    attributes:
+      spawn:
+        window:
+          start: 20
+          end:    6
+  17191279:
+    template: Enchanted_Bones_war
+    script:   Enchanted_Bones
+    region:   s_350
+    level:    [7, 8]
+  17191280:
+    template: Forest_Hare
+    region:   s_368
+    level:    [5, 6]
+  17191281:
+    template: Goblin_Thug
+    region:   s_368
+    level:    [6, 7]
+  17191282:
+    template: Goblin_Weaver
+    region:   s_368
+    level:    [6, 7]
+  17191283:
+    template: Goblin_Weaver
+    region:   s_368
+    level:    [6, 7]
+  17191284:
+    template: Goblin_Fisher
+    region:   region_49
+    level:    [5, 6]
+  17191285:
+    template: Goblin_Fisher
+    region:   region_49
+    level:    [5, 6]
+  17191286:
+    template: Goblin_Fisher
+    region:   region_49
+    level:    [5, 6]
+  17191287:
+    template: Pugil
+    region:   s_375
+    level:    [4, 5]
+  17191288:
+    template: Pugil
+    region:   s_375
+    level:    [4, 5]
+  17191289:
+    template: Pugil
+    region:   s_377
+    level:    [4, 5]
+  17191290:
+    template: Pugil
+    region:   s_377
+    level:    [4, 5]
+  17191291:
+    template: Swamfisk
+    region:   s_377
+    level:    [11, 15]
+  17191292:
+    template: Forest_Hare
+    region:   s_380
+    level:    [5, 6]
+  17191293:
+    template: Forest_Hare
+    region:   s_380
+    level:    [5, 6]
+  17191294:
+    template: Forest_Hare
+    region:   s_380
+    level:    [5, 6]
+  17191295:
+    template: Forest_Hare
+    region:   s_380
+    level:    [5, 6]
+  17191296:
+    template: Carrion_Worm
+    region:   s_380
+    level:    [5, 6]
+  17191297:
+    template: Scarab_Beetle
+    region:   s_380
+    level:    [6, 7]
+  17191298:
+    template: Scarab_Beetle
+    region:   s_380
+    level:    [6, 7]
+  17191299:
+    template: Wild_Sheep
+    region:   s_380
+    level:    [7, 8]
+  17191300:
+    template: Wild_Sheep
+    region:   s_380
+    level:    [7, 8]
+  17191301:
+    template: Orcish_Fodder
+    region:   s_380
+    level:    [7, 8]
+  17191302:
+    template: Orcish_Mesmerizer
+    region:   s_380
+    level:    [7, 8]
+  17191303:
+    template: Orcish_Grappler
+    region:   s_380
+    level:    [7, 8]
+  17191304:
+    template: Ding_Bats
+    region:   s_380
+    level:    [4, 5]
+    attributes:
+      spawn:
+        window:
+          start: 20
+          end:    6
+  17191305:
+    template: Mouse_Bat_Ronf
+    script:   Mouse_Bat
+    region:   s_380
+    level:    [6, 7]
+    attributes:
+      spawn:
+        window:
+          start: 19
+          end:    5
+  17191306:
+    template: Enchanted_Bones_blm
+    script:   Enchanted_Bones
+    region:   s_380
+    level:    [7, 8]
+  17191307:
+    template: Forest_Hare
+    region:   se_395
+    level:    [5, 6]
+  17191308:
+    template: Forest_Hare
+    region:   se_395
+    level:    [5, 6]
+  17191309:
+    template: Scarab_Beetle
+    region:   se_395
+    level:    [6, 7]
+  17191310:
+    template: Scarab_Beetle
+    region:   se_395
+    level:    [6, 7]
+  17191311:
+    template: Wild_Sheep
+    region:   se_395
+    level:    [7, 8]
+  17191312:
+    template: Wild_Sheep
+    region:   se_395
+    level:    [7, 8]
+  17191313:
+    template: Wild_Sheep
+    region:   se_395
+    level:    [7, 8]
+  17191314:
+    template: Ding_Bats
+    region:   se_395
+    level:    [4, 5]
+    attributes:
+      spawn:
+        window:
+          start: 20
+          end:    6
+  17191315:
+    template: Mouse_Bat_Ronf
+    script:   Mouse_Bat
+    region:   se_395
+    level:    [6, 7]
+    attributes:
+      spawn:
+        window:
+          start: 19
+          end:    5
+  17191316:
+    template: Goblin_Digger_near
+    script:   Goblin_Digger
+    at:       [357.813, -10.344, -411.927, 11]
+    level:    [7, 8]
+  17191317:
+    template: Pixie
+    level:    [53, 55]
+  17191318:
+    template: Pixie
+    level:    [53, 55]
+  17191319:
+    template: Pixie
+    level:    [53, 55]
+  17191320:
+    template: Pixie
+    level:    [53, 55]
+  17191321:
+    template: Pixie
+    level:    [53, 55]
+  17191322:
+    template: Gawky_Gawain
+    level:    [1, 1]
+  17191323:
+    template: Yilbegan
+    at:       [1.000, 1.000, 1.000]
+    level:    [90, 92]
+  17191324:
+    template: Krabkatoa
+    at:       [1.000, 1.000, 1.000]
+    level:    [85, 85]
+  17191325:
+    template: Yacumama
+    at:       [1.000, 1.000, 1.000]
+    level:    [82, 82]
+  17191326:
+    template: Capricornus
+    at:       [1.000, 1.000, 1.000]
+    level:    [82, 82]
+  17191327:
+    template: Quagmire_Pugil
+    at:       [1.000, 1.000, 1.000]
+    level:    [80, 80]
+  17191328:
+    template: Quagmire_Pugil
+    at:       [1.000, 1.000, 1.000]
+    level:    [80, 80]
+  17191329:
+    template: Quagmire_Pugil
+    at:       [1.000, 1.000, 1.000]
+    level:    [80, 80]
+  17191330:
+    template: Quagmire_Pugil
+    at:       [1.000, 1.000, 1.000]
+    level:    [80, 80]
+  17191331:
+    template: Sunderclaw
+    at:       [1.000, 1.000, 1.000]
+    level:    [80, 80]
+  17191332:
+    template: Sunderclaw
+    at:       [1.000, 1.000, 1.000]
+    level:    [80, 80]
+  17191333:
+    template: Sunderclaw
+    at:       [1.000, 1.000, 1.000]
+    level:    [80, 80]
+  17191334:
+    template: Sunderclaw
+    at:       [1.000, 1.000, 1.000]
+    level:    [80, 80]
+  17191335:
+    template: Sarimanok
+    at:       [289.896, -62.945, 369.265, 32]
+    level:    [94, 95]
+  17191336:
+    template: Sarimanok
+    at:       [183.000, -20.601, -315.000, 141]
+    level:    [94, 95]
+  17191337:
+    template: Sarimanok
+    at:       [434.000, -51.483, 315.000, 134]
+    level:    [94, 95]
+  17191338:
+    script: Tatenashi_Armor
+  17191339:
+    script: Hizamaru_Armor
+  17191340:
+    script: Ubuginu_Armor
+  17191341:
+    script: Hachiryu_Armor
+  17191342:
+    script: Omodaka_Armor
+  17191343:
+    template: Bull_[Herd1]
+    level:    [1, 1]
+  17191344:
+    template: Cow_[Herd1]
+    level:    [1, 1]
+  17191345:
+    template: Cow_[Herd1]
+    level:    [1, 1]
+  17191346:
+    template: Cow_[Herd1]
+    level:    [1, 1]
+  17191347:
+    template: Calf_[Herd1]
+    level:    [1, 1]
+  17191348:
+    template: Calf_[Herd1]
+    level:    [1, 1]
+  17191349:
+    template: Calf_[Herd1]
+    level:    [1, 1]
+  17191350:
+    template: Calf_[Herd1]
+    level:    [1, 1]
+  17191351:
+    template: Calf_[Herd1]
+    level:    [1, 1]
+  17191352:
+    template: Calf_[Herd1]
+    level:    [1, 1]
+  17191353:
+    template: Bull_[Herd2]
+    level:    [1, 1]
+  17191354:
+    template: Cow_[Herd2]
+    level:    [1, 1]
+  17191355:
+    template: Cow_[Herd2]
+    level:    [1, 1]
+  17191356:
+    template: Cow_[Herd2]
+    level:    [1, 1]
+  17191357:
+    template: Calf_[Herd2]
+    level:    [1, 1]
+  17191358:
+    template: Calf_[Herd2]
+    level:    [1, 1]
+  17191359:
+    template: Calf_[Herd2]
+    level:    [1, 1]
+  17191360:
+    template: Calf_[Herd2]
+    level:    [1, 1]
+  17191361:
+    template: Calf_[Herd2]
+    level:    [1, 1]
+  17191362:
+    template: Calf_[Herd2]
+    level:    [1, 1]
+  17191363:
+    template: Bull_[Herd3]
+    level:    [1, 1]
+  17191364:
+    template: Cow_[Herd3]
+    level:    [1, 1]
+  17191365:
+    template: Cow_[Herd3]
+    level:    [1, 1]
+  17191366:
+    template: Cow_[Herd3]
+    level:    [1, 1]
+  17191367:
+    template: Calf_[Herd3]
+    level:    [1, 1]
+  17191368:
+    template: Calf_[Herd3]
+    level:    [1, 1]
+  17191369:
+    template: Calf_[Herd3]
+    level:    [1, 1]
+  17191370:
+    template: Calf_[Herd3]
+    level:    [1, 1]
+  17191371:
+    template: Calf_[Herd3]
+    level:    [1, 1]
+  17191372:
+    template: Calf_[Herd3]
+    level:    [1, 1]
+  17191383:
+    template: Pyracmon
+    level:    [1, 1]
+  17191384:
+    template: Wraith_Bat
+    level:    [1, 1]
+  17191385:
+    template: Wraith_Bat
+    level:    [1, 1]
+  17191386:
+    template: Wraith_Bat
+    level:    [1, 1]
+  17191387:
+    template: Wraith_Bat
+    level:    [1, 1]
+  17191388:
+    template: Wraith_Bat
+    level:    [1, 1]
+  17191389:
+    template: Wraith_Bat
+    level:    [1, 1]
+  17191390:
+    template: Wraith_Bat
+    level:    [1, 1]
+  17191391:
+    template: Wraith_Bat
+    level:    [1, 1]
+  17191392:
+    template: Wraith_Bat
+    level:    [1, 1]
+  17191393:
+    template: Wraith_Bat
+    level:    [1, 1]
+  17191394:
+    script: Astral_Box
+  17191395:
+    script: Astral_Box
+  17191396:
+    script: Astral_Box
+  17191397:
+    script: Astral_Box
+  17191398:
+    script: Astral_Box
+  17191399:
+    script: Astral_Box
+  17191400:
+    script: Astral_Box
+  17191401:
+    script: Astral_Box
+  17191402:
+    script: Astral_Box
+  17191403:
+    script: Astral_Box
+  17191404:
+    script: Astral_Box
+  17191405:
+    script: Astral_Box
+  17191406:
+    script: Astral_Box
+  17191407:
+    script: Astral_Box
+  17191408:
+    script: Astral_Box
+  17191409:
+    script: Astral_Box
+  17191410:
+    script: Astral_Box
+  17191411:
+    script: Astral_Box
+  17191412:
+    script: Astral_Box
+  17191413:
+    script: Astral_Box
+  17191414:
+    script: Astral_Box
+  17191415:
+    script: Astral_Box
+  17191416:
+    script: Astral_Box
+  17191417:
+    script: Astral_Box
+  17191418:
+    script: Astral_Box
+  17191419:
+    script: Astral_Box
+  17191420:
+    script: Astral_Box
+  17191421:
+    script: Astral_Box
+  17191422:
+    script: Astral_Box
+  17191423:
+    script: Astral_Box
+  17191424:
+    script: Astral_Box
+  17191425:
+    script: Astral_Box
+  17191426:
+    script: Astral_Box
+  17191427:
+    script: Astral_Box
+  17191428:
+    script: Astral_Box
+  17191429:
+    script: Astral_Box
+  17191430:
+    script: Astral_Box
+  17191431:
+    script: Astral_Box
+  17191432:
+    script: Astral_Box
+  17191433:
+    script: Astral_Box
+  17191434:
+    script: Astral_Box
+  17191435:
+    script: Astral_Box
+  17191436:
+    script: Slime
+    region: w_6
+  17191437:
+    script: Slime
+    region: w_6
+  17191438:
+    script: Slime
+    region: w_6
+  17191439:
+    script: Slime
+    region: w_6
+  17191440:
+    script: Slime
+    region: w_6
+  17191441:
+    script: Slime
+    region: w_6
+  17191442:
+    script: Slime
+    region: w_6
+  17191443:
+    script: Slime
+    region: nw_52
+  17191444:
+    script: Slime
+    region: nw_52
+  17191445:
+    script: Slime
+    region: nw_52
+  17191446:
+    script: Slime
+    region: nw_52
+  17191447:
+    script: Slime
+    region: nw_52
+  17191448:
+    script: Slime
+    region: nw_52
+  17191449:
+    script: Slime
+    region: w_26
+  17191450:
+    script: Slime
+    region: w_26
+  17191451:
+    script: Slime
+  17191452:
+    script: Slime
+  17191453:
+    script: Slime
+    region: w_26
+  17191454:
+    script: Slime
+    region: w_26
+  17191455:
+    script: Slime
+    region: w_26
+  17191456:
+    script: She-Slime
+  17191457:
+    script: She-Slime
+    region: w_6
+  17191458:
+    script: She-Slime
+    region: w_6
+  17191459:
+    script: She-Slime
+  17191460:
+    script: She-Slime
+  17191461:
+    script: She-Slime
+  17191462:
+    script: She-Slime
+    region: nw_52
+  17191463:
+    script: She-Slime
+    region: nw_52
+  17191464:
+    script: She-Slime
+    region: nw_52
+  17191465:
+    script: She-Slime
+  17191466:
+    script: Metal_Slime
+  17191467:
+    script: Metal_Slime
+  17191468:
+    script: Metal_Slime
+  17191469:
+    script: Metal_Slime
+  17191470:
+    script: Metal_Slime
+  17191471:
+    template: Hugemaw_Harold
+    at:       [522.229, -30.500, -41.479, 236]
+    level:    [75, 75]
+  17191472:
+    template: Hugemaw_Harold
+    at:       [237.740, -20.500, -160.000, 148]
+    level:    [75, 75]
+  17191473:
+    template: Hugemaw_Harold
+    at:       [565.270, -10.755, -378.179, 164]
+    level:    [75, 75]
+
+  17191586:
+    template: Beta_usa_Wild_Rabbit
+    region:   w_6
+    level:    [1, 1]
+  17191587:
+    template: Beta_usa_Wild_Rabbit
+    region:   w_6
+    level:    [1, 1]
+  17191588:
+    template: Beta_myco_Forest_Funguar
+    region:   w_63
+    level:    [4, 5]
+  17191589:
+    template: Beta_myco_Forest_Funguar
+    region:   w_63
+    level:    [4, 5]
+  17191590:
+    template: Beta_beet_Scarab_Beetle
+    region:   w_63
+    level:    [4, 5]
+  17191591:
+    template: Beta_beet_Scarab_Beetle
+    region:   w_63
+    level:    [4, 5]
+  17191592:
+    template: Beta_shee_Wild_Sheep
+    region:   c_110
+    level:    [6, 7]
+  17191593:
+    template: Beta_shee_Wild_Sheep
+    region:   c_110
+    level:    [6, 7]
+slots:
+  - members:
+      17190918: {} # Wild_Rabbit
+      17190933: {} # Ding_Bats
+  - members:
+      17190919: {} # Wild_Rabbit
+      17190934: {} # Ding_Bats
+  - members:
+      17190920: {} # Wild_Rabbit
+      17190935: {} # Ding_Bats
+  - members:
+      17190938: {} # Wild_Rabbit
+      17190953: {} # Ding_Bats
+  - members:
+      17190939: {} # Wild_Rabbit
+      17190954: {} # Ding_Bats
+  - members:
+      17190940: {} # Wild_Rabbit
+      17190955: {} # Ding_Bats
+  - members:
+      17190964: {} # Wild_Rabbit
+      17190972: {} # Ding_Bats
+  - members:
+      17190965: {} # Wild_Rabbit
+      17190973: {} # Ding_Bats
+  - members:
+      17190975: {} # Forest_Hare
+      17190989: {} # Ding_Bats
+  - members:
+      17190976: {} # Forest_Hare
+      17190991: {} # Mouse_Bat
+  - members:
+      17190995: {} # Forest_Hare
+      17191009: {} # Ding_Bats
+  - members:
+      17190996: {} # Forest_Hare
+      17191011: {} # Mouse_Bat
+  - members:
+      17191022: {} # Forest_Hare
+      17191039: {} # Ding_Bats
+  - members:
+      17191023: {} # Forest_Hare
+      17191041: {} # Mouse_Bat
+  - members:
+      17191034: {} # Wild_Sheep
+      17191043: {} # Tainted_Hound
+  - members:
+      17191049: {} # Forest_Hare
+      17191059: {} # Ding_Bats
+  - members:
+      17191062: {} # Forest_Hare
+      17191078: {} # Ding_Bats
+  - members:
+      17191063: {} # Forest_Hare
+      17191080: {} # Mouse_Bat
+  - members:
+      17191075: {} # Goblin_Thug
+      17191082: {} # Enchanted_Bones
+  - members:
+      17191083: {} # Forest_Hare
+      17191096: {} # Ding_Bats
+  - members:
+      17191084: {} # Forest_Hare
+      17191098: {} # Mouse_Bat
+  - members:
+      17191091: {} # Scarab_Beetle
+      17191101: {} # Bomb
+  - members:
+      17191093: {} # Goblin_Thug
+      17191100: {} # Enchanted_Bones
+  - members:
+      17191104: {} # Forest_Hare
+      17191112: {} # Ding_Bats
+  - members:
+      17191105: {} # Forest_Hare
+      17191113: {} # Ding_Bats
+  - members:
+      17191128: {} # Wild_Sheep
+      17191136: {} # Tainted_Hound
+  - members:
+      17191133: {} # Goblin_Thug
+      17191137: {} # Enchanted_Bones
+  - members:
+      17191144: {} # Scarab_Beetle
+      17191156: {} # Bomb
+  - members:
+      17191145: {} # Wild_Sheep
+      17191157: {} # Tainted_Hound
+  - members:
+      17191153: {} # Orcish_Fodder
+      17191158: {} # Enchanted_Bones
+  - members:
+      17191154: {} # Orcish_Mesmerizer
+      17191159: {} # Enchanted_Bones
+  - members:
+      17191160: {} # Forest_Hare
+      17191177: {} # Ding_Bats
+  - members:
+      17191161: {} # Forest_Hare
+      17191179: {} # Mouse_Bat
+  - members:
+      17191171: {} # Wild_Sheep
+      17191181: {} # Tainted_Hound
+  - members:
+      17191174: {} # Orcish_Fodder
+      17191182: {} # Enchanted_Bones
+      17191184: {} # Orcish_Fodder
+  - members:
+      17191175: {} # Orcish_Mesmerizer
+      17191183: {} # Enchanted_Bones
+      17191185: {} # Orcish_Mesmerizer
+  - members:
+      17191176: {} # Orcish_Grappler
+      17191186: {} # Orcish_Grappler
+  - members:
+      17191190: {} # Forest_Hare
+      17191207: {} # Ding_Bats
+  - members:
+      17191191: {} # Forest_Hare
+      17191209: {} # Mouse_Bat
+  - members:
+      17191198: {} # Wild_Sheep
+      17191211: {} # Tainted_Hound
+  - members:
+      17191204: {} # Orcish_Fodder
+      17191212: {} # Enchanted_Bones
+  - members:
+      17191205: {} # Orcish_Mesmerizer
+      17191213: {} # Enchanted_Bones
+  - members:
+      17191214: {} # Forest_Hare
+      17191231: {} # Ding_Bats
+  - members:
+      17191215: {} # Forest_Hare
+      17191233: {} # Mouse_Bat
+  - members:
+      17191223: {} # Scarab_Beetle
+      17191235: {} # Bomb
+  - members:
+      17191225: {} # Wild_Sheep
+      17191236: {} # Tainted_Hound
+  - members:
+      17191228: {} # Orcish_Fodder
+      17191237: {} # Enchanted_Bones
+  - members:
+      17191241: {} # Goblin_Thug
+      17191245: {} # Enchanted_Bones
+  - members:
+      17191249: {} # Wild_Sheep
+      17191257: {} # Tainted_Hound
+  - members:
+      17191252: {} # Goblin_Thug
+      17191258: {} # Enchanted_Bones
+      17191260: {} # Goblin_Thug
+  - members:
+      17191253: {} # Goblin_Weaver
+      17191259: {} # Enchanted_Bones
+      17191261: {} # Goblin_Weaver
+  - members:
+      17191262: {} # Forest_Hare
+      17191276: {} # Ding_Bats
+  - members:
+      17191273: {} # Orcish_Fodder
+      17191279: {} # Enchanted_Bones
+  - members:
+      17191301: {} # Orcish_Fodder
+      17191306: {} # Enchanted_Bones
