@@ -1,4 +1,4 @@
-/* xcfile.c (b50_pack / b53_perf, v4) - transparent decompression of XCZ3-packed game files inside the host's file-service slots.
+/* xcfile.c - transparent decompression of XCZ3-packed game files inside the host's file-service slots.
    v4 (6 Oct 2026): which files are packed is told by an INDEX file next to the tables, image/ffxi/XCINDEX.DAT, instead of
    PFS inode tags, so a drive written by Square Enix's installer (which cannot set inode tags) works too:
        u32 'XCIX' | u32 n | n x { u32 key, u32 orig }   sorted by key & 0xFFFFF

@@ -1,4 +1,4 @@
-/* IOP bring-up copied from the 2012 engine's XiHardInitialize (see work/b43_host2016/NOTES_IOP_LOAD.md):
+/* IOP bring-up copied from the 2012 engine's XiHardInitialize:
    reset the IOP with the disc's IOPRP.IMG, load SQIOPMEM, bind its loader RPC (server 0x800), then load the Square/Sony
    modules through it: SCE000, SCE001, SCE002 (with the per-module argument lines), HID000. SQIOPMEM decrypts the .ERX files
    itself on the IOP; nothing is decrypted here. */

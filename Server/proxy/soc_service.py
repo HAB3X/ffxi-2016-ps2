@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-"""soc_service.py - the LAN "PlayOnline friend service" for the 2016 PS2 host build (b49_social).
+"""soc_service.py - the LAN "PlayOnline friend service" for the 2016 PS2 host build.
 
-The 2016 FFXI program keeps its friend list in PlayOnline. There is no PlayOnline, so the host (work/b49_social/host/social.c) asks this
+The 2016 FFXI program keeps its friend list in PlayOnline. There is no PlayOnline, so the host asks this
 small TCP service instead. Friend lists and friend messages are stored here (SQLite file); who is online, where and as what job is read
 from the LandSandBoat database (read-only: accounts, chars, char_stats, accounts_sessions, zone_settings, job names).
 
@@ -39,7 +39,7 @@ def is_muted(name):
 
 
 class Lsb:
-    """Read-only access to xidb (credentials from work/lsb/LOCAL_CREDENTIALS.txt through research/tools/lsb_db; never printed)."""
+    """Read-only access to xidb (credentials from the server settings; never printed)."""
     def __init__(self, query=None):
         self._q = query
         self._conn = None

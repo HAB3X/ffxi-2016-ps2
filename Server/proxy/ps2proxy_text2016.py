@@ -1,18 +1,17 @@
 #!/usr/bin/env python3
-"""ps2proxy_text2016 - zone text ids and an event guard for the 2016 PS2 client (work/b54_audit, 6 Oct 2026).
+"""ps2proxy_text2016 - zone text ids and an event guard for the 2016 PS2 client.
 
 Optional group "text-2016" (off unless --translate text-2016; use it together with npc-ids and enable it AFTER npc-ids,
 so the event guard sees 2016 actor ids). Nothing here touches the 2012 build: the server keeps its 2012pc IDs.lua.
 
   text  The server's zone message numbers (scripts/zones/*/IDs.lua, profile 2012pc) index the 2012 dialog DATs; the
-        2016 client reads its own (EN 6420+zone / 84271+zone-256). Map file (work/b54_audit/maps/text_map_2016.json,
-        built by work/b54_audit/tools/build_textmap2016.py): {zone: {server id: 2016 id}} for every id that differs.
+        2016 client reads its own (EN 6420+zone / 84271+zone-256). Map file: {zone: {server id: 2016 id}} for every id that differs.
         s2c 0x036 (MesNum @0x0A), 0x027 (@0x0A), 0x02A (@0x1A); the 0x8000 "no name" flag is kept. A map value of -1
         (a line the 2016 dialog lacks, i.e. post-2016 text) drops the message instead of showing a wrong line.
   guard An event (cutscene) the 2016 data does not have for that actor (post-Feb-2016 content, or an NPC the 2016
         list lacks) leaves the client waiting forever ("You cannot use that command"). s2c 0x032/0x033/0x034 whose
         event id is in neither the actor's block nor the zone's own block of the 2016 event DAT (5820+zone /
-        83671+zone-256; work/b54_audit/maps/events_2016.json) is dropped, and an event end (c2s 0x05B, Mode End,
+        83671+zone-256; maps/events_2016.json) is dropped, and an event end (c2s 0x05B, Mode End,
         option 0x40000000 = "cancelled") is sent to the server in the client's next frame, so the server
         finishes the event and releases the player (0x052). Nothing progresses for such events. (The client sends only
         empty frames while it waits, so the event end is added to its next frame: ZoneClient.run_hooks is wrapped.)
@@ -225,7 +224,7 @@ def groups():
     items = [('s2c', 0x00A, s2c_login), ('s2c', 0x036, s2c_036), ('s2c', 0x027, s2c_027), ('s2c', 0x02A, s2c_02a),
              ('s2c', 0x032, s2c_032), ('s2c', 0x033, s2c_033), ('s2c', 0x034, s2c_034)]
     return {'text-2016': ('2016 client: zone text ids 2012pc -> 2016 dialog, and guard for events the 2016 data lacks '
-                          '(work/b54_audit)', items)}
+                          '', items)}
 
 
 def register(px):

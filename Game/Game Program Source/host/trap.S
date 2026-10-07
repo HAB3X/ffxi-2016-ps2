@@ -290,7 +290,7 @@ motion_hook_entry:                      /* 0x30DBB0: start an emote motion (a0 a
     j     0x30dbb8
     nop
 
-/* b49_social: CommandCalc (0x3A9ED0) hook: social chat commands (/befriend /unfriend /fmsg /friends) are handled by soc_cmd_filter;
+/* CommandCalc (0x3A9ED0) hook: social chat commands (/befriend /unfriend /fmsg /friends) are handled by soc_cmd_filter;
    everything else continues into the original function (its first two instructions are re-executed here) */
     .globl soc_cmd_entry
 soc_cmd_entry:

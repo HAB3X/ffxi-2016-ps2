@@ -2,9 +2,8 @@
 """ps2proxy_core - core-gameplay packet translation between LandSandBoat and the 2007 PS2 FFXI client.
 
 Loaded by ps2proxy.py (register(px) at import). Every layout below was read from the 2007 engine (Vana'diel
-Collection INSTALL.ELF; handler addresses from its gcZoneRecvCallBack registrations, names from
-research/engine_atlas/functions/i_vc2007.tsv) and compared with LSB's packet code (work/lsb/src/map/packets).
-Evidence and the full audit: research/reports/27_gameplay_audit.md.
+Collection INSTALL.ELF; handler addresses from its gcZoneRecvCallBack registrations) and compared with LSB's packet code.
+
 
 Groups (enable with ps2proxy --translate NAME; the "core" group is on by default, --no-translate NAME turns one off):
 
@@ -436,7 +435,7 @@ def _state(ctx):
     return st
 
 
-# s2c index fields on LSB's layouts (offsets from LSB's own headers, compiled: work/b27_audit/idx/offsets.txt).
+# s2c index fields on LSB's layouts (offsets from LSB's own headers).
 # kind: 'u16' plain, 'u32' plain, ('bits', off, shift, width) inside a u32, 'u16x5' array.
 S2C_INDEX = {
     0x009: [(0x08, 'u16')], 0x00A: [(0x08, 'u16'), (0x18, 'face')], 0x00D: [(0x08, 'u16'), (0x18, 'face'), (0x3C, 'u16')],
@@ -453,7 +452,7 @@ S2C_INDEX = {
     0x0F4: [(0x04, 'u16')], 0x0F5: [(0x12, 'u16')], 0x0F9: [(0x08, 'u16')], 0x108: [(0x0E, 'u16')],
     0x109: [(0x0C, 'u16'), (0x0E, 'u16')],
 }
-# c2s index fields (LSB layouts = the 2007 layouts at these offsets; exact sizes: work/b27_audit/c2s_sz/).
+# c2s index fields (LSB layouts = the 2007 layouts at these offsets).
 C2S_INDEX = {
     0x015: [(0x16, 'u16')], 0x016: [(0x04, 'u16')], 0x017: [(0x04, 'u16')], 0x01A: [(0x08, 'u16')],
     0x032: [(0x08, 'u16')], 0x036: [(0x3A, 'u16')], 0x037: [(0x0C, 'u16')], 0x05B: [(0x0C, 'u16')],
@@ -512,7 +511,7 @@ def _fields(table, pid, p):
 
 # Model ids (XiSkeletonActor::SetUp 0x1AB640 / 0x1ABAD0): the 2007 client uses id = model & 0xFFF;
 # id < 1500 -> file 1300+id, 1500..2999 -> file 50875+(id-1500), >= 3000 -> model 0. Only the ids listed in
-# research/pcsx2/npc_model_ids_2007_us.txt (1153) have a file in the 2007 US data. A standard-look model not in that
+# the 2007 model id list (1153) have a file in the 2007 US data. A standard-look model not in that
 # list is replaced: monsters by the Forest Hare model (268), NPCs by the Moogle model (82); both are in the list.
 MODEL_LIST_2007 = _os.path.join(_os.path.dirname(_os.path.abspath(__file__)), '..', 'pcsx2', 'npc_model_ids_2007_us.txt')
 MODEL_MAX_2007 = 3031        # fallback rule only if the list file is missing
@@ -652,8 +651,8 @@ def build_index_map(lsb_dir, dat_cache=None, out=INDEX_MAP_FILE, extra_ids=()):
         zones[str(zone)] = {str(i): s for i, s in zip(high, free)}
         if len(high) > len(free):
             unmapped[str(zone)] = high[len(free):]
-    doc = {'about': 'LSB NPC/mob index 0x300-0x3FF -> client slot below 0x300, per zone (ps2proxy_core core-index; '
-                    'report 27). Built from work/lsb/data/zones/*/{npcs,mobs}.yaml and the 2007 entity lists.',
+    doc = {'about': 'LSB NPC/mob index 0x300-0x3FF -> client slot below 0x300, per zone (ps2proxy_core core-index). '
+                    'Built from the server zone npc/mob lists and the 2007 entity lists.',
            'zones': zones, 'unmapped': unmapped}
     _json.dump(doc, open(out, 'w'), indent=0, sort_keys=True)
     return doc
@@ -667,7 +666,7 @@ def build_index_map(lsb_dir, dat_cache=None, out=INDEX_MAP_FILE, extra_ids=()):
 # face | race << 8, then 8 gear values slot << 12 | id. XiSkeletonActor::SetUp (0x1AB914-0x1AB990) limits each id by
 # slot: races 1-8 {face 32, head/body/hands/legs/feet 256, main/sub 512, range 256} (0x457700), races 29-31 64 for
 # face..feet and 0 for weapons (0x457720); other races are treated as race 1. Every id below the limit has a file
-# for every race (research/pcsx2/pc_gear_model_ids_2007_us.txt), so an id at or above the limit becomes 0.
+# for every race, so an id at or above the limit becomes 0.
 # Static-model objects (0x00E SubKind 4, LSB "ship"): XiModelActor::__ct (0x286750) loads file 0x7908 + id with no
 # range check and crashes on a NULL resource. Valid ids: ps2proxy_core_objmodels.json (files that are real resource
 # directories in the 2007 data); a packet with any other id is dropped.

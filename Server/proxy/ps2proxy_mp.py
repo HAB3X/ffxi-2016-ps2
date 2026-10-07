@@ -2,9 +2,9 @@
 """ps2proxy_mp - person-to-person (multiplayer) translation between the 2007 PS2 FFXI client and LandSandBoat.
 
 Loaded by ps2proxy.py (register(px) at import). Everything here comes from reading the 2007 engine
-(INSTALL.ELF, Vana'diel Collection build; function names from research/engine_atlas/functions/i_vc2007.tsv),
-the JP 2002 engine's DWARF struct layouts (work/b13_mp/gp_structs_jp2002.txt) and LSB's packet structs.
-Details and evidence: research/reports/26_multiplayer.md.
+(INSTALL.ELF, Vana'diel Collection build),
+the JP 2002 engine's DWARF struct layouts and LSB's packet structs.
+
 
 Zone packets (hooks, enabled by name with ps2proxy --translate NAME; the "mp" group is on by default):
 

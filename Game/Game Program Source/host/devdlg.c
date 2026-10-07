@@ -261,7 +261,7 @@ static void nat_frame(void)
     tc_probe();                 /* debug only (it scanned 256 KB of memory every frame; not in release builds) */
 #endif
     { extern void menu_ring_flush(void); menu_ring_flush(); }
-    { extern void soc_frame(void); soc_frame(); }               /* b49_social: command mailbox + friend-list service pump (social.c) */
+    { extern void soc_frame(void); soc_frame(); }               /* command mailbox + friend-list service pump (social.c) */
     { extern void xf_flush(void); xf_flush(); }
     { extern void hlog_kick(void); hlog_kick(); }
     sh_frame++;

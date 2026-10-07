@@ -1,4 +1,4 @@
-/* social.c (b49_social): in-game social services for the 2016 host without PlayOnline.
+/* social.c: in-game social services for the 2016 host without PlayOnline.
 
    1. Command mailbox (test driver): a PC tool writes a command line into g_soc_cmd over PINE and bumps g_soc_cmd_seq; on the next frame the
       game thread runs it through the program's own command interpreter CommandCalc(line, 0) at 0x3A9ED0 (what FsShortcutManager::DoCommand does),
@@ -7,8 +7,7 @@
    2. Friend list without PlayOnline.  The 2016 program reads its friend list through the PlayOnline slots 165-169 (sqPlayOnlineStoreFriendList,
       ...Check, GetFriendInfo, GetBlackInfo): gcFriendRefSet / gcFriendUpdate call GetFriendInfo(i, sqPolFriend*) for i < 200 and use every record
       whose handle is valid; online friends (status 1-3, active character = FFXI) are then looked up on the FFXI search server (zone/job/level), the
-      same way as /sea.  Here those slots answer from a table that a host thread fetches from the LAN friend service (work/b49_social/service/
-      soc_service.py) over TCP on the server address typed on the developer page, port SOC_PORT, every SOC_PERIOD seconds and right after a command.
+      same way as /sea.  Here those slots answer from a table that a host thread fetches from the LAN friend service over TCP on the server address typed on the developer page, port SOC_PORT, every SOC_PERIOD seconds and right after a command.
       Commands (typed on the chat line, caught before the game's interpreter):
         /befriend <name>   /addfriend <name>   send a friend request (the game's own /befriend would need PlayOnline mail)
         /faccept <name>    /fdecline <name>    accept / refuse a friend request (requests wait on the server until answered)

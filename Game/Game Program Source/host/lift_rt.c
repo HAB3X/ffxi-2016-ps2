@@ -75,7 +75,7 @@ void host_sifaddcmd(u32 cid, void *handler, void *arg)
     SifAddCmdHandler(cid, (SifCmdHandler_t)trs[i], arg);
 }
 
-/* kernel libsif command layer -> SDK (see b47_input HANDOFF): the kernel's own tables are never initialised here */
+/* kernel libsif command layer -> SDK: the kernel's own tables are never initialised here */
 void host_sifinitcmd(void) { SifInitCmd(); }
 void host_sifexitcmd(void) { SifExitCmd(); }
 void *host_sifremovecmdhandler(u32 id) { SifRemoveCmdHandler(id); return 0; }

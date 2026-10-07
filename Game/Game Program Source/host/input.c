@@ -135,7 +135,7 @@ int input_init(void)
 {
     g_input_step = 1;
     /* 1. PS2 pad stack lives in the BIOS ROM (the disc's IOPRP.IMG does not carry it): SIO2MAN + PADMAN, then the SDK's libpad.
-          (the lifted 2007 libpad was tried first: its PortOpen hangs with padman reporting "DMA Busy", see HANDOFF.md) */
+          (the lifted 2007 libpad was tried first: its PortOpen hangs with padman reporting "DMA Busy") */
     int a = load_rom("rom0:SIO2MAN"), b = load_rom("rom0:PADMAN");
     g_input_step = 2;
     if (a >= 0 && b >= 0) {

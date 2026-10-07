@@ -1,10 +1,9 @@
 #!/usr/bin/env python3
 """ps2proxy_2012 - packet translation between LandSandBoat and the 2012 PS2 FFXI client (the Seekers of Adoulin disc's
-INSTALL.ELF, report 28). Loaded by ps2proxy.py (register(px) at import); selected with `ps2proxy.py --client 2012`,
+INSTALL.ELF). Loaded by ps2proxy.py (register(px) at import); selected with `ps2proxy.py --client 2012`,
 which replaces the 2007 default set (core, mp, s2c-00d) by the 2012 set below. `--client 2007` (default) is unchanged.
 
-Every layout was read from the 2012 engine and compared with the 2007 engine (report 28 section 5.2,
-work/b13_2012/packets_2007_vs_2012.json) and LSB's packet structs.
+Every layout was read from the 2012 engine and compared with the 2007 engine and LSB's packet structs.
 
   c12-action   s2c 0x028: the 2012 reader (0x2D1C60) takes sub_kind 12, info 4, scale 5, value 17, message 10, bit 32
                per result, added effect 6/4/17/10, reaction 6/4/14/10. LSB: info 5 / bit 31. Re-packed (info keeps its
@@ -24,8 +23,8 @@ work/b13_2012/packets_2007_vs_2012.json) and LSB's packet structs.
                LSB 0x04..0x21 (ZoneNo u16 @0x20) + Name @0x22 (RecvGroupList 0x253740; LSB has 6 job bytes first);
                s2c 0x0C8 table: 12-byte entries like LSB (RecvGroupTbl 0x253320), only Kind @4 converted.
   c12-text     OPTIONAL (not default): message ids in s2c 0x036/0x02A/0x027 from the ids installed in LSB for the 2007
-               client to the 2012 ids (work/b13_2012/lsb_ids_2012_vs_installed2007/textid_2007_to_2012.json). Only for an
-               LSB running the 2007 text profile; with the 2012 profile (research/tools/lsb_text_profile.py) it is not needed.
+               client to the 2012 ids. Only for an
+               LSB running the 2007 text profile; with the 2012 profile it is not needed.
 Unchanged from 2007 and reused: core-shop (RecvShopList identical), core-c2s (senders unchanged), core-newids (the
 2012 handler tables are still 0x110 long), mp-linkshell, mp-check, npc-ids (with the 2012 map), and the search relay
 with the 2012 area width (10 bits both ways; the name length is still 4 bits in the 2012 query builder 0x25F470).
@@ -329,7 +328,7 @@ def translate_query_block_2012(block):
 
 
 # ---------------------------------------------------------------------------------------------------- c12-models
-# OPTIONAL (report 34 section 5.3, research/plan/NOTE_34_proxy_model_renumber.md): the 2012 engine loads skeleton models
+# OPTIONAL: the 2012 engine loads skeleton models
 # only for ids < 3000 (XiSkeletonActor::SetUp 0x1ADC0C: id & 0xFFF; >= 3000 -> model 0). The PC-only models of
 # conversion batch B with LSB ids >= 3000 sit in free PS2 slots 2850-2999 of the pc2ps2b drive; this group rewrites
 # the standard-look model id of s2c 0x00E (SubKind u16 @0x30 & 7 in 0/5/6, model u16 @0x32, low 12 bits) from the LSB
@@ -379,11 +378,11 @@ s2c_models.wants_ctx = True
 
 
 # ---------------------------------------------------------------------------------------------------- c12-badfx
-# 1 Oct 2026: converted PC models with particle meshes turned into VU models (d3m->vum, research/tools/pc2ps2_model.py)
+# 1 Oct 2026: converted PC models with particle meshes turned into VU models (d3m->vum)
 # can place a VU DMA packet at an 8-byte aligned address (model 2478, file 51853 = the "blank" effect NPCs of Bastok
 # Markets/Mines, Lower Jeuno, Northern San d'Oria, Norg, Lower Delkfutt's Tower): the VIF1 chain then reads a garbage tag
-# and the 2012 client freezes (work/b13_2012/rc2/freeze5_x). Until the converter pads those packets, s2c 0x00E of an
-# entity whose standard-look model (SubKind 0/5/6, model u16 @0x32) is in work/b34_pc2ps2/bad_fx_models_2012.json is
+# and the 2012 client freezes. Until the converter pads those packets, s2c 0x00E of an
+# entity whose standard-look model (SubKind 0/5/6, model u16 @0x32) is in maps/bad_fx_models_2012.json is
 # dropped, i.e. the NPC/mob is not shown. Runs before c12-models (it compares LSB model ids). PS2PROXY_BADFX=off disables it.
 BADFX_FILE = os.path.join(MAPS, 'bad_fx_models_2012.json')
 _BADFX = None
@@ -439,7 +438,7 @@ GROUPS = {
                    ('c2s', 0x070, mp.c2s_group_breakup), ('c2s', 0x071, mp.c2s_group_strike),
                    ('c2s', 0x077, mp.c2s_group_change2), ('s2c', 0x0DC, mp.s2c_group_solicit),
                    ('s2c', 0x0DD, s2c_group_list), ('s2c', 0x0C8, s2c_group_tbl)]),
-    'c12-models': ('OPTIONAL (pc2ps2b drive only): s2c 0x00E model ids >= 3000 -> converted PS2 slots 2850-2999 (report 34)',
+    'c12-models': ('OPTIONAL (pc2ps2b drive only): s2c 0x00E model ids >= 3000 -> converted PS2 slots 2850-2999',
                    [('s2c', 0x00E, s2c_models)]),
     'c12-text': ('OPTIONAL: message ids installed-2007 -> 2012 in s2c 0x036/0x02A/0x027',
                  [('s2c', pid, s2c_text) for pid in sorted(MESNUM_OFF)]),
@@ -485,7 +484,7 @@ def apply_client(cfg, px, log=None):
     mp.translate_query_block = translate_query_block_2012
     rep = dict(mp._REP_2007); rep[0x01] = [10]; mp._REP_2007 = rep   # 2012 reply decoder reads the area as 10 bits
     if log:
-        log('proxy', 'client 2012 (Adoulin engine, report 28): NPC map %s; search area 10 bits' % npc.MAP_FILE)
+        log('proxy', 'client 2012 (Adoulin engine): NPC map %s; search area 10 bits' % npc.MAP_FILE)
     return list(DEFAULT_2012)
 
 

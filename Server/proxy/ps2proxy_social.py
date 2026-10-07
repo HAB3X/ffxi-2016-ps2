@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """ps2proxy_social - translations for the 2016 PS2 client in party / trade / check / linkshell / delivery box packets,
-found by testing two 2016 clients against LandSandBoat (b49_social) and reading the 2016 receive handlers (ffxi_pol.pex 20160203_0).
+found by testing two 2016 clients against LandSandBoat and reading the 2016 receive handlers (ffxi_pol.pex 20160203_0).
 
 Group "soc-2016" (off unless --translate soc-2016):
   s2c 0x017 chat: the 2016 client reads the text at 0x18, LSB writes it at 0x17 (received say/party/linkshell/tell lost the first letter)
@@ -11,7 +11,7 @@ Group "soc-2016" (off unless --translate soc-2016):
 Group "soc-mute" (any client mode; FFXI Server app, 6 Oct 2026): c2s 0x0B5 (say/shout/party/linkshell/yell, incl. "!" lines) and
   0x0B6 (tell) from a character listed in the mute file are dropped, so nobody sees them. Mute file = PS2PROXY_MUTE_FILE or
   ~/Downloads/FFXI/Server/.tools/muted.txt (one character name per line; '#' comments), re-read when it changes - no restart.
-Loaded by research/tools/ps2proxy.py itself (and by work/b49_social/soc_proxy.py)."""
+Loaded by ps2proxy.py itself."""
 import os
 import struct
 import time
@@ -50,7 +50,7 @@ def s2c_chat(ctx, pkt):
 def s2c_music(ctx, pkt):
     """s2c 0x05F music {Slot u16@4, MusicNum u16@6}: the 2016 engine streams tracks >= 900 from DAT file 49875+n (only 900 exists;
     901+ hung the music task), so the beta tracks 901-953 (lan_legacy Beta Jukebox / !betamusic) are sent as 701-753, which the 2016
-    drive carries as normal BGM/wave files (work/b43_host2016/stage_beta_music7)."""
+    drive carries as normal BGM/wave files."""
     if len(pkt) < 8:
         return None
     n = struct.unpack_from('<H', pkt, 6)[0]

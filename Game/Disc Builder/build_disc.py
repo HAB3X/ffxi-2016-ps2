@@ -1,10 +1,8 @@
 #!/usr/bin/env python3
-"""build_2016_install_disc_v3.py (6 Oct 2026, v3 = Square Enix's installer + packed CONTAINER data copied as plain records)
-build_2016_install_disc.py - the FFXI 2016 INSTALL + PLAY DVD for a PS2 with a hard drive (and for PCSX2 tests).
+"""build_disc.py: builds the FFXI 2016 INSTALL + PLAY DVD for a PS2 with a hard drive (and for PCSX2).
 
 One single-layer DVD that installs the 2016 game data onto the PS2 hard drive with Square Enix's own 2012 installer
-(the Adoulin disc's INSTALL.ELF in installer mode, patched: install_2016_disc.pnach) and then boots the 2016 host
-(work/b52_installer/host: the C host that runs the unlocked 2016 program ffxi_pol.pex without PlayOnline).
+(the Adoulin disc's INSTALL.ELF in installer mode, patched: install_2016_disc.pnach) and then boots the 2016 host.
 
 Disc layout (plain ISO9660, PS2 style NAME.EXT;1):
   SYSTEM.CNF               BOOT2 = cdrom0:\\SLUS_217.04;1
@@ -25,7 +23,7 @@ Disc layout (plain ISO9660, PS2 style NAME.EXT;1):
 No opening movie (OPN.DAT): the 2016 program does not play it.
 
 Input = a data tree = the root of the FFXI partition (config.sys, patch.ver, res/, image/ffxi/...), e.g. made with
-  python3 research/tools/pfs_native.py DRIVE.raw extract PP.SCUS-97266.0001.FFXI OUTDIR
+  a PS2 drive tool (extract the PP.SCUS-97266.0001.FFXI partition to a folder)
 Run-time / personal files are never put on the disc (--exclude defaults: image/ffxi/USER/, image/ffxi/TEMP/,
 SYS/lb*.bin, SYS/err*.bin, every *.enc). Any file layout works (also an already-compressed tree for a host that decodes
 at load time): files are installed byte for byte.
@@ -38,7 +36,7 @@ import argparse, hashlib, os, re, struct, subprocess, sys, time
 HERE = os.path.dirname(os.path.abspath(__file__)); ROOT = os.path.abspath(os.path.join(HERE, '..', '..'))
 sys.path.insert(0, os.path.join(HERE, 'tools'))
 import iso_engine_copy as eng                      # ISO9660 reader of the release engine (copy)
-ADOULIN = os.path.join(ROOT, 'work/b41_release/adoulin/Final Fantasy XI - Adoulin no Makyou (Japan).iso')
+ADOULIN = os.path.join(ROOT, 'Disc', 'Original Disc', 'Final Fantasy XI - Adoulin no Makyou (Japan).iso')
 INSTALL_MD5 = '2b1969190e0566b0d8d3133e2987df19'
 S = 2048
 DVD5 = 4700372992                                   # single-layer DVD-R: 2,295,104 sectors
@@ -116,7 +114,7 @@ def misc_sets(misc, tree=None):
 
 # ------------------------------------------------------------------ packing
 def encode_all(tree, items, work, jobs, chain):
-    """items: {md5: rel}. Writes work/lz/<md5>.lz (cache by content), returns the lz dir."""
+    """items: {md5: rel}. Writes <work>/lz/<md5>.lz (cache by content), returns the lz dir."""
     lz = os.path.join(work, 'lz'); st = os.path.join(work, 'stage'); os.makedirs(lz, exist_ok=True); os.makedirs(st, exist_ok=True)
     todo = []
     for h, rel in items.items():
@@ -156,7 +154,7 @@ def build_misc(tree, recs, path):
     return ('parts', parts)
 
 
-# ------------------------------------------------------------------ ISO9660 writer (Sony-style layout, from work/b41_release)
+# ------------------------------------------------------------------ ISO9660 writer (Sony-style layout)
 class Node:
     def __init__(self, name, parent=None):
         self.name, self.parent, self.dirs, self.files = name, parent, {}, {}

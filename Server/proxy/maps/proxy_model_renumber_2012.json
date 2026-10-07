@@ -1,6 +1,6 @@
 {
- "about": "Proxy-side model renumbering for the 2012 PS2 client (report 34 section 5.3). The 2012 engine loads skeleton models only for ids < 3000 (XiSkeletonActor::SetUp: id & 0xFFF; < 1500 -> file 1300+id; 1500-2999 -> file 50875+(id-1500); >= 3000 -> model 0). These PC-only models were converted and placed in PS2 slots 2850-2999 that no LSB entity and no PS2 file uses. Rewrite the model id (s2c 0x00E standard look, u16 @0x32, low 12 bits, SubKind 0/5/6) from \"lsb\" to \"ps2\" for a 2012 client only, and only on a drive that carries batch B (DEV9hdd-...+pc2ps2b.raw).",
- "drive": "work/b9_fill/drives/DEV9hdd-v3-US+dic+sysinfo+poldb+soa2012-v2+pc2ps2b.raw",
+ "about": "Proxy-side model renumbering for the 2012 PS2 client. The 2012 engine loads skeleton models only for ids < 3000 (XiSkeletonActor::SetUp: id & 0xFFF; < 1500 -> file 1300+id; 1500-2999 -> file 50875+(id-1500); >= 3000 -> model 0). These PC-only models were converted and placed in PS2 slots 2850-2999 that no LSB entity and no PS2 file uses. Rewrite the model id (s2c 0x00E standard look, u16 @0x32, low 12 bits, SubKind 0/5/6) from \"lsb\" to \"ps2\" for a 2012 client only, and only on a drive that carries batch B (DEV9hdd-...+pc2ps2b.raw).",
+ "drive": "the 2012 test drive",
  "free_slots_left": [
   2975,
   2976,

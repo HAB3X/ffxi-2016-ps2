@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""ps2proxy_npc - NPC-side translation between LandSandBoat and the 2007 PS2 FFXI client (report 24).
+"""ps2proxy_npc - NPC-side translation between LandSandBoat and the 2007 PS2 FFXI client.
 
 Loaded by ps2proxy.py (register(px) at import). On by default through the "npc" alias; switch off with
-ps2proxy --no-translate npc-ids. (The shop list layout, s2c 0x03C, is ps2proxy_core's core-shop, report 27.)
+ps2proxy --no-translate npc-ids. (The shop list layout, s2c 0x03C, is ps2proxy_core's core-shop.)
 
   npc-ids    NPC server ids. Post-2007 NPCs were inserted into the zones' entity lists, so LSB's NPC ids (taken
              from the modern client) are shifted against the 2007 lists (Northern San d'Oria: Pontaudarme is

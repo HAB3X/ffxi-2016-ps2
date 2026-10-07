@@ -394,7 +394,7 @@ int main(int argc, char **argv)
     install_real(tab);
     lift_place(&lift_k_set, tab);
     lockbug_install(&lift_k_set); net_install(tab);
-    { extern void soc_install(u32 *); soc_install(tab); }   /* b49_social: friend-list slots + chat command hook (social.c) */                                  /* wrap lifted socket slots (lazy IOP net bring-up) + POLCON answers */
+    { extern void soc_install(u32 *); soc_install(tab); }   /* friend-list slots + chat command hook (social.c) */                                  /* wrap lifted socket slots (lazy IOP net bring-up) + POLCON answers */
     tab[558] = (u32)svc_gssyncpath;                    /* bounded wait instead of the kernel's 16M-iteration spin */
 #ifdef OPT_RET0
     tab[907] = tab[908] = (u32)svc_zero;
@@ -484,8 +484,7 @@ int main(int argc, char **argv)
 #ifdef B55_GEAR5
     {   /* PC content: weapon looks 896-967 (main/sub gear group 5). The 2016 gear table (0x5ABF10 -> per race 9 slots x 5
            groups of {base file id, count}) has group 5 = {0, 32} for main/sub: base 0 = file ids 0-31 (wrong files). Give each race's
-           main/sub group 5 a block of 72 new file ids (work/b55_pccontent/gear/manifest.json "blocks"; Taru M/F share, as the 2016
-           tables do) and count 72. Only data words change; each is checked first. */
+           main/sub group 5 a block of 72 new file ids and count 72. Only data words change; each is checked first. */
         static const u32 g5[][2] = {
         { 0x5AA920, 88286 },   /* race 1 main group 5 */
         { 0x5AA948, 88358 },   /* race 1 sub group 5 */

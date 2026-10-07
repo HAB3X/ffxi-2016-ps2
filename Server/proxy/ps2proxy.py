@@ -4,7 +4,7 @@
 The PS2 client (Vana'diel Collection / WotG INSTALL.ELF in game mode, command line
 "-net 3 -ip <proxy> -port 54001 -accunt <account> -pass <password>", no -POLCON, key patch P4) talks only
 to one lobby TCP address and then to the zone (UDP) address the lobby hands it. LSB needs more than that
-(research/reports/01, 05, 15):
+:
 
   * a TLS 1.3 JSON login on the auth port (54231) that creates a session [client IP][16-byte session hash];
   * a plaintext "data" channel (54230) that stays open and answers 0x01 -> 0xA1 and 0x02 -> 0xA2;
@@ -65,7 +65,7 @@ LOBBY_NAMES = {
     0x04: 'ResponseError', 0x0B: 'ResponseNextLogin',
 }
 # Offset of the 16-byte digest MD5(passwd || le32(key)) in PS2 client lobby packets (LobbyPktCreate).
-EXCODE_2012 = int(os.environ.get('PS2PROXY_EXCODE_2012', '0x07FF'), 0)   # 0x0FFF only with a pnach made with --soa-installed; expansion bits for the 2012 client = what it can mark installed (report 28 section 9.17):
+EXCODE_2012 = int(os.environ.get('PS2PROXY_EXCODE_2012', '0x07FF'), 0)   # 0x0FFF only with a pnach made with --soa-installed; expansion bits for the 2012 client = what it can mark installed:
                           # base, RoZ, CoP, ToAU, WotG (ROM2-5), ACP, AMK, ASA (ROM6-8), the 3 Abyssea (auto with RoZ+WotG).
                           # NOT 0x800 Seekers of Adoulin: only a "ROM12" set marks it installed, which the 2012 program never
                           # probes -> with 0x0FFF the client said "Expansion pack data has not been installed" (30 Sep).
@@ -235,7 +235,7 @@ def lsb_login(host, port, user, password, timeout=10.0, source_ip=None):
         raise LoginError('LSB auth: %s' % rep['error_message'])
     res = rep.get('result')
     if res != 1:
-        raise LoginError('LSB auth refused: result %s (%s)' % (res, AUTH_RESULTS.get(res, 'see report 01')))
+        raise LoginError('LSB auth refused: result %s (%s)' % (res, AUTH_RESULTS.get(res, '')))
     h = bytes(rep.get('session_hash') or [])
     if len(h) != 16:
         raise LoginError('LSB auth reply has no 16-byte session_hash')
@@ -432,7 +432,7 @@ class LobbySession(threading.Thread):
         self.hash = None
         self.closing = False
         self.send_lock = threading.Lock()
-        # Model of the PS2 client's lobby key counter (lpkt_work+0x138, report 05 section 4.1).
+        # Model of the PS2 client's lobby key counter (lpkt_work+0x138).
         self.k0 = None
         self.key = None
         self.digest_checked = False
@@ -497,7 +497,7 @@ class LobbySession(threading.Thread):
         self.log(self.tag, 'PS2 %s:%d connected to lobby %s:%d' % (self.caddr[0], self.caddr[1], self.facing_ip,
                                                                   self.csock.getsockname()[1]))
         self.csock.setsockopt(socket.IPPROTO_TCP, socket.TCP_NODELAY, 1)
-        self.csock.settimeout(LOBBY_FIRST_TIMEOUT)            # report 40 F2: silent connections do not hold a thread
+        self.csock.settimeout(LOBBY_FIRST_TIMEOUT)            # silent connections do not hold a thread
         cpend = bytearray()
         try:
             first = read_lobby_packet(self.csock, cpend)
@@ -522,7 +522,7 @@ class LobbySession(threading.Thread):
         if account and account.lower() != self.player.account.lower():
             self.log(self.tag, 'note: PS2 sent account "%s", logging into LSB as "%s"' % (account, self.player.account))
 
-        # 1. auth (TLS JSON); a hash starting with 0x00 cannot be matched by LSB (report 01 2.1), so retry.
+        # 1. auth (TLS JSON); a hash starting with 0x00 cannot be matched by LSB, so retry.
         fkey = (self.player.account.lower(), self.player.password)
         last = LobbySession.auth_failures.get(fkey)
         if last and time.time() - last[0] < 65:
@@ -630,7 +630,7 @@ class LobbySession(threading.Thread):
         self.key += 1
 
     def verified_client(self, pkt):
-        """Report 40 F1: the proxy logs into LSB with the password from players.txt, so a PS2 must prove it knows that
+        """the proxy logs into LSB with the password from players.txt, so a PS2 must prove it knows that
         password (the lobby digest MD5(pass || key)) before any of its packets after 0x26 reach LSB. Otherwise anyone on
         the LAN who knows an account name could list, create or delete that player's characters."""
         if self.digest_mode in ('patched', 'unpatched') or getattr(self.cfg, 'allow_unverified_lobby', False):
@@ -682,7 +682,7 @@ class LobbySession(threading.Thread):
             self.key = self.k0 + 1
             self.log(self.tag, 'lobby key K0 = 0x%08X, excode_server = 0x%08X' % (self.k0, u32(pkt, 0x20)))
             if getattr(self.cfg, 'client', '2007') == '2012' and u32(pkt, 0x20) != EXCODE_2012:
-                # 2012 client (report 28 sections 9.11/9.17): every expansion the client can mark installed (0x07FF);
+                # 2012 client: every expansion the client can mark installed (0x07FF);
                 # LSB's login.lua keeps the 2007 disc's set for 2007 clients.
                 p = bytearray(pkt); struct.pack_into('<I', p, 0x20, EXCODE_2012)
                 pkt = bytes(lobby_md5_fix(p))
@@ -743,7 +743,7 @@ class LobbySession(threading.Thread):
         sip, sport = ip_str(p[0x40:0x44]), u32(p, 0x44)
         self.log(self.tag, 'LSB hands out zone %s:%d, search %s:%d for "%s" (charid %d)' % (zip_, zport, sip, sport,
                                                                                          name, charid))
-        # Predicted zone keys: the client counts +1 for this 0x0B and +2 in cliinit (report 05 4.2).
+        # Predicted zone keys: the client counts +1 for this 0x0B and +2 in cliinit.
         client_k4 = (self.key + 1 + 2) if self.key is not None else None
         srv_k4 = self.lsb_final_k4()
         if client_k4 is not None and srv_k4 is not None:
@@ -757,7 +757,7 @@ class LobbySession(threading.Thread):
             struct.pack_into('<I', p, 0x3C, self.relay.port)
             note = ' [zone address rewritten to the relay %s:%d' % (self.public_ip, self.relay.port)
             if getattr(self.cfg, 'search_relay_port', None):
-                # The 2007 search query/reply formats differ from LSB's (report 26): send /sea through the proxy.
+                # The 2007 search query/reply formats differ from LSB's: send /sea through the proxy.
                 p[0x40:0x44] = socket.inet_aton(self.public_ip)
                 struct.pack_into('<I', p, 0x44, self.cfg.search_relay_port)
                 note += ', search to %s:%d' % (self.public_ip, self.cfg.search_relay_port)
@@ -966,7 +966,7 @@ class Huffman:
     def decode(self, comp, stored_bits):
         if not comp:
             return b''
-        nbits = min(stored_bits - 8, (len(comp) - 1) * 8)        # never trust the stored bit count (report 40)
+        nbits = min(stored_bits - 8, (len(comp) - 1) * 8)        # never trust the stored bit count
         if comp[0] != 1:                                  # flag 0: stored raw (PS2 huffman_packet_decode)
             return bytes(comp[1:1 + max(nbits, 0) // 8])
         val = int.from_bytes(comp[1:], 'little')
@@ -1031,10 +1031,10 @@ C2S_HOOKS = {}
 S2C_HOOKS = {}
 OPTIONAL_HOOKS = {}          # name -> (direction, id, fn, description)
 TRANSLATION_ALIASES = {}     # group name -> [optional hook names] (e.g. "mp", filled by ps2proxy_mp.register)
-# On unless --no-default-translations / --no-translate NAME (verified against the 2007 client code, report 26)
+# On unless --no-default-translations / --no-translate NAME (verified against the 2007 client code)
 # Order matters: c2s index mapping back to LSB first; s2c looks on LSB's layout (before s2c-00d moves the 0x00D look);
 # s2c NPC ids (npc) before the index renumbering (core-index).
-DEFAULT_TRANSLATIONS = ['core-index-c2s', 'core-looks', 'mp', 's2c-00d', 'npc', 'core']   # 'core' = ps2proxy_core (report 27), 'npc' = ps2proxy_npc (report 24)
+DEFAULT_TRANSLATIONS = ['core-index-c2s', 'core-looks', 'mp', 's2c-00d', 'npc', 'core']   # 'core' = ps2proxy_core, 'npc' = ps2proxy_npc
 ENABLED_TRANSLATIONS = []
 
 
@@ -1107,7 +1107,7 @@ def _s2c_zone_change(ctx, pkt):
     return bytes(p)
 
 
-# c2s sizes where the 2007 client and LSB disagree (report 09 section 4.3): id -> (client size, LSB size).
+# c2s sizes where the 2007 client and LSB disagree: id -> (client size, LSB size).
 C2S_SIZE_FIX = {0x01B: (0x1C, 0x08), 0x059: (0x08, 0x10), 0x061: (0x04, 0x08), 0x09B: (0x08, 0x0C),
                 0x0DD: (0x0C, 0x10), 0x0E1: (0x8C, 0x90), 0x0E2: (0x8C, 0x90), 0x0FA: (0x0C, 0x10),
                 0x0FE: (0x08, 0x0C)}
@@ -1123,11 +1123,11 @@ def _make_c2s_size_fix(pid, want):
 
 for _pid, (_cli, _lsb) in C2S_SIZE_FIX.items():
     c2s_hook(_pid, optional='c2s-sizes',
-             desc='EXPERIMENTAL: pad/cut the 9 c2s packets whose PS2 size LSB rejects (report 09 4.3) to LSB size')(
+             desc='EXPERIMENTAL: pad/cut the 9 c2s packets whose PS2 size LSB rejects to LSB size')(
         _make_c2s_size_fix(_pid, _lsb))
 
 
-# ---- NPC talk / event trace (always on; logs only, never changes a packet). Report 24.
+# ---- NPC talk / event trace (always on; logs only, never changes a packet)..
 ACTION_NAMES = {0x00: 'talk', 0x02: 'attack', 0x03: 'cast', 0x04: 'disengage', 0x07: 'weaponskill',
                 0x09: 'ability', 0x0B: 'homepoint', 0x0D: 'raise-menu', 0x0E: 'fish', 0x0F: 'change-target',
                 0x10: 'shoot', 0x14: 'zone-in-ready'}
@@ -1219,7 +1219,7 @@ def _s2c_char_pc_2007(ctx, pkt):
     return set_subpacket_size(body, len(body))
 
 
-# Person-to-person translations (chat/tells, party/alliance, linkshell, /check) and the search relay: report 26.
+# Person-to-person translations (chat/tells, party/alliance, linkshell, /check) and the search relay:.
 try:
     import ps2proxy_mp as _mp                                                    # noqa: E402
 except ImportError:
@@ -1227,7 +1227,7 @@ except ImportError:
     import ps2proxy_mp as _mp                                                    # noqa: E402
 _mp.register(sys.modules[__name__])
 
-# Core gameplay translations (0x028 actions, 0x037 status icons, item containers, c2s sizes): report 27.
+# Core gameplay translations (0x028 actions, 0x037 status icons, item containers, c2s sizes):.
 try:
     import ps2proxy_core as _core                                                # noqa: E402
 except ImportError:
@@ -1235,7 +1235,7 @@ except ImportError:
     import ps2proxy_core as _core                                                # noqa: E402
 _core.register(sys.modules[__name__])
 
-# NPC-side translations (shop list layout, NPC server ids LSB <-> 2007 entity lists): report 24.
+# NPC-side translations (shop list layout, NPC server ids LSB <-> 2007 entity lists):.
 try:
     import ps2proxy_npc as _npc                                                  # noqa: E402
 except ImportError:
@@ -1243,7 +1243,7 @@ except ImportError:
     import ps2proxy_npc as _npc                                                  # noqa: E402
 _npc.register(sys.modules[__name__])
 
-# The 2012 client (Seekers of Adoulin disc engine, report 28): its own translation set, selected with --client 2012.
+# The 2012 client (Seekers of Adoulin disc engine): its own translation set, selected with --client 2012.
 try:
     import ps2proxy_2012 as _c12                                                 # noqa: E402
 except ImportError:
@@ -1251,8 +1251,8 @@ except ImportError:
     import ps2proxy_2012 as _c12                                                 # noqa: E402
 _c12.register(sys.modules[__name__])
 
-# The 2016 host build (work/b43_host2016): chat text offset, party member names, beta music ids - optional group "soc-2016"
-# (work/b49_social, 6 Oct 2026; off unless --translate soc-2016).
+# The 2016 host build: chat text offset, party member names, beta music ids - optional group "soc-2016"
+#.
 try:
     import ps2proxy_social as _soc                                               # noqa: E402
 except ImportError:
@@ -1265,7 +1265,7 @@ try:
     _chat.register(sys.modules[__name__])
 except ImportError:
     pass
-# 2016 client zone text ids / event guard - optional group "text-2016" (work/b54_audit, 6 Oct 2026; off unless --translate text-2016).
+# 2016 client zone text ids / event guard - optional group "text-2016".
 try:
     import ps2proxy_text2016 as _t16                                             # noqa: E402
     _t16.register(sys.modules[__name__])
@@ -1702,7 +1702,7 @@ class ZoneRelay(threading.Thread):
                             t.charid, addr[0], t.ps2_ip))
                         continue
                 if t is None and not getattr(self.cfg, 'zone_open', False):
-                    # Report 40 F3: a PS2 always starts with a plain 0x00A for the character it just selected in the
+                    # a PS2 always starts with a plain 0x00A for the character it just selected in the
                     # lobby; anything else (garbage, scans, stale sessions) must not open a relay entry and socket.
                     self.refuse(addr, 'UDP from %s:%d is not a zone login for a character selected in the lobby' % addr)
                     continue
@@ -1799,7 +1799,7 @@ def parse_args(argv=None):
     ap.add_argument('--no-translate', action='append', default=[], help='switch off one translation (or group)')
     ap.add_argument('--client', choices=('2007', '2012'), default='2007',
                     help='PS2 client build: 2007 (Vana\'diel Collection / WotG engine, default) or 2012 (Adoulin disc engine, '
-                         'report 28: ps2proxy_2012 translation set, 2012 NPC id map, 2012 search widths)')
+                         'ps2proxy_2012 translation set, 2012 NPC id map, 2012 search widths)')
     ap.add_argument('--no-default-translations', action='store_true',
                     help='only the --translate ones (the pre-report-26 behaviour)')
     ap.add_argument('--search-port', type=int, default=54242,
@@ -1817,10 +1817,10 @@ def parse_args(argv=None):
     ap.add_argument('--zone-idle', type=float, default=180.0, help='seconds before an idle zone relay entry is dropped')
     ap.add_argument('--allow-unverified-lobby', action='store_true',
                     help='forward lobby packets even when the PS2 did not prove the players.txt password (old behaviour; '
-                         'report 40 F1)')
+                         ')')
     ap.add_argument('--zone-open', action='store_true',
                     help='relay UDP from any address, and zone logins from another IP than the lobby (old behaviour; '
-                         'report 40 F3)')
+                         ')')
     ap.add_argument('--version', action='version', version='ps2proxy ' + VERSION)
     return ap.parse_args(argv)
 
@@ -1871,7 +1871,7 @@ def serve(cfg, log, ready=None):
             log('proxy', 'accept failed: %s' % e)
             time.sleep(0.5)
             continue
-        if LobbySession.active >= MAX_LOBBY_SESSIONS:          # report 40 F2: connection flood
+        if LobbySession.active >= MAX_LOBBY_SESSIONS:          # connection flood
             log('proxy', 'lobby connection from %s:%d refused: %d sessions open' % (ca[0], ca[1], LobbySession.active))
             try:
                 cs.close()

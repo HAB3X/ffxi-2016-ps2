@@ -1,4 +1,4 @@
-/* perf.c (b53_perf) - frame-rate counters for the benchmark (read over PINE by b53_perf/bench.py).
+/* perf.c - frame-rate counters for the benchmark (read over PINE).
    g_pf_vs     : vertical blanks counted by an INTC VBLANK_START handler (59.94 per second NTSC) = emulated wall time
    g_pf_frames : game frames (the per-frame function 0x2D8BE0 calls dev_frame_hook once per frame)
    g_pf_ft[]   : ring of the last 1024 frame times in vblanks*16 + sub-vblank cycles (see below), g_pf_ftc = cycles per frame
@@ -43,7 +43,7 @@ void perf_frame(void)
 }
 #ifdef PROF
 /* sampling profiler (PROF builds only): every 16 horizontal blanks (~1 ms) the interrupted program counter is recorded.
-   g_pf_pc[] ring of 8192 samples, g_pf_pcn count; b53_perf/tools/profile.py bins them by function of the 2016 program. */
+   g_pf_pc[] ring of 8192 samples, g_pf_pcn count; a profiler can bin them by function of the 2016 program. */
 volatile u32 g_pf_pc[8192], g_pf_pcn = 0;
 static void prof_tick(s32 id, u16 time, void *arg)
 {

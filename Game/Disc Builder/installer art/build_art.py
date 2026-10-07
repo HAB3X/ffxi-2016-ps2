@@ -7,7 +7,7 @@ import os, struct, sys
 import numpy as np
 from PIL import Image
 H = os.path.dirname(os.path.abspath(__file__)); W = os.path.join(H, '..', '..')
-sys.path.insert(0, os.path.join(W, 'b36_pcimport')); sys.path.insert(0, os.path.join(W, 'b14_backport'))
+sys.path.insert(0, H)                      # icon.py and textfmt.py sit next to this file
 from icon import swizzle8
 from textfmt import dmsg_read, dmsg_write
 SRC = os.path.join(H, '..', 'cdrom'); OUT = os.path.join(H, 'out'); os.makedirs(OUT, exist_ok=True)

@@ -1,4 +1,4 @@
-/* xc.c - "XCZ3" block-compressed DAT format for the 2016 host (b50_pack). Shared by the Mac packer (-DXC_PACKER, links liblz4)
+/* xc.c - "XCZ3" block-compressed DAT format for the 2016 host. Shared by the Mac packer (-DXC_PACKER, links liblz4)
    and the EE host (decoder only). LOSSLESS: every packed file is decoded back and compared byte for byte at pack time.
    File layout:  u32 magic 'XCZ2' | u32 orig size | u32 block size | u32 nblk | u32 tb | u32 off[nblk+1]
                  then the TAIL records tb..nblk-1 (at most XC_TAILMAX bytes), then records 0..tb-1; each record:
