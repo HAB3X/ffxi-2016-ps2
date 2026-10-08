@@ -9,6 +9,7 @@
 #include <kernel.h>
 volatile u32 g_pf_vs = 0, g_pf_frames = 0, g_pf_hist[16], g_pf_ftc[1024], g_pf_ftv[1024], g_pf_maxv = 0, g_pf_on = 0;
 static u32 last_vs, last_cyc;
+volatile u32 g_vbl_epc[256], g_vbl_epcn = 0;
 #ifdef PROF
 static void perf_prof_start(void);
 #endif
@@ -18,6 +19,7 @@ extern void al_irq_check(void);
 static int vbl_handler(int c)
 {
     (void)c; g_pf_vs++;
+    { u32 epc; __asm__ volatile("mfc0 %0, $14" : "=r"(epc)); g_vbl_epc[g_vbl_epcn++ & 255] = epc; }   /* NETDIAG13: where the EE was when the vblank came */
 #ifdef ALARM_VBL
     al_irq_check();                                    /* overdue game alarms fire here (userfile.c) */
 #endif

@@ -12,12 +12,14 @@
    Bring-up is lazy: it runs on the first sqInetGetSafeUdpPort / sqCreateSocket / sqCreateDatagramSocket / sqGetHostByName
    call, on a helper thread with a big stack (game threads have tiny stacks), so the game's mount of pfs1: has happened. */
 #include <stdio.h>
+#include <stdarg.h>
 #include <stdlib.h>
 #include <string.h>
 #include <tamtypes.h>
 #include <kernel.h>
 #include <delaythread.h>
 #include "host.h"
+#include <debug.h>
 
 extern const LiftSet lift_k_set;
 extern int sqmem_load(const char *path, const char *args, int cmd, u32 size);
@@ -57,7 +59,7 @@ extern int sq_ready;
 #endif
 
 #ifndef NET_TIMEOUT_S
-#define NET_TIMEOUT_S 120
+#define NET_TIMEOUT_S 900                   /* NETDIAG: real PS2 + SATA needed several minutes (120 s gave up too early) */
 #endif
 
 typedef struct { s16 type; u16 port; u32 addr; u8 pad[24]; } SqAddr __attribute__((aligned(16)));   /* sqInternetAddress; kernel reads 20 bytes */
@@ -73,7 +75,15 @@ static void *E(const char *n) { return (void *)lift_entry_addr(&lift_k_set, n); 
 volatile int g_net_state = 0;               /* 0 idle, 1 running, 2 up, -1 failed */
 volatile int g_net_err = 0;
 volatile u32 g_net_ip = 0;                  /* host order, valid when state == 2 */
-int g_net_status_for_polcon = 0;            /* what sqPolconGetNetworkStatus reports */
+int g_net_status_for_polcon = 0;
+volatile u32 g_net_ready_word = 0xFFFFFFFF; volatile int g_net_ready_wait = 0;   /* NETDIAG: SQIOPMEM parameter 0 as last read, and quarter-seconds waited */
+volatile int g_net_static = 0;               /* NETDIAG: 1 when the static fallback address is in use */            /* what sqPolconGetNetworkStatus reports */
+volatile int g_net_early = 0;
+extern volatile u32 g_sqd_calls;
+extern volatile int g_dev_applied;
+volatile int g_fio_gate = 0, g_fio_busy = 0, g_fio_held = 0;   /* PS2 fix: game file requests held while the network stack starts (host.c trap_c) */
+volatile u32 g_net_t0 = 0, g_net_tup = 0;             /* PS2 fix: seconds since boot when bring-up started / finished */
+volatile int g_bp_used_placeholder = 0;                /* PS2 fix: the boot-time address probe was answered before the network was up */
 
 static int dev_parse_ip(const char *s, SqAddr *a)
 {
@@ -98,24 +108,61 @@ static int exists(const char *p)
     ((int (*)(int))tab[939])(fd);
     return 1;
 }
-static void L(const char *m, u32 a, u32 b, u32 c) { hlog(9, a, b, c, 0, 0, 0, m, 0, 0); hlog_kick(); }
+char g_netlog[16][64]; volatile int g_netlog_n = 0;  /* NETDIAG: last bring-up steps, drawn on the sign-in page (devdlg.c sh_overlay) */
+volatile u32 g_ticks = 0;                              /* host alarm ticks (host.c log_tick) - kernel alarms are unreliable on hardware, not used for time */
+extern volatile u32 g_pf_vs;                          /* vertical blanks (perf.c INTC handler) - the one clock that is reliable on hardware */
+unsigned net_secs(void) { return g_pf_vs / 60; }
+void netlog(const char *m, u32 a, u32 b, u32 c)
+{
+    hlog(9, a, b, c, 0, 0, 0, m, 0, 0); hlog_kick();
+    snprintf(g_netlog[g_netlog_n % 16], 64, "%4us %.36s %d %d", net_secs(), m, (int)a, (int)b); g_netlog_n++;
+}
+#define L netlog
 
+/* PS2 fix: IOP free memory as a list of blocks (greedy: largest block, then the next largest ...), in KB */
+volatile int g_iop_tot = -1, g_iop_big = -1, g_iop_at = 0;   /* the last measurement (KB) and when (s since boot) */
+void iop_mem_map(const char *when)
+{
+#ifndef NETDIAG
+    (void)when; return;
+#endif
+    extern void *SifAllocIopHeap(int size); extern int SifFreeIopHeap(void *addr);
+    void *got[12]; int kb[12], n = 0, tot = 0;
+    for (; n < 12; n++) {
+        int lo = 0, hi = 2048;
+        while (lo < hi) { int mid = (lo + hi + 1) / 2; void *p = SifAllocIopHeap(mid * 1024); if (p) { SifFreeIopHeap(p); lo = mid; } else hi = mid - 1; }
+        if (lo < 1) break;
+        got[n] = SifAllocIopHeap(lo * 1024); kb[n] = lo; tot += lo; if (!got[n]) break;
+    }
+    for (int i = 0; i < n; i++) if (got[i]) SifFreeIopHeap(got[i]);
+    g_iop_tot = tot; g_iop_big = n > 0 ? kb[0] : 0; g_iop_at = (int)net_secs();
+    char m[64]; snprintf(m, sizeof m, "IOP free %s: total KB / blocks", when);
+    L(m, (u32)tot, (u32)n, 0);
+    L("  IOP free blocks KB (largest 4)", (u32)(n > 0 ? kb[0] : 0), (u32)(n > 1 ? kb[1] : 0), 0);
+    hlog(9, (u32)(n > 0 ? kb[0] : 0), (u32)(n > 1 ? kb[1] : 0), (u32)(n > 2 ? kb[2] : 0), (u32)(n > 3 ? kb[3] : 0), 0, 0, "  IOP free blocks KB 1-4:", 0, 0);
+}
 static int net_load_modules(void)
 {
     const char *t, *n; int usepfs = 0;
-    L("net: bring-up thread started", 0, 0, 0);
+    { extern volatile int g_net_early; L(g_net_early ? "net: bring-up started at pfs1 mount" : "net: bring-up thread started", 0, 0, 0); }
     if (!sq_ready) { L("net: SQIOPMEM not ready", 0, 0, 0); return -1; }
 #ifdef NET_SELFTEST
     if (0)                                              /* no pfs1: mount in the stand-alone test: probing would block */
+#elif !defined(NET_PROBE_MODULES)
+    if (!NET_FORCE_DISC)                                /* PS2 fix: no probing - bring-up runs beside the game now, and the probe goes through the lifted
+                                                           file layer whose lock spins on the alarm-based sqDelay when two threads meet; the install always has them */
 #else
     if (!NET_FORCE_DISC && exists(NET_TCP_PFS) && exists(NET_NDI_PFS))
 #endif
     { t = NET_TCP_PFS; n = NET_NDI_PFS; usepfs = 1; }
     else { t = NET_TCP_DISC; n = NET_NDI_DISC; }
     L(usepfs ? "net: using 2007 modules from pfs1" : "net: using 2003 modules from disc", 0, 0, 0);
+    iop_mem_map("before net modules");
     int r1 = sqmem_load(t, "", 1, 0);                  /* avetcp first: ndglue/smap/sqiopint import it */
+    L("net: tcp module loaded rc", (u32)r1, 0, 0);
     int r2 = sqmem_load(n, "", 1, 0);
     L("net: module loads rc tcp/ndi:", (u32)r1, (u32)r2, 0);
+    iop_mem_map("after net modules");
     return (r1 == 0 && r2 == 0) ? 0 : -2;               /* rc 0 only means the RPC was accepted, not that the module started */
 }
 
@@ -126,25 +173,38 @@ static int net_configure(void)
     fn_chk dhcp_chk = E("sqDhcpRequestCheck");
     fn_cfg ifcfg = E("sqEthernetIfConfig"); fn_rt route = E("sqAddRoutingTable"); fn_dns dns = E("sqInitDnsResolver");
     memset(&gw, 0, sizeof gw); memset(&d1, 0, sizeof d1); memset(&d2, 0, sizeof d2); dom[0] = 0;
+#ifndef NO_FILE_GATE
+    DelayThread(2 * 1000 * 1000);                          /* + the 3 s already waited under the file gate: smap link negotiation takes ~3 s; ifconfig before that fails (-35) */
+#else
     DelayThread(5 * 1000 * 1000);                          /* smap link negotiation takes ~3 s after the modules start; ifconfig before that fails (-35) */
+#endif
 #if NET_USE_DHCP
     int r = dhcp_init(); L("net: sqDhcpInit rc", (u32)r, 0, 0);
-    if (r < 0) return -10;
+    if (r < 0) { r = -10; goto fallback; }
     for (int i = 0; i < 100; i++) {                     /* the adapter may still be negotiating its link right after the modules start */
         r = dhcp_req(); if (i < 3 || r >= 0) L("net: sqDhcpRequest rc", (u32)r, (u32)i, 0);
         if (r >= 0) break;
         DelayThread(200 * 1000);
     }
-    if (r < 0) return -11;
+    if (r < 0) { r = -11; goto fallback; }
     int st = 0;
     for (int i = 0; i < 600 && !st; i++) {              /* 60 s */
         st = dhcp_chk(&ip, &mask, &bc, &gw, &d1, &d2, dom);   /* 0 pending, <0 failed, >0 bitmask of fields received */
-        if (st < 0) { L("net: DHCP failed rc", (u32)st, 0, 0); return -12; }
+        if (st < 0) { L("net: DHCP failed rc", (u32)st, 0, 0); r = -12; goto fallback; }
         if (!st) DelayThread(100 * 1000);
     }
-    if (st <= 0) { L("net: DHCP timeout", 0, 0, 0); return -13; }
+    if (st <= 0) { L("net: DHCP timeout", 0, 0, 0); r = -13; goto fallback; }
     L("net: DHCP ok ip/gw/dns1:", ip.addr, gw.addr, d1.addr);
     L("net: DHCP bitmask", (u32)st, 0, 0);
+    if (0) {
+fallback:                                               /* NETDIAG: DHCP did not work - use the fixed LAN address instead */
+        L("net: DHCP gave up, static fallback", (u32)r, 0, 0);
+        g_net_static = 1;
+        memset(&gw, 0, sizeof gw); memset(&d1, 0, sizeof d1); memset(&d2, 0, sizeof d2); dom[0] = 0;
+        if (dev_parse_ip(NET_IP, &ip) || dev_parse_ip(NET_MASK, &mask) || dev_parse_ip(NET_GW, &gw) || dev_parse_ip(NET_DNS1, &d1)) return -14;
+        bc = ip; bc.addr = (ip.addr & mask.addr) | ~mask.addr;
+        d2 = d1;
+    }
 #else
     if (dev_parse_ip(NET_IP, &ip) || dev_parse_ip(NET_MASK, &mask) || dev_parse_ip(NET_GW, &gw) || dev_parse_ip(NET_DNS1, &d1)) return -14;
     bc = ip; bc.addr = (ip.addr & mask.addr) | ~mask.addr;
@@ -158,30 +218,300 @@ static int net_configure(void)
     return 0;
 }
 
+/* NETDIAG builds only: the developer PC running the server proxy, which logs the probe and the reports below. */
+#ifndef NETDIAG_PC_IP
+#define NETDIAG_PC_IP "192.168.1.5"
+#endif
+#ifndef NETDIAG_PC_PORT
+#define NETDIAG_PC_PORT 54001
+#endif
+static u32 g_orig[1537];
+/* PS2 fix: can the PS2 open a TCP connection to the PC (proxy, lobby port)?  The proxy log shows it as a lobby connection that closes at once. */
+static void net_probe(void)
+{
+    typedef int (*f2)(u32, void *); typedef int (*f1)(int);
+    static SqAddr a;
+    if (dev_parse_ip(NETDIAG_PC_IP, &a) || !g_orig[231] || !g_orig[232] || !g_orig[236]) { L("probe: not possible", 0, 0, 0); return; }
+    a.port = NETDIAG_PC_PORT;
+    int h = ((f2)g_orig[231])(0, &a);
+    L("probe: TCP to the developer PC, handle", (u32)h, 0, 0);
+    if (h < 0) return;
+    int r = 0, i;
+    for (i = 0; i < 100 && r == 0; i++) { r = ((f1)g_orig[232])(h); if (!r) DelayThread(100 * 1000); }
+    L("probe: connect (1 = OK) / polls x0.1s", (u32)r, (u32)i, 0);
+    int c = ((f1)g_orig[236])(h);
+    L("probe: closed rc", (u32)c, 0, 0);
+}
+/* PS2 fix: hang report.  Once the network is up the game should reach the sign-in page within seconds (PCSX2: 1 s).
+   30 s after bring-up: if the sign-in page is not up, this thread takes over the screen with what the game was doing (where the CPU
+   was at the last 128 vblanks, the last service calls, every thread's state and the return addresses on its stack) and also sends
+   the same report to the PC as small lobby packets (the server proxy logs each one as  charid=<line*256+part> name="<15 chars>").
+   If the sign-in page did come up, a short report is still sent once (checks the sending path). */
+#ifndef BUILD_TAG
+#define BUILD_TAG "NETDIAG"
+#endif
+#ifndef STATS_AFTER_S
+#define STATS_AFTER_S 600
+#endif
+typedef struct { u32 cyc; u16 idx, pad; u32 ra, a0; } NdCr;
+static u8 hm_stack[8192] __attribute__((aligned(16)));
+#define HM_MAX 72
+static char hm_rep[HM_MAX][72]; static u8 hm_scr[HM_MAX]; static int hm_n;
+volatile int g_hm_sent = 0, g_hm_rc = 0; static int g_hm_force = 0;
+static void hm_line(int scr, const char *fmt, ...)
+{
+    va_list ap; if (hm_n >= HM_MAX) return;
+    va_start(ap, fmt); vsnprintf(hm_rep[hm_n], 72, fmt, ap); va_end(ap); hm_scr[hm_n++] = (u8)scr;
+}
+static u8 g_fps[128]; static volatile u32 g_fps_n = 0;  /* frames drawn in each of the last 128 seconds (world_watch) */
+static void hm_fps(void)                               /* frames per second, the last 30 s (newest last) */
+{
+    char b[72]; int bl = 0; u32 n = g_fps_n, f = n > 30 ? n - 30 : 0, i = f;
+    for (int line = 0; line < 2 && i < n; line++) {
+        bl = snprintf(b, sizeof b, "fps%s", line ? "+" : "");
+        for (int j = 0; j < 15 && i < n; j++, i++) bl += snprintf(b + bl, sizeof b - bl, " %u", (unsigned)g_fps[i & 127]);
+        hm_line(1, "%s", b);
+    }
+}
+static void hm_fails(int k)                            /* failed file opens / stats: totals, then the last k distinct paths */
+{
+    extern volatile u32 g_failtot, g_failn, g_failr[120]; extern volatile char g_failp[120][48]; extern volatile u32 g_resmiss;
+    hm_line(1, "failed opens %u (distinct %u)  resources missing %u", (unsigned)g_failtot, (unsigned)g_failn, (unsigned)g_resmiss);
+    u32 n = g_failn;
+    for (u32 j = n > (u32)k ? n - k : 0; j < n; j++) { const char *pp = (const char *)g_failp[j]; int l = (int)strlen(pp); hm_line(1, "fail %d %s", (int)g_failr[j], l > 40 ? pp + l - 40 : pp); }
+}
+static void hm_build(int hang, u32 fr_up, u32 vs_up)
+{
+    extern int sh_frame_now(void), sh_state_now(void); extern volatile u32 g_calls, g_crn; extern volatile NdCr g_cr[1024];
+    extern volatile u32 g_vbl_epc[256], g_vbl_epcn, g_pf_vs;
+    extern volatile u32 g_opn, g_opr[40]; extern volatile char g_opp[40][48];
+    u32 now; __asm__ volatile("mfc0 %0, $9" : "=r"(now));
+    hm_n = 0;
+    /* NETDIAG32: the most useful lines first (the NETDIAG29-31 reports filled up with thread stacks before the file lines were reached) */
+    hm_line(1, "%s %s %us since boot, calls %u, page %d, sent %d/%d", BUILD_TAG, hang ? "HANG REPORT" : "OK", net_secs(), (unsigned)g_calls, sh_state_now(), g_hm_sent, g_hm_rc);
+    hm_line(1, "since network up: frames %u vblanks %u   IP %u.%u.%u.%u", (unsigned)(sh_frame_now() - fr_up), (unsigned)(g_pf_vs - vs_up),
+            (unsigned)(g_net_ip >> 24), (unsigned)(g_net_ip >> 16 & 255), (unsigned)(g_net_ip >> 8 & 255), (unsigned)(g_net_ip & 255));
+    { int k = g_netlog_n, f = k > 6 ? k - 6 : 0; for (int i = f; i < k; i++) hm_line(1, "log%s", g_netlog[i % 16]); }   /* the host's own log: hang, missing resources */
+    hm_line(1, "IOP free %d KB, largest block %d KB (at %ds)", g_iop_tot, g_iop_big, g_iop_at);
+    {   /* calls that have not returned yet, oldest first: what each stuck thread is waiting in */
+        int m = 0; u32 n = g_crn;
+        for (u32 i = n > 1024 ? n - 1024 : 0; i < n && m < 8; i++) {
+            volatile NdCr *c = &g_cr[i & 1023];
+            if (c->pad != 0xdead) continue;
+            const char *nm = slot_name(c->idx); m++;
+            hm_line(1, "busy c%u %-14.14s ra %08x a0 %08x %ums", c->idx, nm ? nm : "?", (unsigned)c->ra, (unsigned)c->a0, (unsigned)((now - c->cyc) / 294912u));
+        }
+        if (!m) hm_line(1, "busy: no call in progress");
+    }
+    { u32 n = g_opn; for (u32 k = n > 8 ? n - 8 : 0; k < n; k++) { const char *pp = (const char *)g_opp[k % 40]; int l = (int)strlen(pp); hm_line(1, "open %d %s", (int)g_opr[k % 40], l > 40 ? pp + l - 40 : pp); } }
+    hm_fails(3);
+    hm_fps();
+    {   /* CPU position at the last 128 vblanks, most frequent first */
+        static u32 a[128]; int n = 0; u32 e = g_vbl_epcn;
+        for (int i = 0; i < 128 && (u32)i < e; i++) a[n++] = g_vbl_epc[(e - 1 - i) & 255];
+        char buf[72]; int bl = 0; buf[0] = 0;
+        for (int k = 0; k < 4; k++) {
+            int best = -1, bc = 0;
+            for (int i = 0; i < n; i++) { if (a[i] == 1) continue; int c = 0; for (int j = 0; j < n; j++) if (a[j] == a[i]) c++; if (c > bc) { bc = c; best = i; } }
+            if (best < 0) break;
+            u32 v = a[best]; for (int j = 0; j < n; j++) if (a[j] == v) a[j] = 1;
+            bl += snprintf(buf + bl, sizeof buf - bl, " %08x x%d", (unsigned)v, bc);
+        }
+        if (bl) hm_line(1, "pc%s", buf);
+    }
+    u32 n = g_crn;
+    for (int i = 0; i < 4 && (u32)i < n; i++) {
+        volatile NdCr *c = &g_cr[(n - 1 - i) & 1023];
+        const char *nm = slot_name(c->idx);
+        hm_line(1, "c%4u %-18.18s ra %08x a0 %08x %ums", c->idx, nm ? nm : "?", (unsigned)c->ra, (unsigned)c->a0, (unsigned)((now - c->cyc) / 294912u));
+    }
+    for (int t = 1; t < 64; t++) {                      /* threads: one line each (status, wait, priority, entry, outermost callers); idle ones left out */
+        ee_thread_status_t st;
+        if (ReferThreadStatus(t, &st) < 0 || st.status == 16) continue;
+        static u32 r[32]; int nr = 0;
+        u32 base = (u32)st.stack, sz = (u32)st.stack_size;
+        if (base >= 0x100000 && base + sz <= 0x2000000 && sz < 0x200000)
+            for (u32 o = sz & ~3u; o >= 4 && nr < 32; o -= 4) {
+                u32 v = *(volatile u32 *)(base + o - 4);
+                if (v >= 0x100008 && v < 0x5fc580 && !(v & 3)) { u32 w = *(volatile u32 *)(v - 8); if ((w >> 26) == 3 || ((w >> 26) == 0 && (w & 0x3f) == 9)) r[nr++] = v; }
+            }
+        if (!nr) continue;
+        hm_line(1, "t%-2d s%-2d w%-5x p%-3d f%08x n%-2d %08x %08x %08x %08x", t, st.status, st.waitType | (st.waitId << 8), st.current_priority, (unsigned)st.func, nr,
+                nr > 0 ? (unsigned)r[nr - 1] : 0, nr > 1 ? (unsigned)r[nr - 2] : 0, nr > 2 ? (unsigned)r[nr - 3] : 0, nr > 3 ? (unsigned)r[nr - 4] : 0);
+    }
+}
+static void hm_stats(void)                             /* NETDIAG32: a short summary 10 minutes into the world, sent even when nothing went wrong */
+{
+    extern volatile u32 g_calls;
+    hm_n = 0;
+    hm_line(1, "%s STATS %us since boot, calls %u", BUILD_TAG, net_secs(), (unsigned)g_calls);
+    hm_line(1, "IOP free %d KB, largest block %d KB (at %ds)", g_iop_tot, g_iop_big, g_iop_at);
+    hm_fails(4);
+    unsigned mn = 999, sum = 0, n = 0; for (u32 i = g_fps_n > 120 ? g_fps_n - 120 : 0; i < g_fps_n; i++) { unsigned v = g_fps[i & 127]; sum += v; n++; if (v < mn) mn = v; }
+    hm_line(1, "fps last %us: avg %u min %u", n, n ? sum / n : 0, n ? mn : 0);
+    hm_fps();
+}
+static void hm_draw(void)
+{
+    scr_clear(); scr_setXY(0, 1);
+    for (int i = 0; i < hm_n; i++) if (hm_scr[i]) scr_printf("%s\n", hm_rep[i]);
+}
+static int hm_send(void)
+{
+    typedef int (*f2)(u32, void *); typedef int (*f1)(int); typedef int (*f3)(int, void *, int);
+    static SqAddr a; static u8 pk[64] __attribute__((aligned(64)));
+    if (dev_parse_ip(NETDIAG_PC_IP, &a) || !g_orig[231] || !g_orig[232] || !g_orig[236] || !g_orig[237]) return -1;
+    a.port = NETDIAG_PC_PORT;
+    for (int l = 0; l < hm_n; l++) {
+        if (g_dev_applied && !g_hm_force) return -400000 - l * 100;      /* never beside the real sign-in (the player pressed OK); PS2 fix: hang reports do go */
+        int len = strlen(hm_rep[l]);
+        for (int o = 0; o == 0 || o < len; o += 15) {
+            memset(pk, 0, sizeof pk);
+            *(u32 *)pk = 0x34; memcpy(pk + 4, "IXFF", 4); *(u32 *)(pk + 8) = 7; *(u32 *)(pk + 0x1C) = (u32)(l << 8 | o / 15);
+            memcpy(pk + 0x24, hm_rep[l] + o, len - o < 15 ? len - o : 15);
+            int h = ((f2)g_orig[231])(0, &a);
+            if (h < 0) return -100000 - l * 100;
+            int r = 0, i;
+            for (i = 0; i < 30 && r == 0; i++) { r = ((f1)g_orig[232])(h); if (!r) DelayThread(100 * 1000); }
+            if (r <= 0) { ((f1)g_orig[236])(h); return -200000 - l * 100; }
+            int s = ((f3)g_orig[237])(h, pk, 0x34);
+            DelayThread(200 * 1000);                     /* the proxy answers and closes first, so this side never sits in TIME_WAIT */
+            ((f1)g_orig[236])(h);
+            if (s < 0) return -300000 - l * 100;
+            g_hm_sent++;
+        }
+    }
+    return hm_n;
+}
+static void hm_timeline(void)                           /* PS2 fix: how long the bring-up took on this console, step by step (the proxy log keeps it) */
+{
+    extern int sh_state_now(void);
+    hm_n = 0;
+    hm_line(1, "%s OK %us since boot, page %d", BUILD_TAG, net_secs(), sh_state_now());
+    hm_line(1, "bring-up %us..%us took %us ph %d ip %u.%u.%u.%u", (unsigned)g_net_t0, (unsigned)g_net_tup, (unsigned)(g_net_tup - g_net_t0), g_bp_used_placeholder,
+            (unsigned)(g_net_ip >> 24), (unsigned)(g_net_ip >> 16 & 255), (unsigned)(g_net_ip >> 8 & 255), (unsigned)(g_net_ip & 255));
+    int k = g_netlog_n, f = k > 16 ? k - 16 : 0;
+    for (int i = f; i < k; i++) hm_line(1, "%s", g_netlog[i % 16]);
+}
+static void world_watch(void)                          /* PS2 fix: after sign-in, report to the PC if the game stops drawing frames (5 s) */
+{
+    extern int sh_frame_now(void); extern volatile u32 g_pf_vs; extern volatile int g_in_world;
+    int last = sh_frame_now(), still = 0, sent = 0, prev = last, inw = 0, stats = 0;
+    for (;;) {
+        DelayThread(1000 * 1000);
+        int f = sh_frame_now();
+        { int d = f - prev; g_fps[g_fps_n & 127] = (u8)(d < 0 ? 0 : d > 255 ? 255 : d); g_fps_n++; prev = f; }
+        /* NETDIAG32: no IOP memory probe every 15 s any more - it holds all free IOP memory for a moment, and a file open or network
+           buffer at that moment fails (suspected in the NETDIAG30/31 console freezes); measured only at a hang now */
+        if (g_in_world && !stats && ++inw == STATS_AFTER_S) {   /* 10 minutes in the world: a short summary */
+            stats = 1; hm_stats(); g_hm_force = 1; g_hm_rc = hm_send(); g_hm_force = 0;
+            L("report: stats sent rc/packets", (u32)g_hm_rc, g_hm_sent, 0);
+        }
+        if (f != last) { last = f; still = 0; continue; }
+        if (++still == 5 && sent < 3) {
+            sent++;
+            L("hang: no frame for 5 s - report to PC", (u32)f, g_pf_vs, 0);
+            if (sent == 1) iop_mem_map("at the hang");
+            { extern volatile u32 g_opn, g_opr[40]; extern volatile char g_opp[40][48];
+              u32 n = g_opn; for (u32 k = n > 12 ? n - 12 : 0; k < n; k++) hlog(2, k, g_opr[k % 40], 0, 0, 0, 0, (const char *)g_opp[k % 40], 0, 0); }
+            hm_build(1, (u32)f, g_pf_vs);
+            g_hm_force = 1; g_hm_rc = hm_send(); g_hm_force = 0;
+            L("report: hang report sent rc/packets", (u32)g_hm_rc, g_hm_sent, 0);
+            still = -55;                               /* again after another minute if still stuck */
+        }
+    }
+}
+static void hang_monitor(void *arg)
+{
+    extern int sh_frame_now(void), sh_state_now(void); extern volatile u32 g_pf_vs;
+    u32 fr_up = sh_frame_now(), vs_up = g_pf_vs;
+    int hang = 1;
+    for (int s = 0; s < 30; s++) { if (sh_state_now() != 0) { hang = 0; break; } DelayThread(1000 * 1000); }
+    if (hang) L("hang: no sign-in page 30 s after network up", 0, 0, 0);
+    DelayThread(2 * 1000 * 1000);
+    if (g_dev_applied) L("report: skipped (sign-in already started)", 0, 0, 0);
+    else {
+        hm_timeline();                                 /* the bring-up timeline (no screen take-over: init_scr is never seen on the console) */
+        g_hm_rc = hm_send(); L("report: sent to PC rc/packets", (u32)g_hm_rc, g_hm_sent, 0);
+        if (hang) { hm_build(1, fr_up, vs_up); g_hm_rc = hm_send(); L("report: hang report sent rc", (u32)g_hm_rc, g_hm_sent, 0); }
+    }
+    world_watch();
+}
+static void hang_monitor_start(void)
+{
+    ee_thread_t t; memset(&t, 0, sizeof t);
+    t.func = (void *)hang_monitor; t.stack = hm_stack; t.stack_size = sizeof hm_stack; t.initial_priority = 1; t.gp_reg = &_gp;
+    int id = CreateThread(&t); if (id >= 0) StartThread(id, NULL);
+}
+static void fio_gate_on(void)
+{
+    g_fio_gate = 1;
+    int ms = 0; while (g_fio_busy > 0 && ms < 20000) { DelayThread(5000); ms += 5; }   /* let the requests already in flight finish */
+    L("net: game file requests paused (in flight / waited ms)", (u32)g_fio_busy, (u32)ms, 0);
+}
+static void fio_gate_off(void) { g_fio_gate = 0; L("net: game file requests resumed (calls held)", (u32)g_fio_held, 0, 0); }
+static void boot_ip_fixup(void);
 static void net_thread(void *arg)
 {
+    g_net_t0 = net_secs();
+#ifdef NET_SIM_DELAY_S
+    L("net: PCSX2 test - simulated slow start, s", NET_SIM_DELAY_S, 0, 0);
+    DelayThread(NET_SIM_DELAY_S * 1000 * 1000);
+#endif
+    { extern volatile int g_lkalarm_patched; extern volatile u32 g_sqd_calls; L("net: sqDelay fix (2 = on) / sleeps so far", (u32)g_lkalarm_patched, g_sqd_calls, 0); }
+#ifndef NO_FILE_GATE
+    fio_gate_on();
+#endif
     int rc = net_load_modules();
     /* sqInitSocketAPI itself spins until the Sony modules set SQIOPMEM parameter 0 (forever if they did not start);
        net_ensure() therefore gives up waiting after NET_TIMEOUT_S and leaves this thread parked */
     if (rc == 0) {
+        {   /* NET fix: wait for the IOP stack's "ready" flag (SQIOPMEM parameter 0) here, with DelayThread, so the kernel's sqmemReady loop
+               finds it set on its first check and never uses its alarm-based sleep (kernel alarms barely fire on a real PS2 once the game runs) */
+            extern int host_sqmem_query(int n); extern volatile u32 g_q_word;
+            int waited = 0, lastv = -12345;
+            for (;;) {
+                int qr = host_sqmem_query(0); u32 v = g_q_word;
+                g_net_ready_word = v; g_net_ready_wait = waited;
+                if ((int)v != lastv) { L("net: IOP ready flag / query rc", v, (u32)qr, 0); lastv = (int)v; }
+                if (qr >= 0 && (int)v > 0) break;
+                if (waited >= 300) { L("net: IOP ready flag never set (s)", (u32)waited, 0, 0); break; }
+                DelayThread(250 * 1000); waited++;           /* 4 checks per second */
+            }
+        }
+        L("net: sqInitSocketAPI(3) waiting", 0, 0, 0);
         int r = ((fn_i1)E("sqInitSocketAPI"))(3);                /* 3 = built-in Ethernet (type 1 = USB adapter also waits for link) */
-        L("net: sqInitSocketAPI(3) rc", (u32)r, 0, 0);
+        { extern volatile u32 g_alvbl_fired, g_alwd_fired; extern volatile int g_lkalarm_patched;
+          (void)g_lkalarm_patched; L("net: socket API rc / alarms rescued / sqDelays", (u32)r, g_alvbl_fired + g_alwd_fired, g_sqd_calls); }
         rc = r < 0 ? -4 : 0;
+        iop_mem_map("after sqInitSocketAPI");
+#ifndef NO_FILE_GATE
+        if (rc == 0) DelayThread(3 * 1000 * 1000);          /* Ethernet link negotiation (~3 s after the modules start) also with the HDD quiet */
+#endif
     }
+#ifndef NO_FILE_GATE
+    fio_gate_off();
+#endif
     if (rc == 0) rc = net_configure();
+#ifdef NETDIAG
+    if (rc == 0) net_probe();                         /* diagnostic: TCP probe to the developer PC */
+#endif
     g_net_err = rc;
     g_net_status_for_polcon = (rc == 0) && NET_POLCON_STATUS;
+    if (rc == 0) boot_ip_fixup();
+    iop_mem_map("after bring-up");
+    g_net_tup = net_secs();
     g_net_state = rc == 0 ? 2 : -1;
-    L("net: bring-up done, state/err", (u32)g_net_state, (u32)rc, g_net_ip);
+    L("net: bring-up done, state/err/took s", (u32)g_net_state, (u32)rc, g_net_tup - g_net_t0);
+#ifdef NETDIAG
+    if (g_net_state == 2) hang_monitor_start();       /* diagnostic: bring-up timeline + hang reports to the developer PC */
+#endif
     for (;;) SleepThread();     /* park instead of exiting (deleting the thread coincided with a kernel-table crash) */
 }
 
-static u8 net_stack[65536] __attribute__((aligned(16)));
-int net_ensure(void)                                    /* callable from any thread; blocks until bring-up finished; <0 = failed */
+static u8 net_stack[32768] __attribute__((aligned(16)));
+void net_start_async(void)                              /* NETDIAG: start the bring-up without waiting for it (sign-in page) */
 {
-#ifdef NET_DISABLED
-    return -1;
-#endif
     if (g_net_state == 0) {
         g_net_state = 1;
         ee_thread_t t; t.func = (void *)net_thread; t.stack = net_stack; t.stack_size = sizeof net_stack; t.gp_reg = &_gp;
@@ -189,11 +519,147 @@ int net_ensure(void)                                    /* callable from any thr
         int id = CreateThread(&t);
         if (id < 0 || StartThread(id, 0) < 0) { g_net_state = -1; g_net_err = -99; }
     }
-    for (int ms = 0; g_net_state == 1; ms += 5) {
-        if (ms > NET_TIMEOUT_S * 1000) { g_net_state = -2; g_net_err = -98; L("net: bring-up timed out (IOP modules did not come up?)", 0, 0, 0); break; }
-        DelayThread(5000);
-    }
+}
+int net_wait(unsigned max_ms)                          /* PS2 fix: wait for the bring-up at most max_ms; <0 = not up (yet).  A timeout is NOT remembered:
+                                                           the next call waits again and succeeds once the bring-up has finished. */
+{
+#ifdef NET_DISABLED
+    return -1;
+#endif
+    net_start_async();
+    { static int who_set = 0; if (!who_set) { who_set = 1; L("net: first wait from caller ra", (u32)__builtin_return_address(0), 0, 0); } }
+    for (unsigned ms = 0; g_net_state == 1 && ms < max_ms; ms += 5) DelayThread(5000);
+    if (g_net_state != 2) { static int told = 0; if (told < 3) { told++; L("net: caller told: not up yet, state/err", (u32)g_net_state, (u32)g_net_err, 0); } }
     return g_net_state == 2 ? 0 : -1;
+}
+int net_ensure(void) { return net_wait(NET_TIMEOUT_S * 1000u); }   /* callable from any thread */
+
+/* PS2 fix: the game's boot-time local-address probe (0x352660: open a datagram socket, ask its name, close it) runs ~7 s after boot and its
+   answer is kept for the whole session: with no address the start-up (0x2cf270) finds no host-table entry, tears the network manager down and
+   the lobby context is never created, so a later sign-in fails (FFXI-3101) without sending anything.  The three calls of that probe are routed
+   here (call sites patched in net_install): they wait a few seconds for the real address and otherwise answer with a placeholder, which
+   boot_ip_fixup() replaces once the network is up.  The game no longer needs the network to reach the sign-in page. */
+#ifndef BOOT_PROBE_WAIT_S
+#define BOOT_PROBE_WAIT_S 4
+#endif
+#ifndef BOOT_PLACEHOLDER_IP
+#define BOOT_PLACEHOLDER_IP 0xA9FE0101u                 /* 169.254.1.1 (host order): only used until the real address is known */
+#endif
+#define BP_HANDLE 0x7ffe
+static u32 bp_ip;
+static u32 bp_open(u32 a0, u32 a1)
+{
+    (void)a0; (void)a1;
+    if (g_net_state == 1) net_wait(BOOT_PROBE_WAIT_S * 1000u);   /* PS2 fix: never START the bring-up here (game still loading); it starts on the sign-in page */
+    bp_ip = g_net_state == 2 ? g_net_ip : BOOT_PLACEHOLDER_IP;
+    g_bp_used_placeholder = g_net_state != 2;
+    L(g_bp_used_placeholder ? "boot probe: network not up, placeholder ip" : "boot probe: network up, ip", bp_ip, (u32)g_net_state, 0);
+    return BP_HANDLE;
+}
+static u32 bp_getname(u32 h, u16 *out)
+{
+    if (h != BP_HANDLE || (u32)out < 0x100000 || (u32)out >= 0x2000000) return (u32)-1;
+    out[0] = 1; out[1] = 0; *(u32 *)(out + 2) = bp_ip;      /* {type 1, port 0, address host order} at +0/+2/+4, as the library fills it */
+    return 0;
+}
+static u32 bp_close(u32 h) { (void)h; return 0; }
+static u32 bswap32(u32 v) { return (v >> 24) | ((v >> 8) & 0xff00) | ((v << 8) & 0xff0000) | (v << 24); }
+static void bp_fix_word(volatile u32 *w, const char *what)
+{
+    if ((u32)w < 0x100000 || (u32)w >= 0x2000000) return;
+    u32 p = BOOT_PLACEHOLDER_IP, v = *w;
+    if (v == p) { *w = g_net_ip; L(what, v, g_net_ip, 0); }
+    else if (v == bswap32(p)) { *w = bswap32(g_net_ip); L(what, v, bswap32(g_net_ip), 0); }
+}
+static void boot_ip_fixup(void)                         /* the network is up: put the real address where the placeholder went */
+{
+    if (!g_bp_used_placeholder || g_net_ip == BOOT_PLACEHOLDER_IP) return;
+    u32 nm = *(volatile u32 *)0x6036b0, lc = *(volatile u32 *)0x624FE0;   /* network manager (local address at +20), lobby context (+0/+8) */
+    if (nm) bp_fix_word((volatile u32 *)(nm + 20), "net: fixed local ip (manager) old/new");
+    if (lc) { bp_fix_word((volatile u32 *)(lc + 0), "net: fixed ip (lobby+0) old/new"); bp_fix_word((volatile u32 *)(lc + 8), "net: fixed ip (lobby+8) old/new"); }
+}
+/* PS2 fix: PCSX2 (NETDIAG29G) crashed 1.5 s after the lobby's world list: 0x4ABDE0 loads a resource by name (0x449A10) and uses the
+   result without a NULL check (TLB miss at 0x4ABDF8, then the EE kernel died).  Log every name that comes back empty. */
+volatile u32 g_resmiss = 0;
+static char g_resname[16][32]; static volatile u32 g_resn = 0;
+static void res_copy(char *d, u32 name) { int i = 0; if (name >= 0x100000 && name < 0x2000000) for (; i < 31 && ((char *)name)[i] >= 0x20 && ((char *)name)[i] < 0x7f; i++) d[i] = ((char *)name)[i]; d[i] = 0; }
+static u32 res_load_logged(u32 name, u32 flag)
+{
+    res_copy(g_resname[g_resn++ & 15], name);
+    u32 r = ((u32 (*)(u32, u32))0x449A10)(name, flag);
+    if (!r) {                                          /* PS2 fix: the game would crash on this NULL: report it and park this thread so the log gets out */
+        g_resmiss++;
+        for (u32 k = g_resn > 16 ? g_resn - 16 : 0; k < g_resn; k++) hlog(9, k, 0, 0, 0, 0, 0, "resource requested:", g_resname[k & 15], 0);
+        hlog(9, name, flag, (u32)__builtin_return_address(0), g_resmiss, 0, 0, "RESOURCE MISSING name/flag/ra/n:", g_resname[(g_resn - 1) & 15], 0);
+        { char m[40]; snprintf(m, sizeof m, "RES MISS %.27s", g_resname[(g_resn - 1) & 15]); L(m, name, flag, 0); }
+        iop_mem_map("at the missing resource");
+        { extern volatile u32 g_opn, g_opr[40]; extern volatile char g_opp[40][48];      /* the last file opens / stats (host.c ring) */
+          u32 n = g_opn; for (u32 k = n > 12 ? n - 12 : 0; k < n; k++) hlog(2, k, g_opr[k % 40], 0, 0, 0, 0, (const char *)g_opp[k % 40], 0, 0); }   /* printed as open(path, n) -> rc */
+        for (;;) { hlog_kick(); DelayThread(500 * 1000); }
+    }
+    return r;
+}
+/* PS2 fix: the disc's CD-only files.  The 2016 game keeps 70 small files (CDROM/0..2/*.DAT, file ids 1-85, listed in the disc's CDTABLE.DAT)
+   on the DVD only; the HDD file table (VTABLE) does not list them.  Booted from the disc they come from cdrom0:; started from USB with no disc,
+   the lobby's next screen asks for file id 23 (CDROM/0/23.DAT), gets nothing and crashes (NETDIAG17-19).  The game's id -> path lookup
+   (0x441760, mode 1 = HDD) now answers the CD ids with "/CDROM/<id/30>/<id%30>.DAT" under the game folder (pfs1:/image/ffxi/CDROM/...);
+   when that file is not on the HDD, the open falls back to the disc (trap_c, host.c). */
+const u8 g_cd_ids[100] = { 0,1,1,1,1,1,1,1,1,0, 0,1,1,1,1,1,1,1,1,0, 0,1,1,1,1,1,1,1,0,0,
+    1,1,1,1,1,1,1,1,1,1, 1,1,1,1,1,1,1,1,1,1, 1,1,1,1,1,1,1,1,1,1, 1,1,1,1,1,1,1,1,1,1, 1,0,0,0,0,0,0,0,0,0, 1,1,1,1,1,1,0,0,0,0, 0,0,0,0,0,0,0,0,0,0 };
+volatile u32 g_cdmap_n = 0, g_cdmap_last = 0;
+static int fs_path_cd(u32 fs, int id, char *out)
+{
+    int r = ((int (*)(u32, int, char *))0x441760)(fs, id, out);
+    { static int nl = 0; if ((r < 0 || id == 23) && nl < 20) { nl++; hlog(9, (u32)id, *(volatile u32 *)(fs + 16), *(volatile u32 *)(fs + 20), (u32)r, 0, 0, "file id not in the HDD tables: id/mode/dev/rc", 0, 0); } }
+    if (r < 0 && out && id > 0 && id < 100 && g_cd_ids[id]) {             /* PS2 fix: any table mode (PS2 fix: the lobby's fs is not mode 1) */
+        const char *pre = "/CDROM/"; int n = 0, d = id / 30, f = id % 30;
+        while (*pre) out[n++] = *pre++;
+        out[n++] = (char)('0' + d); out[n++] = '/';
+        if (f >= 10) out[n++] = (char)('0' + f / 10);
+        out[n++] = (char)('0' + f % 10);
+        out[n++] = '.'; out[n++] = 'D'; out[n++] = 'A'; out[n++] = 'T'; out[n] = 0;
+        g_cdmap_n++; g_cdmap_last = (u32)id;
+        return 1;
+    }
+    return r;
+}
+static void cd_install(void)
+{
+    static const u32 at[8] = { 0x43d948, 0x43daf4, 0x43dda8, 0x43e694, 0x43f738, 0x43f858, 0x43f94c, 0x43fe3c };
+    int n = 0;
+    for (int i = 0; i < 8; i++) { u32 *w = (u32 *)at[i]; if (*w == 0x0C1105D8) { *w = 0x0C000000 | (((u32)fs_path_cd >> 2) & 0x3FFFFFF); n++; } }
+    FlushCache(0); FlushCache(2);
+    printf("[host] CD-only files: %d of 8 file-id lookups routed to the host\n", n);
+}
+/* PS2 fix: the steps of the game's resource loader 0x449A10 (size 0x445E70, alloc 0x282170, read 0x445C70, parse 0x2DABD0), logged for file id 23 */
+typedef u32 (*f8)(u32, u32, u32, u32, u32, u32, u32, u32);
+static volatile u32 rl_id = 0;
+#define RLW(name, addr, what) static u32 name(u32 a0, u32 a1, u32 a2, u32 a3, u32 t0, u32 t1, u32 t2, u32 t3) \
+    { u32 r = ((f8)(addr))(a0, a1, a2, a3, t0, t1, t2, t3); if (rl_id == 23) hlog(9, a0, a1, a2, r, 0, 0, what, 0, 0); return r; }
+static u32 rl_size(u32 a0, u32 a1, u32 a2, u32 a3, u32 t0, u32 t1, u32 t2, u32 t3)
+{ rl_id = a1; u32 r = ((f8)0x445E70)(a0, a1, a2, a3, t0, t1, t2, t3); if (a1 == 23) hlog(9, a0, a1, 0, r, 0, 0, "loader id 23: size  fs/id/-/rc", 0, 0); return r; }
+RLW(rl_alloc, 0x282170, "loader id 23: alloc size/-/-/ptr")
+RLW(rl_read,  0x445C70, "loader id 23: read  fs/id/buf/rc")
+RLW(rl_parse, 0x2DABD0, "loader id 23: parse buf/id/flag/obj")
+static void rl_install(void)
+{
+    static const struct { u32 at, orig; void *fn; } c[] = { { 0x449A44, 0x0C11179C, rl_size }, { 0x449A5C, 0x0C0A085C, rl_alloc }, { 0x449A7C, 0x0C11171C, rl_read }, { 0x449AA4, 0x0C0B6AF4, rl_parse } };
+    for (unsigned i = 0; i < 4; i++) { u32 *w = (u32 *)c[i].at; if (*w == c[i].orig) *w = 0x0C000000 | (((u32)c[i].fn >> 2) & 0x3FFFFFF); }
+}
+static void bp_install(void)
+{
+#ifdef NETDIAG
+    { u32 *w = (u32 *)0x4ABDF0; if (*w == 0x0C112684) *w = 0x0C000000 | (((u32)res_load_logged >> 2) & 0x3FFFFFF); else printf("[host] res logger: unexpected word %08x\n", *w); }
+#endif
+    static const struct { u32 at, orig; void *fn; } c[] = {
+        { 0x3526b8, 0x0c15bfea, bp_open },               /* jal stub 240 sqCreateDatagramSocket */
+        { 0x3526cc, 0x0c15bfd2, bp_getname },            /* jal stub 225 sqGetSockName */
+        { 0x3526f4, 0x0c15bff0, bp_close },              /* jal stub 243 sqCloseDatagramSocket */
+    };
+    int n = 0;
+    for (unsigned i = 0; i < 3; i++) { u32 *w = (u32 *)c[i].at; if (*w == c[i].orig) { *w = 0x0C000000 | (((u32)c[i].fn >> 2) & 0x3FFFFFF); n++; } }
+    FlushCache(0); FlushCache(2);
+    printf("[host] boot address probe: %d of 3 call sites routed to the host\n", n);
 }
 
 /* ---- slot wrappers: first use of the network triggers the bring-up, then forward to the lifted kernel function ---- */
@@ -213,6 +679,7 @@ static u32 w_csock(u32 a0, u32 a1, u32 a2, u32 a3, u32 t0, u32 t1, u32 t2, u32 t
 {
     if (net_ensure() < 0) return (u32)-1;
     if (a1 >= 0x100000 && a1 < 0x1fff000) hlog(9, a0, *(u32 *)a1, *(u32 *)(a1 + 4), *(u32 *)(a1 + 8), 0, 0, "sqCreateSocket a0 / sockaddr words:", 0, 0);
+    if (a1 >= 0x100000 && a1 < 0x1fff000) L("game: socket ip / port", *(u32 *)(a1 + 4), *(u32 *)a1 >> 16, 0);
     if (g_dev_applied && !g_cs_patched && a1 >= 0x100000 && a1 < 0x1fff000) {       /* lobby socket: use the typed address and port */
         u32 *sa = (u32 *)a1; sa[1] = hold_ip_u32(g_dev_ip); sa[0] = (sa[0] & 0xffff) | ((u32)atoi(g_dev_port) << 16); g_cs_patched = 1;      /* sockaddr: word0 = port<<16 | type, word1 = ip */
         hlog(9, sa[0], sa[1], 0, 0, 0, 0, "lobby socket redirected (port word / ip):", 0, 0);
@@ -230,8 +697,8 @@ static u32 w_csock(u32 a0, u32 a1, u32 a2, u32 a3, u32 t0, u32 t1, u32 t2, u32 t
 /* UDP call tracer: first few calls of each datagram slot (args and result) */
 #define UDPLOG(name, slot) \
     static u32 name(u32 a0, u32 a1, u32 a2, u32 a3, u32 t0, u32 t1, u32 t2, u32 t3) \
-    { static int n = 0; if (slot == 240 && net_ensure() < 0) return (u32)-1; u32 r = ((u32 (*)(u32, u32, u32, u32, u32, u32, u32, u32))g_orig[slot])(a0, a1, a2, a3, t0, t1, t2, t3); \
-      if (n < 5) { n++; hlog(9, a0, a1, a2, a3, r, 0, "UDP slot " #slot " a0..a3/ret:", 0, 0); } return r; }
+    { static int n = 0; if (slot == 240 && net_ensure() < 0) return (u32)-1; if (slot == 240 && n < 2) L("game: UDP slot 240 call a0", a0, 0, 0); u32 r = ((u32 (*)(u32, u32, u32, u32, u32, u32, u32, u32))g_orig[slot])(a0, a1, a2, a3, t0, t1, t2, t3); \
+      if (n < 5) { n++; hlog(9, a0, a1, a2, a3, r, 0, "UDP slot " #slot " a0..a3/ret:", 0, 0); if (n < 3) L("game: UDP slot " #slot " a0/ret", a0, r, 0); } return r; }
 UDPLOG(u240, 240) UDPLOG(u244, 244) UDPLOG(u245, 245) UDPLOG(u246, 246) UDPLOG(u247, 247) UDPLOG(u252, 252) UDPLOG(u253, 253) UDPLOG(u241, 241) UDPLOG(u242, 242) UDPLOG(u243, 243) UDPLOG(u248, 248) UDPLOG(u249, 249) UDPLOG(u250, 250) UDPLOG(u251, 251) UDPLOG(u225, 225)
 #define NETLOG(name, slot) \
     static u32 name(u32 a0, u32 a1, u32 a2, u32 a3, u32 t0, u32 t1, u32 t2, u32 t3) \
@@ -259,7 +726,7 @@ static u32 w_cchk(u32 a0, u32 a1, u32 a2, u32 a3, u32 t0, u32 t1, u32 t2, u32 t3
 #endif
     u32 r = ((u32 (*)(u32, u32, u32, u32, u32, u32, u32, u32))g_orig[232])(a0, a1, a2, a3, t0, t1, t2, t3);
     n++;
-    if ((int)r != last) { last = (int)r; hlog(9, a0, r, n, 0, 0, 0, "sqCreateSocketCheck h/ret/pollcount:", 0, 0); }
+    if ((int)r != last) { last = (int)r; hlog(9, a0, r, n, 0, 0, 0, "sqCreateSocketCheck h/ret/pollcount:", 0, 0); L("game: connect state / polls", r, (u32)n, 0); }
     return r;
 }
 
@@ -427,9 +894,66 @@ static void pol_trace_install(u32 *tab){
 }
 #endif
 
+/* NET fix: the lifted kernel's sleep sqDelay(hsyncs) (0x1FAA10) arms a raw kernel alarm. On a real PS2 such an alarm is sometimes missed
+   and then fires only at the 4.2 s timer wrap or never (userfile.c), which stalls the network start-up (sqInitSocketAPI's readiness loop)
+   and the file-lock spin at 0x1FAAA0 (sqDelay(1)). Replaced by the same sleep on the host's protected alarm (svc_alarm_set: watchdog +
+   vblank rescue). The callback here is the host's own: the lifted one ends with "ei", which must not run inside the vblank handler
+   (NETDIAG9 routed the lifted callback through that path and the console went black at boot). */
+volatile int g_lkalarm_patched = 0; volatile u32 g_sqd_calls = 0;
+static void sqd_cb(s32 id, u16 t, void *arg) { (void)id; (void)t; iSignalSema((int)(u32)arg); }
+int host_sqdelay_safe(u32 ticks)
+{
+    extern u64 svc_alarm_set(u64 clk, u64 cb, u64 arg);
+    ticks &= 0xffff; if (ticks < 2) ticks = 2;               /* as the original: 0 or 1 becomes 2 */
+    g_sqd_calls++;
+    ee_sema_t sp; memset(&sp, 0, sizeof sp); sp.init_count = 0; sp.max_count = 1;
+    int sid = CreateSema(&sp);
+    if (sid < 0) return sid;
+    s32 r = (s32)svc_alarm_set((u64)ticks, (u64)(u32)sqd_cb, (u64)(u32)sid);
+    if (r >= 0) WaitSema(sid);
+    DeleteSema(sid);
+    return 0;
+}
+static void patch_lk_alarm(void)
+{
+    volatile u32 *p = (volatile u32 *)0x1FAA10;
+    if (p[0] == 0x27bdffd0 && p[1] == 0xffb10010) {           /* expected prologue: addiu sp,-0x30 ; sd s1,0x10(sp) */
+        p[0] = 0x08000000 | (((u32)host_sqdelay_safe >> 2) & 0x3ffffff); p[1] = 0;   /* j host_sqdelay_safe ; nop */
+        FlushCache(0); FlushCache(2); g_lkalarm_patched = 1;
+    } else g_lkalarm_patched = -1;
+}
+/* PS2 fix: the lifted sqDelay(hsyncs) (0x1FAA10) = CreateSema + raw kernel SetAlarm + WaitSema. When the alarm is missed (the timer target
+   has already passed when it is armed, more likely while the game keeps the CPU busy) the thread waits until the 16-bit timer wraps, or forever.
+   Seen in PCSX2 (NETDIAG29P): with the game running beside the bring-up, sqInitSocketAPI(3) never returned (net thread waiting on that semaphore).
+   Replaced by a plain DelayThread of the same length: no callback, no semaphore; DelayThread is what the host's own waits use and is reliable on
+   the console.  It is the only raw-alarm user in the lifted kernel (0x1FA9E0 has one caller). */
+static int host_sqdelay_dt(u32 ticks)
+{
+    ticks &= 0xffff; if (ticks < 2) ticks = 2;                /* as the original: 0 or 1 becomes 2 */
+    g_sqd_calls++;
+    DelayThread(ticks * 64);                                  /* one hsync = 63.6 us */
+    return 0;
+}
+static void patch_lk_delay(void)
+{
+    volatile u32 *p = (volatile u32 *)0x1FAA10;
+    if (p[0] == 0x27bdffd0 && p[1] == 0xffb10010) {
+        p[0] = 0x08000000 | (((u32)host_sqdelay_dt >> 2) & 0x3ffffff); p[1] = 0;   /* j host_sqdelay_dt ; nop */
+        FlushCache(0); FlushCache(2); g_lkalarm_patched = 2;
+    } else g_lkalarm_patched = -1;
+}
 /* call after lift_place(): wraps the lifted socket slots and installs the POLCON answers */
 void net_install(u32 *tab)
 {
+    (void)patch_lk_alarm; (void)hm_draw;                                   /* PS2 fix: not applied (NETDIAG9/10 went black on the console) */
+    (void)exists;
+    bp_install();
+#ifdef NETDIAG
+    cd_install(); rl_install();                       /* diagnostic: CD-only file fallback, resource-loader tracing */
+#endif
+#ifndef NO_SQDELAY_FIX
+    patch_lk_delay(); printf("[host] sqDelay -> DelayThread: %d (2 = patched)\n", g_lkalarm_patched);
+#endif
     static const struct { int slot; void *fn; } w[] = { {1080, w_safeport}, {221, w_gethost}, {231, w_csock}, {232, w_cchk}, {237, w_send}, {236, n236}, {238, n238} };
     for (unsigned i = 0; i < sizeof w / sizeof w[0]; i++) {
         g_orig[w[i].slot] = tab[w[i].slot];

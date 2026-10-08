@@ -113,7 +113,7 @@ static void nat_draw(void)
         gtext(40, 88 + i * 22, line, i == nat_field ? 0x8040c0c0 : 0x80808080);
     }
 }
-volatile int g_veto_terms = 0, g_terms_vetoed = 0;      /* the developer page comes first: the terms-of-service window ("menu    ptc8lice") is held back until it is done */
+volatile int g_veto_terms = 0, g_terms_vetoed = 0, g_signin_pending = 0;   /* PS2 fix: OK pressed before the network was up: terms + lobby wait for it */      /* the developer page comes first: the terms-of-service window ("menu    ptc8lice") is held back until it is done */
 #ifdef DEV_SHOW
 #ifdef DISC_BUILD
 #include "dev_profiles_disc.h"
@@ -172,14 +172,46 @@ static void sh_apply(void)
     { extern volatile int g_dev_applied; g_dev_applied = 1; }
 }
 /* text drawn on top of the page by text2_probe (once per frame): which saved login is loaded and the key help */
+static const char *net_err_text(int e)
+{
+    switch (e) {
+    case -1:  return "SQIOPMEM not ready";            case -2:  return "network module load failed";
+    case -4:  return "sqInitSocketAPI failed";        case -10: return "DHCP init failed";
+    case -11: return "DHCP request failed";           case -12: return "DHCP refused";
+    case -13: return "DHCP no answer";                case -14: return "bad static address";
+    case -15: return "interface config failed";       case -98: return "network modules never started";
+    case -99: return "thread start failed";           default:  return "";
+    }
+}
+static void net_overlay(void)                           /* NETDIAG: live network bring-up status */
+{
+    extern volatile int g_net_state, g_net_err, g_net_static; extern volatile u32 g_net_ip;
+    extern char g_netlog[16][64]; extern volatile int g_netlog_n;
+    void (*tx)(int, int, const char *, int, u32) = (void (*)(int, int, const char *, int, u32))0x35BCF0;
+    extern unsigned net_secs(void); extern volatile u32 g_net_t0, g_net_tup;
+    char line[96]; u32 ip = g_net_ip; unsigned now = net_secs();
+    if (g_net_state == 2)
+        snprintf(line, sizeof line, "Network UP  PS2 %u.%u.%u.%u%s  took %u s", (unsigned)(ip >> 24), (unsigned)(ip >> 16 & 255), (unsigned)(ip >> 8 & 255), (unsigned)(ip & 255),
+                 g_net_static ? " (fixed, DHCP failed)" : " (DHCP)", (unsigned)(g_net_tup - g_net_t0));
+    else if (g_net_state == 1) snprintf(line, sizeof line, "Network starting ... %u s   (wait for UP before OK)", now - (unsigned)g_net_t0);
+    else if (g_net_state == 0) snprintf(line, sizeof line, "Network not started yet", now);
+    else snprintf(line, sizeof line, "Network FAILED %d/%d %s", g_net_state, g_net_err, net_err_text(g_net_err));
+    tx(24, 8, line, 0, g_net_state == 2 ? 0x80008000 : (g_net_state < 0 ? 0x80000080 : 0x80008080));
+    if (g_signin_pending) tx(24, 400, "OK pressed - sign-in continues by itself when the network is UP", 0, 0x80008080);
+    int n = g_netlog_n, first = n > 9 ? n - 9 : 0;
+    for (int i = first, row = 0; i < n; i++, row++) tx(24, 24 + 14 * row, g_netlog[i % 16], 0, 0x80808080);
+}
 void sh_overlay(void)
 {
     char line[80];
+    { extern volatile int g_net_state; static int shown_up = 0;
+      (void)shown_up; if (sh_state == 1 || g_signin_pending) net_overlay(); }   /* PS2 fix: only on the sign-in page (and while a sign-in waits), never on the lobby screens */
     if (sh_state != 1) return;
     snprintf(line, sizeof line, "Saved logins: F1-F%d   %s", (int)(sizeof g_profiles / sizeof g_profiles[0]), sh_prof >= 0 ? g_profiles[sh_prof].label : "(none loaded)");
     ((void (*)(int, int, const char *, int, u32))0x35BCF0)(24, 418, line, 0, 0x80808080);
 }
 int sh_frame_now(void) { return sh_frame; }
+int sh_state_now(void) { return sh_state; }
 extern volatile u32 g_kbd_w; extern volatile u8 g_kbd_ring[32];
 static u32 sh_kr = 0;
 /* the game's own text entry never receives characters here (no PS2 input-method service), so typed characters (copied from the keyboard reads in trap_c)
@@ -255,6 +287,15 @@ static void rc_frame(void)
     }
 }
 #endif
+static void terms_release(void)                          /* the developer page is done (and the network up): let the terms page open, then the lobby */
+{
+    g_signin_pending = 0; g_veto_terms = 0;
+    if (g_terms_vetoed) {                                            /* now let the terms page open, as the game tried to a moment ago */
+        static const char nm3[17] = "menu    ptc8lice";
+        ((void (*)(u32, const char *, int, int))0x365150)(0x6AF320, nm3, 1, 0); ((void (*)(u32, int))0x365A80)(0x6AF320, 0);
+        g_terms_vetoed = 0;
+    }
+}
 static void nat_frame(void)
 {
 #if !defined(RELEASE) && defined(TC_PROBE)   /* 6 Oct 2026: debug RAM scan cost ~13% fps (W. Adoulin 21.5 -> 24.4); off unless -DTC_PROBE */
@@ -265,6 +306,10 @@ static void nat_frame(void)
     { extern void xf_flush(void); xf_flush(); }
     { extern void hlog_kick(void); hlog_kick(); }
     sh_frame++;
+    if (sh_state >= 1) {                                   /* PS2 fix: network bring-up starts 2 s after the sign-in page opened (game idle by then), every frame checked */
+        static int nf = 0;
+        if (++nf == 120) { extern void net_start_async(void); extern void netlog(const char *, u32, u32, u32); netlog("net: sign-in page up - bring-up starts", 0, 0, 0); net_start_async(); }
+    }
 #ifdef AUTO_RECONNECT
     if (sh_state == 2) rc_frame();
 #endif
@@ -283,9 +328,14 @@ static void nat_frame(void)
         }
     } else if (sh_state == 2) {
         { static int rc = 0; if (++rc == 180) registry_restore(); }   /* a few seconds after the page closed */
+        if (g_signin_pending) { extern volatile int g_net_state; if (g_net_state == 2 || g_net_state < 0) { printf("[host] devdlg: network state %d - sign-in continues\n", (int)g_net_state); terms_release(); } }
 #ifdef DEV_AUTOGO
-        static int tick = 0; tick++;
+        static int tick = 0; if (!g_signin_pending) tick++;
         if (tick == 150 || tick == 400 || tick == 700) g_inject_cross = 10;                          /* test builds: accept the terms page, then continue */
+        {   /* test builds: 20 s after entering the world, open the main menu (Triangle) - reproduces the menu hang seen on the console */
+            extern volatile int g_in_world; extern volatile u32 g_inj_btns, g_inj_hold; static int wf = 0;
+            if (g_in_world && ++wf == 1200) { g_inj_btns = 0x1000; g_inj_hold = 6; printf("[host] autogo: Triangle (main menu)\n"); }
+        }
 #endif
     } else if (sh_state == 1) {
         static int lastk = 0;
@@ -296,13 +346,10 @@ static void nat_frame(void)
         { static int go = 0; if (++go == 90) ((void (*)(u32, int, int))*(u32 *)(*(u32 *)(sh_obj + 4) + 0x20))(sh_obj, 5, 9); }   /* test builds: press the page's OK by itself */
 #endif
         if (*(volatile u8 *)(sh_obj + 0x14)) {
+            extern volatile int g_net_state;
             sh_apply(); sh_state = 2;
-            g_veto_terms = 0;
-            if (g_terms_vetoed) {                                            /* now let the terms page open, as the game tried to a moment ago */
-                static const char nm3[17] = "menu    ptc8lice";
-                ((void (*)(u32, const char *, int, int))0x365150)(0x6AF320, nm3, 1, 0); ((void (*)(u32, int))0x365A80)(0x6AF320, 0);
-                g_terms_vetoed = 0;
-            }
+            if (g_net_state == 2) terms_release();
+            else { g_signin_pending = 1; printf("[host] devdlg: OK before the network is up (state %d) - sign-in held until it is\n", (int)g_net_state); }
         }
     }
 }
