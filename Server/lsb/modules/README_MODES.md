@@ -1,6 +1,6 @@
 # Gameplay modes
 
-Small switches for a small server. They are off until you turn them on in the Server App (World > Modes).
+Small switches for a small server. They are off until you turn them on in the Server App (World > Rules, under Gameplay modes).
 Each one is a copy of a module from LoxleyXI's collection, https://github.com/LoxleyXI/Modules (GPL-3.0, the same licence as LandSandBoat),
 changed to work with this server's LandSandBoat and the PS2 game. Credit for the ideas and the original code goes to LoxleyXI.
 

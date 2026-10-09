@@ -400,8 +400,7 @@ class Panel(tk.Frame):
 
 # ---------------------------------------------------------------- the window
 class App:
-    PAGES = [('server', 'Server'), ('profiles', 'Profiles'), ('connect', 'Connect'), ('settings', 'World'), ('roles', 'Moderation'),
-             ('chat', 'Chat rules'), ('maint', 'Maintenance'), ('disc', 'Game disc')]
+    PAGES = [('server', 'Home'), ('players', 'Players'), ('settings', 'World'), ('connect', 'Invite'), ('tools', 'Tools')]
 
     def __init__(self, root):
         self.root = root
@@ -418,6 +417,7 @@ class App:
         self.addr = {'lan': '', 'net': ''}
         self.page = None
         self.pages = {}
+        self.tabsets = {}
         self.kick = threading.Event()
         root.title(TITLE)
         root.configure(bg=C['bg'])
@@ -513,8 +513,7 @@ class App:
         nav.create_text(f.s(62), f.s(66), text='Server', anchor='w', font=f.h2, fill=C['gold'])
         nav.create_text(f.s(26), f.s(100), text='Fan Project by Habex', anchor='w', font=f.small, fill=C['accent'])
         self.nav_y, self.nav_hot, self.nav_half = {}, None, f.s(21)
-        icons = {'server': 'server', 'profiles': 'moogle', 'connect': 'chocobo', 'settings': 'world', 'roles': 'shield', 'chat': 'chat',
-                 'maint': 'potion', 'disc': 'disc'}
+        icons = {'server': 'server', 'players': 'moogle', 'settings': 'world', 'connect': 'chocobo', 'tools': 'potion'}
         for i, (key, label) in enumerate(self.PAGES):
             y = f.s(152) + i * f.s(46)
             self.nav_y[key] = y
@@ -539,9 +538,8 @@ class App:
         self.content.pack(side='left', fill='both', expand=True)
         self.upd_bar = tk.Frame(self.content, bg=C['card2'])
         self._build_server()
-        self._build_profiles()
+        self._build_players()
         self._build_connect()
-        self._build_disc()
         self.show_page('server')
 
     # ---- updates: look on GitHub for newer scripts, offer them or fetch them in the background
@@ -673,40 +671,89 @@ class App:
             self.nav.itemconfigure('bar_' + k, fill=C['accent'] if on else '')
             self.nav.itemconfigure('txt_' + k, fill=C['text'] if (on or hot) else C['soft'], font=self.f.nav_b if on else self.f.nav)
 
-    def show_page(self, key):
-        if key == 'roles' and 'roles' not in self.pages:
-            self.pages['roles'] = self._page_frame('Moderation', 'Who may use which in-game "!" commands. Right-click a player to promote them.')
-            import ffxi_app_extra as X
-            self.roles_page = X.RolesWindow(self, parent=self.pages['roles'].body)
-        if key == 'chat' and 'chat' not in self.pages:
-            self.pages['chat'] = self._page_frame('Chat rules', 'Word filter, spam limit, scheduled messages and the chat history.')
-            import ffxi_app_extra as X
-            self.chat_page = X.ChatRulesWindow(self, parent=self.pages['chat'].body)
-        if key == 'maint' and 'maint' not in self.pages:
-            self._build_maintenance()
+    LEGACY_PAGES = {'profiles': ('players', 'accounts'), 'roles': ('players', 'roles'), 'chat': ('players', 'chat'),
+                    'maint': ('tools', 'backups'), 'disc': ('tools', 'game')}
+
+    def show_page(self, key, tab=None):
+        if key in self.LEGACY_PAGES:                         # the old page names still work: they are now tabs
+            key, tab = self.LEGACY_PAGES[key]
         if key == 'settings':
             if 'settings' not in self.pages:
                 self._build_settings()
-            else:
-                self._load_settings()
+        elif key == 'tools' and 'tools' not in self.pages:
+            self._build_tools()
         for k, fr in self.pages.items():
             if k != key:
                 fr.pack_forget()
         self.pages[key].pack(fill='both', expand=True)
         self.page = key
-        if key == 'settings' and getattr(self, 'set_name', None):
-            self.root.after(50, lambda: (self.set_name.focus_set(), self.set_name.icursor('end')))
+        if tab:
+            self._tab_show(key, tab)
+        elif key == 'settings':
+            self._load_settings()
         self._nav_paint()
 
-    PAGE_ICONS = {'Profiles': 'moogle', 'Connect': 'chocobo', 'World': 'world', 'Moderation': 'shield', 'Chat rules': 'chat', 'Maintenance': 'potion',
-                  'Game disc': 'disc'}
+    # ---- pages with a row of tabs; each tab's contents are made the first time it is opened, once it is on screen
+    def _tabbed_page(self, key, title, sub, tabs):
+        """tabs: [(key, label, builder(parent), scrolls)]"""
+        f = self.f
+        page = self._page_frame(title, sub)
+        self.pages[key] = page
+        bar = Segmented(page.body, [(t[0], t[1]) for t in tabs], lambda t, k=key: self._tab_show(k, t), f.small, height=f.s(38))
+        bar.pack(fill='x', pady=(0, 14))
+        holder = tk.Frame(page.body, bg=C['bg'])
+        holder.pack(fill='both', expand=True)
+        self.tabsets[key] = {'bar': bar, 'holder': holder, 'tabs': {t[0]: t for t in tabs}, 'frames': {}, 'cur': None}
+        self._tab_show(key, tabs[0][0])
+        return page
+
+    def _tab_show(self, key, tab):
+        st = self.tabsets[key]
+        for fr in st['frames'].values():
+            fr.pack_forget()
+        if tab not in st['frames']:
+            _, _, builder, scrolls = st['tabs'][tab]
+            if scrolls:
+                import ffxi_app_extra as X
+                outer = X.Scrolled(st['holder'], C['bg'])
+                inner = outer.inner
+            else:
+                outer = tk.Frame(st['holder'], bg=C['bg'])
+                inner = outer
+            st['frames'][tab] = outer
+            outer.pack(fill='both', expand=True)
+            builder(inner)
+        else:
+            st['frames'][tab].pack(fill='both', expand=True)
+        st['bar'].set(tab)
+        st['cur'] = tab
+        if key == 'tools':
+            self.debug_on = tab == 'log'
+            if self.debug_on:
+                self._debug_refresh()
+        self.root.update_idletasks()
+
+    def _section(self, parent, text, first=False):
+        """A small gold heading with a fine line under it, used to split a long card into parts."""
+        f = self.f
+        row = tk.Frame(parent, bg=C['card'])
+        row.pack(fill='x', pady=(0 if first else 26, 10))
+        self.L(row, text.upper(), f.tiny, fg=C['gold'], bg=C['card'], anchor='w').pack(side='left')
+        tk.Frame(row, bg=C['line'], height=1).pack(side='left', fill='x', expand=True, padx=(12, 0))
+
+    def _plain_card(self, parent, pad=26):
+        p = Panel(parent, None, self.f, pad=pad)
+        p.pack(fill='x', padx=(0, 16))
+        return p.body
+
+    PAGE_ICONS = {'Players': 'moogle', 'Invite': 'chocobo', 'World': 'world', 'Tools': 'potion'}
 
     def _page_frame(self, title, sub=None):
         fr = tk.Frame(self.content, bg=C['bg'])
         head = tk.Frame(fr, bg=C['bg'])
         head.pack(fill='x', padx=28, pady=(24, 14))
         f = self.f
-        banner = tk.Canvas(head, height=f.s(104), bg=C['bg'], highlightthickness=0, bd=0)
+        banner = tk.Canvas(head, height=f.s(92), bg=C['bg'], highlightthickness=0, bd=0)
         banner.pack(fill='x')
         art = art_image('banner_bg')
         pic = art_image(self.PAGE_ICONS.get(title, 'crystal'), 64)
@@ -772,28 +819,44 @@ class App:
         self.start_btn.pack(side='left')
 
         ab = tk.Frame(page, bg=C['bg'])
-        ab.pack(fill='x', padx=32, pady=(0, 16))
-        ab.grid_columnconfigure(4, weight=1)
+        ab.pack(fill='x', padx=28, pady=(0, 16))
+        ab.grid_columnconfigure(0, weight=1)
         try:
             self.hide_ips = bool(sc.load_config().get('hide_ips', True))      # hidden on the first start, then remembered
         except Exception:                                                     # noqa: BLE001
             self.hide_ips = True
-        self.L(ab, 'Local', f.small, fg=C['faint'], bg=C['bg'], width=8, anchor='w').grid(row=0, column=0, sticky='w')
-        self.ip_val = self.L(ab, '...', f.mono, bg=C['bg'])
-        self.ip_val.grid(row=0, column=1, sticky='w', padx=(4, 12))
-        self.copy_btn = TextLink(ab, 'copy', lambda: self.copy_ip('lan'), f.tiny, bg=C['bg'])
-        self.copy_btn.grid(row=0, column=2, sticky='w')
-        self.L(ab, 'Internet', f.small, fg=C['faint'], bg=C['bg'], width=8, anchor='w').grid(row=1, column=0, sticky='w', pady=(4, 0))
-        self.net_val = self.L(ab, '...', f.mono, bg=C['bg'])
-        self.net_val.grid(row=1, column=1, sticky='w', padx=(4, 12), pady=(4, 0))
-        self.copy_net = TextLink(ab, 'copy', lambda: self.copy_ip('net'), f.tiny, bg=C['bg'])
-        self.copy_net.grid(row=1, column=2, sticky='w', pady=(4, 0))
-        self.L(ab, 'Port', f.small, fg=C['faint'], bg=C['bg'], width=8, anchor='w').grid(row=2, column=0, sticky='w', pady=(4, 0))
-        self.L(ab, str(sc.SERVER_PORT_FOR_PLAYERS) if sc else '54001', f.mono, bg=C['bg']).grid(row=2, column=1, sticky='w', padx=(4, 12), pady=(4, 0))
-        self.hide_btn = TextLink(ab, 'show' if self.hide_ips else 'hide', self.toggle_hide, f.tiny, bg=C['bg'], fg=C['soft'])
-        self.hide_btn.grid(row=0, column=4, sticky='e')
-        how = TextLink(ab, 'how to connect', lambda: self.show_page('connect'), f.tiny, bg=C['bg'])
-        how.grid(row=1, column=4, sticky='e', pady=(4, 0))
+        strip = Panel(ab, None, f, pad=18)
+        strip.grid(row=0, column=0, sticky='ew')
+        head = tk.Frame(strip.body, bg=C['card'])
+        head.pack(fill='x')
+        self.L(head, 'CONNECTION', f.tiny, fg=C['gold'], bg=C['card']).pack(side='left')
+        self.hide_btn = TextLink(head, 'show' if self.hide_ips else 'hide', self.toggle_hide, f.tiny, bg=C['card'], fg=C['soft'])
+        self.hide_btn.pack(side='right')
+        TextLink(head, 'how to connect', lambda: self.show_page('connect'), f.tiny, bg=C['card']).pack(side='right', padx=18)
+        cells = tk.Frame(strip.body, bg=C['card'])
+        cells.pack(fill='x', pady=(10, 0))
+        for c in range(3):
+            cells.grid_columnconfigure(c, weight=1, uniform='c')
+
+        def cell(col, label):
+            fr = tk.Frame(cells, bg=C['card'])
+            fr.grid(row=0, column=col, sticky='w')
+            self.L(fr, label, f.tiny, fg=C['faint'], bg=C['card']).pack(anchor='w')
+            row = tk.Frame(fr, bg=C['card'])
+            row.pack(anchor='w', pady=(3, 0))
+            return row
+        r0 = cell(0, 'On this network')
+        self.ip_val = self.L(r0, '...', f.mono, bg=C['card'])
+        self.ip_val.pack(side='left')
+        self.copy_btn = TextLink(r0, 'copy', lambda: self.copy_ip('lan'), f.tiny, bg=C['card'])
+        self.copy_btn.pack(side='left', padx=10)
+        r1 = cell(1, 'Over the internet')
+        self.net_val = self.L(r1, '...', f.mono, bg=C['card'])
+        self.net_val.pack(side='left')
+        self.copy_net = TextLink(r1, 'copy', lambda: self.copy_ip('net'), f.tiny, bg=C['card'])
+        self.copy_net.pack(side='left', padx=10)
+        r2 = cell(2, 'Port')
+        self.L(r2, str(sc.SERVER_PORT_FOR_PLAYERS) if sc else '54001', f.mono, bg=C['card']).pack(side='left')
         self.setup_card = tk.Frame(ab, bg=C['amber_bg'])
         self.setup_list = self.L(self.setup_card, '', f.small, bg=C['amber_bg'], anchor='w', justify='left')
         self.setup_list.pack(side='left', fill='x', expand=True, padx=14, pady=10)
@@ -865,18 +928,29 @@ class App:
         for w in (self.step, self.parts, self.work_text):
             w.master.bind('<Configure>', lambda e, w=w: self._wrap(w, e.width), add='+')
 
-    # ---- Profiles page
-    def _build_profiles(self):
+    # ---- Players page: accounts, roles and chat rules
+    def _build_players(self):
+        self._tabbed_page('players', 'Players', 'Accounts, what each role may do, and the chat rules.',
+                          [('accounts', 'Accounts', self._build_accounts, False), ('roles', 'Roles', self._build_roles, False),
+                           ('chat', 'Chat rules', self._build_chatrules, False)])
+
+    def _build_roles(self, parent):
+        import ffxi_app_extra as X
+        self.roles_page = X.RolesWindow(self, parent=parent)
+
+    def _build_chatrules(self, parent):
+        import ffxi_app_extra as X
+        self.chat_page = X.ChatRulesWindow(self, parent=parent)
+
+    def _build_accounts(self, parent):
         f = self.f
-        page = self._page_frame('Profiles', 'One profile per player. POL-ID = profile name. Right-click a profile or character for more.')
-        self.pages['profiles'] = page
-        bar = tk.Frame(page.head, bg=C['bg'])
-        bar.pack(fill='x', pady=(12, 0))
+        bar = tk.Frame(parent, bg=C['bg'])
+        bar.pack(fill='x', pady=(0, 12))
         self.profile_btn = RoundButton(bar, '+  Create Profile', self.do_profile, C['accent'], f.btn, height=f.s(42), width=f.s(190), radius=12)
         self.profile_btn.pack(side='left')
         self.prof_count = self.L(bar, '', f.small, fg=C['soft'])
         self.prof_count.pack(side='left', padx=16)
-        panel = Panel(page.body, None, f, pad=14)
+        panel = Panel(parent, None, f, pad=14)
         panel.pack(fill='both', expand=True)
         tf = panel.body
         self.prof_tree = ttk.Treeview(tf, columns=('role', 'job', 'zone', 'info'), show='tree headings', selectmode='browse', height=4)
@@ -898,19 +972,17 @@ class App:
         self.prof_items = {}
 
     # ---- Game disc page
-    def _build_disc(self):
+    def _build_game(self, parent):
         f = self.f
-        page = self._page_frame('Game disc', 'Everything PCSX2 needs: the 2016 disc and a PS2 hard drive. You only do this once.')
-        self.pages['disc'] = page
-        p = Panel(page.body, None, f, pad=24)
-        p.pack(fill='x')
+        p = Panel(parent, None, f, pad=24)
+        p.pack(fill='x', padx=(0, 16))
         self.L(p.body, '1.  Make the disc', f.h3, bg=C['card'], anchor='w').pack(fill='x')
         self.L(p.body, 'Pick your original disc file (in Disc > Original Disc). The patched disc is written to Disc > Patched ISO.',
                f.body, fg=C['soft'], bg=C['card'], anchor='w', justify='left').pack(fill='x', pady=(4, 0))
         self.patch_btn = RoundButton(p.body, 'Patch My Disc', self.do_patch, C['accent'], f.btn, height=f.s(46), width=f.s(200), radius=12, bg=C['card'])
         self.patch_btn.pack(anchor='w', pady=(12, 0))
-        p2 = Panel(page.body, None, f, pad=24)
-        p2.pack(fill='x', pady=(16, 0))
+        p2 = Panel(parent, None, f, pad=24)
+        p2.pack(fill='x', pady=(16, 0), padx=(0, 16))
         self.L(p2.body, '2.  Make the hard drive', f.h3, bg=C['card'], anchor='w').pack(fill='x')
         self.L(p2.body, 'The game installs onto a PS2 hard drive, and it has to be formatted. Don\'t use the "Create" button in PCSX2 '
                '(it makes an unformatted one). Click this instead and save it somewhere easy, like Documents.\n\n'
@@ -920,8 +992,8 @@ class App:
         self.hdd_btn.pack(anchor='w', pady=(12, 0))
         self.hdd_note = self.L(p2.body, '', f.body, fg=C['soft'], bg=C['card'], anchor='w', justify='left')
         self.hdd_note.pack(fill='x', pady=(8, 0))
-        p3 = Panel(page.body, None, f, pad=24)
-        p3.pack(fill='x', pady=(16, 0))
+        p3 = Panel(parent, None, f, pad=24)
+        p3.pack(fill='x', pady=(16, 0), padx=(0, 16))
         self.L(p3.body, '3.  Try it in PCSX2', f.h3, bg=C['card'], anchor='w').pack(fill='x')
         self.L(p3.body, 'Starts PCSX2 with the patched disc. The hard drive must already be chosen once in PCSX2\'s settings (step 2). '
                'The first start installs the game, which takes a while.', f.body, fg=C['soft'], bg=C['card'], anchor='w',
@@ -1659,14 +1731,14 @@ class App:
     # ---- How to connect page (all three ways work at the same time: the server gives each console the address it dialled)
     def _build_connect(self):
         f = self.f
-        page = self._page_frame('Connect', 'What players type on the PS2 sign-in page.')
+        page = self._page_frame('Invite', 'What players type on the PS2 sign-in page, and a page to share.')
         self.pages['connect'] = page
         import ffxi_app_extra as X
         scroll = X.Scrolled(page.body, C['bg'])
         scroll.pack(fill='both', expand=True)
         body = scroll.inner
         port = str(sc.SERVER_PORT_FOR_PLAYERS) if sc else '54001'
-        intro = self.L(body, 'POL-ID and Password come from a profile (Profiles page). Server Port is %s. Leave EtherIP, SubnetMask, BlodeCast and Gateway empty.' % port, f.small, fg=C['soft'], justify='left', anchor='w')
+        intro = self.L(body, 'POL-ID and Password come from a profile (Players page). Server Port is %s. Leave EtherIP, SubnetMask, BlodeCast and Gateway empty.' % port, f.small, fg=C['soft'], justify='left', anchor='w')
         intro.pack(fill='x', pady=(0, 12), padx=(0, 16))
         body.bind('<Configure>', lambda e: self._wrap(intro, e.width - 16), add='+')
         self.conn_ip = {}
@@ -1704,52 +1776,57 @@ class App:
         self._build_ports(net_panel.body)
         self.ddns_status = self.L(body, '', f.small, fg=C['faint'], anchor='w', justify='left')
         self.ddns_status.pack(fill='x', pady=(0, 12))
+        self._build_info_card(body)
         self._refresh_connect()
 
-    # ---- World page: name and welcome, rates, monsters, rules and scheduled events (small tabs, one panel at a time)
-    WORLD_TABS = [('general', 'General'), ('rates', 'Rates'), ('monsters', 'Monsters'), ('rules', 'Rules'), ('events', 'Events'),
-                  ('ah', 'Auction house'), ('modes', 'Modes')]
+    # ---- World page: five tabs
     WORLD_NOTES = {
         'rates': '1 is normal and 2 is double, from 0.1 to 10. A change applies within a few seconds, with no restart.',
-        'monsters': 'Scales monsters as they spawn, so monsters that are already out keep their old values until they respawn.',
-        'rules': 'Levels, and which expansions are open. Zones that are already loaded use the new rules after the next server start.',
+        'monsters': 'Monster changes apply to monsters as they spawn, so ones that are already out keep their old values until they respawn.',
+        'rules': 'Levels and which expansions are open. Zones that are already loaded use the new rules after the next server start.',
     }
+    WORLD_ALIAS = {'monsters': 'rates', 'modes': 'rules', 'ah': 'market'}
 
     def _build_settings(self):
-        f = self.f
-        page = self._page_frame('World', 'The name players see, rates, monsters and rules.')
-        self.pages['settings'] = page
-        self.world_bar = Segmented(page.body, self.WORLD_TABS, self._world_tab, f.small, height=f.s(38))
-        self.world_bar.pack(fill='x', pady=(0, 14))
-        self.world_panels = {k: Panel(page.body, None, f, pad=26) for k, _ in self.WORLD_TABS}
         self.world_entries, self.world_flags, self.world_msg = {}, {}, {}
-        self.world_built = set()
-        self.world_tab = None
-        self._world_tab('general')
+        self._tabbed_page('settings', 'World', 'The name players see, rates, rules, events and the auction house.',
+                          [('general', 'General', self._wt_general, True), ('rates', 'Rates', self._wt_rates, True),
+                           ('rules', 'Rules', self._wt_rules, True), ('events', 'Events', self._wt_events, True),
+                           ('market', 'Auction house', self._wt_market, True)])
 
     def _world_tab(self, key):
-        """Show one tab. Its contents are made the first time it is shown, once the panel is on screen (entry boxes made while a panel is
-        hidden do not paint on macOS)."""
-        for k, p in self.world_panels.items():
-            p.pack_forget()
-        panel = self.world_panels[key]
-        panel.pack(fill='x')
-        self.world_bar.set(key)
-        self.world_tab = key
-        if key not in self.world_built:
-            self.world_built.add(key)
-            if key == 'general':
-                self._build_world_general(panel.body)
-            elif key == 'events':
-                self._build_world_events(panel.body)
-            elif key == 'ah':
-                self._build_world_ah(panel.body)
-            elif key == 'modes':
-                self._build_world_modes(panel.body)
-            else:
-                self._build_world_numbers(key, panel.body)
-            self._load_settings()
-        self.root.update_idletasks()
+        self._tab_show('settings', self.WORLD_ALIAS.get(key, key))
+
+    def _wt_general(self, parent):
+        self._build_world_general(self._plain_card(parent))
+        self._load_settings()
+
+    def _wt_rates(self, parent):
+        b = self._plain_card(parent)
+        self._section(b, 'Rates', first=True)
+        self._build_world_numbers('rates', b, last=False)
+        self._section(b, 'Monsters')
+        self._build_world_numbers('monsters', b)
+        self.world_msg['rates'] = self.world_msg['monsters']
+        self._load_settings()
+
+    def _wt_rules(self, parent):
+        b = self._plain_card(parent)
+        self._section(b, 'Era and levels', first=True)
+        self._build_world_numbers('rules', b, last=False)
+        self.L(b, self.WORLD_NOTES['rules'], self.f.tiny, fg=C['faint'], bg=C['card'], anchor='w', justify='left').pack(fill='x', pady=(10, 0))
+        self._save_row(b, 'rules')
+        self._section(b, 'Gameplay modes')
+        self._build_world_modes(b)
+        self._load_settings()
+
+    def _wt_events(self, parent):
+        self._build_world_events(self._plain_card(parent))
+        self._load_settings()
+
+    def _wt_market(self, parent):
+        self._build_world_ah(self._plain_card(parent))
+        self._load_settings()
 
     def _save_row(self, parent, group):
         f = self.f
@@ -1775,14 +1852,13 @@ class App:
         for e in (self.set_name, self.set_welcome):
             e.bind('<Return>', lambda ev: self.save_world('general'))
 
-    def _build_world_numbers(self, group, b):
+    def _build_world_numbers(self, group, b, last=True):
         f = self.f
         grid = tk.Frame(b, bg=C['card'])
         grid.pack(fill='x')
         numbers = [st for st in ss.GROUPS[group] if st.kind != 'flag'] if ss else []
         flags = [st for st in ss.GROUPS[group] if st.kind == 'flag'] if ss else []
         if group == 'rules' and ss:
-            self.L(grid, 'Era', f.small, fg=C['faint'], bg=C['card'], anchor='w').grid(row=0, column=0, columnspan=4, sticky='w')
             self.era_bar = Segmented(grid, [(k, label) for k, label, _, _ in ss.ERAS], self._pick_era, f.small, height=f.s(38))
             self.era_bar.grid(row=1, column=0, columnspan=4, sticky='ew', pady=(4, 4))
             self.era_note = self.L(grid, '', f.tiny, fg=C['faint'], bg=C['card'], anchor='w', justify='left')
@@ -1800,7 +1876,7 @@ class App:
             e.bind('<KeyRelease>', lambda ev: self._era_from_form(), add='+')
             self.world_entries[st.key] = e
         if flags:
-            self.L(b, 'Open to players', f.small, fg=C['faint'], bg=C['card'], anchor='w').pack(fill='x', pady=(10, 4))
+            self._section(b, 'Open to players')
             fg = tk.Frame(b, bg=C['card'])
             fg.pack(fill='x')
             for i, st in enumerate(flags):
@@ -1810,9 +1886,11 @@ class App:
                                activeforeground=C['text'], selectcolor=C['input'], highlightthickness=0, bd=0).grid(
                     row=i // 3, column=i % 3, sticky='w', padx=(0, 26), pady=2)
         if group == 'rules' and shc:
+            self._section(b, 'Hardcore')
             self._build_hardcore(b)
-        self.L(b, self.WORLD_NOTES[group], f.tiny, fg=C['faint'], bg=C['card'], anchor='w', justify='left').pack(fill='x', pady=(10, 0))
-        self._save_row(b, group)
+        if last:
+            self.L(b, self.WORLD_NOTES[group], f.tiny, fg=C['faint'], bg=C['card'], anchor='w', justify='left').pack(fill='x', pady=(10, 0))
+            self._save_row(b, group)
 
     # ---- era presets and hardcore mode (Rules tab)
     def _pick_era(self, key):
@@ -1842,7 +1920,6 @@ class App:
 
     def _build_hardcore(self, b):
         f = self.f
-        self.L(b, 'Hardcore', f.small, fg=C['faint'], bg=C['card'], anchor='w').pack(fill='x', pady=(14, 4))
         row = tk.Frame(b, bg=C['card'])
         row.pack(fill='x')
         self.hc_var = tk.BooleanVar(value=False)
@@ -2099,7 +2176,9 @@ class App:
         self._show_events()
 
     def _world_say(self, group, text, color):
-        self.world_msg[group].config(text=text, fg=color)
+        lab = self.world_msg.get(group) or self.world_msg.get('monsters')
+        if lab:
+            lab.config(text=text, fg=color)
 
     def save_world(self, group):
         running = bool(self.state and self.state.get('any'))
@@ -2107,7 +2186,9 @@ class App:
         if group == 'general':
             name, welcome = self.set_name.get(), self.set_welcome.get()
         else:
-            values = {st.key: (self.world_flags[st.key].get() if st.kind == 'flag' else self.world_entries[st.key].get()) for st in ss.GROUPS[group]}
+            groups = ('rates', 'monsters') if group in ('rates', 'monsters') else (group,)
+            values = {st.key: (self.world_flags[st.key].get() if st.kind == 'flag' else self.world_entries[st.key].get())
+                      for g in groups for st in ss.GROUPS[g]}
             hc_on = self.hc_var.get() if getattr(self, 'hc_var', None) else False
             hc_lives = self.hc_lives.get() if getattr(self, 'hc_lives', None) else 1
 
@@ -2117,7 +2198,9 @@ class App:
                     changed = ss.save(name=name, welcome=welcome)
                     msg = 'Saved.' + (' Restart the server for the new name to show.' if changed and running else '')
                 else:
-                    changed = ss.save_values(group, values)
+                    changed = False
+                    for g in groups:
+                        changed = ss.save_values(g, {st.key: values[st.key] for st in ss.GROUPS[g]}) or changed
                     if group == 'rules' and shc and getattr(self, 'hc_var', None):
                         shc.save(hc_on, hc_lives)
                     msg = 'Saved.' + (' The server picks it up in a few seconds.' if changed and running and group != 'rules' else '')
@@ -2323,26 +2406,17 @@ class App:
             threading.Thread(target=lambda: snt.send(text), daemon=True).start()
 
     # ---- Maintenance page: backups, Discord messages and a quick health check
-    def _build_maintenance(self):
+    # ---- Tools page: game disc and hard drive, backups, alerts and the log
+    def _build_tools(self):
+        self._tabbed_page('tools', 'Tools', 'Set up the game disc, keep backups, and see what the server is doing.',
+                          [('game', 'Game disc', self._build_game, True), ('backups', 'Backups', self._build_backups, True),
+                           ('alerts', 'Alerts', self._build_alerts, True), ('log', 'Log', self._build_debug, False)])
+
+    def _build_backups(self, parent):
         f = self.f
-        page = self._page_frame('Maintenance', 'Backups, messages to a Discord channel, how the server is doing, and a readable log.')
-        self.pages['maint'] = page
-        self.maint_bar = Segmented(page.body, [('general', 'General'), ('debug', 'Debug')], self._maint_tab, f.small, height=f.s(38))
-        self.maint_bar.pack(fill='x', pady=(0, 14))
-        gen = tk.Frame(page.body, bg=C['bg'])
-        gen.pack(fill='both', expand=True)                     # shown while it is filled in (fields made in a hidden frame do not paint on macOS)
-        self.maint_frames = {'general': gen, 'debug': tk.Frame(page.body, bg=C['bg'])}
-        cols = tk.Frame(gen, bg=C['bg'])
-        cols.pack(fill='both', expand=True)
-        cols.grid_columnconfigure(0, weight=1, uniform='m')
-        cols.grid_columnconfigure(1, weight=1, uniform='m')
-        left = tk.Frame(cols, bg=C['bg'])
-        left.grid(row=0, column=0, sticky='nsew', padx=(0, 8))
-        right = tk.Frame(cols, bg=C['bg'])
-        right.grid(row=0, column=1, sticky='nsew', padx=(8, 0))
-        bp = Panel(left, None, f, pad=24)
-        bp.pack(fill='x')
-        self.L(bp.body, 'Backups', f.small, fg=C['faint'], bg=C['card'], anchor='w').pack(fill='x')
+        bp = Panel(parent, None, f, pad=24)
+        bp.pack(fill='x', padx=(0, 16))
+        self._section(bp.body, 'Backups', first=True)
         self.backup_note = self.L(bp.body, '', f.small, fg=C['soft'], bg=C['card'], anchor='w', justify='left')
         self.backup_note.pack(fill='x', pady=(6, 0))
         brow = tk.Frame(bp.body, bg=C['card'])
@@ -2366,13 +2440,24 @@ class App:
         self.keep_entry.bind('<Return>', lambda e: self._save_auto())
         self.L(krow, 'automatic backups', f.small, fg=C['soft'], bg=C['card']).pack(side='left', padx=(8, 0))
 
-        dp = Panel(right, None, f, pad=24)
-        dp.pack(fill='x')
-        self.L(dp.body, 'Discord', f.small, fg=C['faint'], bg=C['card'], anchor='w').pack(fill='x')
+        hp = Panel(parent, None, f, pad=24)
+        hp.pack(fill='x', pady=(14, 0), padx=(0, 16))
+        self._section(hp.body, 'Health', first=True)
+        self.health_text = self.L(hp.body, '', f.small, fg=C['text'], bg=C['card'], anchor='w', justify='left')
+        self.health_text.pack(fill='x', pady=(6, 0))
+        TextLink(hp.body, 'Open the logs folder', lambda: self._open_path(sc.LOGS), f.small, bg=C['card']).pack(anchor='w', pady=(10, 0))
+        self._show_backup_note()
+        self._show_health()
+
+    def _build_alerts(self, parent):
+        f = self.f
+        dp = Panel(parent, None, f, pad=24)
+        dp.pack(fill='x', padx=(0, 16))
+        self._section(dp.body, 'Discord messages', first=True)
         self.L(dp.body, 'Posts a line to a channel when the server starts, stops, restarts after a problem, or a scheduled event begins or ends. '
                         'In Discord: channel settings > Integrations > Webhooks > Copy Webhook URL.', f.tiny, fg=C['faint'], bg=C['card'], anchor='w',
-               justify='left', wraplength=f.s(380)).pack(fill='x', pady=(4, 8))
-        self.hook_entry = self.entry(dp.body, show='•', width=30)
+               justify='left', wraplength=f.s(700)).pack(fill='x', pady=(4, 8))
+        self.hook_entry = self.entry(dp.body, show='•', width=44)
         self.hook_entry.pack(fill='x', ipady=f.s(7))
         if snt:
             self.hook_entry.insert(0, snt.webhook())
@@ -2383,12 +2468,15 @@ class App:
         self.hook_msg = self.L(drow, '', f.small, fg=C['soft'], bg=C['card'], anchor='w')
         self.hook_msg.pack(side='left')
 
-        ipn = Panel(right, None, f, pad=24)
-        ipn.pack(fill='x', pady=(14, 0))
-        self.L(ipn.body, 'Info page', f.small, fg=C['faint'], bg=C['card'], anchor='w').pack(fill='x')
+
+    def _build_info_card(self, parent):
+        f = self.f
+        ipn = Panel(parent, None, f, pad=24)
+        ipn.pack(fill='x', pady=(0, 14), padx=(0, 16))
+        self._section(ipn.body, 'Share your server', first=True)
         self.L(ipn.body, 'A page with your era, level cap, rates, events and players online, for friends or a Discord. Your server shows it at this address '
                          'while it is on (the port must be reachable, as for players).', f.tiny, fg=C['faint'], bg=C['card'], anchor='w', justify='left',
-               wraplength=f.s(380)).pack(fill='x', pady=(4, 8))
+               wraplength=f.s(700)).pack(fill='x', pady=(4, 8))
         lrow = tk.Frame(ipn.body, bg=C['card'])
         lrow.pack(fill='x')
         self.info_url = self.L(lrow, '', f.mono_s, fg=C['text'], bg=C['card'], anchor='w')
@@ -2402,25 +2490,6 @@ class App:
         RoundButton(ipn.body, 'Save a copy...', self.save_info_copy, C['grey'], f.small, height=f.s(34), width=f.s(140), radius=10, bg=C['card']).pack(anchor='w', pady=(12, 0))
         self._show_info_url()
 
-        hp = Panel(left, None, f, pad=24)
-        hp.pack(fill='x', pady=(14, 0))
-        self.L(hp.body, 'Health', f.small, fg=C['faint'], bg=C['card'], anchor='w').pack(fill='x')
-        self.health_text = self.L(hp.body, '', f.small, fg=C['text'], bg=C['card'], anchor='w', justify='left')
-        self.health_text.pack(fill='x', pady=(6, 0))
-        TextLink(hp.body, 'Open the logs folder', lambda: self._open_path(sc.LOGS), f.small, bg=C['card']).pack(anchor='w', pady=(10, 0))
-        self._show_backup_note()
-        self._show_health()
-        self._build_debug(self.maint_frames['debug'])
-        self._maint_tab('general')
-
-    def _maint_tab(self, key):
-        for k, fr in self.maint_frames.items():
-            fr.pack_forget()
-        self.maint_frames[key].pack(fill='both', expand=True)
-        self.maint_bar.set(key)
-        self.debug_on = key == 'debug'
-        if self.debug_on:
-            self._debug_refresh()
 
     # ---- Debug: the PS2 login part's log, readable
     def _build_debug(self, parent):
@@ -3060,6 +3129,12 @@ class App:
 
 
 def main():
+    if WINDOWS:                                              # sharp text on high-resolution screens instead of a blurry enlarged window
+        try:
+            import ctypes
+            ctypes.windll.shcore.SetProcessDpiAwareness(1)
+        except Exception:                                    # noqa: BLE001
+            pass
     root = tk.Tk()
     if not MAC:
         try:
