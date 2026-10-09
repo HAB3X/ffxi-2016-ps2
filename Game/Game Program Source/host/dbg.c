@@ -307,6 +307,87 @@ static void cmd_wtest(void)                                 /* which DABM conven
     out("> err wtest: watchpoints do not work here");
 }
 
+/* ---- where does the frame time go (NETDIAG43/44): 'prof 1' starts, 'prof 0' stops ----
+   The game's memory allocator (0x281560) has five calls in it whose cost grows with the number of heap blocks.  'prof 1' points
+   those jal's at wrappers below that call whatever the jal pointed at (the original, or a host replacement: hf_gc / hf_lf with
+   HEAP_FAST, heap_fallback with LOGOUT_FIX) and add up the cycles spent (in units of 256 cycles) and the number of calls.
+        0 gc  0x2815FC jal 0x282D40  main thread only: walks every block of the main heap looking for objects waiting to be deleted
+        1 lf  0x281604 jal 0x282030  main thread only: largest free block of the requested heap (walks all its blocks)
+        2 t1  0x281620 jal 0x281930  first-fit search in the requested heap
+        3 t2  0x281678 jal 0x281930  search in the other heap (the requested one was full)
+        4 pu  0x281728 jal 0x282E10  both heaps full: purge, then try again
+   Reported once a second as "A vbl fr gc units calls lf .. t1 .. t2 .. pu .. hf scans skipped walks kept mallocskips lowered".
+   'prof 0' puts the
+   jal's back.  (NETDIAG43's PC sampler is gone: inside a kernel alarm callback EPC is not the interrupted program counter.) */
+volatile u32 g_ap[6][2] __attribute__((section(".xcmem"), aligned(64)));
+static volatile u32 ap_tgt[6] __attribute__((section(".xcmem"), aligned(16)));          /* where each jal pointed */
+static volatile u32 ap_save[6] __attribute__((section(".xcmem"), aligned(16)));         /* the jal word it replaced */
+static volatile u32 ap_on __attribute__((section(".xcmem")));
+extern volatile u32 g_hf[6] __attribute__((weak));
+#define AP_WRAP(n) \
+    ".globl ap_w" #n "\n.ent ap_w" #n "\nap_w" #n ":\n" \
+    "addiu $sp, $sp, -16\n sd $31, 0($sp)\n mfc0 $12, $9\n sw $12, 8($sp)\n" \
+    "lui $25, %hi(ap_tgt + 4 * " #n ")\n lw $25, %lo(ap_tgt + 4 * " #n ")($25)\n jalr $25\n nop\n" \
+    "mfc0 $12, $9\n lw $13, 8($sp)\n subu $12, $12, $13\n srl $12, $12, 8\n" \
+    "la $13, g_ap + 8 * " #n "\n lw $14, 0($13)\n addu $14, $14, $12\n sw $14, 0($13)\n lw $14, 4($13)\n addiu $14, $14, 1\n sw $14, 4($13)\n" \
+    "ld $31, 0($sp)\n jr $31\n addiu $sp, $sp, 16\n.end ap_w" #n "\n"
+/* only $12-$14 and $25 are used: $8-$11 may carry arguments (EABI), v0/v1 carry the result */
+__asm__(".set push\n.set noreorder\n.set noat\n.text\n" AP_WRAP(0) AP_WRAP(1) AP_WRAP(2) AP_WRAP(3) AP_WRAP(4) ".set pop\n");
+extern void ap_w0(void), ap_w1(void), ap_w2(void), ap_w3(void), ap_w4(void);
+static const u32 ap_at[5] = { 0x2815FC, 0x281604, 0x281620, 0x281678, 0x281728 };
+static volatile u32 ap_site[5] __attribute__((section(".xcmem"), aligned(16)));         /* the jal each wrapper currently stands in for */
+static u32 jal_to(void (*f)(void)) { return 0x0C000000u | (((u32)f >> 2) & 0x3FFFFFFu); }
+static void (*const ap_w[5])(void) = { ap_w0, ap_w1, ap_w2, ap_w3, ap_w4 };
+static void ap_put(int i)                                   /* slot i back to the original jal */
+{
+    volatile u32 *p = (volatile u32 *)ap_site[i];
+    if (p && *p == jal_to(ap_w[i])) *p = ap_save[i];
+    ap_site[i] = 0;
+}
+static int ap_take(int i, u32 a)                            /* slot i times the jal at a (any game code); 0 if a is not a jal */
+{
+    volatile u32 *p = (volatile u32 *)a; u32 j = *p;
+    if ((a & 3) || a < 0x100000 || a >= 0x2000000 || (j >> 26) != 3) return 0;
+    ap_save[i] = j; ap_tgt[i] = (a & 0xF0000000u) | ((j & 0x3FFFFFFu) << 2); g_ap[i][0] = g_ap[i][1] = 0;
+    ap_site[i] = a; *p = jal_to(ap_w[i]);
+    return 1;
+}
+static void cmd_prof(int on)
+{
+    int n = 0;
+    if (on && !ap_on) {
+        memset((void *)g_ap, 0, sizeof g_ap);
+        for (int i = 0; i < 5; i++) n += ap_take(i, ap_at[i]);
+        FlushCache(0); FlushCache(2); ap_on = 1;
+    } else if (!on && ap_on) {
+        ap_on = 0;
+        for (int i = 0; i < 5; i++) if (ap_site[i]) { ap_put(i); n++; }
+        FlushCache(0); FlushCache(2);
+    }
+    out("> ok prof %d (%d calls switched)", ap_on ? 1 : 0, n);
+}
+/* 'ap N ADDR' (NETDIAG47): wrapper N (0-4, the gc..pu columns of the A line) times the jal at ADDR instead; 'ap N 0' frees it.
+   The previous site of that wrapper is put back first, so a wrapper never stands in for two different functions. */
+static void cmd_ap(int i, u32 a)
+{
+    if (i < 0 || i > 4) { out("> err ap: slot 0-4"); return; }
+    ap_put(i); FlushCache(0); FlushCache(2);
+    int ok = a ? ap_take(i, a) : 1;
+    FlushCache(0); FlushCache(2); ap_on = 1;
+    if (ok) out("> ok ap %d %08x -> %08x", i, (unsigned)a, a ? (unsigned)ap_tgt[i] : 0u); else out("> err ap %d %08x: not a jal", i, (unsigned)a);
+}
+static void prof_send(void)
+{
+    static u32 next_a;
+    if (!ap_on || (int)(g_pf_vs - next_a) < 0) return;
+    next_a = g_pf_vs + 60;
+    out("A %u fr %d gc %u %u lf %u %u t1 %u %u t2 %u %u pu %u %u hf %u %u %u %u %u %u", (unsigned)g_pf_vs, sh_frame_now(),
+        (unsigned)g_ap[0][0], (unsigned)g_ap[0][1], (unsigned)g_ap[1][0], (unsigned)g_ap[1][1], (unsigned)g_ap[2][0], (unsigned)g_ap[2][1],
+        (unsigned)g_ap[3][0], (unsigned)g_ap[3][1], (unsigned)g_ap[4][0], (unsigned)g_ap[4][1],
+        &g_hf ? (unsigned)g_hf[0] : 0u, &g_hf ? (unsigned)g_hf[1] : 0u, &g_hf ? (unsigned)g_hf[2] : 0u, &g_hf ? (unsigned)g_hf[3] : 0u,
+        &g_hf ? (unsigned)g_hf[4] : 0u, &g_hf ? (unsigned)g_hf[5] : 0u);
+}
+
 /* ---- commands ---- */
 static u32 num(char **s) { while (**s == ' ') (*s)++; char *e; u32 v = (u32)strtoul(*s, &e, 0); *s = e; return v; }
 static int word(char **s, const char *w) { while (**s == ' ') (*s)++; int n = strlen(w); if (strncmp(*s, w, n) || ((*s)[n] && (*s)[n] != ' ')) return 0; *s += n; return 1; }
@@ -332,6 +413,8 @@ static void cmd(char *s)
     }
     else if (word(&s, "unwatch")) { bp_off(); bp_left = 0; out("> ok unwatch"); }
     else if (word(&s, "wtest")) cmd_wtest();
+    else if (word(&s, "prof")) cmd_prof(num(&s) != 0);
+    else if (word(&s, "ap")) { int i = (int)num(&s); u32 a = num(&s); cmd_ap(i, a); }
     else out("> err unknown command: %s", s);
 }
 
@@ -394,6 +477,7 @@ static void dbg_thread(void *arg)
                 out("S %u fr %d w %d pg %d calls %u opens %u exc %u prof %u send %u in%s", (unsigned)g_pf_vs, sh_frame_now(), g_in_world, sh_state_now(),
                     (unsigned)g_calls, (unsigned)g_opn, (unsigned)g_exc_n, &g_pcn ? (unsigned)g_pcn : 0u, (unsigned)g_mon_insend, inb);
             }
+            prof_send();
             if (tx_n && flush() < 0) break;
             if (g_pf_vs - last_rx > 60 * 10) { break; }       /* the console pings every second: 10 s of silence = gone */
             DelayThread(50 * 1000);
@@ -405,6 +489,7 @@ static void dbg_thread(void *arg)
 }
 void dbg_start(void)
 {
+    ap_on = 0; for (int i = 0; i < 5; i++) ap_site[i] = 0;   /* .xcmem is not cleared at load */
     ee_thread_t t; memset(&t, 0, sizeof t);
     t.func = (void *)dbg_thread; t.stack = dbg_stack; t.stack_size = sizeof dbg_stack; t.initial_priority = 0; t.gp_reg = &_gp;
     int id = CreateThread(&t); if (id >= 0) StartThread(id, NULL);

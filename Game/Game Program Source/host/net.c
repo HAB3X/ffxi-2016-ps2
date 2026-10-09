@@ -313,7 +313,9 @@ static void hm_hw(void)                                /* NETDIAG33: interrupt, 
     hm_line(1, "chcr v0 %x v1 %x gif %x s0 %x s1 %x s2 %x", (unsigned)(HW(0x10008000) & 0xffff), (unsigned)(HW(0x10009000) & 0xffff), (unsigned)(HW(0x1000A000) & 0xffff),
             (unsigned)(HW(0x1000C000) & 0xffff), (unsigned)(HW(0x1000C400) & 0xffff), (unsigned)(HW(0x1000C800) & 0xffff));
     hm_line(1, "gs csr %08x gif %08x vif1 %08x", (unsigned)HW(0x12001000), (unsigned)HW(0x10003020), (unsigned)HW(0x10003C00));
-    { extern volatile u32 g_syncpath_timeouts, g_syncpath_maxspin, g_syncpath_calls; hm_line(1, "gssync calls %u timeouts %u longest %u", (unsigned)g_syncpath_calls, (unsigned)g_syncpath_timeouts, (unsigned)g_syncpath_maxspin); }
+    { extern volatile u32 g_syncpath_timeouts, g_syncpath_maxspin, g_syncpath_calls, g_syncpath_busy, g_syncpath_busybits, g_dma_timeouts;
+      hm_line(1, "gssync %u timeouts %u max %u busy %u/%x dmato %u", (unsigned)g_syncpath_calls, (unsigned)g_syncpath_timeouts, (unsigned)g_syncpath_maxspin,
+              (unsigned)g_syncpath_busy, (unsigned)g_syncpath_busybits, (unsigned)g_dma_timeouts); }
 #undef HW
 }
 static void hm_threads_ready(char *b, int n)           /* READY threads as "tid:prio" */
@@ -411,7 +413,9 @@ static void hm_stats(void)                             /* NETDIAG32: a short sum
     extern volatile u32 g_calls;
     hm_n = 0;
     hm_line(1, "%s STATS %us since boot, calls %u", BUILD_TAG, net_secs(), (unsigned)g_calls);
-    { extern volatile u32 g_syncpath_timeouts, g_syncpath_maxspin, g_syncpath_calls; hm_line(1, "gssync calls %u timeouts %u longest %u (old limit 32768)", (unsigned)g_syncpath_calls, (unsigned)g_syncpath_timeouts, (unsigned)g_syncpath_maxspin); }
+    { extern volatile u32 g_syncpath_timeouts, g_syncpath_maxspin, g_syncpath_calls, g_syncpath_busy, g_syncpath_busybits, g_dma_timeouts;
+      hm_line(1, "gssync %u timeouts %u max %u busy %u/%x dmato %u", (unsigned)g_syncpath_calls, (unsigned)g_syncpath_timeouts, (unsigned)g_syncpath_maxspin,
+              (unsigned)g_syncpath_busy, (unsigned)g_syncpath_busybits, (unsigned)g_dma_timeouts); }
     hm_line(1, "IOP free %d KB, largest block %d KB (at %ds)", g_iop_tot, g_iop_big, g_iop_at);
     hm_fails(4);
     unsigned mn = 999, sum = 0, n = 0; for (u32 i = g_fps_n > 120 ? g_fps_n - 120 : 0; i < g_fps_n; i++) { unsigned v = g_fps[i & 127]; sum += v; n++; if (v < mn) mn = v; }

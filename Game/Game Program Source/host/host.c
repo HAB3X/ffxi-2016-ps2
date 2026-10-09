@@ -29,6 +29,77 @@ static u32 heap_fallback(u32 a0, u32 a1, u32 a2, u32 a3)    /* the allocator's o
 volatile int g_in_world = 0;
 #endif
 
+#if defined(HEAP_FAST) && !defined(LOGOUT_FIX)
+#error HEAP_FAST needs LOGOUT_FIX (g_in_world)
+#endif
+#ifdef HEAP_FAST
+/* 9 Oct 2026, slow frame rate in busy zones (NETDIAG43 'prof' on the console, Port Jeuno): the program's main heap (0x19C2200-, 6.2 MB)
+   is full there (~12,000 blocks, the largest free one a few hundred bytes), so every allocation of the main thread ends in the
+   fallback to the other heap.  Before getting there the allocator (0x281560) walks ALL 12,000 blocks twice:
+     0x2815FC jal 0x282D40  scan of the main heap for objects waiting to be deleted (a virtual type check per block)   ~3.3 ms
+     0x281604 jal 0x282030  largest free block of the requested heap, only to see whether trying it is worthwhile       ~1.7 ms
+   ~120 allocations a second: 0.6 s of every second, at 1-2 frames a second.
+   While playing (g_in_world), the scan runs at most once every HF_GC_VBL vertical blanks; a skipped scan is made up for by the
+   frame hook (hf_frame, end of the game frame, main thread) once that time has passed, so an object waiting to be deleted is never
+   left waiting just because no allocation came after it.  The largest-free answer is kept for HF_LF_VBL blanks per heap.  A stale
+   answer only changes which attempt comes first: too large -> the first-fit search (0x281930) fails and the fallback runs as
+   before; too small -> the block goes to the other heap, which the fallback does anyway when the main heap is full.
+   On the title / character screens everything runs as the original: NETDIAG44 (throttled there too) sat on the character screen
+   after the lobby connection, the game waiting with no further allocation while a scan had been skipped. */
+#ifndef HF_GC_VBL
+#define HF_GC_VBL 10
+#endif
+#ifndef HF_LF_VBL
+#define HF_LF_VBL 10
+#endif
+extern volatile u32 g_pf_vs, g_pf_on;
+volatile u32 g_hf[6];                                  /* scans run, scans skipped, largest-free walks, answered from the kept value,
+                                                          malloc searches skipped, kept value lowered after a failed search (hf_ab) */
+static u32 hf_gc_v, hf_gc_due, hf_lf_v[2], hf_lf_h[2], hf_lf_r[2];
+static void hf_gc(void)
+{
+    u32 v = g_pf_vs;
+    if (g_in_world && g_pf_on && v - hf_gc_v < HF_GC_VBL) { g_hf[1]++; hf_gc_due = 1; return; }
+    hf_gc_v = v; hf_gc_due = 0; g_hf[0]++;
+    ((void (*)(void))0x282D40)();
+}
+void hf_frame(void)                                    /* devdlg.c dev_frame_hook, once per game frame */
+{
+    if (hf_gc_due && (!g_in_world || g_pf_vs - hf_gc_v >= HF_GC_VBL)) hf_gc();
+}
+static u32 hf_lf(u32 heap)
+{
+    u32 v = g_pf_vs; int i = heap == *(volatile u32 *)0x5FC5A0;
+    if (g_in_world && g_pf_on && hf_lf_h[i] == heap && v - hf_lf_v[i] < HF_LF_VBL) { g_hf[3]++; return hf_lf_r[i]; }
+    u32 r = ((u32 (*)(u32))0x282030)(heap);
+    hf_lf_h[i] = heap; hf_lf_v[i] = v; hf_lf_r[i] = r; g_hf[2]++;
+    return r;
+}
+/* 9 Oct 2026 (NETDIAG47), the remaining 4 fps stretches in Port Jeuno (live 'prof' on the console, 3-5 s of every minute or so):
+   a burst of effects makes ~70 allocations a frame, and the game's malloc (0x281DA0, and its sibling 0x2821B0) searches the main
+   heap itself (0x281AB0) BEFORE it ever reaches the allocator above: a search from the remembered spot for that size, then a
+   search of all ~12,000 blocks, which with the heap full both fail (~2.6 ms), then 0x281560 and the fallback.  750 ms of every
+   second went there.  While playing, on the main thread, a request the kept largest-free value (hf_lf, refreshed at most every
+   HF_LF_VBL blanks) says cannot fit skips the searches: the remembered-spot one returns "not found" as it would have, the full one
+   goes straight to 0x281560 (which then falls back to the other heap as before).  When a full search does run and fails, the kept
+   value is lowered below that request, so the next requests of that size skip too.  A stale value only changes where a block
+   goes for at most HF_LF_VBL blanks (too small: the other heap, as the fallback does anyway).  Tested live on NETDIAG45 with a
+   poked stub (the skip only): those stretches went from 4 to 13-14 fps. */
+static u32 hf_ab(u32 size, u32 lo, u32 hi, u32 start, u32 dir)
+{
+    typedef u32 (*ab_t)(u32, u32, u32, u32, u32);
+    u32 head = *(volatile u32 *)0x5FC5A0;
+    if (!g_in_world || !g_pf_on || lo != head || GetThreadId() != *(volatile int *)0x5FC5D0) return ((ab_t)0x281AB0)(size, lo, hi, start, dir);
+    u32 need = (size + 15) & ~15u, v = g_pf_vs;
+    if (hf_lf_h[1] != head || v - hf_lf_v[1] >= HF_LF_VBL) { hf_lf_r[1] = ((u32 (*)(u32))0x282030)(head); hf_lf_h[1] = head; hf_lf_v[1] = v; g_hf[2]++; }
+    if (hf_lf_r[1] < need) { g_hf[4]++; return start ? 0 : ((u32 (*)(u32, u32, u32))0x281560)(size, lo, hi); }
+    u32 r = ((ab_t)0x281AB0)(size, lo, hi, start, dir);
+    if (!start && (r < lo || r >= hi) && hf_lf_h[1] == head) { hf_lf_r[1] = need - 16; hf_lf_v[1] = g_pf_vs; g_hf[5]++; }   /* the whole heap had nothing that big */
+    return r;
+}
+static const u32 hf_ab_at[6] = { 0x281DE4, 0x281E14, 0x281E3C, 0x282264, 0x282298, 0x2822C0 };   /* malloc 0x281DA0, 0x2821B0: jal 0x281AB0 */
+#endif
+
 #ifndef NO_SEACOM_BOX
 /* target of the jump patched in at 0x3A7558 (/seacom handler, argument count < 2). Runs in the handler's frame (ra, s0-s2 are
    saved there). Search-menu object *(0x7BF810) present: open the Edit Comment box (0x520490(obj, 0)) and leave through 0x3A7614
@@ -271,7 +342,15 @@ u64 trap_c(u32 idx, u64 *r)
 static const u32 dma_base[10] = { 0x10008000, 0x10009000, 0x1000A000, 0x1000B000, 0x1000B400,
                                   0x1000C000, 0x1000C400, 0x1000C800, 0x1000D000, 0x1000D400 };
 static u32 svc_sceDmaGetChan(u32 ch) { return ch < 10 ? dma_base[ch] : 0; }
-static void dma_wait(volatile u32 *chcr) { u32 n = 0x1000000; while ((*chcr & 0x100) && --n) { } if (!n) *chcr &= ~0x100u; }
+volatile u32 g_dma_timeouts = 0;                      /* sceDmaSend/SendN found the channel still running after the wait */
+#ifdef GSSYNC_SONY
+/* 9 Oct 2026 (NETDIAG42): never cut a running transfer off.  Clearing STR in the middle of a packet leaves the GIF expecting the rest of
+   it; whatever comes next is then read as drawing commands (NETDIAG41 green-screen hang: GIF tag registers held vertex colours, GS stopped
+   on a stray SIGNAL write).  Libdma does not abort either. */
+static void dma_wait(volatile u32 *chcr) { u32 n = 0x1000000; while ((*chcr & 0x100) && --n) { } if (!n) { g_dma_timeouts++; while (*chcr & 0x100) { } } }
+#else
+static void dma_wait(volatile u32 *chcr) { u32 n = 0x1000000; while ((*chcr & 0x100) && --n) { } if (!n) { g_dma_timeouts++; *chcr &= ~0x100u; } }
+#endif
 static u32 svc_sceDmaSend(volatile u32 *c, u32 tadr)       /* source-chain mode */
 {
     dma_wait(c);
@@ -314,6 +393,34 @@ static u32 svc_getarg(void) { return g_pol_arg; }
    Now mode 0 waits like libgraph (up to 0x1000000 loops) and never stops a transfer; mode 1 (busy check) still answers 0 as before
    (the full libgraph behaviour, -DGSSYNC_WAIT, left the Create Character preview black).  -DGSSYNC_ABORT = the old behaviour. */
 volatile u32 g_syncpath_timeouts = 0, g_syncpath_maxspin = 0, g_syncpath_calls = 0;
+volatile u32 g_syncpath_busy = 0, g_syncpath_busybits = 0;   /* mode 1 answers "busy" (GSSYNC_SONY), and which conditions were seen */
+#ifdef GSSYNC_SONY
+/* 9 Oct 2026 (NETDIAG42): Sony's libgraph sceGsSyncPath, as in the lifted original (lifted_k 0x1D7C10), plus counters and no message print.
+   mode 1 (busy check) returns a bit mask: 1 VIF1 DMA, 2 GIF DMA, 4 VIF1 FIFO/VPS, 8 VU1 running, 0x10 GIF path active.
+   mode 0 waits for all five (the old host version waited only for the two DMA channels and always answered 0 to mode 1, so the game's
+   drawing-buffer flush (0x28dd10) started new transfers while VU1 / the GIF were still working through the last ones). */
+static inline u32 vu1_running(void) { u32 v; __asm__ volatile("cfc2 %0, $vi29" : "=r"(v)); return v & 0x100; }
+static u32 gs_busy(void)
+{
+    u32 b = 0;
+    if (*(volatile u32 *)0x10009000 & 0x100) b |= 1;
+    if (*(volatile u32 *)0x1000A000 & 0x100) b |= 2;
+    if (*(volatile u32 *)0x10003C00 & 0x1F000003) b |= 4;
+    if (vu1_running()) b |= 8;
+    if (*(volatile u32 *)0x10003020 & 0xC00) b |= 0x10;
+    return b;
+}
+static u32 svc_gssyncpath(u32 mode)
+{
+    if (mode) { u32 b = gs_busy(); if (b) { g_syncpath_busy++; g_syncpath_busybits |= b; } return b; }
+    g_syncpath_calls++;
+    u32 n0 = 0x1000000, n = n0;
+    while (gs_busy() && --n) { }
+    if (n0 - n > g_syncpath_maxspin) g_syncpath_maxspin = n0 - n;
+    if (!n) { g_syncpath_timeouts++; return (u32)-1; }
+    return 0;
+}
+#else
 static u32 svc_gssyncpath(u32 mode)
 {
 #ifdef GSSYNC_WAIT
@@ -343,6 +450,7 @@ static u32 svc_gssyncpath(u32 mode)
     }
     return r;
 }
+#endif
 static u32 svc_one(void) { return 1; }
 static u32 svc_zero(void) { return 0; }
 
@@ -678,6 +786,18 @@ int main(int argc, char **argv)
         extern void exc_hold(void);
         SetVTLBRefillHandler(2, exc_hold); SetVTLBRefillHandler(3, exc_hold);
         SetVCommonHandler(2, exc_hold); SetVCommonHandler(3, exc_hold); SetVCommonHandler(4, exc_hold); SetVCommonHandler(5, exc_hold);
+    }
+#endif
+#ifdef HEAP_FAST
+    {   /* see hf_gc / hf_lf above */
+        volatile u32 *p = (volatile u32 *)0x2815FC;
+        if (p[0] == 0x0C0A0B50 && p[2] == 0x0C0A080C) {
+            p[0] = 0x0C000000 | (((u32)hf_gc >> 2) & 0x3FFFFFF); p[2] = 0x0C000000 | (((u32)hf_lf >> 2) & 0x3FFFFFF);
+            FlushCache(0); FlushCache(2); printf("[host] heap fast: delete scan every %d vblanks, largest-free kept %d\n", HF_GC_VBL, HF_LF_VBL);
+        } else printf("[host] heap fast: unexpected words at 0x2815FC: %08x %08x\n", (unsigned)p[0], (unsigned)p[2]);
+        int n = 0;
+        for (int i = 0; i < 6; i++) { volatile u32 *q = (volatile u32 *)hf_ab_at[i]; if (*q == 0x0C0A06AC) { *q = 0x0C000000 | (((u32)hf_ab >> 2) & 0x3FFFFFF); n++; } }
+        FlushCache(0); FlushCache(2); printf("[host] heap fast: malloc main-heap search skipped when it cannot fit (%d of 6 calls)\n", n);
     }
 #endif
 #ifdef LOGOUT_FIX
