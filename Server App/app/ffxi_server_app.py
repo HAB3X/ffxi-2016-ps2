@@ -2,7 +2,7 @@
 """FFXI 2016 Server - the window that runs the server. Fan Project by Habex.
 
 Python 3 + Tk (standard library only). Mac, Windows and Linux. Dark look only.
-Left: navigation (Server, Profiles, Connect, World, Roles, Chat rules, Game disc).
+Left: navigation (Server, Profiles, Connect, World, Moderation, Chat rules, Maintenance, Game disc).
 Server page: status + Start / Stop, the address players type, who is online, the world chat.
 The work is done by Server/server_control.py (start/stop, profiles), server_admin.py (players, chat, commands),
 server_net.py (addresses, ports), server_roles.py (roles) and server_chat.py (chat rules).
@@ -240,6 +240,121 @@ class TextLink(tk.Label):
         self.config(fg=self.base_fg if on else C['faint'], cursor='hand2' if on else '')
 
 
+class RoundEntry(tk.Frame):
+    """A text field with rounded corners, a fine border and a blue ring while you type. Behaves like a normal Entry (get, insert, delete, bind...)."""
+
+    def __init__(self, master, font, width=22, show=''):
+        super().__init__(master, bg=master['bg'], highlightthickness=0, bd=0)
+        fnt = tkfont.Font(font=font)
+        h = fnt.metrics('linespace') + 18
+        self.cv = tk.Canvas(self, height=h, width=fnt.measure('0') * width + 30, bg=master['bg'], highlightthickness=0, bd=0)
+        self.cv.pack(fill='x')
+        self.entry = tk.Entry(self.cv, font=font, show=show, bg=C['input'], fg=C['text'], insertbackground=C['accent'], relief='flat', bd=0,
+                              highlightthickness=0, disabledbackground=C['input'], disabledforeground=C['faint'], selectbackground=C['sel'],
+                              selectforeground='white')
+        self.win = self.cv.create_window(14, h // 2, window=self.entry, anchor='w', width=100)
+        self.focused = False
+        self.cv.bind('<Configure>', self._draw)
+        self.entry.bind('<FocusIn>', lambda e: self._focus(True), add='+')
+        self.entry.bind('<FocusOut>', lambda e: self._focus(False), add='+')
+        self.cv.bind('<Button-1>', lambda e: self.entry.focus_set())
+
+    def _focus(self, on):
+        self.focused = on
+        self._draw()
+
+    def _draw(self, e=None):
+        w, h = self.cv.winfo_width(), self.cv.winfo_height()
+        if w < 8:
+            return
+        self.cv.delete('bg')
+        rounded(self.cv, 1, 1, w - 1, h - 1, 10, fill=C['input'], outline=C['accent'] if self.focused else C['line'], width=2 if self.focused else 1, tags='bg')
+        self.cv.tag_lower('bg')
+        self.cv.itemconfigure(self.win, width=max(20, w - 30))
+
+    def bind(self, sequence=None, func=None, add=None):
+        return self.entry.bind(sequence, func, add)
+
+    def focus_set(self):
+        self.entry.focus_set()
+
+    def configure(self, cnf=None, **kw):
+        mine = {k: kw.pop(k) for k in ('state', 'show', 'textvariable') if k in kw}
+        if mine:
+            self.entry.configure(**mine)
+        if kw or cnf:
+            super().configure(cnf, **kw)
+
+    config = configure
+
+    def __getattr__(self, name):                               # get, insert, delete, icursor, selection_range ... go to the field itself
+        if name in ('entry', 'cv'):
+            raise AttributeError(name)
+        return getattr(self.entry, name)
+
+
+class Check(tk.Frame):
+    """A checkbox: a rounded square that fills blue with a tick. Takes the same text, variable and command as a normal Checkbutton."""
+    SIZE = 18
+
+    def __init__(self, master, text='', variable=None, command=None, font=None, fg=None, bg=None, **ignored):
+        bg = bg or master['bg']
+        super().__init__(master, bg=bg, cursor='hand2', highlightthickness=0, bd=0)
+        self.var = variable if variable is not None else tk.BooleanVar(value=False)
+        self.command, self.hover, self.off = command, False, False
+        self.box = tk.Canvas(self, width=self.SIZE + 2, height=self.SIZE + 2, bg=bg, highlightthickness=0, bd=0, cursor='hand2')
+        self.box.pack(side='left')
+        self.label = None
+        if text:
+            self.label = tk.Label(self, text=text, font=font, fg=fg or C['text'], bg=bg, anchor='w', cursor='hand2')
+            self.label.pack(side='left', padx=(9, 0))
+        for w in (self, self.box, self.label):
+            if w is not None:
+                w.bind('<Button-1>', self._toggle)
+                w.bind('<Enter>', lambda e: self._hov(True))
+                w.bind('<Leave>', lambda e: self._hov(False))
+        self.var.trace_add('write', lambda *a: self._draw())
+        self._draw()
+
+    def _hov(self, on):
+        self.hover = on
+        self._draw()
+
+    def _toggle(self, e=None):
+        if self.off:
+            return
+        self.var.set(not bool(self.var.get()))
+        if self.command:
+            self.command()
+
+    def configure(self, cnf=None, **kw):
+        if 'state' in kw:
+            self.off = kw.pop('state') == 'disabled'
+            self._draw()
+        if self.label is not None:
+            look = {k: kw.pop(k) for k in ('text', 'font', 'fg') if k in kw}
+            if look:
+                self.label.configure(**look)
+        for k in [k for k in kw if k not in ('bg', 'background', 'cursor')]:            # options only a real Checkbutton has: ignored
+            kw.pop(k)
+        if kw or cnf:
+            super().configure(cnf, **kw)
+
+    config = configure
+
+    def _draw(self):
+        c, s = self.box, self.SIZE
+        c.delete('all')
+        on = bool(self.var.get())
+        if on:
+            rounded(c, 1, 1, s + 1, s + 1, 6, fill=C['accent'] if not self.off else C['grey'], outline='')
+            c.create_line(5, s // 2 + 1, s // 2 + 1, s - 3, s - 4, 6, fill='white', width=2, capstyle='round', joinstyle='round')
+        else:
+            rounded(c, 1, 1, s + 1, s + 1, 6, fill=C['input'], outline=C['accent'] if self.hover and not self.off else C['faint'], width=1)
+        if self.label is not None:
+            self.label.configure(fg=C['faint'] if self.off else (C['text']))
+
+
 class Panel(tk.Frame):
     """A card: rounded corners, a fine border, roomy padding. `.body` is where the contents go; `.head` (titled cards) holds the title row.
     art=(name, offset) puts a soft picture inside the card, `offset` pixels from its right edge (behind the contents)."""
@@ -279,7 +394,7 @@ class Panel(tk.Frame):
 
 # ---------------------------------------------------------------- the window
 class App:
-    PAGES = [('server', 'Server'), ('profiles', 'Profiles'), ('connect', 'Connect'), ('settings', 'World'), ('roles', 'Roles'),
+    PAGES = [('server', 'Server'), ('profiles', 'Profiles'), ('connect', 'Connect'), ('settings', 'World'), ('roles', 'Moderation'),
              ('chat', 'Chat rules'), ('maint', 'Maintenance'), ('disc', 'Game disc')]
 
     def __init__(self, root):
@@ -369,9 +484,7 @@ class App:
         return tk.Label(parent, text=text, font=font or self.f.body, fg=fg or C['text'], bg=bg or parent['bg'], **kw)
 
     def entry(self, parent, show='', width=22):
-        return tk.Entry(parent, font=self.f.body, width=width, show=show, bg=C['input'], fg=C['text'], insertbackground=C['text'],
-                        relief='flat', bd=0, highlightthickness=1, highlightbackground=C['input'], highlightcolor=C['accent'],
-                        disabledbackground=C['card2'])
+        return RoundEntry(parent, self.f.body, width=width, show=show)
 
     def _scroll(self, parent, widget):
         sb = ttk.Scrollbar(parent, orient='vertical', command=widget.yview, style='Vertical.TScrollbar')
@@ -556,7 +669,7 @@ class App:
 
     def show_page(self, key):
         if key == 'roles' and 'roles' not in self.pages:
-            self.pages['roles'] = self._page_frame('Roles', 'Who may use which in-game "!" commands. Right-click a player to promote them.')
+            self.pages['roles'] = self._page_frame('Moderation', 'Who may use which in-game "!" commands. Right-click a player to promote them.')
             import ffxi_app_extra as X
             self.roles_page = X.RolesWindow(self, parent=self.pages['roles'].body)
         if key == 'chat' and 'chat' not in self.pages:
@@ -579,7 +692,7 @@ class App:
             self.root.after(50, lambda: (self.set_name.focus_set(), self.set_name.icursor('end')))
         self._nav_paint()
 
-    PAGE_ICONS = {'Profiles': 'moogle', 'Connect': 'chocobo', 'World': 'world', 'Roles': 'shield', 'Chat rules': 'chat', 'Maintenance': 'potion',
+    PAGE_ICONS = {'Profiles': 'moogle', 'Connect': 'chocobo', 'World': 'world', 'Moderation': 'shield', 'Chat rules': 'chat', 'Maintenance': 'potion',
                   'Game disc': 'disc'}
 
     def _page_frame(self, title, sub=None):
@@ -1446,7 +1559,7 @@ class App:
         def toggle():
             for k in ('Password', 'Password again'):
                 ents[k].config(show='' if showvar.get() else '•')
-        tk.Checkbutton(form, text='Show password', variable=showvar, command=toggle, bg=C['bg'], fg=C['soft'], font=self.f.small,
+        Check(form, text='Show password', variable=showvar, command=toggle, bg=C['bg'], fg=C['soft'], font=self.f.small,
                        activebackground=C['bg'], activeforeground=C['text'], selectcolor=C['input'], highlightthickness=0,
                        bd=0).grid(row=6, column=1, sticky='w', pady=(8, 0))
         msg = self.L(box, '', self.f.h3, fg=C['red'], anchor='w', justify='left', wraplength=self.f.s(420))
@@ -1620,7 +1733,7 @@ class App:
             for i, st in enumerate(flags):
                 var = tk.BooleanVar(value=True)
                 self.world_flags[st.key] = var
-                tk.Checkbutton(fg, text=st.label, variable=var, bg=C['card'], fg=C['text'], font=f.small, anchor='w', activebackground=C['card'],
+                Check(fg, text=st.label, variable=var, bg=C['card'], fg=C['text'], font=f.small, anchor='w', activebackground=C['card'],
                                activeforeground=C['text'], selectcolor=C['input'], highlightthickness=0, bd=0).grid(
                     row=i // 3, column=i % 3, sticky='w', padx=(0, 26), pady=2)
         self.L(b, self.WORLD_NOTES[group], f.tiny, fg=C['faint'], bg=C['card'], anchor='w', justify='left').pack(fill='x', pady=(10, 0))
@@ -1702,7 +1815,7 @@ class App:
             r = tk.Frame(self.events_list, bg=C['card2'])
             r.pack(fill='x', pady=3)
             var = tk.BooleanVar(value=bool(ev.get('on', True)))
-            tk.Checkbutton(r, variable=var, command=lambda e=ev, v=var: self._event_toggle(e, v), bg=C['card2'], activebackground=C['card2'],
+            Check(r, variable=var, command=lambda e=ev, v=var: self._event_toggle(e, v), bg=C['card2'], activebackground=C['card2'],
                            selectcolor=C['input'], highlightthickness=0, bd=0).pack(side='left', padx=(10, 0), pady=8)
             txt = tk.Frame(r, bg=C['card2'])
             txt.pack(side='left', fill='x', expand=True, padx=8)
@@ -1745,7 +1858,7 @@ class App:
         for i, dn in enumerate(ss.DAY_NAMES):
             v = tk.BooleanVar(value=i >= 5)
             dvars.append(v)
-            tk.Checkbutton(drow, text=dn, variable=v, bg=C['bg'], fg=C['text'], font=f.small, activebackground=C['bg'], activeforeground=C['text'],
+            Check(drow, text=dn, variable=v, bg=C['bg'], fg=C['text'], font=f.small, activebackground=C['bg'], activeforeground=C['text'],
                            selectcolor=C['input'], highlightthickness=0, bd=0).pack(side='left', padx=(0, 10))
         trow = tk.Frame(body, bg=C['bg'])
         trow.pack(fill='x', pady=(0, 14))
@@ -1860,7 +1973,7 @@ class App:
         arow.pack(fill='x', pady=(16, 0))
         on, keep = sbk.auto_settings() if sbk else (False, 7)
         self.auto_var = tk.BooleanVar(value=on)
-        tk.Checkbutton(arow, text='Back up every day while the server is on', variable=self.auto_var, command=self._save_auto, bg=C['card'], fg=C['text'],
+        Check(arow, text='Back up every day while the server is on', variable=self.auto_var, command=self._save_auto, bg=C['card'], fg=C['text'],
                        font=f.small, activebackground=C['card'], activeforeground=C['text'], selectcolor=C['input'], highlightthickness=0, bd=0).pack(side='left')
         self.L(arow, 'Keep', f.small, fg=C['soft'], bg=C['card']).pack(side='left', padx=(22, 6))
         self.keep_entry = self.entry(arow, width=4)
@@ -2204,7 +2317,7 @@ class App:
         for r in roles:
             pm.add_command(label=r, command=lambda r=r: self._promote(name, r))
         if not roles:
-            pm.add_command(label='(no roles yet, see Roles)', state='disabled')
+            pm.add_command(label='(no roles yet, see Moderation)', state='disabled')
         m.add_cascade(label='Promote', menu=pm)
         cur = self.members.get(name.lower())
         if cur:

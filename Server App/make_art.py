@@ -236,7 +236,7 @@ def icon_gil():
 ICONS = dict(crystal=icon_crystal, moogle=icon_moogle, chocobo=icon_chocobo, world=icon_world, shield=icon_shield, chat=icon_chat,
              potion=icon_potion, disc=icon_disc, server=icon_server, star=icon_star, heart=icon_heart, gil=icon_gil)
 
-def hero(w=1400, h=300):
+def hero(w=1400, h=300, cxf=0.76):
     """An original ink-and-watercolour style sky: soft clouds, a glowing crystal and drifting stars."""
     random.seed(11)
     img = Image.new('RGB', (w, h))
@@ -263,7 +263,7 @@ def hero(w=1400, h=300):
         d.ellipse((x - r, y - r, x + r, y + r), fill=(v, v, 255))
     glow = Image.new('RGB', (w, h), (0, 0, 0))             # crystal glow behind the crystal
     gd = ImageDraw.Draw(glow)
-    cx, cy = int(w * 0.76), int(h * 0.46)
+    cx, cy = int(w * cxf), int(h * 0.5)
     for r, c in ((150, (14, 30, 60)), (95, (30, 60, 100)), (50, (70, 120, 170))):
         gd.ellipse((cx - r, cy - r, cx + r, cy + r), fill=c)
     glow = glow.filter(ImageFilter.GaussianBlur(40))
@@ -275,7 +275,7 @@ def hero(w=1400, h=300):
     cr = icon_crystal().resize((int(h * 0.72), int(h * 0.72)), Image.LANCZOS)
     img = img.convert('RGBA')
     img.alpha_composite(cr, (cx - cr.size[0] // 2, cy - cr.size[1] // 2))
-    for name, fx, fy, sz in (('star', 0.58, 0.2, 36), ('star', 0.9, 0.3, 28), ('star', 0.68, 0.7, 24)):
+    for name, fx, fy, sz in (('star', 0.24, 0.18, 26), ('star', 0.76, 0.28, 22), ('star', 0.34, 0.66, 18)):
         st = Image.open(os.path.join(OUT, '%s_%d.png' % (name, 32 if sz < 32 else 64))).resize((sz, sz), Image.LANCZOS)
         img.alpha_composite(st, (int(w * fx), int(h * fy)))
     ink = Image.new('L', (w, h), 0)                       # faint pencil texture
@@ -300,8 +300,7 @@ if __name__ == '__main__':
     nav = Image.composite(Image.new('RGB', nav.size, NAV_BOTTOM), nav, fade)
     nav.save(os.path.join(OUT, 'nav_bg.png'))
     disc_background(2600, 110, glow=(0.8, 0.5), seed=5, band=False).save(os.path.join(OUT, 'banner_bg.png'))
-    h = hero()
-    mid = h.crop((int(h.size[0] * 0.5), 0, h.size[0], h.size[1])).resize((620, 150), Image.LANCZOS).convert('RGBA')
+    mid = hero(620, 150, 0.5).convert('RGBA')                  # drawn at its real size and shape, not cropped and stretched
     a = Image.new('L', mid.size, 0)
     ap = a.load()
     for y in range(mid.size[1]):
