@@ -157,7 +157,7 @@ class Console:
                     self.log('S', line[2:], show=show)
                 else:
                     line = self.annotate(line)
-                    self.log(line[:1], line)
+                    self.log(line[:1], line, show=not line.startswith('P '))   # profiler samples: log file only
         with self.lock:
             if self.conn is c: self.conn = None
         try: c.close()

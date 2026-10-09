@@ -307,6 +307,76 @@ static void cmd_wtest(void)                                 /* which DABM conven
     out("> err wtest: watchpoints do not work here");
 }
 
+/* ---- where does the frame time go (NETDIAG43): 'prof 1' starts, 'prof 0' stops ----
+   1. PC sampler: a kernel alarm every 32 hsyncs (~2 ms) records the interrupted program counter into ps_ring; this thread sends the
+      samples as "P a a a ..." lines (the PC side bins them by function).
+   2. Allocator timing: the game's memory allocator (0x281560) has five calls in it whose cost grows with the number of heap blocks.
+      'prof 1' points those jal's at wrappers below that add up the cycles spent (in units of 256 cycles) and the number of calls.
+        0 gc  0x2815FC jal 0x282D40  main thread only: walks every block of region 2 looking for objects waiting to be deleted
+        1 lf  0x281604 jal 0x282030  main thread only: largest free block of the requested heap (walks all its blocks)
+        2 t1  0x281620 jal 0x281930  first-fit search in the requested heap
+        3 t2  0x281678 jal 0x281930  first-fit search in the other heap (the requested one was full)
+        4 pu  0x281728 jal 0x282E10  both heaps full: purge, then try again
+      Reported once a second as "A vbl fr gc units calls lf .. t1 .. t2 .. pu .. lost". 'prof 0' puts the original jal's back. */
+volatile u32 g_ap[6][2] __attribute__((section(".xcmem"), aligned(64)));
+static volatile u32 ps_ring[512] __attribute__((section(".xcmem"), aligned(64)));
+static volatile u32 ps_ctl[4] __attribute__((section(".xcmem"), aligned(16)));          /* head, on, tail, lost */
+#define AP_WRAP(n, target) \
+    ".globl ap_w" #n "\n.ent ap_w" #n "\nap_w" #n ":\n" \
+    "addiu $sp, $sp, -16\n sd $31, 0($sp)\n mfc0 $12, $9\n sw $12, 8($sp)\n" \
+    "jal " #target "\n nop\n" \
+    "mfc0 $12, $9\n lw $13, 8($sp)\n subu $12, $12, $13\n srl $12, $12, 8\n" \
+    "la $13, g_ap + 8 * " #n "\n lw $14, 0($13)\n addu $14, $14, $12\n sw $14, 0($13)\n lw $14, 4($13)\n addiu $14, $14, 1\n sw $14, 4($13)\n" \
+    "ld $31, 0($sp)\n jr $31\n addiu $sp, $sp, 16\n.end ap_w" #n "\n"
+/* only $12-$14 are used: $8-$11 may carry arguments (EABI), v0/v1 carry the result */
+__asm__(".set push\n.set noreorder\n.set noat\n.text\n"
+        AP_WRAP(0, 0x282D40) AP_WRAP(1, 0x282030) AP_WRAP(2, 0x281930) AP_WRAP(3, 0x281930) AP_WRAP(4, 0x282E10)
+        ".set pop\n");
+extern void ap_w0(void), ap_w1(void), ap_w2(void), ap_w3(void), ap_w4(void);
+static const u32 ap_at[5] = { 0x2815FC, 0x281604, 0x281620, 0x281678, 0x281728 };
+static const u32 ap_orig[5] = { 0x0C0A0B50, 0x0C0A080C, 0x0C0A064C, 0x0C0A064C, 0x0C0A0B84 };
+static void ps_tick(s32 id, u16 t, void *arg)
+{
+    u32 epc; (void)id; (void)t; (void)arg; __asm__ volatile("mfc0 %0, $14" : "=r"(epc));
+    if (!ps_ctl[1]) return;
+    ps_ring[ps_ctl[0] & 511] = epc; ps_ctl[0]++;
+    iSetAlarm(32, ps_tick, 0);
+}
+static void cmd_prof(int on)
+{
+    void (*const w[5])(void) = { ap_w0, ap_w1, ap_w2, ap_w3, ap_w4 };
+    int n = 0;
+    if (on && !ps_ctl[1]) {
+        memset((void *)g_ap, 0, sizeof g_ap); ps_ctl[0] = ps_ctl[2] = ps_ctl[3] = 0;
+        for (int i = 0; i < 5; i++) { volatile u32 *p = (volatile u32 *)ap_at[i]; if (*p == ap_orig[i]) { *p = 0x0C000000u | (((u32)w[i] >> 2) & 0x3FFFFFFu); n++; } }
+        FlushCache(0); FlushCache(2);
+        ps_ctl[1] = 1; SetAlarm(32, ps_tick, 0);
+    } else if (!on && ps_ctl[1]) {
+        ps_ctl[1] = 0;
+        for (int i = 0; i < 5; i++) { volatile u32 *p = (volatile u32 *)ap_at[i]; if (*p == (0x0C000000u | (((u32)w[i] >> 2) & 0x3FFFFFFu))) { *p = ap_orig[i]; n++; } }
+        FlushCache(0); FlushCache(2);
+    }
+    out("> ok prof %d (%d calls switched)", ps_ctl[1] ? 1 : 0, n);
+}
+static void prof_send(void)
+{
+    static u32 next_a;
+    if (!ps_ctl[1] && ps_ctl[2] == ps_ctl[0]) return;
+    u32 hd = ps_ctl[0];
+    if (hd - ps_ctl[2] > 512) { ps_ctl[3] += hd - ps_ctl[2] - 512; ps_ctl[2] = hd - 512; }
+    while (ps_ctl[2] != hd) {
+        char b[128]; int bl = 1; b[0] = 'P';
+        for (int i = 0; i < 12 && ps_ctl[2] != hd; i++) { bl += snprintf(b + bl, sizeof b - bl, " %x", (unsigned)ps_ring[ps_ctl[2] & 511]); ps_ctl[2]++; }
+        out("%s", b);
+    }
+    if ((int)(g_pf_vs - next_a) >= 0) {
+        next_a = g_pf_vs + 60;
+        out("A %u fr %d gc %u %u lf %u %u t1 %u %u t2 %u %u pu %u %u lost %u", (unsigned)g_pf_vs, sh_frame_now(),
+            (unsigned)g_ap[0][0], (unsigned)g_ap[0][1], (unsigned)g_ap[1][0], (unsigned)g_ap[1][1], (unsigned)g_ap[2][0], (unsigned)g_ap[2][1],
+            (unsigned)g_ap[3][0], (unsigned)g_ap[3][1], (unsigned)g_ap[4][0], (unsigned)g_ap[4][1], (unsigned)ps_ctl[3]);
+    }
+}
+
 /* ---- commands ---- */
 static u32 num(char **s) { while (**s == ' ') (*s)++; char *e; u32 v = (u32)strtoul(*s, &e, 0); *s = e; return v; }
 static int word(char **s, const char *w) { while (**s == ' ') (*s)++; int n = strlen(w); if (strncmp(*s, w, n) || ((*s)[n] && (*s)[n] != ' ')) return 0; *s += n; return 1; }
@@ -332,6 +402,7 @@ static void cmd(char *s)
     }
     else if (word(&s, "unwatch")) { bp_off(); bp_left = 0; out("> ok unwatch"); }
     else if (word(&s, "wtest")) cmd_wtest();
+    else if (word(&s, "prof")) cmd_prof(num(&s) != 0);
     else out("> err unknown command: %s", s);
 }
 
@@ -394,6 +465,7 @@ static void dbg_thread(void *arg)
                 out("S %u fr %d w %d pg %d calls %u opens %u exc %u prof %u send %u in%s", (unsigned)g_pf_vs, sh_frame_now(), g_in_world, sh_state_now(),
                     (unsigned)g_calls, (unsigned)g_opn, (unsigned)g_exc_n, &g_pcn ? (unsigned)g_pcn : 0u, (unsigned)g_mon_insend, inb);
             }
+            prof_send();
             if (tx_n && flush() < 0) break;
             if (g_pf_vs - last_rx > 60 * 10) { break; }       /* the console pings every second: 10 s of silence = gone */
             DelayThread(50 * 1000);
@@ -405,6 +477,7 @@ static void dbg_thread(void *arg)
 }
 void dbg_start(void)
 {
+    for (int i = 0; i < 4; i++) ps_ctl[i] = 0;              /* .xcmem is not cleared at load */
     ee_thread_t t; memset(&t, 0, sizeof t);
     t.func = (void *)dbg_thread; t.stack = dbg_stack; t.stack_size = sizeof dbg_stack; t.initial_priority = 0; t.gp_reg = &_gp;
     int id = CreateThread(&t); if (id >= 0) StartThread(id, NULL);
