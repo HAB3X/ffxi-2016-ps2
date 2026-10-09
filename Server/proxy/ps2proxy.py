@@ -1209,6 +1209,48 @@ def _trace_s2c_release(ctx, pkt):
     return None
 
 
+# ---- entity / login checks (always on; log only, never change a packet). They show the things that make the PS2 client
+# ignore an NPC: its first 0x00E must carry position, status and flags (SendFlg & 7 == 7), every 0x00E must be full length, and
+# a login packet whose state is 3, 4 or 5 makes the client drop entity packets until its fade-out has finished.
+@s2c_hook(0x00A)
+def _diag_s2c_login(ctx, pkt):
+    ctx.entities = {}
+    if len(pkt) < 0x84:
+        ctx.log(ctx.tag, 'diag  LSB login (0x00A) is only %d B; the PS2 reads up to 0x104' % len(pkt))
+        return None
+    state = u32(pkt, 0x80)
+    if state in (3, 4, 5):
+        ctx.log(ctx.tag, 'diag  LSB login (0x00A) state %d: the PS2 drops entity packets until its zone fade-out has ended' % state)
+    return None
+
+
+@s2c_hook(0x00E)
+def _diag_s2c_npc(ctx, pkt):
+    if len(pkt) < 0x0C:
+        return None
+    idx, send = _u16(pkt, 8), pkt[0x0A]
+    seen = getattr(ctx, 'entities', None)
+    if seen is None:
+        seen = ctx.entities = {}
+    if send & 0x20:                                              # despawn: the next one is a first spawn again
+        seen.pop(idx, None)
+        return None
+    if idx not in seen and (send & 7) != 7:
+        ctx.warn_once('ent-first-%d' % idx, 'diag  LSB entity %d (0x00E) first update has SendFlg 0x%02X; the PS2 drops it unless '
+                                            'position, status and flags are all in it (SendFlg & 7 == 7)' % (idx, send))
+    seen[idx] = seen.get(idx, 0) | send
+    if len(pkt) < 0x44:
+        ctx.warn_once('ent-short', 'diag  LSB entity update (0x00E) of %d B is shorter than the 0x48 the PS2 expects' % len(pkt))
+    return None
+
+
+@c2s_hook(0x017)
+def _diag_c2s_entity_again(ctx, pkt):
+    if len(pkt) >= 0x0C:
+        ctx.log(ctx.tag, 'diag  PS2 asks for entity %d again (0x017, id %08X)' % (_u16(pkt, 4), u32(pkt, 8)))
+    return None
+
+
 @s2c_hook(0x00D, optional='s2c-00d',
           desc='EXPERIMENTAL: s2c 0x00D (other PCs) to the 2007 PS2 layout: models 0x48->0x3E, name 0x5A->0x50')
 def _s2c_char_pc_2007(ctx, pkt):
