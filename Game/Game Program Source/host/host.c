@@ -273,7 +273,15 @@ u64 trap_c(u32 idx, u64 *r)
 static const u32 dma_base[10] = { 0x10008000, 0x10009000, 0x1000A000, 0x1000B000, 0x1000B400,
                                   0x1000C000, 0x1000C400, 0x1000C800, 0x1000D000, 0x1000D400 };
 static u32 svc_sceDmaGetChan(u32 ch) { return ch < 10 ? dma_base[ch] : 0; }
-static void dma_wait(volatile u32 *chcr) { u32 n = 0x1000000; while ((*chcr & 0x100) && --n) { } if (!n) *chcr &= ~0x100u; }
+volatile u32 g_dma_timeouts = 0;                      /* sceDmaSend/SendN found the channel still running after the wait */
+#ifdef GSSYNC_SONY
+/* 9 Oct 2026 (NETDIAG42): never cut a running transfer off.  Clearing STR in the middle of a packet leaves the GIF expecting the rest of
+   it; whatever comes next is then read as drawing commands (NETDIAG41 green-screen hang: GIF tag registers held vertex colours, GS stopped
+   on a stray SIGNAL write).  Libdma does not abort either. */
+static void dma_wait(volatile u32 *chcr) { u32 n = 0x1000000; while ((*chcr & 0x100) && --n) { } if (!n) { g_dma_timeouts++; while (*chcr & 0x100) { } } }
+#else
+static void dma_wait(volatile u32 *chcr) { u32 n = 0x1000000; while ((*chcr & 0x100) && --n) { } if (!n) { g_dma_timeouts++; *chcr &= ~0x100u; } }
+#endif
 static u32 svc_sceDmaSend(volatile u32 *c, u32 tadr)       /* source-chain mode */
 {
     dma_wait(c);
@@ -316,6 +324,34 @@ static u32 svc_getarg(void) { return g_pol_arg; }
    Now mode 0 waits like libgraph (up to 0x1000000 loops) and never stops a transfer; mode 1 (busy check) still answers 0 as before
    (the full libgraph behaviour, -DGSSYNC_WAIT, left the Create Character preview black).  -DGSSYNC_ABORT = the old behaviour. */
 volatile u32 g_syncpath_timeouts = 0, g_syncpath_maxspin = 0, g_syncpath_calls = 0;
+volatile u32 g_syncpath_busy = 0, g_syncpath_busybits = 0;   /* mode 1 answers "busy" (GSSYNC_SONY), and which conditions were seen */
+#ifdef GSSYNC_SONY
+/* 9 Oct 2026 (NETDIAG42): Sony's libgraph sceGsSyncPath, as in the lifted original (lifted_k 0x1D7C10), plus counters and no message print.
+   mode 1 (busy check) returns a bit mask: 1 VIF1 DMA, 2 GIF DMA, 4 VIF1 FIFO/VPS, 8 VU1 running, 0x10 GIF path active.
+   mode 0 waits for all five (the old host version waited only for the two DMA channels and always answered 0 to mode 1, so the game's
+   drawing-buffer flush (0x28dd10) started new transfers while VU1 / the GIF were still working through the last ones). */
+static inline u32 vu1_running(void) { u32 v; __asm__ volatile("cfc2 %0, $vi29" : "=r"(v)); return v & 0x100; }
+static u32 gs_busy(void)
+{
+    u32 b = 0;
+    if (*(volatile u32 *)0x10009000 & 0x100) b |= 1;
+    if (*(volatile u32 *)0x1000A000 & 0x100) b |= 2;
+    if (*(volatile u32 *)0x10003C00 & 0x1F000003) b |= 4;
+    if (vu1_running()) b |= 8;
+    if (*(volatile u32 *)0x10003020 & 0xC00) b |= 0x10;
+    return b;
+}
+static u32 svc_gssyncpath(u32 mode)
+{
+    if (mode) { u32 b = gs_busy(); if (b) { g_syncpath_busy++; g_syncpath_busybits |= b; } return b; }
+    g_syncpath_calls++;
+    u32 n0 = 0x1000000, n = n0;
+    while (gs_busy() && --n) { }
+    if (n0 - n > g_syncpath_maxspin) g_syncpath_maxspin = n0 - n;
+    if (!n) { g_syncpath_timeouts++; return (u32)-1; }
+    return 0;
+}
+#else
 static u32 svc_gssyncpath(u32 mode)
 {
 #ifdef GSSYNC_WAIT
@@ -345,6 +381,7 @@ static u32 svc_gssyncpath(u32 mode)
     }
     return r;
 }
+#endif
 static u32 svc_one(void) { return 1; }
 static u32 svc_zero(void) { return 0; }
 
