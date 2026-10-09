@@ -9,88 +9,8 @@
 
 static int nlog = 0;
 
-/* The game opens, reads and closes a file for every request (a list item, a resource): open + seek + read + close, each a round trip to the IOP.
-   A read-only handle that was just closed is therefore kept open for a moment: the next open of the same path takes it back and only has to
-   rewind it. At most FC_N idle handles are kept (the IOP allows only a few open files); an open that fails, a write open of the same path and
-   an unmount all give them back first. */
-#define FC_N 2
-#define FC_PATH 96
-typedef struct { int fd; char path[FC_PATH]; } FcEnt;
-static FcEnt g_fo[32];                              /* read-only handles the game has open now (path remembered for the close) */
-static FcEnt g_fc[FC_N];                            /* idle ones, oldest first */
-static int g_fcn;
-
-static void fc_flush(const char *only)               /* close the idle handles (all, or only those of one path) */
-{
-    int out[FC_N], n = 0, i, k;
-    int o = DIntr();
-    for (i = 0, k = 0; i < g_fcn; i++) {
-        if (only && strcmp(g_fc[i].path, only)) { g_fc[k++] = g_fc[i]; continue; }
-        out[n++] = g_fc[i].fd;
-    }
-    g_fcn = k;
-    if (o) EIntr();
-    for (i = 0; i < n; i++) fileXioClose(out[i]);
-}
-static int fc_take(const char *p)                    /* an idle handle of this path, or -1 */
-{
-    int fd = -1, i;
-    int o = DIntr();
-    for (i = g_fcn - 1; i >= 0; i--) if (!strcmp(g_fc[i].path, p)) {
-        fd = g_fc[i].fd;
-        for (; i + 1 < g_fcn; i++) g_fc[i] = g_fc[i + 1];
-        g_fcn--;
-        break;
-    }
-    if (o) EIntr();
-    return fd;
-}
-static void fo_track(int fd, const char *p)
-{
-    int i, o = DIntr();
-    for (i = 0; i < 32; i++) if (g_fo[i].fd <= 0 || g_fo[i].fd == fd) { g_fo[i].fd = fd; strncpy(g_fo[i].path, p, FC_PATH - 1); g_fo[i].path[FC_PATH - 1] = 0; break; }
-    if (o) EIntr();
-}
-static int fo_untrack(int fd, char *path)             /* 1 if fd was a tracked read-only handle (its path is copied to `path`) */
-{
-    int i, found = 0, o = DIntr();
-    for (i = 0; i < 32; i++) if (g_fo[i].fd == fd && fd > 0) { strcpy(path, g_fo[i].path); g_fo[i].fd = 0; found = 1; break; }
-    if (o) EIntr();
-    return found;
-}
-
-u32 svc_sceOpen(const char *p, int fl, int mode)
-{
-    int r = -1, cacheable = (fl == 1 && strlen(p) < FC_PATH);
-    if (cacheable) {
-        int fd = fc_take(p);
-        if (fd >= 0) {
-            if (fileXioLseek(fd, 0, 0) == 0) { fo_track(fd, p); hlog(2, fl, fd, 0, 0, 0, 0, p, 0, 0); return (u32)fd; }
-            fileXioClose(fd);
-        }
-    } else if (g_fcn) {
-        char q[FC_PATH]; strncpy(q, p, FC_PATH - 1); q[FC_PATH - 1] = 0;      /* a write or other open of a file: no stale idle handle of it */
-        fc_flush(q);
-    }
-    r = fileXioOpen(p, fl, mode);
-    if (r < 0 && g_fcn) { fc_flush(0); r = fileXioOpen(p, fl, mode); }          /* the IOP's open-file limit: give the idle ones back */
-    if (r >= 0 && cacheable) fo_track(r, p);
-    hlog(2, fl, r, 0, 0, 0, 0, p, 0, 0);
-    return (u32)r;
-}
-u32 svc_sceClose(int fd)
-{
-    char path[FC_PATH];
-    if (fo_untrack(fd, path)) {
-        int victim = -1, o = DIntr();
-        if (g_fcn == FC_N) { victim = g_fc[0].fd; for (int i = 1; i < FC_N; i++) g_fc[i - 1] = g_fc[i]; g_fcn--; }
-        g_fc[g_fcn].fd = fd; strcpy(g_fc[g_fcn].path, path); g_fcn++;
-        if (o) EIntr();
-        if (victim >= 0) fileXioClose(victim);
-        return 0;
-    }
-    return (u32)fileXioClose(fd);
-}
+u32 svc_sceOpen(const char *p, int fl, int mode) { int r = fileXioOpen(p, fl, mode); hlog(2, fl, r, 0, 0, 0, 0, p, 0, 0); return (u32)r; }
+u32 svc_sceClose(int fd)                         { return (u32)fileXioClose(fd); }
 u32 svc_sceRead(int fd, void *b, u32 n)          { int r = fileXioRead(fd, b, n); hlog(3, fd, n, r, (u32)b, 0, 0, 0, 0, 0); return (u32)r; }
 u32 svc_sceWrite(int fd, void *b, u32 n)         { return (u32)fileXioWrite(fd, b, n); }
 u32 svc_sceLseek(int fd, int off, int wh)        { return (u32)fileXioLseek(fd, off, wh); }
@@ -107,7 +27,7 @@ u32 svc_sceMount(const char *mp, const char *dev, int flag, void *arg, int argle
     if (r < 0) { r = fileXioMount(mp, dev, flag & 1); hlog(9, r, flag, 0, 0, 0, 0, "sceMount retry rc/flag:", 0, 0); }
     return (u32)r;
 }
-u32 svc_sceUmount(const char *mp) { fc_flush(0); int r = fileXioUmount(mp); hlog(9, r, 0, 0, 0, 0, 0, "sceUmount rc:", 0, 0); return (u32)r; }
+u32 svc_sceUmount(const char *mp) { int r = fileXioUmount(mp); hlog(9, r, 0, 0, 0, 0, 0, "sceUmount rc:", 0, 0); return (u32)r; }
 
 #include <sifrpc.h>
 #include <loadfile.h>
