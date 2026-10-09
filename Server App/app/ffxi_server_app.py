@@ -30,6 +30,11 @@ except Exception:                                            # noqa: BLE001
     sc = sa = sn = sr = sch = ss = sbk = None
     SC_ERROR = traceback.format_exc()
 
+try:
+    import ffxi_updater as up
+except Exception:                                            # noqa: BLE001
+    up = None
+
 TITLE = 'FFXI 2016 Server (Fan Project by Habex)'
 WINDOWS = os.name == 'nt'
 MAC = sys.platform == 'darwin'
@@ -257,6 +262,7 @@ class App:
         self.root.after(300, self._take_focus)
         self.root.after(5000, self.watch_map)
         self.root.after(8000, self._ddns_tick)
+        self.root.after(10000, self._update_tick)
 
     # -------------------------------------------------------------- style
     def _style(self):
@@ -336,14 +342,115 @@ class App:
             self.nav_items[key] = (it, bar, lab)
         self.nav_pill = Pill(nav, f)
         self.nav_pill.pack(side='bottom', anchor='w', padx=22, pady=22)
+        self.auto_link = TextLink(nav, '', self.toggle_auto_update, f.tiny, bg=C['nav'], fg=C['soft'])
+        self.auto_link.pack(side='bottom', anchor='w', padx=22)
+        self._show_auto_link()
 
         self.content = tk.Frame(r, bg=C['bg'])
         self.content.pack(side='left', fill='both', expand=True)
+        self.upd_bar = tk.Frame(self.content, bg=C['card2'])
         self._build_server()
         self._build_profiles()
         self._build_connect()
         self._build_disc()
         self.show_page('server')
+
+    # ---- updates: look on GitHub for newer scripts, offer them or fetch them in the background
+    def _auto_update_on(self):
+        try:
+            return bool(sc.load_config().get('auto_update', False))
+        except Exception:                                    # noqa: BLE001
+            return False
+
+    def _show_auto_link(self):
+        self.auto_link.set_text('Auto update: %s' % ('on' if self._auto_update_on() else 'off'))
+
+    def toggle_auto_update(self):
+        try:
+            cfg = sc.load_config()
+            cfg['auto_update'] = not bool(cfg.get('auto_update', False))
+            sc.save_config(cfg)
+        except Exception:                                    # noqa: BLE001
+            return
+        self._show_auto_link()
+        if cfg['auto_update']:
+            self._update_tick(now=True)
+        else:
+            self._hide_update_bar()
+
+    def _hide_update_bar(self):
+        self.upd_bar.pack_forget()
+
+    def _update_bar(self, text, buttons=(), color=None):
+        f = self.f
+        for w in self.upd_bar.winfo_children():
+            w.destroy()
+        row = tk.Frame(self.upd_bar, bg=C['card2'])
+        row.pack(fill='x', padx=28, pady=10)
+        self.L(row, text, f.small, fg=color or C['text'], bg=C['card2']).pack(side='left')
+        for label, cmd, col in reversed(buttons):
+            RoundButton(row, label, cmd, col, f.small, height=f.s(32), width=f.s(max(90, 9 * len(label) + 24)), radius=9, bg=C['card2']).pack(side='right', padx=(8, 0))
+        if not self.upd_bar.winfo_ismapped():
+            kids = self.content.pack_slaves()
+            if kids:
+                self.upd_bar.pack(side='top', fill='x', before=kids[0])
+            else:
+                self.upd_bar.pack(side='top', fill='x')
+
+    def _update_tick(self, now=False):
+        if up is None or sc is None or getattr(self, '_upd_busy', False):
+            if not now:
+                self.root.after(6 * 3600 * 1000, self._update_tick)
+            return
+        self._upd_busy = True
+
+        def work():
+            try:
+                info = up.check(RELEASE)
+            except Exception:                                # noqa: BLE001
+                info = None                                  # offline or GitHub is busy: try again later
+            self.root.after(0, lambda: self._update_found(info))
+        threading.Thread(target=work, daemon=True).start()
+        if not now:
+            self.root.after(6 * 3600 * 1000, self._update_tick)
+
+    def _update_found(self, info):
+        self._upd_busy = False
+        if not info:
+            return
+        self.upd_info = info
+        if self._auto_update_on():
+            self.update_now()
+            return
+        n = len(info['files'])
+        self._update_bar('A new version is available (%d file%s).' % (n, '' if n == 1 else 's'),
+                         [('Update now', self.update_now, C['accent']),
+                          ('Always update automatically', lambda: (self.toggle_auto_update() if not self._auto_update_on() else None), C['grey']),
+                          ('Not now', self._hide_update_bar, C['grey'])])
+
+    def update_now(self):
+        info = getattr(self, 'upd_info', None)
+        if not info or getattr(self, '_upd_busy', False):
+            return
+        self._upd_busy = True
+        self._update_bar('Downloading the new version in the background...')
+
+        def work():
+            err = None
+            try:
+                up.apply(RELEASE, info)
+            except Exception as e:                           # noqa: BLE001
+                err = e
+            self.root.after(0, lambda: self._update_done(err))
+        threading.Thread(target=work, daemon=True).start()
+
+    def _update_done(self, err):
+        self._upd_busy = False
+        if err:
+            self._update_bar('The update did not work (%s). It will be tried again later.' % err, [('OK', self._hide_update_bar, C['grey'])], C['red'])
+            return
+        self.upd_info = None
+        self._update_bar('Updated. Close this window and open the server again to use the new version.', [('OK', self._hide_update_bar, C['grey'])], C['green'])
 
     def _nav_hover(self, key, on):
         it, bar, lab = self.nav_items[key]
