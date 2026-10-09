@@ -1813,6 +1813,28 @@ class ZoneRelay(threading.Thread):
 # Main
 # --------------------------------------------------------------------------------------------------------
 
+import ps2proxy_update as _upd                        # game updates over the lobby port (GET requests)
+_dispatching = [0]
+
+
+def _dispatch(cfg, log, relay, cs, ca):
+    """A new connection to the lobby port: an update request starts with "GET ", the game's own lobby packets do not."""
+    _dispatching[0] += 1
+    try:
+        cs.settimeout(3.0)
+        try:
+            first = cs.recv(4, socket.MSG_PEEK)
+        except (socket.timeout, OSError):
+            first = b''
+        cs.settimeout(None)
+        if _upd.is_http(first):
+            _upd.handle(cs, ca, cfg.updates_dir, log)
+            return
+        LobbySession(cfg, log, relay, cs, ca).start()
+    finally:
+        _dispatching[0] -= 1
+
+
 def parse_args(argv=None):
     ap = argparse.ArgumentParser(description='Login/zone proxy between the patched PS2 FFXI client and LandSandBoat.')
     ap.add_argument('--players', default=DEFAULT_PLAYERS,
@@ -1863,6 +1885,8 @@ def parse_args(argv=None):
     ap.add_argument('--zone-open', action='store_true',
                     help='relay UDP from any address, and zone logins from another IP than the lobby (old behaviour; '
                          ')')
+    ap.add_argument('--updates-dir', default=os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'updates'),
+                    help='folder with the published game update (manifest.txt and files/, made by update_tool.py)')
     ap.add_argument('--version', action='version', version='ps2proxy ' + VERSION)
     return ap.parse_args(argv)
 
@@ -1920,7 +1944,13 @@ def serve(cfg, log, ready=None):
             except OSError:
                 pass
             continue
-        LobbySession(cfg, log, relay, cs, ca).start()
+        if _dispatching[0] >= 64:
+            try:
+                cs.close()
+            except OSError:
+                pass
+            continue
+        threading.Thread(target=_dispatch, args=(cfg, log, relay, cs, ca), daemon=True).start()
 
 
 def main(argv=None):
