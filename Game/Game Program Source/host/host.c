@@ -51,7 +51,8 @@ volatile int g_in_world = 0;
 #define HF_LF_VBL 10
 #endif
 extern volatile u32 g_pf_vs, g_pf_on;
-volatile u32 g_hf[4];                                  /* scans run, scans skipped, largest-free walks, answered from the kept value */
+volatile u32 g_hf[6];                                  /* scans run, scans skipped, largest-free walks, answered from the kept value,
+                                                          malloc searches skipped, kept value lowered after a failed search (hf_ab) */
 static u32 hf_gc_v, hf_gc_due, hf_lf_v[2], hf_lf_h[2], hf_lf_r[2];
 static void hf_gc(void)
 {
@@ -72,6 +73,29 @@ static u32 hf_lf(u32 heap)
     hf_lf_h[i] = heap; hf_lf_v[i] = v; hf_lf_r[i] = r; g_hf[2]++;
     return r;
 }
+/* 9 Oct 2026 (NETDIAG47), the remaining 4 fps stretches in Port Jeuno (live 'prof' on the console, 3-5 s of every minute or so):
+   a burst of effects makes ~70 allocations a frame, and the game's malloc (0x281DA0, and its sibling 0x2821B0) searches the main
+   heap itself (0x281AB0) BEFORE it ever reaches the allocator above: a search from the remembered spot for that size, then a
+   search of all ~12,000 blocks, which with the heap full both fail (~2.6 ms), then 0x281560 and the fallback.  750 ms of every
+   second went there.  While playing, on the main thread, a request the kept largest-free value (hf_lf, refreshed at most every
+   HF_LF_VBL blanks) says cannot fit skips the searches: the remembered-spot one returns "not found" as it would have, the full one
+   goes straight to 0x281560 (which then falls back to the other heap as before).  When a full search does run and fails, the kept
+   value is lowered below that request, so the next requests of that size skip too.  A stale value only changes where a block
+   goes for at most HF_LF_VBL blanks (too small: the other heap, as the fallback does anyway).  Tested live on NETDIAG45 with a
+   poked stub (the skip only): those stretches went from 4 to 13-14 fps. */
+static u32 hf_ab(u32 size, u32 lo, u32 hi, u32 start, u32 dir)
+{
+    typedef u32 (*ab_t)(u32, u32, u32, u32, u32);
+    u32 head = *(volatile u32 *)0x5FC5A0;
+    if (!g_in_world || !g_pf_on || lo != head || GetThreadId() != *(volatile int *)0x5FC5D0) return ((ab_t)0x281AB0)(size, lo, hi, start, dir);
+    u32 need = (size + 15) & ~15u, v = g_pf_vs;
+    if (hf_lf_h[1] != head || v - hf_lf_v[1] >= HF_LF_VBL) { hf_lf_r[1] = ((u32 (*)(u32))0x282030)(head); hf_lf_h[1] = head; hf_lf_v[1] = v; g_hf[2]++; }
+    if (hf_lf_r[1] < need) { g_hf[4]++; return start ? 0 : ((u32 (*)(u32, u32, u32))0x281560)(size, lo, hi); }
+    u32 r = ((ab_t)0x281AB0)(size, lo, hi, start, dir);
+    if (!start && (r < lo || r >= hi) && hf_lf_h[1] == head) { hf_lf_r[1] = need - 16; hf_lf_v[1] = g_pf_vs; g_hf[5]++; }   /* the whole heap had nothing that big */
+    return r;
+}
+static const u32 hf_ab_at[6] = { 0x281DE4, 0x281E14, 0x281E3C, 0x282264, 0x282298, 0x2822C0 };   /* malloc 0x281DA0, 0x2821B0: jal 0x281AB0 */
 #endif
 
 #ifndef NO_SEACOM_BOX
@@ -763,6 +787,9 @@ int main(int argc, char **argv)
             p[0] = 0x0C000000 | (((u32)hf_gc >> 2) & 0x3FFFFFF); p[2] = 0x0C000000 | (((u32)hf_lf >> 2) & 0x3FFFFFF);
             FlushCache(0); FlushCache(2); printf("[host] heap fast: delete scan every %d vblanks, largest-free kept %d\n", HF_GC_VBL, HF_LF_VBL);
         } else printf("[host] heap fast: unexpected words at 0x2815FC: %08x %08x\n", (unsigned)p[0], (unsigned)p[2]);
+        int n = 0;
+        for (int i = 0; i < 6; i++) { volatile u32 *q = (volatile u32 *)hf_ab_at[i]; if (*q == 0x0C0A06AC) { *q = 0x0C000000 | (((u32)hf_ab >> 2) & 0x3FFFFFF); n++; } }
+        FlushCache(0); FlushCache(2); printf("[host] heap fast: malloc main-heap search skipped when it cannot fit (%d of 6 calls)\n", n);
     }
 #endif
 #ifdef LOGOUT_FIX
