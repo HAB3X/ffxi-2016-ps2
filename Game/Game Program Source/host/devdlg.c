@@ -164,11 +164,39 @@ static void sv_load(void)
     }
     sv_have = sv_ip[0] != 0;
 }
+/* hard drive icon: the first time the game runs with a writable drive, icon.sys and the icon file (icon_data.h, made by
+   Game/Disc Builder/tools/make_hdd_icon.py) are written to the game partition root so the PS2's hard drive browser shows the game.
+   Never replaces anything: icon.sys is written last, and only when it is not there yet. A few tries at most, on the network thread's idle loop. */
+#include "icon_data.h"
+static int ic_fd, ic_n, ic_err; static u8 ic_buf[2048] __attribute__((aligned(64)));
+static void ic_flush(void) { if (ic_n) { if (((io_rw_t)IO_SLOT(941))(ic_fd, ic_buf, ic_n) != ic_n) ic_err = 1; ic_n = 0; } }
+static void ic_put(const void *p, int n)
+{
+    const u8 *s = (const u8 *)p;
+    while (n > 0) { int k = (int)sizeof ic_buf - ic_n; if (k > n) k = n; memcpy(ic_buf + ic_n, s, k); ic_n += k; s += k; n -= k; if (ic_n == (int)sizeof ic_buf) ic_flush(); }
+}
+static int ic_open(const char *path) { ic_n = 0; ic_err = 0; ic_fd = ((io_open_t)IO_SLOT(938))(path, 0x0002 | 0x0200 | 0x0400, 0666); return ic_fd >= 0; }
+static int ic_close(void) { ic_flush(); ((io_close_t)IO_SLOT(939))(ic_fd); return !ic_err; }
+static int ic_install(void)                              /* 1 = finished (written or already there), 0 = try again later */
+{
+    int fd = ((io_open_t)IO_SLOT(938))("pfs1:/icon.sys", 1, 0);
+    if (fd >= 0) { ((io_close_t)IO_SLOT(939))(fd); return 1; }
+    if (!ic_open("pfs1:/" ICON_NAME)) return 0;
+    ic_put(icon_head_data, sizeof icon_head_data);
+    for (int i = 0; i < ICON_RUNS; i++) { u16 v = icon_tex_runs[2 * i + 1]; for (int c = icon_tex_runs[2 * i]; c > 0; c--) ic_put(&v, 2); }
+    if (!ic_close()) return 0;
+    if (!ic_open("pfs1:/icon.sys")) return 0;
+    ic_put(icon_sys_data, sizeof icon_sys_data);
+    if (!ic_close()) return 0;
+    hlog(9, 0, 0, 0, 0, 0, 0, "hdd icon written", 0, 0);
+    return 1;
+}
 void sv_poll(void)
 {
-    static int loaded = 0, quiet = 0;
+    static int loaded = 0, quiet = 0, ic_done = 0, ic_tries = 0;
     { extern volatile int g_restart_req, g_dev_applied; extern void host_soft_restart(void); if (g_restart_req && g_dev_applied && ++quiet > 6) host_soft_restart(); }   /* ~3 s after the game began shutting down; the frame hook is no longer called by then */
     if (!loaded) { loaded = 1; sv_load(); }
+    else if (!ic_done && ic_tries < 10 && ++ic_tries) ic_done = ic_install();       /* from the second poll on, after the saved server was read */
     if (sv_len > 0) {
         int fd = ((io_open_t)IO_SLOT(938))(SRV_FILE, 0x0002 | 0x0200 | 0x0400, 0666);
         if (fd >= 0) { ((io_rw_t)IO_SLOT(941))(fd, sv_buf, sv_len); ((io_close_t)IO_SLOT(939))(fd); }
