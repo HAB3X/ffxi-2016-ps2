@@ -12,9 +12,12 @@ replaces the kernel services the game needs, so that is not the environment the 
 loads the ELF, removes ps2link's handler, resets the IOP and starts the ELF with `ExecPS2`, the same way a launcher does. ps2link is then gone
 until the PS2 is restarted.
 
-    cd ps2link && git apply ps2link-clean-exec.patch && make      # needs PS2SDK; the unpacked ee/ps2link.elf is enough
+    cd ps2link && git apply ps2link-clean-exec.patch && make      # needs PS2SDK and ps2-packer
 
-Copy `ee/ps2link.elf` to the USB stick as `PS2LINK/PS2LINK.ELF`, with an `IPCONFIG.DAT` beside it: one line,
+Use the packed `bin/PS2LINK.ELF` (ps2-packer with its default lzma-1d00 stub). The unpacked `ee/ps2link.elf` loads at 0x94000, below
+where launchers expect a program, and started from uLaunchELF it only gave a black screen.
+
+Copy `bin/PS2LINK.ELF` to the USB stick as `PS2LINK/PS2LINK.ELF`, with an `IPCONFIG.DAT` beside it: one line,
 `<PS2 address> <netmask> <gateway>`, e.g. `192.168.1.11 255.255.255.0 192.168.1.1`. Start it from your launcher.
 
 ## PC side
