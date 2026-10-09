@@ -2330,6 +2330,7 @@ class App:
         self.maint_bar = Segmented(page.body, [('general', 'General'), ('debug', 'Debug')], self._maint_tab, f.small, height=f.s(38))
         self.maint_bar.pack(fill='x', pady=(0, 14))
         gen = tk.Frame(page.body, bg=C['bg'])
+        gen.pack(fill='both', expand=True)                     # shown while it is filled in (fields made in a hidden frame do not paint on macOS)
         self.maint_frames = {'general': gen, 'debug': tk.Frame(page.body, bg=C['bg'])}
         cols = tk.Frame(gen, bg=C['bg'])
         cols.pack(fill='both', expand=True)
