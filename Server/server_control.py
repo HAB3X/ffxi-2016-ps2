@@ -536,6 +536,18 @@ def _init_database_files(m, say):
     raise ServerError('Could not make the database. Details are in Server/data/logs/database_setup.log.')
 
 
+def portable_sql(data):
+    """A dump made on a very new MariaDB names collations (utf8mb3_uca1400_ai_ci, utf8mb4_uca1400_ai_ci) that older MariaDB versions and MySQL do
+    not know, and the import stops at the first one. Only the schema lines (table options and the settings inside trigger definitions) carry
+    them, so those lines are changed to the plain utf8mb4 / utf8mb4_general_ci; row data is never touched."""
+    def fix(m):
+        line = m.group(0)
+        for a, b in ((b'utf8mb3_uca1400_ai_ci', b'utf8mb4_general_ci'), (b'utf8mb4_uca1400_ai_ci', b'utf8mb4_general_ci'), (b'utf8mb3', b'utf8mb4')):
+            line = line.replace(a, b)
+        return line
+    return re.sub(rb'(?m)^(?:/\*!50003 SET [^\n]*|\) ENGINE=[^\n]*)$', fix, data)
+
+
 def start_database(say=print):
     cfg = ensure_config()
     m = find_mariadb()
@@ -594,7 +606,7 @@ def start_database(say=print):
             raise ServerError('The world database file is missing (Server/database/ffxi_world.sql.gz).')
         say('Loading the game world into the database (first start only, about a minute)...')
         with gzip.open(WORLD_SQL, 'rb') as f:
-            data = f.read()
+            data = portable_sql(f.read())
         sql('', cfg=cfg, m=m, stdin_bytes=data)
         if not world_ready(cfg, m):
             raise ServerError('Loading the game world did not work. Details are in Server/data/logs/database_setup.log and database.err.')
