@@ -1828,7 +1828,7 @@ def _dispatch(cfg, log, relay, cs, ca):
             first = b''
         cs.settimeout(None)
         if _upd.is_http(first):
-            _upd.handle(cs, ca, cfg.updates_dir, log)
+            _upd.handle(cs, ca, cfg.updates_dir, log, getattr(cfg, 'info_file', None))
             return
         LobbySession(cfg, log, relay, cs, ca).start()
     finally:
@@ -1887,6 +1887,8 @@ def parse_args(argv=None):
                          ')')
     ap.add_argument('--updates-dir', default=os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'updates'),
                     help='folder with the published game update (manifest.txt and files/, made by update_tool.py)')
+    ap.add_argument('--info-file', default=os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'data', 'info.html'),
+                    help="the server's info page, served at /info on the lobby port (written by the Server App)")
     ap.add_argument('--version', action='version', version='ps2proxy ' + VERSION)
     return ap.parse_args(argv)
 

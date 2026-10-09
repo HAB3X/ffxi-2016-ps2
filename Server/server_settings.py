@@ -107,8 +107,7 @@ GROUPS = {
         Setting('main', k, label, 'flag', 0, 1) for k, label in (
             ('ENABLE_ROTZ', 'Rise of the Zilart'), ('ENABLE_COP', 'Chains of Promathia'), ('ENABLE_TOAU', 'Treasures of Aht Urhgan'),
             ('ENABLE_WOTG', 'Wings of the Goddess'), ('ENABLE_ACP', 'A Crystalline Prophecy'), ('ENABLE_AMK', 'A Moogle Kupo d\'Etat'),
-            ('ENABLE_ASA', 'A Shantotto Ascension'), ('ENABLE_ABYSSEA', 'Abyssea'), ('ENABLE_SOA', 'Seekers of Adoulin'),
-            ('ENABLE_ROV', 'Rhapsodies of Vana\'diel'), ('ENABLE_TVR', 'The Voracious Resurgence'), ('ENABLE_ROE', 'Records of Eminence'))],
+            ('ENABLE_ASA', 'A Shantotto Ascension'), ('ENABLE_ABYSSEA', 'Abyssea'), ('ENABLE_SOA', 'Seekers of Adoulin'))],       # what the PS2 game has
 }
 ALL = {st.key: st for g in GROUPS.values() for st in g}
 
@@ -355,3 +354,43 @@ def get_rates():
 
 def save_rates(values):
     return save_values('rates', values)
+
+
+# ---------------------------------------------------------------- era presets: which expansions are open and the level cap
+ERA_KEYS = ('ENABLE_ROTZ', 'ENABLE_COP', 'ENABLE_TOAU', 'ENABLE_WOTG', 'ENABLE_ACP', 'ENABLE_AMK', 'ENABLE_ASA', 'ENABLE_ABYSSEA', 'ENABLE_SOA')
+ERAS = [
+    ('era75', 'Level 75 era', 'The game as it was before Abyssea: levels up to 75.',
+     dict(zip(ERA_KEYS, (1, 1, 1, 1, 0, 0, 0, 0, 0)), MAX_LEVEL=75, INITIAL_LEVEL_CAP=50)),
+    ('eraabyssea', 'Abyssea era', 'Adds the Crystalline Prophecy, Moogle, Shantotto and Abyssea content, with level 99.',
+     dict(zip(ERA_KEYS, (1, 1, 1, 1, 1, 1, 1, 1, 0)), MAX_LEVEL=99, INITIAL_LEVEL_CAP=50)),
+    ('eraadoulin', 'Adoulin era', 'Everything the 2016 PS2 disc has, including Seekers of Adoulin, with level 99.',
+     dict(zip(ERA_KEYS, (1, 1, 1, 1, 1, 1, 1, 1, 1)), MAX_LEVEL=99, INITIAL_LEVEL_CAP=50)),
+]
+
+
+def era_values(key):
+    """The settings of one preset ({KEY: value}), or None."""
+    for k, _, _, vals in ERAS:
+        if k == key:
+            return dict(vals)
+    return None
+
+
+def detect_era():
+    """The key of the preset the server matches now, or None when it is a mix."""
+    cur = get_values('rules')
+    for k, _, _, vals in ERAS:
+        if all(int(cur.get(key, -1)) == int(v) for key, v in vals.items()):
+            return k
+    return None
+
+
+# ---------------------------------------------------------------- announcing events in the game
+def announce_events_on():
+    return bool(sc.load_config().get('announce_events', True))
+
+
+def set_announce_events(on):
+    cfg = sc.load_config()
+    cfg['announce_events'] = bool(on)
+    sc.save_config(cfg)
