@@ -218,6 +218,7 @@ static const char *net_err_text(int e)
     case -99: return "thread start failed";           default:  return "";
     }
 }
+#ifdef NETDIAG
 static void net_overlay(void)                           /* NETDIAG: live network bring-up status */
 {
     extern volatile int g_net_state, g_net_err, g_net_static; extern volatile u32 g_net_ip;
@@ -236,12 +237,15 @@ static void net_overlay(void)                           /* NETDIAG: live network
     int n = g_netlog_n, first = n > 9 ? n - 9 : 0;
     for (int i = first, row = 0; i < n; i++, row++) tx(24, 24 + 14 * row, g_netlog[i % 16], 0, 0x80808080);
 }
+#else
+static void net_overlay(void) { }                      /* players see no network text on the sign-in page (the NETDIAG build shows it) */
+#endif
 void sh_overlay(void)
 {
     char line[80];
     { extern volatile int g_net_state; static int shown_up = 0;
       (void)shown_up; if (sh_state == 1 || g_signin_pending) net_overlay(); }   /* PS2 fix: only on the sign-in page (and while a sign-in waits), never on the lobby screens */
-    if (sh_state != 1) return;
+    if (sh_state != 1 || (sh_prof < 0 && !g_profiles[0].acct[0])) return;        /* the saved-login hint only where there are saved logins */
     snprintf(line, sizeof line, "Saved logins: F1-F%d   %s", (int)(sizeof g_profiles / sizeof g_profiles[0]), sh_prof >= 0 ? g_profiles[sh_prof].label : "(none loaded)");
     ((void (*)(int, int, const char *, int, u32))0x35BCF0)(24, 418, line, 0, 0x80808080);
 }
