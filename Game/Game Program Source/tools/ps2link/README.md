@@ -29,3 +29,16 @@ from the folder you give. Python 3, no other packages.
 
 ps2link's console output stops as soon as the host resets the IOP (at start-up), so in-game diagnostics still come from the `-DNETDIAG`
 reports through the proxy.
+
+## Live debug link (`-DNETDIAG` builds)
+
+`-DNETDIAG` builds also start a debug link (`host/dbg.c`) once the network is up: the PS2 connects out to the PC (`NETDIAG_PC_IP`, TCP
+port 54100) and keeps reconnecting, so the console can be started before or after the game. It runs at the highest thread priority and
+keeps answering while the game is stuck, as long as the EE still takes interrupts.
+
+    python ps2dbg.py --sym host2016.sym          # sym: nm output of the build, for symbol names in addresses and crash reports
+
+It shows a status line every few seconds and logs everything (status, host log, reports, caught CPU exceptions) to `ps2dbg/ps2dbg.log`.
+Commands are typed in the console or appended to `ps2dbg/cmd.txt`: `peek ADDR [LEN]`, `poke ADDR VALUE`, `thr`, `sema`, `report`,
+`beat`, `log`, `ping`, `rate MS`, `stream 0|1`, and hardware watchpoints `watch` / `iwatch` / `unwatch` (run `wtest` once first).
+`help` lists them. Memory dumps contain whatever is in RAM, sign-in details included: keep them on your own PC.

@@ -94,7 +94,10 @@ static void freeze_colour(void)
     if (f != fz_last) { fz_last = f; fz_lastv = v; }
     if (g_mon_tick != fz_tick) { fz_tick = g_mon_tick; fz_tickv = v; }
     u64 col = 0;
-    if (g_flash) { g_flash--; col = 0x00E0E0; }                                   /* yellow: an exception just happened */
+    if (g_flash) {                                                                 /* yellow: an exception just happened */
+        if (--g_flash == 0) { *(volatile u64 *)0x120000E0 = 0; return; }           /* NETDIAG41: then black again (the game sets PMODE every */
+        col = 0x00E0E0;                                                            /* frame but never BGCOLOR: it showed yellow behind the picture) */
+    }
     else if (!fz_tick) return;                                                     /* report thread not watching yet */
     else if (v - fz_tickv > 900) col = g_mon_insend ? 0x0000E0 : 0xE00000;         /* red / blue */
     else if (v - fz_lastv > 600) col = g_exc_real ? 0x00E0E0 : 0x00C000;           /* yellow if an exception came first, else green */

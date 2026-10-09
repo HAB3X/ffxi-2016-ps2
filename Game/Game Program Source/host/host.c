@@ -448,11 +448,16 @@ static void log_tick(s32 id, u16 time, void *arg)
 
 #ifdef THRDBG
 /* sampling profiler: every 2 ms record the interrupted program counter (read the ring from a savestate: g_pcs / g_pcn) */
-volatile u32 g_pcs[8192]; volatile u32 g_pcn = 0;
+#ifdef NETDIAG
+#define PCS_N 256           /* prof_tick is never started; NETDIAG41 needs the room below 0x1D6000 for the debug link (dbg.c) */
+#else
+#define PCS_N 8192
+#endif
+volatile u32 g_pcs[PCS_N]; volatile u32 g_pcn = 0;
 static void prof_tick(s32 id, u16 time, void *arg)
 {
     u32 epc; __asm__ volatile("mfc0 %0, $14" : "=r"(epc));
-    g_pcs[g_pcn++ & 8191] = epc;
+    g_pcs[g_pcn++ & (PCS_N - 1)] = epc;
     iSetAlarm(32, prof_tick, 0);
 }
 #endif

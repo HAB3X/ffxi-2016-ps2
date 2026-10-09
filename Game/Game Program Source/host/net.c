@@ -258,6 +258,7 @@ static u8 hm_stack[8192] __attribute__((aligned(16)));
 #define HM_MAX 72
 static char hm_rep[HM_MAX][72]; static u8 hm_scr[HM_MAX]; static int hm_n;
 volatile int g_hm_sent = 0, g_hm_rc = 0; static int g_hm_force = 0;
+static int hm_important = 0;                           /* NETDIAG41: EXC and hang reports also go the slow proxy way when the debug link is up */
 static void hm_line(int scr, const char *fmt, ...)
 {
     va_list ap; if (hm_n >= HM_MAX) return;
@@ -347,7 +348,7 @@ static void hm_build(int hang, u32 fr_up, u32 vs_up)
     extern volatile u32 g_pf_vs;
     extern volatile u32 g_opn, g_opr[40]; extern volatile char g_opp[40][48];
     u32 now; __asm__ volatile("mfc0 %0, $9" : "=r"(now));
-    hm_n = 0;
+    hm_n = 0; hm_important = hang;
     /* NETDIAG32: the most useful lines first (the NETDIAG29-31 reports filled up with thread stacks before the file lines were reached) */
     hm_line(1, "%s %s %us since boot, calls %u, page %d, sent %d/%d", BUILD_TAG, hang ? "HANG REPORT" : "OK", net_secs(), (unsigned)g_calls, sh_state_now(), g_hm_sent, g_hm_rc);
     hm_line(1, "since network up: frames %u vblanks %u   IP %u.%u.%u.%u", (unsigned)(sh_frame_now() - fr_up), (unsigned)(g_pf_vs - vs_up),
@@ -422,7 +423,30 @@ static void hm_draw(void)
     for (int i = 0; i < hm_n; i++) if (hm_scr[i]) scr_printf("%s\n", hm_rep[i]);
 }
 static int hm_send_raw(void);
-static int hm_send(void) { extern volatile u32 g_mon_insend; g_mon_insend = 1; int r = hm_send_raw(); g_mon_insend = 0; return r; }
+static int hm_send(void)
+{
+    extern volatile u32 g_mon_insend; extern int dbg_mirror(char (*)[72], int);
+    int imp = hm_important; hm_important = 0;
+    if (dbg_mirror(hm_rep, hm_n) && !imp) return hm_n;   /* NETDIAG41: the debug link took it; the slow proxy path only for exceptions and hangs */
+    g_mon_insend = 1; int r = hm_send_raw(); g_mon_insend = 0; return r;
+}
+#ifdef NETDIAG
+/* NETDIAG41: debug link sockets (dbg.c): 0 open to the PC on port n, 1 connect check (>0 connected), 2 send, 3 recv, 4 close */
+int nd_sock(int op, int h, void *p, int n)
+{
+    typedef int (*f2)(u32, void *); typedef int (*f1)(int); typedef int (*f3)(int, void *, int);
+    static SqAddr a;
+    if (!g_orig[231] || !g_orig[232] || !g_orig[236] || !g_orig[237] || !g_orig[238]) return -1;
+    switch (op) {
+    case 0: if (g_net_state != 2 || dev_parse_ip(NETDIAG_PC_IP, &a)) return -1; a.port = (u16)n; return ((f2)g_orig[231])(0, &a);
+    case 1: return ((f1)g_orig[232])(h);
+    case 2: return ((f3)g_orig[237])(h, p, n);
+    case 3: return ((f3)g_orig[238])(h, p, n);
+    case 4: return ((f1)g_orig[236])(h);
+    }
+    return -1;
+}
+#endif
 static int hm_send_raw(void)
 {
     typedef int (*f2)(u32, void *); typedef int (*f1)(int); typedef int (*f3)(int, void *, int);
@@ -470,9 +494,9 @@ static void hm_exc(void)
 {
     extern int sh_frame_now(void); extern volatile u32 g_pf_vs;
     volatile u32 *e = g_exc;
-    hm_n = 0;
-    hm_line(1, "%s EXC %u code %u cause %08x epc %08x bad %08x thr %d sr %08x", BUILD_TAG, (unsigned)g_exc_n, (unsigned)(e[0] >> 2 & 31), (unsigned)e[0], (unsigned)e[1], (unsigned)e[2], (int)e[19], (unsigned)e[3]);
-    hm_line(1, "ra %08x sp %08x gp %08x at %08x", (unsigned)e[4], (unsigned)e[5], (unsigned)e[6], (unsigned)e[7]);
+    hm_n = 0; hm_important = 1;
+    hm_line(1, "%s EXC %u code %u cause %08x epc %08x bad %08x thr %d", BUILD_TAG, (unsigned)g_exc_n, (unsigned)(e[0] >> 2 & 31), (unsigned)e[0], (unsigned)e[1], (unsigned)e[2], (int)e[19]);
+    hm_line(1, "ra %08x sp %08x gp %08x at %08x sr %08x", (unsigned)e[4], (unsigned)e[5], (unsigned)e[6], (unsigned)e[7], (unsigned)e[3]);
     hm_line(1, "v0 %08x v1 %08x a0 %08x a1 %08x", (unsigned)e[8], (unsigned)e[9], (unsigned)e[10], (unsigned)e[11]);
     hm_line(1, "a2 %08x a3 %08x t9 %08x s0 %08x", (unsigned)e[12], (unsigned)e[13], (unsigned)e[14], (unsigned)e[15]);
     hm_line(1, "s1 %08x s2 %08x fr %d vbl %u", (unsigned)e[16], (unsigned)e[17], sh_frame_now(), (unsigned)g_pf_vs);
@@ -502,6 +526,11 @@ static void world_watch(void)                          /* PS2 fix: after sign-in
         g_mon_tick++;
         {   static u32 exc_seen = 0;
             if (g_exc_n != exc_seen) { exc_seen = g_exc_n; hm_exc(); g_hm_force = 1; g_hm_rc = hm_send(); g_hm_force = 0; }
+        }
+        {   /* NETDIAG41: a report asked for over the debug link */
+            extern volatile int g_dbg_req; extern int dbg_mirror(char (*)[72], int);
+            int q = g_dbg_req;
+            if (q) { g_dbg_req = 0; if (q == 1) hm_build(0, 0, 0); else hm_beat(0); hm_important = 0; dbg_mirror(hm_rep, hm_n); }
         }
         int f = sh_frame_now();
         { int d = f - prev; g_fps[g_fps_n & 127] = (u8)(d < 0 ? 0 : d > 255 ? 255 : d); g_fps_n++; prev = f; }
@@ -624,7 +653,7 @@ static void net_thread(void *arg)
     g_net_state = rc == 0 ? 2 : -1;
     L("net: bring-up done, state/err/took s", (u32)g_net_state, (u32)rc, g_net_tup - g_net_t0);
 #ifdef NETDIAG
-    if (g_net_state == 2) hang_monitor_start();       /* diagnostic: bring-up timeline + hang reports to the developer PC */
+    if (g_net_state == 2) { hang_monitor_start(); { extern void dbg_start(void); dbg_start(); } }   /* bring-up timeline + hang reports to the developer PC; NETDIAG41: + live debug link (dbg.c) */
 #endif
     for (;;) SleepThread();     /* park instead of exiting (deleting the thread coincided with a kernel-table crash) */
 }

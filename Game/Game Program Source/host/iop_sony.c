@@ -61,10 +61,10 @@ int sqmem_load(const char *path, const char *args, int cmd, u32 size)
    the game's file opens then fail (-11) and the lobby crashes. The HDD driver's cache (-n 100) and pfs cache (-n 20) are the big adjustable
    users: smaller caches leave room for the network stack. */
 #ifndef HDD_NCACHE
-#define HDD_NCACHE "32"
+#define HDD_NCACHE "16"
 #endif
 #ifndef PFS_NCACHE
-#define PFS_NCACHE "12"
+#define PFS_NCACHE "8"
 #endif
 #define PFS_ARGS "\n\n-o\t2\t-n\t" HDD_NCACHE "\n-m\t3\t-o\t" PFS_MAXOPEN "\t-n\t" PFS_NCACHE "\n"
 int g_boot_disc = 1;                                  /* set by main() from argv[0] */
