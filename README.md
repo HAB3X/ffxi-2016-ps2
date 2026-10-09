@@ -2,6 +2,8 @@
 
 Fan Project by Habex
 
+Real PS2 network, memory and sign-in fixes by [xorjustice](https://github.com/xorjustice).
+
 Play the 2016 PS2 version of Final Fantasy XI on your own server, in PCSX2 or on a real PS2 with a hard drive.
 
 ## Get it

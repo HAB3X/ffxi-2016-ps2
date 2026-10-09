@@ -19,6 +19,8 @@ SECTIONS {
 	.bss ALIGN(128) : { *(.bss) *(.bss.*) *(.gnu.linkonce.b*) *(COMMON) }
 	_end_bss = .; _end = . ; PROVIDE(end = .);
 	.lift_k 0x001D6000 : { *(.lift_k) } :lift
+	/* NETDIAG builds: the debug link code (dbg.c, sections renamed .dbgk* by build.sh) */
+	.dbgk ALIGN(64) : { *(.dbgk*) } :lift
 	/* packed-file index + decoder scratch/stack (xcfile.c), not loaded: the gap between the lifted kernel and the game */
 	.xcmem (NOLOAD) : ALIGN(64) { _xcmem_start = .; *(.xcmem) _xcmem_end = .; } :lift
 	ASSERT(_xcmem_end <= 0x00280000, "xcmem overlaps the game program")

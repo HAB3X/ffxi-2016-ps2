@@ -12,6 +12,7 @@
 #include <string.h>
 #include <tamtypes.h>
 #include <kernel.h>
+#include <delaythread.h>
 #include <sifrpc.h>
 #include <loadfile.h>
 #include <iopheap.h>
@@ -90,6 +91,7 @@ static int hid_slot(u32 i) { return (i >= 95 && i <= 124) || i == 705 || i == 70
 volatile u32 g_uon = 0; volatile char g_uop[400][32];
 volatile u32 g_opn = 0, g_opr[40], g_opf[40]; volatile char g_opp[40][48];
 volatile u32 g_failf[120]; volatile u32 g_failn = 0, g_failr[120]; volatile char g_failp[120][48];
+volatile u32 g_failtot = 0;                            /* every failed file open / stat (g_failp keeps each distinct path once) */
 volatile u32 g_err_a0[16], g_err_ra[16], g_err_n;
 #define g_ikcur 0u
 volatile u32 g_kbd_new = 0, g_kbd_w = 0; volatile u8 g_kbd_ring[32];
@@ -100,6 +102,10 @@ typedef struct { u32 cyc; u16 idx, pad; u32 ra, a0; } CrEnt;
 #define CRN 1024                                       /* 1024 (was 4096) to make room for the packed-file layer */
 #endif
 volatile CrEnt g_cr[CRN]; volatile u32 g_crn = 0;
+#ifdef NETDIAG
+typedef struct { volatile u32 idx, ra, a0, sp, cyc; } IfEnt;   /* NETDIAG33: every service call in progress (free when idx == 0); sp tells which thread */
+volatile IfEnt g_if[32];   /* NETDIAG37: 32 (was 64; never more than 8 in use) */
+#endif
 static int cr_skip(u32 i)
 {
     switch (i) { case 100: case 101: case 102: case 103: case 109: case 113: case 483: case 518: case 519: case 520: case 521: case 522: case 557: case 558: case 559:
@@ -116,11 +122,17 @@ u64 trap_c(u32 idx, u64 *r)
 #endif
     if (idx >= NSLOTS) { static int nbad = 0; if (nbad < 20) { nbad++; hlog(9, idx, (u32)r[0], (u32)r[1], (u32)r, 0, 0, "BAD SLOT idx/ra/a0/r:", 0, 0); } return 0; }
     { extern volatile int g_input_block; if (g_input_block && idx < NSLOTS && hid_slot(idx)) { g_calls++; return 0; } }
-    if (idx == 94) { extern volatile int g_restart_req; g_restart_req = 1; }              /* the game began shutting down (there is no PlayOnline to go back to) */
+    if (idx == 94) { extern volatile int g_restart_req, g_dev_applied; if (g_dev_applied) g_restart_req = 1; }              /* the game began shutting down (there is no PlayOnline to go back to) */
 #ifdef INPUT_HID_INIT
     if (idx < NSLOTS && hid_slot(idx) && !g_hid_ready) { g_calls++; return 0; }   /* kbd/mouse not initialised yet: "no input" (sqMouseOpen: handle 0, which is what the real open returns) */
 #endif
     g_calls++;
+#ifdef NETDIAG
+    int ifi = -1;
+    { int o = DIntr(); for (int k = 0; k < 32; k++) if (!g_if[k].idx) { ifi = k; break; }
+      if (ifi >= 0) { u32 cy; __asm__ volatile("mfc0 %0, $9" : "=r"(cy)); g_if[ifi].ra = (u32)r[0]; g_if[ifi].a0 = (u32)r[1]; g_if[ifi].sp = (u32)r; g_if[ifi].cyc = cy; g_if[ifi].idx = idx | 0x10000; }
+      if (o) EIntr(); }
+#endif
 #ifndef RELEASE
     g_ring[g_ringp & (RINGN - 1)][0] = idx; g_ring[g_ringp & (RINGN - 1)][1] = (u32)r[0]; g_ringp++;
 #endif
@@ -164,6 +176,16 @@ u64 trap_c(u32 idx, u64 *r)
           if (q == (int)g_uon && q < 400) { for (z = 0; pp[tl + z] && z < 30; z++) g_uop[q][z] = pp[tl + z]; g_uop[q][z] = 0; g_uon++; } }
     }
 #endif
+    /* PS2 fix: file gate. While the network modules start (IOP stack + Ethernet bring-up), the game's HDD requests are held here: in PCSX2 a
+       game file request in flight during sqInitSocketAPI left both waiting forever (NETDIAG15/16.log: file thread + net thread stuck). */
+    int fgated = 0;
+    if (idx >= 938 && idx <= 955) {
+        extern volatile int g_fio_gate, g_fio_busy, g_fio_held;
+        int o = DIntr(), held = 0;
+        while (g_fio_gate) { if (o) EIntr(); if (!held) { held = 1; g_fio_held++; } DelayThread(2000); o = DIntr(); }
+        g_fio_busy++; fgated = 1;
+        if (o) EIntr();
+    }
 #ifdef XCOMP
     if (idx >= 938 && idx <= 951) { extern int xc_pre(u32, u64 *, u64 *); if (xc_pre(idx, r, &ret)) goto xc_done; }   /* game files */
 #endif
@@ -175,10 +197,46 @@ u64 trap_c(u32 idx, u64 *r)
     if (idx == 938 || idx == 951) { extern void xc_post(u32, u64 *, u64); xc_post(idx, r, ret); }
     xc_done:
 #endif
+#ifdef NETDIAG
+    if ((idx == 938 || idx == 951) && (int)ret < 0 && g_real[idx] && (u32)r[1] >= 0x100000 && (u32)r[1] < 0x2000000) {
+        /* PS2 fix: a CD-only file (file ids listed in the disc's CDTABLE: only on the DVD, not installed on the HDD). The game asks for it as
+           ROM/0/<id>.DAT (HDD table) or CDROM/<id/30>/<id%30>.DAT (net.c fs_path_cd); when that open fails, try the copy in the game folder
+           (pfs1:/image/ffxi/CDROM/...), then the disc (cdrom0:\\CDROM\\...). */
+        extern const u8 g_cd_ids[100];
+        const char *p = (const char *)(u32)r[1], *q; int id = -1;
+        if ((q = strstr(p, "/image/ffxi/ROM/0/"))) { int f = 0; const char *c = q + 18; while (*c >= '0' && *c <= '9') f = f * 10 + (*c++ - '0'); if (!strcmp(c, ".DAT") && f > 0 && f < 100 && g_cd_ids[f]) id = f; }
+        else if ((q = strstr(p, "CDROM")) && (q[5] == '/' || q[5] == '\\') && (q[7] == '/' || q[7] == '\\')) { int d = q[6] - '0', f = 0; const char *c = q + 8; while (*c >= '0' && *c <= '9') f = f * 10 + (*c++ - '0'); if (d >= 0 && d < 4 && f < 30) id = d * 30 + f; }
+        if (id > 0) {
+            static char alt[4][64]; static u32 an = 0; u64 r1 = r[1];
+#ifdef CD_DISC_FALLBACK
+            for (int pass = 0; pass < 2 && (int)ret < 0; pass++) {
+#else       /* NETDIAG32: no cdrom0: try - on a console with no disc in the drive that open may never return */
+            for (int pass = 0; pass < 1 && (int)ret < 0; pass++) {
+#endif
+                char *a = alt[an++ & 3]; int n = 0; const char *t; int d = id / 30, f = id % 30;
+                if (pass == 0) t = "pfs1://image/ffxi/CDROM/";                 /* the copy in the game folder */
+                else t = "cdrom0:\\CDROM\\";
+                while (*t) a[n++] = *t++;
+                a[n++] = (char)('0' + d); a[n++] = pass ? '\\' : '/';
+                if (f >= 10) a[n++] = (char)('0' + f / 10);
+                a[n++] = (char)('0' + f % 10); a[n++] = '.'; a[n++] = 'D'; a[n++] = 'A'; a[n++] = 'T';
+                if (pass) { a[n++] = ';'; a[n++] = '1'; }
+                a[n] = 0;
+                if (!strcmp(a, p)) continue;                                  /* the game already asked for exactly this */
+                r[1] = (u64)(u32)a;
+                ret = ((svc8)g_real[idx])(r[1], r[2], r[3], r[4], r[5], r[6], r[7], r[8]);
+                { static int nl = 0; if (nl < 60) { nl++; hlog(2, idx, (u32)ret, 0, 0, 0, 0, a, 0, 0); } }
+            }
+            if ((int)ret < 0) r[1] = r1;
+        }
+    }
+#endif
+    if (fgated) { extern volatile int g_fio_busy; int o = DIntr(); g_fio_busy--; if (o) EIntr(); }
 #ifndef RELEASE
     if (oi >= 0) g_opr[oi] = (u32)ret;
     if ((idx == 938 || idx == 951 || idx == 939) && (int)ret < 0 && g_failn < 120 && (u32)r[1] >= 0x100000 && (u32)r[1] < 0x2000000) {      /* failed file open / stat: remember the path (each distinct path once) */
         const char *pp = (const char *)(u32)r[1]; int k, dup = 0;
+        g_failtot++;
         for (int j = 0; j < (int)g_failn && !dup; j++) { dup = 1; for (k = 0; k < 47; k++) { char c = (pp[k] >= 0x20 && pp[k] < 0x7f) ? pp[k] : 0; if (c != g_failp[j][k]) { dup = 0; break; } if (!c) break; } }
         if (dup) goto fail_done; for (k = 0; k < 47 && pp[k] >= 0x20 && pp[k] < 0x7f; k++) g_failp[g_failn][k] = pp[k]; g_failp[g_failn][k] = 0; g_failr[g_failn] = (u32)ret; g_failf[g_failn] = (u32)r[2]; g_failn++;
     }
@@ -193,9 +251,18 @@ u64 trap_c(u32 idx, u64 *r)
 #ifdef INPUT_HID_INIT
     if (idx == 956 && (int)ret >= 0) input_hid_go();
 #endif
+#ifdef NET_START_AT_MOUNT   /* NETDIAG15 started here: in PCSX2 the bring-up's SIF RPC traffic beside the game's boot loading deadlocked both (NETDIAG15.log) - off */
+    if (idx == 956 && (int)ret >= 0 && (u32)r[1] >= 0x100000 && (u32)r[1] < 0x2000000 && !strncmp((const char *)(u32)r[1], "pfs1", 4)) {
+        extern void net_start_async(void); extern volatile int g_net_early;
+        g_net_early = 1; net_start_async();            /* PS2 fix: start now (the modules live on pfs1:), not at the first network call; no printing on this game thread */
+    }
+#endif
 #ifndef RELEASE
     if (crc) crc->pad = (u16)ret;
     if (e) { e->ret = (u32)ret; if (idx == 940 && (u32)r[2] >= 0x100000 && (u32)r[2] < 0x1fff000) { volatile u32 *b = (volatile u32 *)((u32)r[2] | 0x20000000); u32 nz = 0; for (int i = 0; i < 512; i++) nz += b[i] != 0; e->a3 = nz; } }   /* sceRead: number of non-zero words among the first 512 of the destination after the call (uncached view) */
+#endif
+#ifdef NETDIAG
+    if (ifi >= 0) g_if[ifi].idx = 0;
 #endif
     return ret;                                         /* log-only slots: success / null */
 }
@@ -238,8 +305,15 @@ static u32 svc_getarg(void) { return g_pol_arg; }
    texture/geometry transfers that were still running -> half-uploaded textures (floors flashing green/purple noise and
    checker blocks, different every frame). -DGSSYNC_WAIT makes it wait like libgraph (up to 0x1000000 loops) and report -1 without touching the channel.
    NOT the default: tests on 6 Oct showed it was not the cause of the floor noise (0 aborts counted while the noise
-   showed) and the Create Character preview stayed black with it. Default = the original behaviour + counters. */
-volatile u32 g_syncpath_timeouts = 0, g_syncpath_maxspin = 0;
+   showed) and the Create Character preview stayed black with it (mode 1 waiting too). */
+/* 8 Oct 2026 (PS2 freeze fix, NETDIAG35): the wait gave up after 0x8000 loops (well under a millisecond) and then cleared the channel's STR bit.  In PCSX2 a
+   transfer is always finished by then.  On a real PS2 a busy frame (Bastok Markets, the menu) takes longer: the VIF1 transfer was cut off
+   in the middle of a DIRECT (PATH2) packet, the GIF then waits for the rest of that packet for ever, PATH3 queues behind it and no
+   frame is drawn again (NETDIAG32/33 hang reports: VIF1 stopped, GIF busy on PATH2 with 15 qwords queued, GS FIFO empty).
+   Longest waits measured on the console: 34585 and 40670 loops (over the old limit); with the fix Bastok Markets and the menu play on.
+   Now mode 0 waits like libgraph (up to 0x1000000 loops) and never stops a transfer; mode 1 (busy check) still answers 0 as before
+   (the full libgraph behaviour, -DGSSYNC_WAIT, left the Create Character preview black).  -DGSSYNC_ABORT = the old behaviour. */
+volatile u32 g_syncpath_timeouts = 0, g_syncpath_maxspin = 0, g_syncpath_calls = 0;
 static u32 svc_gssyncpath(u32 mode)
 {
 #ifdef GSSYNC_WAIT
@@ -249,9 +323,10 @@ static u32 svc_gssyncpath(u32 mode)
 #endif
     static const u32 chs[2] = { 0x10009000, 0x1000A000 };
     u32 r = 0;
+    g_syncpath_calls++;
     for (int i = 0; i < 2; i++) {
         volatile u32 *c = (volatile u32 *)chs[i];
-#ifndef GSSYNC_WAIT
+#ifdef GSSYNC_ABORT
         u32 n = 0x8000;
 #else
         u32 n = 0x1000000;
@@ -261,7 +336,7 @@ static u32 svc_gssyncpath(u32 mode)
         if (n0 - n > g_syncpath_maxspin) g_syncpath_maxspin = n0 - n;
         if (!n) {
             g_syncpath_timeouts++; r = (u32)-1;
-#ifndef GSSYNC_WAIT
+#ifdef GSSYNC_ABORT
             *c &= ~0x100u; r = 0;
 #endif
         }
@@ -353,6 +428,7 @@ volatile SemEnt g_sem[64];
 static void log_tick(s32 id, u16 time, void *arg)
 {
     static u32 n = 0;
+    { extern volatile u32 g_ticks; g_ticks++; }       /* NETDIAG: elapsed-time base for the network log */
     hlog_poke();
     if ((++n & 63) == 0)
         for (int t = 0; t < 32; t++) {
@@ -370,11 +446,16 @@ static void log_tick(s32 id, u16 time, void *arg)
 
 #ifdef THRDBG
 /* sampling profiler: every 2 ms record the interrupted program counter (read the ring from a savestate: g_pcs / g_pcn) */
-volatile u32 g_pcs[8192]; volatile u32 g_pcn = 0;
+#ifdef NETDIAG
+#define PCS_N 256           /* prof_tick is never started; NETDIAG41 needs the room below 0x1D6000 for the debug link (dbg.c) */
+#else
+#define PCS_N 8192
+#endif
+volatile u32 g_pcs[PCS_N]; volatile u32 g_pcn = 0;
 static void prof_tick(s32 id, u16 time, void *arg)
 {
     u32 epc; __asm__ volatile("mfc0 %0, $14" : "=r"(epc));
-    g_pcs[g_pcn++ & 8191] = epc;
+    g_pcs[g_pcn++ & (PCS_N - 1)] = epc;
     iSetAlarm(32, prof_tick, 0);
 }
 #endif
@@ -458,6 +539,7 @@ int main(int argc, char **argv)
 #if defined(SONY_IOP) && !defined(NO_NETBOOT)
     { extern int net_ensure(void); int nr = net_ensure(); printf("[host] network bring-up before the game: %d\n", nr); }   /* done once, before any game thread exists */
 #endif
+    { extern void iop_mem_map(const char *); iop_mem_map("at host start"); }
     memset((void *)PEX_END, 0, PEX_TOP - PEX_END);
     FlushCache(0); FlushCache(2);
 #ifndef SONY_IOP
@@ -587,6 +669,9 @@ int main(int argc, char **argv)
 #endif
 #ifndef NO_DEVMENU
     *(volatile u8 *)0x5A7A30 = 1;      /* debug flag read by the 2016 start-up (0x2802E4): enables the "-net 3" direct-login mode = developer ServerIP screen */
+#endif
+#ifdef NETDIAG
+    { extern void exc_install(void); exc_install(); }   /* NETDIAG40: catch CPU exceptions instead of the kernel stopping the EE (perf.c) */
 #endif
 #ifdef EXC_HOLD
     {   /* debug: park on a TLB exception instead of letting the kernel kill the run, so a savestate can show EPC and registers */
