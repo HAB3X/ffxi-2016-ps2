@@ -577,6 +577,8 @@ class App:
                f.body, fg=C['soft'], bg=C['card'], anchor='w', justify='left').pack(fill='x', pady=(4, 0))
         self.hdd_btn = RoundButton(p2.body, 'Make Hard Drive', self.do_make_hdd, C['accent'], f.btn, height=f.s(46), width=f.s(200), radius=12, bg=C['card'])
         self.hdd_btn.pack(anchor='w', pady=(12, 0))
+        self.hdd_note = self.L(p2.body, '', f.body, fg=C['soft'], bg=C['card'], anchor='w', justify='left')
+        self.hdd_note.pack(fill='x', pady=(8, 0))
         for w in p.body.winfo_children() + p2.body.winfo_children():
             if isinstance(w, tk.Label):
                 w.master.bind('<Configure>', lambda e, w=w: self._wrap(w, e.width), add='+')
@@ -602,14 +604,29 @@ class App:
             messagebox.showerror(TITLE, 'There is already a file with that name, and it might have your game on it, so it was left alone.\n\n'
                                  'Pick a different name.')
             return
-        try:
-            mod.make(out)
-        except Exception as e:                               # noqa: BLE001
-            messagebox.showerror(TITLE, 'The hard drive could not be made: %s' % e)
+        if getattr(self, '_hdd_busy', False):
             return
-        messagebox.showinfo(TITLE, 'Your PS2 hard drive is ready:\n\n%s\n\n'
-                            'Now in PCSX2: Settings > Network & HDD > Hard Disk Drive. Tick "Enabled", click "Browse" next to '
-                            'HDD File and pick this file. Don\'t click "Create".' % out)
+        self._hdd_busy = True
+        self.hdd_note.configure(text='Making the hard drive. This can take a few minutes on some drives. Keep this window open.')
+
+        def work():
+            err = None
+            try:
+                mod.make(out)
+            except Exception as e:                           # noqa: BLE001
+                err = e
+            self.root.after(0, lambda: done(err))
+
+        def done(err):
+            self._hdd_busy = False
+            self.hdd_note.configure(text='')
+            if err:
+                messagebox.showerror(TITLE, 'The hard drive could not be made: %s' % err)
+                return
+            messagebox.showinfo(TITLE, 'Your PS2 hard drive is ready:\n\n%s\n\n'
+                                'Now in PCSX2: Settings > Network & HDD > Hard Disk Drive. Tick "Enabled", click "Browse" next to '
+                                'HDD File and pick this file. Don\'t click "Create".' % out)
+        threading.Thread(target=work, daemon=True).start()
 
     # -------------------------------------------------------------- chat box
     def chat_add(self, kind, text, speaker=None, extra=''):

@@ -453,7 +453,7 @@ def _client_cmd(m, cfg, database=True):
     import tempfile
     fd, path = tempfile.mkstemp(prefix='ffxi-db-', suffix='.cnf')
     with os.fdopen(fd, 'w') as f:
-        f.write('[client]\nhost=127.0.0.1\nport=%d\nuser=%s\npassword="%s"\nprotocol=TCP\ndefault-character-set=utf8mb4\n'
+        f.write('[client]\nhost=127.0.0.1\nport=%d\nuser=%s\npassword="%s"\nprotocol=TCP\ndefault-character-set=utf8mb4\nmax_allowed_packet=256M\n'
                 % (cfg['db_port'], cfg['db_user'], cfg['db_password']))
     argv = [m['client'], '--defaults-extra-file=' + path]
     if database:
@@ -482,7 +482,13 @@ def sql(q, args=(), cfg=None, m=None, database=True, stdin_bytes=None):
     finally:
         cleanup()
     if r.returncode != 0:
-        raise ServerError('Database error: ' + r.stderr.decode('utf-8', 'replace').strip()[:400])
+        err = r.stderr.decode('utf-8', 'replace').strip()
+        try:
+            with open(os.path.join(LOGS, 'database_setup.log'), 'a', encoding='utf-8') as f:
+                f.write(err[-4000:] + '\n')
+        except OSError:
+            pass
+        raise ServerError('Database error: ' + err[:400])
     return [[None if v == 'NULL' else v for v in line.split('\t')] for line in r.stdout.decode('utf-8', 'replace').splitlines()]
 
 
@@ -561,7 +567,7 @@ def start_database(say=print):
     say('Starting the database...')
     argv = [m['server'], '--no-defaults', '--datadir=' + DB_DIR, '--port=%d' % PORTS['db'], '--bind-address=127.0.0.1',
             '--init-file=' + init, '--log-error=' + os.path.join(LOGS, 'database.err'), '--skip-name-resolve',
-            '--character-set-server=utf8mb4', '--collation-server=utf8mb4_general_ci', '--max-connections=300',
+            '--character-set-server=utf8mb4', '--collation-server=utf8mb4_general_ci', '--max-connections=300', '--max-allowed-packet=256M',
             '--innodb-buffer-pool-size=256M', '--pid-file=' + os.path.join(DB_DIR, 'ffxi.pid')]
     if m.get('base'):                                        # the database that comes with the release
         argv += ['--basedir=' + m['base'], '--lc-messages-dir=' + os.path.join(m['base'], 'share'),
@@ -591,7 +597,7 @@ def start_database(say=print):
             data = f.read()
         sql('', cfg=cfg, m=m, stdin_bytes=data)
         if not world_ready(cfg, m):
-            raise ServerError('Loading the game world did not work. Details are in Server/data/logs/database.err.')
+            raise ServerError('Loading the game world did not work. Details are in Server/data/logs/database_setup.log and database.err.')
         log_line('world database loaded')
     return cfg, m
 
