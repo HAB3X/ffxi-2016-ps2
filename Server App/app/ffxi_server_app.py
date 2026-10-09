@@ -27,8 +27,12 @@ try:
     import server_settings as ss
     import server_backup as sbk
     import server_notify as snt
+    import server_debug as sd
+    import server_ah as sah
+    import server_modes as smo
+    import server_pcsx2 as spc
 except Exception:                                            # noqa: BLE001
-    sc = sa = sn = sr = sch = ss = sbk = snt = None
+    sc = sa = sn = sr = sch = ss = sbk = snt = sd = sah = smo = spc = None
     SC_ERROR = traceback.format_exc()
 
 try:
@@ -914,9 +918,61 @@ class App:
         self.hdd_btn.pack(anchor='w', pady=(12, 0))
         self.hdd_note = self.L(p2.body, '', f.body, fg=C['soft'], bg=C['card'], anchor='w', justify='left')
         self.hdd_note.pack(fill='x', pady=(8, 0))
-        for w in p.body.winfo_children() + p2.body.winfo_children():
+        p3 = Panel(page.body, None, f, pad=24)
+        p3.pack(fill='x', pady=(16, 0))
+        self.L(p3.body, '3.  Try it in PCSX2', f.h3, bg=C['card'], anchor='w').pack(fill='x')
+        self.L(p3.body, 'Starts PCSX2 with the patched disc. The hard drive must already be chosen once in PCSX2\'s settings (step 2). '
+               'The first start installs the game, which takes a while.', f.body, fg=C['soft'], bg=C['card'], anchor='w',
+               justify='left').pack(fill='x', pady=(4, 0))
+        prow = tk.Frame(p3.body, bg=C['card'])
+        prow.pack(fill='x', pady=(12, 0))
+        self.pcsx2_btn = RoundButton(prow, 'Test in PCSX2', self.do_pcsx2, C['accent'], f.btn, height=f.s(46), width=f.s(200), radius=12, bg=C['card'])
+        self.pcsx2_btn.pack(side='left')
+        TextLink(prow, 'Choose PCSX2...', self.choose_pcsx2, f.small, bg=C['card']).pack(side='left', padx=20)
+        self.pcsx2_note = self.L(p3.body, '', f.body, fg=C['soft'], bg=C['card'], anchor='w', justify='left')
+        self.pcsx2_note.pack(fill='x', pady=(8, 0))
+        rl = tk.Frame(p3.body, bg=C['card'])
+        rl.pack(fill='x', pady=(10, 0))
+        self.L(rl, 'Using a real PS2 instead?', f.small, fg=C['faint'], bg=C['card']).pack(side='left')
+        TextLink(rl, 'Open the real PS2 guide', lambda: self._open_path(os.path.join(DISC_DIR, 'READ ME real PS2.txt')), f.small,
+                 bg=C['card']).pack(side='left', padx=10)
+        for w in p.body.winfo_children() + p2.body.winfo_children() + p3.body.winfo_children():
             if isinstance(w, tk.Label):
                 w.master.bind('<Configure>', lambda e, w=w: self._wrap(w, e.width), add='+')
+
+    def _pcsx2_say(self, text, color=None):
+        self.pcsx2_note.config(text=text, fg=color or C['soft'])
+
+    def do_pcsx2(self, picked=False):
+        try:
+            cmd = spc.launch()
+        except spc.NeedProgram:
+            if picked or not self.choose_pcsx2(start=True):
+                self._pcsx2_say('PCSX2 was not found. Use "Choose PCSX2..." to pick it once.', C['amber'])
+            return
+        except Exception as e:                               # noqa: BLE001
+            self._pcsx2_say(str(e), C['red'])
+            return
+        self._pcsx2_say('PCSX2 is starting with the patched disc. If it asks for a hard drive, finish step 2 first.', C['green'])
+
+    def choose_pcsx2(self, start=False):
+        if MAC:
+            path = filedialog.askdirectory(parent=self.root, title='Pick the PCSX2 app', initialdir='/Applications', mustexist=True)
+        elif WINDOWS:
+            path = filedialog.askopenfilename(parent=self.root, title='Pick PCSX2', filetypes=[('Programs', '*.exe')])
+        else:
+            path = filedialog.askopenfilename(parent=self.root, title='Pick PCSX2')
+        if not path:
+            return False
+        try:
+            spc.remember(path)
+        except Exception as e:                               # noqa: BLE001
+            self._pcsx2_say(str(e), C['red'])
+            return True
+        self._pcsx2_say('Remembered. Press "Test in PCSX2".', C['green'])
+        if start:
+            self.do_pcsx2(picked=True)
+        return True
 
     def do_make_hdd(self):
         tool = os.path.join(DISC_DIR, 'Hard Drive', 'make_hard_drive.py')
@@ -1649,7 +1705,8 @@ class App:
         self._refresh_connect()
 
     # ---- World page: name and welcome, rates, monsters, rules and scheduled events (small tabs, one panel at a time)
-    WORLD_TABS = [('general', 'General'), ('rates', 'Rates'), ('monsters', 'Monsters'), ('rules', 'Rules'), ('events', 'Events')]
+    WORLD_TABS = [('general', 'General'), ('rates', 'Rates'), ('monsters', 'Monsters'), ('rules', 'Rules'), ('events', 'Events'),
+                  ('ah', 'Auction house'), ('modes', 'Modes')]
     WORLD_NOTES = {
         'rates': '1 is normal and 2 is double, from 0.1 to 10. A change applies within a few seconds, with no restart.',
         'monsters': 'Scales monsters as they spawn, so monsters that are already out keep their old values until they respawn.',
@@ -1683,6 +1740,10 @@ class App:
                 self._build_world_general(panel.body)
             elif key == 'events':
                 self._build_world_events(panel.body)
+            elif key == 'ah':
+                self._build_world_ah(panel.body)
+            elif key == 'modes':
+                self._build_world_modes(panel.body)
             else:
                 self._build_world_numbers(key, panel.body)
             self._load_settings()
@@ -1750,6 +1811,166 @@ class App:
         RoundButton(row, 'Add an event', self.add_event, C['accent'], f.h3, height=f.s(40), width=f.s(150), radius=10, bg=C['card']).pack(side='left')
         self.world_msg['events'] = self.L(row, '', f.small, fg=C['soft'], bg=C['card'], anchor='w')
         self.world_msg['events'].pack(side='left', padx=16)
+
+    # ---- Auction house tab: stock it with items so a small server is not empty
+    def _check(self, parent, text, var, command=None):
+        f = self.f
+        return Check(parent, text=text, variable=var, command=command, bg=C['card'], fg=C['text'], font=f.small, anchor='w', activebackground=C['card'],
+                     activeforeground=C['text'], selectcolor=C['input'], highlightthickness=0, bd=0)
+
+    def _build_world_ah(self, b):
+        f = self.f
+        opt = sah.settings() if sah else {}
+        self.L(b, 'A new server has an empty auction house. This puts ordinary items on sale, sold by a server character called "%s", so players '
+                  'have something to buy. Players\' own listings are never touched.' % (sah.SELLER_NAME if sah else ''),
+               f.tiny, fg=C['faint'], bg=C['card'], anchor='w', justify='left').pack(fill='x')
+        self._wrap_later(b)
+        self.L(b, 'What to sell', f.small, fg=C['faint'], bg=C['card'], anchor='w').pack(fill='x', pady=(14, 4))
+        g = tk.Frame(b, bg=C['card'])
+        g.pack(fill='x')
+        self.ah_groups = {}
+        for i, (key, label, _) in enumerate(sah.GROUPS if sah else []):
+            var = tk.BooleanVar(value=key in opt.get('groups', []))
+            self.ah_groups[key] = var
+            self._check(g, label, var).grid(row=i // 2, column=i % 2, sticky='w', padx=(0, 40), pady=2)
+        r = tk.Frame(b, bg=C['card'])
+        r.pack(fill='x', pady=(16, 0))
+        self.L(r, 'Listings of each item', f.small, fg=C['soft'], bg=C['card']).pack(side='left')
+        self.ah_per = self.entry(r, width=4)
+        self.ah_per.insert(0, str(opt.get('per_item', 2)))
+        self.ah_per.pack(side='left', padx=(8, 26), ipady=f.s(4))
+        self.L(r, 'Price', f.small, fg=C['soft'], bg=C['card']).pack(side='left')
+        self.ah_pct = self.entry(r, width=5)
+        self.ah_pct.insert(0, str(opt.get('percent', 100)))
+        self.ah_pct.pack(side='left', padx=(8, 6), ipady=f.s(4))
+        self.L(r, '% of the normal price', f.small, fg=C['soft'], bg=C['card']).pack(side='left', padx=(0, 26))
+        self.ah_stacks = tk.BooleanVar(value=opt.get('stacks', True))
+        self._check(r, 'Also sell full stacks', self.ah_stacks).pack(side='left')
+        self.L(b, 'Normal price is about twice what a shop pays for the item. The lowest allowed is %d%%, so nobody can make gil by buying here and '
+                  'selling to a shop.' % (sah.MIN_PERCENT if sah else 50), f.tiny, fg=C['faint'], bg=C['card'], anchor='w',
+               justify='left').pack(fill='x', pady=(6, 0))
+        self.L(b, 'Put items back on sale', f.small, fg=C['faint'], bg=C['card'], anchor='w').pack(fill='x', pady=(16, 4))
+        self.ah_refill = Segmented(b, [(k, l) for k, l, _ in (sah.REFILLS if sah else [])], self._ah_refill_set, f.small, height=f.s(36))
+        self.ah_refill.pack(fill='x')
+        self.ah_refill.set(opt.get('refill', 'off'))
+        self.ah_refill_key = opt.get('refill', 'off')
+        self.L(b, 'Automatic refills run while this window is open and the server is on. Anything bought gets replaced, and prices follow the '
+                  'setting above. Pressing the button again never doubles the listings.', f.tiny, fg=C['faint'], bg=C['card'], anchor='w',
+               justify='left').pack(fill='x', pady=(6, 0))
+        row = tk.Frame(b, bg=C['card'])
+        row.pack(fill='x', pady=(20, 0))
+        self.ah_btn = RoundButton(row, 'Stock the auction house', self.do_ah_stock, C['accent'], f.h3, height=f.s(40), width=f.s(230), radius=10, bg=C['card'])
+        self.ah_btn.pack(side='left')
+        TextLink(row, 'Remove the server\'s listings', self.do_ah_clear, f.small, bg=C['card']).pack(side='left', padx=22)
+        TextLink(row, 'Save the options only', self.do_ah_save, f.small, bg=C['card']).pack(side='left')
+        self.ah_msg = self.L(b, '', f.small, fg=C['soft'], bg=C['card'], anchor='w', justify='left')
+        self.ah_msg.pack(fill='x', pady=(10, 0))
+        self._wrap_later(b)
+
+    def _wrap_later(self, parent):
+        """Long grey notes in a card wrap to the card's width as it is resized."""
+        def fit(e):
+            for w in parent.winfo_children():
+                if isinstance(w, tk.Label) and str(w.cget('justify')) == 'left':
+                    self._wrap(w, e.width)
+        parent.bind('<Configure>', fit, add='+')
+
+    def _ah_refill_set(self, key):
+        self.ah_refill_key = key
+        self.ah_refill.set(key)
+
+    def _ah_opts(self):
+        return {'groups': [k for k, v in self.ah_groups.items() if v.get()], 'per_item': self.ah_per.get(), 'percent': self.ah_pct.get(),
+                'stacks': self.ah_stacks.get(), 'refill': self.ah_refill_key}
+
+    def _ah_say(self, text, color=None):
+        self.ah_msg.config(text=text, fg=color or C['soft'])
+
+    def _ah_job(self, label, fn):
+        if getattr(self, '_ah_busy', False):
+            return
+        if not (self.state and self.state.get('database')):
+            self._ah_say('Start the server first: the auction house lives in its database.', C['amber'])
+            return
+        self._ah_busy = True
+        self.ah_btn.set_enabled(False)
+        self._ah_say(label, C['amber'])
+
+        def work():
+            try:
+                msg, col = fn(), C['green']
+            except Exception as e:                           # noqa: BLE001
+                msg, col = str(e), C['red']
+
+            def done():
+                self._ah_busy = False
+                self.ah_btn.set_enabled(True)
+                self._ah_say(msg, col)
+            self.root.after(0, done)
+        threading.Thread(target=work, daemon=True).start()
+
+    def do_ah_save(self):
+        try:
+            sah.save_settings(self._ah_opts())
+            self._ah_say('Saved.', C['green'])
+        except Exception as e:                               # noqa: BLE001
+            self._ah_say(str(e), C['red'])
+
+    def do_ah_stock(self):
+        try:
+            opts = sah.save_settings(self._ah_opts())
+        except Exception as e:                               # noqa: BLE001
+            self._ah_say(str(e), C['red'])
+            return
+
+        def fn():
+            r = sah.stock(opts)
+            return 'Done: %d new listings added (%d for sale now, %d kinds of items).' % (r['added'], r['open'], r['items'])
+        self._ah_job('Putting items on sale...', fn)
+
+    def do_ah_clear(self):
+        if not messagebox.askyesno(TITLE, 'Remove every listing the server put up?\n\nListings from players are not touched.'):
+            return
+        self._ah_job('Removing...', lambda: 'Removed %d listings.' % sah.clear())
+
+    # ---- Modes tab: plain on/off switches
+    def _build_world_modes(self, b):
+        f = self.f
+        self.L(b, 'Small changes to how the game plays, from LoxleyXI\'s open source modules (credited in Server/lsb/modules). All are off until '
+                  'you switch them on. Each one applies the next time the server starts, so after changing one use Stop and then Start on '
+                  'the Server page.', f.tiny, fg=C['faint'], bg=C['card'], anchor='w', justify='left').pack(fill='x')
+        self._wrap_later(b)
+        self.mode_vars = {}
+        st = smo.states() if smo else {}
+        for key, kind, label, text in (smo.MODES if smo else []):
+            row = tk.Frame(b, bg=C['card'])
+            row.pack(fill='x', pady=(16, 0))
+            var = tk.BooleanVar(value=st.get(key, False))
+            self.mode_vars[key] = var
+            self._check(row, label, var, lambda k=key: self.toggle_mode(k)).pack(anchor='w')
+            lab = self.L(row, text, f.tiny, fg=C['soft'], bg=C['card'], anchor='w', justify='left')
+            lab.pack(fill='x', padx=(32, 0), pady=(2, 0))
+            row.bind('<Configure>', lambda e, w=lab: self._wrap(w, e.width - 32), add='+')
+        self.mode_msg = self.L(b, '', f.small, fg=C['soft'], bg=C['card'], anchor='w', justify='left')
+        self.mode_msg.pack(fill='x', pady=(18, 0))
+
+    def toggle_mode(self, key):
+        want = self.mode_vars[key].get()
+        self.mode_msg.config(text='Working...', fg=C['amber'])
+
+        def work():
+            try:
+                msg, col, ok = smo.set_enabled(key, want), C['green'], True
+            except Exception as e:                           # noqa: BLE001
+                msg, col, ok = str(e), C['red'], False
+
+            def done():
+                if not ok:
+                    self.mode_vars[key].set(not want)
+                running = bool(self.state and self.state.get('any'))
+                self.mode_msg.config(text=msg + (' The server is on now: restart it.' if ok and running else ''), fg=col)
+            self.root.after(0, done)
+        threading.Thread(target=work, daemon=True).start()
 
     def _load_settings(self):
         if not ss or not getattr(self, 'set_name', None):
@@ -1932,6 +2153,13 @@ class App:
                     bk = 'Automatic backup done.'
             except Exception as e:                           # noqa: BLE001
                 err = err or str(e)
+            try:
+                if sah and self.state and self.state.get('database') and not self.busy and not getattr(self, '_ah_busy', False) and sah.refill_due():
+                    r = sah.stock()
+                    if r['added']:
+                        bk = (bk + ' ' if bk else '') + 'Auction house restocked (%d listings).' % r['added']
+            except Exception as e:                           # noqa: BLE001
+                err = err or str(e)
             self.root.after(0, lambda: self._sched_done(msg, bk, err))
         threading.Thread(target=work, daemon=True).start()
 
@@ -1957,9 +2185,13 @@ class App:
     # ---- Maintenance page: backups, Discord messages and a quick health check
     def _build_maintenance(self):
         f = self.f
-        page = self._page_frame('Maintenance', 'Backups, messages to a Discord channel, and how the server is doing.')
+        page = self._page_frame('Maintenance', 'Backups, messages to a Discord channel, how the server is doing, and a readable log.')
         self.pages['maint'] = page
-        bp = Panel(page.body, None, f, pad=26)
+        self.maint_bar = Segmented(page.body, [('general', 'General'), ('debug', 'Debug')], self._maint_tab, f.small, height=f.s(38))
+        self.maint_bar.pack(fill='x', pady=(0, 14))
+        gen = tk.Frame(page.body, bg=C['bg'])
+        self.maint_frames = {'general': gen, 'debug': tk.Frame(page.body, bg=C['bg'])}
+        bp = Panel(gen, None, f, pad=26)
         bp.pack(fill='x')
         self.L(bp.body, 'Backups', f.small, fg=C['faint'], bg=C['card'], anchor='w').pack(fill='x')
         self.backup_note = self.L(bp.body, '', f.small, fg=C['soft'], bg=C['card'], anchor='w', justify='left')
@@ -1983,7 +2215,7 @@ class App:
         self.keep_entry.bind('<Return>', lambda e: self._save_auto())
         self.L(arow, 'automatic backups', f.small, fg=C['soft'], bg=C['card']).pack(side='left', padx=(6, 0))
 
-        dp = Panel(page.body, None, f, pad=26)
+        dp = Panel(gen, None, f, pad=26)
         dp.pack(fill='x', pady=(14, 0))
         self.L(dp.body, 'Discord', f.small, fg=C['faint'], bg=C['card'], anchor='w').pack(fill='x')
         self.L(dp.body, 'Posts a line to a channel when the server starts, stops, restarts after a problem, or a scheduled event begins or ends. '
@@ -2000,7 +2232,7 @@ class App:
         self.hook_msg = self.L(drow, '', f.small, fg=C['soft'], bg=C['card'], anchor='w')
         self.hook_msg.pack(side='left')
 
-        hp = Panel(page.body, None, f, pad=26)
+        hp = Panel(gen, None, f, pad=26)
         hp.pack(fill='x', pady=(14, 0))
         self.L(hp.body, 'Health', f.small, fg=C['faint'], bg=C['card'], anchor='w').pack(fill='x')
         self.health_text = self.L(hp.body, '', f.small, fg=C['text'], bg=C['card'], anchor='w', justify='left')
@@ -2008,6 +2240,95 @@ class App:
         TextLink(hp.body, 'Open the logs folder', lambda: self._open_path(sc.LOGS), f.small, bg=C['card']).pack(anchor='w', pady=(10, 0))
         self._show_backup_note()
         self._show_health()
+        self._build_debug(self.maint_frames['debug'])
+        self._maint_tab('general')
+
+    def _maint_tab(self, key):
+        for k, fr in self.maint_frames.items():
+            fr.pack_forget()
+        self.maint_frames[key].pack(fill='both', expand=True)
+        self.maint_bar.set(key)
+        self.debug_on = key == 'debug'
+        if self.debug_on:
+            self._debug_refresh()
+
+    # ---- Debug: the PS2 login part's log, readable
+    def _build_debug(self, parent):
+        f = self.f
+        p = Panel(parent, None, f, pad=26)
+        p.pack(fill='both', expand=True)
+        self.L(p.body, 'Packet log', f.small, fg=C['faint'], bg=C['card'], anchor='w').pack(fill='x')
+        self.L(p.body, 'What the PS2 login part has been doing, newest at the bottom. Use it when something does not work and you want to see what '
+                       'the game and the server said to each other. It shows the last %d lines and refreshes by itself.' % (sd.LINES if sd else 300),
+               f.tiny, fg=C['faint'], bg=C['card'], anchor='w', justify='left').pack(fill='x', pady=(4, 10))
+        self.debug_filter = 'all'
+        self.debug_bar = Segmented(p.body, sd.FILTERS if sd else [('all', 'All')], self._debug_set, f.small, height=f.s(36))
+        self.debug_bar.pack(fill='x')
+        self.debug_bar.set('all')
+        box = tk.Frame(p.body, bg=C['input'], highlightthickness=1, highlightbackground=C['line'])
+        box.pack(fill='both', expand=True, pady=(12, 0))
+        self.debug_text = tk.Text(box, height=12, bg=C['input'], fg=C['text'], insertbackground=C['text'], relief='flat', bd=0, wrap='none',
+                                  font=f.mono_s, padx=10, pady=8, highlightthickness=0, state='disabled')
+        sb = self._scroll(box, self.debug_text)
+        sb.pack(side='right', fill='y')
+        self.debug_text.pack(side='left', fill='both', expand=True)
+        row = tk.Frame(p.body, bg=C['card'])
+        row.pack(fill='x', pady=(12, 0))
+        RoundButton(row, 'Copy', self._debug_copy, C['grey'], f.small, height=f.s(36), width=f.s(110), radius=10, bg=C['card']).pack(side='left')
+        self.debug_msg = self.L(row, '', f.small, fg=C['soft'], bg=C['card'], anchor='w')
+        self.debug_msg.pack(side='left', padx=16)
+        self._wrap_later(p.body)
+        self._debug_last = None
+
+    def _debug_set(self, key):
+        self.debug_filter = key
+        self.debug_bar.set(key)
+        self._debug_last = None
+        self._debug_refresh(once=True)
+
+    def _debug_refresh(self, once=False):
+        if not getattr(self, 'debug_text', None) or not sd or not getattr(self, 'debug_on', False):
+            return
+        mode = self.debug_filter
+
+        def work():
+            text = sd.view(mode)
+            self.root.after(0, lambda: self._debug_show(text, mode))
+        threading.Thread(target=work, daemon=True).start()
+        if not once and not getattr(self, '_debug_timer', False):
+            self._debug_timer = True
+            self.root.after(2000, self._debug_tick)
+
+    def _debug_tick(self):
+        self._debug_timer = False
+        if getattr(self, 'debug_on', False) and self.page == 'maint':
+            self._debug_refresh()
+
+    def _debug_show(self, text, mode):
+        if not sd.exists():
+            text = ''
+            self.debug_msg.config(text='No log yet. It appears once the server has been started.', fg=C['soft'])
+        elif not text:
+            self.debug_msg.config(text='Nothing in the log matches this filter yet.', fg=C['soft'])
+        else:
+            self.debug_msg.config(text='', fg=C['soft'])
+        if text == self._debug_last or mode != self.debug_filter:
+            return
+        self._debug_last = text
+        t = self.debug_text
+        at_end = t.yview()[1] >= 0.99
+        t.config(state='normal')
+        t.delete('1.0', 'end')
+        t.insert('1.0', text)
+        t.config(state='disabled')
+        if at_end:
+            t.see('end')
+
+    def _debug_copy(self):
+        text = self.debug_text.get('1.0', 'end').strip()
+        self.root.clipboard_clear()
+        self.root.clipboard_append(text)
+        self.debug_msg.config(text='Copied %d lines.' % len(text.splitlines()) if text else 'Nothing to copy.', fg=C['green'] if text else C['soft'])
 
     def _save_auto(self):
         if not sbk:

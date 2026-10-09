@@ -36,6 +36,17 @@ PAGES (left side)
   World        The name players see, a welcome message sent to each player who logs in, the experience, gil,
                drop and skill-up rates (they apply after the next server start), and backups of all players
                and characters (Back up now, Restore from a backup).
+               Auction house tab: "Stock the auction house" puts ordinary items on sale (pick the kinds, how
+               many listings of each, and the price as a percentage of the normal price; it can refill by
+               itself every hour, 6 hours or day while this window is open). The seller is a server character
+               called Server_AH. "Remove the server's listings" takes back only those; players' listings are
+               never touched. The server (database) must be on.
+               Modes tab: plain on/off switches for small gameplay changes (a gentler experience curve for
+               levels 53 to 76, fair gathering points, an escape hole in Castle Oztroja). All are off until
+               you switch them on, and each applies after the next server start (the game reads them only
+               when it starts). They are from LoxleyXI's open source modules (Server/lsb/modules/README_MODES.md).
+               The experience switch changes the database, so the server must be on to change it. The Oztroja
+               hole could not be tested with the PS2 game.
   Roles        Make roles (for example Head Admin, Moderator) and tick which in game "!" commands they
                may use. Right click a player > Promote > role. Players without a role cannot use any
                "!" GM command.
@@ -44,6 +55,14 @@ PAGES (left side)
                (search a player, export to a file) and the filter log.
   Game disc    Patch My Disc: pick your original disc file (Disc/Original Disc); the patched disc goes
                to Disc/Patched ISO. Make Hard Drive: makes the formatted PS2 hard drive for PCSX2.
+               Test in PCSX2: starts PCSX2 with the patched disc (PCSX2 -batch -- "disc"). It looks for
+               PCSX2 in the usual places; if it cannot find it, pick it once with "Choose PCSX2..." (it is
+               remembered). It will not start if the patched disc is missing or PCSX2 is already open. The
+               hard drive is chosen once in PCSX2's own settings, as the page explains.
+               "Open the real PS2 guide" opens Disc/READ ME real PS2.txt (a real console with a hard drive).
+  Maintenance  General: backups, Discord messages, health. Debug: the PS2 login part's log in readable
+               form (All, Diagnostics, Events, Zone changes, Errors), the last 300 lines, refreshed every
+               two seconds while open, with a Copy button.
 
 WHERE THINGS ARE KEPT
   Server/data   made at the first start: the database, profiles, roles, chat rules, chat history, logs.
