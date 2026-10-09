@@ -26,8 +26,9 @@ try:
     import server_chat as sch
     import server_settings as ss
     import server_backup as sbk
+    import server_notify as snt
 except Exception:                                            # noqa: BLE001
-    sc = sa = sn = sr = sch = ss = sbk = None
+    sc = sa = sn = sr = sch = ss = sbk = snt = None
     SC_ERROR = traceback.format_exc()
 
 try:
@@ -221,7 +222,7 @@ class Panel(tk.Frame):
 # ---------------------------------------------------------------- the window
 class App:
     PAGES = [('server', 'Server'), ('profiles', 'Profiles'), ('connect', 'Connect'), ('settings', 'World'), ('roles', 'Roles'),
-             ('chat', 'Chat rules'), ('disc', 'Game disc')]
+             ('chat', 'Chat rules'), ('maint', 'Maintenance'), ('disc', 'Game disc')]
 
     def __init__(self, root):
         self.root = root
@@ -263,6 +264,7 @@ class App:
         self.root.after(5000, self.watch_map)
         self.root.after(8000, self._ddns_tick)
         self.root.after(10000, self._update_tick)
+        self.root.after(20000, self._sched_loop)
 
     # -------------------------------------------------------------- style
     def _style(self):
@@ -467,6 +469,8 @@ class App:
             self.pages['chat'] = self._page_frame('Chat rules', 'Word filter, spam limit, scheduled messages and the chat history.')
             import ffxi_app_extra as X
             self.chat_page = X.ChatRulesWindow(self, parent=self.pages['chat'].body)
+        if key == 'maint' and 'maint' not in self.pages:
+            self._build_maintenance()
         if key == 'settings':
             if 'settings' not in self.pages:
                 self._build_settings()
@@ -900,6 +904,10 @@ class App:
     def apply(self, s):
         st = s['st']
         self.state = st
+        if st['on'] and not getattr(self, 'on_since', None):
+            self.on_since = time.time()
+        elif not st['on']:
+            self.on_since = None
         if 'checks' in s:
             bad = [t for ok, t in s['checks'] if not ok]
             self.setup_ok = not bad
@@ -1054,17 +1062,19 @@ class App:
         s = self.state
         if s and not self.busy and s.get('database') and s.get('proxy') and s.get('xi_world') and not s.get('xi_map'):
             self.chat_add('error', 'The map server stopped. Starting it again...')
+            self.map_restarts = getattr(self, 'map_restarts', 0) + 1
+            self._notify('The map server stopped and was started again.')
             self.run_job('Restarting the map...', lambda say: sc.restart_map_if_down(say))
         self.root.after(5000, self.watch_map)
 
     def do_start(self):
-        self.run_job('Starting...', lambda say: sc.start(say), done=lambda r, e: (not e) and self.chat_add('admin', 'The server is on.'))
+        self.run_job('Starting...', lambda say: sc.start(say), done=lambda r, e: (not e) and (self.chat_add('admin', 'The server is on.'), self._notify('The server is on.')))
 
     def do_stop(self):
         if self.state and self.state.get('on'):
             if not messagebox.askyesno(TITLE, 'Stop the server?\n\nAnyone playing right now will be disconnected.'):
                 return
-        self.run_job('Stopping...', lambda say: sc.stop(say), done=lambda r, e: (not e) and self.chat_add('admin', 'The server is off.'))
+        self.run_job('Stopping...', lambda say: sc.stop(say), done=lambda r, e: (not e) and (self.chat_add('admin', 'The server is off.'), self._notify('The server is off.')))
 
     # ---- modes, addresses, ports
     def _take_focus(self):
@@ -1414,14 +1424,56 @@ class App:
         self.ddns_status.pack(fill='x', pady=(0, 12))
         self._refresh_connect()
 
-    # ---- World page: the name players see, and the welcome message
+    # ---- World page: name and welcome, rates, monsters, rules and scheduled events (small tabs, one panel at a time)
+    WORLD_TABS = [('general', 'General'), ('rates', 'Rates'), ('monsters', 'Monsters'), ('rules', 'Rules'), ('events', 'Events')]
+    WORLD_NOTES = {
+        'rates': '1 is normal and 2 is double, from 0.1 to 10. A change applies within a few seconds, with no restart.',
+        'monsters': 'Scales monsters as they spawn, so monsters that are already out keep their old values until they respawn.',
+        'rules': 'Levels, and which expansions are open. Zones that are already loaded use the new rules after the next server start.',
+    }
+
     def _build_settings(self):
         f = self.f
-        page = self._page_frame('World', 'The name players see, and a greeting for each player who logs in.')
+        page = self._page_frame('World', 'The name players see, rates, monsters and rules.')
         self.pages['settings'] = page
-        p = Panel(page.body, None, f, pad=26)
-        p.pack(fill='x')
-        b = p.body
+        self.world_bar = Segmented(page.body, self.WORLD_TABS, self._world_tab, f.small, height=f.s(38))
+        self.world_bar.pack(fill='x', pady=(0, 14))
+        self.world_panels = {k: Panel(page.body, None, f, pad=26) for k, _ in self.WORLD_TABS}
+        self.world_entries, self.world_flags, self.world_msg = {}, {}, {}
+        self.world_built = set()
+        self.world_tab = None
+        self._world_tab('general')
+
+    def _world_tab(self, key):
+        """Show one tab. Its contents are made the first time it is shown, once the panel is on screen (entry boxes made while a panel is
+        hidden do not paint on macOS)."""
+        for k, p in self.world_panels.items():
+            p.pack_forget()
+        panel = self.world_panels[key]
+        panel.pack(fill='x')
+        self.world_bar.set(key)
+        self.world_tab = key
+        if key not in self.world_built:
+            self.world_built.add(key)
+            if key == 'general':
+                self._build_world_general(panel.body)
+            elif key == 'events':
+                self._build_world_events(panel.body)
+            else:
+                self._build_world_numbers(key, panel.body)
+            self._load_settings()
+        self.root.update_idletasks()
+
+    def _save_row(self, parent, group):
+        f = self.f
+        row = tk.Frame(parent, bg=C['card'])
+        row.pack(fill='x', pady=(24, 0))
+        RoundButton(row, 'Save', lambda: self.save_world(group), C['accent'], f.h3, height=f.s(40), width=f.s(110), radius=10, bg=C['card']).pack(side='left')
+        self.world_msg[group] = self.L(row, '', f.small, fg=C['soft'], bg=C['card'], anchor='w')
+        self.world_msg[group].pack(side='left', padx=16)
+
+    def _build_world_general(self, b):
+        f = self.f
         self.L(b, 'Name', f.small, fg=C['faint'], bg=C['card'], anchor='w').pack(fill='x')
         self.set_name = self.entry(b, width=30)
         self.set_name.pack(fill='x', pady=(4, 0), ipady=f.s(7))
@@ -1432,39 +1484,48 @@ class App:
         self.set_welcome.pack(fill='x', pady=(4, 0), ipady=f.s(7))
         self.L(b, 'Sent only to the player who just logged in. {player} becomes their name and {server} your world name. Leave it empty for none.',
                f.tiny, fg=C['faint'], bg=C['card'], anchor='w').pack(fill='x', pady=(4, 0))
-        self.L(b, 'Rates', f.small, fg=C['faint'], bg=C['card'], anchor='w').pack(fill='x', pady=(22, 0))
-        rr = tk.Frame(b, bg=C['card'])
-        rr.pack(fill='x', pady=(4, 0))
-        self.rate_entries = {}
-        for i, (key, label) in enumerate(ss.RATES if ss else []):
-            col = tk.Frame(rr, bg=C['card'])
-            col.pack(side='left', padx=(0, 22))
-            self.L(col, label, f.tiny, fg=C['soft'], bg=C['card'], anchor='w').pack(fill='x')
-            e = self.entry(col, width=7)
-            e.pack(ipady=f.s(6), pady=(3, 0))
-            self.rate_entries[key] = e
-            e.bind('<Return>', lambda ev: self.save_settings())
-        self.L(b, '1 is normal, 2 is double. Between 0.1 and 10. Applies after the next server start.',
-               f.tiny, fg=C['faint'], bg=C['card'], anchor='w').pack(fill='x', pady=(6, 0))
-        row = tk.Frame(b, bg=C['card'])
-        row.pack(fill='x', pady=(24, 0))
-        self.set_save = RoundButton(row, 'Save', self.save_settings, C['accent'], f.h3, height=f.s(40), width=f.s(110), radius=10, bg=C['card'])
-        self.set_save.pack(side='left')
-        self.set_msg = self.L(row, '', f.small, fg=C['soft'], bg=C['card'], anchor='w')
-        self.set_msg.pack(side='left', padx=16)
+        self._save_row(b, 'general')
         for e in (self.set_name, self.set_welcome):
-            e.bind('<Return>', lambda ev: self.save_settings())
-        bp = Panel(page.body, None, f, pad=26)
-        bp.pack(fill='x', pady=(14, 0))
-        self.L(bp.body, 'Backups', f.small, fg=C['faint'], bg=C['card'], anchor='w').pack(fill='x')
-        self.backup_note = self.L(bp.body, '', f.small, fg=C['soft'], bg=C['card'], anchor='w', justify='left')
-        self.backup_note.pack(fill='x', pady=(6, 0))
-        brow = tk.Frame(bp.body, bg=C['card'])
-        brow.pack(fill='x', pady=(14, 0))
-        self.backup_btn = RoundButton(brow, 'Back up now', self.do_backup, C['grey'], f.small, height=f.s(36), width=f.s(140), radius=10, bg=C['card'])
-        self.backup_btn.pack(side='left')
-        TextLink(brow, 'Restore from a backup...', self.do_restore, f.small, bg=C['card']).pack(side='left', padx=20)
-        self._load_settings()
+            e.bind('<Return>', lambda ev: self.save_world('general'))
+
+    def _build_world_numbers(self, group, b):
+        f = self.f
+        grid = tk.Frame(b, bg=C['card'])
+        grid.pack(fill='x')
+        numbers = [st for st in ss.GROUPS[group] if st.kind != 'flag'] if ss else []
+        flags = [st for st in ss.GROUPS[group] if st.kind == 'flag'] if ss else []
+        for i, st in enumerate(numbers):
+            cell = tk.Frame(grid, bg=C['card'])
+            cell.grid(row=i // 4, column=i % 4, sticky='w', padx=(0, 28), pady=(0, 14))
+            self.L(cell, st.label, f.tiny, fg=C['soft'], bg=C['card'], anchor='w').pack(fill='x')
+            e = self.entry(cell, width=9)
+            e.pack(ipady=f.s(6), pady=(3, 0), anchor='w')
+            e.bind('<Return>', lambda ev, g=group: self.save_world(g))
+            self.world_entries[st.key] = e
+        if flags:
+            self.L(b, 'Open to players', f.small, fg=C['faint'], bg=C['card'], anchor='w').pack(fill='x', pady=(10, 4))
+            fg = tk.Frame(b, bg=C['card'])
+            fg.pack(fill='x')
+            for i, st in enumerate(flags):
+                var = tk.BooleanVar(value=True)
+                self.world_flags[st.key] = var
+                tk.Checkbutton(fg, text=st.label, variable=var, bg=C['card'], fg=C['text'], font=f.small, anchor='w', activebackground=C['card'],
+                               activeforeground=C['text'], selectcolor=C['input'], highlightthickness=0, bd=0).grid(
+                    row=i // 3, column=i % 3, sticky='w', padx=(0, 26), pady=2)
+        self.L(b, self.WORLD_NOTES[group], f.tiny, fg=C['faint'], bg=C['card'], anchor='w', justify='left').pack(fill='x', pady=(10, 0))
+        self._save_row(b, group)
+
+    def _build_world_events(self, b):
+        f = self.f
+        self.L(b, 'Events switch rates on and off by the clock, for example double experience on weekend evenings. '
+                  'They run while this window is open.', f.tiny, fg=C['faint'], bg=C['card'], anchor='w', justify='left').pack(fill='x')
+        self.events_list = tk.Frame(b, bg=C['card'])
+        self.events_list.pack(fill='x', pady=(10, 0))
+        row = tk.Frame(b, bg=C['card'])
+        row.pack(fill='x', pady=(14, 0))
+        RoundButton(row, 'Add an event', self.add_event, C['accent'], f.h3, height=f.s(40), width=f.s(150), radius=10, bg=C['card']).pack(side='left')
+        self.world_msg['events'] = self.L(row, '', f.small, fg=C['soft'], bg=C['card'], anchor='w')
+        self.world_msg['events'].pack(side='left', padx=16)
 
     def _load_settings(self):
         if not ss or not getattr(self, 'set_name', None):
@@ -1473,12 +1534,318 @@ class App:
         for e, v in ((self.set_name, cur['name']), (self.set_welcome, cur['welcome'])):
             e.delete(0, 'end')
             e.insert(0, v)
-        self.set_msg.config(text='')
-        for key, v in ss.get_rates().items():
-            e = self.rate_entries[key]
-            e.delete(0, 'end')
-            e.insert(0, ('%g' % v))
+        for g in ('rates', 'monsters', 'rules'):
+            try:
+                vals = ss.get_values(g)
+            except Exception:                                # noqa: BLE001
+                continue
+            for k, v in vals.items():
+                if k in self.world_entries:
+                    self.world_entries[k].delete(0, 'end')
+                    self.world_entries[k].insert(0, '%g' % v)
+                elif k in self.world_flags:
+                    self.world_flags[k].set(bool(v))
+        self._show_events()
+
+    def _world_say(self, group, text, color):
+        self.world_msg[group].config(text=text, fg=color)
+
+    def save_world(self, group):
+        running = bool(self.state and self.state.get('any'))
+        self._world_say(group, 'Saving...', C['amber'])
+        if group == 'general':
+            name, welcome = self.set_name.get(), self.set_welcome.get()
+        else:
+            values = {st.key: (self.world_flags[st.key].get() if st.kind == 'flag' else self.world_entries[st.key].get()) for st in ss.GROUPS[group]}
+
+        def work():
+            try:
+                if group == 'general':
+                    changed = ss.save(name=name, welcome=welcome)
+                    msg = 'Saved.' + (' Restart the server for the new name to show.' if changed and running else '')
+                else:
+                    changed = ss.save_values(group, values)
+                    msg = 'Saved.' + (' The server picks it up in a few seconds.' if changed and running and group != 'rules' else '')
+                    if changed and running and group == 'rules':
+                        msg = 'Saved. Restart the server for it to apply everywhere.'
+                self.root.after(0, lambda: self._world_say(group, msg, C['green']))
+            except Exception as e:                           # noqa: BLE001
+                self.root.after(0, lambda e=e: self._world_say(group, str(e), C['red']))
+        threading.Thread(target=work, daemon=True).start()
+
+    def save_settings(self):
+        self.save_world('general')
+
+    # ---- scheduled events
+    def _show_events(self):
+        if not getattr(self, 'events_list', None):
+            return
+        f = self.f
+        for w in self.events_list.winfo_children():
+            w.destroy()
+        events = ss.list_events() if ss else []
+        active = ss._state().get('active') if ss else None
+        if not events:
+            self.L(self.events_list, 'No events yet.', f.small, fg=C['soft'], bg=C['card'], anchor='w').pack(fill='x')
+        for ev in events:
+            r = tk.Frame(self.events_list, bg=C['card2'])
+            r.pack(fill='x', pady=3)
+            var = tk.BooleanVar(value=bool(ev.get('on', True)))
+            tk.Checkbutton(r, variable=var, command=lambda e=ev, v=var: self._event_toggle(e, v), bg=C['card2'], activebackground=C['card2'],
+                           selectcolor=C['input'], highlightthickness=0, bd=0).pack(side='left', padx=(10, 0), pady=8)
+            txt = tk.Frame(r, bg=C['card2'])
+            txt.pack(side='left', fill='x', expand=True, padx=8)
+            self.L(txt, ev['name'] + ('   (on now)' if ev['id'] == active else ''), f.small, fg=C['green'] if ev['id'] == active else C['text'],
+                   bg=C['card2'], anchor='w').pack(fill='x')
+            self.L(txt, ss.event_text(ev), f.tiny, fg=C['soft'], bg=C['card2'], anchor='w').pack(fill='x')
+            TextLink(r, 'Remove', lambda e=ev: self._event_remove(e), f.small, bg=C['card2']).pack(side='right', padx=14)
+
+    def _event_toggle(self, ev, var):
+        events = ss.list_events()
+        for e in events:
+            if e['id'] == ev['id']:
+                e['on'] = bool(var.get())
+        try:
+            ss.save_events(events)
+            self._sched_now()
+        except Exception as e:                               # noqa: BLE001
+            self._world_say('events', str(e), C['red'])
+
+    def _event_remove(self, ev):
+        ss.save_events([e for e in ss.list_events() if e['id'] != ev['id']])
+        self._show_events()
+        self._sched_now()
+
+    def add_event(self):
+        f = self.f
+        d = tk.Toplevel(self.root)
+        d.title('New event')
+        d.configure(bg=C['bg'])
+        d.transient(self.root)
+        body = tk.Frame(d, bg=C['bg'])
+        body.pack(fill='both', expand=True, padx=26, pady=22)
+        self.L(body, 'Event name', f.small, fg=C['faint'], bg=C['bg'], anchor='w').pack(fill='x')
+        name = self.entry(body, width=34)
+        name.pack(fill='x', pady=(4, 14), ipady=f.s(6))
+        self.L(body, 'Days', f.small, fg=C['faint'], bg=C['bg'], anchor='w').pack(fill='x')
+        drow = tk.Frame(body, bg=C['bg'])
+        drow.pack(fill='x', pady=(4, 14))
+        dvars = []
+        for i, dn in enumerate(ss.DAY_NAMES):
+            v = tk.BooleanVar(value=i >= 5)
+            dvars.append(v)
+            tk.Checkbutton(drow, text=dn, variable=v, bg=C['bg'], fg=C['text'], font=f.small, activebackground=C['bg'], activeforeground=C['text'],
+                           selectcolor=C['input'], highlightthickness=0, bd=0).pack(side='left', padx=(0, 10))
+        trow = tk.Frame(body, bg=C['bg'])
+        trow.pack(fill='x', pady=(0, 14))
+        times = []
+        for label, default in (('From', '18:00'), ('Until', '23:00')):
+            c = tk.Frame(trow, bg=C['bg'])
+            c.pack(side='left', padx=(0, 22))
+            self.L(c, label, f.small, fg=C['faint'], bg=C['bg'], anchor='w').pack(fill='x')
+            e = self.entry(c, width=8)
+            e.insert(0, default)
+            e.pack(ipady=f.s(6), pady=(4, 0))
+            times.append(e)
+        self.L(body, 'Rates during the event (1 = normal)', f.small, fg=C['faint'], bg=C['bg'], anchor='w').pack(fill='x')
+        rrow = tk.Frame(body, bg=C['bg'])
+        rrow.pack(fill='x', pady=(4, 6))
+        rates = {}
+        for st in ss.GROUPS['rates'][:4]:
+            c = tk.Frame(rrow, bg=C['bg'])
+            c.pack(side='left', padx=(0, 18))
+            self.L(c, st.label, f.tiny, fg=C['soft'], bg=C['bg'], anchor='w').pack(fill='x')
+            e = self.entry(c, width=7)
+            e.insert(0, '2' if st.key == 'EXP_RATE' else '1')
+            e.pack(ipady=f.s(6), pady=(3, 0))
+            rates[st.key] = e
+        msg = self.L(body, '', f.small, fg=C['red'], bg=C['bg'], anchor='w', justify='left')
+        msg.pack(fill='x', pady=(8, 0))
+
+        def save():
+            ev = {'name': name.get(), 'days': [i for i, v in enumerate(dvars) if v.get()], 'start': times[0].get().strip(), 'end': times[1].get().strip(),
+                  'mult': {k: e.get() for k, e in rates.items()}}
+            try:
+                events = ss.list_events()
+                events.append(ev)
+                ss.save_events(events)
+            except Exception as e:                           # noqa: BLE001
+                msg.config(text=str(e))
+                return
+            d.destroy()
+            self._show_events()
+            self._sched_now()
+        brow = tk.Frame(body, bg=C['bg'])
+        brow.pack(fill='x', pady=(14, 0))
+        RoundButton(brow, 'Add', save, C['accent'], f.h3, height=f.s(40), width=f.s(110), radius=10, bg=C['bg']).pack(side='left')
+        TextLink(brow, 'Cancel', d.destroy, f.small, bg=C['bg']).pack(side='left', padx=18)
+        d.update_idletasks()
+        d.geometry('+%d+%d' % (self.root.winfo_rootx() + 140, self.root.winfo_rooty() + 90))
+        name.focus_set()
+
+    # ---- clock jobs: scheduled events and the daily backup (checked every half minute while the window is open)
+    def _sched_now(self):
+        self.root.after(200, self._sched_run)
+
+    def _sched_loop(self):
+        self._sched_run()
+        self.root.after(30000, self._sched_loop)
+
+    def _sched_run(self):
+        if getattr(self, '_sched_busy', False) or not ss:
+            return
+        self._sched_busy = True
+
+        def work():
+            msg = err = bk = None
+            try:
+                msg = ss.tick_events()
+            except Exception as e:                           # noqa: BLE001
+                err = str(e)
+            try:
+                if sbk and self.state and self.state.get('database') and not self.busy and sbk.auto_due():
+                    sbk.auto_backup()
+                    bk = 'Automatic backup done.'
+            except Exception as e:                           # noqa: BLE001
+                err = err or str(e)
+            self.root.after(0, lambda: self._sched_done(msg, bk, err))
+        threading.Thread(target=work, daemon=True).start()
+
+    def _sched_done(self, msg, bk, err):
+        self._sched_busy = False
+        if msg:
+            self.chat_add('admin', msg)
+            self._notify(msg)
+            self._show_events()
+        if bk:
+            self.chat_add('admin', bk)
+            if getattr(self, 'backup_note', None):
+                self._show_backup_note()
+        if err:
+            self.chat_add('error', 'Scheduled job: ' + err)
+
+    def _notify(self, text):
+        if not snt:
+            return
+        if snt.webhook():
+            threading.Thread(target=lambda: snt.send(text), daemon=True).start()
+
+    # ---- Maintenance page: backups, Discord messages and a quick health check
+    def _build_maintenance(self):
+        f = self.f
+        page = self._page_frame('Maintenance', 'Backups, messages to a Discord channel, and how the server is doing.')
+        self.pages['maint'] = page
+        bp = Panel(page.body, None, f, pad=26)
+        bp.pack(fill='x')
+        self.L(bp.body, 'Backups', f.small, fg=C['faint'], bg=C['card'], anchor='w').pack(fill='x')
+        self.backup_note = self.L(bp.body, '', f.small, fg=C['soft'], bg=C['card'], anchor='w', justify='left')
+        self.backup_note.pack(fill='x', pady=(6, 0))
+        brow = tk.Frame(bp.body, bg=C['card'])
+        brow.pack(fill='x', pady=(14, 0))
+        self.backup_btn = RoundButton(brow, 'Back up now', self.do_backup, C['grey'], f.small, height=f.s(36), width=f.s(140), radius=10, bg=C['card'])
+        self.backup_btn.pack(side='left')
+        TextLink(brow, 'Restore from a backup...', self.do_restore, f.small, bg=C['card']).pack(side='left', padx=20)
+        arow = tk.Frame(bp.body, bg=C['card'])
+        arow.pack(fill='x', pady=(16, 0))
+        on, keep = sbk.auto_settings() if sbk else (False, 7)
+        self.auto_var = tk.BooleanVar(value=on)
+        tk.Checkbutton(arow, text='Back up every day while the server is on', variable=self.auto_var, command=self._save_auto, bg=C['card'], fg=C['text'],
+                       font=f.small, activebackground=C['card'], activeforeground=C['text'], selectcolor=C['input'], highlightthickness=0, bd=0).pack(side='left')
+        self.L(arow, 'Keep', f.small, fg=C['soft'], bg=C['card']).pack(side='left', padx=(22, 6))
+        self.keep_entry = self.entry(arow, width=4)
+        self.keep_entry.insert(0, str(keep))
+        self.keep_entry.pack(side='left', ipady=f.s(4))
+        self.keep_entry.bind('<FocusOut>', lambda e: self._save_auto())
+        self.keep_entry.bind('<Return>', lambda e: self._save_auto())
+        self.L(arow, 'automatic backups', f.small, fg=C['soft'], bg=C['card']).pack(side='left', padx=(6, 0))
+
+        dp = Panel(page.body, None, f, pad=26)
+        dp.pack(fill='x', pady=(14, 0))
+        self.L(dp.body, 'Discord', f.small, fg=C['faint'], bg=C['card'], anchor='w').pack(fill='x')
+        self.L(dp.body, 'Posts a line to a channel when the server starts, stops, restarts after a problem, or a scheduled event begins or ends. '
+                        'In Discord: channel settings > Integrations > Webhooks > Copy Webhook URL.', f.tiny, fg=C['faint'], bg=C['card'], anchor='w',
+               justify='left').pack(fill='x', pady=(4, 8))
+        self.hook_entry = self.entry(dp.body, show='•', width=50)
+        self.hook_entry.pack(fill='x', ipady=f.s(7))
+        if snt:
+            self.hook_entry.insert(0, snt.webhook())
+        drow = tk.Frame(dp.body, bg=C['card'])
+        drow.pack(fill='x', pady=(12, 0))
+        RoundButton(drow, 'Save', self.save_hook, C['grey'], f.small, height=f.s(36), width=f.s(110), radius=10, bg=C['card']).pack(side='left')
+        TextLink(drow, 'Send a test message', self.test_hook, f.small, bg=C['card']).pack(side='left', padx=20)
+        self.hook_msg = self.L(drow, '', f.small, fg=C['soft'], bg=C['card'], anchor='w')
+        self.hook_msg.pack(side='left')
+
+        hp = Panel(page.body, None, f, pad=26)
+        hp.pack(fill='x', pady=(14, 0))
+        self.L(hp.body, 'Health', f.small, fg=C['faint'], bg=C['card'], anchor='w').pack(fill='x')
+        self.health_text = self.L(hp.body, '', f.small, fg=C['text'], bg=C['card'], anchor='w', justify='left')
+        self.health_text.pack(fill='x', pady=(6, 0))
+        TextLink(hp.body, 'Open the logs folder', lambda: self._open_path(sc.LOGS), f.small, bg=C['card']).pack(anchor='w', pady=(10, 0))
         self._show_backup_note()
+        self._show_health()
+
+    def _save_auto(self):
+        if not sbk:
+            return
+        try:
+            keep = int(self.keep_entry.get())
+        except ValueError:
+            keep = 7
+        keep = max(1, min(60, keep))
+        self.keep_entry.delete(0, 'end')
+        self.keep_entry.insert(0, str(keep))
+        sbk.save_auto_settings(self.auto_var.get(), keep)
+        if self.auto_var.get():
+            self._sched_now()
+
+    def save_hook(self):
+        try:
+            snt.save_webhook(self.hook_entry.get())
+            self.hook_msg.config(text='Saved.', fg=C['green'])
+        except Exception as e:                               # noqa: BLE001
+            self.hook_msg.config(text=str(e), fg=C['red'])
+
+    def test_hook(self):
+        url = self.hook_entry.get().strip()
+        try:
+            snt.save_webhook(url)
+        except Exception as e:                               # noqa: BLE001
+            self.hook_msg.config(text=str(e), fg=C['red'])
+            return
+        self.hook_msg.config(text='Sending...', fg=C['amber'])
+
+        def work():
+            ok, why = snt.send('Test message from the FFXI 2016 Server app.', url)
+            self.root.after(0, lambda: self.hook_msg.config(text='Sent. Check the channel.' if ok else why, fg=C['green'] if ok else C['red']))
+        threading.Thread(target=work, daemon=True).start()
+
+    def _show_health(self):
+        if not getattr(self, 'health_text', None):
+            return
+        st = self.state
+        if st and st.get('on') and getattr(self, 'on_since', None):
+            mins = int((time.time() - self.on_since) // 60)
+            up = 'The server has been on for %s.' % ('%d h %d min' % (mins // 60, mins % 60) if mins >= 60 else '%d min' % mins)
+        elif st and st.get('any'):
+            up = 'The server is partly on.'
+        else:
+            up = 'The server is off.'
+        n = len(self.members) if getattr(self, 'members', None) else 0
+        lines = [up, '%d player%s online.' % (n, '' if n == 1 else 's')]
+        if getattr(self, 'map_restarts', 0):
+            lines.append('The map server restarted by itself %d time%s since this window opened.' % (self.map_restarts, '' if self.map_restarts == 1 else 's'))
+        self.health_text.config(text='  '.join(lines))
+        self.root.after(10000, self._show_health)
+
+    def _open_path(self, path):
+        try:
+            if WINDOWS:
+                os.startfile(path)                           # noqa: S606
+            else:
+                subprocess.Popen(['open' if MAC else 'xdg-open', path])
+        except Exception:                                    # noqa: BLE001
+            messagebox.showinfo(TITLE, path)
 
     def _show_backup_note(self):
         last = sbk.listing() if sbk else []
@@ -1526,22 +1893,6 @@ class App:
             except Exception as e:                           # noqa: BLE001
                 msg, ok = str(e), False
             self.root.after(0, lambda: (self.backup_note.config(text=msg, fg=C['soft'] if ok else C['red']), ok and self.chat_add('admin', msg)))
-        threading.Thread(target=work, daemon=True).start()
-
-    def save_settings(self):
-        name, welcome = self.set_name.get(), self.set_welcome.get()
-        rates = {k: e.get() for k, e in self.rate_entries.items()}
-        running = bool(self.state and self.state.get('any'))
-        self.set_msg.config(text='Saving...', fg=C['amber'])
-
-        def work():
-            try:
-                rates_changed = ss.save_rates(rates)
-                changed = ss.save(name=name, welcome=welcome)
-                msg = 'Saved.' + (' Restart the server for the changes to show.' if (changed or rates_changed) and running else '')
-                self.root.after(0, lambda: self.set_msg.config(text=msg, fg=C['green']))
-            except Exception as e:                           # noqa: BLE001
-                self.root.after(0, lambda e=e: self.set_msg.config(text=str(e), fg=C['red']))
         threading.Thread(target=work, daemon=True).start()
 
     def _build_ports(self, parent):

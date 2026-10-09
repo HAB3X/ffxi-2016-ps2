@@ -95,3 +95,46 @@ def restore(path):
         sc.sql('SELECT 1', stdin_bytes=b'SELECT 1;')                        # fail early if the login does not work
         sc.sql('', stdin_bytes=script)
     return safety
+
+
+# ---------------------------------------------------------------- automatic daily backups
+AUTO_LABEL = 'auto'
+DAY = 24 * 3600
+
+
+def auto_settings():
+    cfg = sc.load_config()
+    return bool(cfg.get('auto_backup', False)), max(1, min(60, int(cfg.get('backup_keep', 7) or 7)))
+
+
+def save_auto_settings(on, keep):
+    keep = max(1, min(60, int(keep)))
+    cfg = sc.load_config()
+    cfg['auto_backup'], cfg['backup_keep'] = bool(on), keep
+    sc.save_config(cfg)
+
+
+def auto_due(now=None):
+    """True when automatic backups are on and the newest backup (of any kind) is more than a day old."""
+    on, _ = auto_settings()
+    if not on:
+        return False
+    items = listing()
+    return not items or (now or time.time()) - items[0][2] > DAY
+
+
+def prune(keep):
+    """Delete the oldest automatic backups beyond `keep`. Backups made by hand are never deleted."""
+    autos = [x for x in listing() if x[0].endswith('-%s.sql.gz' % AUTO_LABEL)]
+    for path, _, _ in autos[keep:]:
+        try:
+            os.remove(path)
+        except OSError:
+            pass
+
+
+def auto_backup():
+    """Make one automatic backup and tidy the old ones. Returns the path."""
+    path = create(AUTO_LABEL)
+    prune(auto_settings()[1])
+    return path
