@@ -3,6 +3,8 @@
 cd "$(dirname "$0")"; source ~/ps2dev/env.sh; G=mips64r5900el-ps2-elf-gcc; F="$EXTRA -D_EE -DNEWLIB_PORT_AWARE -G0 -O2 -Wall -I$PS2SDK/ee/include -I$PS2SDK/common/include"
 set -e
 XO=''; case "$EXTRA" in *XCOMP*) XO='xcfile.o'; $G $F -c xcfile.c -o xcfile.o;; esac
+# NETDIAG: the debug link's code and constants (dbg.c) go into .dbgk* sections, placed after the lifted kernel by host.ld (the host area is full)
+case "$EXTRA" in *NETDIAG*) XO="$XO dbg.o"; $G $F -Os -c dbg.c -o dbg.o; mips64r5900el-ps2-elf-objcopy --rename-section .text=.dbgk.text --rename-section .data=.dbgk.data --rename-section .rodata=.dbgk.rodata --rename-section .rodata.str1.8=.dbgk.str dbg.o;; esac
 for f in host iop iop_sony sioout fileio slotnames lift_rt lifted_k hlog input net devdlg userfile social perf ime; do $G $F -c $f.c -o $f.o; done
 for f in slots trap pex irx lifted_k_blob emb; do $G -c $f.S -o $f.o; done
 $G -DKBD_LAYOUT=${KBD_LAYOUT:-2} -c kbd.S -o kbd.o

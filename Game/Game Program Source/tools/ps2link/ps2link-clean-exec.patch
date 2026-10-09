@@ -1,0 +1,59 @@
+diff --git a/ee/cmdHandler.c b/ee/cmdHandler.c
+index 08f9b19..19d30a7 100644
+--- a/ee/cmdHandler.c
++++ b/ee/cmdHandler.c
+@@ -138,10 +138,54 @@ pkoLoadElf(char *path)
+ }
+ 
+ 
++////////////////////////////////////////////////////////////////////////
++// FFXI PS2 test setup: load the requested elf, then shut ps2link down (IOP reset, SIF handler removed)
++// and start the elf with ExecPS2, so it runs exactly as if a launcher had started it from USB
++// (not as a thread beside ps2link). The cost: ps2link is gone until the PS2 is restarted.
++static int
++pkoExecClean(pko_pkt_execee_req *cmd)
++{
++    static char path[PKO_MAX_PATH];
++    t_ExecData elfdata;
++
++    memcpy(path, cmd->argv, PKO_MAX_PATH);
++    path[PKO_MAX_PATH - 1] = '\0';
++    scr_printf("Loading %s ...\n", path);
++    if (SifLoadElf(path, &elfdata) < 0 || elfdata.epc == 0) {
++        scr_printf("Could not load %s\n", path);
++        return -1;
++    }
++    makeArgs(ntohl(cmd->argc), path, &userArgs);
++    scr_printf("Starting %s\n", path);
++    FlushCache(0);
++    FlushCache(2);
++
++    if (sif0HandlerId >= 0) {
++        DisableDmac(DMAC_SIF0);
++        RemoveDmacHandler(DMAC_SIF0, sif0HandlerId);
++    }
++    SifInitRpc(0);
++    SifExitRpc();
++    SifIopReset(NULL, 0);
++    while (!SifIopSync())
++        ;
++    SifInitRpc(0);
++    SifExitRpc();
++    SifLoadFileExit();
++
++    ExecPS2((void *)elfdata.epc, (void *)elfdata.gp, userArgs.args.argc, userArgs.args.argv);
++    return -1;
++}
++
+ ////////////////////////////////////////////////////////////////////////
+ // Load and start the requested elf
+ static int
+ pkoExecEE(pko_pkt_execee_req *cmd)
++{
++    return pkoExecClean(cmd);
++}
++static int __attribute__((unused))
++pkoExecEEThread(pko_pkt_execee_req *cmd)
+ {
+     char path[PKO_MAX_PATH];
+     int ret;

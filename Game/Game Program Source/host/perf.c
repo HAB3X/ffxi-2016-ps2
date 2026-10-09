@@ -15,11 +15,105 @@ static void perf_prof_start(void);
 #ifdef ALARM_VBL
 extern void al_irq_check(void);
 #endif
+#ifdef NETDIAG
+/* NETDIAG40: freeze colours, written straight to the GS display registers from this interrupt (no DMA, no IOP, no thread needed).
+     YELLOW = a CPU exception (bad address, bus error, break, trap): flashes 1 s when it happens, and stays if the game then stops.
+              About 45 s after sign-in one deliberate exception in a throwaway thread gives one yellow flash: the catcher works.
+              Solid yellow that never changes = an exception inside an interrupt handler or the kernel (the CPU is held there).
+     RED    = the report thread has been stuck inside a network send for 15 s: the IOP / network stopped answering
+     BLUE   = the report thread (priority 0) has not run for 15 s and is not in a send: the EE scheduler stopped
+     GREEN  = report thread fine, but no game frame for 10 s
+   A picture that stays frozen with no colour at all = the EE stopped taking interrupts for another reason. */
+volatile u32 g_mon_tick = 0, g_mon_insend = 0, g_flash = 0;
+static u32 fz_last = 0, fz_lastv = 0, fz_tick = 0, fz_tickv = 0;
+/* exception catcher (exc_catch below saves registers into g_exc and returns into exc_park on its own stack) */
+volatile u32 g_exc[20], g_exc_n = 0, g_exc_real = 0; volatile int g_exc_testid = -1;
+u8 g_exc_stack[4096] __attribute__((section(".xcmem"), aligned(64)));
+void exc_park(void)
+{
+    u32 sr = g_exc[3], pc = g_exc[1];
+    if (!(sr & 1) || !(sr & 0x10000) || pc < 0x100000 || pc >= 0x2000000) {   /* interrupts were off / kernel code: cannot sleep here */
+        g_exc_n++; g_exc_real++;
+        for (;;) { *(volatile u64 *)0x120000E0 = 0x00E0E0; *(volatile u64 *)0x12000000 = 0x4; }
+    }
+    int id = GetThreadId(); g_exc[19] = (u32)id;
+    if (id != g_exc_testid) g_exc_real++;
+    g_flash = 60; g_exc_n++;
+    for (;;) SleepThread();
+}
+/* exc_catch: entered by the kernel's exception vector (k0 free). Saves the useful registers into g_exc, then returns from the
+   exception into exc_park on its own stack (and the host's gp), which parks the faulting thread and lets everything else run on. */
+__asm__(
+    ".set push\n.set noreorder\n.set noat\n.text\n"
+    ".globl exc_catch\n"
+    ".ent exc_catch\n"
+    "exc_catch:\n"
+    "la    $k0, g_exc\n"
+    "sw    $ra, 16($k0)\n"
+    "sw    $sp, 20($k0)\n"
+    "sw    $gp, 24($k0)\n"
+    "sw    $1,  28($k0)\n"
+    "sw    $v0, 32($k0)\n"
+    "sw    $v1, 36($k0)\n"
+    "sw    $a0, 40($k0)\n"
+    "sw    $a1, 44($k0)\n"
+    "sw    $a2, 48($k0)\n"
+    "sw    $a3, 52($k0)\n"
+    "sw    $t9, 56($k0)\n"
+    "sw    $s0, 60($k0)\n"
+    "sw    $s1, 64($k0)\n"
+    "sw    $s2, 68($k0)\n"
+    "mfc0  $v0, $13\n"
+    "sw    $v0, 0($k0)\n"
+    "mfc0  $v0, $14\n"
+    "sw    $v0, 4($k0)\n"
+    "mfc0  $v0, $8\n"
+    "sw    $v0, 8($k0)\n"
+    "mfc0  $v0, $12\n"
+    "sw    $v0, 12($k0)\n"
+    "la    $sp, g_exc_stack + 4096 - 64\n"
+    "la    $gp, _gp\n"
+    "la    $k0, exc_park\n"
+    "mtc0  $k0, $14\n"
+    "sync.p\n"
+    "eret\n"
+    "nop\n"
+    ".end exc_catch\n"
+    ".set pop\n");
+void exc_install(void)
+{
+    extern void exc_catch(void);
+    for (int i = 1; i < 4; i++) SetVTLBRefillHandler(i, exc_catch);
+    for (int i = 1; i < 8; i++) SetVCommonHandler(i, exc_catch);
+    for (int i = 9; i < 14; i++) SetVCommonHandler(i, exc_catch);
+}
+static void freeze_colour(void)
+{
+    extern int sh_frame_now(void);
+    u32 v = g_pf_vs, f = (u32)sh_frame_now();
+    if (f != fz_last) { fz_last = f; fz_lastv = v; }
+    if (g_mon_tick != fz_tick) { fz_tick = g_mon_tick; fz_tickv = v; }
+    u64 col = 0;
+    if (g_flash) {                                                                 /* yellow: an exception just happened */
+        if (--g_flash == 0) { *(volatile u64 *)0x120000E0 = 0; return; }           /* NETDIAG41: then black again (the game sets PMODE every */
+        col = 0x00E0E0;                                                            /* frame but never BGCOLOR: it showed yellow behind the picture) */
+    }
+    else if (!fz_tick) return;                                                     /* report thread not watching yet */
+    else if (v - fz_tickv > 900) col = g_mon_insend ? 0x0000E0 : 0xE00000;         /* red / blue */
+    else if (v - fz_lastv > 600) col = g_exc_real ? 0x00E0E0 : 0x00C000;           /* yellow if an exception came first, else green */
+    else return;
+    *(volatile u64 *)0x120000E0 = col;                 /* BGCOLOR: R bits 0-7, G 8-15, B 16-23 */
+    *(volatile u64 *)0x12000000 = 0x4;                 /* PMODE: both read circuits off -> the screen shows BGCOLOR */
+}
+#endif
 static int vbl_handler(int c)
 {
     (void)c; g_pf_vs++;
 #ifdef ALARM_VBL
     al_irq_check();                                    /* overdue game alarms fire here (userfile.c) */
+#endif
+#ifdef NETDIAG
+    freeze_colour();
 #endif
     return -1;                                         /* -1: let the other handlers run too */
 }

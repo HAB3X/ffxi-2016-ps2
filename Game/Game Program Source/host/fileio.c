@@ -44,7 +44,10 @@ u32 svc_loadmod(const char *path, const char *args, u32 size)
 {
 #ifdef SONY_IOP
     hlog(8, 0, 0, 0, 0, 0, 0, path, 0, 0);
+    { extern void netlog(const char *, u32, u32, u32); const char *b = path; for (const char *q = path; *q; q++) if (*q == '/' || *q == '\\' || *q == ':') b = q + 1;
+      char m[40]; snprintf(m, sizeof m, "mod> %.30s", b); netlog(m, size, 0, 0); }
     int rr = sqmem_load(path, args ? args : "", size ? 6 : 1, size);
+    { extern void netlog(const char *, u32, u32, u32); netlog("mod< rc", (u32)rr, 0, 0); }
     return rr == 0 ? 0 : (u32)-3;
 #endif
     int ret = 0, id;
