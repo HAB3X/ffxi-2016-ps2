@@ -5,6 +5,7 @@ first bytes of a connection tell the two apart: no extra port has to be opened.
 
   GET /update/manifest        the list of files of the current update (404 when there is no update)
   GET /update/f/<name>        one file of it (a "Range: bytes=N-" header continues a download)
+  GET /info                   the server's info page (Server/data/info.html, written by the Server App)
 
 Server/updates/manifest.txt and Server/updates/files/ are written by Server/update_tool.py. Manifest, one item per line:
   FFXIUPD 1
@@ -38,13 +39,17 @@ def _read_request(sock):
     return lines[0], {k.strip().lower(): v.strip() for k, v in (l.split(':', 1) for l in lines[1:] if ':' in l)}
 
 
-def handle(sock, addr, root, log):
+def handle(sock, addr, root, log, info_file=None):
     """Answer one request on an accepted connection, then close it."""
     try:
         sock.settimeout(20)
         line, headers = _read_request(sock)
         parts = line.split(' ')
         path = parts[1] if len(parts) >= 2 else ''
+        if path in ('/info', '/info/'):
+            body = open(info_file, 'rb').read() if info_file and os.path.isfile(info_file) else b'<p>This server has no info page yet.</p>'
+            _send(sock, 200, 'OK', body, 'Content-Type: text/html; charset=utf-8\r\nCache-Control: no-cache\r\n')
+            return
         if path == '/update/manifest':
             mf = os.path.join(root, 'manifest.txt')
             if not os.path.isfile(mf):

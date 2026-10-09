@@ -31,8 +31,10 @@ try:
     import server_ah as sah
     import server_modes as smo
     import server_pcsx2 as spc
+    import server_info as si
+    import server_hardcore as shc
 except Exception:                                            # noqa: BLE001
-    sc = sa = sn = sr = sch = ss = sbk = snt = sd = sah = smo = spc = None
+    sc = sa = sn = sr = sch = ss = sbk = snt = sd = sah = smo = spc = si = shc = None
     SC_ERROR = traceback.format_exc()
 
 try:
@@ -1779,13 +1781,23 @@ class App:
         grid.pack(fill='x')
         numbers = [st for st in ss.GROUPS[group] if st.kind != 'flag'] if ss else []
         flags = [st for st in ss.GROUPS[group] if st.kind == 'flag'] if ss else []
+        if group == 'rules' and ss:
+            self.L(grid, 'Era', f.small, fg=C['faint'], bg=C['card'], anchor='w').grid(row=0, column=0, columnspan=4, sticky='w')
+            self.era_bar = Segmented(grid, [(k, label) for k, label, _, _ in ss.ERAS], self._pick_era, f.small, height=f.s(38))
+            self.era_bar.grid(row=1, column=0, columnspan=4, sticky='ew', pady=(4, 4))
+            self.era_note = self.L(grid, '', f.tiny, fg=C['faint'], bg=C['card'], anchor='w', justify='left')
+            self.era_note.grid(row=2, column=0, columnspan=4, sticky='w', pady=(0, 16))
+            for c in range(4):
+                grid.grid_columnconfigure(c, weight=1 if c == 3 else 0)
+        base = 3 if group == 'rules' else 0
         for i, st in enumerate(numbers):
             cell = tk.Frame(grid, bg=C['card'])
-            cell.grid(row=i // 4, column=i % 4, sticky='w', padx=(0, 28), pady=(0, 14))
+            cell.grid(row=base + i // 4, column=i % 4, sticky='w', padx=(0, 28), pady=(0, 14))
             self.L(cell, st.label, f.tiny, fg=C['soft'], bg=C['card'], anchor='w').pack(fill='x')
             e = self.entry(cell, width=9)
             e.pack(ipady=f.s(6), pady=(3, 0), anchor='w')
             e.bind('<Return>', lambda ev, g=group: self.save_world(g))
+            e.bind('<KeyRelease>', lambda ev: self._era_from_form(), add='+')
             self.world_entries[st.key] = e
         if flags:
             self.L(b, 'Open to players', f.small, fg=C['faint'], bg=C['card'], anchor='w').pack(fill='x', pady=(10, 4))
@@ -1794,11 +1806,95 @@ class App:
             for i, st in enumerate(flags):
                 var = tk.BooleanVar(value=True)
                 self.world_flags[st.key] = var
-                Check(fg, text=st.label, variable=var, bg=C['card'], fg=C['text'], font=f.small, anchor='w', activebackground=C['card'],
+                Check(fg, text=st.label, variable=var, command=self._era_from_form, bg=C['card'], fg=C['text'], font=f.small, anchor='w', activebackground=C['card'],
                                activeforeground=C['text'], selectcolor=C['input'], highlightthickness=0, bd=0).grid(
                     row=i // 3, column=i % 3, sticky='w', padx=(0, 26), pady=2)
+        if group == 'rules' and shc:
+            self._build_hardcore(b)
         self.L(b, self.WORLD_NOTES[group], f.tiny, fg=C['faint'], bg=C['card'], anchor='w', justify='left').pack(fill='x', pady=(10, 0))
         self._save_row(b, group)
+
+    # ---- era presets and hardcore mode (Rules tab)
+    def _pick_era(self, key):
+        vals = ss.era_values(key)
+        if not vals:
+            return
+        for k, v in vals.items():
+            if k in self.world_entries:
+                self.world_entries[k].delete(0, 'end')
+                self.world_entries[k].insert(0, str(v))
+            elif k in self.world_flags:
+                self.world_flags[k].set(bool(v))
+        self._era_from_form(note='Filled in. Press Save to apply it.')
+
+    def _era_from_form(self, note=None):
+        if not getattr(self, 'era_bar', None):
+            return
+        try:
+            cur = {k: int(e.get()) for k, e in self.world_entries.items() if k in ('MAX_LEVEL', 'INITIAL_LEVEL_CAP')}
+        except ValueError:
+            cur = {}
+        cur.update({k: int(v.get()) for k, v in self.world_flags.items()})
+        hit = next((k for k, _, _, vals in ss.ERAS if all(cur.get(a, -1) == int(b) for a, b in vals.items())), None)
+        self.era_bar.set(hit)
+        desc = next((d for k, _, d, _ in ss.ERAS if k == hit), 'A mix of your own choices.')
+        self.era_note.config(text=(note + '  ' if note else '') + desc)
+
+    def _build_hardcore(self, b):
+        f = self.f
+        self.L(b, 'Hardcore', f.small, fg=C['faint'], bg=C['card'], anchor='w').pack(fill='x', pady=(14, 4))
+        row = tk.Frame(b, bg=C['card'])
+        row.pack(fill='x')
+        self.hc_var = tk.BooleanVar(value=False)
+        Check(row, text='A character that falls cannot log in again', variable=self.hc_var, bg=C['card'], fg=C['text'], font=f.small).pack(side='left')
+        self.L(row, 'after', f.small, fg=C['soft'], bg=C['card']).pack(side='left', padx=(18, 6))
+        self.hc_lives = self.entry(row, width=3)
+        self.hc_lives.pack(side='left', ipady=f.s(3))
+        self.L(row, 'deaths', f.small, fg=C['soft'], bg=C['card']).pack(side='left', padx=(6, 0))
+        TextLink(row, 'Fallen characters...', self.show_fallen, f.small, bg=C['card']).pack(side='left', padx=24)
+        self.L(b, 'Nothing is deleted: a fallen character is only locked out, and you can restore it from the list. Game masters are never affected.',
+               f.tiny, fg=C['faint'], bg=C['card'], anchor='w', justify='left').pack(fill='x', pady=(4, 0))
+
+    def show_fallen(self):
+        f = self.f
+        d = tk.Toplevel(self.root)
+        d.title('Fallen characters')
+        d.configure(bg=C['bg'])
+        d.transient(self.root)
+        body = tk.Frame(d, bg=C['bg'])
+        body.pack(fill='both', expand=True, padx=26, pady=22)
+        self.L(body, 'Fallen characters', f.h2, bg=C['bg'], anchor='w').pack(fill='x')
+        box = tk.Frame(body, bg=C['bg'])
+        box.pack(fill='both', expand=True, pady=(12, 0))
+        msg = self.L(body, '', f.small, fg=C['soft'], bg=C['bg'], anchor='w', justify='left')
+        msg.pack(fill='x', pady=(10, 0))
+
+        def fill():
+            for w in box.winfo_children():
+                w.destroy()
+            try:
+                rows = shc.fallen()
+            except Exception as e:                           # noqa: BLE001
+                self.L(box, 'The list is only available while the server is on.', f.small, fg=C['amber'], bg=C['bg'], anchor='w', justify='left', wraplength=f.s(420)).pack(fill='x')
+                return
+            if not rows:
+                self.L(box, 'Nobody has fallen.', f.small, fg=C['soft'], bg=C['bg'], anchor='w').pack(fill='x')
+            for cid, name in rows:
+                r = tk.Frame(box, bg=C['card2'])
+                r.pack(fill='x', pady=3)
+                self.L(r, name, f.body, bg=C['card2']).pack(side='left', padx=14, pady=10)
+                TextLink(r, 'Restore', lambda c=cid, n=name: restore(c, n), f.small, bg=C['card2']).pack(side='right', padx=14)
+
+        def restore(cid, name):
+            try:
+                shc.restore(cid)
+                msg.config(text='%s can play again.' % name, fg=C['green'])
+            except Exception as e:                           # noqa: BLE001
+                msg.config(text=str(e), fg=C['red'])
+            fill()
+        fill()
+        d.update_idletasks()
+        d.geometry('+%d+%d' % (self.root.winfo_rootx() + 160, self.root.winfo_rooty() + 110))
 
     def _build_world_events(self, b):
         f = self.f
@@ -1806,6 +1902,9 @@ class App:
                   'They run while this window is open.', f.tiny, fg=C['faint'], bg=C['card'], anchor='w', justify='left').pack(fill='x')
         self.events_list = tk.Frame(b, bg=C['card'])
         self.events_list.pack(fill='x', pady=(10, 0))
+        self.announce_var = tk.BooleanVar(value=ss.announce_events_on() if ss else True)
+        Check(b, text='Tell players in the game when an event starts and ends', variable=self.announce_var, command=lambda: ss.set_announce_events(self.announce_var.get()),
+              bg=C['card'], fg=C['text'], font=f.small).pack(anchor='w', pady=(12, 0))
         row = tk.Frame(b, bg=C['card'])
         row.pack(fill='x', pady=(14, 0))
         RoundButton(row, 'Add an event', self.add_event, C['accent'], f.h3, height=f.s(40), width=f.s(150), radius=10, bg=C['card']).pack(side='left')
@@ -1990,6 +2089,13 @@ class App:
                     self.world_entries[k].insert(0, '%g' % v)
                 elif k in self.world_flags:
                     self.world_flags[k].set(bool(v))
+        if getattr(self, 'era_bar', None):
+            self._era_from_form()
+        if getattr(self, 'hc_var', None) and shc:
+            hc = shc.get()
+            self.hc_var.set(hc['on'])
+            self.hc_lives.delete(0, 'end')
+            self.hc_lives.insert(0, str(hc['lives']))
         self._show_events()
 
     def _world_say(self, group, text, color):
@@ -2002,6 +2108,8 @@ class App:
             name, welcome = self.set_name.get(), self.set_welcome.get()
         else:
             values = {st.key: (self.world_flags[st.key].get() if st.kind == 'flag' else self.world_entries[st.key].get()) for st in ss.GROUPS[group]}
+            hc_on = self.hc_var.get() if getattr(self, 'hc_var', None) else False
+            hc_lives = self.hc_lives.get() if getattr(self, 'hc_lives', None) else 1
 
         def work():
             try:
@@ -2010,6 +2118,8 @@ class App:
                     msg = 'Saved.' + (' Restart the server for the new name to show.' if changed and running else '')
                 else:
                     changed = ss.save_values(group, values)
+                    if group == 'rules' and shc and getattr(self, 'hc_var', None):
+                        shc.save(hc_on, hc_lives)
                     msg = 'Saved.' + (' The server picks it up in a few seconds.' if changed and running and group != 'rules' else '')
                     if changed and running and group == 'rules':
                         msg = 'Saved. Restart the server for it to apply everywhere.'
@@ -2147,6 +2257,7 @@ class App:
                 msg = ss.tick_events()
             except Exception as e:                           # noqa: BLE001
                 err = str(e)
+            self._write_info()
             try:
                 if sbk and self.state and self.state.get('database') and not self.busy and sbk.auto_due():
                     sbk.auto_backup()
@@ -2168,6 +2279,7 @@ class App:
         if msg:
             self.chat_add('admin', msg)
             self._notify(msg)
+            self._announce(msg)
             self._show_events()
         if bk:
             self.chat_add('admin', bk)
@@ -2175,6 +2287,34 @@ class App:
                 self._show_backup_note()
         if err:
             self.chat_add('error', 'Scheduled job: ' + err)
+
+    def _announce(self, text):
+        """Tell everyone in the game (the same as typing /announce in the chat box). Only while the map server is up."""
+        if not (sa and ss and ss.announce_events_on() and self.state and self.state.get('xi_map')):
+            return
+        threading.Thread(target=lambda: sa.command('/announce ' + text), daemon=True).start()
+
+    def _info_address(self):
+        """(host, port) for the info page's "How to join" box, or None when the owner chose to leave the address out."""
+        try:
+            if not sc.load_config().get('info_show_address', False):
+                return None
+        except Exception:                                    # noqa: BLE001
+            return None
+        host = self.addr.get('net') or self.addr.get('lan')
+        return (host, sc.SERVER_PORT_FOR_PLAYERS) if host else None
+
+    def _write_info(self):
+        if not si:
+            return
+        try:
+            n = len(sa.online_players()) if (sa and self.state and self.state.get('database')) else None
+        except Exception:                                    # noqa: BLE001
+            n = None
+        try:
+            si.write(address=self._info_address(), players=n)
+        except Exception:                                    # noqa: BLE001
+            pass
 
     def _notify(self, text):
         if not snt:
@@ -2191,7 +2331,15 @@ class App:
         self.maint_bar.pack(fill='x', pady=(0, 14))
         gen = tk.Frame(page.body, bg=C['bg'])
         self.maint_frames = {'general': gen, 'debug': tk.Frame(page.body, bg=C['bg'])}
-        bp = Panel(gen, None, f, pad=26)
+        cols = tk.Frame(gen, bg=C['bg'])
+        cols.pack(fill='both', expand=True)
+        cols.grid_columnconfigure(0, weight=1, uniform='m')
+        cols.grid_columnconfigure(1, weight=1, uniform='m')
+        left = tk.Frame(cols, bg=C['bg'])
+        left.grid(row=0, column=0, sticky='nsew', padx=(0, 8))
+        right = tk.Frame(cols, bg=C['bg'])
+        right.grid(row=0, column=1, sticky='nsew', padx=(8, 0))
+        bp = Panel(left, None, f, pad=24)
         bp.pack(fill='x')
         self.L(bp.body, 'Backups', f.small, fg=C['faint'], bg=C['card'], anchor='w').pack(fill='x')
         self.backup_note = self.L(bp.body, '', f.small, fg=C['soft'], bg=C['card'], anchor='w', justify='left')
@@ -2206,22 +2354,24 @@ class App:
         on, keep = sbk.auto_settings() if sbk else (False, 7)
         self.auto_var = tk.BooleanVar(value=on)
         Check(arow, text='Back up every day while the server is on', variable=self.auto_var, command=self._save_auto, bg=C['card'], fg=C['text'],
-                       font=f.small, activebackground=C['card'], activeforeground=C['text'], selectcolor=C['input'], highlightthickness=0, bd=0).pack(side='left')
-        self.L(arow, 'Keep', f.small, fg=C['soft'], bg=C['card']).pack(side='left', padx=(22, 6))
-        self.keep_entry = self.entry(arow, width=4)
+              font=f.small).pack(anchor='w')
+        krow = tk.Frame(bp.body, bg=C['card'])
+        krow.pack(fill='x', pady=(10, 0))
+        self.L(krow, 'Keep the last', f.small, fg=C['soft'], bg=C['card']).pack(side='left', padx=(0, 8))
+        self.keep_entry = self.entry(krow, width=4)
         self.keep_entry.insert(0, str(keep))
         self.keep_entry.pack(side='left', ipady=f.s(4))
         self.keep_entry.bind('<FocusOut>', lambda e: self._save_auto())
         self.keep_entry.bind('<Return>', lambda e: self._save_auto())
-        self.L(arow, 'automatic backups', f.small, fg=C['soft'], bg=C['card']).pack(side='left', padx=(6, 0))
+        self.L(krow, 'automatic backups', f.small, fg=C['soft'], bg=C['card']).pack(side='left', padx=(8, 0))
 
-        dp = Panel(gen, None, f, pad=26)
-        dp.pack(fill='x', pady=(14, 0))
+        dp = Panel(right, None, f, pad=24)
+        dp.pack(fill='x')
         self.L(dp.body, 'Discord', f.small, fg=C['faint'], bg=C['card'], anchor='w').pack(fill='x')
         self.L(dp.body, 'Posts a line to a channel when the server starts, stops, restarts after a problem, or a scheduled event begins or ends. '
                         'In Discord: channel settings > Integrations > Webhooks > Copy Webhook URL.', f.tiny, fg=C['faint'], bg=C['card'], anchor='w',
-               justify='left').pack(fill='x', pady=(4, 8))
-        self.hook_entry = self.entry(dp.body, show='•', width=50)
+               justify='left', wraplength=f.s(380)).pack(fill='x', pady=(4, 8))
+        self.hook_entry = self.entry(dp.body, show='•', width=30)
         self.hook_entry.pack(fill='x', ipady=f.s(7))
         if snt:
             self.hook_entry.insert(0, snt.webhook())
@@ -2232,7 +2382,26 @@ class App:
         self.hook_msg = self.L(drow, '', f.small, fg=C['soft'], bg=C['card'], anchor='w')
         self.hook_msg.pack(side='left')
 
-        hp = Panel(gen, None, f, pad=26)
+        ipn = Panel(right, None, f, pad=24)
+        ipn.pack(fill='x', pady=(14, 0))
+        self.L(ipn.body, 'Info page', f.small, fg=C['faint'], bg=C['card'], anchor='w').pack(fill='x')
+        self.L(ipn.body, 'A page with your era, level cap, rates, events and players online, for friends or a Discord. Your server shows it at this address '
+                         'while it is on (the port must be reachable, as for players).', f.tiny, fg=C['faint'], bg=C['card'], anchor='w', justify='left',
+               wraplength=f.s(380)).pack(fill='x', pady=(4, 8))
+        lrow = tk.Frame(ipn.body, bg=C['card'])
+        lrow.pack(fill='x')
+        self.info_url = self.L(lrow, '', f.mono_s, fg=C['text'], bg=C['card'], anchor='w')
+        self.info_url.pack(side='left')
+        TextLink(lrow, 'copy', self.copy_info_url, f.tiny, bg=C['card']).pack(side='left', padx=12)
+        irow = tk.Frame(ipn.body, bg=C['card'])
+        irow.pack(fill='x', pady=(12, 0))
+        self.info_addr_var = tk.BooleanVar(value=bool(sc.load_config().get('info_show_address', False)) if sc else False)
+        Check(irow, text='Show my server address on the page', variable=self.info_addr_var, command=self._save_info_opts, bg=C['card'], fg=C['text'],
+              font=f.small).pack(anchor='w')
+        RoundButton(ipn.body, 'Save a copy...', self.save_info_copy, C['grey'], f.small, height=f.s(34), width=f.s(140), radius=10, bg=C['card']).pack(anchor='w', pady=(12, 0))
+        self._show_info_url()
+
+        hp = Panel(left, None, f, pad=24)
         hp.pack(fill='x', pady=(14, 0))
         self.L(hp.body, 'Health', f.small, fg=C['faint'], bg=C['card'], anchor='w').pack(fill='x')
         self.health_text = self.L(hp.body, '', f.small, fg=C['text'], bg=C['card'], anchor='w', justify='left')
@@ -2329,6 +2498,44 @@ class App:
         self.root.clipboard_clear()
         self.root.clipboard_append(text)
         self.debug_msg.config(text='Copied %d lines.' % len(text.splitlines()) if text else 'Nothing to copy.', fg=C['green'] if text else C['soft'])
+
+    def _info_link(self, masked):
+        host = self.addr.get('net') or self.addr.get('lan') or 'your-address'
+        return 'http://%s:%s/info' % (self.mask(host) if masked else host, sc.SERVER_PORT_FOR_PLAYERS if sc else 54001)
+
+    def _show_info_url(self):
+        if getattr(self, 'info_url', None):
+            self.info_url.config(text=self._info_link(self.hide_ips))
+            self.root.after(5000, self._show_info_url)
+
+    def copy_info_url(self):
+        self.root.clipboard_clear()
+        self.root.clipboard_append(self._info_link(False))
+        self.chat_add('admin', 'The info page address is copied.')
+
+    def _save_info_opts(self):
+        try:
+            cfg = sc.load_config()
+            cfg['info_show_address'] = bool(self.info_addr_var.get())
+            sc.save_config(cfg)
+        except Exception:                                    # noqa: BLE001
+            return
+        threading.Thread(target=self._write_info, daemon=True).start()
+
+    def save_info_copy(self):
+        path = filedialog.asksaveasfilename(parent=self.root, title='Save the info page', initialfile='server-info.html', defaultextension='.html',
+                                            filetypes=[('Web page', '*.html')])
+        if not path:
+            return
+        try:
+            n = len(sa.online_players()) if (sa and self.state and self.state.get('database')) else None
+        except Exception:                                    # noqa: BLE001
+            n = None
+        try:
+            si.write(address=self._info_address(), players=n, path=path)
+            self.chat_add('admin', 'Saved the info page to %s.' % path)
+        except Exception as e:                               # noqa: BLE001
+            messagebox.showerror(TITLE, 'Could not save it: %s' % e)
 
     def _save_auto(self):
         if not sbk:
