@@ -280,10 +280,71 @@ static void hm_fails(int k)                            /* failed file opens / st
     u32 n = g_failn;
     for (u32 j = n > (u32)k ? n - k : 0; j < n; j++) { const char *pp = (const char *)g_failp[j]; int l = (int)strlen(pp); hm_line(1, "fail %d %s", (int)g_failr[j], l > 40 ? pp + l - 40 : pp); }
 }
+typedef struct { volatile u32 idx, ra, a0, sp, cyc; } IfEnt;
+static int hm_tid_of_sp(u32 sp)                         /* which thread's stack holds this stack pointer (-1: none, e.g. an interrupt) */
+{
+    for (int t = 1; t < 64; t++) {
+        ee_thread_status_t st;
+        if (ReferThreadStatus(t, &st) < 0 || st.status == 16) continue;
+        u32 b = (u32)st.stack; if (sp >= b && sp < b + (u32)st.stack_size) return t;
+    }
+    return -1;
+}
+static void hm_inflight(void)                          /* NETDIAG33: every service call still in progress, and the thread inside it */
+{
+    extern volatile IfEnt g_if[32];
+    u32 now; __asm__ volatile("mfc0 %0, $9" : "=r"(now));
+    int m = 0;
+    for (int k = 0; k < 32 && m < 12; k++) {
+        u32 id = g_if[k].idx; if (!id) continue;
+        const char *nm = slot_name(id & 0xffff); m++;
+        hm_line(1, "in t%d c%u %-14.14s ra %08x a0 %08x %ums", hm_tid_of_sp(g_if[k].sp), (unsigned)(id & 0xffff), nm ? nm : "?",
+                (unsigned)g_if[k].ra, (unsigned)g_if[k].a0, (unsigned)((now - g_if[k].cyc) / 294912u));
+    }
+    if (!m) hm_line(1, "in: no call in progress");
+}
+static void hm_hw(void)                                /* NETDIAG33: interrupt, DMA and GS state */
+{
+#define HW(a) (*(volatile u32 *)(a))
+    hm_line(1, "intc %04x/%04x dstat %08x dctrl %08x", (unsigned)(HW(0x1000F000) & 0xffff), (unsigned)(HW(0x1000F010) & 0xffff), (unsigned)HW(0x1000E010), (unsigned)HW(0x1000E000));
+    hm_line(1, "chcr v0 %x v1 %x gif %x s0 %x s1 %x s2 %x", (unsigned)(HW(0x10008000) & 0xffff), (unsigned)(HW(0x10009000) & 0xffff), (unsigned)(HW(0x1000A000) & 0xffff),
+            (unsigned)(HW(0x1000C000) & 0xffff), (unsigned)(HW(0x1000C400) & 0xffff), (unsigned)(HW(0x1000C800) & 0xffff));
+    hm_line(1, "gs csr %08x gif %08x vif1 %08x", (unsigned)HW(0x12001000), (unsigned)HW(0x10003020), (unsigned)HW(0x10003C00));
+    { extern volatile u32 g_syncpath_timeouts, g_syncpath_maxspin, g_syncpath_calls; hm_line(1, "gssync calls %u timeouts %u longest %u", (unsigned)g_syncpath_calls, (unsigned)g_syncpath_timeouts, (unsigned)g_syncpath_maxspin); }
+#undef HW
+}
+static void hm_threads_ready(char *b, int n)           /* READY threads as "tid:prio" */
+{
+    int bl = 0; b[0] = 0;
+    for (int t = 1; t < 64; t++) { ee_thread_status_t st; if (ReferThreadStatus(t, &st) < 0 || st.status != 2) continue; bl += snprintf(b + bl, n - bl, " %d:%d", t, st.current_priority); if (bl > n - 8) break; }
+}
+#ifdef NETDIAG_RECOVER   /* NETDIAG37: off (none of the recovery steps ever unfroze the console) */
+static int hm_recover(void)                            /* NETDIAG33: try to get a frozen game going again; returns the step that worked (0 = none) */
+{
+    extern int sh_frame_now(void);
+    int me = GetThreadId(), f0;
+    for (int step = 1; step <= 4; step++) {
+        f0 = sh_frame_now();
+        for (int t = 1; t < 64; t++) {
+            ee_thread_status_t st;
+            if (t == me || ReferThreadStatus(t, &st) < 0 || st.status != 2) continue;
+            if (step == 1) RotateThreadReadyQueue(st.current_priority);          /* 1: the ready queue of each waiting priority */
+            else if (step == 2) ChangeThreadPriority(t, st.current_priority);    /* 2: put each READY thread back in its queue */
+            else if (step == 3) { SuspendThread(t); ResumeThread(t); }          /* 3: suspend + resume each READY thread */
+            else if (st.current_priority > 1) ChangeThreadPriority(t, 1);         /* 4: move each READY thread to priority 1 (the level that still runs) */
+        }
+        DelayThread(2 * 1000 * 1000);
+        int d = sh_frame_now() - f0;
+        L("recover: step / frames after it", (u32)step, (u32)d, 0);
+        if (d > 10) return step;
+    }
+    return 0;
+}
+#endif
 static void hm_build(int hang, u32 fr_up, u32 vs_up)
 {
     extern int sh_frame_now(void), sh_state_now(void); extern volatile u32 g_calls, g_crn; extern volatile NdCr g_cr[1024];
-    extern volatile u32 g_vbl_epc[256], g_vbl_epcn, g_pf_vs;
+    extern volatile u32 g_pf_vs;
     extern volatile u32 g_opn, g_opr[40]; extern volatile char g_opp[40][48];
     u32 now; __asm__ volatile("mfc0 %0, $9" : "=r"(now));
     hm_n = 0;
@@ -293,32 +354,13 @@ static void hm_build(int hang, u32 fr_up, u32 vs_up)
             (unsigned)(g_net_ip >> 24), (unsigned)(g_net_ip >> 16 & 255), (unsigned)(g_net_ip >> 8 & 255), (unsigned)(g_net_ip & 255));
     { int k = g_netlog_n, f = k > 6 ? k - 6 : 0; for (int i = f; i < k; i++) hm_line(1, "log%s", g_netlog[i % 16]); }   /* the host's own log: hang, missing resources */
     hm_line(1, "IOP free %d KB, largest block %d KB (at %ds)", g_iop_tot, g_iop_big, g_iop_at);
-    {   /* calls that have not returned yet, oldest first: what each stuck thread is waiting in */
-        int m = 0; u32 n = g_crn;
-        for (u32 i = n > 1024 ? n - 1024 : 0; i < n && m < 8; i++) {
-            volatile NdCr *c = &g_cr[i & 1023];
-            if (c->pad != 0xdead) continue;
-            const char *nm = slot_name(c->idx); m++;
-            hm_line(1, "busy c%u %-14.14s ra %08x a0 %08x %ums", c->idx, nm ? nm : "?", (unsigned)c->ra, (unsigned)c->a0, (unsigned)((now - c->cyc) / 294912u));
-        }
-        if (!m) hm_line(1, "busy: no call in progress");
-    }
+    hm_inflight();
+    { char rb[64]; hm_threads_ready(rb, sizeof rb); hm_line(1, "ready%s", rb); }
+    hm_hw();
+    { extern volatile u32 g_alvbl_fired, g_alwd_fired; hm_line(1, "alarms rescued vblank %u watchdog %u", (unsigned)g_alvbl_fired, (unsigned)g_alwd_fired); }
     { u32 n = g_opn; for (u32 k = n > 8 ? n - 8 : 0; k < n; k++) { const char *pp = (const char *)g_opp[k % 40]; int l = (int)strlen(pp); hm_line(1, "open %d %s", (int)g_opr[k % 40], l > 40 ? pp + l - 40 : pp); } }
     hm_fails(3);
     hm_fps();
-    {   /* CPU position at the last 128 vblanks, most frequent first */
-        static u32 a[128]; int n = 0; u32 e = g_vbl_epcn;
-        for (int i = 0; i < 128 && (u32)i < e; i++) a[n++] = g_vbl_epc[(e - 1 - i) & 255];
-        char buf[72]; int bl = 0; buf[0] = 0;
-        for (int k = 0; k < 4; k++) {
-            int best = -1, bc = 0;
-            for (int i = 0; i < n; i++) { if (a[i] == 1) continue; int c = 0; for (int j = 0; j < n; j++) if (a[j] == a[i]) c++; if (c > bc) { bc = c; best = i; } }
-            if (best < 0) break;
-            u32 v = a[best]; for (int j = 0; j < n; j++) if (a[j] == v) a[j] = 1;
-            bl += snprintf(buf + bl, sizeof buf - bl, " %08x x%d", (unsigned)v, bc);
-        }
-        if (bl) hm_line(1, "pc%s", buf);
-    }
     u32 n = g_crn;
     for (int i = 0; i < 4 && (u32)i < n; i++) {
         volatile NdCr *c = &g_cr[(n - 1 - i) & 1023];
@@ -340,15 +382,38 @@ static void hm_build(int hang, u32 fr_up, u32 vs_up)
                 nr > 0 ? (unsigned)r[nr - 1] : 0, nr > 1 ? (unsigned)r[nr - 2] : 0, nr > 2 ? (unsigned)r[nr - 3] : 0, nr > 3 ? (unsigned)r[nr - 4] : 0);
     }
 }
+#ifndef BEAT_S
+#define BEAT_S 45
+#endif
+/* NETDIAG36: a short report every BEAT_S seconds from sign-in on, whether or not frames stop.  NETDIAG30/34/35 (and two earlier runs) stopped
+   right at the zone-in (2 zone frames each way, then nothing) without any hang report: the loading screen keeps counting frames, so the
+   frame watchdog never fires.  These reports show what every thread is doing during the zone load. */
+static void hm_beat(int nb)
+{
+    extern int sh_frame_now(void), sh_state_now(void); extern volatile u32 g_calls, g_opn, g_opr[40], g_pf_vs;
+    extern volatile char g_opp[40][48]; extern volatile int g_in_world;
+    extern volatile u32 g_syncpath_timeouts, g_syncpath_maxspin, g_syncpath_calls, g_alvbl_fired, g_alwd_fired;
+    hm_n = 0;
+    hm_line(1, "%s BEAT %d %us fr %d vbl %u world %d page %d calls %u opens %u", BUILD_TAG, nb, net_secs(), sh_frame_now(), (unsigned)g_pf_vs,
+            g_in_world, sh_state_now(), (unsigned)g_calls, (unsigned)g_opn);
+    { int k = g_netlog_n, f = k > 4 ? k - 4 : 0; for (int i = f; i < k; i++) hm_line(1, "log%s", g_netlog[i % 16]); }
+    hm_inflight();
+    { char rb[64]; hm_threads_ready(rb, sizeof rb); hm_line(1, "ready%s", rb); }
+    hm_hw();
+    hm_line(1, "alarms rescued vblank %u watchdog %u", (unsigned)g_alvbl_fired, (unsigned)g_alwd_fired);
+    { u32 n = g_opn; for (u32 k = n > 5 ? n - 5 : 0; k < n; k++) { const char *pp = (const char *)g_opp[k % 40]; int l = (int)strlen(pp); hm_line(1, "open %d %s", (int)g_opr[k % 40], l > 40 ? pp + l - 40 : pp); } }
+}
 static void hm_stats(void)                             /* NETDIAG32: a short summary 10 minutes into the world, sent even when nothing went wrong */
 {
     extern volatile u32 g_calls;
     hm_n = 0;
     hm_line(1, "%s STATS %us since boot, calls %u", BUILD_TAG, net_secs(), (unsigned)g_calls);
+    { extern volatile u32 g_syncpath_timeouts, g_syncpath_maxspin, g_syncpath_calls; hm_line(1, "gssync calls %u timeouts %u longest %u (old limit 32768)", (unsigned)g_syncpath_calls, (unsigned)g_syncpath_timeouts, (unsigned)g_syncpath_maxspin); }
     hm_line(1, "IOP free %d KB, largest block %d KB (at %ds)", g_iop_tot, g_iop_big, g_iop_at);
     hm_fails(4);
     unsigned mn = 999, sum = 0, n = 0; for (u32 i = g_fps_n > 120 ? g_fps_n - 120 : 0; i < g_fps_n; i++) { unsigned v = g_fps[i & 127]; sum += v; n++; if (v < mn) mn = v; }
     hm_line(1, "fps last %us: avg %u min %u", n, n ? sum / n : 0, n ? mn : 0);
+    { extern volatile u32 g_alvbl_fired, g_alwd_fired; hm_line(1, "alarms rescued vblank %u watchdog %u", (unsigned)g_alvbl_fired, (unsigned)g_alwd_fired); }
     hm_fps();
 }
 static void hm_draw(void)
@@ -356,7 +421,9 @@ static void hm_draw(void)
     scr_clear(); scr_setXY(0, 1);
     for (int i = 0; i < hm_n; i++) if (hm_scr[i]) scr_printf("%s\n", hm_rep[i]);
 }
-static int hm_send(void)
+static int hm_send_raw(void);
+static int hm_send(void) { extern volatile u32 g_mon_insend; g_mon_insend = 1; int r = hm_send_raw(); g_mon_insend = 0; return r; }
+static int hm_send_raw(void)
 {
     typedef int (*f2)(u32, void *); typedef int (*f1)(int); typedef int (*f3)(int, void *, int);
     static SqAddr a; static u8 pk[64] __attribute__((aligned(64)));
@@ -375,6 +442,7 @@ static int hm_send(void)
             for (i = 0; i < 30 && r == 0; i++) { r = ((f1)g_orig[232])(h); if (!r) DelayThread(100 * 1000); }
             if (r <= 0) { ((f1)g_orig[236])(h); return -200000 - l * 100; }
             int s = ((f3)g_orig[237])(h, pk, 0x34);
+            { extern volatile u32 g_mon_tick; g_mon_tick++; }   /* NETDIAG37: a send that is moving counts as alive */
             DelayThread(200 * 1000);                     /* the proxy answers and closes first, so this side never sits in TIME_WAIT */
             ((f1)g_orig[236])(h);
             if (s < 0) return -300000 - l * 100;
@@ -383,22 +451,58 @@ static int hm_send(void)
     }
     return hm_n;
 }
+extern volatile int g_ei_fixed, g_prio_fixed;
 static void hm_timeline(void)                           /* PS2 fix: how long the bring-up took on this console, step by step (the proxy log keeps it) */
 {
     extern int sh_state_now(void);
     hm_n = 0;
-    hm_line(1, "%s OK %us since boot, page %d", BUILD_TAG, net_secs(), sh_state_now());
+    hm_line(1, "%s OK %us since boot, page %d, ei fix %d prio fix %d", BUILD_TAG, net_secs(), sh_state_now(), g_ei_fixed, g_prio_fixed);
     hm_line(1, "bring-up %us..%us took %us ph %d ip %u.%u.%u.%u", (unsigned)g_net_t0, (unsigned)g_net_tup, (unsigned)(g_net_tup - g_net_t0), g_bp_used_placeholder,
             (unsigned)(g_net_ip >> 24), (unsigned)(g_net_ip >> 16 & 255), (unsigned)(g_net_ip >> 8 & 255), (unsigned)(g_net_ip & 255));
     int k = g_netlog_n, f = k > 16 ? k - 16 : 0;
     for (int i = f; i < k; i++) hm_line(1, "%s", g_netlog[i % 16]);
 }
+/* NETDIAG40: CPU exceptions (bad address, bus error, break, trap ...). The stock kernel's handler for these just stops the EE with
+   interrupts off: the picture freezes with no colour and nothing reaches the PC, which is what the NETDIAG39 zone-in freeze looked like.
+   exc.S/exc_park (perf.c) now catch them, park the thread that faulted, flash the screen YELLOW, and this report goes to the PC. */
+extern volatile u32 g_exc[20], g_exc_n;
+static void hm_exc(void)
+{
+    extern int sh_frame_now(void); extern volatile u32 g_pf_vs;
+    volatile u32 *e = g_exc;
+    hm_n = 0;
+    hm_line(1, "%s EXC %u code %u cause %08x epc %08x bad %08x thr %d sr %08x", BUILD_TAG, (unsigned)g_exc_n, (unsigned)(e[0] >> 2 & 31), (unsigned)e[0], (unsigned)e[1], (unsigned)e[2], (int)e[19], (unsigned)e[3]);
+    hm_line(1, "ra %08x sp %08x gp %08x at %08x", (unsigned)e[4], (unsigned)e[5], (unsigned)e[6], (unsigned)e[7]);
+    hm_line(1, "v0 %08x v1 %08x a0 %08x a1 %08x", (unsigned)e[8], (unsigned)e[9], (unsigned)e[10], (unsigned)e[11]);
+    hm_line(1, "a2 %08x a3 %08x t9 %08x s0 %08x", (unsigned)e[12], (unsigned)e[13], (unsigned)e[14], (unsigned)e[15]);
+    hm_line(1, "s1 %08x s2 %08x fr %d vbl %u", (unsigned)e[16], (unsigned)e[17], sh_frame_now(), (unsigned)g_pf_vs);
+    {   /* the instructions at EPC (if it is a readable address) */
+        u32 pc = e[1] & ~3u;
+        if (pc >= 0x100000 && pc < 0x1FFFFF0) { volatile u32 *p = (volatile u32 *)pc; hm_line(1, "code %08x %08x %08x %08x", (unsigned)p[-1], (unsigned)p[0], (unsigned)p[1], (unsigned)p[2]); }
+    }
+    { int k = g_netlog_n, f = k > 3 ? k - 3 : 0; for (int i = f; i < k; i++) hm_line(1, "log%s", g_netlog[i % 16]); }
+}
+static u8 exct_stack[2048] __attribute__((section(".xcmem"), aligned(64)));   /* .xcmem: outside the full host area */
+static void exc_test_thread(void *arg) { (void)arg; __asm__ volatile("lw $2, 1($0)" ::: "$2", "memory"); for (;;) SleepThread(); }   /* misaligned load = address error (code 4) on purpose; nothing is read or written */
+static void exc_test(void)
+{
+    extern volatile int g_exc_testid;
+    ee_thread_t t; memset(&t, 0, sizeof t);
+    t.func = (void *)exc_test_thread; t.stack = exct_stack; t.stack_size = sizeof exct_stack; t.initial_priority = 1; t.gp_reg = &_gp;
+    int id = CreateThread(&t); if (id >= 0) { g_exc_testid = id; StartThread(id, NULL); }
+}
 static void world_watch(void)                          /* PS2 fix: after sign-in, report to the PC if the game stops drawing frames (5 s) */
 {
     extern int sh_frame_now(void); extern volatile u32 g_pf_vs; extern volatile int g_in_world;
     int last = sh_frame_now(), still = 0, sent = 0, prev = last, inw = 0, stats = 0;
+    extern volatile u32 g_mon_tick; extern void exc_install(void);
+    exc_install();                                     /* NETDIAG40: again here, in case anything replaced the handlers since start-up */
     for (;;) {
         DelayThread(1000 * 1000);
+        g_mon_tick++;
+        {   static u32 exc_seen = 0;
+            if (g_exc_n != exc_seen) { exc_seen = g_exc_n; hm_exc(); g_hm_force = 1; g_hm_rc = hm_send(); g_hm_force = 0; }
+        }
         int f = sh_frame_now();
         { int d = f - prev; g_fps[g_fps_n & 127] = (u8)(d < 0 ? 0 : d > 255 ? 255 : d); g_fps_n++; prev = f; }
         /* NETDIAG32: no IOP memory probe every 15 s any more - it holds all free IOP memory for a moment, and a file open or network
@@ -406,6 +510,15 @@ static void world_watch(void)                          /* PS2 fix: after sign-in
         if (g_in_world && !stats && ++inw == STATS_AFTER_S) {   /* 10 minutes in the world: a short summary */
             stats = 1; hm_stats(); g_hm_force = 1; g_hm_rc = hm_send(); g_hm_force = 0;
             L("report: stats sent rc/packets", (u32)g_hm_rc, g_hm_sent, 0);
+        }
+        {   /* NETDIAG36: heartbeat reports from sign-in on (every BEAT_S s until 3 min in the world, then every 3 min) */
+            static int bt = 0, nb = 0, wt = 0;
+            if (g_in_world) wt++; else wt = 0;
+            if (g_dev_applied && ++bt >= (wt > 180 ? 180 : BEAT_S)) {
+                bt = 0; if (nb == 0) exc_test();   /* NETDIAG40: one deliberate exception in a throwaway thread: yellow flash + EXC report = the catcher works */
+                hm_beat(++nb); g_hm_force = 1; g_hm_rc = hm_send(); g_hm_force = 0;
+                prev = sh_frame_now();                 /* the send takes a while: don't count it as a slow second */
+            }
         }
         if (f != last) { last = f; still = 0; continue; }
         if (++still == 5 && sent < 3) {
@@ -417,6 +530,13 @@ static void world_watch(void)                          /* PS2 fix: after sign-in
             hm_build(1, (u32)f, g_pf_vs);
             g_hm_force = 1; g_hm_rc = hm_send(); g_hm_force = 0;
             L("report: hang report sent rc/packets", (u32)g_hm_rc, g_hm_sent, 0);
+            if (sent == 1) {                           /* NETDIAG33: then try to unfreeze it, and say which step worked */
+                int st = 0, fr = sh_frame_now();   /* NETDIAG37: no recovery attempts (none ever worked) */
+                hm_n = 0; hm_line(1, "%s RECOVER step %d (0 = none) frames now %d", BUILD_TAG, st, fr);
+                { int k = g_netlog_n, f = k > 3 ? k - 3 : 0; for (int i = f; i < k; i++) hm_line(1, "log%s", g_netlog[i % 16]); }
+                g_hm_force = 1; g_hm_rc = hm_send(); g_hm_force = 0;
+                if (st) { last = sh_frame_now(); still = 0; sent = 0; continue; }   /* running again: watch for the next freeze */
+            }
             still = -55;                               /* again after another minute if still stuck */
         }
     }
@@ -440,7 +560,7 @@ static void hang_monitor(void *arg)
 static void hang_monitor_start(void)
 {
     ee_thread_t t; memset(&t, 0, sizeof t);
-    t.func = (void *)hang_monitor; t.stack = hm_stack; t.stack_size = sizeof hm_stack; t.initial_priority = 1; t.gp_reg = &_gp;
+    t.func = (void *)hang_monitor; t.stack = hm_stack; t.stack_size = sizeof hm_stack; t.initial_priority = 0;   /* NETDIAG37: 0, above every game thread */ t.gp_reg = &_gp;
     int id = CreateThread(&t); if (id >= 0) StartThread(id, NULL);
 }
 static void fio_gate_on(void)
@@ -934,6 +1054,27 @@ static int host_sqdelay_dt(u32 ticks)
     DelayThread(ticks * 64);                                  /* one hsync = 63.6 us */
     return 0;
 }
+/* PS2 fix (NETDIAG34): interrupt-context code from the 2007 kernel and the game ends with "sync; ei" (the SDK's ExitHandler), but here it runs
+   in the middle of other handlers: the game's alarm callbacks (0x442CB0, 0x4E73F0) inside the host's alarm table / vblank rescue, the sceFs
+   SIF command wrapper (0x1EC5F0) inside the SDK's SIF interrupt handler, the old sqDelay callback (0x1FA9B0).  The early "ei" lets the next
+   interrupt in while the outer handler is still running.  The real PS2 then stops running threads that are READY (NETDIAG31-33 hang reports:
+   CPU idle, game threads READY, frames 0).  The ei becomes a nop; interrupts come back on when the kernel returns from the interrupt.
+   Also: the game's request worker (0x443B40 loop) lowers its own priority 1 -> 2 between requests (0x443D48); every console freeze had that
+   call still in progress.  The worker now stays at priority 1.
+   NETDIAG34 on the console froze at the zone-in with both changes (no report at all: interrupts or the report thread never came back),
+   so both are OFF by default now (-DEI_FIX / -DPRIO_FIX to try them again).  The freeze was the GS wait above (host.c svc_gssyncpath). */
+volatile int g_ei_fixed = 0, g_prio_fixed = 0;
+static void __attribute__((unused)) patch_handler_ei(void)
+{
+#ifdef EI_FIX
+    static const u32 at[4] = { 0x1EC60C, 0x1FA9C4, 0x442CD4, 0x4E7404 };
+    for (int i = 0; i < 4; i++) { volatile u32 *w = (volatile u32 *)at[i]; if (*w == 0x42000038u) { *w = 0; g_ei_fixed++; } }
+#endif
+#ifdef PRIO_FIX
+    { volatile u32 *w = (volatile u32 *)0x443D48; if (*w == 0x0C15C16Eu && *(volatile u32 *)0x443D4C == 0x24050002u) { *w = 0; g_prio_fixed = 1; } }
+#endif
+    FlushCache(0); FlushCache(2);
+}
 static void patch_lk_delay(void)
 {
     volatile u32 *p = (volatile u32 *)0x1FAA10;
@@ -948,6 +1089,9 @@ void net_install(u32 *tab)
     (void)patch_lk_alarm; (void)hm_draw;                                   /* PS2 fix: not applied (NETDIAG9/10 went black on the console) */
     (void)exists;
     bp_install();
+#if defined(EI_FIX) || defined(PRIO_FIX)
+    patch_handler_ei(); printf("[host] handler ei -> nop: %d of 4, worker priority fix: %d\n", g_ei_fixed, g_prio_fixed);
+#endif
 #ifdef NETDIAG
     cd_install(); rl_install();                       /* diagnostic: CD-only file fallback, resource-loader tracing */
 #endif

@@ -100,6 +100,10 @@ typedef struct { u32 cyc; u16 idx, pad; u32 ra, a0; } CrEnt;
 #define CRN 1024                                       /* 1024 (was 4096) to make room for the packed-file layer */
 #endif
 volatile CrEnt g_cr[CRN]; volatile u32 g_crn = 0;
+#ifdef NETDIAG
+typedef struct { volatile u32 idx, ra, a0, sp, cyc; } IfEnt;   /* NETDIAG33: every service call in progress (free when idx == 0); sp tells which thread */
+volatile IfEnt g_if[32];   /* NETDIAG37: 32 (was 64; never more than 8 in use) */
+#endif
 static int cr_skip(u32 i)
 {
     switch (i) { case 100: case 101: case 102: case 103: case 109: case 113: case 483: case 518: case 519: case 520: case 521: case 522: case 557: case 558: case 559:
@@ -120,6 +124,12 @@ u64 trap_c(u32 idx, u64 *r)
     if (idx < NSLOTS && hid_slot(idx) && !g_hid_ready) { g_calls++; return 0; }   /* kbd/mouse not initialised yet: "no input" (sqMouseOpen: handle 0, which is what the real open returns) */
 #endif
     g_calls++;
+#ifdef NETDIAG
+    int ifi = -1;
+    { int o = DIntr(); for (int k = 0; k < 32; k++) if (!g_if[k].idx) { ifi = k; break; }
+      if (ifi >= 0) { u32 cy; __asm__ volatile("mfc0 %0, $9" : "=r"(cy)); g_if[ifi].ra = (u32)r[0]; g_if[ifi].a0 = (u32)r[1]; g_if[ifi].sp = (u32)r; g_if[ifi].cyc = cy; g_if[ifi].idx = idx | 0x10000; }
+      if (o) EIntr(); }
+#endif
 #ifndef RELEASE
     g_ring[g_ringp & (RINGN - 1)][0] = idx; g_ring[g_ringp & (RINGN - 1)][1] = (u32)r[0]; g_ringp++;
 #endif
@@ -252,6 +262,9 @@ u64 trap_c(u32 idx, u64 *r)
 #ifndef RELEASE
     if (crc) crc->pad = (u16)ret;
     if (e) { e->ret = (u32)ret; if (idx == 940 && (u32)r[2] >= 0x100000 && (u32)r[2] < 0x1fff000) { volatile u32 *b = (volatile u32 *)((u32)r[2] | 0x20000000); u32 nz = 0; for (int i = 0; i < 512; i++) nz += b[i] != 0; e->a3 = nz; } }   /* sceRead: number of non-zero words among the first 512 of the destination after the call (uncached view) */
+#endif
+#ifdef NETDIAG
+    if (ifi >= 0) g_if[ifi].idx = 0;
 #endif
     return ret;                                         /* log-only slots: success / null */
 }
@@ -643,6 +656,9 @@ int main(int argc, char **argv)
 #endif
 #ifndef NO_DEVMENU
     *(volatile u8 *)0x5A7A30 = 1;      /* debug flag read by the 2016 start-up (0x2802E4): enables the "-net 3" direct-login mode = developer ServerIP screen */
+#endif
+#ifdef NETDIAG
+    { extern void exc_install(void); exc_install(); }   /* NETDIAG40: catch CPU exceptions instead of the kernel stopping the EE (perf.c) */
 #endif
 #ifdef EXC_HOLD
     {   /* debug: park on a TLB exception instead of letting the kernel kill the run, so a savestate can show EPC and registers */
