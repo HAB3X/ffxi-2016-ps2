@@ -15,10 +15,17 @@ Commands are typed here, or appended (one per line) to the command file, which l
   watch ADDR [r|w|rw] [MASK] [COUNT]   hardware data watchpoint (run 'wtest' once first)
   iwatch ADDR [MASK] [COUNT]           hardware instruction breakpoint
   unwatch / wtest         clear the watchpoint / check that watchpoints work on this console
+  prof 0|1 / ap N ADDR    allocator profiler on/off / profiler slot N (0-4) times the jal at ADDR ('ap N 0' frees it)
+  patch ADDR NEW [OLD]    write one word of code, remembering the original; with OLD only if the word holds OLD now
+  unpatch ADDR [force]    put the original back (only if it still holds what patch wrote, unless force)
+  unpatch all / patches   undo every patch and free the profiler slots / list them
+  hist 0|1                the once-a-second frame-time line (F) off / on
 Local commands: sym NAME (address of a host symbol), where ADDR (nearest host symbol), help, quit.
 ADDR and VALUE can be numbers (0x.. hex) or host symbol names from the .sym file (name or name+offset).
 """
 import argparse, os, re, socket, sys, threading, time
+
+KEYWORDS = ('r', 'w', 'rw', 'all', 'force')                # command words that are not symbol names
 
 def load_syms(path):
     syms, code = {}, {}
@@ -68,10 +75,12 @@ class Console:
         out = parts[:1]
         for p in parts[1:]:
             m = re.fullmatch(r'([A-Za-z_][A-Za-z0-9_.]*)(?:\+(0x[0-9a-fA-F]+|\d+))?', p)
-            if m and p not in ('r', 'w', 'rw') and m.group(1) in self.syms:
+            if m and p in KEYWORDS:
+                pass
+            elif m and m.group(1) in self.syms:
                 v = self.syms[m.group(1)] + (int(m.group(2), 0) if m.group(2) else 0)
                 p = '0x%08x' % v
-            elif m and p not in ('r', 'w', 'rw'):
+            elif m:
                 raise ValueError('unknown symbol %s' % m.group(1))
             out.append(p)
         return ' '.join(out)
@@ -157,7 +166,7 @@ class Console:
                     self.log('S', line[2:], show=show)
                 else:
                     line = self.annotate(line)
-                    self.log(line[:1], line, show=not line.startswith('P '))   # profiler samples: log file only
+                    self.log(line[:1], line, show=not line.startswith(('P ', 'F ', 'A ')))   # once-a-second data lines: log file only
         with self.lock:
             if self.conn is c: self.conn = None
         try: c.close()
