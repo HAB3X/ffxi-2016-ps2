@@ -684,6 +684,9 @@ u32 dev_frame_hook(u32 a0)
     if (!armed) { armed = 1; g_textlog = 200; }
     u32 r = ((u32 (*)(u32))GAME_ORIG_DRAW)(a0);
     { extern void perf_frame(void); perf_frame(); }      /* frame counter (perf.c) */
+#ifdef HEAP_FAST
+    { extern void hf_frame(void); hf_frame(); }          /* a delete scan the allocator skipped (host.c) */
+#endif
 #ifdef DEV_NATIVE
     nat_frame();
 #endif

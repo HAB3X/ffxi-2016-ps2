@@ -27,6 +27,9 @@ static u32 heap_fallback(u32 a0, u32 a1, u32 a2, u32 a3)    /* the allocator's o
 volatile int g_in_world = 0;
 #endif
 
+#if defined(HEAP_FAST) && !defined(LOGOUT_FIX)
+#error HEAP_FAST needs LOGOUT_FIX (g_in_world)
+#endif
 #ifdef HEAP_FAST
 /* 9 Oct 2026, slow frame rate in busy zones (NETDIAG43 'prof' on the console, Port Jeuno): the program's main heap (0x19C2200-, 6.2 MB)
    is full there (~12,000 blocks, the largest free one a few hundred bytes), so every allocation of the main thread ends in the
@@ -34,10 +37,13 @@ volatile int g_in_world = 0;
      0x2815FC jal 0x282D40  scan of the main heap for objects waiting to be deleted (a virtual type check per block)   ~3.3 ms
      0x281604 jal 0x282030  largest free block of the requested heap, only to see whether trying it is worthwhile       ~1.7 ms
    ~120 allocations a second: 0.6 s of every second, at 1-2 frames a second.
-   Here the scan runs at most once every HF_GC_VBL vertical blanks (the objects it deletes go a fraction of a second later), and the
-   largest-free answer is kept for HF_LF_VBL blanks per heap.  A stale answer only changes which attempt comes first: too large ->
-   the first-fit search (0x281930) fails and the fallback runs as before; too small -> the block goes to the other heap, which the
-   fallback does anyway when the main heap is full.  Without the vblank counter (perf.c) both run every time, as the original. */
+   While playing (g_in_world), the scan runs at most once every HF_GC_VBL vertical blanks; a skipped scan is made up for by the
+   frame hook (hf_frame, end of the game frame, main thread) once that time has passed, so an object waiting to be deleted is never
+   left waiting just because no allocation came after it.  The largest-free answer is kept for HF_LF_VBL blanks per heap.  A stale
+   answer only changes which attempt comes first: too large -> the first-fit search (0x281930) fails and the fallback runs as
+   before; too small -> the block goes to the other heap, which the fallback does anyway when the main heap is full.
+   On the title / character screens everything runs as the original: NETDIAG44 (throttled there too) sat on the character screen
+   after the lobby connection, the game waiting with no further allocation while a scan had been skipped. */
 #ifndef HF_GC_VBL
 #define HF_GC_VBL 10
 #endif
@@ -46,18 +52,22 @@ volatile int g_in_world = 0;
 #endif
 extern volatile u32 g_pf_vs, g_pf_on;
 volatile u32 g_hf[4];                                  /* scans run, scans skipped, largest-free walks, answered from the kept value */
-static u32 hf_gc_v, hf_lf_v[2], hf_lf_h[2], hf_lf_r[2];
+static u32 hf_gc_v, hf_gc_due, hf_lf_v[2], hf_lf_h[2], hf_lf_r[2];
 static void hf_gc(void)
 {
     u32 v = g_pf_vs;
-    if (g_pf_on && g_hf[0] && v - hf_gc_v < HF_GC_VBL) { g_hf[1]++; return; }
-    hf_gc_v = v; g_hf[0]++;
+    if (g_in_world && g_pf_on && v - hf_gc_v < HF_GC_VBL) { g_hf[1]++; hf_gc_due = 1; return; }
+    hf_gc_v = v; hf_gc_due = 0; g_hf[0]++;
     ((void (*)(void))0x282D40)();
+}
+void hf_frame(void)                                    /* devdlg.c dev_frame_hook, once per game frame */
+{
+    if (hf_gc_due && (!g_in_world || g_pf_vs - hf_gc_v >= HF_GC_VBL)) hf_gc();
 }
 static u32 hf_lf(u32 heap)
 {
     u32 v = g_pf_vs; int i = heap == *(volatile u32 *)0x5FC5A0;
-    if (g_pf_on && hf_lf_h[i] == heap && v - hf_lf_v[i] < HF_LF_VBL) { g_hf[3]++; return hf_lf_r[i]; }
+    if (g_in_world && g_pf_on && hf_lf_h[i] == heap && v - hf_lf_v[i] < HF_LF_VBL) { g_hf[3]++; return hf_lf_r[i]; }
     u32 r = ((u32 (*)(u32))0x282030)(heap);
     hf_lf_h[i] = heap; hf_lf_v[i] = v; hf_lf_r[i] = r; g_hf[2]++;
     return r;
