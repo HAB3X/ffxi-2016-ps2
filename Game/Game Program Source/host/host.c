@@ -27,6 +27,43 @@ static u32 heap_fallback(u32 a0, u32 a1, u32 a2, u32 a3)    /* the allocator's o
 volatile int g_in_world = 0;
 #endif
 
+#ifdef HEAP_FAST
+/* 9 Oct 2026, slow frame rate in busy zones (NETDIAG43 'prof' on the console, Port Jeuno): the program's main heap (0x19C2200-, 6.2 MB)
+   is full there (~12,000 blocks, the largest free one a few hundred bytes), so every allocation of the main thread ends in the
+   fallback to the other heap.  Before getting there the allocator (0x281560) walks ALL 12,000 blocks twice:
+     0x2815FC jal 0x282D40  scan of the main heap for objects waiting to be deleted (a virtual type check per block)   ~3.3 ms
+     0x281604 jal 0x282030  largest free block of the requested heap, only to see whether trying it is worthwhile       ~1.7 ms
+   ~120 allocations a second: 0.6 s of every second, at 1-2 frames a second.
+   Here the scan runs at most once every HF_GC_VBL vertical blanks (the objects it deletes go a fraction of a second later), and the
+   largest-free answer is kept for HF_LF_VBL blanks per heap.  A stale answer only changes which attempt comes first: too large ->
+   the first-fit search (0x281930) fails and the fallback runs as before; too small -> the block goes to the other heap, which the
+   fallback does anyway when the main heap is full.  Without the vblank counter (perf.c) both run every time, as the original. */
+#ifndef HF_GC_VBL
+#define HF_GC_VBL 10
+#endif
+#ifndef HF_LF_VBL
+#define HF_LF_VBL 10
+#endif
+extern volatile u32 g_pf_vs, g_pf_on;
+volatile u32 g_hf[4];                                  /* scans run, scans skipped, largest-free walks, answered from the kept value */
+static u32 hf_gc_v, hf_lf_v[2], hf_lf_h[2], hf_lf_r[2];
+static void hf_gc(void)
+{
+    u32 v = g_pf_vs;
+    if (g_pf_on && g_hf[0] && v - hf_gc_v < HF_GC_VBL) { g_hf[1]++; return; }
+    hf_gc_v = v; g_hf[0]++;
+    ((void (*)(void))0x282D40)();
+}
+static u32 hf_lf(u32 heap)
+{
+    u32 v = g_pf_vs; int i = heap == *(volatile u32 *)0x5FC5A0;
+    if (g_pf_on && hf_lf_h[i] == heap && v - hf_lf_v[i] < HF_LF_VBL) { g_hf[3]++; return hf_lf_r[i]; }
+    u32 r = ((u32 (*)(u32))0x282030)(heap);
+    hf_lf_h[i] = heap; hf_lf_v[i] = v; hf_lf_r[i] = r; g_hf[2]++;
+    return r;
+}
+#endif
+
 #ifndef NO_SEACOM_BOX
 /* target of the jump patched in at 0x3A7558 (/seacom handler, argument count < 2). Runs in the handler's frame (ra, s0-s2 are
    saved there). Search-menu object *(0x7BF810) present: open the Edit Comment box (0x520490(obj, 0)) and leave through 0x3A7614
@@ -707,6 +744,15 @@ int main(int argc, char **argv)
         extern void exc_hold(void);
         SetVTLBRefillHandler(2, exc_hold); SetVTLBRefillHandler(3, exc_hold);
         SetVCommonHandler(2, exc_hold); SetVCommonHandler(3, exc_hold); SetVCommonHandler(4, exc_hold); SetVCommonHandler(5, exc_hold);
+    }
+#endif
+#ifdef HEAP_FAST
+    {   /* see hf_gc / hf_lf above */
+        volatile u32 *p = (volatile u32 *)0x2815FC;
+        if (p[0] == 0x0C0A0B50 && p[2] == 0x0C0A080C) {
+            p[0] = 0x0C000000 | (((u32)hf_gc >> 2) & 0x3FFFFFF); p[2] = 0x0C000000 | (((u32)hf_lf >> 2) & 0x3FFFFFF);
+            FlushCache(0); FlushCache(2); printf("[host] heap fast: delete scan every %d vblanks, largest-free kept %d\n", HF_GC_VBL, HF_LF_VBL);
+        } else printf("[host] heap fast: unexpected words at 0x2815FC: %08x %08x\n", (unsigned)p[0], (unsigned)p[2]);
     }
 #endif
 #ifdef LOGOUT_FIX
