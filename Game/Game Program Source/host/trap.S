@@ -130,7 +130,12 @@ text2_hook_entry:
     swc1  $f13, 0x3c($sp)
     jal   text2_probe
     nop
-    bnez  $v0, 1f
+    sltiu $8, $v0, 2                 /* 0 = draw as is, 1 = consumed, anything else = a replacement string to draw instead */
+    bnez  $8, 3f
+    nop
+    sd    $v0, 0x18($sp)
+    move  $v0, $zero
+3:  bnez  $v0, 1f
     nop
     ld    $ra, 0x00($sp)
     ld    $a0, 0x08($sp)

@@ -10,6 +10,8 @@ Starts and stops everything the game needs, in this order:
 Python standard library only. Works on Mac, Windows and Linux. The Server App uses this file; it also works on its own:
     python3 server_control.py start | stop | status | check
     python3 server_control.py create-profile NAME          (asks for the password)
+    python3 server_control.py name [NAME] | welcome [TEXT] | address [HOSTNAME-OR-IP]
+    python3 server_control.py backup | backups | restore FILE
 
 Nothing here prints a password. Data made while the server runs (database files, profiles, logs) goes to Server/data.
 """
@@ -925,9 +927,48 @@ def main(argv):
             for p in ORDER:
                 print('  %-28s %s' % (NICE[p], 'on' if st[p] else 'off'))
             print('  ServerIP   %s' % (lan_address() or '(not connected to a network)'))
+            try:
+                import server_net as sn, server_settings as ss
+                print('  Server name %s' % ss.get()['name'])
+                print('  Internet    %s' % (sn.public_address()[0] or 'not found'))
+            except Exception:                                    # noqa: BLE001
+                pass
             print('  ServerPort %d' % SERVER_PORT_FOR_PLAYERS)
             if other_server_running():
                 print('  Note: another server is already using port %d on this computer.' % PORTS['lobby'])
+        elif cmd == 'name':
+            import server_settings as ss
+            if len(argv) > 2:
+                restart = ss.save(name=' '.join(argv[2:]))
+                print('Server name saved: %s%s' % (ss.get()['name'], '. Restart the server to use it.' if restart and status()['any'] else '.'))
+            else:
+                print(ss.get()['name'])
+        elif cmd == 'welcome':
+            import server_settings as ss
+            if len(argv) > 2:
+                ss.save(welcome=' '.join(argv[2:]) if argv[2] != '-' else '')
+                print('Welcome message saved. Players see it when they log in.')
+            else:
+                print(ss.get()['welcome'] or '(none)')
+        elif cmd == 'address':
+            import server_net as sn
+            if len(argv) > 2:
+                sn.set_manual_public_address('' if argv[2] == '-' else argv[2])
+            ip, how = sn.public_address(refresh=True)
+            print('%s (%s)' % (ip or 'not found', how))
+        elif cmd == 'backup':
+            import server_backup as sb
+            print('Backup written: %s' % sb.create())
+        elif cmd == 'backups':
+            import server_backup as sb
+            for p, size, t in sb.listing():
+                print('%s  %7.1f KB  %s' % (time.strftime('%Y-%m-%d %H:%M', time.localtime(t)), size / 1024, os.path.basename(p)))
+        elif cmd == 'restore':
+            import server_backup as sb
+            if len(argv) < 3:
+                print('usage: server_control.py restore <backup file>')
+                return 2
+            print('Restored. The data from just before was saved as %s' % sb.restore(argv[2]))
         elif cmd == 'check':
             for ok, text in check_setup():
                 print(('  OK   ' if ok else '  NO   ') + text)

@@ -24,7 +24,7 @@
 
 extern void host_drawtext(int x, int y, const char *s, u32 color);
 
-volatile int g_inject_cross = 0;       /* frames of a synthetic Cross press once the form is confirmed (accepts the page) */
+volatile int g_restart_req = 0;      /* the game began shutting down (host.c) */
 volatile int g_input_block = 0;        /* set while a host screen owns the keyboard/pad (the game gets no input) */
 volatile u32 g_dlg_state = 0;         /* 0 not run, 1 running, 2 done */
 static char f_ip[32] = DEV_IP, f_port[8] = "54001", f_acct[16] = "", f_pass[16] = "";
@@ -145,6 +145,39 @@ static void sh_settext(int i, const char *t)
     if (mgr && *(volatile u8 *)(mgr + 0x14) && *(volatile u32 *)(mgr + 0x10) == c && *(volatile u32 *)(mgr + 0x18)) ((void (*)(u32, const char *))0x56BF90)(*(volatile u32 *)(mgr + 0x18), t);
     else sh_direct(c, t);
 }
+/* the server address, port and POL-ID last typed on the sign-in page are kept in pfs1:/image/ffxi/SERVER.TXT (never the password) and filled in next time.
+   The network thread (sv_poll) reads and writes the file with the game's own file calls. */
+#define SRV_FILE "pfs1:/image/ffxi/SERVER.TXT"
+typedef int (*io_open_t)(const char *, int, int); typedef int (*io_close_t)(int); typedef int (*io_rw_t)(int, void *, int);
+#define IO_SLOT(n) (((u32 *)SLOT_TABLE)[n])
+static char sv_acct[16], sv_ip[32], sv_port[8]; static volatile int sv_have = 0, sv_applied = 0;
+static char sv_buf[96]; static volatile int sv_len = 0;
+static void sv_load(void)
+{
+    char buf[96]; int fd = ((io_open_t)IO_SLOT(938))(SRV_FILE, 1, 0), n, i, f = 0; char *dst[3] = { sv_ip, sv_port, sv_acct }; int cap[3] = { 31, 7, 15 }, len[3] = { 0, 0, 0 };
+    if (fd < 0) return;
+    n = ((io_rw_t)IO_SLOT(940))(fd, buf, sizeof buf - 1); ((io_close_t)IO_SLOT(939))(fd);
+    for (i = 0; i < n && f < 3; i++) {
+        if (buf[i] == '\n') { f++; continue; }
+        if (buf[i] < 0x20 || buf[i] > 0x7e || len[f] >= cap[f]) continue;
+        dst[f][len[f]++] = buf[i]; dst[f][len[f]] = 0;
+    }
+    sv_have = sv_ip[0] != 0;
+}
+void sv_poll(void)
+{
+    static int loaded = 0;
+    if (!loaded) { loaded = 1; sv_load(); }
+    if (sv_len > 0) {
+        int fd = ((io_open_t)IO_SLOT(938))(SRV_FILE, 0x0002 | 0x0200 | 0x0400, 0666);
+        if (fd >= 0) { ((io_rw_t)IO_SLOT(941))(fd, sv_buf, sv_len); ((io_close_t)IO_SLOT(939))(fd); }
+        sv_len = 0;
+    }
+}
+static void sv_save(const char *acct, const char *ip, const char *port)
+{
+    if (!sv_len) sv_len = snprintf(sv_buf, sizeof sv_buf, "%s\n%s\n%s\n", ip, port, acct);
+}
 static void sh_load(int n)
 {
     if (n < 0 || n >= (int)(sizeof g_profiles / sizeof g_profiles[0])) return;
@@ -169,6 +202,7 @@ static void sh_apply(void)
     snprintf(line, sizeof line, "-net 3 -ip %s -port %s -pass %s -print -accunt %s", g_dev_ip, g_dev_port, pass, acct);
     memset((void *)GAME_CMDLINE, 0, 200); strncpy((char *)GAME_CMDLINE, line, 199);
     printf("[host] devdlg: login set (account %s [%d chars], password %d chars, server %s:%s)\n", acct, (int)strlen(acct), (int)strlen(pass), g_dev_ip, g_dev_port);
+    if (g_dev_ip[0] && strcmp(g_dev_ip, "0.0.0.0")) sv_save(acct, g_dev_ip, g_dev_port);
     { extern volatile int g_dev_applied; g_dev_applied = 1; }
 }
 /* text drawn on top of the page by text2_probe (once per frame): which saved login is loaded and the key help */
@@ -229,32 +263,6 @@ static void tc_probe(void)      /* debug: find text-edit control objects (vtable
     if (g_tcpos >= 0x2000000) g_tcpos = 0x300000;
     for (i = 0; i < g_tcn; i++) if (g_tca[i] + 0xa9c4 < 0x2000000) g_tcs[i] = *(volatile u32 *)(g_tca[i] + 0xa9c4);   /* never read past 32 MB (TLB miss: an exception on a real PS2) */
 }
-#ifdef AUTO_RECONNECT
-/* 7 Oct 2026: automatic reconnect. After a lost connection the game shows FFXI-40xx "No response ... Press OK to shut down"; OK
-   returns to the title menu and Select Character signs in to the lobby again, so the host presses those buttons itself:
-   OK on the error box, Select Character on the title, then the character (twice: pick + confirm). If the server is still away the
-   lobby step fails; the machine dismisses the box and tries again (up to 30 times, about every 40 s). */
-extern volatile u32 g_rc_err, g_title_n, g_chf_n; extern volatile char g_bottom[48];
-static void rc_press(u32 b) { extern volatile u32 g_inj_btns, g_inj_hold; g_inj_btns = b; g_inj_hold = 4; }
-static void rc_frame(void)
-{
-    static int st = 0; static u32 t = 0, seen = 0, tries = 0, tn = 0, cn = 0, ups = 0; u32 f = (u32)sh_frame;
-    switch (st) {
-    case 0: if (g_rc_err != seen) { seen = g_rc_err; st = 1; t = f; tries = 0; printf("[host] reconnect: connection lost - reconnecting\n"); } break;
-    case 1: if (f - t >= 120) { rc_press(0x4000); st = 2; t = f; tn = g_title_n; } break;                       /* OK on the error box */
-    case 2: if (g_title_n != tn) { st = 3; t = f; ups = 0; }                                                       /* title menu is up */
-            else if (f - t >= 1800) { rc_press(0x4000); t = f; } break;                                            /* nothing after 60 s: press OK again */
-    case 3: if (f - t < 120) break;
-            if (strstr((const char *)g_bottom, "Select a character")) { cn = g_chf_n; rc_press(0x4000); st = 4; t = f; }
-            else if (ups++ < 8) { rc_press(0x0010); t = f - 90; } else { rc_press(0x4000); st = 4; t = f; cn = g_chf_n; } break;
-    case 4: if (g_chf_n != cn) { st = 5; t = f; }                                                                  /* character list is up */
-            else if (f - t >= 900) { if (++tries > 30) { st = 0; seen = g_rc_err; printf("[host] reconnect: giving up\n"); break; }
-                                     rc_press(0x4000); st = 2; t = f; tn = g_title_n; printf("[host] reconnect: server not back yet, retry %u\n", (unsigned)tries); } break;
-    case 5: if (f - t >= 150) { rc_press(0x4000); st = 6; t = f; } break;                                         /* pick the character */
-    case 6: if (f - t >= 120) { rc_press(0x4000); st = 0; seen = g_rc_err; printf("[host] reconnect: character selected\n"); } break;  /* confirm */
-    }
-}
-#endif
 static void nat_frame(void)
 {
 #if !defined(RELEASE) && defined(TC_PROBE)   /* 6 Oct 2026: debug RAM scan cost ~13% fps (W. Adoulin 21.5 -> 24.4); off unless -DTC_PROBE */
@@ -265,9 +273,8 @@ static void nat_frame(void)
     { extern void xf_flush(void); xf_flush(); }
     { extern void hlog_kick(void); hlog_kick(); }
     sh_frame++;
-#ifdef AUTO_RECONNECT
-    if (sh_state == 2) rc_frame();
-#endif
+    { extern volatile int g_restart_req; extern void host_soft_restart(void); static int wait = 0;
+      if (g_restart_req && sh_state == 2 && ++wait > 90) host_soft_restart(); }                 /* ~3 s after the game began shutting down */
     if (sh_state != 1) { sh_type(); /* sh_randname(): the game's own random-name button works now */ }                                          /* every other text box (character name, chat, ...): the game gets no characters from the missing input-method layer */
     if (sh_state == 0) {
         sh_obj = *(volatile u32 *)DLG_OBJ_PTR;
@@ -283,18 +290,15 @@ static void nat_frame(void)
         }
     } else if (sh_state == 2) {
         { static int rc = 0; if (++rc == 180) registry_restore(); }   /* a few seconds after the page closed */
-#ifdef DEV_AUTOGO
-        static int tick = 0; tick++;
-        if (tick == 150 || tick == 400 || tick == 700) g_inject_cross = 10;                          /* test builds: accept the terms page, then continue */
-#endif
     } else if (sh_state == 1) {
         static int lastk = 0;
         sh_type();
+        if (sv_have && !sv_applied && sh_frame > 30) {                          /* the saved server, unless something was typed already */
+            sv_applied = 1;
+            if (SH_CTRL(2) && !((const char *(*)(u32, int))0x4804C0)(SH_CTRL(2), 0)[0]) { sh_settext(2, sv_ip); if (sv_port[0]) sh_settext(3, sv_port); if (sv_acct[0]) sh_settext(0, sv_acct); }
+        }
         int k = ((int (*)(int))g_real[106])(0);                              /* sqKbdGetKeyCodeLastUpdated(0) */
         if (k != lastk) { if (k) printf("[host] devdlg: key code %d\n", k); lastk = k; if (k >= 0x3a && k <= 0x41) sh_load(k - 0x3a); }
-#ifdef DEV_AUTOGO
-        { static int go = 0; if (++go == 90) ((void (*)(u32, int, int))*(u32 *)(*(u32 *)(sh_obj + 4) + 0x20))(sh_obj, 5, 9); }   /* test builds: press the page's OK by itself */
-#endif
         if (*(volatile u8 *)(sh_obj + 0x14)) {
             sh_apply(); sh_state = 2;
             g_veto_terms = 0;
@@ -417,7 +421,7 @@ static void scr_key(int c)
             { char line[200]; snprintf(line, sizeof line, "-net 3 -ip %s -port %s -pass %s -print -accunt %s", g_dev_ip, g_dev_port, s_pass, s_acct);
               memset((void *)GAME_CMDLINE, 0, 200); strncpy((char *)GAME_CMDLINE, line, 199); }
             printf("[host] devdlg: login set (account %s, server %s:%s)\n", s_acct, g_dev_ip, g_dev_port);
-            s_state = 2; g_input_block = 0; g_dev_hold = 0; g_inject_cross = 10; return;
+            s_state = 2; g_input_block = 0; g_dev_hold = 0; return;
         }
         s_cur++; return;
     }
@@ -472,19 +476,8 @@ volatile int g_textlog = 0;
 /* 6 Oct 2026: the newest text drawn on the bottom help line (y >= 380), readable over PINE, so the one-click launcher can see
    which main-menu entry is selected ("Create a new character." etc.) instead of counting button presses. */
 volatile char g_bottom[48]; volatile u32 g_bottom_n = 0;
-/* 7 Oct 2026 (auto-reconnect): set when a connection-loss error box (FFXI-40xx, e.g. 4001 "No response ... Press OK to shut down")
-   is drawn; nat_frame's reconnect state machine then presses OK, Select Character and the character by itself. */
-volatile u32 g_rc_err = 0;
-static void note_error(const char *str)
-{
-    int i;
-    if ((u32)str < 0x100000 || (u32)str >= 0x2000000) return;
-    for (i = 0; i < 60 && str[i]; i++)
-        if (str[i] == 'F' && str[i + 1] == 'F' && str[i + 2] == 'X' && str[i + 3] == 'I' && str[i + 4] == '-' && str[i + 5] == '4' && str[i + 6] == '0') { g_rc_err++; return; }
-}
 static void note_bottom(int y, const char *str)
 {
-    note_error(str);
     int i;
     if (y < 380 || (u32)str < 0x100000 || (u32)str >= 0x2000000 || !str[0]) return;
     for (i = 0; i < 47 && str[i] >= 0x20 && str[i] < 0x7f; i++) g_bottom[i] = str[i];
@@ -513,13 +506,12 @@ int text_probe(int x, int y, const char *str, u32 col, u32 flag)
 extern void text2_hook_entry(void);
 extern void menu_hook_entry(void);
 static char g_mring[32][17]; static volatile int g_mhead = 0, g_mshown = 0;
-volatile char g_mlast[17]; volatile u32 g_mlast_n = 0, g_title_n = 0, g_chf_n = 0;   /* 7 Oct 2026: newest menu opened (the ring above keeps only the first 32) */
+volatile char g_mlast[17]; volatile u32 g_mlast_n = 0;   /* 7 Oct 2026: newest menu opened (the ring above keeps only the first 32) */
 int menu_probe(u32 mgr, const char *name, int flag, int a3)
 {
     (void)mgr; (void)a3; (void)flag;
     if (g_veto_terms && (u32)name >= 0x100000 && (u32)name < 0x2000000 && !memcmp(name, "menu    ptc8lice", 16)) { g_terms_vetoed = 1; return 1; }
     if ((u32)name >= 0x100000 && (u32)name < 0x2000000) { int i; for (i = 0; i < 16; i++) g_mlast[i] = (name[i] >= 0x20 && name[i] < 0x7f) ? name[i] : '.'; g_mlast[16] = 0; g_mlast_n++;
-        if (!memcmp(name + 8, "loby2", 5)) g_title_n++; if (!memcmp(name + 8, "chf", 3)) g_chf_n++;
         { extern volatile int g_in_world;                 /* title / character screens vs. playing (LOGOUT_FIX in host.c uses it) */
           if (!memcmp(name + 8, "loby2", 5) || !memcmp(name + 8, "chf", 3) || !memcmp(name + 8, "chmk", 4) || !memcmp(name + 8, "race", 4)) g_in_world = 0;
           else if (!memcmp(name + 8, "hnback", 6)) g_in_world = 1; } }
@@ -541,7 +533,18 @@ int text2_probe(int x, int y, const char *str, u32 a3, u32 col)
     if ((u32)str >= 0x100000 && (u32)str < 0x2000000 && scr_probe(x, y, str)) return 1;
 #endif
     note_bottom(y, str);
-    if (is_secret_row(x, y)) return 0;
+    if (is_secret_row(x, y)) {                                                        /* Password box: stars instead of the characters, the cursor '|' stays */
+        static char st[4][40]; static int si = 0;
+        if ((u32)str >= 0x100000 && (u32)str < 0x2000000 && str[0]) {
+            char *d = st[si++ & 3]; int n = 0; while (n < 36 && str[n] >= 0x20 && str[n] < 0x7f) n++;
+            if (n >= 1 && str[n] == 0) { int k; int cur = str[n - 1] == '|'; for (k = 0; k < n - cur; k++) d[k] = '*'; if (cur) d[k++] = '|'; d[k] = 0; return (int)d; }
+        }
+        return 0;
+    }
+    if (x >= 330 && x <= 340 && y >= 90 && y <= 330 && (u32)str >= 0x100000 && (u32)str < 0x2000000) {      /* sign-in page boxes: only the last 17 characters fit */
+        static char clip[4][24]; static int ci = 0; int n = 0; while (n < 64 && str[n] >= 0x20 && str[n] < 0x7f) n++;
+        if (n > 17 && str[n] == 0) { char *d = clip[ci++ & 3]; memcpy(d, str + n - 17, 17); d[17] = 0; return (int)d; }
+    }
     if ((u32)str >= 0x100000 && (u32)str < 0x2000000 && (u8)str[0] >= 0x80) {
         /* 6 Oct 2026: the developer page's OK button (and any other button) reads 決定 (Shift-JIS 8C 88 92 E8): draw "OK" instead.
            The label is rewritten in place (same or shorter length). First sighting at the dev page's button row is logged in hex. */

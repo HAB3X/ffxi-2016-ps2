@@ -56,7 +56,7 @@ static int spawn(void (*fn)(void *), void *stack, int size, int prio)
     return id;
 }
 
-volatile u32 g_inj_btns = 0, g_inj_hold = 0, g_tri_edge = 0, g_inj_lx = 0x80, g_inj_ly = 0x80;
+volatile u32 g_tri_edge = 0;
 #ifdef INPUT_WATCH
 static u8 wth_stack[16384] __attribute__((aligned(16)));
 static void watch_thread(void *arg)
@@ -172,15 +172,8 @@ u32 svc_scePadRead(int port, int slot, void *d)
         }
         b->rjoy_h = b->rjoy_v = b->ljoy_h = b->ljoy_v = 0x80; b->mode = 0x73;   /* until then: digital pad presented as a centred DualShock */
     }
-#ifndef DISC_BUILD   /* players' discs never press anything by themselves: no test-driver or synthetic input at all */
-    { extern volatile u32 g_inj_btns, g_inj_hold, g_inj_lx, g_inj_ly; if (g_inj_hold > 0) { g_inj_hold--; b->btns &= (u16)~g_inj_btns; if (g_inj_lx != 0x80 || g_inj_ly != 0x80) { b->ljoy_h = (u8)g_inj_lx; b->ljoy_v = (u8)g_inj_ly; } } }   /* test driver: PINE writes g_inj_btns (bits pressed) + g_inj_hold (frames) */
-#endif
     { extern volatile u32 g_tri_edge; static u16 prev = 0xffff; if (!(b->btns & 0x1000) && (prev & 0x1000)) g_tri_edge++; prev = b->btns; }   /* triangle press: random-name request for the name box (devdlg.c) */
-    { extern volatile int g_input_block, g_inject_cross; if (g_input_block) b->btns = 0xffff;
-#ifndef DISC_BUILD
-      else if (g_inject_cross > 0) { g_inject_cross--; b->btns &= (u16)~0x4000; }
-#endif
-    }   /* the developer login screen owns the input */
+    { extern volatile int g_input_block; if (g_input_block) b->btns = 0xffff; }   /* the developer login screen owns the input */
     return 32;
 }
 u32 svc_scePadInfoAct(int p, int s, int act, int cmd)       { return padInfoAct(p, s, act, cmd); }

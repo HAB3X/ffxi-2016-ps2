@@ -1,0 +1,34 @@
+RUNNING THE SERVER IN THE CLOUD
+
+A cloud server (a rented computer in a data centre) has its own fixed internet address, so there is no router, no port
+forwarding and no dynamic DNS. Players just type its address. This also works when your home internet shares one address
+between customers (CGNAT).
+
+What you need
+  A Linux cloud server (Ubuntu or Debian), 4 GB of memory or more, and its public IP address.
+  The server programs for Linux. They are built from source on the machine: run "Setup Linux.sh" once (it takes a while).
+  Not tested on a real cloud server yet, so expect to fix small things.
+
+Steps
+  1. Copy the whole "FFXI 2016 Release" folder to the cloud server and run   Server/setup/Setup Linux.sh
+  2. Open the game ports in the cloud provider's own firewall (it is often called Security Group, Firewall or Network rules):
+         TCP 54001   sign-in
+         UDP 54240   game world
+         TCP 54242   search
+         TCP 54460   friend list
+  3. Run   sudo Server/setup/cloud_service.sh   It opens the same ports in the server's own firewall (ufw) and makes the server
+     start by itself when the machine boots.
+  4. Name your world and make profiles from the command line (the Server App window is not needed):
+         python3 Server/server_control.py name "My World"
+         python3 Server/server_control.py welcome "Welcome to {server}, {player}!"
+         python3 Server/server_control.py create-profile Alice
+         python3 Server/server_control.py start
+         python3 Server/server_control.py status
+  5. Players type the cloud server's public IP address on the PS2 sign-in page (Server IP) and port 54001.
+     "python3 Server/server_control.py address" shows the address the server found for itself.
+
+Notes
+  - A cloud server's own network address (10.x.x.x) is private; that is normal. The server finds the public one by itself.
+    If it finds the wrong one, set it:   python3 Server/server_control.py address 203.0.113.5
+  - Keep the Server App for your own computer. You can run it at home to manage a server running at home; managing a cloud
+    server from the app is not supported yet, use the commands above.
