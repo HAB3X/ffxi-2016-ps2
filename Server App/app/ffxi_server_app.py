@@ -42,15 +42,16 @@ MAC = sys.platform == 'darwin'
 
 # ---------------------------------------------------------------- look (dark only, one accent colour)
 C = dict(
-    bg='#0e1116', nav='#0a0d11', card='#151a21', card2='#1b212a', line='#232a34', input='#1d242d', hover='#1c232c',
-    text='#e8ecf1', soft='#9aa5b1', faint='#647080',
-    accent='#4c8dff', accent_dk='#3a73d9',
-    green='#34c47c', green_dk='#1f8a52', green_bg='#13281e',
-    red='#ef5b52', red_dk='#a83a33', red_bg='#2c1717',
-    amber='#e9ac45', amber_bg='#2e2513', grey='#2a323d', sel='#24406e', zebra='#181e26',
-    blue='#4c8dff', purple='#4c8dff')
-CHAT_COLORS = {'Say': '#e8ecf1', 'Shout': '#ff9f5a', 'Yell': '#ffcf5a', 'Tell': '#c792ea', 'Party': '#62c9ff', 'LS': '#8ddf8d',
-               'Server': '#4c8dff', 'info': '#9aa5b1', 'error': '#ff7b72', 'admin': '#4c8dff', 'event': '#647080'}
+    bg='#070b1c', nav='#060919', nav_bot='#0d0b26', nav_sel='#1b2762', nav_hov='#131c4a',
+    card='#0e1633', card2='#152046', line='#222f63', input='#121c42', hover='#17224d',
+    text='#eef2ff', soft='#a7b3d9', faint='#6f7ca8',
+    accent='#6f8fff', accent_dk='#5373e6', gold='#f0cf7a',
+    green='#3fd18d', green_dk='#23925f', green_bg='#0f2a29',
+    red='#f0646b', red_dk='#a8404a', red_bg='#2c1530',
+    amber='#efb85a', amber_bg='#2c2318', grey='#243060', sel='#2a3f86', zebra='#101a3d',
+    blue='#6f8fff', purple='#6f8fff')
+CHAT_COLORS = {'Say': '#eef2ff', 'Shout': '#ff9f5a', 'Yell': '#ffcf5a', 'Tell': '#c792ea', 'Party': '#62c9ff', 'LS': '#8ddf8d',
+               'Server': '#6f8fff', 'info': '#a7b3d9', 'error': '#ff7b82', 'admin': '#6f8fff', 'event': '#6f7ca8'}
 
 
 def pick_font(cands):
@@ -98,6 +99,41 @@ def rounded(cv, x1, y1, x2, y2, r, **kw):
     r = max(1, min(r, (x2 - x1) / 2, (y2 - y1) / 2))
     pts = [x1 + r, y1, x2 - r, y1, x2, y1, x2, y1 + r, x2, y2 - r, x2, y2, x2 - r, y2, x1 + r, y2, x1, y2, x1, y2 - r, x1, y1 + r, x1, y1]
     return cv.create_polygon(pts, smooth=True, **kw)
+
+
+ART_DIR = os.path.join(APP_DIR, 'art')
+_art_cache = {}
+
+
+def art_image(name, size=None):
+    """A picture from app/art. Pictures a player extracted from their own game disc (app/art/local) win over the ones that come with the app."""
+    key = (name, size)
+    if key in _art_cache:
+        return _art_cache[key]
+    base = '%s_%d.png' % (name, size) if size else '%s.png' % name
+    img = None
+    for d in (os.path.join(ART_DIR, 'local'), ART_DIR):
+        p = os.path.join(d, base)
+        if os.path.isfile(p):
+            try:
+                img = tk.PhotoImage(file=p)
+                break
+            except tk.TclError:
+                img = None
+    _art_cache[key] = img
+    return img
+
+
+def mask_corners(cv, w, h, r, color, tag='mask'):
+    """Round the corners of a picture drawn on a canvas by covering each corner with the page colour."""
+    import math
+    for cx, cy, sx, sy in ((0, 0, 1, 1), (w, 0, -1, 1), (0, h, 1, -1), (w, h, -1, -1)):
+        ox, oy = cx + sx * r, cy + sy * r
+        pts = [cx, cy]
+        for i in range(9):
+            a = math.pi / 2 * i / 8
+            pts += [ox - sx * r * math.sin(a), oy - sy * r * math.cos(a)]
+        cv.create_polygon(pts, fill=color, outline='', tags=tag)
 
 
 class RoundButton(tk.Canvas):
@@ -205,18 +241,40 @@ class TextLink(tk.Label):
 
 
 class Panel(tk.Frame):
-    """A soft panel: no border, just a slightly lighter background and roomy padding."""
+    """A card: rounded corners, a fine border, roomy padding. `.body` is where the contents go; `.head` (titled cards) holds the title row.
+    art=(name, offset) puts a soft picture inside the card, `offset` pixels from its right edge (behind the contents)."""
+    RADIUS = 14
+    INSET = 5
 
-    def __init__(self, master, title=None, fonts=None, pad=20):
-        super().__init__(master, bg=C['card'], highlightthickness=0, bd=0)
+    def __init__(self, master, title=None, fonts=None, pad=20, icon=None, art=None):
+        super().__init__(master, bg=master['bg'], highlightthickness=0, bd=0)
+        self.edge = tk.Canvas(self, bg=master['bg'], highlightthickness=0, bd=0)       # the rounded border, behind everything
+        self.edge.place(x=0, y=0, relwidth=1, relheight=1)
+        self.edge.bind('<Configure>', self._draw_edge)
+        self.inner = tk.Frame(self, bg=C['card'])
+        self.inner.pack(fill='both', expand=True, padx=self.INSET, pady=self.INSET)
         if title:
-            head = tk.Frame(self, bg=C['card'])
+            head = tk.Frame(self.inner, bg=C['card'])
             head.pack(fill='x', padx=pad, pady=(pad - 4, 8))
+            pic = art_image(icon, 24) if icon else None
+            if pic:
+                lab = tk.Label(head, image=pic, bg=C['card'], bd=0)
+                lab.image = pic
+                lab.pack(side='left', padx=(0, 8))
             self.title = tk.Label(head, text=title, font=fonts.h2, bg=C['card'], fg=C['text'], anchor='w')
             self.title.pack(side='left')
             self.head = head
-        self.body = tk.Frame(self, bg=C['card'])
+        self.body = tk.Frame(self.inner, bg=C['card'])
         self.body.pack(fill='both', expand=True, padx=pad, pady=(0 if title else pad, pad))
+        if art and art_image(art[0]):
+            pic = art_image(art[0])
+            lab = tk.Label(self.body, image=pic, bg=C['card'], bd=0)                    # first child of the body: everything else sits on top of it
+            lab.image = pic
+            lab.place(relx=1.0, x=-art[1] + pad, rely=0.5, anchor='e')
+
+    def _draw_edge(self, e):
+        self.edge.delete('all')
+        rounded(self.edge, 1, 1, e.width - 1, e.height - 1, self.RADIUS, fill=C['card'], outline=C['line'])
 
 
 # ---------------------------------------------------------------- the window
@@ -323,29 +381,39 @@ class App:
     # -------------------------------------------------------------- layout
     def _build(self):
         f, r = self.f, self.root
-        nav = tk.Frame(r, bg=C['nav'], width=f.s(210))
+        nav = tk.Canvas(r, bg=C['nav_bot'], width=f.s(236), highlightthickness=0, bd=0)
         nav.pack(side='left', fill='y')
-        nav.pack_propagate(False)
-        self.L(nav, 'FFXI 2016', f.title, bg=C['nav']).pack(anchor='w', padx=22, pady=(22, 0))
-        self.L(nav, 'Server', f.title, bg=C['nav'], fg=C['soft']).pack(anchor='w', padx=22)
-        self.L(nav, 'Fan Project by Habex', f.small, fg=C['accent'], bg=C['nav']).pack(anchor='w', padx=22, pady=(6, 26))
-        self.nav_items = {}
-        for key, label in self.PAGES:
-            it = tk.Frame(nav, bg=C['nav'], cursor='hand2')
-            it.pack(fill='x', padx=12, pady=1)
-            bar = tk.Frame(it, bg=C['nav'], width=3)
-            bar.pack(side='left', fill='y')
-            lab = self.L(it, label, f.nav, fg=C['soft'], bg=C['nav'], anchor='w', padx=14, pady=f.s(9))
-            lab.pack(side='left', fill='x', expand=True)
-            for w in (it, lab):
-                w.bind('<Button-1>', lambda e, k=key: self.show_page(k))
-                w.bind('<Enter>', lambda e, k=key: self._nav_hover(k, True))
-                w.bind('<Leave>', lambda e, k=key: self._nav_hover(k, False))
-            self.nav_items[key] = (it, bar, lab)
+        self.nav = nav
+        bgimg = art_image('nav_bg')
+        if bgimg:
+            nav.create_image(0, 0, image=bgimg, anchor='nw')
+        logo = art_image('crystal', 32)
+        if logo:
+            nav.create_image(f.s(36), f.s(50), image=logo)
+        nav.create_text(f.s(62), f.s(40), text='FFXI 2016', anchor='w', font=f.title, fill=C['text'])
+        nav.create_text(f.s(62), f.s(66), text='Server', anchor='w', font=f.h2, fill=C['gold'])
+        nav.create_text(f.s(26), f.s(100), text='Fan Project by Habex', anchor='w', font=f.small, fill=C['accent'])
+        self.nav_y, self.nav_hot, self.nav_half = {}, None, f.s(21)
+        icons = {'server': 'server', 'profiles': 'moogle', 'connect': 'chocobo', 'settings': 'world', 'roles': 'shield', 'chat': 'chat',
+                 'maint': 'potion', 'disc': 'disc'}
+        for i, (key, label) in enumerate(self.PAGES):
+            y = f.s(152) + i * f.s(46)
+            self.nav_y[key] = y
+            rounded(nav, f.s(12), y - self.nav_half, f.s(224), y + self.nav_half, f.s(11), fill='', outline='', tags=('pill_' + key,))
+            nav.create_rectangle(f.s(12), y - f.s(11), f.s(15), y + f.s(11), fill='', outline='', tags=('bar_' + key,))
+            pic = art_image(icons.get(key, 'crystal'), 24)
+            if pic:
+                nav.create_image(f.s(38), y, image=pic)
+            nav.create_text(f.s(62), y, text=label, anchor='w', font=f.nav, fill=C['soft'], tags=('txt_' + key,))
+        nav.bind('<Motion>', self._nav_motion)
+        nav.bind('<Leave>', lambda e: self._nav_set_hot(None))
+        nav.bind('<Button-1>', self._nav_click)
+        nav.config(cursor='arrow')
         self.nav_pill = Pill(nav, f)
-        self.nav_pill.pack(side='bottom', anchor='w', padx=22, pady=22)
-        self.auto_link = TextLink(nav, '', self.toggle_auto_update, f.tiny, bg=C['nav'], fg=C['soft'])
-        self.auto_link.pack(side='bottom', anchor='w', padx=22)
+        self.auto_link = TextLink(nav, '', self.toggle_auto_update, f.tiny, bg=C['nav_bot'], fg=C['soft'])
+        self._nav_win_pill = nav.create_window(f.s(24), 0, window=self.nav_pill, anchor='sw')
+        self._nav_win_auto = nav.create_window(f.s(24), 0, window=self.auto_link, anchor='sw')
+        nav.bind('<Configure>', self._nav_layout)
         self._show_auto_link()
 
         self.content = tk.Frame(r, bg=C['bg'])
@@ -454,11 +522,37 @@ class App:
         self.upd_info = None
         self._update_bar('Updated. Close this window and open the server again to use the new version.', [('OK', self._hide_update_bar, C['grey'])], C['green'])
 
-    def _nav_hover(self, key, on):
-        it, bar, lab = self.nav_items[key]
-        if key != self.page:
-            for w in (it, lab):
-                w.config(bg=C['hover'] if on else C['nav'])
+    def _nav_layout(self, e):
+        self.nav.coords(self._nav_win_pill, self.f.s(24), e.height - self.f.s(22))
+        self.nav.coords(self._nav_win_auto, self.f.s(24), e.height - self.f.s(66))
+
+    def _nav_key_at(self, y):
+        for k, cy in self.nav_y.items():
+            if abs(y - cy) <= self.nav_half:
+                return k
+        return None
+
+    def _nav_motion(self, e):
+        k = self._nav_key_at(e.y) if e.x < self.f.s(228) else None
+        self._nav_set_hot(k)
+
+    def _nav_set_hot(self, key):
+        if key != self.nav_hot:
+            self.nav_hot = key
+            self.nav.config(cursor='hand2' if key else 'arrow')
+            self._nav_paint()
+
+    def _nav_click(self, e):
+        k = self._nav_key_at(e.y) if e.x < self.f.s(228) else None
+        if k:
+            self.show_page(k)
+
+    def _nav_paint(self):
+        for k in self.nav_y:
+            on, hot = k == self.page, k == self.nav_hot
+            self.nav.itemconfigure('pill_' + k, fill=C['nav_sel'] if on else (C['nav_hov'] if hot else ''))
+            self.nav.itemconfigure('bar_' + k, fill=C['accent'] if on else '')
+            self.nav.itemconfigure('txt_' + k, fill=C['text'] if (on or hot) else C['soft'], font=self.f.nav_b if on else self.f.nav)
 
     def show_page(self, key):
         if key == 'roles' and 'roles' not in self.pages:
@@ -483,20 +577,37 @@ class App:
         self.page = key
         if key == 'settings' and getattr(self, 'set_name', None):
             self.root.after(50, lambda: (self.set_name.focus_set(), self.set_name.icursor('end')))
-        for k, (it, bar, lab) in self.nav_items.items():
-            on = k == key
-            for w in (it, lab):
-                w.config(bg=C['card'] if on else C['nav'])
-            bar.config(bg=C['accent'] if on else C['nav'])
-            lab.config(fg=C['text'] if on else C['soft'], font=self.f.nav_b if on else self.f.nav)
+        self._nav_paint()
+
+    PAGE_ICONS = {'Profiles': 'moogle', 'Connect': 'chocobo', 'World': 'world', 'Roles': 'shield', 'Chat rules': 'chat', 'Maintenance': 'potion',
+                  'Game disc': 'disc'}
 
     def _page_frame(self, title, sub=None):
         fr = tk.Frame(self.content, bg=C['bg'])
         head = tk.Frame(fr, bg=C['bg'])
         head.pack(fill='x', padx=28, pady=(24, 14))
-        self.L(head, title, self.f.h1).pack(anchor='w')
-        if sub:
-            self.L(head, sub, self.f.small, fg=C['soft']).pack(anchor='w', pady=(4, 0))
+        f = self.f
+        banner = tk.Canvas(head, height=f.s(104), bg=C['bg'], highlightthickness=0, bd=0)
+        banner.pack(fill='x')
+        art = art_image('banner_bg')
+        pic = art_image(self.PAGE_ICONS.get(title, 'crystal'), 64)
+
+        def draw(e):
+            w, h = e.width, e.height
+            banner.delete('all')
+            rounded(banner, 1, 1, w - 1, h - 1, 14, fill=C['card'], outline=C['line'])
+            if art:
+                banner.create_image(1, 1, image=art, anchor='nw')
+                mask_corners(banner, w, h, 14, C['bg'])
+                rounded(banner, 1, 1, w - 1, h - 1, 14, fill='', outline=C['line'])
+            x = f.s(28)
+            if pic:
+                banner.create_image(x + 32, h // 2, image=pic)
+                x += 84
+            banner.create_text(x, h // 2 - (f.s(12) if sub else 0), text=title, anchor='w', font=f.h1, fill=C['text'])
+            if sub:
+                banner.create_text(x, h // 2 + f.s(16), text=sub, anchor='w', font=f.small, fill=C['soft'], width=max(100, w - x - f.s(30)))
+        banner.bind('<Configure>', draw)
         fr.head = head
         fr.body = tk.Frame(fr, bg=C['bg'])
         fr.body.pack(fill='both', expand=True, padx=28, pady=(0, 24))
@@ -507,11 +618,11 @@ class App:
         f = self.f
         page = tk.Frame(self.content, bg=C['bg'])
         self.pages['server'] = page
-        hero = Panel(page, None, f, pad=24)
+        hero = Panel(page, None, f, pad=24, art=('hero_mid', f.s(210)))
         hero.pack(fill='x', padx=28, pady=(24, 14))
         hb = hero.body
         left = tk.Frame(hb, bg=C['card'])
-        left.pack(side='left', fill='both', expand=True)
+        left.pack(side='left', fill='y')
         srow = tk.Frame(left, bg=C['card'])
         srow.pack(anchor='w')
         self.status_dot = tk.Canvas(srow, width=f.s(18), height=f.s(18), bg=C['card'], highlightthickness=0)
@@ -577,7 +688,7 @@ class App:
         low.grid_columnconfigure(0, weight=4, uniform='l')
         low.grid_columnconfigure(1, weight=5, uniform='l')
         low.grid_rowconfigure(0, weight=1)
-        onl = Panel(low, 'Online now', f)
+        onl = Panel(low, 'Online now', f, icon='moogle')
         onl.grid(row=0, column=0, sticky='nsew', padx=(0, 14))
         self.online_count = self.L(onl.head, '', f.small, fg=C['soft'], bg=C['card'])
         self.online_count.pack(side='right')
@@ -600,7 +711,7 @@ class App:
         self.online.bind('<<TreeviewSelect>>', lambda e: self.player_actions.set_enabled(bool(self.online.selection())))
         self.player_actions.set_enabled(False)
 
-        chat = Panel(low, 'World chat', f)
+        chat = Panel(low, 'World chat', f, icon='chat')
         chat.grid(row=0, column=1, sticky='nsew')
         self.link_state = self.L(chat.head, '', f.small, fg=C['soft'], bg=C['card'])
         self.link_state.pack(side='right')

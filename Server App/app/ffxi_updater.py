@@ -15,7 +15,7 @@ RAW = 'https://raw.githubusercontent.com/%s' % REPO
 
 FOLDERS = ('Server App/', 'Server/setup/', 'Server/proxy/', 'Server/admin/', 'Server/lsb/modules/', 'Game/Disc Builder/', 'Disc/Hard Drive/')
 FILES = ('READ ME.txt', 'KNOWN BUGS.txt', 'Server/READ ME Server.txt')
-KINDS = ('.py', '.bat', '.sh', '.command', '.txt', '.lua', '.md', '.template', '.json', '.desktop')
+KINDS = ('.py', '.bat', '.sh', '.command', '.txt', '.lua', '.md', '.template', '.json', '.desktop', '.png')
 MAX_BYTES = 8 * 1024 * 1024
 
 
@@ -23,7 +23,8 @@ def wanted(path):
     """True for a file this updater may replace."""
     if '..' in path.split('/') or path.startswith('/'):
         return False
-    if os.path.splitext(path)[1].lower() not in KINDS:
+    ext = os.path.splitext(path)[1].lower()
+    if ext not in KINDS or (ext == '.png' and not path.startswith('Server App/app/art/')):        # pictures only for the app's own art folder
         return False
     if path in FILES:
         return True
