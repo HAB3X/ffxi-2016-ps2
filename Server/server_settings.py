@@ -107,8 +107,7 @@ GROUPS = {
         Setting('main', k, label, 'flag', 0, 1) for k, label in (
             ('ENABLE_ROTZ', 'Rise of the Zilart'), ('ENABLE_COP', 'Chains of Promathia'), ('ENABLE_TOAU', 'Treasures of Aht Urhgan'),
             ('ENABLE_WOTG', 'Wings of the Goddess'), ('ENABLE_ACP', 'A Crystalline Prophecy'), ('ENABLE_AMK', 'A Moogle Kupo d\'Etat'),
-            ('ENABLE_ASA', 'A Shantotto Ascension'), ('ENABLE_ABYSSEA', 'Abyssea'), ('ENABLE_SOA', 'Seekers of Adoulin'),
-            ('ENABLE_ROV', 'Rhapsodies of Vana\'diel'), ('ENABLE_TVR', 'The Voracious Resurgence'), ('ENABLE_ROE', 'Records of Eminence'))],
+            ('ENABLE_ASA', 'A Shantotto Ascension'), ('ENABLE_ABYSSEA', 'Abyssea'), ('ENABLE_SOA', 'Seekers of Adoulin'))],       # what the PS2 game has
 }
 ALL = {st.key: st for g in GROUPS.values() for st in g}
 
