@@ -817,6 +817,14 @@ int main(int argc, char **argv)
         if (!memcmp(nm, "../prog/ps2/dancer.enc", 23)) { memcpy(nm + 19, "bin", 3); FlushCache(0); printf("[host] dancer: reads dancer.bin\n"); }
         else printf("[host] dancer: unexpected name at 0x5e6610\n");
     }
+    {   /* 9 Oct 2026: the character screen's "character settings" panel (Triangle there; 'menu lobyconf', opened by 0x4AD2B0 when the
+           chosen item is 4) is a trap here: Circle only plays the cancel sound, nothing closes it, and its Load / Save end in an
+           exception (0x4BC5E8 stores through a missing object, [[0x7BB960]+8] == 0) - NETDIAG44/45G/47 on the console and in PCSX2.
+           Choosing that item now goes straight to the code after the panel closes (0x4AD474), so the list stays usable. */
+        volatile u32 *p = (volatile u32 *)0x4AD41C;
+        if (p[0] == 0x8C620008 && p[-2] == 0x16020041) { p[0] = 0x0812B51D; FlushCache(0); FlushCache(2); printf("[host] character settings panel: disabled\n"); }   /* j 0x4AD474 */
+        else printf("[host] character settings panel: unexpected words at 0x4ad414: %08x %08x\n", (unsigned)p[-2], (unsigned)p[0]);
+    }
 #ifdef THRDBG
     { extern void thrdbg_start(void); thrdbg_start(); }
 #endif
