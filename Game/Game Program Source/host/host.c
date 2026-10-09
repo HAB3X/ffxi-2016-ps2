@@ -77,20 +77,23 @@ static u32 hf_lf(u32 heap)
    a burst of effects makes ~70 allocations a frame, and the game's malloc (0x281DA0, and its sibling 0x2821B0) searches the main
    heap itself (0x281AB0) BEFORE it ever reaches the allocator above: a search from the remembered spot for that size, then a
    search of all ~12,000 blocks, which with the heap full both fail (~2.6 ms), then 0x281560 and the fallback.  750 ms of every
-   second went there.  While playing, on the main thread, a request the kept largest-free value (hf_lf, refreshed at most every
-   HF_LF_VBL blanks) says cannot fit skips the searches: the remembered-spot one returns "not found" as it would have, the full one
-   goes straight to 0x281560 (which then falls back to the other heap as before).  When a full search does run and fails, the kept
-   value is lowered below that request, so the next requests of that size skip too.  A stale value only changes where a block
-   goes for at most HF_LF_VBL blanks (too small: the other heap, as the fallback does anyway).  Tested live on NETDIAG45 with a
-   poked stub (the skip only): those stretches went from 4 to 13-14 fps. */
+   second went there.  While playing, on the main thread, a request the kept largest-free value (hf_lf's, less than HF_AB_VBL
+   blanks old) says cannot fit skips the searches: the remembered-spot one returns "not found" as it would have, the full one goes
+   straight to 0x281560 (which then falls back to the other heap as before).  When a full search does run and fails, the kept
+   value is lowered below that request, so the next requests of that size skip too.  An old value is not refreshed here (that
+   walk cost ~0.4 ms a frame in normal play); the search runs and teaches it.  A stale value only changes where a block goes for
+   at most HF_AB_VBL blanks (too small: the other heap, as the fallback does anyway).  Tested live on NETDIAG45 with poked stubs:
+   the skip alone took those stretches from 4 to 13 fps, with the lowering ~14. */
+#ifndef HF_AB_VBL
+#define HF_AB_VBL 30
+#endif
 static u32 hf_ab(u32 size, u32 lo, u32 hi, u32 start, u32 dir)
 {
     typedef u32 (*ab_t)(u32, u32, u32, u32, u32);
     u32 head = *(volatile u32 *)0x5FC5A0;
     if (!g_in_world || !g_pf_on || lo != head || GetThreadId() != *(volatile int *)0x5FC5D0) return ((ab_t)0x281AB0)(size, lo, hi, start, dir);
-    u32 need = (size + 15) & ~15u, v = g_pf_vs;
-    if (hf_lf_h[1] != head || v - hf_lf_v[1] >= HF_LF_VBL) { hf_lf_r[1] = ((u32 (*)(u32))0x282030)(head); hf_lf_h[1] = head; hf_lf_v[1] = v; g_hf[2]++; }
-    if (hf_lf_r[1] < need) { g_hf[4]++; return start ? 0 : ((u32 (*)(u32, u32, u32))0x281560)(size, lo, hi); }
+    u32 need = (size + 15) & ~15u;
+    if (hf_lf_h[1] == head && g_pf_vs - hf_lf_v[1] < HF_AB_VBL && hf_lf_r[1] < need) { g_hf[4]++; return start ? 0 : ((u32 (*)(u32, u32, u32))0x281560)(size, lo, hi); }
     u32 r = ((ab_t)0x281AB0)(size, lo, hi, start, dir);
     if (!start && (r < lo || r >= hi) && hf_lf_h[1] == head) { hf_lf_r[1] = need - 16; hf_lf_v[1] = g_pf_vs; g_hf[5]++; }   /* the whole heap had nothing that big */
     return r;
