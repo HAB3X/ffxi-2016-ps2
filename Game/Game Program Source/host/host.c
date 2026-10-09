@@ -817,6 +817,21 @@ int main(int argc, char **argv)
         if (!memcmp(nm, "../prog/ps2/dancer.enc", 23)) { memcpy(nm + 19, "bin", 3); FlushCache(0); printf("[host] dancer: reads dancer.bin\n"); }
         else printf("[host] dancer: unexpected name at 0x5e6610\n");
     }
+#ifdef REGION1_MB
+    {   /* 9 Oct 2026 (experiment): the program splits its memory at start (0x2802A0): the second heap 0x7C2200 + 18 MB, the main heap
+           the rest (6.2 MB, to 0x1FF3FF0). In Port Jeuno the main heap is full in every session (dumps: ~11,400 blocks, 75 KB free,
+           the same mix each time - capacity, not a leak) while the second heap keeps ~3.8 MB free; every allocation then runs the
+           full-heap paths (HEAP_FAST) and effect files are loaded again and again. REGION1_MB moves the split so the main heap
+           gets the difference. Risk: zones whose data needs more of the second heap, the title background after /logout (6.7-8.2 MB
+           block) and Create Character's preview (10 MB at the bottom) - test those before keeping it. */
+        volatile u32 *p = (volatile u32 *)0x2802B0;
+        if (p[0] == 0x3C050120 && p[1] == 0x3C010120 && REGION1_MB >= 15 && REGION1_MB <= 18) {
+            u32 hi = (u32)REGION1_MB << 4;                                 /* MB -> upper 16 bits of the size (0x120 = 18 MB) */
+            p[0] = 0x3C050000 | hi; p[1] = 0x3C010000 | hi; FlushCache(0); FlushCache(2);
+            printf("[host] heaps: second heap %d MB, main heap %d KB\n", REGION1_MB, (int)((0x2000000 - 0x7C2200 - (REGION1_MB << 20) - 0xC000) >> 10));
+        } else printf("[host] heaps: unexpected words at 0x2802b0: %08x %08x\n", (unsigned)p[0], (unsigned)p[1]);
+    }
+#endif
     {   /* 9 Oct 2026: the character screen's "character settings" panel (Triangle there; 'menu lobyconf', opened by 0x4AD2B0 when the
            chosen item is 4) is a trap here: Circle only plays the cancel sound, nothing closes it, and its Load / Save end in an
            exception (0x4BC5E8 stores through a missing object, [[0x7BB960]+8] == 0) - NETDIAG44/45G/47 on the console and in PCSX2.
