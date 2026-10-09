@@ -294,8 +294,15 @@ static u32 svc_getarg(void) { return g_pol_arg; }
    texture/geometry transfers that were still running -> half-uploaded textures (floors flashing green/purple noise and
    checker blocks, different every frame). -DGSSYNC_WAIT makes it wait like libgraph (up to 0x1000000 loops) and report -1 without touching the channel.
    NOT the default: tests on 6 Oct showed it was not the cause of the floor noise (0 aborts counted while the noise
-   showed) and the Create Character preview stayed black with it. Default = the original behaviour + counters. */
-volatile u32 g_syncpath_timeouts = 0, g_syncpath_maxspin = 0;
+   showed) and the Create Character preview stayed black with it (mode 1 waiting too). */
+/* 8 Oct 2026 (PS2 freeze fix, NETDIAG35): the wait gave up after 0x8000 loops (well under a millisecond) and then cleared the channel's STR bit.  In PCSX2 a
+   transfer is always finished by then.  On a real PS2 a busy frame (Bastok Markets, the menu) takes longer: the VIF1 transfer was cut off
+   in the middle of a DIRECT (PATH2) packet, the GIF then waits for the rest of that packet for ever, PATH3 queues behind it and no
+   frame is drawn again (NETDIAG32/33 hang reports: VIF1 stopped, GIF busy on PATH2 with 15 qwords queued, GS FIFO empty).
+   Longest waits measured on the console: 34585 and 40670 loops (over the old limit); with the fix Bastok Markets and the menu play on.
+   Now mode 0 waits like libgraph (up to 0x1000000 loops) and never stops a transfer; mode 1 (busy check) still answers 0 as before
+   (the full libgraph behaviour, -DGSSYNC_WAIT, left the Create Character preview black).  -DGSSYNC_ABORT = the old behaviour. */
+volatile u32 g_syncpath_timeouts = 0, g_syncpath_maxspin = 0, g_syncpath_calls = 0;
 static u32 svc_gssyncpath(u32 mode)
 {
 #ifdef GSSYNC_WAIT
@@ -305,9 +312,10 @@ static u32 svc_gssyncpath(u32 mode)
 #endif
     static const u32 chs[2] = { 0x10009000, 0x1000A000 };
     u32 r = 0;
+    g_syncpath_calls++;
     for (int i = 0; i < 2; i++) {
         volatile u32 *c = (volatile u32 *)chs[i];
-#ifndef GSSYNC_WAIT
+#ifdef GSSYNC_ABORT
         u32 n = 0x8000;
 #else
         u32 n = 0x1000000;
@@ -317,7 +325,7 @@ static u32 svc_gssyncpath(u32 mode)
         if (n0 - n > g_syncpath_maxspin) g_syncpath_maxspin = n0 - n;
         if (!n) {
             g_syncpath_timeouts++; r = (u32)-1;
-#ifndef GSSYNC_WAIT
+#ifdef GSSYNC_ABORT
             *c &= ~0x100u; r = 0;
 #endif
         }
