@@ -25,7 +25,7 @@ extern int dbg_handle(void), dbg_flush_now(void);
 extern int nd_sock(int op, int h, void *p, int n);
 extern void perf_stop(void), _ps2sdk_deinit_timer(void);
 extern void sp_cmd(char *s, out_fn o);
-volatile u32 g_rb_stop = 0;                                 /* set just before ExecPS2: our interrupt and alarm code does nothing */
+volatile u32 g_rb_stop = 0, g_rb_step = 0;   /* g_rb_step: how far the reboot got - perf.c shows it as the colour of an exception */                                 /* set just before ExecPS2: our interrupt and alarm code does nothing */
 
 static u32 last_fr, last_frv, last_exc, armed;
 
@@ -104,22 +104,22 @@ void rb_cmd(out_fn o)
     dbg_flush_now();
     DelayThread(200 * 1000);
     nd_sock(4, h, 0, 0);                                      /* the network needs the SIF interrupts, timer 2 (DelayThread) and the game's alarms */
-    g_rb_stop = 1;                                            /* (NETDIAG59 set this before closing: the socket library waits on an alarm, */
-    perf_stop();                                              /*  which then never came - the link hung after step 2) */
+    g_rb_step = 3; g_rb_stop = 1;                             /* (NETDIAG59 set g_rb_stop before closing: the socket library waits on */
+    perf_stop();                                              /*  an alarm, which then never came - the link hung after step 2) */
+    g_rb_step = 4;
     { int o2 = DIntr();                                       /* every interrupt / DMA-end source off except timer 3 (the kernel's alarms): */
       for (int c = 0; c < 15; c++) if (c != 12) DisableIntc(c);   /* the game's handlers stay registered in the kernel but are never called */
-      for (int c = 0; c < 16; c++) DisableDmac(c);
+      for (int c = 0; c < 10; c++) DisableDmac(c);
       if (o2) EIntr(); }
-    _ps2sdk_deinit_timer();
-    SifInitRpc(0); SifExitRpc();
-    SifIopReset(NULL, 0);
-    while (!SifIopSync()) { }
-    SifInitRpc(0); SifExitRpc();
-    SifLoadFileExit();
-    FlushCache(0); FlushCache(2);                             /* (NETDIAG58: no DIntr here - ps2link's own execee leaves interrupts on;
-                                                                 with them off PCSX2 stayed black after the IOP reset) */
+    g_rb_step = 5; _ps2sdk_deinit_timer();
+    g_rb_step = 6; SifInitRpc(0); SifExitRpc();
+    g_rb_step = 7; SifIopReset(NULL, 0);
+    g_rb_step = 8; while (!SifIopSync()) { }
+    g_rb_step = 9; SifInitRpc(0); SifExitRpc(); SifLoadFileExit();
+    g_rb_step = 10; FlushCache(0); FlushCache(2);             /* (NETDIAG58: no DIntr here - ps2link's own execee leaves interrupts on) */
     static char a0[] = "mass:/PS2LINK/PS2LINK.ELF";
     static char *argv[1] = { a0 };
+    g_rb_step = 11;                                           /* an exception from here on is in ExecPS2 or PS2LINK itself (before it sets up its own) */
     ExecPS2((void *)ep, 0, 1, argv);
 }
 #else
