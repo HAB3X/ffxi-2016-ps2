@@ -95,6 +95,7 @@ static void sp_stop(void)
     FlushCache(0); FlushCache(2);
     on = 0;
 }
+void sp_off(void) { if (on) sp_stop(); }                     /* before host_soft_restart: the copied vector would outlive this program */
 static void sp_start(u32 per)
 {
     u32 n = (u32)(sp_vec_end - sp_vec);

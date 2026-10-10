@@ -587,6 +587,9 @@ void host_soft_restart(void)
 {
     char *args[1] = { g_self_path };
     printf("[host] restarting from %s\n", g_self_path);
+#ifdef NETDIAG
+    { extern void sp_off(void); sp_off(); }                 /* samp 1: the counter exception must not stay pointed at our code */
+#endif
     SifExitIopHeap(); SifLoadFileExit(); SifExitRpc();
     LoadExecPS2(g_self_path, 1, args);
 }
