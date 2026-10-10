@@ -25,10 +25,12 @@ Commands are typed here, or appended (one per line) to the command file, which l
   gsw 1 / gsw 0           graphics wait meter on (G line once a second: SyncV and SyncPath share of the time) / off
   gsw top / gsw clear     where the game waits for the graphics hardware, per call site (G site, G bits lines) / start again
   gsw nov 1 / gsw nov 0   sceGsSyncV returns at once (no vertical-blank wait, the picture may tear) / normal
+  crash                   a crash report now (the PS2 also sends one by itself when the game stops: crash-HHMMSS.txt here)
+  reboot                  back to PS2LINK without touching the console (this sends it PS2LINK.ELF, see --ps2link)
 Local commands: sym NAME (address of a host symbol), where ADDR (nearest host symbol), help, quit.
 ADDR and VALUE can be numbers (0x.. hex) or host symbol names from the .sym file (name or name+offset).
 """
-import argparse, os, re, socket, sys, threading, time
+import argparse, os, re, socket, struct, sys, threading, time
 
 KEYWORDS = ('r', 'w', 'rw', 'all', 'force', 'top', 'clear', 'nov')                # command words that are not symbol names
 
@@ -55,6 +57,7 @@ class Console:
         self.lock = threading.Lock(); self.slock = threading.Lock()
         self.last_s = 0.0; self.last_s_line = ''; self.last_shown = 0.0; self.warned = 0.0
         self.running = True
+        self.crashf = None                                  # crash report being written (C begin .. C end)
 
     def log(self, kind, text, show=True):
         t = time.strftime('%H:%M:%S') + ('%.3f' % (time.time() % 1))[1:]
@@ -161,6 +164,9 @@ class Console:
             while b'\n' in buf:
                 l, buf = buf.split(b'\n', 1)
                 line = l.decode('latin-1').rstrip('\r')
+                self.crash_line(line)
+                if line == 'R getelf':
+                    self.send_elf(c); continue
                 if line.startswith('S '):
                     self.last_s = time.time(); self.last_s_line = line; self.warned = 0
                     try:
@@ -176,6 +182,32 @@ class Console:
             if self.conn is c: self.conn = None
         try: c.close()
         except OSError: pass
+
+    def crash_line(self, line):
+        if line.startswith('C begin'):
+            path = os.path.join(self.a.dir, time.strftime('crash-%H%M%S.txt'))
+            self.crashf = open(path, 'w', encoding='utf-8')
+            self.log('C', 'crash report from the PS2 -> %s' % path)
+        if self.crashf and not line.startswith('S '):
+            self.crashf.write(time.strftime('%H:%M:%S ') + line + '\n')
+            if line.startswith('C end'):
+                self.crashf.close(); self.crashf = None
+
+    def send_elf(self, c):
+        """'reboot': the PS2 asks for PS2LINK.ELF; it gets 'ELF vaddr filesz memsz entry' and the program segment."""
+        try:
+            d = open(self.a.ps2link, 'rb').read()
+            if d[:4] != b'\x7fELF': raise ValueError('not an ELF file')
+            entry, phoff = struct.unpack_from('<II', d, 24); phnum = struct.unpack_from('<H', d, 44)[0]
+            for i in range(phnum):
+                t, off, va, pa, fs, ms = struct.unpack_from('<IIIIII', d, phoff + 32 * i)
+                if t == 1: break
+            else: raise ValueError('no program segment')
+            with self.slock: c.sendall(b'ELF %x %x %x %x\n' % (va, fs, ms, entry) + d[off:off + fs])
+            self.log('--', 'sent %s to the PS2 (%d bytes at %08x, entry %08x)' % (self.a.ps2link, fs, va, entry))
+        except (OSError, ValueError, struct.error) as e:
+            self.log('!!', 'reboot: cannot send %s: %s' % (self.a.ps2link, e))
+            with self.slock: c.sendall(b'ERR %s\n' % str(e).encode()[:60])
 
     def run(self):
         srv = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -204,6 +236,8 @@ def main():
     ap.add_argument('--dir', default=os.path.join(here, 'ps2dbg'), help='where the log, status.txt and cmd.txt go')
     ap.add_argument('--every', type=float, default=5.0, help='show a status line on screen every N seconds (all are logged)')
     ap.add_argument('--all', action='store_true', help='show every status line')
+    ap.add_argument('--ps2link', default=os.path.join(here, '..', '..', 'outputs', 'USB', 'PS2LINK', 'PS2LINK.ELF'),
+                    help="PS2LINK.ELF for 'reboot' (default: outputs\\USB\\PS2LINK\\PS2LINK.ELF)")
     a = ap.parse_args()
     try: Console(a).run()
     except KeyboardInterrupt: pass

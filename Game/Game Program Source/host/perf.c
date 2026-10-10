@@ -9,6 +9,7 @@
 #include <kernel.h>
 volatile u32 g_pf_vs = 0, g_pf_frames = 0, g_pf_hist[16], g_pf_ftc[1024], g_pf_ftv[1024], g_pf_maxv = 0, g_pf_on = 0;
 static u32 last_vs, last_cyc;
+static int vbl_id = -1;
 #ifdef PROF
 static void perf_prof_start(void);
 #endif
@@ -120,10 +121,15 @@ static int vbl_handler(int c)
 static inline u32 cyc(void) { u32 c; __asm__ volatile("mfc0 %0, $9" : "=r"(c)); return c; }
 void perf_init(void)
 {
-    if (AddIntcHandler(INTC_VBLANK_S, vbl_handler, 0) >= 0) { EnableIntc(INTC_VBLANK_S); g_pf_on = 1; }
+    if ((vbl_id = AddIntcHandler(INTC_VBLANK_S, vbl_handler, 0)) >= 0) { EnableIntc(INTC_VBLANK_S); g_pf_on = 1; }
 #ifdef PROF
     perf_prof_start();
 #endif
+}
+void perf_stop(void)                                   /* crash.c reboot: the handler goes before PS2LINK starts */
+{
+    if (vbl_id >= 0) { RemoveIntcHandler(INTC_VBLANK_S, vbl_id); vbl_id = -1; }
+    *(volatile u64 *)0x120000E0 = 0;                   /* no freeze colour left behind */
 }
 void perf_frame(void)
 {

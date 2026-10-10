@@ -12,8 +12,9 @@
                  prof 0/1 | ap N ADDR | patch ADDR NEW [OLD] | unpatch ADDR [force] | unpatch all | patches | hist 0/1
                  samp 0/1 [RATE] | samp top [N] | samp clear   (sampling profiler, sprof.c)
                  gsw 0/1 | gsw top | gsw clear | gsw nov 0/1   (graphics wait meter, gsw.c)
+                 crash | reboot   (crash report by hand; back to PS2LINK - crash.c)
      more PS2 -> PC: A profiler (once a second)  F frame times (once a second)  X patch list line  P samples (once a second)
-                     G graphics waits (once a second)
+                     G graphics waits (once a second)  C crash report (C begin .. C end)  R getelf (reboot)
    The thread runs at priority 0 (with the report thread, above every game thread), so it keeps answering while the game is stuck,
    as long as the EE still takes interrupts and the IOP network stack answers.
 
@@ -85,6 +86,9 @@ static void out(const char *fmt, ...)
     if (n > (int)sizeof txb - tx_n - 2) n = sizeof txb - tx_n - 2;
     tx_n += n; txb[tx_n++] = '\n';
 }
+
+int dbg_handle(void) { return h; }                              /* crash.c */
+int dbg_flush_now(void) { return tx_n ? flush() : 0; }
 
 /* ---- memory access ---- */
 static int rd_ok(u32 a, u32 n)
@@ -498,6 +502,7 @@ static void hist_send(void)
 /* ---- commands ---- */
 extern void sp_cmd(char *s, void (*o)(const char *, ...)), sp_tick(void (*o)(const char *, ...), int show);   /* sprof.c */
 extern void gsw_cmd(char *s, void (*o)(const char *, ...)), gsw_tick(void (*o)(const char *, ...), int show);   /* gsw.c */
+extern void crash_tick(void (*o)(const char *, ...)), crash_cmd(void (*o)(const char *, ...)), rb_cmd(void (*o)(const char *, ...));   /* crash.c */
 static void cmd(char *s)
 {
     if (word(&s, "ping")) out("> pong vbl %u", (unsigned)g_pf_vs);
@@ -511,6 +516,8 @@ static void cmd(char *s)
     else if (word(&s, "unpatch")) cmd_unpatch(s);
     else if (word(&s, "samp")) sp_cmd(s, out);
     else if (word(&s, "gsw")) gsw_cmd(s, out);
+    else if (word(&s, "crash")) crash_cmd(out);
+    else if (word(&s, "reboot")) rb_cmd(out);
     else if (word(&s, "hist")) { hist_on = num(&s) != 0; out("> ok hist %d", hist_on); }
     else if (word(&s, "thr")) cmd_thr();
     else if (word(&s, "sema")) cmd_sema();
@@ -531,6 +538,8 @@ static void cmd(char *s)
     else if (word(&s, "ap")) { int i = (int)num(&s); u32 a = num(&s); cmd_ap(i, a); }
     else out("> err unknown command: %s", s);
 }
+
+void dbg_run(const char *c) { char b[64]; strncpy(b, c, sizeof b - 1); b[sizeof b - 1] = 0; cmd(b); }   /* crash.c */
 
 /* the report thread hands its finished report lines over here before sending them to the proxy (1 = taken) */
 int dbg_mirror(char (*lines)[72], int n)
@@ -595,6 +604,7 @@ static void dbg_thread(void *arg)
             hist_send();
             sp_tick(out, stream);
             gsw_tick(out, stream);
+            crash_tick(out);
             if (tx_n && flush() < 0) break;
             if (g_pf_vs - last_rx > 60 * 10) { break; }       /* the console pings every second: 10 s of silence = gone */
             DelayThread(50 * 1000);

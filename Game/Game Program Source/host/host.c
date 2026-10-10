@@ -539,6 +539,9 @@ static void install_real(u32 *tab)
 static void sound_consumer(s32 id, u16 time, void *arg)
 {
     volatile u32 *q = (volatile u32 *)0x5bffe8;
+#ifdef NETDIAG
+    { extern volatile u32 g_rb_stop; if (g_rb_stop) return; }   /* crash.c reboot: this alarm ends */
+#endif
     q[1] = q[0];
     hlog_poke();
     iSetAlarm(16, sound_consumer, 0);                 /* about 1 ms */
@@ -552,6 +555,9 @@ volatile SemEnt g_sem[64];
 static void log_tick(s32 id, u16 time, void *arg)
 {
     static u32 n = 0;
+#ifdef NETDIAG
+    { extern volatile u32 g_rb_stop; if (g_rb_stop) return; }   /* crash.c reboot: this alarm ends */
+#endif
     { extern volatile u32 g_ticks; g_ticks++; }       /* NETDIAG: elapsed-time base for the network log */
     hlog_poke();
     if ((++n & 63) == 0)
