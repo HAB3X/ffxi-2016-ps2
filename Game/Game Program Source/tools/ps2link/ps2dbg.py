@@ -25,34 +25,12 @@ Commands are typed here, or appended (one per line) to the command file, which l
   gsw 1 / gsw 0           graphics wait meter on (G line once a second: SyncV and SyncPath share of the time) / off
   gsw top / gsw clear     where the game waits for the graphics hardware, per call site (G site, G bits lines) / start again
   gsw nov 1 / gsw nov 0   sceGsSyncV returns at once (no vertical-blank wait, the picture may tear) / normal
-  shot [FBP FBW PSM W H]  screen capture: the picture the TV shows, saved as shot-HHMMSS.png next to the log (a few seconds)
 Local commands: sym NAME (address of a host symbol), where ADDR (nearest host symbol), help, quit.
 ADDR and VALUE can be numbers (0x.. hex) or host symbol names from the .sym file (name or name+offset).
 """
-import argparse, base64, binascii, os, re, socket, struct, sys, threading, time, zlib
+import argparse, os, re, socket, sys, threading, time
 
 KEYWORDS = ('r', 'w', 'rw', 'all', 'force', 'top', 'clear', 'nov')                # command words that are not symbol names
-
-def write_png(path, w, h, psm, data):
-    """GS pixels (PSMCT32 / 24 / 16 / 16S, as read back with TRXDIR 1) -> 8-bit RGB PNG."""
-    bpp = {0: 4, 1: 3, 2: 2, 10: 2}[psm]
-    rows = []
-    for y in range(h):
-        r = data[y * w * bpp:(y + 1) * w * bpp]
-        if bpp == 3:
-            px = bytes(r)
-        elif bpp == 4:
-            px = bytes(b for i in range(0, len(r), 4) for b in r[i:i + 3])
-        else:
-            out = bytearray()
-            for (v,) in struct.iter_unpack('<H', bytes(r)):
-                out += bytes(((v & 31) << 3, (v >> 5 & 31) << 3, (v >> 10 & 31) << 3))
-            px = bytes(out)
-        rows.append(b'\0' + px.ljust(w * 3, b'\0'))
-    def chunk(t, d): return struct.pack('>I', len(d)) + t + d + struct.pack('>I', zlib.crc32(t + d) & 0xffffffff)
-    with open(path, 'wb') as f:
-        f.write(b'\x89PNG\r\n\x1a\n' + chunk(b'IHDR', struct.pack('>IIBBBBB', w, h, 8, 2, 0, 0, 0))
-                + chunk(b'IDAT', zlib.compress(b''.join(rows), 6)) + chunk(b'IEND', b''))
 
 def load_syms(path):
     syms, code = {}, {}
@@ -77,7 +55,6 @@ class Console:
         self.lock = threading.Lock(); self.slock = threading.Lock()
         self.last_s = 0.0; self.last_s_line = ''; self.last_shown = 0.0; self.warned = 0.0
         self.running = True
-        self.shot = None                                    # screen capture being received: [w, h, psm, bytearray]
 
     def log(self, kind, text, show=True):
         t = time.strftime('%H:%M:%S') + ('%.3f' % (time.time() % 1))[1:]
@@ -192,8 +169,6 @@ class Console:
                     show = self.a.all or time.time() - self.last_shown >= self.a.every
                     if show: self.last_shown = time.time()
                     self.log('S', line[2:], show=show)
-                elif line.startswith('I '):
-                    self.shot_line(line)
                 else:
                     line = self.annotate(line)
                     self.log(line[:1], line, show=line.startswith(('P top', 'G site', 'G bits')) or not line.startswith(('P ', 'F ', 'A ', 'G ')))   # once-a-second data lines: log file only
@@ -201,24 +176,6 @@ class Console:
             if self.conn is c: self.conn = None
         try: c.close()
         except OSError: pass
-
-    def shot_line(self, line):
-        p = line.split(' ', 3)
-        try:
-            if p[1] == 'shot':
-                w, h, psm = int(p[2]), int(p[3].split()[0]), int(p[3].split()[1])
-                self.shot = [w, h, psm, bytearray(w * h * {0: 4, 1: 3, 2: 2, 10: 2}[psm])]
-                self.log('I', line + ' (receiving)')
-            elif p[1] == 'd' and self.shot:
-                d = base64.b64decode(p[3]); o = int(p[2]); buf = self.shot[3]
-                buf[o:o + len(d)] = d
-            elif p[1] == 'end' and self.shot:
-                w, h, psm, buf = self.shot; self.shot = None
-                path = os.path.join(self.a.dir, time.strftime('shot-%H%M%S.png'))
-                write_png(path, w, h, psm, buf)
-                self.log('I', 'screen capture saved: %s (%dx%d)' % (path, w, h))
-        except (ValueError, IndexError, KeyError, binascii.Error) as e:
-            self.log('!!', 'bad capture line (%s): %s' % (e, line[:60]))
 
     def run(self):
         srv = socket.socket(socket.AF_INET, socket.SOCK_STREAM)

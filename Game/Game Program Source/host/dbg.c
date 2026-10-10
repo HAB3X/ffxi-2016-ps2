@@ -12,7 +12,6 @@
                  prof 0/1 | ap N ADDR | patch ADDR NEW [OLD] | unpatch ADDR [force] | unpatch all | patches | hist 0/1
                  samp 0/1 [RATE] | samp top [N] | samp clear   (sampling profiler, sprof.c)
                  gsw 0/1 | gsw top | gsw clear | gsw nov 0/1   (graphics wait meter, gsw.c)
-                 shot [FBP FBW PSM W H]   (screen capture: I lines, saved as a PNG by ps2dbg.py)
      more PS2 -> PC: A profiler (once a second)  F frame times (once a second)  X patch list line  P samples (once a second)
                      G graphics waits (once a second)
    The thread runs at priority 0 (with the report thread, above every game thread), so it keeps answering while the game is stuck,
@@ -85,19 +84,6 @@ static void out(const char *fmt, ...)
     if (n < 0) return;
     if (n > (int)sizeof txb - tx_n - 2) n = sizeof txb - tx_n - 2;
     tx_n += n; txb[tx_n++] = '\n';
-}
-
-int dbg_send(const char *p, int n)                              /* raw bytes after what is queued (gsw.c screen capture) */
-{
-    if (h < 0 || (tx_n && flush() < 0)) return -1;
-    int o = 0, tries = 0;
-    while (o < n) {
-        int r = nd_sock(2, h, (void *)(p + o), n - o);
-        if (r > 0) { o += r; tries = 0; continue; }
-        if (r < 0 || ++tries > 200) return -1;
-        DelayThread(10 * 1000);
-    }
-    return 0;
 }
 
 /* ---- memory access ---- */
@@ -512,8 +498,6 @@ static void hist_send(void)
 /* ---- commands ---- */
 extern void sp_cmd(char *s, void (*o)(const char *, ...)), sp_tick(void (*o)(const char *, ...), int show);   /* sprof.c */
 extern void gsw_cmd(char *s, void (*o)(const char *, ...)), gsw_tick(void (*o)(const char *, ...), int show);   /* gsw.c */
-extern void shot_tick(void (*o)(const char *, ...), int (*send)(const char *, int));
-int dbg_send(const char *p, int n);
 static void cmd(char *s)
 {
     if (word(&s, "ping")) out("> pong vbl %u", (unsigned)g_pf_vs);
@@ -527,7 +511,6 @@ static void cmd(char *s)
     else if (word(&s, "unpatch")) cmd_unpatch(s);
     else if (word(&s, "samp")) sp_cmd(s, out);
     else if (word(&s, "gsw")) gsw_cmd(s, out);
-    else if (word(&s, "shot")) { char b[64] = "shot "; strncat(b, s, 50); gsw_cmd(b, out); }
     else if (word(&s, "hist")) { hist_on = num(&s) != 0; out("> ok hist %d", hist_on); }
     else if (word(&s, "thr")) cmd_thr();
     else if (word(&s, "sema")) cmd_sema();
@@ -612,7 +595,6 @@ static void dbg_thread(void *arg)
             hist_send();
             sp_tick(out, stream);
             gsw_tick(out, stream);
-            shot_tick(out, dbg_send);
             if (tx_n && flush() < 0) break;
             if (g_pf_vs - last_rx > 60 * 10) { break; }       /* the console pings every second: 10 s of silence = gone */
             DelayThread(50 * 1000);
