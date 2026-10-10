@@ -20,12 +20,14 @@ Commands are typed here, or appended (one per line) to the command file, which l
   unpatch ADDR [force]    put the original back (only if it still holds what patch wrote, unless force)
   unpatch all / patches   undo every patch and free the profiler slots / list them
   hist 0|1                the once-a-second frame-time line (F) off / on
+  samp 1 [RATE] / samp 0  sampling profiler on (RATE samples a second of game CPU time, default 1000) / off; real PS2 only
+  samp top [N] / samp clear  the N busiest functions since 'samp 1' (P top lines) / start counting again
 Local commands: sym NAME (address of a host symbol), where ADDR (nearest host symbol), help, quit.
 ADDR and VALUE can be numbers (0x.. hex) or host symbol names from the .sym file (name or name+offset).
 """
 import argparse, os, re, socket, sys, threading, time
 
-KEYWORDS = ('r', 'w', 'rw', 'all', 'force')                # command words that are not symbol names
+KEYWORDS = ('r', 'w', 'rw', 'all', 'force', 'top', 'clear')                # command words that are not symbol names
 
 def load_syms(path):
     syms, code = {}, {}
@@ -166,7 +168,7 @@ class Console:
                     self.log('S', line[2:], show=show)
                 else:
                     line = self.annotate(line)
-                    self.log(line[:1], line, show=not line.startswith(('P ', 'F ', 'A ')))   # once-a-second data lines: log file only
+                    self.log(line[:1], line, show=line.startswith('P top') or not line.startswith(('P ', 'F ', 'A ')))   # once-a-second data lines: log file only
         with self.lock:
             if self.conn is c: self.conn = None
         try: c.close()

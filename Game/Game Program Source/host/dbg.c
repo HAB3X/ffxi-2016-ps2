@@ -10,7 +10,8 @@
                  ping | rate MS | stream 0/1 | peek ADDR [LEN] | poke ADDR VALUE [1|2|4] | thr | sema | report | beat | log
                  watch ADDR [r|w|rw] [MASK] [COUNT] | iwatch ADDR [MASK] [COUNT] | unwatch | wtest
                  prof 0/1 | ap N ADDR | patch ADDR NEW [OLD] | unpatch ADDR [force] | unpatch all | patches | hist 0/1
-     more PS2 -> PC: A profiler (once a second)  F frame times (once a second)  X patch list line
+                 samp 0/1 [RATE] | samp top [N] | samp clear   (sampling profiler, sprof.c)
+     more PS2 -> PC: A profiler (once a second)  F frame times (once a second)  X patch list line  P samples (once a second)
    The thread runs at priority 0 (with the report thread, above every game thread), so it keeps answering while the game is stuck,
    as long as the EE still takes interrupts and the IOP network stack answers.
 
@@ -493,6 +494,7 @@ static void hist_send(void)
 }
 
 /* ---- commands ---- */
+extern void sp_cmd(char *s, void (*o)(const char *, ...)), sp_tick(void (*o)(const char *, ...), int show);   /* sprof.c */
 static void cmd(char *s)
 {
     if (word(&s, "ping")) out("> pong vbl %u", (unsigned)g_pf_vs);
@@ -504,6 +506,7 @@ static void cmd(char *s)
     else if (word(&s, "patches")) cmd_patches();
     else if (word(&s, "patch")) { u32 a = num(&s), v = num(&s); int c = more(s); u32 w = c ? num(&s) : 0; cmd_patch(a, v, c, w); }
     else if (word(&s, "unpatch")) cmd_unpatch(s);
+    else if (word(&s, "samp")) sp_cmd(s, out);
     else if (word(&s, "hist")) { hist_on = num(&s) != 0; out("> ok hist %d", hist_on); }
     else if (word(&s, "thr")) cmd_thr();
     else if (word(&s, "sema")) cmd_sema();
@@ -586,6 +589,7 @@ static void dbg_thread(void *arg)
             }
             prof_send();
             hist_send();
+            sp_tick(out, stream);
             if (tx_n && flush() < 0) break;
             if (g_pf_vs - last_rx > 60 * 10) { break; }       /* the console pings every second: 10 s of silence = gone */
             DelayThread(50 * 1000);
