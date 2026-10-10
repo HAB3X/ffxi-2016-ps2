@@ -50,7 +50,7 @@ static int smp_tid = -1;
 static u8 sh_buf[SH_BUF] __attribute__((aligned(64)));
 static u64 sh_pk[10] __attribute__((aligned(64)));
 static volatile u32 sh_on, sh_full, sh_y, sh_rows, sh_err;     /* sh_full: a strip is in sh_buf (rows sh_y .. sh_y + sh_rows) */
-static u32 sh_fbp, sh_fbw, sh_psm, sh_w, sh_h, sh_bpp, sh_sent, sh_t0;
+static u32 sh_fbp, sh_fbw, sh_psm, sh_w, sh_h, sh_bpp, sh_sent, sh_t0, sh_drain;
 static u32 bpp_of(u32 psm) { return psm == 0 ? 4 : psm == 1 ? 3 : (psm == 2 || psm == 10) ? 2 : 0; }
 static void sh_capture(void)
 {
@@ -73,15 +73,23 @@ static void sh_capture(void)
     u32 k = 0;
     while ((*(volatile u32 *)0x1000A000 & 0x100) && ++k < 1000000) { }
     while ((*(volatile u32 *)0x10003020 & 0x1F000000) && ++k < 1000000) { }                 /* the GIF FIFO has drained (the packet is in the GS) */
-    if (k >= 1000000) { sh_err = 2; if (o) EIntr(); return; }
+    if (k >= 1000000) { sh_err = 2; *(volatile u32 *)0x1000E010 = 4; if (o) EIntr(); return; }
     *(volatile u32 *)0x10003C00 = 0x800000;                                                      /* VIF1 FIFO: GS -> memory */
     *(volatile u64 *)0x12001040 = 1;                                                             /* GS BUSDIR: local -> host */
     *(volatile u32 *)0x10009010 = (u32)sh_buf; *(volatile u32 *)0x10009020 = n * row / 16; *(volatile u32 *)0x10009000 = 0x100;
     k = 0;
     while ((*(volatile u32 *)0x10009000 & 0x100) && ++k < 4000000) { }
     if (k >= 4000000) { *(volatile u32 *)0x10009000 = 0; sh_err = 3; }
+    for (u32 quiet = 0, t = 0; quiet < 64 && t < 100000; t++) {        /* NETDIAG55: anything the GS sent beyond what was asked must not stay */
+        if (*(volatile u32 *)0x10003C00 & 0x1F000000) {                  /* in the VIF1 FIFO, or VIF1 decodes it as VIF codes once turned back */
+            __asm__ volatile("lq $8, 0(%0)" :: "r"(0x10005000) : "$8", "memory"); sh_drain++; quiet = 0;
+        } else quiet++;
+    }
     *(volatile u64 *)0x12001040 = 0;
     *(volatile u32 *)0x10003C00 = 0;
+    *(volatile u32 *)0x1000E010 = 6;              /* NETDIAG55: clear the channel 1/2 'transfer ended' flags (D_STAT CIS1/CIS2) while interrupts
+                                                     are still off - else the game's DMA-end handler takes our transfers for its own (NETDIAG54
+                                                     froze PCSX2 after the first strip: VIF1 chain stalled, the game waiting in sceGsSyncPath) */
     InvalidDCache(sh_buf, sh_buf + SH_BUF - 1);
     if (o) EIntr();
     if (sh_err) return;
@@ -191,7 +199,7 @@ static char sh_ln[1088] __attribute__((aligned(64)));
 void shot_tick(out_fn o, int (*send)(const char *, int))
 {
     if (!sh_on) return;
-    if (sh_err) { o("> err shot: GS read failed (%u) at row %u - the game's graphics were left as they were", (unsigned)sh_err, (unsigned)sh_y); sh_on = 0; sh_err = 0; return; }
+    if (sh_err) { o("> err shot: GS read failed (%u) at row %u, %u qwords drained", (unsigned)sh_err, (unsigned)sh_y, (unsigned)sh_drain); sh_on = 0; sh_err = 0; return; }
     if (!sh_full) { if (g_pf_vs - sh_t0 > 60 * 30) { o("> err shot: no frame drawn for 30 s (row %u)", (unsigned)sh_y); sh_on = 0; } return; }
     u32 len = sh_rows * sh_w * sh_bpp;
     for (u32 p = 0; p < len; p += 768) {
@@ -207,7 +215,7 @@ void shot_tick(out_fn o, int (*send)(const char *, int))
         if (send(sh_ln, l) < 0) { sh_on = 0; return; }
     }
     sh_sent += len; sh_y += sh_rows; sh_full = 0;
-    if (sh_y >= sh_h) { o("I end %u", (unsigned)sh_sent); o("> ok shot %ux%u in %u ms", (unsigned)sh_w, (unsigned)sh_h, (unsigned)((g_pf_vs - sh_t0) * 1000 / 60)); sh_on = 0; }
+    if (sh_y >= sh_h) { o("I end %u", (unsigned)sh_sent); o("> ok shot %ux%u in %u ms, %u extra qwords drained", (unsigned)sh_w, (unsigned)sh_h, (unsigned)((g_pf_vs - sh_t0) * 1000 / 60), (unsigned)sh_drain); sh_on = 0; }
 }
 
 static void shot_cmd(char *s, out_fn o)
@@ -224,6 +232,7 @@ static void shot_cmd(char *s, out_fn o)
         if (k != 5) { o("> err shot: use 'shot' or 'shot FBP FBW PSM W H'"); return; }
         sh_fbp = v[0]; sh_fbw = v[1]; sh_psm = v[2]; sh_w = v[3]; sh_h = v[4];
     }
+    if (sh_psm == 1) sh_psm = 0;                                       /* PSMCT24 is read as PSMCT32 (same layout, 4 bytes a pixel: no 24-bit packing question) */
     sh_bpp = bpp_of(sh_psm);
     if (!sh_bpp || !sh_w || !sh_h || sh_w > 1024 || sh_h > 1024 || sh_w > sh_fbw * 64 || sh_w * sh_bpp > SH_BUF) {
         o("> err shot: unusable picture fbp %u fbw %u psm %u %ux%u (DISPFB %08x%08x DISPLAY %08x%08x)", (unsigned)sh_fbp, (unsigned)sh_fbw, (unsigned)sh_psm,
@@ -231,7 +240,7 @@ static void shot_cmd(char *s, out_fn o)
         return;
     }
     o("I shot %u %u %u %u %u", (unsigned)sh_w, (unsigned)sh_h, (unsigned)sh_psm, (unsigned)sh_fbp, (unsigned)sh_fbw);
-    sh_y = 0; sh_sent = 0; sh_full = 0; sh_err = 0; sh_t0 = g_pf_vs; sh_on = 1;
+    sh_y = 0; sh_sent = 0; sh_full = 0; sh_err = 0; sh_drain = 0; sh_t0 = g_pf_vs; sh_on = 1;
 }
 
 void gsw_cmd(char *s, out_fn o)
