@@ -100,12 +100,12 @@ void rb_cmd(out_fn o)
        magenta = an exception after the reboot began (perf.c), anything else = PS2LINK's own screen. */
     o("R step 1 threads stopped"); dbg_flush_now();
     sp_cmd("0", o);                                           /* sampling profiler vector off, if it was on */
-    g_rb_stop = 1;
-    perf_stop();
-    o("R step 2 our vblank handler and alarms stopped"); dbg_flush_now();
-    o("R step 3 closing the link; next the interrupts go off, the IOP is reset and PS2LINK starts"); dbg_flush_now();
+    o("R step 2 closing the link; next our handlers and alarms stop, the interrupts go off, the IOP is reset and PS2LINK starts");
+    dbg_flush_now();
     DelayThread(200 * 1000);
-    nd_sock(4, h, 0, 0);                                      /* (the network needs the SIF interrupts and DelayThread timer 2: both stay until here) */
+    nd_sock(4, h, 0, 0);                                      /* the network needs the SIF interrupts, timer 2 (DelayThread) and the game's alarms */
+    g_rb_stop = 1;                                            /* (NETDIAG59 set this before closing: the socket library waits on an alarm, */
+    perf_stop();                                              /*  which then never came - the link hung after step 2) */
     { int o2 = DIntr();                                       /* every interrupt / DMA-end source off except timer 3 (the kernel's alarms): */
       for (int c = 0; c < 15; c++) if (c != 12) DisableIntc(c);   /* the game's handlers stay registered in the kernel but are never called */
       for (int c = 0; c < 16; c++) DisableDmac(c);
