@@ -137,9 +137,6 @@ static void al_fire(AlEnt *e)                          /* e is claimed (state 2)
 static void al_tramp(s32 id, u16 t, void *arg)
 {
     AlEnt *e = (AlEnt *)arg;
-#ifdef NETDIAG
-    { extern volatile u32 g_rb_stop; if (g_rb_stop) return; }   /* crash.c reboot: the game's alarms end */
-#endif
     if (e->state != 1) return;                         /* released, or already fired by the watchdog */
     e->state = 2; al_fire(e);
 }

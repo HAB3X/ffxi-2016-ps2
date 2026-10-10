@@ -9,7 +9,6 @@
 #include <kernel.h>
 volatile u32 g_pf_vs = 0, g_pf_frames = 0, g_pf_hist[16], g_pf_ftc[1024], g_pf_ftv[1024], g_pf_maxv = 0, g_pf_on = 0;
 static u32 last_vs, last_cyc;
-static int vbl_id = -1;
 #ifdef PROF
 static void perf_prof_start(void);
 #endif
@@ -33,11 +32,6 @@ u8 g_exc_stack[4096] __attribute__((section(".xcmem"), aligned(64)));
 void exc_park(void)
 {
     u32 sr = g_exc[3], pc = g_exc[1];
-    { extern volatile u32 g_rb_stop, g_rb_step;                            /* NETDIAG59: an exception during 'reboot' (crash.c): the colour */
-      static const u32 col[12] = { 0xE000E0, 0xE000E0, 0xE000E0,            /* tells the step (NETDIAG61): 3 red, 4 orange, 5 green, */
-          0x0000E0, 0x0080E0, 0x00C000, 0xE0E000, 0xE00000, 0xE00080,     /* 6 cyan, 7 blue, 8 purple, 9 white, 10 grey, 11 magenta */
-          0xE0E0E0, 0x606060, 0xE000E0 };                                  /* (BGCOLOR: R bits 0-7, G 8-15, B 16-23) */
-      if (g_rb_stop) { u32 c = col[g_rb_step < 12 ? g_rb_step : 11]; for (;;) { *(volatile u64 *)0x120000E0 = c; *(volatile u64 *)0x12000000 = 0x4; } } }
     if (!(sr & 1) || !(sr & 0x10000) || pc < 0x100000 || pc >= 0x2000000) {   /* interrupts were off / kernel code: cannot sleep here */
         g_exc_n++; g_exc_real++;
         for (;;) { *(volatile u64 *)0x120000E0 = 0x00E0E0; *(volatile u64 *)0x12000000 = 0x4; }
@@ -126,15 +120,10 @@ static int vbl_handler(int c)
 static inline u32 cyc(void) { u32 c; __asm__ volatile("mfc0 %0, $9" : "=r"(c)); return c; }
 void perf_init(void)
 {
-    if ((vbl_id = AddIntcHandler(INTC_VBLANK_S, vbl_handler, 0)) >= 0) { EnableIntc(INTC_VBLANK_S); g_pf_on = 1; }
+    if (AddIntcHandler(INTC_VBLANK_S, vbl_handler, 0) >= 0) { EnableIntc(INTC_VBLANK_S); g_pf_on = 1; }
 #ifdef PROF
     perf_prof_start();
 #endif
-}
-void perf_stop(void)                                   /* crash.c reboot: the handler goes before PS2LINK starts */
-{
-    if (vbl_id >= 0) { RemoveIntcHandler(INTC_VBLANK_S, vbl_id); vbl_id = -1; }
-    *(volatile u64 *)0x120000E0 = 0;                   /* no freeze colour left behind */
 }
 void perf_frame(void)
 {
