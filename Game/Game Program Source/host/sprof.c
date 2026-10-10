@@ -31,7 +31,7 @@ extern volatile u32 g_pf_vs;
 
 #define SP_RING 1024                                       /* samples; the debug thread empties it every 50 ms */
 #define SP_VEC  0x80000080u
-#define FN_N    256                                        /* functions counted (open addressing) */
+#define FN_N    512                                        /* functions counted (open addressing; 256 overflowed: ~11% 'other' in Port Jeuno) */
 #define CYC_HZ  294912000u
 
 /* [0] samples taken (handler), [1] counter reload value (0x80000000 - PERIOD), ring from [16] */
@@ -115,6 +115,8 @@ static void sp_start(u32 per)
 static u32 fn_of(u32 pc)
 {
     if (pc < 0x00100000 || pc >= 0x02000000 || (pc & 3)) return 0x80000000u;      /* kernel (should not happen: user mode only) */
+    if ((pc < 0x001D6000) || (pc >= 0x00251000 && pc < 0x00280000)) return pc & ~63u;   /* host code: 64-byte blocks, named on the PC from the .sym
+                                                                                       (gcc puts cold paths after a function's jr ra: the scan misnamed them) */
     volatile u32 *p = (volatile u32 *)pc;
     for (int i = 0; i < 4096 && (u32)(p - 1) >= 0x00100000; i++) {
         u32 w = *p;

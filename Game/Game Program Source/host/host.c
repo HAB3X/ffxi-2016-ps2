@@ -145,7 +145,11 @@ volatile u32 g_ring[RINGN][2]; volatile u32 g_ringp = 0;   /* last calls: slot, 
    trap_common -> trap_c.  g_real[idx] holds the real implementation (0 = log-only slot).  Entry + return are recorded in
    g_tr (PINE readable; see pk.py tr).  Noisy slots are recorded only for their first TR_FIRST calls. */
 volatile u32 g_real[NSLOTS];
+#ifdef NETDIAG
+#define TRN 256                                         /* NETDIAG52: room for the graphics wait meter and a bigger profiler table */
+#else
 #define TRN 512
+#endif
 typedef struct { u32 idx, ra, a0, a1, a2, a3, ret, seq; char s0[32]; char s1[64]; } TrEnt;
 volatile TrEnt g_tr[TRN]; volatile u32 g_trn = 0;
 #define TR_FIRST 6
@@ -419,11 +423,18 @@ static u32 svc_gssyncpath(u32 mode)
 {
     if (mode) { u32 b = gs_busy(); if (b) { g_syncpath_busy++; g_syncpath_busybits |= b; } return b; }
     g_syncpath_calls++;
+#ifdef NETDIAG
+    { extern u32 gsw_path(u32 ra); u32 k = gsw_path((u32)__builtin_return_address(0));   /* NETDIAG52: the same wait, timed and sampled (gsw.c) */
+      if (k > g_syncpath_maxspin) g_syncpath_maxspin = k;
+      if (k >= 0x1000000) { g_syncpath_timeouts++; return (u32)-1; }
+      return 0; }
+#else
     u32 n0 = 0x1000000, n = n0;
     while (gs_busy() && --n) { }
     if (n0 - n > g_syncpath_maxspin) g_syncpath_maxspin = n0 - n;
     if (!n) { g_syncpath_timeouts++; return (u32)-1; }
     return 0;
+#endif
 }
 #else
 static u32 svc_gssyncpath(u32 mode)
@@ -611,6 +622,9 @@ int main(int argc, char **argv)
             if (hot_slot(k)) continue;                /* per-frame spam (graphics DMA, cache flush, semaphores...): called directly, no tracing (it made big models crawl) */
             tab[k] = (u32)(slot_stubs + 8 * k);
         }
+#endif
+#ifdef NETDIAG
+    { extern void gsw_install(u32 *); gsw_install(tab); }   /* NETDIAG52: sceGsSyncV timed per call site (gsw.c), called directly */
 #endif
     FlushCache(0); FlushCache(2);
 #ifdef SONY_IOP
