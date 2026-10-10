@@ -79,20 +79,23 @@ static u32 hf_lf(u32 heap)
    a burst of effects makes ~70 allocations a frame, and the game's malloc (0x281DA0, and its sibling 0x2821B0) searches the main
    heap itself (0x281AB0) BEFORE it ever reaches the allocator above: a search from the remembered spot for that size, then a
    search of all ~12,000 blocks, which with the heap full both fail (~2.6 ms), then 0x281560 and the fallback.  750 ms of every
-   second went there.  While playing, on the main thread, a request the kept largest-free value (hf_lf, refreshed at most every
-   HF_LF_VBL blanks) says cannot fit skips the searches: the remembered-spot one returns "not found" as it would have, the full one
-   goes straight to 0x281560 (which then falls back to the other heap as before).  When a full search does run and fails, the kept
-   value is lowered below that request, so the next requests of that size skip too.  A stale value only changes where a block
-   goes for at most HF_LF_VBL blanks (too small: the other heap, as the fallback does anyway).  Tested live on NETDIAG45 with a
-   poked stub (the skip only): those stretches went from 4 to 13-14 fps. */
+   second went there.  While playing, on the main thread, a request the kept largest-free value (hf_lf's, less than HF_AB_VBL
+   blanks old) says cannot fit skips the searches: the remembered-spot one returns "not found" as it would have, the full one goes
+   straight to 0x281560 (which then falls back to the other heap as before).  When a full search does run and fails, the kept
+   value is lowered below that request, so the next requests of that size skip too.  An old value is not refreshed here (that
+   walk cost ~0.4 ms a frame in normal play); the search runs and teaches it.  A stale value only changes where a block goes for
+   at most HF_AB_VBL blanks (too small: the other heap, as the fallback does anyway).  Tested live on NETDIAG45 with poked stubs:
+   the skip alone took those stretches from 4 to 13 fps, with the lowering ~14. */
+#ifndef HF_AB_VBL
+#define HF_AB_VBL 30
+#endif
 static u32 hf_ab(u32 size, u32 lo, u32 hi, u32 start, u32 dir)
 {
     typedef u32 (*ab_t)(u32, u32, u32, u32, u32);
     u32 head = *(volatile u32 *)0x5FC5A0;
     if (!g_in_world || !g_pf_on || lo != head || GetThreadId() != *(volatile int *)0x5FC5D0) return ((ab_t)0x281AB0)(size, lo, hi, start, dir);
-    u32 need = (size + 15) & ~15u, v = g_pf_vs;
-    if (hf_lf_h[1] != head || v - hf_lf_v[1] >= HF_LF_VBL) { hf_lf_r[1] = ((u32 (*)(u32))0x282030)(head); hf_lf_h[1] = head; hf_lf_v[1] = v; g_hf[2]++; }
-    if (hf_lf_r[1] < need) { g_hf[4]++; return start ? 0 : ((u32 (*)(u32, u32, u32))0x281560)(size, lo, hi); }
+    u32 need = (size + 15) & ~15u;
+    if (hf_lf_h[1] == head && g_pf_vs - hf_lf_v[1] < HF_AB_VBL && hf_lf_r[1] < need) { g_hf[4]++; return start ? 0 : ((u32 (*)(u32, u32, u32))0x281560)(size, lo, hi); }
     u32 r = ((ab_t)0x281AB0)(size, lo, hi, start, dir);
     if (!start && (r < lo || r >= hi) && hf_lf_h[1] == head) { hf_lf_r[1] = need - 16; hf_lf_v[1] = g_pf_vs; g_hf[5]++; }   /* the whole heap had nothing that big */
     return r;
@@ -144,7 +147,11 @@ volatile u32 g_ring[RINGN][2]; volatile u32 g_ringp = 0;   /* last calls: slot, 
    trap_common -> trap_c.  g_real[idx] holds the real implementation (0 = log-only slot).  Entry + return are recorded in
    g_tr (PINE readable; see pk.py tr).  Noisy slots are recorded only for their first TR_FIRST calls. */
 volatile u32 g_real[NSLOTS];
+#ifdef NETDIAG
+#define TRN 256                                         /* NETDIAG52: room for the graphics wait meter and a bigger profiler table */
+#else
 #define TRN 512
+#endif
 typedef struct { u32 idx, ra, a0, a1, a2, a3, ret, seq; char s0[32]; char s1[64]; } TrEnt;
 volatile TrEnt g_tr[TRN]; volatile u32 g_trn = 0;
 #define TR_FIRST 6
@@ -414,11 +421,18 @@ static u32 svc_gssyncpath(u32 mode)
 {
     if (mode) { u32 b = gs_busy(); if (b) { g_syncpath_busy++; g_syncpath_busybits |= b; } return b; }
     g_syncpath_calls++;
+#ifdef NETDIAG
+    { extern u32 gsw_path(u32 ra); u32 k = gsw_path((u32)__builtin_return_address(0));   /* NETDIAG52: the same wait, timed and sampled (gsw.c) */
+      if (k > g_syncpath_maxspin) g_syncpath_maxspin = k;
+      if (k >= 0x1000000) { g_syncpath_timeouts++; return (u32)-1; }
+      return 0; }
+#else
     u32 n0 = 0x1000000, n = n0;
     while (gs_busy() && --n) { }
     if (n0 - n > g_syncpath_maxspin) g_syncpath_maxspin = n0 - n;
     if (!n) { g_syncpath_timeouts++; return (u32)-1; }
     return 0;
+#endif
 }
 #else
 static u32 svc_gssyncpath(u32 mode)
@@ -573,6 +587,9 @@ void host_soft_restart(void)
 {
     char *args[1] = { g_self_path };
     printf("[host] restarting from %s\n", g_self_path);
+#ifdef NETDIAG
+    { extern void sp_off(void); sp_off(); }                 /* samp 1: the counter exception must not stay pointed at our code */
+#endif
     SifExitIopHeap(); SifLoadFileExit(); SifExitRpc();
     LoadExecPS2(g_self_path, 1, args);
 }
@@ -616,6 +633,9 @@ int main(int argc, char **argv)
             if (hot_slot(k)) continue;                /* per-frame spam (graphics DMA, cache flush, semaphores...): called directly, no tracing (it made big models crawl) */
             tab[k] = (u32)(slot_stubs + 8 * k);
         }
+#endif
+#ifdef NETDIAG
+    { extern void gsw_install(u32 *); gsw_install(tab); }   /* NETDIAG52: sceGsSyncV timed per call site (gsw.c), called directly */
 #endif
     FlushCache(0); FlushCache(2);
 #ifdef SONY_IOP
@@ -824,6 +844,29 @@ int main(int argc, char **argv)
         char *nm = (char *)0x5E6610;
         if (!memcmp(nm, "../prog/ps2/dancer.enc", 23)) { memcpy(nm + 19, "bin", 3); FlushCache(0); printf("[host] dancer: reads dancer.bin\n"); }
         else printf("[host] dancer: unexpected name at 0x5e6610\n");
+    }
+#ifdef REGION1_MB
+    {   /* 9 Oct 2026 (experiment): the program splits its memory at start (0x2802A0): the second heap 0x7C2200 + 18 MB, the main heap
+           the rest (6.2 MB, to 0x1FF3FF0). In Port Jeuno the main heap is full in every session (dumps: ~11,400 blocks, 75 KB free,
+           the same mix each time - capacity, not a leak) while the second heap keeps ~3.8 MB free; every allocation then runs the
+           full-heap paths (HEAP_FAST) and effect files are loaded again and again. REGION1_MB moves the split so the main heap
+           gets the difference. Risk: zones whose data needs more of the second heap, the title background after /logout (6.7-8.2 MB
+           block) and Create Character's preview (10 MB at the bottom) - test those before keeping it. */
+        volatile u32 *p = (volatile u32 *)0x2802B0;
+        if (p[0] == 0x3C050120 && p[1] == 0x3C010120 && REGION1_MB >= 15 && REGION1_MB <= 18) {
+            u32 hi = (u32)REGION1_MB << 4;                                 /* MB -> upper 16 bits of the size (0x120 = 18 MB) */
+            p[0] = 0x3C050000 | hi; p[1] = 0x3C010000 | hi; FlushCache(0); FlushCache(2);
+            printf("[host] heaps: second heap %d MB, main heap %d KB\n", REGION1_MB, (int)((0x2000000 - 0x7C2200 - (REGION1_MB << 20) - 0xC000) >> 10));
+        } else printf("[host] heaps: unexpected words at 0x2802b0: %08x %08x\n", (unsigned)p[0], (unsigned)p[1]);
+    }
+#endif
+    {   /* 9 Oct 2026: the character screen's "character settings" panel (Triangle there; 'menu lobyconf', opened by 0x4AD2B0 when the
+           chosen item is 4) is a trap here: Circle only plays the cancel sound, nothing closes it, and its Load / Save end in an
+           exception (0x4BC5E8 stores through a missing object, [[0x7BB960]+8] == 0) - NETDIAG44/45G/47 on the console and in PCSX2.
+           Choosing that item now goes straight to the code after the panel closes (0x4AD474), so the list stays usable. */
+        volatile u32 *p = (volatile u32 *)0x4AD41C;
+        if (p[0] == 0x8C620008 && p[-2] == 0x16020041) { p[0] = 0x0812B51D; FlushCache(0); FlushCache(2); printf("[host] character settings panel: disabled\n"); }   /* j 0x4AD474 */
+        else printf("[host] character settings panel: unexpected words at 0x4ad414: %08x %08x\n", (unsigned)p[-2], (unsigned)p[0]);
     }
 #ifdef THRDBG
     { extern void thrdbg_start(void); thrdbg_start(); }

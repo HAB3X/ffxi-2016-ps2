@@ -5,8 +5,8 @@ set -e
 XO=''; case "$EXTRA" in *XCOMP*) XO='xcfile.o'; $G $F -c xcfile.c -o xcfile.o;; esac
 # NETDIAG: the debug link's code and constants (dbg.c) go into .dbgk* sections, placed after the lifted kernel by host.ld (the host area is full)
 case "$EXTRA" in *NETDIAG*) XO="$XO dbg.o"; $G $F -Os -c dbg.c -o dbg.o; mips64r5900el-ps2-elf-objcopy --rename-section .text=.dbgk.text --rename-section .data=.dbgk.data --rename-section .rodata=.dbgk.rodata --rename-section .rodata.str1.8=.dbgk.str dbg.o;; esac
-for f in host iop iop_sony sioout fileio slotnames lift_rt lifted_k hlog input net devdlg userfile social perf ime; do $G $F -c $f.c -o $f.o; done
+for f in host iop iop_sony sioout fileio slotnames lift_rt lifted_k hlog input net devdlg userfile social perf ime sprof gsw crash; do $G $F -c $f.c -o $f.o; done
 for f in slots trap pex irx lifted_k_blob emb; do $G -c $f.S -o $f.o; done
 $G -DKBD_LAYOUT=${KBD_LAYOUT:-2} -c kbd.S -o kbd.o
-$G -T host.ld -O2 -o host2016.elf $XO host.o iop.o iop_sony.o sioout.o fileio.o lift_rt.o lifted_k.o hlog.o input.o net.o devdlg.o userfile.o social.o perf.o ime.o slotnames.o slots.o kbd.o trap.o pex.o irx.o lifted_k_blob.o emb.o -L$PS2SDK/ee/lib -Wl,-zmax-page-size=128 -lpad -lfileXio -liopreboot -lpatches -ldebug -lc -lkernel
+$G -T host.ld -O2 -o host2016.elf $XO host.o iop.o iop_sony.o sioout.o fileio.o lift_rt.o lifted_k.o hlog.o input.o net.o devdlg.o userfile.o social.o perf.o ime.o sprof.o gsw.o crash.o slotnames.o slots.o kbd.o trap.o pex.o irx.o lifted_k_blob.o emb.o -L$PS2SDK/ee/lib -Wl,-zmax-page-size=128 -lpad -lfileXio -liopreboot -lpatches -ldebug -lc -lkernel
 ls -l host2016.elf

@@ -15,10 +15,23 @@ Commands are typed here, or appended (one per line) to the command file, which l
   watch ADDR [r|w|rw] [MASK] [COUNT]   hardware data watchpoint (run 'wtest' once first)
   iwatch ADDR [MASK] [COUNT]           hardware instruction breakpoint
   unwatch / wtest         clear the watchpoint / check that watchpoints work on this console
+  prof 0|1 / ap N ADDR    allocator profiler on/off / profiler slot N (0-4) times the jal at ADDR ('ap N 0' frees it)
+  patch ADDR NEW [OLD]    write one word of code, remembering the original; with OLD only if the word holds OLD now
+  unpatch ADDR [force]    put the original back (only if it still holds what patch wrote, unless force)
+  unpatch all / patches   undo every patch and free the profiler slots / list them
+  hist 0|1                the once-a-second frame-time line (F) off / on
+  samp 1 [RATE] / samp 0  sampling profiler on (RATE samples a second of game CPU time, default 1000) / off; real PS2 only
+  samp top [N] / samp clear  the N busiest functions since 'samp 1' (P top lines) / start counting again
+  gsw 1 / gsw 0           graphics wait meter on (G line once a second: SyncV and SyncPath share of the time) / off
+  gsw top / gsw clear     where the game waits for the graphics hardware, per call site (G site, G bits lines) / start again
+  gsw nov 1 / gsw nov 0   sceGsSyncV returns at once (no vertical-blank wait, the picture may tear) / normal
+  crash                   a crash report now (the PS2 also sends one by itself when the game stops: crash-HHMMSS.txt here)
 Local commands: sym NAME (address of a host symbol), where ADDR (nearest host symbol), help, quit.
 ADDR and VALUE can be numbers (0x.. hex) or host symbol names from the .sym file (name or name+offset).
 """
 import argparse, os, re, socket, sys, threading, time
+
+KEYWORDS = ('r', 'w', 'rw', 'all', 'force', 'top', 'clear', 'nov')                # command words that are not symbol names
 
 def load_syms(path):
     syms, code = {}, {}
@@ -43,6 +56,7 @@ class Console:
         self.lock = threading.Lock(); self.slock = threading.Lock()
         self.last_s = 0.0; self.last_s_line = ''; self.last_shown = 0.0; self.warned = 0.0
         self.running = True
+        self.crashf = None                                  # crash report being written (C begin .. C end)
 
     def log(self, kind, text, show=True):
         t = time.strftime('%H:%M:%S') + ('%.3f' % (time.time() % 1))[1:]
@@ -68,10 +82,12 @@ class Console:
         out = parts[:1]
         for p in parts[1:]:
             m = re.fullmatch(r'([A-Za-z_][A-Za-z0-9_.]*)(?:\+(0x[0-9a-fA-F]+|\d+))?', p)
-            if m and p not in ('r', 'w', 'rw') and m.group(1) in self.syms:
+            if m and p in KEYWORDS:
+                pass
+            elif m and m.group(1) in self.syms:
                 v = self.syms[m.group(1)] + (int(m.group(2), 0) if m.group(2) else 0)
                 p = '0x%08x' % v
-            elif m and p not in ('r', 'w', 'rw'):
+            elif m:
                 raise ValueError('unknown symbol %s' % m.group(1))
             out.append(p)
         return ' '.join(out)
@@ -147,6 +163,7 @@ class Console:
             while b'\n' in buf:
                 l, buf = buf.split(b'\n', 1)
                 line = l.decode('latin-1').rstrip('\r')
+                self.crash_line(line)
                 if line.startswith('S '):
                     self.last_s = time.time(); self.last_s_line = line; self.warned = 0
                     try:
@@ -157,11 +174,21 @@ class Console:
                     self.log('S', line[2:], show=show)
                 else:
                     line = self.annotate(line)
-                    self.log(line[:1], line, show=not line.startswith('P '))   # profiler samples: log file only
+                    self.log(line[:1], line, show=line.startswith(('P top', 'G site', 'G bits')) or not line.startswith(('P ', 'F ', 'A ', 'G ')))   # once-a-second data lines: log file only
         with self.lock:
             if self.conn is c: self.conn = None
         try: c.close()
         except OSError: pass
+
+    def crash_line(self, line):
+        if line.startswith('C begin'):
+            path = os.path.join(self.a.dir, time.strftime('crash-%H%M%S.txt'))
+            self.crashf = open(path, 'w', encoding='utf-8')
+            self.log('C', 'crash report from the PS2 -> %s' % path)
+        if self.crashf and not line.startswith('S ') and not re.match(r'T \d+ st 0 prio 0 .*func 00000000', line):
+            self.crashf.write(time.strftime('%H:%M:%S ') + self.annotate(line) + '\n')
+            if line.startswith('C end'):
+                self.crashf.close(); self.crashf = None
 
     def run(self):
         srv = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
