@@ -10,16 +10,21 @@
      p1 / p2 / p3 GIF path active: 1 = VU1 XGKICK, 2 = VIF1 DIRECT, 3 = GIF DMA (textures, images)
      gfull        GIF FIFO full (the GS is not taking data as fast as it comes)
    'gsw nov 1' makes sceGsSyncV return at once (no vertical-blank wait; the picture may tear) to measure what that wait costs.
-   Lines: G (once a second while on: vbl, frames, SyncV calls / share of time, SyncPath calls / share), G site, G bits. */
+   NETDIAG53: while on, a sampler thread (priority 0) looks at the graphics units about 1000 times a second of wall time, so the
+   G line also tells how busy they are over the whole frame, not only during the waits:
+     vu1 = VU1 running   gif = a GIF path active   gfull = GIF FIFO full   idle = VU1, GIF and VIF1 DMA all idle
+     cpu = VU1 idle while the game thread is not waiting for the graphics (the CPU is not feeding it)
+   Lines: G (once a second while on: vbl, frames, SyncV calls / share of time, SyncPath calls / share, samples), G site, G bits. */
 #ifdef NETDIAG
 #include <tamtypes.h>
 #include <kernel.h>
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <delaythread.h>
 
 typedef void (*out_fn)(const char *, ...);
-#define NS 16
+#define NS 48
 #define CYC_MS 294912u
 extern volatile u32 g_pf_vs, g_pf_frames, g_real[];
 
@@ -29,6 +34,10 @@ static u32 b_n[12];                                    /* SyncPath loop samples 
 static u32 on, w_vn, w_vc, w_pn, w_pc, next_g, last_cyc, last_fr, other_n;
 volatile u32 g_gw_nov = 0;
 static u32 (*syncv_orig)(u32);
+static volatile u32 in_wait;                           /* the game is in: 1 sceGsSyncPath, 2 sceGsSyncV */
+static volatile u32 u_n, u_vu, u_gif, u_full, u_idle, u_cpu;   /* sampler counts this second */
+static int smp_tid = -1;
+static u8 smp_stack[2048] __attribute__((aligned(16)));
 
 static inline u32 cyc(void) { u32 c; __asm__ volatile("mfc0 %0, $9" : "=r"(c)); return c; }
 
@@ -44,6 +53,7 @@ static void site(u32 ra, u32 c)
 u32 gsw_path(u32 ra)
 {
     u32 c0 = cyc(), n = 0;
+    in_wait = 1;
     for (;;) {
         u32 d1 = *(volatile u32 *)0x10009000 & 0x100, d2 = *(volatile u32 *)0x1000A000 & 0x100;
         u32 vs = *(volatile u32 *)0x10003C00, gs = *(volatile u32 *)0x10003020, vu;
@@ -63,6 +73,7 @@ u32 gsw_path(u32 ra)
             if ((gs >> 24 & 0x1F) >= 16) b_n[10]++;
         }
     }
+    in_wait = 0;
     if (on) { u32 c = cyc() - c0; w_pn++; w_pc += c; site(ra & ~1u, c); }
     return n;
 }
@@ -71,9 +82,26 @@ static u32 gsw_syncv(u32 mode)
 {
     u32 ra = (u32)__builtin_return_address(0), c0 = cyc(), r;
     if (g_gw_nov) r = (u32)(*(volatile u64 *)0x12001000 >> 13) & 1;       /* GS CSR FIELD, as the real one answers in interlaced mode */
-    else r = syncv_orig(mode);
+    else { in_wait = 2; r = syncv_orig(mode); in_wait = 0; }
     if (on) { u32 c = cyc() - c0; w_vn++; w_vc += c; site(ra | 1, c); }
     return r;
+}
+
+static void smp_thread(void *arg)
+{
+    (void)arg;
+    for (;;) {
+        if (!on) { DelayThread(100 * 1000); continue; }
+        DelayThread(1000);
+        u32 vu, gs = *(volatile u32 *)0x10003020, d1 = *(volatile u32 *)0x10009000 & 0x100, w = in_wait;
+        __asm__ volatile("cfc2 %0, $vi29" : "=r"(vu)); vu &= 0x100;
+        u_n++;
+        if (vu) u_vu++;
+        if (gs & 0xC00) u_gif++;
+        if ((gs >> 24 & 0x1F) >= 16) u_full++;
+        if (!vu && !(gs & 0xC00) && !d1) u_idle++;
+        if (!vu && !w) u_cpu++;
+    }
 }
 
 void gsw_install(u32 *tab)
@@ -84,6 +112,7 @@ void gsw_install(u32 *tab)
 
 static void clear_all(void)
 {
+    u_n = u_vu = u_gif = u_full = u_idle = u_cpu = 0;
     memset(s_ra, 0, sizeof s_ra); memset(s_n, 0, sizeof s_n); memset(s_c, 0, sizeof s_c); memset(b_n, 0, sizeof b_n);
     tot_c = 0; other_n = 0; w_vn = w_vc = w_pn = w_pc = 0; last_cyc = cyc(); last_fr = g_pf_frames; next_g = g_pf_vs + 60;
 }
@@ -95,11 +124,14 @@ void gsw_tick(out_fn o, int show)
     if (!on || (int)(g_pf_vs - next_g) < 0) return;
     next_g = g_pf_vs + 60;
     u32 c = cyc(), dc = c - last_cyc, fr = g_pf_frames, vn = w_vn, vc = w_vc, pn = w_pn, pc = w_pc;
+    u32 n = u_n, x1 = pm(u_vu, n), x2 = pm(u_gif, n), x3 = pm(u_full, n), x4 = pm(u_idle, n), x5 = pm(u_cpu, n);
+    u_n = u_vu = u_gif = u_full = u_idle = u_cpu = 0;
     w_vn = w_vc = w_pn = w_pc = 0;
     last_cyc = c; tot_c += dc;
     u32 a = pm(vc, dc), b = pm(pc, dc);
-    if (show) o("G %u fr %u | syncv %u %u.%u%% | path %u %u.%u%% | nov %u", (unsigned)g_pf_vs, (unsigned)(fr - last_fr), (unsigned)vn, (unsigned)(a / 10), (unsigned)(a % 10),
-                (unsigned)pn, (unsigned)(b / 10), (unsigned)(b % 10), (unsigned)g_gw_nov);
+    if (show) o("G %u fr %u | syncv %u %u.%u%% | path %u %u.%u%% | nov %u | smp %u vu1 %u%% gif %u%% gfull %u%% idle %u%% cpu %u%%", (unsigned)g_pf_vs,
+                (unsigned)(fr - last_fr), (unsigned)vn, (unsigned)(a / 10), (unsigned)(a % 10), (unsigned)pn, (unsigned)(b / 10), (unsigned)(b % 10), (unsigned)g_gw_nov,
+                (unsigned)n, (unsigned)((x1 + 5) / 10), (unsigned)((x2 + 5) / 10), (unsigned)((x3 + 5) / 10), (unsigned)((x4 + 5) / 10), (unsigned)((x5 + 5) / 10));
     last_fr = fr;
 }
 
@@ -130,7 +162,13 @@ void gsw_cmd(char *s, out_fn o)
     }
     if (!strncmp(s, "nov", 3)) { g_gw_nov = atoi(s + 3) != 0; o("> ok gsw nov %u (%s)", (unsigned)g_gw_nov, g_gw_nov ? "no vblank wait - the picture may tear" : "normal vblank wait"); return; }
     if (!strncmp(s, "clear", 5)) { clear_all(); o("> ok gsw clear"); return; }
-    if (atoi(s)) { clear_all(); on = 1; o("> ok gsw 1 (G line once a second; 'gsw top' for the call sites)"); }
+    if (atoi(s)) {
+        if (smp_tid < 0) {
+            extern void *_gp; ee_thread_t t; memset(&t, 0, sizeof t);
+            t.func = (void *)smp_thread; t.stack = smp_stack; t.stack_size = sizeof smp_stack; t.initial_priority = 0; t.gp_reg = &_gp;
+            smp_tid = CreateThread(&t); if (smp_tid >= 0) StartThread(smp_tid, NULL);
+        }
+        clear_all(); on = 1; o("> ok gsw 1 (G line once a second; 'gsw top' for the call sites)"); }
     else { on = 0; o("> ok gsw 0"); }
 }
 #else
