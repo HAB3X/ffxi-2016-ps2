@@ -64,7 +64,7 @@ static int rx(int h, u8 *p, int n, u32 until)              /* n bytes, or -1 whe
 void rb_cmd(out_fn o)
 {
     int h = dbg_handle();
-    o("R getelf"); if (dbg_flush_now() < 0) return;           /* ps2dbg.py answers "ELF vaddr filesz memsz entry\n" + the segment */
+    o("R getelf"); if (dbg_flush_now() < 0) return;           /* ps2dbg.py answers "ELF vaddr filesz memsz entry\n", then each 'R getchunk' */
     u32 until = g_pf_vs + 60 * 20;
     char ln[96]; int n = 0; u8 c;
     for (;;) {                                                /* the header line (keepalive newlines before it are skipped) */
@@ -84,7 +84,13 @@ void rb_cmd(out_fn o)
     }
     /* 0x94000.. is free while the game runs (nothing is loaded or allocated below the host at 0x100000), and the socket
        library may need its other threads to receive, so the game keeps running until the segment is in */
-    if (rx(h, (u8 *)va, (int)fs, g_pf_vs + 60 * 30) < 0) { o("> err reboot: PS2LINK.ELF did not arrive (the game carries on)"); return; }
+    for (u32 off = 0; off < fs; off += 8192) {               /* 8 KB at a time, each one asked for: no long burst (PCSX2's DEV9 TCP lost */
+        u32 m = fs - off < 8192 ? fs - off : 8192;           /* step on a 230 KB burst and reset the link) */
+        o("R getchunk %x %x", (unsigned)off, (unsigned)m);
+        if (dbg_flush_now() < 0 || rx(h, (u8 *)va + off, (int)m, g_pf_vs + 60 * 10) < 0) {
+            o("> err reboot: PS2LINK.ELF did not arrive (stopped at %x of %x; the game carries on)", (unsigned)off, (unsigned)fs); return;
+        }
+    }
     int me = GetThreadId();
     for (int t = 1; t < 256; t++) if (t != me) SuspendThread(t);  /* from here on the game is given up */
     memset((u8 *)va + fs, 0, ms - fs);

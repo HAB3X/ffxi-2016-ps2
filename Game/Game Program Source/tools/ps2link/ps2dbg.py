@@ -167,6 +167,8 @@ class Console:
                 self.crash_line(line)
                 if line == 'R getelf':
                     self.send_elf(c); continue
+                if line.startswith('R getchunk '):
+                    self.send_chunk(c, line); continue
                 if line.startswith('S '):
                     self.last_s = time.time(); self.last_s_line = line; self.warned = 0
                     try:
@@ -188,8 +190,8 @@ class Console:
             path = os.path.join(self.a.dir, time.strftime('crash-%H%M%S.txt'))
             self.crashf = open(path, 'w', encoding='utf-8')
             self.log('C', 'crash report from the PS2 -> %s' % path)
-        if self.crashf and not line.startswith('S '):
-            self.crashf.write(time.strftime('%H:%M:%S ') + line + '\n')
+        if self.crashf and not line.startswith('S ') and not re.match(r'T \d+ st 0 prio 0 .*func 00000000', line):
+            self.crashf.write(time.strftime('%H:%M:%S ') + self.annotate(line) + '\n')
             if line.startswith('C end'):
                 self.crashf.close(); self.crashf = None
 
@@ -203,11 +205,22 @@ class Console:
                 t, off, va, pa, fs, ms = struct.unpack_from('<IIIIII', d, phoff + 32 * i)
                 if t == 1: break
             else: raise ValueError('no program segment')
-            with self.slock: c.sendall(b'ELF %x %x %x %x\n' % (va, fs, ms, entry) + d[off:off + fs])
-            self.log('--', 'sent %s to the PS2 (%d bytes at %08x, entry %08x)' % (self.a.ps2link, fs, va, entry))
+            self.seg = d[off:off + fs]
+            with self.slock: c.sendall(b'ELF %x %x %x %x\n' % (va, fs, ms, entry))
+            self.log('--', 'sending %s to the PS2 (%d bytes at %08x, entry %08x)' % (self.a.ps2link, fs, va, entry))
         except (OSError, ValueError, struct.error) as e:
             self.log('!!', 'reboot: cannot send %s: %s' % (self.a.ps2link, e))
             with self.slock: c.sendall(b'ERR %s\n' % str(e).encode()[:60])
+
+    def send_chunk(self, c, line):
+        try:
+            o, n = (int(x, 16) for x in line.split()[2:4])
+            data = self.seg[o:o + n]
+            if len(data) != n: raise ValueError('outside the segment')
+            with self.slock: c.sendall(data)
+            if o + n >= len(self.seg): self.log('--', 'PS2LINK.ELF sent (%d bytes)' % len(self.seg))
+        except (AttributeError, ValueError) as e:
+            self.log('!!', 'reboot: bad chunk request %s: %s' % (line, e))
 
     def run(self):
         srv = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
