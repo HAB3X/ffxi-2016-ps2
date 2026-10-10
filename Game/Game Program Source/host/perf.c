@@ -33,6 +33,8 @@ u8 g_exc_stack[4096] __attribute__((section(".xcmem"), aligned(64)));
 void exc_park(void)
 {
     u32 sr = g_exc[3], pc = g_exc[1];
+    { extern volatile u32 g_rb_stop;                                       /* NETDIAG59: during 'reboot' (crash.c): MAGENTA */
+      if (g_rb_stop) for (;;) { *(volatile u64 *)0x120000E0 = 0xE000E0; *(volatile u64 *)0x12000000 = 0x4; } }
     if (!(sr & 1) || !(sr & 0x10000) || pc < 0x100000 || pc >= 0x2000000) {   /* interrupts were off / kernel code: cannot sleep here */
         g_exc_n++; g_exc_real++;
         for (;;) { *(volatile u64 *)0x120000E0 = 0x00E0E0; *(volatile u64 *)0x12000000 = 0x4; }

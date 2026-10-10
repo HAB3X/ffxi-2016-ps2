@@ -94,13 +94,22 @@ void rb_cmd(out_fn o)
     int me = GetThreadId();
     for (int t = 1; t < 256; t++) if (t != me) SuspendThread(t);  /* from here on the game is given up */
     memset((u8 *)va + fs, 0, ms - fs);
-    o("> ok reboot: PS2LINK (%u bytes) is in place, starting it - this link closes now", (unsigned)fs);
-    dbg_flush_now();
-    DelayThread(300 * 1000);
-    nd_sock(4, h, 0, 0);
+    o("> ok reboot: PS2LINK (%u bytes) is in place, starting it", (unsigned)fs);
+    /* NETDIAG59: NETDIAG58 went solid yellow on the PS2 (a CPU exception with interrupts off) somewhere between here and
+       PS2LINK.  Each step now reports on the link (R step N) while it still can, and the screen colour tells the rest:
+       magenta = an exception after the reboot began (perf.c), anything else = PS2LINK's own screen. */
+    o("R step 1 threads stopped"); dbg_flush_now();
     sp_cmd("0", o);                                           /* sampling profiler vector off, if it was on */
     g_rb_stop = 1;
     perf_stop();
+    o("R step 2 our vblank handler and alarms stopped"); dbg_flush_now();
+    o("R step 3 closing the link; next the interrupts go off, the IOP is reset and PS2LINK starts"); dbg_flush_now();
+    DelayThread(200 * 1000);
+    nd_sock(4, h, 0, 0);                                      /* (the network needs the SIF interrupts and DelayThread timer 2: both stay until here) */
+    { int o2 = DIntr();                                       /* every interrupt / DMA-end source off except timer 3 (the kernel's alarms): */
+      for (int c = 0; c < 15; c++) if (c != 12) DisableIntc(c);   /* the game's handlers stay registered in the kernel but are never called */
+      for (int c = 0; c < 16; c++) DisableDmac(c);
+      if (o2) EIntr(); }
     _ps2sdk_deinit_timer();
     SifInitRpc(0); SifExitRpc();
     SifIopReset(NULL, 0);
