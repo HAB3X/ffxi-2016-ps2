@@ -107,8 +107,8 @@ void rb_cmd(out_fn o)
     while (!SifIopSync()) { }
     SifInitRpc(0); SifExitRpc();
     SifLoadFileExit();
-    DIntr();
-    FlushCache(0); FlushCache(2);
+    FlushCache(0); FlushCache(2);                             /* (NETDIAG58: no DIntr here - ps2link's own execee leaves interrupts on;
+                                                                 with them off PCSX2 stayed black after the IOP reset) */
     static char a0[] = "mass:/PS2LINK/PS2LINK.ELF";
     static char *argv[1] = { a0 };
     ExecPS2((void *)ep, 0, 1, argv);
