@@ -14,6 +14,8 @@
 #include <kernel.h>
 #include <delaythread.h>
 #include <sifrpc.h>
+#include <loadfile.h>
+#include <iopheap.h>
 #include <debug.h>
 #include "host.h"
 #ifdef LOGOUT_FIX
@@ -169,7 +171,7 @@ volatile u32 g_opn = 0, g_opr[40], g_opf[40]; volatile char g_opp[40][48];
 volatile u32 g_failf[120]; volatile u32 g_failn = 0, g_failr[120]; volatile char g_failp[120][48];
 volatile u32 g_failtot = 0;                            /* every failed file open / stat (g_failp keeps each distinct path once) */
 volatile u32 g_err_a0[16], g_err_ra[16], g_err_n;
-volatile u32 g_ikq[16], g_ikw = 0, g_ikr = 0, g_ikcur = 0;
+#define g_ikcur 0u
 volatile u32 g_kbd_new = 0, g_kbd_w = 0; volatile u8 g_kbd_ring[32];
 
 /* call recorder: every service call except the per-frame spam, as {cpu count, slot, caller, a0}; read it out of a savestate (g_cr / g_crn) */
@@ -198,6 +200,7 @@ u64 trap_c(u32 idx, u64 *r)
 #endif
     if (idx >= NSLOTS) { static int nbad = 0; if (nbad < 20) { nbad++; hlog(9, idx, (u32)r[0], (u32)r[1], (u32)r, 0, 0, "BAD SLOT idx/ra/a0/r:", 0, 0); } return 0; }
     { extern volatile int g_input_block; if (g_input_block && idx < NSLOTS && hid_slot(idx)) { g_calls++; return 0; } }
+    if (idx == 94) { extern volatile int g_restart_req, g_dev_applied; if (g_dev_applied) g_restart_req = 1; }              /* the game began shutting down (there is no PlayOnline to go back to) */
 #ifdef INPUT_HID_INIT
     if (idx < NSLOTS && hid_slot(idx) && !g_hid_ready) { g_calls++; return 0; }   /* kbd/mouse not initialised yet: "no input" (sqMouseOpen: handle 0, which is what the real open returns) */
 #endif
@@ -317,11 +320,6 @@ u64 trap_c(u32 idx, u64 *r)
     }
     fail_done:;
 #endif
-    { extern volatile u32 g_ikq[16], g_ikw, g_ikr, g_ikcur;                            /* test driver: synthetic key presses {keycode<<8|ascii}, queued over PINE (drive.py) */
-      if (idx == 104 && g_ikr != g_ikw) { g_ikcur = g_ikq[g_ikr++ & 15] | 0x10000; ret = 1; }
-      else if (idx == 104) g_ikcur = 0;
-      else if (idx == 106 && (g_ikcur & 0x10000)) ret = (g_ikcur >> 8) & 0xff;
-      else if (idx == 107 && (g_ikcur & 0x10000)) ret = g_ikcur & 0xff; }
     if (idx == 104 && (int)ret > 0 && g_real[107]) {                                  /* a keyboard update with new keys: take the typed character for the developer page, whether or not the game reads it */
         int a = (g_ikcur & 0x10000) ? (int)(g_ikcur & 0xff) : (int)((svc8)g_real[107])(0, 0, 0, 0, 0, 0, 0, 0);
         { static int la = -1; static u32 lt = 0; u32 now; __asm__ volatile("mfc0 %0, $9" : "=r"(now));       /* a single key press is reported on several consecutive polls: drop the same character within 120 ms */
@@ -583,9 +581,19 @@ static void prof_tick(s32 id, u16 time, void *arg)
     iSetAlarm(32, prof_tick, 0);
 }
 #endif
+char g_self_path[96] = "cdrom0:\\SLUS_217.04;1";            /* where we were started from */
+/* run this program again from the start, like a reset */
+void host_soft_restart(void)
+{
+    char *args[1] = { g_self_path };
+    printf("[host] restarting from %s\n", g_self_path);
+    SifExitIopHeap(); SifLoadFileExit(); SifExitRpc();
+    LoadExecPS2(g_self_path, 1, args);
+}
 int main(int argc, char **argv)
 {
     hlog_start();
+    if (argc > 0 && argv && argv[0] && argv[0][0] && strlen(argv[0]) < sizeof g_self_path) strcpy(g_self_path, argv[0]);
     { extern int g_boot_disc; g_boot_disc = !(argc > 0 && argv && argv[0] && strncmp(argv[0], "cdrom", 5));    /* where were we started from? */
       printf("[host] started as '%s' (%s)\n", argc > 0 && argv && argv[0] ? argv[0] : "?", g_boot_disc ? "disc" : "not the disc: embedded IOP modules"); }
     /* no logger alarm: hlog_kick() is called from the frame hook and from the thread dump */

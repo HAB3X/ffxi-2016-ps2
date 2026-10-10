@@ -10,6 +10,8 @@ Starts and stops everything the game needs, in this order:
 Python standard library only. Works on Mac, Windows and Linux. The Server App uses this file; it also works on its own:
     python3 server_control.py start | stop | status | check
     python3 server_control.py create-profile NAME          (asks for the password)
+    python3 server_control.py name [NAME] | welcome [TEXT] | address [HOSTNAME-OR-IP]
+    python3 server_control.py backup | backups | restore FILE
 
 Nothing here prints a password. Data made while the server runs (database files, profiles, logs) goes to Server/data.
 """
@@ -451,7 +453,7 @@ def _client_cmd(m, cfg, database=True):
     import tempfile
     fd, path = tempfile.mkstemp(prefix='ffxi-db-', suffix='.cnf')
     with os.fdopen(fd, 'w') as f:
-        f.write('[client]\nhost=127.0.0.1\nport=%d\nuser=%s\npassword="%s"\nprotocol=TCP\ndefault-character-set=utf8mb4\n'
+        f.write('[client]\nhost=127.0.0.1\nport=%d\nuser=%s\npassword="%s"\nprotocol=TCP\ndefault-character-set=utf8mb4\nmax_allowed_packet=256M\n'
                 % (cfg['db_port'], cfg['db_user'], cfg['db_password']))
     argv = [m['client'], '--defaults-extra-file=' + path]
     if database:
@@ -480,7 +482,13 @@ def sql(q, args=(), cfg=None, m=None, database=True, stdin_bytes=None):
     finally:
         cleanup()
     if r.returncode != 0:
-        raise ServerError('Database error: ' + r.stderr.decode('utf-8', 'replace').strip()[:400])
+        err = r.stderr.decode('utf-8', 'replace').strip()
+        try:
+            with open(os.path.join(LOGS, 'database_setup.log'), 'a', encoding='utf-8') as f:
+                f.write(err[-4000:] + '\n')
+        except OSError:
+            pass
+        raise ServerError('Database error: ' + err[:400])
     return [[None if v == 'NULL' else v for v in line.split('\t')] for line in r.stdout.decode('utf-8', 'replace').splitlines()]
 
 
@@ -528,6 +536,18 @@ def _init_database_files(m, say):
     raise ServerError('Could not make the database. Details are in Server/data/logs/database_setup.log.')
 
 
+def portable_sql(data):
+    """A dump made on a very new MariaDB names collations (utf8mb3_uca1400_ai_ci, utf8mb4_uca1400_ai_ci) that older MariaDB versions and MySQL do
+    not know, and the import stops at the first one. Only the schema lines (table options and the settings inside trigger definitions) carry
+    them, so those lines are changed to the plain utf8mb4 / utf8mb4_general_ci; row data is never touched."""
+    def fix(m):
+        line = m.group(0)
+        for a, b in ((b'utf8mb3_uca1400_ai_ci', b'utf8mb4_general_ci'), (b'utf8mb4_uca1400_ai_ci', b'utf8mb4_general_ci'), (b'utf8mb3', b'utf8mb4')):
+            line = line.replace(a, b)
+        return line
+    return re.sub(rb'(?m)^(?:/\*!50003 SET [^\n]*|\) ENGINE=[^\n]*)$', fix, data)
+
+
 def start_database(say=print):
     cfg = ensure_config()
     m = find_mariadb()
@@ -559,7 +579,7 @@ def start_database(say=print):
     say('Starting the database...')
     argv = [m['server'], '--no-defaults', '--datadir=' + DB_DIR, '--port=%d' % PORTS['db'], '--bind-address=127.0.0.1',
             '--init-file=' + init, '--log-error=' + os.path.join(LOGS, 'database.err'), '--skip-name-resolve',
-            '--character-set-server=utf8mb4', '--collation-server=utf8mb4_general_ci', '--max-connections=300',
+            '--character-set-server=utf8mb4', '--collation-server=utf8mb4_general_ci', '--max-connections=300', '--max-allowed-packet=256M',
             '--innodb-buffer-pool-size=256M', '--pid-file=' + os.path.join(DB_DIR, 'ffxi.pid')]
     if m.get('base'):                                        # the database that comes with the release
         argv += ['--basedir=' + m['base'], '--lc-messages-dir=' + os.path.join(m['base'], 'share'),
@@ -586,10 +606,10 @@ def start_database(say=print):
             raise ServerError('The world database file is missing (Server/database/ffxi_world.sql.gz).')
         say('Loading the game world into the database (first start only, about a minute)...')
         with gzip.open(WORLD_SQL, 'rb') as f:
-            data = f.read()
+            data = portable_sql(f.read())
         sql('', cfg=cfg, m=m, stdin_bytes=data)
         if not world_ready(cfg, m):
-            raise ServerError('Loading the game world did not work. Details are in Server/data/logs/database.err.')
+            raise ServerError('Loading the game world did not work. Details are in Server/data/logs/database_setup.log and database.err.')
         log_line('world database loaded')
     return cfg, m
 
@@ -925,9 +945,48 @@ def main(argv):
             for p in ORDER:
                 print('  %-28s %s' % (NICE[p], 'on' if st[p] else 'off'))
             print('  ServerIP   %s' % (lan_address() or '(not connected to a network)'))
+            try:
+                import server_net as sn, server_settings as ss
+                print('  Server name %s' % ss.get()['name'])
+                print('  Internet    %s' % (sn.public_address()[0] or 'not found'))
+            except Exception:                                    # noqa: BLE001
+                pass
             print('  ServerPort %d' % SERVER_PORT_FOR_PLAYERS)
             if other_server_running():
                 print('  Note: another server is already using port %d on this computer.' % PORTS['lobby'])
+        elif cmd == 'name':
+            import server_settings as ss
+            if len(argv) > 2:
+                restart = ss.save(name=' '.join(argv[2:]))
+                print('Server name saved: %s%s' % (ss.get()['name'], '. Restart the server to use it.' if restart and status()['any'] else '.'))
+            else:
+                print(ss.get()['name'])
+        elif cmd == 'welcome':
+            import server_settings as ss
+            if len(argv) > 2:
+                ss.save(welcome=' '.join(argv[2:]) if argv[2] != '-' else '')
+                print('Welcome message saved. Players see it when they log in.')
+            else:
+                print(ss.get()['welcome'] or '(none)')
+        elif cmd == 'address':
+            import server_net as sn
+            if len(argv) > 2:
+                sn.set_manual_public_address('' if argv[2] == '-' else argv[2])
+            ip, how = sn.public_address(refresh=True)
+            print('%s (%s)' % (ip or 'not found', how))
+        elif cmd == 'backup':
+            import server_backup as sb
+            print('Backup written: %s' % sb.create())
+        elif cmd == 'backups':
+            import server_backup as sb
+            for p, size, t in sb.listing():
+                print('%s  %7.1f KB  %s' % (time.strftime('%Y-%m-%d %H:%M', time.localtime(t)), size / 1024, os.path.basename(p)))
+        elif cmd == 'restore':
+            import server_backup as sb
+            if len(argv) < 3:
+                print('usage: server_control.py restore <backup file>')
+                return 2
+            print('Restored. The data from just before was saved as %s' % sb.restore(argv[2]))
         elif cmd == 'check':
             for ok, text in check_setup():
                 print(('  OK   ' if ok else '  NO   ') + text)

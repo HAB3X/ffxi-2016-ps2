@@ -1,0 +1,120 @@
+FFXI 2016 PS2 EDITION: PLAYING ON A REAL PS2
+Fan Project by Habex
+============================================
+
+This page is for a real PlayStation 2 with a hard drive. If you use PCSX2, you do not need it: the Server App's Tools > Game disc page does
+everything for you.
+
+How sure is this page? Each step says "checked" (found in this project's own files or in the open source tools named here) or "not
+checked" (from general PS2 knowledge, and we could not try it for this page). If a "not checked" step does not match what you see,
+trust your console and tell us on the GitHub Issues page.
+
+
+THE SHORT VERSION
+
+  1. A thick (original shape) PS2 with a network adapter and a hard drive in it.
+  2. The console formats the hard drive (not a PC, and not the "Make Hard Drive" button).
+  3. Burn the patched disc to a DVD-R.
+  4. Start the burned disc on the console. It installs the game onto the hard drive by itself, then starts the game.
+  5. Start the server on your computer, and type its address into the game's sign in page.
+
+
+WHAT YOU NEED
+
+  A PS2 that can start burned discs.
+      Retail consoles do not. People use a modchip, or a free software start-up such as FreeMcBoot on a memory card. Setting that up
+      is a separate subject and is not covered here. (checked: the main READ ME says the same)
+
+  The network adapter and a hard drive.
+      Only the original thick PS2 models have the bay for the Sony network adapter with a hard drive. The slim models have a network
+      plug built in but no hard drive bay, so this game cannot be installed on them without extra hardware that we did not look into.
+      (not checked: which exact model numbers have the bay; look for the bay on the back of your console)
+      The official hard drive is 40 GB. Other IDE drives are used in the adapter by many people. (not checked: which sizes work; a plain
+      40 GB drive is the safe choice, and the game's install image made by this project is 40 GB too)
+
+  A network cable, and the computer that runs the Server App on the same network (or plugged straight into it, see below).
+
+  The patched disc from the Server App (Tools > Game disc, step 1). It is in the Disc > Patched ISO folder.
+
+  A blank DVD-R (single layer, the ordinary kind) and a computer with a DVD burner.
+      (checked: the disc was built to fit a single layer DVD-R of 4,700,372,992 bytes. Look at the size of your patched .iso: if it is
+      bigger than that, tell us before burning.)
+
+
+STEP 1  FORMAT THE HARD DRIVE ON THE CONSOLE
+
+  The game needs a PS2 hard drive that is "formatted", which means the console has set it up its own way. A brand new drive is not.
+  The Server App's "Make Hard Drive" button only makes a file for PCSX2. It is not for a real drive.
+  (checked: the game's installer puts the game into its own partition on a formatted drive, named PP.SCUS-97266.0001.FFXI)
+
+  Ways to format it on the console:
+
+    wLaunchELF (also called uLaunchELF), a free PS2 file manager you start from your memory card or modchip menu.
+      Its HDD manager has a "Format" command, and it warns before it wipes anything.
+      (checked in its source code, https://github.com/ps2homebrew/wLaunchELF, file hdd.c. We did not run it on a console.)
+      The steps are roughly: start wLaunchELF, open the hard drive manager, open its menu, choose Format, confirm.
+
+    Sony's own HDD Utility disc or the "HDD Format" option of Sony's own hard drive software, if you have it.
+      (not checked)
+
+  Formatting erases the whole drive. Use a drive with nothing you want to keep.
+
+  About hdl-dump (https://github.com/ps2homebrew/hdl-dump): it puts ordinary PS2 game images on a drive for Open PS2 Loader and HD Loader.
+  Reading its source, its only drive-preparing command ("inject_mbr", and only in some builds) replaces the start-up program of a drive
+  that is already formatted and leaves the partitions alone. We found no command in it that formats a blank drive, so do not use it for
+  this step. (checked in its source; we did not run it.)
+
+
+STEP 2  BURN THE DISC
+
+  Burn the patched .iso as a disc IMAGE. Do not copy the .iso file onto a data disc: that makes a disc the PS2 cannot start.
+    Windows   right click the .iso > Burn disc image
+    Mac       Disk Utility > File > Burn... (or Finder: right click > Burn Disc Image)
+    Linux     Brasero, K3b, or the command  growisofs -dvd-compat -Z /dev/sr0="FFXI 2016 (Patched).iso"
+  Burn slowly if you can (4x). Many PS2 drives read burned discs badly if they were burned fast. (not checked)
+  If the console cannot read the disc, try a different brand of DVD-R first.
+
+
+STEP 3  INSTALL THE GAME
+
+  1. Put the network adapter and the formatted hard drive in the console and connect the cable.
+  2. Start the burned disc the way your console starts burned PS2 discs.
+  3. The installer starts by itself (no menu) and copies the game onto the hard drive. It takes a long time. Leave it alone.
+     (checked: this is how the disc was built, see build_disc.py in the Game folder. Real console times were not measured.)
+  4. When it is done, the game starts and shows the sign in page. From then on, starting the disc goes straight to the sign in page.
+     Holding L1 while the disc starts installs again.
+
+
+STEP 4  SIGN IN
+
+  Same as on PCSX2:
+  1. Start the Server App on your computer and click Start. Create a profile on the Players page (Accounts).
+  2. On the PS2, on the sign in page, fill in POL-ID (the profile name), Password, ServerIP and ServerPort.
+     The Invite page of the Server App shows what to type:
+       Same router        the computer's home network address.
+       Direct cable       plug the PS2 straight into the computer. On the computer, set its Ethernet address to 192.168.137.1 and
+                          255.255.255.0, and type 192.168.137.1 as the ServerIP.
+       Over the internet  your hostname, with the ports forwarded as the Invite page says.
+  3. Go down to OK and press X. Create your character.
+
+  NETWORK SETTINGS OF THE CONSOLE: many PS2 online games read the console's network settings from a file made by Sony's "Network
+  Adapter" start-up software and saved on the memory card or the hard drive. We could not find out whether this game does that or sets
+  its own address. (not checked.) If the game says it cannot connect even though the server is working, check the Server App's
+  "Connection trouble" notes in READ ME Server App.txt first, and then try making the console's network settings with that start-up
+  software.
+
+
+IF SOMETHING GOES WRONG
+
+  The disc is not read at all           Wrong burn (see Step 2), or this console and this disc brand do not get along.
+  The installer says it needs a drive   The drive is not formatted (Step 1). The installer needs a formatted drive.
+  FFXI-3101 or FFXI-3100 on sign in     Check the address and ports first (READ ME Server App.txt, "Connection trouble").
+                                        The main READ ME credits xorjustice for the real PS2 network, memory and sign-in fixes in
+                                        this project. If you still get the error with the right address, report it with your
+                                        console model.
+  The game crashes when you open a menu Report it on the GitHub Issues page with your console model.
+
+Real console results from other people are welcome on the Issues page. Anything marked "not checked" above is a guess until someone
+confirms it.
+
+This is an unofficial fan project, not made or supported by Square Enix. Final Fantasy XI is a trademark of Square Enix.

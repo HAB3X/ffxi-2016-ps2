@@ -10,7 +10,8 @@ Plain Python 3, works on Windows, Mac and Linux.
 As a module:  make_hard_drive.make(path)
 
 On a Mac or Linux the file only takes a few MB of real space at first and grows as the game installs.
-On Windows it may show as 40 GB straight away.
+On Windows the file is made sparse (on an NTFS drive) so it is ready in a moment; on other Windows drives it is written out in
+full, which can take a few minutes.
 """
 import base64, os, sys, zlib
 
@@ -26,12 +27,27 @@ LD78/wf/m+V/2sj/OO+pP/XH/+PZIon4P6SUh5H/T+/zcfMK5wHAwvh/ecL/y/h/5vgE86upGg==
 """
 
 
+def _sparse(f):
+    """Windows only: mark the file sparse so making it 40 GB long does not write 40 GB of zeros. Ignored where it is not supported."""
+    if os.name != 'nt':
+        return
+    try:
+        import ctypes, msvcrt
+        from ctypes import wintypes
+        done = wintypes.DWORD()
+        ctypes.windll.kernel32.DeviceIoControl(wintypes.HANDLE(msvcrt.get_osfhandle(f.fileno())), 0x900C4, None, 0, None, 0,
+                                               ctypes.byref(done), None)
+    except Exception:
+        pass
+
+
 def make(path):
     """Write a new formatted 40 GB PS2 drive to `path`. Never overwrites an existing file."""
     if os.path.exists(path):
         raise ValueError('There is already a file called %s. Pick a new name, or move the old one away first.' % os.path.basename(path))
     data = zlib.decompress(base64.b64decode(''.join(DATA.split())))
     with open(path + '.part', 'wb') as f:
+        _sparse(f)
         f.truncate(SIZE)
         pos = 0
         for item in TABLE.split(';'):

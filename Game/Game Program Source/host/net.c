@@ -70,6 +70,8 @@ typedef int (*fn_cfg)(SqAddr *, SqAddr *, SqAddr *);
 typedef int (*fn_rt)(SqAddr *, SqAddr *);
 typedef int (*fn_dns)(const char *, SqAddr *, SqAddr *);
 typedef int (*fn_i1)(int);
+typedef int (*fn_dns1)(const char *);
+typedef int (*fn_dnsc)(int, SqAddr *);
 static void *E(const char *n) { return (void *)lift_entry_addr(&lift_k_set, n); }
 
 volatile int g_net_state = 0;               /* 0 idle, 1 running, 2 up, -1 failed */
@@ -180,31 +182,30 @@ static int net_configure(void)
 #endif
 #if NET_USE_DHCP
     int r = dhcp_init(); L("net: sqDhcpInit rc", (u32)r, 0, 0);
-    if (r < 0) { r = -10; goto fallback; }
-    for (int i = 0; i < 100; i++) {                     /* the adapter may still be negotiating its link right after the modules start */
-        r = dhcp_req(); if (i < 3 || r >= 0) L("net: sqDhcpRequest rc", (u32)r, (u32)i, 0);
-        if (r >= 0) break;
-        DelayThread(200 * 1000);
-    }
-    if (r < 0) { r = -11; goto fallback; }
     int st = 0;
-    for (int i = 0; i < 600 && !st; i++) {              /* 60 s */
-        st = dhcp_chk(&ip, &mask, &bc, &gw, &d1, &d2, dom);   /* 0 pending, <0 failed, >0 bitmask of fields received */
-        if (st < 0) { L("net: DHCP failed rc", (u32)st, 0, 0); r = -12; goto fallback; }
-        if (!st) DelayThread(100 * 1000);
+    for (int attempt = 0; r >= 0 && attempt < 3 && st <= 0; attempt++) {      /* a slow router or a late link: ask again, up to three times */
+        for (int i = 0; i < 25; i++) {                  /* the adapter may still be negotiating its link right after the modules start */
+            r = dhcp_req(); if (i < 3 || r >= 0) L("net: sqDhcpRequest rc", (u32)r, (u32)i, (u32)attempt);
+            if (r >= 0) break;
+            DelayThread(200 * 1000);
+        }
+        if (r < 0) continue;
+        for (int i = 0; i < 80 && !st; i++) {           /* 8 s per attempt */
+            st = dhcp_chk(&ip, &mask, &bc, &gw, &d1, &d2, dom);   /* 0 pending, <0 failed, >0 bitmask of fields received */
+            if (st < 0) { L("net: DHCP failed rc", (u32)st, (u32)attempt, 0); st = 0; break; }
+            if (!st) DelayThread(100 * 1000);
+        }
     }
-    if (st <= 0) { L("net: DHCP timeout", 0, 0, 0); r = -13; goto fallback; }
-    L("net: DHCP ok ip/gw/dns1:", ip.addr, gw.addr, d1.addr);
-    L("net: DHCP bitmask", (u32)st, 0, 0);
-    if (0) {
-fallback:                                               /* NETDIAG: DHCP did not work - use the fixed LAN address instead */
-        L("net: DHCP gave up, static fallback", (u32)r, 0, 0);
+    if (st <= 0) {                                      /* no DHCP server (cabled straight to a computer): fixed direct-cable addresses, the computer is set to 192.168.137.1/24 */
+        L("net: no DHCP answer, using the direct-cable address 192.168.137.2", 0, 0, 0);
         g_net_static = 1;
         memset(&gw, 0, sizeof gw); memset(&d1, 0, sizeof d1); memset(&d2, 0, sizeof d2); dom[0] = 0;
-        if (dev_parse_ip(NET_IP, &ip) || dev_parse_ip(NET_MASK, &mask) || dev_parse_ip(NET_GW, &gw) || dev_parse_ip(NET_DNS1, &d1)) return -14;
+        if (dev_parse_ip("192.168.137.2", &ip) || dev_parse_ip("255.255.255.0", &mask) || dev_parse_ip("192.168.137.1", &gw) || dev_parse_ip("192.168.137.1", &d1)) return -14;
         bc = ip; bc.addr = (ip.addr & mask.addr) | ~mask.addr;
-        d2 = d1;
+        st = 1;
     }
+    L("net: DHCP ok ip/gw/dns1:", ip.addr, gw.addr, d1.addr);
+    L("net: DHCP bitmask", (u32)st, 0, 0);
 #else
     if (dev_parse_ip(NET_IP, &ip) || dev_parse_ip(NET_MASK, &mask) || dev_parse_ip(NET_GW, &gw) || dev_parse_ip(NET_DNS1, &d1)) return -14;
     bc = ip; bc.addr = (ip.addr & mask.addr) | ~mask.addr;
@@ -213,6 +214,7 @@ fallback:                                               /* NETDIAG: DHCP did not
     int r2 = ifcfg(&ip, &mask, &bc); L("net: sqEthernetIfConfig rc", (u32)r2, 0, 0);
     if (r2 < 0) return -15;
     if (gw.addr) { r2 = route(0, &gw); L("net: sqAddRoutingTable(default) rc", (u32)r2, 0, 0); }
+    if (!d1.addr) { dev_parse_ip("1.1.1.1", &d1); dev_parse_ip("8.8.8.8", &d2); L("net: no DNS from the router, using public DNS", 0, 0, 0); }   /* names need a resolver */
     if (d1.addr) { r2 = dns(dom, &d1, d2.addr ? &d2 : 0); L("net: sqInitDnsResolver rc", (u32)r2, 0, 0); }
     g_net_ip = ip.addr;
     return 0;
@@ -659,7 +661,7 @@ static void net_thread(void *arg)
 #ifdef NETDIAG
     if (g_net_state == 2) { hang_monitor_start(); { extern void dbg_start(void); dbg_start(); } }   /* bring-up timeline + hang reports to the developer PC; NETDIAG41: + live debug link (dbg.c) */
 #endif
-    for (;;) SleepThread();     /* park instead of exiting (deleting the thread coincided with a kernel-table crash) */
+    { extern void sv_poll(void); for (;;) { sv_poll(); DelayThread(500 * 1000); } }   /* idle loop (saved server, restart); never exit: deleting the thread coincided with a kernel-table crash */
 }
 
 static u8 net_stack[32768] __attribute__((aligned(16)));
@@ -816,7 +818,6 @@ static void bp_install(void)
 }
 
 /* ---- slot wrappers: first use of the network triggers the bring-up, then forward to the lifted kernel function ---- */
-static u32 g_orig[1537];
 #define WRAP(name, slot) \
     static u32 name(u32 a0, u32 a1, u32 a2, u32 a3, u32 t0, u32 t1, u32 t2, u32 t3) \
     { if (net_ensure() < 0) return (u32)-1; return ((u32 (*)(u32, u32, u32, u32, u32, u32, u32, u32))g_orig[slot])(a0, a1, a2, a3, t0, t1, t2, t3); }
@@ -828,13 +829,33 @@ static u32 g_cs_args[8], g_cs_sa[4]; static int g_cs_def = 0;
 volatile int g_dev_applied = 0;                         /* the developer page has set a server: the first (lobby) connection goes there */
 static int g_cs_patched = 0;
 static u32 hold_ip_u32(const char *p) { u32 v = 0, a = 0; for (;; p++) { if (*p >= '0' && *p <= '9') a = a * 10 + (*p - '0'); else { v = (v << 8) | (a & 255); a = 0; if (!*p) break; } } return v; }
+/* a name (anything but dotted decimal) is looked up with the PS2's resolver: sqGetHostByName gives a handle, sqGetHostByNameCheck is polled
+   (1 done, 0 pending, <0 failed). Dotted decimal is used as it is. Returns 0 when the lookup fails. */
+static int is_numeric_addr(const char *p) { int dots = 0; if (!*p) return 0; for (; *p; p++) { if (*p == '.') dots++; else if (*p < '0' || *p > '9') return 0; } return dots == 3; }
+static u32 resolve_server(const char *p)
+{
+    if (is_numeric_addr(p)) return hold_ip_u32(p);
+    static SqAddr out; memset(&out, 0, sizeof out);
+    fn_dns1 gh = (fn_dns1)E("sqGetHostByName"); fn_dnsc ck = (fn_dnsc)E("sqGetHostByNameCheck");
+    if (!gh) gh = (fn_dns1)g_orig[221]; if (!ck) ck = (fn_dnsc)g_orig[222];
+    if (!gh || !ck) return 0;
+    int h = gh(p); L("hostname lookup handle", (u32)h, 0, 0);
+    if (h < 0) return 0;
+    for (int i = 0; i < 200; i++) {                                    /* up to ~20 s */
+        int r = ck(h, &out);
+        if (r == 1) { L("hostname resolved ip", out.addr, 0, 0); return out.addr; }
+        if (r < 0) { L("hostname lookup failed rc", (u32)r, 0, 0); return 0; }
+        DelayThread(100 * 1000);
+    }
+    L("hostname lookup timed out", 0, 0, 0); return 0;
+}
 static u32 w_csock(u32 a0, u32 a1, u32 a2, u32 a3, u32 t0, u32 t1, u32 t2, u32 t3)
 {
     if (net_ensure() < 0) return (u32)-1;
     if (a1 >= 0x100000 && a1 < 0x1fff000) hlog(9, a0, *(u32 *)a1, *(u32 *)(a1 + 4), *(u32 *)(a1 + 8), 0, 0, "sqCreateSocket a0 / sockaddr words:", 0, 0);
     if (a1 >= 0x100000 && a1 < 0x1fff000) L("game: socket ip / port", *(u32 *)(a1 + 4), *(u32 *)a1 >> 16, 0);
     if (g_dev_applied && !g_cs_patched && a1 >= 0x100000 && a1 < 0x1fff000) {       /* lobby socket: use the typed address and port */
-        u32 *sa = (u32 *)a1; sa[1] = hold_ip_u32(g_dev_ip); sa[0] = (sa[0] & 0xffff) | ((u32)atoi(g_dev_port) << 16); g_cs_patched = 1;      /* sockaddr: word0 = port<<16 | type, word1 = ip */
+        u32 *sa = (u32 *)a1; { u32 rip = resolve_server(g_dev_ip); if (rip) sa[1] = rip; } sa[0] = (sa[0] & 0xffff) | ((u32)atoi(g_dev_port) << 16); g_cs_patched = 1;      /* sockaddr: word0 = port<<16 | type, word1 = ip */
         hlog(9, sa[0], sa[1], 0, 0, 0, 0, "lobby socket redirected (port word / ip):", 0, 0);
     }
 #ifdef DEV_HOLD
@@ -872,7 +893,7 @@ static u32 w_cchk(u32 a0, u32 a1, u32 a2, u32 a3, u32 t0, u32 t1, u32 t2, u32 t3
 #ifdef DEV_HOLD
     if (g_cs_def == 1) {
         if (g_dev_hold) return 0;                                           /* still waiting for the developer screen: "connecting" */
-        g_cs_sa[1] = hold_ip_u32(g_dev_ip); g_cs_sa[0] = (g_cs_sa[0] & 0xffff) | ((u32)atoi(g_dev_port) << 16);   /* the address / port typed there */
+        { u32 rip = resolve_server(g_dev_ip); g_cs_sa[1] = rip ? rip : hold_ip_u32(g_dev_ip); } g_cs_sa[0] = (g_cs_sa[0] & 0xffff) | ((u32)atoi(g_dev_port) << 16);   /* the address / port typed there */
         g_cs_def = 2;
         ((u32 (*)(u32, u32, u32, u32, u32, u32, u32, u32))g_orig[231])(g_cs_args[0], (u32)g_cs_sa, g_cs_args[2], g_cs_args[3], g_cs_args[4], g_cs_args[5], g_cs_args[6], g_cs_args[7]);
     }

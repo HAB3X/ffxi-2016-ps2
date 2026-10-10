@@ -8,7 +8,7 @@
 The router ports can be opened by hand (the list is in FORWARD) or automatically with UPnP, which most home routers
 support. Python standard library only (Mac, Windows, Linux).
 """
-import ipaddress, json, os, re, shutil, socket, subprocess, time, urllib.parse, urllib.request
+import ipaddress, json, os, re, shutil, socket, subprocess, time, urllib.error, urllib.parse, urllib.request
 import xml.etree.ElementTree as ET
 
 import server_control as sc
@@ -93,7 +93,15 @@ def public_address(refresh=False):
     """(address, how): the address set by hand in the app, else the detected one (re-checked every 10 minutes)."""
     cfg = sc.load_config()
     if cfg.get('internet_ip_manual'):
-        return cfg['internet_ip_manual'], 'set by hand'
+        val = cfg['internet_ip_manual']
+        if re.fullmatch(r'\d{1,3}(\.\d{1,3}){3}', val):
+            write_internet_ip_file(val)
+            return val, 'set by hand'
+        try:                                                 # a name (dynamic DNS): players' games get the address it points at right now
+            write_internet_ip_file(socket.gethostbyname(val))
+            return val, 'name set by hand'
+        except OSError:
+            return val, 'name set by hand (does not resolve right now)'
     if refresh or not cfg.get('internet_ip') or time.time() - cfg.get('internet_ip_time', 0) > 600:
         ip = detect_public_address()
         cfg = sc.load_config()
@@ -110,17 +118,136 @@ def set_manual_public_address(ip):
     ip = (ip or '').strip()
     cfg = sc.load_config()
     if ip:
-        try:
-            socket.inet_aton(ip)
-        except OSError:
-            raise sc.ServerError('That is not an address like 81.12.34.56.')
-        if not _is_public(ip):
-            raise sc.ServerError('%s is a home-network address, not an internet address.' % ip)
+        if re.fullmatch(r'\d{1,3}(\.\d{1,3}){3}', ip):
+            if not _is_public(ip):
+                raise sc.ServerError('%s is a home-network address, not an internet address.' % ip)
+        elif re.fullmatch(r'[A-Za-z0-9]([A-Za-z0-9-]*[A-Za-z0-9])?(\.[A-Za-z0-9]([A-Za-z0-9-]*[A-Za-z0-9])?)+', ip) and len(ip) <= 31:
+            try:                                             # a dynamic DNS name such as myhome.ddns.net (31 letters at most: the PS2 sign-in box)
+                if not _is_public(socket.gethostbyname(ip)):
+                    raise sc.ServerError('%s points to a home network address, not an internet address.' % ip)
+            except OSError:
+                raise sc.ServerError('%s does not resolve yet. Check the spelling and that your dynamic DNS is set up.' % ip)
+        else:
+            raise sc.ServerError('Enter an address like 81.12.34.56 or a name like myhome.ddns.net (31 characters at most).')
         cfg['internet_ip_manual'] = ip
     else:
         cfg.pop('internet_ip_manual', None)
     sc.save_config(cfg)
     public_address()
+
+
+# ---------------------------------------------------------------- dynamic DNS (keeps a hostname pointing at this home)
+# kinds: 'duckdns' (name + token), 'noip' / 'dynu' (hostname + username + password, the standard "dyndns2" update), 'other' (hostname + the
+# update link the service gives you). The app calls the update address every few minutes while it is open.
+DUCKDNS_URL = 'https://www.duckdns.org/update'          # tests point these at a local fake
+DDNS_URLS = {'noip': 'https://dynupdate.no-ip.com/nic/update', 'dynu': 'https://api.dynu.com/nic/update'}
+DDNS_NAMES = {'duckdns': 'DuckDNS', 'noip': 'No-IP', 'dynu': 'Dynu', 'other': 'your provider'}
+DUCKDNS_SUFFIX = '.duckdns.org'
+_BAD_WORDS = ('bad', 'nohost', 'abuse', '911', 'notfqdn', 'numhost', 'dnserr', 'ko', 'error', 'fail', 'invalid', 'denied', 'unauthor')
+ddns_last = {'ok': None, 'text': '', 'time': 0}
+
+
+def ddns_config():
+    """The saved setup as a dict ({} when there is none): kind, host and the kind's own details."""
+    return sc.load_config().get('ddns') or {}
+
+
+def _ddns_request(c):
+    """(ok, plain-words message) after asking the service to point the hostname at this home. Secrets are never put in a message."""
+    kind, host = c.get('kind'), c.get('host', '')
+    who = DDNS_NAMES.get(kind, 'the service')
+    headers = {'User-Agent': 'FFXI2016-Server-App'}
+    if kind == 'duckdns':
+        url = DUCKDNS_URL + '?' + urllib.parse.urlencode({'domains': c['name'], 'token': c['token'], 'ip': ''})
+    elif kind in ('noip', 'dynu'):
+        import base64
+        url = DDNS_URLS[kind] + '?' + urllib.parse.urlencode({'hostname': host})
+        headers['Authorization'] = 'Basic ' + base64.b64encode(('%s:%s' % (c['user'], c['password'])).encode()).decode()
+    elif kind == 'other':
+        url = c['url'].replace('{host}', host).replace('{ip}', '')
+    else:
+        return False, 'Dynamic DNS is not set up.'
+    try:
+        with urllib.request.urlopen(urllib.request.Request(url, headers=headers), timeout=10) as r:
+            body = r.read(300).decode('utf-8', 'replace').strip()
+    except urllib.error.HTTPError as e:
+        if e.code in (401, 403):
+            return False, '%s did not accept the login or token. Check it and try again.' % who
+        return False, '%s answered with an error (%d).' % (who, e.code)
+    except Exception:                                         # noqa: BLE001
+        return False, 'Could not reach %s (is this computer online?).' % who
+    low = body.lower()
+    if low.startswith(_BAD_WORDS):
+        return False, '%s did not accept it (%s). Check the details and try again.' % (who, body[:40].replace(c.get('token', '\0'), '...'))
+    return True, '%s now points %s at this home.' % (who, host)
+
+
+def ddns_update():
+    c = ddns_config()
+    if not c:
+        return False, 'Dynamic DNS is not set up.'
+    res = _ddns_request(c)
+    ddns_last.update(ok=res[0], text=res[1], time=time.time())
+    return res
+
+
+def _check_host(host):
+    if not re.fullmatch(r'[A-Za-z0-9]([A-Za-z0-9-]*[A-Za-z0-9])?(\.[A-Za-z0-9]([A-Za-z0-9-]*[A-Za-z0-9])?)+', host) or len(host) > 31:
+        raise sc.ServerError('Enter a hostname like myhome.ddns.net (letters, numbers, dashes and dots; 31 characters at most).')
+
+
+def set_ddns(kind, host='', name='', token='', user='', password='', url=''):
+    """Check the details with the service, save them, and use the hostname as the address players type."""
+    c = {'kind': kind}
+    if kind == 'duckdns':
+        name = (name or '').strip().lower()
+        if name.endswith(DUCKDNS_SUFFIX):
+            name = name[:-len(DUCKDNS_SUFFIX)]
+        if not re.fullmatch(r'[a-z0-9]([a-z0-9-]*[a-z0-9])?', name):
+            raise sc.ServerError('The DuckDNS name can only have letters, numbers and dashes.')
+        if len(name) + len(DUCKDNS_SUFFIX) > 31:
+            raise sc.ServerError('That name is too long: the PS2 sign-in line holds 31 characters, so use %d or fewer.' % (31 - len(DUCKDNS_SUFFIX)))
+        token = (token or '').strip()
+        if not re.fullmatch(r'[0-9a-fA-F-]{16,64}', token):
+            raise sc.ServerError('That does not look like a DuckDNS token (copy it from the top of your duckdns.org page).')
+        c.update(name=name, token=token, host=name + DUCKDNS_SUFFIX)
+    elif kind in ('noip', 'dynu'):
+        host = (host or '').strip().lower()
+        _check_host(host)
+        if not (user or '').strip() or not password:
+            raise sc.ServerError('Enter the username and password of your account.')
+        c.update(host=host, user=user.strip(), password=password)
+    elif kind == 'other':
+        host = (host or '').strip().lower()
+        _check_host(host)
+        url = (url or '').strip()
+        if not re.match(r'https?://[^\s]+$', url):
+            raise sc.ServerError('Paste the update link your provider gave you (it starts with http:// or https://).')
+        c.update(host=host, url=url)
+    elif kind == 'manual':                                    # no automatic update: a fixed address, or a name something else keeps current
+        set_manual_public_address((host or '').strip())
+        cfg = sc.load_config()
+        cfg.pop('ddns', None)
+        sc.save_config(cfg)
+        return (host or '').strip()
+    else:
+        raise sc.ServerError('Pick a provider.')
+    ok, msg = _ddns_request(c)
+    if not ok:
+        raise sc.ServerError(msg)
+    cfg = sc.load_config()
+    cfg['ddns'] = c
+    cfg['internet_ip_manual'] = c['host']
+    sc.save_config(cfg)
+    ddns_last.update(ok=True, text=msg, time=time.time())
+    public_address()
+    return c['host']
+
+
+def clear_ddns():
+    cfg = sc.load_config()
+    cfg.pop('ddns', None)
+    sc.save_config(cfg)
 
 
 def write_internet_ip_file(ip):
@@ -319,8 +446,8 @@ def mac_firewall_on():
 
 
 def check_working(mode=None):
-    """(state, headline, details): state 'ok', 'bad' or 'unsure'. Plain words, with the fix."""
-    mode = mode or get_mode()
+    """(state, headline, details): state 'ok', 'bad' or 'unsure'. Plain words, with the fix. Checks the home network first,
+    then the internet side; having no internet never makes the home side fail. (mode is ignored, kept for old callers.)"""
     st = sc.status()
     if not st['on']:
         missing = [sc.NICE[p] for p in ['database'] + sc.PROGRAMS + ['proxy'] if not st[p]]
@@ -329,7 +456,7 @@ def check_working(mode=None):
         return 'bad', 'Not working: part of the server is off', 'Off: %s. Click "Start Server" to start it again.' % ', '.join(missing)
     lan = sc.lan_address()
     if not lan:
-        return 'bad', 'Not working: this computer is not on a network', 'Connect it to your router or Wi-Fi.'
+        return 'bad', 'Not working: this computer is not on a network', 'Connect it to your router or Wi-Fi, or set up a direct cable (see How to connect).'
     for proto, port, what in FORWARD:
         if proto == 'TCP' and not (port == P['social'] and not st['social']):
             try:
@@ -337,24 +464,26 @@ def check_working(mode=None):
             except OSError:
                 return 'bad', 'Not working: the %s port does not answer' % what, \
                        'TCP %d does not answer on %s. Click "Stop Server", then "Start Server".' % (port, lan)
+    home = 'Local: ServerIP %s, ServerPort %d.' % (lan, P['lobby'])
     notes = []
     if mac_firewall_on():
         notes.append('Mac firewall is on: click Allow if the Mac asks about incoming connections.')
-    if mode == 'local':
-        return 'ok', 'Working', ('ServerIP %s, ServerPort %d' % (lan, P['lobby']) + ('\n' + ' '.join(notes) if notes else ''))
-    # port forwarding
-    ip, how = public_address()
-    if not ip:
-        return 'bad', 'Not working: your internet address was not found', 'Click "change" next to it and type it (your router\'s status page shows it).'
+    tail = ('\n' + ' '.join(notes)) if notes else ''
+    try:
+        ip, how = public_address()
+    except Exception:                                        # noqa: BLE001
+        ip = ''
+    if not ip:                                               # offline, or the address cannot be found: the home side still works
+        return 'ok', 'Working', home + '\nInternet: no internet address found (fine if you only play at home).' + tail
     try:
         gw = upnp_gateway()
         rip = upnp_external_ip() if gw else ''
     except Exception:                                        # noqa: BLE001
         gw, rip = None, ''
     if rip and not _is_public(rip):
-        return 'bad', 'Not working: your internet provider shares its addresses (CGNAT)', \
-               'Your router\'s own internet address is %s, which is not reachable from the internet, so port forwarding ' \
-               'cannot work. Ask your provider for a public IP address, or use Tailscale.' % rip
+        return 'unsure', 'Working at home. Internet will not work', home + \
+               "\nYour router's own internet address is %s, which cannot be reached from outside (your provider shares addresses, CGNAT), " \
+               'so port forwarding cannot work. Ask your provider for a public address, use Tailscale, or use a rented server.' % rip + tail
     mapped = None
     if gw:
         try:
@@ -364,24 +493,24 @@ def check_working(mode=None):
     if mapped:
         bad = [m for m in mapped if m[3] != 'open']
         if bad:
-            return 'bad', 'Not working: %d port%s not forwarded' % (len(bad), '' if len(bad) == 1 else 's'), \
-                   'Forward to this computer (%s): %s. Click "Open ports for me", or add them in your router.' % (
-                       lan, ', '.join('%s %d' % (m[0], m[1]) for m in bad))
+            return 'unsure', 'Working at home. %d internet port%s not forwarded' % (len(bad), '' if len(bad) == 1 else 's'), home + \
+                   '\nForward to this computer (%s): %s. Click "Open ports for me", or add them in your router.' % (
+                       lan, ', '.join('%s %d' % (m[0], m[1]) for m in bad)) + tail
     hairpin = False
     try:
         socket.create_connection((ip, P['lobby']), timeout=3).close()
         hairpin = True
     except OSError:
         pass
+    inet = 'Internet: ServerIP %s, ServerPort %d.' % (ip, P['lobby'])
     if hairpin and (mapped or not gw):
-        return 'ok', 'Working', 'ServerIP %s, ServerPort %d' % (ip, P['lobby'])
+        return 'ok', 'Working', home + '\n' + inet + tail
     if mapped:
-        return 'unsure', 'Probably working (can\'t confirm from inside the house)', \
-               'Your router forwards all 4 ports to this computer. Most routers cannot test this from inside, ' \
-               'so ask a friend to try signing in with ServerIP %s.' % ip
-    return 'unsure', 'Can\'t confirm from inside. Ask a friend to try', \
-           'Your router does not tell the app its settings (no UPnP). Check that these ports are forwarded to %s: %s. ' \
-           'Then ask a friend to sign in with ServerIP %s.' % (lan, ', '.join('%s %d' % (f[0], f[1]) for f in FORWARD), ip)
+        return 'ok', 'Working at home. Internet looks right', home + '\n' + inet + \
+               '\nYour router forwards all 4 ports to this computer. Most routers cannot test this from inside, so ask a friend to try.' + tail
+    return 'unsure', 'Working at home. Internet not confirmed', home + '\n' + inet + \
+           '\nYour router does not report its settings (no UPnP). Check that these ports are forwarded to %s: %s. Then ask a friend to sign in.' % (
+               lan, ', '.join('%s %d' % (f[0], f[1]) for f in FORWARD)) + tail
 
 
 if __name__ == '__main__':

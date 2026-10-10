@@ -47,7 +47,19 @@ cd /d "%SERVER%\lsb"
 ".build-venv\Scripts\python.exe" -m pip install --quiet jinja2 jsonschema ruamel.yaml || goto :buildfail
 set "VIRTUAL_ENV=%SERVER%\lsb\.build-venv"
 set "PATH=%SERVER%\lsb\.build-venv\Scripts;%PATH%"
-python tools\build.py || goto :buildfail
+rem The game server's C++ files are very large: each compiler process can use 2-3 GB of memory. Too many at once ends with
+rem "out of heap space" (error C1060 or C1002). So use one process per 3 GB of memory, and no more than the processor count.
+set "JOBS=2"
+for /f "usebackq delims=" %%j in (`powershell -NoProfile -Command "$g=[math]::Floor((Get-CimInstance Win32_OperatingSystem).TotalVisibleMemorySize/1MB/3); $c=[Environment]::ProcessorCount; [math]::Max(1,[math]::Min($g,$c))"`) do set "JOBS=%%j"
+echo Using %JOBS% compiler process(es) at a time.
+set "CMAKE_BUILD_PARALLEL_LEVEL=%JOBS%"
+python tools\build.py
+if errorlevel 1 (
+  echo.
+  echo The build stopped. Trying again with one compiler process at a time (slower, but needs less memory^)...
+  set "CMAKE_BUILD_PARALLEL_LEVEL=1"
+  python tools\build.py --build-only || goto :buildfail
+)
 for %%p in (xi_connect xi_search xi_world xi_map) do if not exist "%SERVER%\lsb\%%p.exe" goto :buildfail
 echo.
 cd /d "%SERVER%"
@@ -59,8 +71,10 @@ pause
 exit /b 0
 :buildfail
 echo.
-echo The build did not finish. See the messages above. Most often the C++ tools are missing:
-echo install "Visual Studio Build Tools" with "Desktop development with C++" and run this setup again.
+echo The build did not finish. Look at the last error above:
+echo   "out of heap space" (C1060 / C1002): the computer ran out of memory. Close other programs and run this setup again.
+echo   "cl is not recognized" or "no CMAKE_CXX_COMPILER": install "Visual Studio Build Tools" with "Desktop development with C++".
+echo Running this setup again carries on where it stopped.
 pause
 exit /b 1
 :included

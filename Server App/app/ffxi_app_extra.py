@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""FFXI 2016 Server App - extra windows: Roles, Chat rules (word filter, spam, scheduled messages, chat history,
+"""FFXI 2016 Server App - extra windows: Moderation (roles), Chat rules (word filter, spam, scheduled messages, chat history,
 filter log) and the "/" command helper of the world chat box. Fan Project by Habex. Standard library only."""
 import os, re, threading, time
 import tkinter as tk
@@ -205,9 +205,8 @@ def _win(app, title, w=900, h=640, parent=None):
 
 
 def _check(app, parent, text, var):
-    C, _, _ = _C()
-    return tk.Checkbutton(parent, text=text, variable=var, bg=parent['bg'], fg=C['text'], font=app.f.small, anchor='w',
-                          activebackground=parent['bg'], activeforeground=C['text'], selectcolor=C['input'], highlightthickness=0, bd=0)
+    import ffxi_server_app as A
+    return A.Check(parent, text=text, variable=var, font=app.f.small)
 
 
 class Scrolled(tk.Frame):

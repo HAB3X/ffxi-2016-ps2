@@ -156,7 +156,13 @@ int iop_init_sony(void)
     printf("[host] disc type 0x%x\n", disc);
     int id;
     g_iop_step = 10;
+#ifdef SQ_FROM_DISC
     do { id = SifLoadModule("cdrom0:\\MODULES\\SQIOPMEM.IRX", 0, NULL); } while (id < 0);
+#else
+    /* the embedded copy with smaller pools (patch_sqiopmem.py): the disc's own reserves 659 KB of the IOP's 2 MB, too much for the network modules plus the menus */
+    sbv_patch_enable_lmb(); sbv_patch_disable_prefix_check();
+    { int rr = 0; do { id = SifExecModuleBuffer(emb_sqiopmem, emb_sqiopmem_size, 0, NULL, &rr); } while (id < 0); }
+#endif
     printf("[host] SQIOPMEM loaded, module id %d\n", id);
     g_iop_step = 11;
     int r = SifBindRpc(&sq_client, 0x800, 0);

@@ -39,7 +39,7 @@ to use the Downloads folder or to accept incoming connections, click Allow.
 STEP 1  MAKE THE DISC AND THE HARD DRIVE (only the first time)
 
 Put your original disc image in the "Disc / Original Disc" folder. Then open the
-Server App and go to "Game disc" on the left. There are two buttons.
+Server App and go to Tools > Game disc on the left. There are two buttons.
 
   1. "Patch My Disc"
        Pick your original disc image.
@@ -81,11 +81,10 @@ STEP 3  START THE SERVER
        Mac      FFXI Server
        Windows  FFXI Server (Windows).bat
        Linux    FFXI Server (Linux).sh
-  2. Pick Local or Port forwarding, then click "Start Server".
-     Wait until it says "Server is on" and "Working" (about 2 minutes).
-  3. Go to Profiles and click "Create Profile". Pick a username and a password.
-  4. On the Server page you'll see the ServerIP and ServerPort. Keep them on screen,
-     you'll type them in soon.
+  2. Click "Start". Wait until it says "Server is on" and "Working" (about 2 minutes).
+  3. Go to Players and click "Create Profile". Pick a username and a password.
+  4. The Server page shows the Local address, the Internet address and the Port. The
+     Invite page says which one to type for each way of playing.
 
 
 STEP 4  INSTALL THE GAME (only the first time)
@@ -103,7 +102,7 @@ STEP 5  SIGN IN AND PLAY
   1. The sign in page opens. For each box, press X, type, then press X again:
        POL-ID     your profile's username
        Password   your profile's password
-       ServerIP   from the Server App
+       ServerIP   from the Server App (Invite page)
        ServerPort from the Server App
      You can type with a USB keyboard, or press R1 for the on screen keyboard.
   2. Go down to OK and press X.
@@ -119,13 +118,14 @@ Only one person runs the server. Everyone else just needs PCSX2, the patched dis
 a hard drive and a profile. On the server computer click "Create Profile" for each
 friend and send them the username and password.
 
-In the Server App pick:
+The Invite page in the Server App shows what to type on the PS2 for each way of playing:
   Local              everyone is on the same network (a LAN party, or your house)
-  Port forwarding    friends play over the internet. Forward the ports the app
-                     lists on your router to the server computer.
+  Direct cable       the PS2 plugged straight into the server computer, no router
+  Over the internet  friends play from their own house. Set a hostname there and forward the
+                     ports it lists on your router, or run the server on a cloud server
+                     (Server/setup/CLOUD.txt).
 
-Give your friends the ServerIP and ServerPort the app shows for that option.
-The app tells you if it's working.
+All three work at the same time. The Server page tells you if it's working.
 
 
 IF SOMETHING GOES WRONG
@@ -153,6 +153,8 @@ The patched disc also works on a real PS2 with an official hard drive and networ
 adapter (a console that can boot burned discs, for example with FreeMcBoot). Burn
 the patched .iso to a DVD-R and follow Steps 4 and 5. The PS2 connects the same way
 as PCSX2 (see "Playing with friends").
+The full plain-language guide (hard drive, burning, what we could not check) is in
+"Disc / READ ME real PS2.txt".
 
 
 SHARING THIS FOLDER
@@ -163,3 +165,26 @@ to someone, make a clean copy: run Server/setup/make_share_copy.py (it leaves th
 
 This is an unofficial fan project, not made or supported by Square Enix.
 Final Fantasy XI is a trademark of Square Enix.
+
+
+CONNECTION TROUBLE (FFXI-3101 and similar)
+  1. Start the server, then run Server/setup/connection_test.py (python3 connection_test.py). It shows which ports answer and which
+     address to type into the Server IP box. The "How to connect" page in the Server App lists the same addresses.
+  2. Same router: type this computer's home address. Direct cable: set this computer's Ethernet to 192.168.137.1 / 255.255.255.0 and
+     type 192.168.137.1. Over the internet: type your hostname or internet address, and forward TCP 54001, 54242, 54460 and
+     UDP 54240 on your router to this computer.
+  3. Allow the server programs through this computer's firewall (Mac: System Settings > Network > Firewall > Options).
+  4. If you cannot forward ports (locked router, or your provider shares one address between customers), run the server on a cloud
+     server instead: see Server/setup/CLOUD.txt.
+
+WHAT THE ERROR NUMBERS MEAN
+  FFXI-3100  The game could not connect to the server address you typed.
+  FFXI-3101  The connection dropped, or the server's reply was not what the game expected. Check the address and ports first (see above),
+             then restart the server.
+  FFXI-3113  The game gave up without a more specific reason. Usually the server is not reachable.
+  Other FFXI-33xx numbers come from the server itself (for example 3332 is a wrong password or account problem). Look at the chat/log
+  pages in the Server App for the matching message.
+
+CREDITS
+  Fan Project by Habex.
+  Real PS2 network, memory and sign-in fixes by xorjustice.

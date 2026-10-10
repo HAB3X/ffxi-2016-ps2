@@ -2,7 +2,7 @@
 """FFXI 2016 Server - the window that runs the server. Fan Project by Habex.
 
 Python 3 + Tk (standard library only). Mac, Windows and Linux. Dark look only.
-Left: navigation (Server, Profiles, Internet, Roles, Chat rules, Game disc).
+Left: navigation (Server, Profiles, Connect, World, Moderation, Chat rules, Maintenance, Game disc).
 Server page: status + Start / Stop, the address players type, who is online, the world chat.
 The work is done by Server/server_control.py (start/stop, profiles), server_admin.py (players, chat, commands),
 server_net.py (addresses, ports), server_roles.py (roles) and server_chat.py (chat rules).
@@ -24,9 +24,23 @@ try:
     import server_net as sn
     import server_roles as sr
     import server_chat as sch
+    import server_settings as ss
+    import server_backup as sbk
+    import server_notify as snt
+    import server_debug as sd
+    import server_ah as sah
+    import server_modes as smo
+    import server_pcsx2 as spc
+    import server_info as si
+    import server_hardcore as shc
 except Exception:                                            # noqa: BLE001
-    sc = sa = sn = sr = sch = None
+    sc = sa = sn = sr = sch = ss = sbk = snt = sd = sah = smo = spc = si = shc = None
     SC_ERROR = traceback.format_exc()
+
+try:
+    import ffxi_updater as up
+except Exception:                                            # noqa: BLE001
+    up = None
 
 TITLE = 'FFXI 2016 Server (Fan Project by Habex)'
 WINDOWS = os.name == 'nt'
@@ -34,15 +48,16 @@ MAC = sys.platform == 'darwin'
 
 # ---------------------------------------------------------------- look (dark only, one accent colour)
 C = dict(
-    bg='#0e1116', nav='#0a0d11', card='#151a21', card2='#1b212a', line='#232a34', input='#1d242d', hover='#1c232c',
-    text='#e8ecf1', soft='#9aa5b1', faint='#647080',
-    accent='#4c8dff', accent_dk='#3a73d9',
-    green='#34c47c', green_dk='#1f8a52', green_bg='#13281e',
-    red='#ef5b52', red_dk='#a83a33', red_bg='#2c1717',
-    amber='#e9ac45', amber_bg='#2e2513', grey='#2a323d', sel='#24406e', zebra='#181e26',
-    blue='#4c8dff', purple='#4c8dff')
-CHAT_COLORS = {'Say': '#e8ecf1', 'Shout': '#ff9f5a', 'Yell': '#ffcf5a', 'Tell': '#c792ea', 'Party': '#62c9ff', 'LS': '#8ddf8d',
-               'Server': '#4c8dff', 'info': '#9aa5b1', 'error': '#ff7b72', 'admin': '#4c8dff', 'event': '#647080'}
+    bg='#070b1c', nav='#060919', nav_bot='#0d0b26', nav_sel='#1b2762', nav_hov='#131c4a',
+    card='#0e1633', card2='#152046', line='#222f63', input='#121c42', hover='#17224d',
+    text='#eef2ff', soft='#a7b3d9', faint='#6f7ca8',
+    accent='#6f8fff', accent_dk='#5373e6', gold='#f0cf7a',
+    green='#3fd18d', green_dk='#23925f', green_bg='#0f2a29',
+    red='#f0646b', red_dk='#a8404a', red_bg='#2c1530',
+    amber='#efb85a', amber_bg='#2c2318', grey='#243060', sel='#2a3f86', zebra='#101a3d',
+    blue='#6f8fff', purple='#6f8fff')
+CHAT_COLORS = {'Say': '#eef2ff', 'Shout': '#ff9f5a', 'Yell': '#ffcf5a', 'Tell': '#c792ea', 'Party': '#62c9ff', 'LS': '#8ddf8d',
+               'Server': '#6f8fff', 'info': '#a7b3d9', 'error': '#ff7b82', 'admin': '#6f8fff', 'event': '#6f7ca8'}
 
 
 def pick_font(cands):
@@ -90,6 +105,41 @@ def rounded(cv, x1, y1, x2, y2, r, **kw):
     r = max(1, min(r, (x2 - x1) / 2, (y2 - y1) / 2))
     pts = [x1 + r, y1, x2 - r, y1, x2, y1, x2, y1 + r, x2, y2 - r, x2, y2, x2 - r, y2, x1 + r, y2, x1, y2, x1, y2 - r, x1, y1 + r, x1, y1]
     return cv.create_polygon(pts, smooth=True, **kw)
+
+
+ART_DIR = os.path.join(APP_DIR, 'art')
+_art_cache = {}
+
+
+def art_image(name, size=None):
+    """A picture from app/art. Pictures a player extracted from their own game disc (app/art/local) win over the ones that come with the app."""
+    key = (name, size)
+    if key in _art_cache:
+        return _art_cache[key]
+    base = '%s_%d.png' % (name, size) if size else '%s.png' % name
+    img = None
+    for d in (os.path.join(ART_DIR, 'local'), ART_DIR):
+        p = os.path.join(d, base)
+        if os.path.isfile(p):
+            try:
+                img = tk.PhotoImage(file=p)
+                break
+            except tk.TclError:
+                img = None
+    _art_cache[key] = img
+    return img
+
+
+def mask_corners(cv, w, h, r, color, tag='mask'):
+    """Round the corners of a picture drawn on a canvas by covering each corner with the page colour."""
+    import math
+    for cx, cy, sx, sy in ((0, 0, 1, 1), (w, 0, -1, 1), (0, h, 1, -1), (w, h, -1, -1)):
+        ox, oy = cx + sx * r, cy + sy * r
+        pts = [cx, cy]
+        for i in range(9):
+            a = math.pi / 2 * i / 8
+            pts += [ox - sx * r * math.sin(a), oy - sy * r * math.cos(a)]
+        cv.create_polygon(pts, fill=color, outline='', tags=tag)
 
 
 class RoundButton(tk.Canvas):
@@ -180,25 +230,177 @@ class Pill(tk.Canvas):
         self.create_text(32, 17, text=text, anchor='w', fill=col[1], font=self.f.h3)
 
 
-class Panel(tk.Frame):
-    """A soft panel: no border, just a slightly lighter background and roomy padding."""
+class TextLink(tk.Label):
+    """A quiet clickable word: the minimal replacement for a small button."""
 
-    def __init__(self, master, title=None, fonts=None, pad=20):
-        super().__init__(master, bg=C['card'], highlightthickness=0, bd=0)
+    def __init__(self, master, text, command, font, bg=None, fg=None):
+        super().__init__(master, text=text, font=font, bg=bg or master['bg'], fg=fg or C['accent'], cursor='hand2')
+        self.command, self.enabled, self.base_fg = command, True, fg or C['accent']
+        self.bind('<Button-1>', lambda e: self.command() if self.enabled else None)
+
+    def set_text(self, t):
+        self.config(text=t)
+
+    def set_enabled(self, on):
+        self.enabled = bool(on)
+        self.config(fg=self.base_fg if on else C['faint'], cursor='hand2' if on else '')
+
+
+class RoundEntry(tk.Frame):
+    """A text field with rounded corners, a fine border and a blue ring while you type. Behaves like a normal Entry (get, insert, delete, bind...)."""
+
+    def __init__(self, master, font, width=22, show=''):
+        super().__init__(master, bg=master['bg'], highlightthickness=0, bd=0)
+        fnt = tkfont.Font(font=font)
+        h = fnt.metrics('linespace') + 18
+        self.cv = tk.Canvas(self, height=h, width=fnt.measure('0') * width + 30, bg=master['bg'], highlightthickness=0, bd=0)
+        self.cv.pack(fill='x')
+        self.entry = tk.Entry(self.cv, font=font, show=show, bg=C['input'], fg=C['text'], insertbackground=C['accent'], relief='flat', bd=0,
+                              highlightthickness=0, disabledbackground=C['input'], disabledforeground=C['faint'], selectbackground=C['sel'],
+                              selectforeground='white')
+        self.win = self.cv.create_window(14, h // 2, window=self.entry, anchor='w', width=100)
+        self.focused = False
+        self.cv.bind('<Configure>', self._draw)
+        self.entry.bind('<FocusIn>', lambda e: self._focus(True), add='+')
+        self.entry.bind('<FocusOut>', lambda e: self._focus(False), add='+')
+        self.cv.bind('<Button-1>', lambda e: self.entry.focus_set())
+
+    def _focus(self, on):
+        self.focused = on
+        self._draw()
+
+    def _draw(self, e=None):
+        w, h = self.cv.winfo_width(), self.cv.winfo_height()
+        if w < 8:
+            return
+        self.cv.delete('bg')
+        rounded(self.cv, 1, 1, w - 1, h - 1, 10, fill=C['input'], outline=C['accent'] if self.focused else C['line'], width=2 if self.focused else 1, tags='bg')
+        self.cv.tag_lower('bg')
+        self.cv.itemconfigure(self.win, width=max(20, w - 30))
+
+    def bind(self, sequence=None, func=None, add=None):
+        return self.entry.bind(sequence, func, add)
+
+    def focus_set(self):
+        self.entry.focus_set()
+
+    def configure(self, cnf=None, **kw):
+        mine = {k: kw.pop(k) for k in ('state', 'show', 'textvariable') if k in kw}
+        if mine:
+            self.entry.configure(**mine)
+        if kw or cnf:
+            super().configure(cnf, **kw)
+
+    config = configure
+
+    def __getattr__(self, name):                               # get, insert, delete, icursor, selection_range ... go to the field itself
+        if name in ('entry', 'cv'):
+            raise AttributeError(name)
+        return getattr(self.entry, name)
+
+
+class Check(tk.Frame):
+    """A checkbox: a rounded square that fills blue with a tick. Takes the same text, variable and command as a normal Checkbutton."""
+    SIZE = 18
+
+    def __init__(self, master, text='', variable=None, command=None, font=None, fg=None, bg=None, **ignored):
+        bg = bg or master['bg']
+        super().__init__(master, bg=bg, cursor='hand2', highlightthickness=0, bd=0)
+        self.var = variable if variable is not None else tk.BooleanVar(value=False)
+        self.command, self.hover, self.off = command, False, False
+        self.box = tk.Canvas(self, width=self.SIZE + 2, height=self.SIZE + 2, bg=bg, highlightthickness=0, bd=0, cursor='hand2')
+        self.box.pack(side='left')
+        self.label = None
+        if text:
+            self.label = tk.Label(self, text=text, font=font, fg=fg or C['text'], bg=bg, anchor='w', cursor='hand2')
+            self.label.pack(side='left', padx=(9, 0))
+        for w in (self, self.box, self.label):
+            if w is not None:
+                w.bind('<Button-1>', self._toggle)
+                w.bind('<Enter>', lambda e: self._hov(True))
+                w.bind('<Leave>', lambda e: self._hov(False))
+        self.var.trace_add('write', lambda *a: self._draw())
+        self._draw()
+
+    def _hov(self, on):
+        self.hover = on
+        self._draw()
+
+    def _toggle(self, e=None):
+        if self.off:
+            return
+        self.var.set(not bool(self.var.get()))
+        if self.command:
+            self.command()
+
+    def configure(self, cnf=None, **kw):
+        if 'state' in kw:
+            self.off = kw.pop('state') == 'disabled'
+            self._draw()
+        if self.label is not None:
+            look = {k: kw.pop(k) for k in ('text', 'font', 'fg') if k in kw}
+            if look:
+                self.label.configure(**look)
+        for k in [k for k in kw if k not in ('bg', 'background', 'cursor')]:            # options only a real Checkbutton has: ignored
+            kw.pop(k)
+        if kw or cnf:
+            super().configure(cnf, **kw)
+
+    config = configure
+
+    def _draw(self):
+        c, s = self.box, self.SIZE
+        c.delete('all')
+        on = bool(self.var.get())
+        if on:
+            rounded(c, 1, 1, s + 1, s + 1, 6, fill=C['accent'] if not self.off else C['grey'], outline='')
+            c.create_line(5, s // 2 + 1, s // 2 + 1, s - 3, s - 4, 6, fill='white', width=2, capstyle='round', joinstyle='round')
+        else:
+            rounded(c, 1, 1, s + 1, s + 1, 6, fill=C['input'], outline=C['accent'] if self.hover and not self.off else C['faint'], width=1)
+        if self.label is not None:
+            self.label.configure(fg=C['faint'] if self.off else (C['text']))
+
+
+class Panel(tk.Frame):
+    """A card: rounded corners, a fine border, roomy padding. `.body` is where the contents go; `.head` (titled cards) holds the title row.
+    art=(name, offset) puts a soft picture inside the card, `offset` pixels from its right edge (behind the contents)."""
+    RADIUS = 14
+    INSET = 5
+
+    def __init__(self, master, title=None, fonts=None, pad=20, icon=None, art=None):
+        super().__init__(master, bg=master['bg'], highlightthickness=0, bd=0)
+        self.edge = tk.Canvas(self, bg=master['bg'], highlightthickness=0, bd=0)       # the rounded border, behind everything
+        self.edge.place(x=0, y=0, relwidth=1, relheight=1)
+        self.edge.bind('<Configure>', self._draw_edge)
+        self.inner = tk.Frame(self, bg=C['card'])
+        self.inner.pack(fill='both', expand=True, padx=self.INSET, pady=self.INSET)
         if title:
-            head = tk.Frame(self, bg=C['card'])
+            head = tk.Frame(self.inner, bg=C['card'])
             head.pack(fill='x', padx=pad, pady=(pad - 4, 8))
+            pic = art_image(icon, 24) if icon else None
+            if pic:
+                lab = tk.Label(head, image=pic, bg=C['card'], bd=0)
+                lab.image = pic
+                lab.pack(side='left', padx=(0, 8))
             self.title = tk.Label(head, text=title, font=fonts.h2, bg=C['card'], fg=C['text'], anchor='w')
             self.title.pack(side='left')
             self.head = head
-        self.body = tk.Frame(self, bg=C['card'])
+        self.body = tk.Frame(self.inner, bg=C['card'])
         self.body.pack(fill='both', expand=True, padx=pad, pady=(0 if title else pad, pad))
+        if art and art_image(art[0]):
+            pic = art_image(art[0])
+            lab = tk.Label(self.body, image=pic, bg=C['card'], bd=0)                    # first child of the body: everything else sits on top of it
+            lab.image = pic
+            lab.place(relx=1.0, x=-art[1] + pad, rely=0.5, anchor='e')
+
+    def _draw_edge(self, e):
+        self.edge.delete('all')
+        rounded(self.edge, 1, 1, e.width - 1, e.height - 1, self.RADIUS, fill=C['card'], outline=C['line'])
 
 
 # ---------------------------------------------------------------- the window
 class App:
-    PAGES = [('server', 'Server'), ('profiles', 'Profiles'), ('internet', 'Internet'), ('roles', 'Roles'),
-             ('chat', 'Chat rules'), ('disc', 'Game disc')]
+    PAGES = [('server', 'Home'), ('players', 'Players'), ('settings', 'World'), ('connect', 'Invite'), ('tools', 'Tools')]
 
     def __init__(self, root):
         self.root = root
@@ -215,6 +417,7 @@ class App:
         self.addr = {'lan': '', 'net': ''}
         self.page = None
         self.pages = {}
+        self.tabsets = {}
         self.kick = threading.Event()
         root.title(TITLE)
         root.configure(bg=C['bg'])
@@ -224,7 +427,6 @@ class App:
         root.geometry('%dx%d+%d+%d' % (w, h, max(0, (sw - w) // 2), max(0, (sh - h) // 3)))
         self._style()
         self._icon()
-        self.mode = sn.get_mode() if sn else 'local'
         self.checking = False
         self.last_check = 0
         self._build()
@@ -239,6 +441,9 @@ class App:
         self.root.after(150, self.poll)
         self.root.after(300, self._take_focus)
         self.root.after(5000, self.watch_map)
+        self.root.after(8000, self._ddns_tick)
+        self.root.after(10000, self._update_tick)
+        self.root.after(20000, self._sched_loop)
 
     # -------------------------------------------------------------- style
     def _style(self):
@@ -285,9 +490,7 @@ class App:
         return tk.Label(parent, text=text, font=font or self.f.body, fg=fg or C['text'], bg=bg or parent['bg'], **kw)
 
     def entry(self, parent, show='', width=22):
-        return tk.Entry(parent, font=self.f.body, width=width, show=show, bg=C['input'], fg=C['text'], insertbackground=C['text'],
-                        relief='flat', bd=0, highlightthickness=1, highlightbackground=C['input'], highlightcolor=C['accent'],
-                        disabledbackground=C['card2'])
+        return RoundEntry(parent, self.f.body, width=width, show=show)
 
     def _scroll(self, parent, widget):
         sb = ttk.Scrollbar(parent, orient='vertical', command=widget.yview, style='Vertical.TScrollbar')
@@ -297,70 +500,280 @@ class App:
     # -------------------------------------------------------------- layout
     def _build(self):
         f, r = self.f, self.root
-        nav = tk.Frame(r, bg=C['nav'], width=f.s(210))
+        nav = tk.Canvas(r, bg=C['nav_bot'], width=f.s(236), highlightthickness=0, bd=0)
         nav.pack(side='left', fill='y')
-        nav.pack_propagate(False)
-        self.L(nav, 'FFXI 2016', f.title, bg=C['nav']).pack(anchor='w', padx=22, pady=(22, 0))
-        self.L(nav, 'Server', f.title, bg=C['nav'], fg=C['soft']).pack(anchor='w', padx=22)
-        self.L(nav, 'Fan Project by Habex', f.small, fg=C['accent'], bg=C['nav']).pack(anchor='w', padx=22, pady=(6, 26))
-        self.nav_items = {}
-        for key, label in self.PAGES:
-            it = tk.Frame(nav, bg=C['nav'], cursor='hand2')
-            it.pack(fill='x', padx=12, pady=1)
-            bar = tk.Frame(it, bg=C['nav'], width=3)
-            bar.pack(side='left', fill='y')
-            lab = self.L(it, label, f.nav, fg=C['soft'], bg=C['nav'], anchor='w', padx=14, pady=f.s(9))
-            lab.pack(side='left', fill='x', expand=True)
-            for w in (it, lab):
-                w.bind('<Button-1>', lambda e, k=key: self.show_page(k))
-                w.bind('<Enter>', lambda e, k=key: self._nav_hover(k, True))
-                w.bind('<Leave>', lambda e, k=key: self._nav_hover(k, False))
-            self.nav_items[key] = (it, bar, lab)
+        self.nav = nav
+        bgimg = art_image('nav_bg')
+        if bgimg:
+            nav.create_image(0, 0, image=bgimg, anchor='nw')
+        logo = art_image('crystal', 32)
+        if logo:
+            nav.create_image(f.s(36), f.s(50), image=logo)
+        nav.create_text(f.s(62), f.s(40), text='FFXI 2016', anchor='w', font=f.title, fill=C['text'])
+        nav.create_text(f.s(62), f.s(66), text='Server', anchor='w', font=f.h2, fill=C['gold'])
+        nav.create_text(f.s(26), f.s(100), text='Fan Project by Habex', anchor='w', font=f.small, fill=C['accent'])
+        self.nav_y, self.nav_hot, self.nav_half = {}, None, f.s(21)
+        icons = {'server': 'server', 'players': 'moogle', 'settings': 'world', 'connect': 'chocobo', 'tools': 'potion'}
+        for i, (key, label) in enumerate(self.PAGES):
+            y = f.s(152) + i * f.s(46)
+            self.nav_y[key] = y
+            rounded(nav, f.s(12), y - self.nav_half, f.s(224), y + self.nav_half, f.s(11), fill='', outline='', tags=('pill_' + key,))
+            nav.create_rectangle(f.s(12), y - f.s(11), f.s(15), y + f.s(11), fill='', outline='', tags=('bar_' + key,))
+            pic = art_image(icons.get(key, 'crystal'), 24)
+            if pic:
+                nav.create_image(f.s(38), y, image=pic)
+            nav.create_text(f.s(62), y, text=label, anchor='w', font=f.nav, fill=C['soft'], tags=('txt_' + key,))
+        nav.bind('<Motion>', self._nav_motion)
+        nav.bind('<Leave>', lambda e: self._nav_set_hot(None))
+        nav.bind('<Button-1>', self._nav_click)
+        nav.config(cursor='arrow')
         self.nav_pill = Pill(nav, f)
-        self.nav_pill.pack(side='bottom', anchor='w', padx=22, pady=22)
+        self.auto_link = TextLink(nav, '', self.toggle_auto_update, f.tiny, bg=C['nav_bot'], fg=C['soft'])
+        self._nav_win_pill = nav.create_window(f.s(24), 0, window=self.nav_pill, anchor='sw')
+        self._nav_win_auto = nav.create_window(f.s(24), 0, window=self.auto_link, anchor='sw')
+        nav.bind('<Configure>', self._nav_layout)
+        self._show_auto_link()
 
         self.content = tk.Frame(r, bg=C['bg'])
         self.content.pack(side='left', fill='both', expand=True)
+        self.upd_bar = tk.Frame(self.content, bg=C['card2'])
         self._build_server()
-        self._build_profiles()
-        self._build_internet()
-        self._build_disc()
+        self._build_players()
+        self._build_connect()
         self.show_page('server')
 
-    def _nav_hover(self, key, on):
-        it, bar, lab = self.nav_items[key]
-        if key != self.page:
-            for w in (it, lab):
-                w.config(bg=C['hover'] if on else C['nav'])
+    # ---- updates: look on GitHub for newer scripts, offer them or fetch them in the background
+    def _auto_update_on(self):
+        try:
+            return bool(sc.load_config().get('auto_update', False))
+        except Exception:                                    # noqa: BLE001
+            return False
 
-    def show_page(self, key):
-        if key == 'roles' and 'roles' not in self.pages:
-            self.pages['roles'] = self._page_frame('Roles', 'Who may use which in-game "!" commands. Right-click a player to promote them.')
-            import ffxi_app_extra as X
-            self.roles_page = X.RolesWindow(self, parent=self.pages['roles'].body)
-        if key == 'chat' and 'chat' not in self.pages:
-            self.pages['chat'] = self._page_frame('Chat rules', 'Word filter, spam limit, scheduled messages and the chat history.')
-            import ffxi_app_extra as X
-            self.chat_page = X.ChatRulesWindow(self, parent=self.pages['chat'].body)
+    def _show_auto_link(self):
+        self.auto_link.set_text('Auto update: %s' % ('on' if self._auto_update_on() else 'off'))
+
+    def toggle_auto_update(self):
+        try:
+            cfg = sc.load_config()
+            cfg['auto_update'] = not bool(cfg.get('auto_update', False))
+            sc.save_config(cfg)
+        except Exception:                                    # noqa: BLE001
+            return
+        self._show_auto_link()
+        if cfg['auto_update']:
+            self._update_tick(now=True)
+        else:
+            self._hide_update_bar()
+
+    def _hide_update_bar(self):
+        self.upd_bar.pack_forget()
+
+    def _update_bar(self, text, buttons=(), color=None):
+        f = self.f
+        for w in self.upd_bar.winfo_children():
+            w.destroy()
+        row = tk.Frame(self.upd_bar, bg=C['card2'])
+        row.pack(fill='x', padx=28, pady=10)
+        self.L(row, text, f.small, fg=color or C['text'], bg=C['card2']).pack(side='left')
+        for label, cmd, col in reversed(buttons):
+            RoundButton(row, label, cmd, col, f.small, height=f.s(32), width=f.s(max(90, 9 * len(label) + 24)), radius=9, bg=C['card2']).pack(side='right', padx=(8, 0))
+        if not self.upd_bar.winfo_ismapped():
+            kids = self.content.pack_slaves()
+            if kids:
+                self.upd_bar.pack(side='top', fill='x', before=kids[0])
+            else:
+                self.upd_bar.pack(side='top', fill='x')
+
+    def _update_tick(self, now=False):
+        if up is None or sc is None or getattr(self, '_upd_busy', False):
+            if not now:
+                self.root.after(6 * 3600 * 1000, self._update_tick)
+            return
+        self._upd_busy = True
+
+        def work():
+            try:
+                info = up.check(RELEASE)
+            except Exception:                                # noqa: BLE001
+                info = None                                  # offline or GitHub is busy: try again later
+            self.root.after(0, lambda: self._update_found(info))
+        threading.Thread(target=work, daemon=True).start()
+        if not now:
+            self.root.after(6 * 3600 * 1000, self._update_tick)
+
+    def _update_found(self, info):
+        self._upd_busy = False
+        if not info:
+            return
+        self.upd_info = info
+        if self._auto_update_on():
+            self.update_now()
+            return
+        n = len(info['files'])
+        self._update_bar('A new version is available (%d file%s).' % (n, '' if n == 1 else 's'),
+                         [('Update now', self.update_now, C['accent']),
+                          ('Always update automatically', lambda: (self.toggle_auto_update() if not self._auto_update_on() else None), C['grey']),
+                          ('Not now', self._hide_update_bar, C['grey'])])
+
+    def update_now(self):
+        info = getattr(self, 'upd_info', None)
+        if not info or getattr(self, '_upd_busy', False):
+            return
+        self._upd_busy = True
+        self._update_bar('Downloading the new version in the background...')
+
+        def work():
+            err = None
+            try:
+                up.apply(RELEASE, info)
+            except Exception as e:                           # noqa: BLE001
+                err = e
+            self.root.after(0, lambda: self._update_done(err))
+        threading.Thread(target=work, daemon=True).start()
+
+    def _update_done(self, err):
+        self._upd_busy = False
+        if err:
+            self._update_bar('The update did not work (%s). It will be tried again later.' % err, [('OK', self._hide_update_bar, C['grey'])], C['red'])
+            return
+        self.upd_info = None
+        self._update_bar('Updated. Close this window and open the server again to use the new version.', [('OK', self._hide_update_bar, C['grey'])], C['green'])
+
+    def _nav_layout(self, e):
+        self.nav.coords(self._nav_win_pill, self.f.s(24), e.height - self.f.s(22))
+        self.nav.coords(self._nav_win_auto, self.f.s(24), e.height - self.f.s(66))
+
+    def _nav_key_at(self, y):
+        for k, cy in self.nav_y.items():
+            if abs(y - cy) <= self.nav_half:
+                return k
+        return None
+
+    def _nav_motion(self, e):
+        k = self._nav_key_at(e.y) if e.x < self.f.s(228) else None
+        self._nav_set_hot(k)
+
+    def _nav_set_hot(self, key):
+        if key != self.nav_hot:
+            self.nav_hot = key
+            self.nav.config(cursor='hand2' if key else 'arrow')
+            self._nav_paint()
+
+    def _nav_click(self, e):
+        k = self._nav_key_at(e.y) if e.x < self.f.s(228) else None
+        if k:
+            self.show_page(k)
+
+    def _nav_paint(self):
+        for k in self.nav_y:
+            on, hot = k == self.page, k == self.nav_hot
+            self.nav.itemconfigure('pill_' + k, fill=C['nav_sel'] if on else (C['nav_hov'] if hot else ''))
+            self.nav.itemconfigure('bar_' + k, fill=C['accent'] if on else '')
+            self.nav.itemconfigure('txt_' + k, fill=C['text'] if (on or hot) else C['soft'], font=self.f.nav_b if on else self.f.nav)
+
+    LEGACY_PAGES = {'profiles': ('players', 'accounts'), 'roles': ('players', 'roles'), 'chat': ('players', 'chat'),
+                    'maint': ('tools', 'backups'), 'disc': ('tools', 'game')}
+
+    def show_page(self, key, tab=None):
+        if key in self.LEGACY_PAGES:                         # the old page names still work: they are now tabs
+            key, tab = self.LEGACY_PAGES[key]
+        if key == 'settings':
+            if 'settings' not in self.pages:
+                self._build_settings()
+        elif key == 'tools' and 'tools' not in self.pages:
+            self._build_tools()
         for k, fr in self.pages.items():
             if k != key:
                 fr.pack_forget()
         self.pages[key].pack(fill='both', expand=True)
         self.page = key
-        for k, (it, bar, lab) in self.nav_items.items():
-            on = k == key
-            for w in (it, lab):
-                w.config(bg=C['card'] if on else C['nav'])
-            bar.config(bg=C['accent'] if on else C['nav'])
-            lab.config(fg=C['text'] if on else C['soft'], font=self.f.nav_b if on else self.f.nav)
+        if tab:
+            self._tab_show(key, tab)
+        elif key == 'settings':
+            self._load_settings()
+        self._nav_paint()
+
+    # ---- pages with a row of tabs; each tab's contents are made the first time it is opened, once it is on screen
+    def _tabbed_page(self, key, title, sub, tabs):
+        """tabs: [(key, label, builder(parent), scrolls)]"""
+        f = self.f
+        page = self._page_frame(title, sub)
+        self.pages[key] = page
+        bar = Segmented(page.body, [(t[0], t[1]) for t in tabs], lambda t, k=key: self._tab_show(k, t), f.small, height=f.s(38))
+        bar.pack(fill='x', pady=(0, 14))
+        holder = tk.Frame(page.body, bg=C['bg'])
+        holder.pack(fill='both', expand=True)
+        self.tabsets[key] = {'bar': bar, 'holder': holder, 'tabs': {t[0]: t for t in tabs}, 'frames': {}, 'cur': None}
+        self._tab_show(key, tabs[0][0])
+        return page
+
+    def _tab_show(self, key, tab):
+        st = self.tabsets[key]
+        for fr in st['frames'].values():
+            fr.pack_forget()
+        if tab not in st['frames']:
+            _, _, builder, scrolls = st['tabs'][tab]
+            if scrolls:
+                import ffxi_app_extra as X
+                outer = X.Scrolled(st['holder'], C['bg'])
+                inner = outer.inner
+            else:
+                outer = tk.Frame(st['holder'], bg=C['bg'])
+                inner = outer
+            st['frames'][tab] = outer
+            outer.pack(fill='both', expand=True)
+            builder(inner)
+        else:
+            st['frames'][tab].pack(fill='both', expand=True)
+        st['bar'].set(tab)
+        st['cur'] = tab
+        if key == 'tools':
+            self.debug_on = tab == 'log'
+            if self.debug_on:
+                self._debug_refresh()
+        self.root.update_idletasks()
+
+    def _section(self, parent, text, first=False):
+        """A small gold heading with a fine line under it, used to split a long card into parts."""
+        f = self.f
+        row = tk.Frame(parent, bg=C['card'])
+        row.pack(fill='x', pady=(0 if first else 26, 10))
+        self.L(row, text.upper(), f.tiny, fg=C['gold'], bg=C['card'], anchor='w').pack(side='left')
+        tk.Frame(row, bg=C['line'], height=1).pack(side='left', fill='x', expand=True, padx=(12, 0))
+
+    def _plain_card(self, parent, pad=26):
+        p = Panel(parent, None, self.f, pad=pad)
+        p.pack(fill='x', padx=(0, 16))
+        return p.body
+
+    PAGE_ICONS = {'Players': 'moogle', 'Invite': 'chocobo', 'World': 'world', 'Tools': 'potion'}
 
     def _page_frame(self, title, sub=None):
         fr = tk.Frame(self.content, bg=C['bg'])
         head = tk.Frame(fr, bg=C['bg'])
         head.pack(fill='x', padx=28, pady=(24, 14))
-        self.L(head, title, self.f.h1).pack(anchor='w')
-        if sub:
-            self.L(head, sub, self.f.small, fg=C['soft']).pack(anchor='w', pady=(4, 0))
+        f = self.f
+        banner = tk.Canvas(head, height=f.s(92), bg=C['bg'], highlightthickness=0, bd=0)
+        banner.pack(fill='x')
+        art = art_image('banner_bg')
+        pic = art_image(self.PAGE_ICONS.get(title, 'crystal'), 64)
+
+        def draw(e):
+            w, h = e.width, e.height
+            banner.delete('all')
+            rounded(banner, 1, 1, w - 1, h - 1, 14, fill=C['card'], outline=C['line'])
+            if art:
+                banner.create_image(1, 1, image=art, anchor='nw')
+                mask_corners(banner, w, h, 14, C['bg'])
+                rounded(banner, 1, 1, w - 1, h - 1, 14, fill='', outline=C['line'])
+            x = f.s(28)
+            if pic:
+                banner.create_image(x + 32, h // 2, image=pic)
+                x += 84
+            banner.create_text(x, h // 2 - (f.s(12) if sub else 0), text=title, anchor='w', font=f.h1, fill=C['text'])
+            if sub:
+                banner.create_text(x, h // 2 + f.s(16), text=sub, anchor='w', font=f.small, fill=C['soft'], width=max(100, w - x - f.s(30)))
+        banner.bind('<Configure>', draw)
         fr.head = head
         fr.body = tk.Frame(fr, bg=C['bg'])
         fr.body.pack(fill='both', expand=True, padx=28, pady=(0, 24))
@@ -371,11 +784,11 @@ class App:
         f = self.f
         page = tk.Frame(self.content, bg=C['bg'])
         self.pages['server'] = page
-        hero = Panel(page, None, f, pad=24)
+        hero = Panel(page, None, f, pad=24, art=('hero_mid', f.s(210)))
         hero.pack(fill='x', padx=28, pady=(24, 14))
         hb = hero.body
         left = tk.Frame(hb, bg=C['card'])
-        left.pack(side='left', fill='both', expand=True)
+        left.pack(side='left', fill='y')
         srow = tk.Frame(left, bg=C['card'])
         srow.pack(anchor='w')
         self.status_dot = tk.Canvas(srow, width=f.s(18), height=f.s(18), bg=C['card'], highlightthickness=0)
@@ -384,10 +797,10 @@ class App:
         self.status_text.pack(side='left')
         self.step = self.L(left, '', f.body, fg=C['soft'], bg=C['card'], anchor='w', justify='left')
         self.step.pack(fill='x', pady=(6, 0))
-        self.parts = self.L(left, '', f.tiny, fg=C['faint'], bg=C['card'], anchor='w', justify='left')
-        self.parts.pack(fill='x', pady=(6, 0))
+        self.parts = self.L(left, '', f.tiny, fg=C['faint'], bg=C['card'], anchor='w', justify='left')   # kept for the status code, not shown
         wrow = tk.Frame(left, bg=C['card'])
-        wrow.pack(fill='x', pady=(12, 0))
+        self.wrow = wrow                                   # shown only while something is running
+
         self.work_icon = self.L(wrow, '●', f.h3, fg=C['faint'], bg=C['card'])
         self.work_icon.pack(side='left', anchor='n')
         wcol = tk.Frame(wrow, bg=C['card'])
@@ -396,38 +809,54 @@ class App:
         self.work_title.pack(fill='x')
         self.work_text = self.L(wcol, '', f.small, fg=C['soft'], bg=C['card'], anchor='w', justify='left')
         self.work_text.pack(fill='x')
-        chk = self.L(wrow, 'check now', f.tiny, fg=C['accent'], bg=C['card'], cursor='hand2')
-        chk.pack(side='right', anchor='n')
-        chk.bind('<Button-1>', lambda e: self.check_now())
         right = tk.Frame(hb, bg=C['card'])
         right.pack(side='right', padx=(24, 0))
-        self.mode_switch = Segmented(right, [('local', 'Local'), ('internet', 'Port forwarding')], self.set_mode, f.small, height=f.s(34))
-        self.mode_switch.pack(fill='x', pady=(0, 12))
-        self.mode_switch.set(self.mode)
         brow = tk.Frame(right, bg=C['card'])
         brow.pack()
-        self.start_btn = RoundButton(brow, 'Start Server', self.do_start, C['green_dk'], f.bigbtn, height=f.s(58), width=f.s(190), radius=14)
-        self.start_btn.pack(side='left', padx=(0, 10))
-        self.stop_btn = RoundButton(brow, 'Stop', self.do_stop, C['grey'], f.bigbtn, height=f.s(58), width=f.s(110), radius=14)
-        self.stop_btn.pack(side='left')
+        self.brow = brow
+        self.start_btn = RoundButton(brow, 'Start', self.do_start, C['green_dk'], f.bigbtn, height=f.s(58), width=f.s(150), radius=14)
+        self.stop_btn = RoundButton(brow, 'Stop', self.do_stop, C['grey'], f.bigbtn, height=f.s(58), width=f.s(150), radius=14)
+        self.start_btn.pack(side='left')
 
-        addr = Panel(page, None, f, pad=22)
-        addr.pack(fill='x', padx=28, pady=(0, 14))
-        ab = addr.body
-        self.L(ab, 'PLAYERS SIGN IN WITH', f.tiny, fg=C['faint'], bg=C['card']).grid(row=0, column=0, columnspan=4, sticky='w')
-        self.L(ab, 'ServerIP', f.small, fg=C['soft'], bg=C['card']).grid(row=1, column=0, sticky='w', pady=(6, 0))
-        self.ip_val = self.L(ab, '...', f.mono, bg=C['card'])
-        self.ip_val.grid(row=1, column=1, sticky='w', padx=(12, 14), pady=(6, 0))
-        self.copy_btn = RoundButton(ab, 'Copy', self.copy_ip, C['grey'], f.tiny, height=f.s(28), width=f.s(60), radius=8, bg=C['card'])
-        self.copy_btn.grid(row=1, column=2, sticky='w', pady=(6, 0))
-        self.change_btn = self.L(ab, 'change', f.tiny, fg=C['accent'], bg=C['card'], cursor='hand2')
-        self.change_btn.grid(row=1, column=3, sticky='w', padx=10, pady=(6, 0))
-        self.change_btn.bind('<Button-1>', lambda e: self.change_public())
-        self.L(ab, 'ServerPort', f.small, fg=C['soft'], bg=C['card']).grid(row=1, column=4, sticky='w', padx=(40, 0), pady=(6, 0))
-        self.L(ab, str(sc.SERVER_PORT_FOR_PLAYERS) if sc else '54001', f.mono, bg=C['card']).grid(row=1, column=5, sticky='w', padx=12, pady=(6, 0))
-        self.ports_hint = self.L(ab, '', f.tiny, fg=C['soft'], bg=C['card'], cursor='hand2')
-        self.ports_hint.grid(row=2, column=0, columnspan=6, sticky='w', pady=(8, 0))
-        self.ports_hint.bind('<Button-1>', lambda e: self.show_page('internet'))
+        ab = tk.Frame(page, bg=C['bg'])
+        ab.pack(fill='x', padx=28, pady=(0, 16))
+        ab.grid_columnconfigure(0, weight=1)
+        try:
+            self.hide_ips = bool(sc.load_config().get('hide_ips', True))      # hidden on the first start, then remembered
+        except Exception:                                                     # noqa: BLE001
+            self.hide_ips = True
+        strip = Panel(ab, None, f, pad=18)
+        strip.grid(row=0, column=0, sticky='ew')
+        head = tk.Frame(strip.body, bg=C['card'])
+        head.pack(fill='x')
+        self.L(head, 'CONNECTION', f.tiny, fg=C['gold'], bg=C['card']).pack(side='left')
+        self.hide_btn = TextLink(head, 'show' if self.hide_ips else 'hide', self.toggle_hide, f.tiny, bg=C['card'], fg=C['soft'])
+        self.hide_btn.pack(side='right')
+        TextLink(head, 'how to connect', lambda: self.show_page('connect'), f.tiny, bg=C['card']).pack(side='right', padx=18)
+        cells = tk.Frame(strip.body, bg=C['card'])
+        cells.pack(fill='x', pady=(10, 0))
+        for c in range(3):
+            cells.grid_columnconfigure(c, weight=1, uniform='c')
+
+        def cell(col, label):
+            fr = tk.Frame(cells, bg=C['card'])
+            fr.grid(row=0, column=col, sticky='w')
+            self.L(fr, label, f.tiny, fg=C['faint'], bg=C['card']).pack(anchor='w')
+            row = tk.Frame(fr, bg=C['card'])
+            row.pack(anchor='w', pady=(3, 0))
+            return row
+        r0 = cell(0, 'On this network')
+        self.ip_val = self.L(r0, '...', f.mono, bg=C['card'])
+        self.ip_val.pack(side='left')
+        self.copy_btn = TextLink(r0, 'copy', lambda: self.copy_ip('lan'), f.tiny, bg=C['card'])
+        self.copy_btn.pack(side='left', padx=10)
+        r1 = cell(1, 'Over the internet')
+        self.net_val = self.L(r1, '...', f.mono, bg=C['card'])
+        self.net_val.pack(side='left')
+        self.copy_net = TextLink(r1, 'copy', lambda: self.copy_ip('net'), f.tiny, bg=C['card'])
+        self.copy_net.pack(side='left', padx=10)
+        r2 = cell(2, 'Port')
+        self.L(r2, str(sc.SERVER_PORT_FOR_PLAYERS) if sc else '54001', f.mono, bg=C['card']).pack(side='left')
         self.setup_card = tk.Frame(ab, bg=C['amber_bg'])
         self.setup_list = self.L(self.setup_card, '', f.small, bg=C['amber_bg'], anchor='w', justify='left')
         self.setup_list.pack(side='left', fill='x', expand=True, padx=14, pady=10)
@@ -441,7 +870,7 @@ class App:
         low.grid_columnconfigure(0, weight=4, uniform='l')
         low.grid_columnconfigure(1, weight=5, uniform='l')
         low.grid_rowconfigure(0, weight=1)
-        onl = Panel(low, 'Online now', f)
+        onl = Panel(low, 'Online now', f, icon='moogle')
         onl.grid(row=0, column=0, sticky='nsew', padx=(0, 14))
         self.online_count = self.L(onl.head, '', f.small, fg=C['soft'], bg=C['card'])
         self.online_count.pack(side='right')
@@ -459,8 +888,12 @@ class App:
         osb.pack(side='right', fill='y')
         for ev in (('<Button-2>', '<Button-3>', '<Control-Button-1>') if MAC else ('<Button-3>',)):
             self.online.bind(ev, self.online_menu)
+        self.player_actions = TextLink(onl.body, 'Actions for the selected player', self.open_player_actions, f.small, bg=C['card'])
+        self.player_actions.pack(side='bottom', anchor='w', pady=(8, 0))
+        self.online.bind('<<TreeviewSelect>>', lambda e: self.player_actions.set_enabled(bool(self.online.selection())))
+        self.player_actions.set_enabled(False)
 
-        chat = Panel(low, 'World chat', f)
+        chat = Panel(low, 'World chat', f, icon='chat')
         chat.grid(row=0, column=1, sticky='nsew')
         self.link_state = self.L(chat.head, '', f.small, fg=C['soft'], bg=C['card'])
         self.link_state.pack(side='right')
@@ -495,18 +928,29 @@ class App:
         for w in (self.step, self.parts, self.work_text):
             w.master.bind('<Configure>', lambda e, w=w: self._wrap(w, e.width), add='+')
 
-    # ---- Profiles page
-    def _build_profiles(self):
+    # ---- Players page: accounts, roles and chat rules
+    def _build_players(self):
+        self._tabbed_page('players', 'Players', 'Accounts, what each role may do, and the chat rules.',
+                          [('accounts', 'Accounts', self._build_accounts, False), ('roles', 'Roles', self._build_roles, False),
+                           ('chat', 'Chat rules', self._build_chatrules, False)])
+
+    def _build_roles(self, parent):
+        import ffxi_app_extra as X
+        self.roles_page = X.RolesWindow(self, parent=parent)
+
+    def _build_chatrules(self, parent):
+        import ffxi_app_extra as X
+        self.chat_page = X.ChatRulesWindow(self, parent=parent)
+
+    def _build_accounts(self, parent):
         f = self.f
-        page = self._page_frame('Profiles', 'One profile per player. POL-ID = profile name. Right-click a profile or character for more.')
-        self.pages['profiles'] = page
-        bar = tk.Frame(page.head, bg=C['bg'])
-        bar.pack(fill='x', pady=(12, 0))
+        bar = tk.Frame(parent, bg=C['bg'])
+        bar.pack(fill='x', pady=(0, 12))
         self.profile_btn = RoundButton(bar, '+  Create Profile', self.do_profile, C['accent'], f.btn, height=f.s(42), width=f.s(190), radius=12)
         self.profile_btn.pack(side='left')
         self.prof_count = self.L(bar, '', f.small, fg=C['soft'])
         self.prof_count.pack(side='left', padx=16)
-        panel = Panel(page.body, None, f, pad=14)
+        panel = Panel(parent, None, f, pad=14)
         panel.pack(fill='both', expand=True)
         tf = panel.body
         self.prof_tree = ttk.Treeview(tf, columns=('role', 'job', 'zone', 'info'), show='tree headings', selectmode='browse', height=4)
@@ -527,53 +971,18 @@ class App:
             self.prof_tree.bind(ev, self.profile_menu)
         self.prof_items = {}
 
-    # ---- Internet page
-    def _build_internet(self):
-        f = self.f
-        page = self._page_frame('Internet', 'For friends outside your house (Port forwarding mode).')
-        self.pages['internet'] = page
-        p = Panel(page.body, 'Forward these ports on your router to this computer', f)
-        p.pack(fill='x')
-        chips = tk.Frame(p.body, bg=C['card'])
-        chips.pack(fill='x')
-        for i, (pr, po, what) in enumerate(sn.FORWARD if sn else []):
-            chips.grid_columnconfigure(i, weight=1, uniform='c')
-            c = tk.Frame(chips, bg=C['card2'])
-            c.grid(row=0, column=i, sticky='ew', padx=(0 if i == 0 else 5, 0 if i == 3 else 5))
-            self.L(c, pr, f.tiny, fg=C['soft'], bg=C['card2']).pack(pady=(10, 0))
-            self.L(c, str(po), f.mono, bg=C['card2']).pack()
-            self.L(c, what, f.tiny, fg=C['faint'], bg=C['card2']).pack(pady=(0, 10))
-        self.ports_text = self.L(p.body, '', f.small, fg=C['soft'], bg=C['card'], anchor='w')
-        self.ports_text.pack(fill='x', pady=(12, 0))
-        prow = tk.Frame(p.body, bg=C['card'])
-        prow.pack(fill='x', pady=(14, 0))
-        self.upnp_btn = RoundButton(prow, 'Open ports for me', self.do_open_ports, C['accent'], f.small, height=f.s(38), width=f.s(170), radius=10, bg=C['card'])
-        self.upnp_btn.pack(side='left')
-        self.test_btn = RoundButton(prow, 'Test my ports', self.do_test_ports, C['grey'], f.small, height=f.s(38), width=f.s(140), radius=10, bg=C['card'])
-        self.test_btn.pack(side='left', padx=8)
-        self.net_status = self.L(p.body, '', f.small, fg=C['soft'], bg=C['card'], anchor='w', justify='left')
-        self.net_status.pack(fill='x', pady=(10, 0))
-        h = Panel(page.body, 'How friends connect', f)
-        h.pack(fill='x', pady=(14, 0))
-        self.help_text = self.L(h.body, '', f.small, fg=C['soft'], bg=C['card'], anchor='w', justify='left')
-        self.help_text.pack(fill='x')
-        for w in (self.net_status, self.help_text, self.ports_text):
-            w.master.bind('<Configure>', lambda e, w=w: self._wrap(w, e.width), add='+')
-
     # ---- Game disc page
-    def _build_disc(self):
+    def _build_game(self, parent):
         f = self.f
-        page = self._page_frame('Game disc', 'Everything PCSX2 needs: the 2016 disc and a PS2 hard drive. You only do this once.')
-        self.pages['disc'] = page
-        p = Panel(page.body, None, f, pad=24)
-        p.pack(fill='x')
+        p = Panel(parent, None, f, pad=24)
+        p.pack(fill='x', padx=(0, 16))
         self.L(p.body, '1.  Make the disc', f.h3, bg=C['card'], anchor='w').pack(fill='x')
         self.L(p.body, 'Pick your original disc file (in Disc > Original Disc). The patched disc is written to Disc > Patched ISO.',
                f.body, fg=C['soft'], bg=C['card'], anchor='w', justify='left').pack(fill='x', pady=(4, 0))
         self.patch_btn = RoundButton(p.body, 'Patch My Disc', self.do_patch, C['accent'], f.btn, height=f.s(46), width=f.s(200), radius=12, bg=C['card'])
         self.patch_btn.pack(anchor='w', pady=(12, 0))
-        p2 = Panel(page.body, None, f, pad=24)
-        p2.pack(fill='x', pady=(16, 0))
+        p2 = Panel(parent, None, f, pad=24)
+        p2.pack(fill='x', pady=(16, 0), padx=(0, 16))
         self.L(p2.body, '2.  Make the hard drive', f.h3, bg=C['card'], anchor='w').pack(fill='x')
         self.L(p2.body, 'The game installs onto a PS2 hard drive, and it has to be formatted. Don\'t use the "Create" button in PCSX2 '
                '(it makes an unformatted one). Click this instead and save it somewhere easy, like Documents.\n\n'
@@ -581,9 +990,63 @@ class App:
                f.body, fg=C['soft'], bg=C['card'], anchor='w', justify='left').pack(fill='x', pady=(4, 0))
         self.hdd_btn = RoundButton(p2.body, 'Make Hard Drive', self.do_make_hdd, C['accent'], f.btn, height=f.s(46), width=f.s(200), radius=12, bg=C['card'])
         self.hdd_btn.pack(anchor='w', pady=(12, 0))
-        for w in p.body.winfo_children() + p2.body.winfo_children():
+        self.hdd_note = self.L(p2.body, '', f.body, fg=C['soft'], bg=C['card'], anchor='w', justify='left')
+        self.hdd_note.pack(fill='x', pady=(8, 0))
+        p3 = Panel(parent, None, f, pad=24)
+        p3.pack(fill='x', pady=(16, 0), padx=(0, 16))
+        self.L(p3.body, '3.  Try it in PCSX2', f.h3, bg=C['card'], anchor='w').pack(fill='x')
+        self.L(p3.body, 'Starts PCSX2 with the patched disc. The hard drive must already be chosen once in PCSX2\'s settings (step 2). '
+               'The first start installs the game, which takes a while.', f.body, fg=C['soft'], bg=C['card'], anchor='w',
+               justify='left').pack(fill='x', pady=(4, 0))
+        prow = tk.Frame(p3.body, bg=C['card'])
+        prow.pack(fill='x', pady=(12, 0))
+        self.pcsx2_btn = RoundButton(prow, 'Test in PCSX2', self.do_pcsx2, C['accent'], f.btn, height=f.s(46), width=f.s(200), radius=12, bg=C['card'])
+        self.pcsx2_btn.pack(side='left')
+        TextLink(prow, 'Choose PCSX2...', self.choose_pcsx2, f.small, bg=C['card']).pack(side='left', padx=20)
+        self.pcsx2_note = self.L(p3.body, '', f.body, fg=C['soft'], bg=C['card'], anchor='w', justify='left')
+        self.pcsx2_note.pack(fill='x', pady=(8, 0))
+        rl = tk.Frame(p3.body, bg=C['card'])
+        rl.pack(fill='x', pady=(10, 0))
+        self.L(rl, 'Using a real PS2 instead?', f.small, fg=C['faint'], bg=C['card']).pack(side='left')
+        TextLink(rl, 'Open the real PS2 guide', lambda: self._open_path(os.path.join(DISC_DIR, 'READ ME real PS2.txt')), f.small,
+                 bg=C['card']).pack(side='left', padx=10)
+        for w in p.body.winfo_children() + p2.body.winfo_children() + p3.body.winfo_children():
             if isinstance(w, tk.Label):
                 w.master.bind('<Configure>', lambda e, w=w: self._wrap(w, e.width), add='+')
+
+    def _pcsx2_say(self, text, color=None):
+        self.pcsx2_note.config(text=text, fg=color or C['soft'])
+
+    def do_pcsx2(self, picked=False):
+        try:
+            cmd = spc.launch()
+        except spc.NeedProgram:
+            if picked or not self.choose_pcsx2(start=True):
+                self._pcsx2_say('PCSX2 was not found. Use "Choose PCSX2..." to pick it once.', C['amber'])
+            return
+        except Exception as e:                               # noqa: BLE001
+            self._pcsx2_say(str(e), C['red'])
+            return
+        self._pcsx2_say('PCSX2 is starting with the patched disc. If it asks for a hard drive, finish step 2 first.', C['green'])
+
+    def choose_pcsx2(self, start=False):
+        if MAC:
+            path = filedialog.askdirectory(parent=self.root, title='Pick the PCSX2 app', initialdir='/Applications', mustexist=True)
+        elif WINDOWS:
+            path = filedialog.askopenfilename(parent=self.root, title='Pick PCSX2', filetypes=[('Programs', '*.exe')])
+        else:
+            path = filedialog.askopenfilename(parent=self.root, title='Pick PCSX2')
+        if not path:
+            return False
+        try:
+            spc.remember(path)
+        except Exception as e:                               # noqa: BLE001
+            self._pcsx2_say(str(e), C['red'])
+            return True
+        self._pcsx2_say('Remembered. Press "Test in PCSX2".', C['green'])
+        if start:
+            self.do_pcsx2(picked=True)
+        return True
 
     def do_make_hdd(self):
         tool = os.path.join(DISC_DIR, 'Hard Drive', 'make_hard_drive.py')
@@ -606,14 +1069,29 @@ class App:
             messagebox.showerror(TITLE, 'There is already a file with that name, and it might have your game on it, so it was left alone.\n\n'
                                  'Pick a different name.')
             return
-        try:
-            mod.make(out)
-        except Exception as e:                               # noqa: BLE001
-            messagebox.showerror(TITLE, 'The hard drive could not be made: %s' % e)
+        if getattr(self, '_hdd_busy', False):
             return
-        messagebox.showinfo(TITLE, 'Your PS2 hard drive is ready:\n\n%s\n\n'
-                            'Now in PCSX2: Settings > Network & HDD > Hard Disk Drive. Tick "Enabled", click "Browse" next to '
-                            'HDD File and pick this file. Don\'t click "Create".' % out)
+        self._hdd_busy = True
+        self.hdd_note.configure(text='Making the hard drive. This can take a few minutes on some drives. Keep this window open.')
+
+        def work():
+            err = None
+            try:
+                mod.make(out)
+            except Exception as e:                           # noqa: BLE001
+                err = e
+            self.root.after(0, lambda: done(err))
+
+        def done(err):
+            self._hdd_busy = False
+            self.hdd_note.configure(text='')
+            if err:
+                messagebox.showerror(TITLE, 'The hard drive could not be made: %s' % err)
+                return
+            messagebox.showinfo(TITLE, 'Your PS2 hard drive is ready:\n\n%s\n\n'
+                                'Now in PCSX2: Settings > Network & HDD > Hard Disk Drive. Tick "Enabled", click "Browse" next to '
+                                'HDD File and pick this file. Don\'t click "Create".' % out)
+        threading.Thread(target=work, daemon=True).start()
 
     # -------------------------------------------------------------- chat box
     def chat_add(self, kind, text, speaker=None, extra=''):
@@ -755,6 +1233,18 @@ class App:
             pass
         self.root.after(150, self.poll)
 
+    def _sync_buttons(self, st):
+        want = (not st['on'], bool(st['any']))                   # show Start when it is not fully on, Stop when anything runs
+        if want == getattr(self, '_btn_want', None):
+            return
+        self._btn_want = want
+        self.start_btn.pack_forget()
+        self.stop_btn.pack_forget()
+        if want[0]:
+            self.start_btn.pack(side='left', padx=(0, 10) if want[1] else 0)
+        if want[1]:
+            self.stop_btn.pack(side='left')
+
     def _set_status(self, mode, text):
         col = {'on': C['green'], 'off': C['red'], 'busy': C['amber']}[mode]
         self.status_dot.delete('all')
@@ -768,13 +1258,17 @@ class App:
     def apply(self, s):
         st = s['st']
         self.state = st
+        if st['on'] and not getattr(self, 'on_since', None):
+            self.on_since = time.time()
+        elif not st['on']:
+            self.on_since = None
         if 'checks' in s:
             bad = [t for ok, t in s['checks'] if not ok]
             self.setup_ok = not bad
             if bad:
                 self.setup_list.config(text='One-time setup needed: ' + '; '.join(bad) + '.')
                 if not self.setup_card.winfo_ismapped():
-                    self.setup_card.grid(row=3, column=0, columnspan=6, sticky='ew', pady=(14, 0))
+                    self.setup_card.grid(row=5, column=0, columnspan=5, sticky='ew', pady=(14, 0))
             elif self.setup_card.winfo_ismapped():
                 self.setup_card.grid_forget()
         if not self.busy and (st['on'] != getattr(self, '_prev_on', None) or (st['on'] and time.time() - self.last_check > 30)):
@@ -798,6 +1292,7 @@ class App:
                 self.step.config(text='' if self.setup_ok else 'Run Setup first.', fg=C['soft'])
             self.start_btn.set_enabled(self.setup_ok and not st['on'])
             self.stop_btn.set_enabled(st['any'])
+            self._sync_buttons(st)
             self.profile_btn.set_enabled(self.setup_ok)
         ip = s['ip']
         self.addr['lan'] = ip or ''
@@ -806,8 +1301,9 @@ class App:
         if 'ts' in s:
             self.addr['ts'] = s['ts']
         self._show_ip()
+        self._refresh_connect()
         if self.last_ip and ip and ip != self.last_ip:
-            self.chat_add('error', 'This computer\'s home address changed from %s to %s.' % (self.last_ip, ip))
+            self.chat_add('error', 'This computer\'s home address changed from %s to %s.' % (self.mask(self.last_ip), self.mask(ip)))
         if ip:
             self.last_ip = ip
         if 'members' in s:
@@ -920,17 +1416,19 @@ class App:
         s = self.state
         if s and not self.busy and s.get('database') and s.get('proxy') and s.get('xi_world') and not s.get('xi_map'):
             self.chat_add('error', 'The map server stopped. Starting it again...')
+            self.map_restarts = getattr(self, 'map_restarts', 0) + 1
+            self._notify('The map server stopped and was started again.')
             self.run_job('Restarting the map...', lambda say: sc.restart_map_if_down(say))
         self.root.after(5000, self.watch_map)
 
     def do_start(self):
-        self.run_job('Starting...', lambda say: sc.start(say), done=lambda r, e: (not e) and self.chat_add('admin', 'The server is on.'))
+        self.run_job('Starting...', lambda say: sc.start(say), done=lambda r, e: (not e) and (self.chat_add('admin', 'The server is on.'), self._notify('The server is on.')))
 
     def do_stop(self):
         if self.state and self.state.get('on'):
             if not messagebox.askyesno(TITLE, 'Stop the server?\n\nAnyone playing right now will be disconnected.'):
                 return
-        self.run_job('Stopping...', lambda say: sc.stop(say), done=lambda r, e: (not e) and self.chat_add('admin', 'The server is off.'))
+        self.run_job('Stopping...', lambda say: sc.stop(say), done=lambda r, e: (not e) and (self.chat_add('admin', 'The server is off.'), self._notify('The server is off.')))
 
     # ---- modes, addresses, ports
     def _take_focus(self):
@@ -948,52 +1446,49 @@ class App:
         if abs(int(w.cget('wraplength') or 0) - want) > 12:
             w.config(wraplength=want)
 
-    def set_mode(self, mode):
-        if mode == self.mode:
-            return
-        self.mode = mode
-        self.mode_switch.set(mode)
+    def _hide_in(self, text):
+        if not self.hide_ips:
+            return text
+        for v in (self.addr.get('lan'), self.addr.get('net'), self.addr.get('ts')):
+            if v:
+                text = text.replace(v, '\u2022' * 10)
+        return text
+
+    def mask(self, v):
+        return ('\u2022' * 10) if (self.hide_ips and v) else v
+
+    def toggle_hide(self):
+        self.hide_ips = not self.hide_ips
+        self.hide_btn.set_text('show' if self.hide_ips else 'hide')
         try:
-            sn.set_mode(mode)
-        except Exception as e:                               # noqa: BLE001
-            self.chat_add('error', str(e))
+            cfg = sc.load_config()
+            cfg['hide_ips'] = self.hide_ips
+            sc.save_config(cfg)
+        except Exception as e:                                                # noqa: BLE001
+            self.chat_add('error', 'Could not remember the Hide IPs choice: %s' % e)
         self._show_ip()
-        self.chat_add('admin', 'Mode: %s' % ('Local' if mode == 'local' else 'Port forwarding'))
-        self.check_now()
+        self._refresh_connect()
+        if getattr(self, '_work_raw', None) is not None:
+            self.work_text.config(text=self._hide_in(self._work_raw))
 
     def _show_ip(self):
-        internet = self.mode == 'internet'
-        ip = self.addr['net'] if internet else self.addr['lan']
-        empty = 'not found' if internet else 'not on a network'
-        self.ip_val.config(text=ip or empty, fg=C['text'] if ip else C['red'], font=self.f.mono if ip else self.f.body)
-        self.copy_btn.set_enabled(bool(ip))
-        (self.change_btn.grid if internet else self.change_btn.grid_remove)()
-        if internet and sn:
-            self.ports_hint.config(text='Forward %s to %s   → Internet page' % (
-                ', '.join('%s %d' % (pr, po) for pr, po, _ in sn.FORWARD), self.addr['lan'] or 'this computer'), fg=C['soft'])
-            self.ports_hint.grid()
-        else:
-            self.ports_hint.grid_remove()
+        lan, net = self.addr['lan'], self.addr['net']
+        self.ip_val.config(text=self.mask(lan) or 'not on a network', fg=C['text'] if lan else C['red'], font=self.f.mono if lan else self.f.body)
+        self.net_val.config(text=self.mask(net) or 'not found', fg=C['text'] if net else C['faint'], font=self.f.mono if net else self.f.body)
+        self.copy_btn.set_enabled(bool(lan))
+        self.copy_net.set_enabled(bool(net))
         if sn:
-            self.ports_text.config(text='to this computer: %s' % (self.addr['lan'] or '?'))
-            lan, net = self.addr['lan'] or '(home address)', self.addr['net'] or '(internet address)'
-            ts = self.addr.get('ts')
-            self.help_text.config(text=(
-                'Local: friends in your house type ServerIP %s, ServerPort %d.\n\n'
-                'Port forwarding: on your router, forward the 4 ports above to %s (or click "Open ports for me"), and give this '
-                'computer a fixed home address in the router (DHCP reservation). Friends type ServerIP %s, ServerPort %d. '
-                '"Test my ports" checks the router; the best test is a friend signing in.\n\n'
-                'Tailscale (optional, no router changes): install Tailscale from tailscale.com here and on your friends\' '
-                'computers, invite them to your Tailscale network; they type %s.') % (
-                lan, sc.SERVER_PORT_FOR_PLAYERS, lan, net, sc.SERVER_PORT_FOR_PLAYERS, ts or 'this computer\'s Tailscale address'))
+            self.ports_text.config(text='Forward %s to %s on your router.' % (
+                ', '.join('%s %d' % (pr, po) for pr, po, _ in sn.FORWARD), self.mask(lan) or 'this computer'))
 
-    def copy_ip(self):
-        ip = self.addr['net'] if self.mode == 'internet' else self.addr['lan']
+    def copy_ip(self, which='lan'):
+        ip = self.addr[which]
+        btn = self.copy_net if which == 'net' else self.copy_btn
         if ip:
             self.root.clipboard_clear()
             self.root.clipboard_append(ip)
-            self.copy_btn.set_text('Copied')
-            self.root.after(1500, lambda: self.copy_btn.set_text('Copy'))
+            btn.set_text('Copied')
+            self.root.after(1500, lambda: btn.set_text('Copy'))
 
     def check_now(self):
         if not sn:
@@ -1004,11 +1499,9 @@ class App:
         seq = self.check_seq
         self.work_title.config(text='Checking...', fg=C['amber'])
         self.work_icon.config(fg=C['amber'])
-        mode = self.mode
-
         def work():
             try:
-                res = sn.check_working(mode)
+                res = sn.check_working()
             except Exception as e:                           # noqa: BLE001
                 res = ('unsure', 'Could not check', str(e))
             self.q.put(('work', res, seq))
@@ -1017,22 +1510,27 @@ class App:
     def _show_work(self, res):
         self.checking = False
         state, head, text = res
+        if self.state and not self.state.get('any'):                 # nothing is running: the status line already says so
+            self.wrow.pack_forget()
+        elif not self.wrow.winfo_ismapped():
+            self.wrow.pack(fill='x', pady=(10, 0))
         col = {'ok': C['green'], 'bad': C['red'], 'unsure': C['amber']}[state]
         self.work_icon.config(fg=col)
         self.work_title.config(text=head, fg=col)
-        self.work_text.config(text=text, fg=C['soft'])
+        self._work_raw = text
+        self.work_text.config(text=self._hide_in(text), fg=C['soft'])
 
     def change_public(self):
         cur = sc.load_config().get('internet_ip_manual', '')
-        v = self.ask('Internet address', 'Type your home\'s internet address (your router\'s status page shows it). '
-                     'Leave it empty to find it automatically again.', initial=cur)
+        v = self.ask('Internet address', 'Your home\'s internet address (the router\'s status page shows it) or a dynamic DNS name like myhome.ddns.net. Players type the same thing on the PS2 Server IP line. '
+                     'Leave it empty to look it up again.', initial=cur)
         if v is None and not cur:
             return
 
         def work():
             try:
                 sn.set_manual_public_address(v or '')
-                self.q.put(('chat', 'admin', 'Internet address: %s' % (sn.public_address()[0] or 'not found')))
+                self.q.put(('chat', 'admin', 'Internet address: %s' % (self.mask(sn.public_address()[0]) or 'not found')))
             except Exception as e:                           # noqa: BLE001
                 self.q.put(('chat', 'error', str(e)))
             self.kick.set()
@@ -1191,7 +1689,7 @@ class App:
         def toggle():
             for k in ('Password', 'Password again'):
                 ents[k].config(show='' if showvar.get() else '•')
-        tk.Checkbutton(form, text='Show password', variable=showvar, command=toggle, bg=C['bg'], fg=C['soft'], font=self.f.small,
+        Check(form, text='Show password', variable=showvar, command=toggle, bg=C['bg'], fg=C['soft'], font=self.f.small,
                        activebackground=C['bg'], activeforeground=C['text'], selectcolor=C['input'], highlightthickness=0,
                        bd=0).grid(row=6, column=1, sticky='w', pady=(8, 0))
         msg = self.L(box, '', self.f.h3, fg=C['red'], anchor='w', justify='left', wraplength=self.f.s(420))
@@ -1230,15 +1728,1159 @@ class App:
         ents['Username'].focus_set()
         self._profile_dialog = (d, ents, msg, make)
 
+    # ---- How to connect page (all three ways work at the same time: the server gives each console the address it dialled)
+    def _build_connect(self):
+        f = self.f
+        page = self._page_frame('Invite', 'What players type on the PS2 sign-in page, and a page to share.')
+        self.pages['connect'] = page
+        import ffxi_app_extra as X
+        scroll = X.Scrolled(page.body, C['bg'])
+        scroll.pack(fill='both', expand=True)
+        body = scroll.inner
+        port = str(sc.SERVER_PORT_FOR_PLAYERS) if sc else '54001'
+        intro = self.L(body, 'POL-ID and Password come from a profile (Players page). Server Port is %s. Leave EtherIP, SubnetMask, BlodeCast and Gateway empty.' % port, f.small, fg=C['soft'], justify='left', anchor='w')
+        intro.pack(fill='x', pady=(0, 12), padx=(0, 16))
+        body.bind('<Configure>', lambda e: self._wrap(intro, e.width - 16), add='+')
+        self.conn_ip = {}
+
+        def section(key, title, lines, extra=None):
+            p = Panel(body, title, f)
+            p.pack(fill='x', pady=(0, 12), padx=(0, 16))
+            row = tk.Frame(p.body, bg=C['card'])
+            row.pack(fill='x')
+            self.L(row, 'ServerIP', f.small, fg=C['soft'], bg=C['card']).pack(side='left')
+            self.conn_ip[key] = self.L(row, '...', f.mono, fg=C['green'], bg=C['card'])
+            self.conn_ip[key].pack(side='left', padx=(12, 0))
+            if extra:
+                extra(row)
+            t = self.L(p.body, lines, f.small, fg=C['soft'], bg=C['card'], anchor='w', justify='left')
+            t.pack(fill='x', pady=(8, 0))
+            p.body.bind('<Configure>', lambda e, w=t: self._wrap(w, e.width - 8), add='+')
+            return p
+
+        section('lan', 'Local',
+                'PS2 and this computer on the same router. No internet needed. If it will not connect, allow the server through this '
+                'computer\'s firewall and turn off client isolation on the router.')
+        section('direct', 'Direct cable',
+                'PS2 cabled straight to this computer, no router. Set this computer\'s Ethernet to a manual address: IP 192.168.137.1, mask 255.255.255.0, no gateway.\n'
+                'Windows: Settings > Network & internet > Ethernet > IP assignment > Edit > Manual.\n'
+                'Mac: System Settings > Network > Ethernet > Details > TCP/IP > Configure IPv4: Manually.\n'
+                'Linux: nmcli connection modify <name> ipv4.method manual ipv4.addresses 192.168.137.1/24\n'
+                'The PS2 waits about 25 seconds for a router, then uses 192.168.137.2 by itself.')
+        net_panel = section('net', 'Over the internet',
+                'Players type a hostname so it keeps working when your home address changes. Set one up here (DuckDNS, No-IP, Dynu, any provider, '
+                'or just type one). Your router has to forward the ports below to this computer. Behind a shared internet connection (CGNAT) forwarding '
+                'cannot work: use a cloud server (Server/setup/CLOUD.txt).',
+                extra=lambda row: RoundButton(row, 'Hostname', self.setup_ddns, C['grey'], f.small, height=f.s(32), width=f.s(120),
+                                              radius=9, bg=C['card']).pack(side='left', padx=14))
+        self._build_ports(net_panel.body)
+        self.ddns_status = self.L(body, '', f.small, fg=C['faint'], anchor='w', justify='left')
+        self.ddns_status.pack(fill='x', pady=(0, 12))
+        self._build_info_card(body)
+        self._refresh_connect()
+
+    # ---- World page: five tabs
+    WORLD_NOTES = {
+        'rates': '1 is normal and 2 is double, from 0.1 to 10. A change applies within a few seconds, with no restart.',
+        'monsters': 'Monster changes apply to monsters as they spawn, so ones that are already out keep their old values until they respawn.',
+        'rules': 'Levels and which expansions are open. Zones that are already loaded use the new rules after the next server start.',
+    }
+    WORLD_ALIAS = {'monsters': 'rates', 'modes': 'rules', 'ah': 'market'}
+
+    def _build_settings(self):
+        self.world_entries, self.world_flags, self.world_msg = {}, {}, {}
+        self._tabbed_page('settings', 'World', 'The name players see, rates, rules, events and the auction house.',
+                          [('general', 'General', self._wt_general, True), ('rates', 'Rates', self._wt_rates, True),
+                           ('rules', 'Rules', self._wt_rules, True), ('events', 'Events', self._wt_events, True),
+                           ('market', 'Auction house', self._wt_market, True)])
+
+    def _world_tab(self, key):
+        self._tab_show('settings', self.WORLD_ALIAS.get(key, key))
+
+    def _wt_general(self, parent):
+        self._build_world_general(self._plain_card(parent))
+        self._load_settings()
+
+    def _wt_rates(self, parent):
+        b = self._plain_card(parent)
+        self._section(b, 'Rates', first=True)
+        self._build_world_numbers('rates', b, last=False)
+        self._section(b, 'Monsters')
+        self._build_world_numbers('monsters', b)
+        self.world_msg['rates'] = self.world_msg['monsters']
+        self._load_settings()
+
+    def _wt_rules(self, parent):
+        b = self._plain_card(parent)
+        self._section(b, 'Era and levels', first=True)
+        self._build_world_numbers('rules', b, last=False)
+        self.L(b, self.WORLD_NOTES['rules'], self.f.tiny, fg=C['faint'], bg=C['card'], anchor='w', justify='left').pack(fill='x', pady=(10, 0))
+        self._save_row(b, 'rules')
+        self._section(b, 'Gameplay modes')
+        self._build_world_modes(b)
+        self._load_settings()
+
+    def _wt_events(self, parent):
+        self._build_world_events(self._plain_card(parent))
+        self._load_settings()
+
+    def _wt_market(self, parent):
+        self._build_world_ah(self._plain_card(parent))
+        self._load_settings()
+
+    def _save_row(self, parent, group):
+        f = self.f
+        row = tk.Frame(parent, bg=C['card'])
+        row.pack(fill='x', pady=(24, 0))
+        RoundButton(row, 'Save', lambda: self.save_world(group), C['accent'], f.h3, height=f.s(40), width=f.s(110), radius=10, bg=C['card']).pack(side='left')
+        self.world_msg[group] = self.L(row, '', f.small, fg=C['soft'], bg=C['card'], anchor='w')
+        self.world_msg[group].pack(side='left', padx=16)
+
+    def _build_world_general(self, b):
+        f = self.f
+        self.L(b, 'Name', f.small, fg=C['faint'], bg=C['card'], anchor='w').pack(fill='x')
+        self.set_name = self.entry(b, width=30)
+        self.set_name.pack(fill='x', pady=(4, 0), ipady=f.s(7))
+        self.L(b, 'Shown when players pick a world. Letters, numbers, spaces and dashes, 15 at most. Applies after the next server start.',
+               f.tiny, fg=C['faint'], bg=C['card'], anchor='w').pack(fill='x', pady=(4, 0))
+        self.L(b, 'Welcome message', f.small, fg=C['faint'], bg=C['card'], anchor='w').pack(fill='x', pady=(22, 0))
+        self.set_welcome = self.entry(b, width=60)
+        self.set_welcome.pack(fill='x', pady=(4, 0), ipady=f.s(7))
+        self.L(b, 'Sent only to the player who just logged in. {player} becomes their name and {server} your world name. Leave it empty for none.',
+               f.tiny, fg=C['faint'], bg=C['card'], anchor='w').pack(fill='x', pady=(4, 0))
+        self._save_row(b, 'general')
+        for e in (self.set_name, self.set_welcome):
+            e.bind('<Return>', lambda ev: self.save_world('general'))
+
+    def _build_world_numbers(self, group, b, last=True):
+        f = self.f
+        grid = tk.Frame(b, bg=C['card'])
+        grid.pack(fill='x')
+        numbers = [st for st in ss.GROUPS[group] if st.kind != 'flag'] if ss else []
+        flags = [st for st in ss.GROUPS[group] if st.kind == 'flag'] if ss else []
+        if group == 'rules' and ss:
+            self.era_bar = Segmented(grid, [(k, label) for k, label, _, _ in ss.ERAS], self._pick_era, f.small, height=f.s(38))
+            self.era_bar.grid(row=1, column=0, columnspan=4, sticky='ew', pady=(4, 4))
+            self.era_note = self.L(grid, '', f.tiny, fg=C['faint'], bg=C['card'], anchor='w', justify='left')
+            self.era_note.grid(row=2, column=0, columnspan=4, sticky='w', pady=(0, 16))
+            for c in range(4):
+                grid.grid_columnconfigure(c, weight=1 if c == 3 else 0)
+        base = 3 if group == 'rules' else 0
+        for i, st in enumerate(numbers):
+            cell = tk.Frame(grid, bg=C['card'])
+            cell.grid(row=base + i // 4, column=i % 4, sticky='w', padx=(0, 28), pady=(0, 14))
+            self.L(cell, st.label, f.tiny, fg=C['soft'], bg=C['card'], anchor='w').pack(fill='x')
+            e = self.entry(cell, width=9)
+            e.pack(ipady=f.s(6), pady=(3, 0), anchor='w')
+            e.bind('<Return>', lambda ev, g=group: self.save_world(g))
+            e.bind('<KeyRelease>', lambda ev: self._era_from_form(), add='+')
+            self.world_entries[st.key] = e
+        if flags:
+            self._section(b, 'Open to players')
+            fg = tk.Frame(b, bg=C['card'])
+            fg.pack(fill='x')
+            for i, st in enumerate(flags):
+                var = tk.BooleanVar(value=True)
+                self.world_flags[st.key] = var
+                Check(fg, text=st.label, variable=var, command=self._era_from_form, bg=C['card'], fg=C['text'], font=f.small, anchor='w', activebackground=C['card'],
+                               activeforeground=C['text'], selectcolor=C['input'], highlightthickness=0, bd=0).grid(
+                    row=i // 3, column=i % 3, sticky='w', padx=(0, 26), pady=2)
+        if group == 'rules' and shc:
+            self._section(b, 'Hardcore')
+            self._build_hardcore(b)
+        if last:
+            self.L(b, self.WORLD_NOTES[group], f.tiny, fg=C['faint'], bg=C['card'], anchor='w', justify='left').pack(fill='x', pady=(10, 0))
+            self._save_row(b, group)
+
+    # ---- era presets and hardcore mode (Rules tab)
+    def _pick_era(self, key):
+        vals = ss.era_values(key)
+        if not vals:
+            return
+        for k, v in vals.items():
+            if k in self.world_entries:
+                self.world_entries[k].delete(0, 'end')
+                self.world_entries[k].insert(0, str(v))
+            elif k in self.world_flags:
+                self.world_flags[k].set(bool(v))
+        self._era_from_form(note='Filled in. Press Save to apply it.')
+
+    def _era_from_form(self, note=None):
+        if not getattr(self, 'era_bar', None):
+            return
+        try:
+            cur = {k: int(e.get()) for k, e in self.world_entries.items() if k in ('MAX_LEVEL', 'INITIAL_LEVEL_CAP')}
+        except ValueError:
+            cur = {}
+        cur.update({k: int(v.get()) for k, v in self.world_flags.items()})
+        hit = next((k for k, _, _, vals in ss.ERAS if all(cur.get(a, -1) == int(b) for a, b in vals.items())), None)
+        self.era_bar.set(hit)
+        desc = next((d for k, _, d, _ in ss.ERAS if k == hit), 'A mix of your own choices.')
+        self.era_note.config(text=(note + '  ' if note else '') + desc)
+
+    def _build_hardcore(self, b):
+        f = self.f
+        row = tk.Frame(b, bg=C['card'])
+        row.pack(fill='x')
+        self.hc_var = tk.BooleanVar(value=False)
+        Check(row, text='A character that falls cannot log in again', variable=self.hc_var, bg=C['card'], fg=C['text'], font=f.small).pack(side='left')
+        self.L(row, 'after', f.small, fg=C['soft'], bg=C['card']).pack(side='left', padx=(18, 6))
+        self.hc_lives = self.entry(row, width=3)
+        self.hc_lives.pack(side='left', ipady=f.s(3))
+        self.L(row, 'deaths', f.small, fg=C['soft'], bg=C['card']).pack(side='left', padx=(6, 0))
+        TextLink(row, 'Fallen characters...', self.show_fallen, f.small, bg=C['card']).pack(side='left', padx=24)
+        self.L(b, 'Nothing is deleted: a fallen character is only locked out, and you can restore it from the list. Game masters are never affected.',
+               f.tiny, fg=C['faint'], bg=C['card'], anchor='w', justify='left').pack(fill='x', pady=(4, 0))
+
+    def show_fallen(self):
+        f = self.f
+        d = tk.Toplevel(self.root)
+        d.title('Fallen characters')
+        d.configure(bg=C['bg'])
+        d.transient(self.root)
+        body = tk.Frame(d, bg=C['bg'])
+        body.pack(fill='both', expand=True, padx=26, pady=22)
+        self.L(body, 'Fallen characters', f.h2, bg=C['bg'], anchor='w').pack(fill='x')
+        box = tk.Frame(body, bg=C['bg'])
+        box.pack(fill='both', expand=True, pady=(12, 0))
+        msg = self.L(body, '', f.small, fg=C['soft'], bg=C['bg'], anchor='w', justify='left')
+        msg.pack(fill='x', pady=(10, 0))
+
+        def fill():
+            for w in box.winfo_children():
+                w.destroy()
+            try:
+                rows = shc.fallen()
+            except Exception as e:                           # noqa: BLE001
+                self.L(box, 'The list is only available while the server is on.', f.small, fg=C['amber'], bg=C['bg'], anchor='w', justify='left', wraplength=f.s(420)).pack(fill='x')
+                return
+            if not rows:
+                self.L(box, 'Nobody has fallen.', f.small, fg=C['soft'], bg=C['bg'], anchor='w').pack(fill='x')
+            for cid, name in rows:
+                r = tk.Frame(box, bg=C['card2'])
+                r.pack(fill='x', pady=3)
+                self.L(r, name, f.body, bg=C['card2']).pack(side='left', padx=14, pady=10)
+                TextLink(r, 'Restore', lambda c=cid, n=name: restore(c, n), f.small, bg=C['card2']).pack(side='right', padx=14)
+
+        def restore(cid, name):
+            try:
+                shc.restore(cid)
+                msg.config(text='%s can play again.' % name, fg=C['green'])
+            except Exception as e:                           # noqa: BLE001
+                msg.config(text=str(e), fg=C['red'])
+            fill()
+        fill()
+        d.update_idletasks()
+        d.geometry('+%d+%d' % (self.root.winfo_rootx() + 160, self.root.winfo_rooty() + 110))
+
+    def _build_world_events(self, b):
+        f = self.f
+        self.L(b, 'Events switch rates on and off by the clock, for example double experience on weekend evenings. '
+                  'They run while this window is open.', f.tiny, fg=C['faint'], bg=C['card'], anchor='w', justify='left').pack(fill='x')
+        self.events_list = tk.Frame(b, bg=C['card'])
+        self.events_list.pack(fill='x', pady=(10, 0))
+        self.announce_var = tk.BooleanVar(value=ss.announce_events_on() if ss else True)
+        Check(b, text='Tell players in the game when an event starts and ends', variable=self.announce_var, command=lambda: ss.set_announce_events(self.announce_var.get()),
+              bg=C['card'], fg=C['text'], font=f.small).pack(anchor='w', pady=(12, 0))
+        row = tk.Frame(b, bg=C['card'])
+        row.pack(fill='x', pady=(14, 0))
+        RoundButton(row, 'Add an event', self.add_event, C['accent'], f.h3, height=f.s(40), width=f.s(150), radius=10, bg=C['card']).pack(side='left')
+        self.world_msg['events'] = self.L(row, '', f.small, fg=C['soft'], bg=C['card'], anchor='w')
+        self.world_msg['events'].pack(side='left', padx=16)
+
+    # ---- Auction house tab: stock it with items so a small server is not empty
+    def _check(self, parent, text, var, command=None):
+        f = self.f
+        return Check(parent, text=text, variable=var, command=command, bg=C['card'], fg=C['text'], font=f.small, anchor='w', activebackground=C['card'],
+                     activeforeground=C['text'], selectcolor=C['input'], highlightthickness=0, bd=0)
+
+    def _build_world_ah(self, b):
+        f = self.f
+        opt = sah.settings() if sah else {}
+        self.L(b, 'A new server has an empty auction house. This puts ordinary items on sale, sold by a server character called "%s", so players '
+                  'have something to buy. Players\' own listings are never touched.' % (sah.SELLER_NAME if sah else ''),
+               f.tiny, fg=C['faint'], bg=C['card'], anchor='w', justify='left').pack(fill='x')
+        self._wrap_later(b)
+        self.L(b, 'What to sell', f.small, fg=C['faint'], bg=C['card'], anchor='w').pack(fill='x', pady=(14, 4))
+        g = tk.Frame(b, bg=C['card'])
+        g.pack(fill='x')
+        self.ah_groups = {}
+        for i, (key, label, _) in enumerate(sah.GROUPS if sah else []):
+            var = tk.BooleanVar(value=key in opt.get('groups', []))
+            self.ah_groups[key] = var
+            self._check(g, label, var).grid(row=i // 2, column=i % 2, sticky='w', padx=(0, 40), pady=2)
+        r = tk.Frame(b, bg=C['card'])
+        r.pack(fill='x', pady=(16, 0))
+        self.L(r, 'Listings of each item', f.small, fg=C['soft'], bg=C['card']).pack(side='left')
+        self.ah_per = self.entry(r, width=4)
+        self.ah_per.insert(0, str(opt.get('per_item', 2)))
+        self.ah_per.pack(side='left', padx=(8, 26), ipady=f.s(4))
+        self.L(r, 'Price', f.small, fg=C['soft'], bg=C['card']).pack(side='left')
+        self.ah_pct = self.entry(r, width=5)
+        self.ah_pct.insert(0, str(opt.get('percent', 100)))
+        self.ah_pct.pack(side='left', padx=(8, 6), ipady=f.s(4))
+        self.L(r, '% of the normal price', f.small, fg=C['soft'], bg=C['card']).pack(side='left', padx=(0, 26))
+        self.ah_stacks = tk.BooleanVar(value=opt.get('stacks', True))
+        self._check(r, 'Also sell full stacks', self.ah_stacks).pack(side='left')
+        self.L(b, 'Normal price is about twice what a shop pays for the item. The lowest allowed is %d%%, so nobody can make gil by buying here and '
+                  'selling to a shop.' % (sah.MIN_PERCENT if sah else 50), f.tiny, fg=C['faint'], bg=C['card'], anchor='w',
+               justify='left').pack(fill='x', pady=(6, 0))
+        self.L(b, 'Put items back on sale', f.small, fg=C['faint'], bg=C['card'], anchor='w').pack(fill='x', pady=(16, 4))
+        self.ah_refill = Segmented(b, [(k, l) for k, l, _ in (sah.REFILLS if sah else [])], self._ah_refill_set, f.small, height=f.s(36))
+        self.ah_refill.pack(fill='x')
+        self.ah_refill.set(opt.get('refill', 'off'))
+        self.ah_refill_key = opt.get('refill', 'off')
+        self.L(b, 'Automatic refills run while this window is open and the server is on. Anything bought gets replaced, and prices follow the '
+                  'setting above. Pressing the button again never doubles the listings.', f.tiny, fg=C['faint'], bg=C['card'], anchor='w',
+               justify='left').pack(fill='x', pady=(6, 0))
+        row = tk.Frame(b, bg=C['card'])
+        row.pack(fill='x', pady=(20, 0))
+        self.ah_btn = RoundButton(row, 'Stock the auction house', self.do_ah_stock, C['accent'], f.h3, height=f.s(40), width=f.s(230), radius=10, bg=C['card'])
+        self.ah_btn.pack(side='left')
+        TextLink(row, 'Remove the server\'s listings', self.do_ah_clear, f.small, bg=C['card']).pack(side='left', padx=22)
+        TextLink(row, 'Save the options only', self.do_ah_save, f.small, bg=C['card']).pack(side='left')
+        self.ah_msg = self.L(b, '', f.small, fg=C['soft'], bg=C['card'], anchor='w', justify='left')
+        self.ah_msg.pack(fill='x', pady=(10, 0))
+        self._wrap_later(b)
+
+    def _wrap_later(self, parent):
+        """Long grey notes in a card wrap to the card's width as it is resized."""
+        def fit(e):
+            for w in parent.winfo_children():
+                if isinstance(w, tk.Label) and str(w.cget('justify')) == 'left':
+                    self._wrap(w, e.width)
+        parent.bind('<Configure>', fit, add='+')
+
+    def _ah_refill_set(self, key):
+        self.ah_refill_key = key
+        self.ah_refill.set(key)
+
+    def _ah_opts(self):
+        return {'groups': [k for k, v in self.ah_groups.items() if v.get()], 'per_item': self.ah_per.get(), 'percent': self.ah_pct.get(),
+                'stacks': self.ah_stacks.get(), 'refill': self.ah_refill_key}
+
+    def _ah_say(self, text, color=None):
+        self.ah_msg.config(text=text, fg=color or C['soft'])
+
+    def _ah_job(self, label, fn):
+        if getattr(self, '_ah_busy', False):
+            return
+        if not (self.state and self.state.get('database')):
+            self._ah_say('Start the server first: the auction house lives in its database.', C['amber'])
+            return
+        self._ah_busy = True
+        self.ah_btn.set_enabled(False)
+        self._ah_say(label, C['amber'])
+
+        def work():
+            try:
+                msg, col = fn(), C['green']
+            except Exception as e:                           # noqa: BLE001
+                msg, col = str(e), C['red']
+
+            def done():
+                self._ah_busy = False
+                self.ah_btn.set_enabled(True)
+                self._ah_say(msg, col)
+            self.root.after(0, done)
+        threading.Thread(target=work, daemon=True).start()
+
+    def do_ah_save(self):
+        try:
+            sah.save_settings(self._ah_opts())
+            self._ah_say('Saved.', C['green'])
+        except Exception as e:                               # noqa: BLE001
+            self._ah_say(str(e), C['red'])
+
+    def do_ah_stock(self):
+        try:
+            opts = sah.save_settings(self._ah_opts())
+        except Exception as e:                               # noqa: BLE001
+            self._ah_say(str(e), C['red'])
+            return
+
+        def fn():
+            r = sah.stock(opts)
+            return 'Done: %d new listings added (%d for sale now, %d kinds of items).' % (r['added'], r['open'], r['items'])
+        self._ah_job('Putting items on sale...', fn)
+
+    def do_ah_clear(self):
+        if not messagebox.askyesno(TITLE, 'Remove every listing the server put up?\n\nListings from players are not touched.'):
+            return
+        self._ah_job('Removing...', lambda: 'Removed %d listings.' % sah.clear())
+
+    # ---- Modes tab: plain on/off switches
+    def _build_world_modes(self, b):
+        f = self.f
+        self.L(b, 'Small changes to how the game plays, from LoxleyXI\'s open source modules (credited in Server/lsb/modules). All are off until '
+                  'you switch them on. Each one applies the next time the server starts, so after changing one use Stop and then Start on '
+                  'the Server page.', f.tiny, fg=C['faint'], bg=C['card'], anchor='w', justify='left').pack(fill='x')
+        self._wrap_later(b)
+        self.mode_vars = {}
+        st = smo.states() if smo else {}
+        for key, kind, label, text in (smo.MODES if smo else []):
+            row = tk.Frame(b, bg=C['card'])
+            row.pack(fill='x', pady=(16, 0))
+            var = tk.BooleanVar(value=st.get(key, False))
+            self.mode_vars[key] = var
+            self._check(row, label, var, lambda k=key: self.toggle_mode(k)).pack(anchor='w')
+            lab = self.L(row, text, f.tiny, fg=C['soft'], bg=C['card'], anchor='w', justify='left')
+            lab.pack(fill='x', padx=(32, 0), pady=(2, 0))
+            row.bind('<Configure>', lambda e, w=lab: self._wrap(w, e.width - 32), add='+')
+        self.mode_msg = self.L(b, '', f.small, fg=C['soft'], bg=C['card'], anchor='w', justify='left')
+        self.mode_msg.pack(fill='x', pady=(18, 0))
+
+    def toggle_mode(self, key):
+        want = self.mode_vars[key].get()
+        self.mode_msg.config(text='Working...', fg=C['amber'])
+
+        def work():
+            try:
+                msg, col, ok = smo.set_enabled(key, want), C['green'], True
+            except Exception as e:                           # noqa: BLE001
+                msg, col, ok = str(e), C['red'], False
+
+            def done():
+                if not ok:
+                    self.mode_vars[key].set(not want)
+                running = bool(self.state and self.state.get('any'))
+                self.mode_msg.config(text=msg + (' The server is on now: restart it.' if ok and running else ''), fg=col)
+            self.root.after(0, done)
+        threading.Thread(target=work, daemon=True).start()
+
+    def _load_settings(self):
+        if not ss or not getattr(self, 'set_name', None):
+            return
+        cur = ss.get()
+        for e, v in ((self.set_name, cur['name']), (self.set_welcome, cur['welcome'])):
+            e.delete(0, 'end')
+            e.insert(0, v)
+        for g in ('rates', 'monsters', 'rules'):
+            try:
+                vals = ss.get_values(g)
+            except Exception:                                # noqa: BLE001
+                continue
+            for k, v in vals.items():
+                if k in self.world_entries:
+                    self.world_entries[k].delete(0, 'end')
+                    self.world_entries[k].insert(0, '%g' % v)
+                elif k in self.world_flags:
+                    self.world_flags[k].set(bool(v))
+        if getattr(self, 'era_bar', None):
+            self._era_from_form()
+        if getattr(self, 'hc_var', None) and shc:
+            hc = shc.get()
+            self.hc_var.set(hc['on'])
+            self.hc_lives.delete(0, 'end')
+            self.hc_lives.insert(0, str(hc['lives']))
+        self._show_events()
+
+    def _world_say(self, group, text, color):
+        lab = self.world_msg.get(group) or self.world_msg.get('monsters')
+        if lab:
+            lab.config(text=text, fg=color)
+
+    def save_world(self, group):
+        running = bool(self.state and self.state.get('any'))
+        self._world_say(group, 'Saving...', C['amber'])
+        if group == 'general':
+            name, welcome = self.set_name.get(), self.set_welcome.get()
+        else:
+            groups = ('rates', 'monsters') if group in ('rates', 'monsters') else (group,)
+            values = {st.key: (self.world_flags[st.key].get() if st.kind == 'flag' else self.world_entries[st.key].get())
+                      for g in groups for st in ss.GROUPS[g]}
+            hc_on = self.hc_var.get() if getattr(self, 'hc_var', None) else False
+            hc_lives = self.hc_lives.get() if getattr(self, 'hc_lives', None) else 1
+
+        def work():
+            try:
+                if group == 'general':
+                    changed = ss.save(name=name, welcome=welcome)
+                    msg = 'Saved.' + (' Restart the server for the new name to show.' if changed and running else '')
+                else:
+                    changed = False
+                    for g in groups:
+                        changed = ss.save_values(g, {st.key: values[st.key] for st in ss.GROUPS[g]}) or changed
+                    if group == 'rules' and shc and getattr(self, 'hc_var', None):
+                        shc.save(hc_on, hc_lives)
+                    msg = 'Saved.' + (' The server picks it up in a few seconds.' if changed and running and group != 'rules' else '')
+                    if changed and running and group == 'rules':
+                        msg = 'Saved. Restart the server for it to apply everywhere.'
+                self.root.after(0, lambda: self._world_say(group, msg, C['green']))
+            except Exception as e:                           # noqa: BLE001
+                self.root.after(0, lambda e=e: self._world_say(group, str(e), C['red']))
+        threading.Thread(target=work, daemon=True).start()
+
+    def save_settings(self):
+        self.save_world('general')
+
+    # ---- scheduled events
+    def _show_events(self):
+        if not getattr(self, 'events_list', None):
+            return
+        f = self.f
+        for w in self.events_list.winfo_children():
+            w.destroy()
+        events = ss.list_events() if ss else []
+        active = ss._state().get('active') if ss else None
+        if not events:
+            self.L(self.events_list, 'No events yet.', f.small, fg=C['soft'], bg=C['card'], anchor='w').pack(fill='x')
+        for ev in events:
+            r = tk.Frame(self.events_list, bg=C['card2'])
+            r.pack(fill='x', pady=3)
+            var = tk.BooleanVar(value=bool(ev.get('on', True)))
+            Check(r, variable=var, command=lambda e=ev, v=var: self._event_toggle(e, v), bg=C['card2'], activebackground=C['card2'],
+                           selectcolor=C['input'], highlightthickness=0, bd=0).pack(side='left', padx=(10, 0), pady=8)
+            txt = tk.Frame(r, bg=C['card2'])
+            txt.pack(side='left', fill='x', expand=True, padx=8)
+            self.L(txt, ev['name'] + ('   (on now)' if ev['id'] == active else ''), f.small, fg=C['green'] if ev['id'] == active else C['text'],
+                   bg=C['card2'], anchor='w').pack(fill='x')
+            self.L(txt, ss.event_text(ev), f.tiny, fg=C['soft'], bg=C['card2'], anchor='w').pack(fill='x')
+            TextLink(r, 'Remove', lambda e=ev: self._event_remove(e), f.small, bg=C['card2']).pack(side='right', padx=14)
+
+    def _event_toggle(self, ev, var):
+        events = ss.list_events()
+        for e in events:
+            if e['id'] == ev['id']:
+                e['on'] = bool(var.get())
+        try:
+            ss.save_events(events)
+            self._sched_now()
+        except Exception as e:                               # noqa: BLE001
+            self._world_say('events', str(e), C['red'])
+
+    def _event_remove(self, ev):
+        ss.save_events([e for e in ss.list_events() if e['id'] != ev['id']])
+        self._show_events()
+        self._sched_now()
+
+    def add_event(self):
+        f = self.f
+        d = tk.Toplevel(self.root)
+        d.title('New event')
+        d.configure(bg=C['bg'])
+        d.transient(self.root)
+        body = tk.Frame(d, bg=C['bg'])
+        body.pack(fill='both', expand=True, padx=26, pady=22)
+        self.L(body, 'Event name', f.small, fg=C['faint'], bg=C['bg'], anchor='w').pack(fill='x')
+        name = self.entry(body, width=34)
+        name.pack(fill='x', pady=(4, 14), ipady=f.s(6))
+        self.L(body, 'Days', f.small, fg=C['faint'], bg=C['bg'], anchor='w').pack(fill='x')
+        drow = tk.Frame(body, bg=C['bg'])
+        drow.pack(fill='x', pady=(4, 14))
+        dvars = []
+        for i, dn in enumerate(ss.DAY_NAMES):
+            v = tk.BooleanVar(value=i >= 5)
+            dvars.append(v)
+            Check(drow, text=dn, variable=v, bg=C['bg'], fg=C['text'], font=f.small, activebackground=C['bg'], activeforeground=C['text'],
+                           selectcolor=C['input'], highlightthickness=0, bd=0).pack(side='left', padx=(0, 10))
+        trow = tk.Frame(body, bg=C['bg'])
+        trow.pack(fill='x', pady=(0, 14))
+        times = []
+        for label, default in (('From', '18:00'), ('Until', '23:00')):
+            c = tk.Frame(trow, bg=C['bg'])
+            c.pack(side='left', padx=(0, 22))
+            self.L(c, label, f.small, fg=C['faint'], bg=C['bg'], anchor='w').pack(fill='x')
+            e = self.entry(c, width=8)
+            e.insert(0, default)
+            e.pack(ipady=f.s(6), pady=(4, 0))
+            times.append(e)
+        self.L(body, 'Rates during the event (1 = normal)', f.small, fg=C['faint'], bg=C['bg'], anchor='w').pack(fill='x')
+        rrow = tk.Frame(body, bg=C['bg'])
+        rrow.pack(fill='x', pady=(4, 6))
+        rates = {}
+        for st in ss.GROUPS['rates'][:4]:
+            c = tk.Frame(rrow, bg=C['bg'])
+            c.pack(side='left', padx=(0, 18))
+            self.L(c, st.label, f.tiny, fg=C['soft'], bg=C['bg'], anchor='w').pack(fill='x')
+            e = self.entry(c, width=7)
+            e.insert(0, '2' if st.key == 'EXP_RATE' else '1')
+            e.pack(ipady=f.s(6), pady=(3, 0))
+            rates[st.key] = e
+        msg = self.L(body, '', f.small, fg=C['red'], bg=C['bg'], anchor='w', justify='left')
+        msg.pack(fill='x', pady=(8, 0))
+
+        def save():
+            ev = {'name': name.get(), 'days': [i for i, v in enumerate(dvars) if v.get()], 'start': times[0].get().strip(), 'end': times[1].get().strip(),
+                  'mult': {k: e.get() for k, e in rates.items()}}
+            try:
+                events = ss.list_events()
+                events.append(ev)
+                ss.save_events(events)
+            except Exception as e:                           # noqa: BLE001
+                msg.config(text=str(e))
+                return
+            d.destroy()
+            self._show_events()
+            self._sched_now()
+        brow = tk.Frame(body, bg=C['bg'])
+        brow.pack(fill='x', pady=(14, 0))
+        RoundButton(brow, 'Add', save, C['accent'], f.h3, height=f.s(40), width=f.s(110), radius=10, bg=C['bg']).pack(side='left')
+        TextLink(brow, 'Cancel', d.destroy, f.small, bg=C['bg']).pack(side='left', padx=18)
+        d.update_idletasks()
+        d.geometry('+%d+%d' % (self.root.winfo_rootx() + 140, self.root.winfo_rooty() + 90))
+        name.focus_set()
+
+    # ---- clock jobs: scheduled events and the daily backup (checked every half minute while the window is open)
+    def _sched_now(self):
+        self.root.after(200, self._sched_run)
+
+    def _sched_loop(self):
+        self._sched_run()
+        self.root.after(30000, self._sched_loop)
+
+    def _sched_run(self):
+        if getattr(self, '_sched_busy', False) or not ss:
+            return
+        self._sched_busy = True
+
+        def work():
+            msg = err = bk = None
+            try:
+                msg = ss.tick_events()
+            except Exception as e:                           # noqa: BLE001
+                err = str(e)
+            self._write_info()
+            try:
+                if sbk and self.state and self.state.get('database') and not self.busy and sbk.auto_due():
+                    sbk.auto_backup()
+                    bk = 'Automatic backup done.'
+            except Exception as e:                           # noqa: BLE001
+                err = err or str(e)
+            try:
+                if sah and self.state and self.state.get('database') and not self.busy and not getattr(self, '_ah_busy', False) and sah.refill_due():
+                    r = sah.stock()
+                    if r['added']:
+                        bk = (bk + ' ' if bk else '') + 'Auction house restocked (%d listings).' % r['added']
+            except Exception as e:                           # noqa: BLE001
+                err = err or str(e)
+            self.root.after(0, lambda: self._sched_done(msg, bk, err))
+        threading.Thread(target=work, daemon=True).start()
+
+    def _sched_done(self, msg, bk, err):
+        self._sched_busy = False
+        if msg:
+            self.chat_add('admin', msg)
+            self._notify(msg)
+            self._announce(msg)
+            self._show_events()
+        if bk:
+            self.chat_add('admin', bk)
+            if getattr(self, 'backup_note', None):
+                self._show_backup_note()
+        if err:
+            self.chat_add('error', 'Scheduled job: ' + err)
+
+    def _announce(self, text):
+        """Tell everyone in the game (the same as typing /announce in the chat box). Only while the map server is up."""
+        if not (sa and ss and ss.announce_events_on() and self.state and self.state.get('xi_map')):
+            return
+        threading.Thread(target=lambda: sa.command('/announce ' + text), daemon=True).start()
+
+    def _info_address(self):
+        """(host, port) for the info page's "How to join" box, or None when the owner chose to leave the address out."""
+        try:
+            if not sc.load_config().get('info_show_address', False):
+                return None
+        except Exception:                                    # noqa: BLE001
+            return None
+        host = self.addr.get('net') or self.addr.get('lan')
+        return (host, sc.SERVER_PORT_FOR_PLAYERS) if host else None
+
+    def _write_info(self):
+        if not si:
+            return
+        try:
+            n = len(sa.online_players()) if (sa and self.state and self.state.get('database')) else None
+        except Exception:                                    # noqa: BLE001
+            n = None
+        try:
+            si.write(address=self._info_address(), players=n)
+        except Exception:                                    # noqa: BLE001
+            pass
+
+    def _notify(self, text):
+        if not snt:
+            return
+        if snt.webhook():
+            threading.Thread(target=lambda: snt.send(text), daemon=True).start()
+
+    # ---- Maintenance page: backups, Discord messages and a quick health check
+    # ---- Tools page: game disc and hard drive, backups, alerts and the log
+    def _build_tools(self):
+        self._tabbed_page('tools', 'Tools', 'Set up the game disc, keep backups, and see what the server is doing.',
+                          [('game', 'Game disc', self._build_game, True), ('backups', 'Backups', self._build_backups, True),
+                           ('alerts', 'Alerts', self._build_alerts, True), ('log', 'Log', self._build_debug, False)])
+
+    def _build_backups(self, parent):
+        f = self.f
+        bp = Panel(parent, None, f, pad=24)
+        bp.pack(fill='x', padx=(0, 16))
+        self._section(bp.body, 'Backups', first=True)
+        self.backup_note = self.L(bp.body, '', f.small, fg=C['soft'], bg=C['card'], anchor='w', justify='left')
+        self.backup_note.pack(fill='x', pady=(6, 0))
+        brow = tk.Frame(bp.body, bg=C['card'])
+        brow.pack(fill='x', pady=(14, 0))
+        self.backup_btn = RoundButton(brow, 'Back up now', self.do_backup, C['grey'], f.small, height=f.s(36), width=f.s(140), radius=10, bg=C['card'])
+        self.backup_btn.pack(side='left')
+        TextLink(brow, 'Restore from a backup...', self.do_restore, f.small, bg=C['card']).pack(side='left', padx=20)
+        arow = tk.Frame(bp.body, bg=C['card'])
+        arow.pack(fill='x', pady=(16, 0))
+        on, keep = sbk.auto_settings() if sbk else (False, 7)
+        self.auto_var = tk.BooleanVar(value=on)
+        Check(arow, text='Back up every day while the server is on', variable=self.auto_var, command=self._save_auto, bg=C['card'], fg=C['text'],
+              font=f.small).pack(anchor='w')
+        krow = tk.Frame(bp.body, bg=C['card'])
+        krow.pack(fill='x', pady=(10, 0))
+        self.L(krow, 'Keep the last', f.small, fg=C['soft'], bg=C['card']).pack(side='left', padx=(0, 8))
+        self.keep_entry = self.entry(krow, width=4)
+        self.keep_entry.insert(0, str(keep))
+        self.keep_entry.pack(side='left', ipady=f.s(4))
+        self.keep_entry.bind('<FocusOut>', lambda e: self._save_auto())
+        self.keep_entry.bind('<Return>', lambda e: self._save_auto())
+        self.L(krow, 'automatic backups', f.small, fg=C['soft'], bg=C['card']).pack(side='left', padx=(8, 0))
+
+        hp = Panel(parent, None, f, pad=24)
+        hp.pack(fill='x', pady=(14, 0), padx=(0, 16))
+        self._section(hp.body, 'Health', first=True)
+        self.health_text = self.L(hp.body, '', f.small, fg=C['text'], bg=C['card'], anchor='w', justify='left')
+        self.health_text.pack(fill='x', pady=(6, 0))
+        TextLink(hp.body, 'Open the logs folder', lambda: self._open_path(sc.LOGS), f.small, bg=C['card']).pack(anchor='w', pady=(10, 0))
+        self._show_backup_note()
+        self._show_health()
+
+    def _build_alerts(self, parent):
+        f = self.f
+        dp = Panel(parent, None, f, pad=24)
+        dp.pack(fill='x', padx=(0, 16))
+        self._section(dp.body, 'Discord messages', first=True)
+        self.L(dp.body, 'Posts a line to a channel when the server starts, stops, restarts after a problem, or a scheduled event begins or ends. '
+                        'In Discord: channel settings > Integrations > Webhooks > Copy Webhook URL.', f.tiny, fg=C['faint'], bg=C['card'], anchor='w',
+               justify='left', wraplength=f.s(700)).pack(fill='x', pady=(4, 8))
+        self.hook_entry = self.entry(dp.body, show='•', width=44)
+        self.hook_entry.pack(fill='x', ipady=f.s(7))
+        if snt:
+            self.hook_entry.insert(0, snt.webhook())
+        drow = tk.Frame(dp.body, bg=C['card'])
+        drow.pack(fill='x', pady=(12, 0))
+        RoundButton(drow, 'Save', self.save_hook, C['grey'], f.small, height=f.s(36), width=f.s(110), radius=10, bg=C['card']).pack(side='left')
+        TextLink(drow, 'Send a test message', self.test_hook, f.small, bg=C['card']).pack(side='left', padx=20)
+        self.hook_msg = self.L(drow, '', f.small, fg=C['soft'], bg=C['card'], anchor='w')
+        self.hook_msg.pack(side='left')
+
+
+    def _build_info_card(self, parent):
+        f = self.f
+        ipn = Panel(parent, None, f, pad=24)
+        ipn.pack(fill='x', pady=(0, 14), padx=(0, 16))
+        self._section(ipn.body, 'Share your server', first=True)
+        self.L(ipn.body, 'A page with your era, level cap, rates, events and players online, for friends or a Discord. Your server shows it at this address '
+                         'while it is on (the port must be reachable, as for players).', f.tiny, fg=C['faint'], bg=C['card'], anchor='w', justify='left',
+               wraplength=f.s(700)).pack(fill='x', pady=(4, 8))
+        lrow = tk.Frame(ipn.body, bg=C['card'])
+        lrow.pack(fill='x')
+        self.info_url = self.L(lrow, '', f.mono_s, fg=C['text'], bg=C['card'], anchor='w')
+        self.info_url.pack(side='left')
+        TextLink(lrow, 'copy', self.copy_info_url, f.tiny, bg=C['card']).pack(side='left', padx=12)
+        irow = tk.Frame(ipn.body, bg=C['card'])
+        irow.pack(fill='x', pady=(12, 0))
+        self.info_addr_var = tk.BooleanVar(value=bool(sc.load_config().get('info_show_address', False)) if sc else False)
+        Check(irow, text='Show my server address on the page', variable=self.info_addr_var, command=self._save_info_opts, bg=C['card'], fg=C['text'],
+              font=f.small).pack(anchor='w')
+        RoundButton(ipn.body, 'Save a copy...', self.save_info_copy, C['grey'], f.small, height=f.s(34), width=f.s(140), radius=10, bg=C['card']).pack(anchor='w', pady=(12, 0))
+        self._show_info_url()
+
+
+    # ---- Debug: the PS2 login part's log, readable
+    def _build_debug(self, parent):
+        f = self.f
+        p = Panel(parent, None, f, pad=26)
+        p.pack(fill='both', expand=True)
+        self.L(p.body, 'Packet log', f.small, fg=C['faint'], bg=C['card'], anchor='w').pack(fill='x')
+        self.L(p.body, 'What the PS2 login part has been doing, newest at the bottom. Use it when something does not work and you want to see what '
+                       'the game and the server said to each other. It shows the last %d lines and refreshes by itself.' % (sd.LINES if sd else 300),
+               f.tiny, fg=C['faint'], bg=C['card'], anchor='w', justify='left').pack(fill='x', pady=(4, 10))
+        self.debug_filter = 'all'
+        self.debug_bar = Segmented(p.body, sd.FILTERS if sd else [('all', 'All')], self._debug_set, f.small, height=f.s(36))
+        self.debug_bar.pack(fill='x')
+        self.debug_bar.set('all')
+        box = tk.Frame(p.body, bg=C['input'], highlightthickness=1, highlightbackground=C['line'])
+        box.pack(fill='both', expand=True, pady=(12, 0))
+        self.debug_text = tk.Text(box, height=12, bg=C['input'], fg=C['text'], insertbackground=C['text'], relief='flat', bd=0, wrap='none',
+                                  font=f.mono_s, padx=10, pady=8, highlightthickness=0, state='disabled')
+        sb = self._scroll(box, self.debug_text)
+        sb.pack(side='right', fill='y')
+        self.debug_text.pack(side='left', fill='both', expand=True)
+        row = tk.Frame(p.body, bg=C['card'])
+        row.pack(fill='x', pady=(12, 0))
+        RoundButton(row, 'Copy', self._debug_copy, C['grey'], f.small, height=f.s(36), width=f.s(110), radius=10, bg=C['card']).pack(side='left')
+        self.debug_msg = self.L(row, '', f.small, fg=C['soft'], bg=C['card'], anchor='w')
+        self.debug_msg.pack(side='left', padx=16)
+        self._wrap_later(p.body)
+        self._debug_last = None
+
+    def _debug_set(self, key):
+        self.debug_filter = key
+        self.debug_bar.set(key)
+        self._debug_last = None
+        self._debug_refresh(once=True)
+
+    def _debug_refresh(self, once=False):
+        if not getattr(self, 'debug_text', None) or not sd or not getattr(self, 'debug_on', False):
+            return
+        mode = self.debug_filter
+
+        def work():
+            text = sd.view(mode)
+            self.root.after(0, lambda: self._debug_show(text, mode))
+        threading.Thread(target=work, daemon=True).start()
+        if not once and not getattr(self, '_debug_timer', False):
+            self._debug_timer = True
+            self.root.after(2000, self._debug_tick)
+
+    def _debug_tick(self):
+        self._debug_timer = False
+        if getattr(self, 'debug_on', False) and self.page == 'maint':
+            self._debug_refresh()
+
+    def _debug_show(self, text, mode):
+        if not sd.exists():
+            text = ''
+            self.debug_msg.config(text='No log yet. It appears once the server has been started.', fg=C['soft'])
+        elif not text:
+            self.debug_msg.config(text='Nothing in the log matches this filter yet.', fg=C['soft'])
+        else:
+            self.debug_msg.config(text='', fg=C['soft'])
+        if text == self._debug_last or mode != self.debug_filter:
+            return
+        self._debug_last = text
+        t = self.debug_text
+        at_end = t.yview()[1] >= 0.99
+        t.config(state='normal')
+        t.delete('1.0', 'end')
+        t.insert('1.0', text)
+        t.config(state='disabled')
+        if at_end:
+            t.see('end')
+
+    def _debug_copy(self):
+        text = self.debug_text.get('1.0', 'end').strip()
+        self.root.clipboard_clear()
+        self.root.clipboard_append(text)
+        self.debug_msg.config(text='Copied %d lines.' % len(text.splitlines()) if text else 'Nothing to copy.', fg=C['green'] if text else C['soft'])
+
+    def _info_link(self, masked):
+        host = self.addr.get('net') or self.addr.get('lan') or 'your-address'
+        return 'http://%s:%s/info' % (self.mask(host) if masked else host, sc.SERVER_PORT_FOR_PLAYERS if sc else 54001)
+
+    def _show_info_url(self):
+        if getattr(self, 'info_url', None):
+            self.info_url.config(text=self._info_link(self.hide_ips))
+            self.root.after(5000, self._show_info_url)
+
+    def copy_info_url(self):
+        self.root.clipboard_clear()
+        self.root.clipboard_append(self._info_link(False))
+        self.chat_add('admin', 'The info page address is copied.')
+
+    def _save_info_opts(self):
+        try:
+            cfg = sc.load_config()
+            cfg['info_show_address'] = bool(self.info_addr_var.get())
+            sc.save_config(cfg)
+        except Exception:                                    # noqa: BLE001
+            return
+        threading.Thread(target=self._write_info, daemon=True).start()
+
+    def save_info_copy(self):
+        path = filedialog.asksaveasfilename(parent=self.root, title='Save the info page', initialfile='server-info.html', defaultextension='.html',
+                                            filetypes=[('Web page', '*.html')])
+        if not path:
+            return
+        try:
+            n = len(sa.online_players()) if (sa and self.state and self.state.get('database')) else None
+        except Exception:                                    # noqa: BLE001
+            n = None
+        try:
+            si.write(address=self._info_address(), players=n, path=path)
+            self.chat_add('admin', 'Saved the info page to %s.' % path)
+        except Exception as e:                               # noqa: BLE001
+            messagebox.showerror(TITLE, 'Could not save it: %s' % e)
+
+    def _save_auto(self):
+        if not sbk:
+            return
+        try:
+            keep = int(self.keep_entry.get())
+        except ValueError:
+            keep = 7
+        keep = max(1, min(60, keep))
+        self.keep_entry.delete(0, 'end')
+        self.keep_entry.insert(0, str(keep))
+        sbk.save_auto_settings(self.auto_var.get(), keep)
+        if self.auto_var.get():
+            self._sched_now()
+
+    def save_hook(self):
+        try:
+            snt.save_webhook(self.hook_entry.get())
+            self.hook_msg.config(text='Saved.', fg=C['green'])
+        except Exception as e:                               # noqa: BLE001
+            self.hook_msg.config(text=str(e), fg=C['red'])
+
+    def test_hook(self):
+        url = self.hook_entry.get().strip()
+        try:
+            snt.save_webhook(url)
+        except Exception as e:                               # noqa: BLE001
+            self.hook_msg.config(text=str(e), fg=C['red'])
+            return
+        self.hook_msg.config(text='Sending...', fg=C['amber'])
+
+        def work():
+            ok, why = snt.send('Test message from the FFXI 2016 Server app.', url)
+            self.root.after(0, lambda: self.hook_msg.config(text='Sent. Check the channel.' if ok else why, fg=C['green'] if ok else C['red']))
+        threading.Thread(target=work, daemon=True).start()
+
+    def _show_health(self):
+        if not getattr(self, 'health_text', None):
+            return
+        st = self.state
+        if st and st.get('on') and getattr(self, 'on_since', None):
+            mins = int((time.time() - self.on_since) // 60)
+            up = 'The server has been on for %s.' % ('%d h %d min' % (mins // 60, mins % 60) if mins >= 60 else '%d min' % mins)
+        elif st and st.get('any'):
+            up = 'The server is partly on.'
+        else:
+            up = 'The server is off.'
+        n = len(self.members) if getattr(self, 'members', None) else 0
+        lines = [up, '%d player%s online.' % (n, '' if n == 1 else 's')]
+        if getattr(self, 'map_restarts', 0):
+            lines.append('The map server restarted by itself %d time%s since this window opened.' % (self.map_restarts, '' if self.map_restarts == 1 else 's'))
+        self.health_text.config(text='  '.join(lines))
+        self.root.after(10000, self._show_health)
+
+    def _open_path(self, path):
+        try:
+            if WINDOWS:
+                os.startfile(path)                           # noqa: S606
+            else:
+                subprocess.Popen(['open' if MAC else 'xdg-open', path])
+        except Exception:                                    # noqa: BLE001
+            messagebox.showinfo(TITLE, path)
+
+    def _show_backup_note(self):
+        last = sbk.listing() if sbk else []
+        self.backup_note.config(text=('Last backup: %s.' % time.strftime('%d %b %Y, %H:%M', time.localtime(last[0][2]))) if last
+                                else 'No backup yet. A backup saves every player and character.')
+
+    def do_backup(self):
+        self.backup_btn.set_enabled(False)
+        self.backup_note.config(text='Backing up...', fg=C['amber'])
+
+        def work():
+            try:
+                path = sbk.create()
+                msg, col = 'Saved %s' % os.path.basename(path), C['green']
+            except Exception as e:                           # noqa: BLE001
+                msg, col = str(e), C['red']
+
+            def done():
+                self.backup_btn.set_enabled(True)
+                self._show_backup_note()
+                if col == C['red']:
+                    self.backup_note.config(text=msg, fg=col)
+                else:
+                    self.backup_note.config(fg=C['soft'])
+                    self.chat_add('admin', msg)
+            self.root.after(0, done)
+        threading.Thread(target=work, daemon=True).start()
+
+    def do_restore(self):
+        if self.state and self.state.get('xi_map'):
+            messagebox.showinfo(TITLE, 'Stop the server first, then restore.')
+            return
+        os.makedirs(sbk.BACKUPS, exist_ok=True)
+        path = filedialog.askopenfilename(title='Pick a backup', initialdir=sbk.BACKUPS, filetypes=[('Backups', '*.sql.gz'), ('All files', '*')])
+        if not path:
+            return
+        if not messagebox.askyesno(TITLE, 'Replace every player and character with this backup?\n\n%s\n\nThe data you have now is saved as a backup first.' % os.path.basename(path)):
+            return
+        self.backup_note.config(text='Restoring...', fg=C['amber'])
+
+        def work():
+            try:
+                safety = sbk.restore(path)
+                msg, ok = 'Restored. The data from before is saved as %s.' % os.path.basename(safety), True
+            except Exception as e:                           # noqa: BLE001
+                msg, ok = str(e), False
+            self.root.after(0, lambda: (self.backup_note.config(text=msg, fg=C['soft'] if ok else C['red']), ok and self.chat_add('admin', msg)))
+        threading.Thread(target=work, daemon=True).start()
+
+    def _build_ports(self, parent):
+        f = self.f
+        self.ports_text = self.L(parent, '', f.small, fg=C['soft'], bg=C['card'], anchor='w', justify='left')
+        self.ports_text.pack(fill='x', pady=(12, 0))
+        prow = tk.Frame(parent, bg=C['card'])
+        prow.pack(fill='x', pady=(6, 0))
+        self.upnp_btn = TextLink(prow, 'Open ports for me', self.do_open_ports, f.small, bg=C['card'])
+        self.upnp_btn.pack(side='left')
+        self.test_btn = TextLink(prow, 'Test my ports', self.do_test_ports, f.small, bg=C['card'])
+        self.test_btn.pack(side='left', padx=20)
+        self.net_status = self.L(parent, '', f.small, fg=C['soft'], bg=C['card'], anchor='w', justify='left')
+        self.net_status.pack(fill='x', pady=(8, 0))
+        self.help_text = self.L(parent, '', f.small)              # not shown; the code that fills the address text still sets it
+        for w in (self.ports_text, self.net_status):
+            parent.bind('<Configure>', lambda e, w=w: self._wrap(w, e.width - 8), add='+')
+
+    def _refresh_connect(self):
+        if not getattr(self, 'conn_ip', None):
+            return
+        self._show_ddns()
+        lan = self.addr.get('lan') or ''
+        net = self.addr.get('net') or ''
+        for key, val, empty in (('lan', lan, 'this computer is not on a network'), ('direct', '192.168.137.1', ''),
+                                ('net', net, 'not found: use "Set hostname"')):
+            self.conn_ip[key].config(text=(self.mask(val) if key != 'direct' else val) or empty, fg=C['green'] if val else C['amber'])
+
+    # ---- dynamic DNS: keeps a hostname pointing at this home while the app is open
+    def setup_ddns(self):
+        cur = sn.ddns_config() if sn else {}
+        f = self.f
+        d, box = self.dialog('Hostname updates')
+        self.L(box, 'Hostname', f.h1).pack(anchor='w')
+        self.L(box, 'Players type this instead of your home address. With a provider picked, this app tells it your new address whenever it changes '
+                    '(every 5 minutes while the app is open).',
+               f.small, fg=C['soft'], justify='left', wraplength=f.s(480)).pack(anchor='w', pady=(6, 12))
+        kinds = [('manual', 'Manual'), ('duckdns', 'DuckDNS'), ('noip', 'No-IP'), ('dynu', 'Dynu'), ('other', 'Other')]
+        manual_val = sc.load_config().get('internet_ip_manual', '') if sc else ''
+        state = {'kind': cur.get('kind') or ('manual' if manual_val else 'duckdns')}
+        form = tk.Frame(box, bg=C['bg'])
+        rows = {}        # field -> (label, entry, extra widgets)
+        spec = {'manual': ['host'], 'duckdns': ['name', 'token'], 'noip': ['host', 'user', 'password'], 'dynu': ['host', 'user', 'password'], 'other': ['host', 'url']}
+        names = {'name': 'Name', 'token': 'Token', 'host': 'Hostname', 'user': 'Username', 'password': 'Password', 'url': 'Update link'}
+        secret = ('token', 'password', 'url')
+        for i, key in enumerate(('name', 'token', 'host', 'user', 'password', 'url')):
+            lab = self.L(form, names[key], f.h3, anchor='w')
+            ent = self.entry(form, show='\u2022' if key in secret else '', width=30)
+            lab.grid(row=i, column=0, sticky='w', pady=(8, 0), padx=(0, 14))
+            ent.grid(row=i, column=1, sticky='we', pady=(8, 0), ipady=f.s(6))
+            val = cur.get(key, '') if cur.get('kind') == state['kind'] else (manual_val if key == 'host' and state['kind'] == 'manual' else '')
+            if val:
+                ent.insert(0, val)
+            rows[key] = (lab, ent)
+        suffix = self.L(form, '.duckdns.org', f.small, fg=C['soft'])
+        hint = self.L(box, '', f.tiny, fg=C['faint'], justify='left', wraplength=f.s(480))
+        hints = {'manual': 'Type the address or hostname players should use. Nothing is updated for you, so use this when your router keeps a name up to date, or you have a fixed internet address.',
+                 'duckdns': 'Make a free account at duckdns.org, add a name there, and copy the token from the top of the page.',
+                 'noip': 'Use the hostname you made at noip.com and your No-IP login.',
+                 'dynu': 'Use the hostname you made at dynu.com and your Dynu login.',
+                 'other': 'Most providers show an "update link" (sometimes called a dynamic update URL). Paste it here. Write {host} where the name goes if it asks for one.'}
+
+        def show(kind):
+            state['kind'] = kind
+            seg.set(kind)
+            for key, (lab, ent) in rows.items():
+                if key in spec[kind]:
+                    lab.grid()
+                    ent.grid()
+                else:
+                    lab.grid_remove()
+                    ent.grid_remove()
+            if kind == 'duckdns':
+                suffix.grid(row=0, column=2, sticky='w', padx=6)
+            else:
+                suffix.grid_remove()
+            hint.config(text=hints[kind])
+            msg.config(text='')
+        seg = Segmented(box, kinds, show, f.small, height=f.s(34))
+        seg.pack(fill='x', pady=(0, 6))
+        form.pack(fill='x')
+        hint.pack(anchor='w', pady=(10, 0))
+        msg = self.L(box, '', f.small, fg=C['red'], justify='left', wraplength=f.s(480))
+        msg.pack(anchor='w', pady=(8, 0))
+        row = tk.Frame(box, bg=C['bg'])
+        row.pack(fill='x', pady=(14, 0))
+
+        def done(res):
+            if isinstance(res, Exception):
+                msg.config(text=str(res), fg=C['red'])
+                save.set_enabled(True)
+                return
+            self.chat_add('admin', 'Hostname saved. Players type %s' % self.mask(res))
+            self.kick.set()
+            self._show_ddns()
+            d.destroy()
+
+        def do_save(*_):
+            msg.config(text='Checking with your provider...', fg=C['amber'])
+            save.set_enabled(False)
+            kw = {k: rows[k][1].get() for k in spec[state['kind']]}
+            kind = state['kind']
+
+            def work():
+                try:
+                    r = sn.set_ddns(kind, **kw)
+                except Exception as ex:                       # noqa: BLE001
+                    r = ex
+                self.root.after(0, lambda: done(r))
+            threading.Thread(target=work, daemon=True).start()
+
+        def do_off():
+            sn.clear_ddns()
+            self.chat_add('admin', 'Hostname updates turned off. The hostname itself was kept; change it with Set hostname.')
+            self._show_ddns()
+            d.destroy()
+        save = RoundButton(row, 'Save', do_save, C['accent'], f.h3, height=f.s(40), width=f.s(110))
+        save.pack(side='right')
+        RoundButton(row, 'Cancel', d.destroy, C['grey'], f.h3, height=f.s(40), width=f.s(110)).pack(side='right', padx=8)
+        if cur:
+            RoundButton(row, 'Turn off', do_off, C['grey'], f.small, height=f.s(40), width=f.s(110)).pack(side='left')
+        seg.set(state['kind'])
+        show(state['kind'])
+        d.bind('<Return>', do_save)
+        d.bind('<Escape>', lambda ev: d.destroy())
+        self._center(d)
+
+    def _ddns_tick(self):
+        """Every 5 minutes (and soon after start): tell the provider this home's current address, if hostname updates are set up."""
+        self.root.after(300000, self._ddns_tick)
+        if not sn or not sn.ddns_config():
+            return
+
+        def work():
+            was = sn.ddns_last.get('ok')
+            ok, text = sn.ddns_update()
+            if not ok and was is not False:
+                self.q.put(('chat', 'error', text))
+            self.root.after(0, self._show_ddns)
+        threading.Thread(target=work, daemon=True).start()
+
+    def _show_ddns(self):
+        if not getattr(self, 'ddns_status', None) or not sn:
+            return
+        c = sn.ddns_config()
+        last = sn.ddns_last
+        if not c:
+            self.ddns_status.config(text='', fg=C['faint'])
+        elif last.get('ok') is None:
+            self.ddns_status.config(text='Waiting for the first update.', fg=C['soft'])
+        else:
+            when = time.strftime('%H:%M', time.localtime(last['time']))
+            self.ddns_status.config(text='Last update %s: %s' % (when, self._hide_in(last['text']) if self.hide_ips else last['text']), fg=C['green'] if last['ok'] else C['red'])
+
     def show_profile_done(self, name, pw, ip):
         d, box = self.dialog('Profile made')
         self.L(box, 'Profile "%s" is ready' % name, self.f.h1, fg=C['green']).pack(anchor='w')
         self.L(box, 'On the game\'s sign-in page, type:', self.f.body, fg=C['soft']).pack(anchor='w', pady=(6, 14))
         card = tk.Frame(box, bg=C['card'])
         card.pack(fill='x')
-        sip = (self.addr['net'] if self.mode == 'internet' else ip) or '(not found)'
-        for i, (k, v) in enumerate([('POL-ID', name), ('Password', pw), ('ServerIP', sip), ('ServerPort', str(sc.SERVER_PORT_FOR_PLAYERS))]):
-            self.L(card, k, self.f.h3, fg=C['soft'], anchor='w', width=10, bg=C['card']).grid(row=i, column=0, sticky='w', padx=(22, 8), pady=self.f.s(8))
+        rows = [('POL-ID', name), ('Password', pw), ('ServerIP', self.mask(ip) or '(not on a network)')]
+        if self.addr.get('net'):
+            rows.append(('From outside', self.mask(self.addr['net'])))
+        rows.append(('ServerPort', str(sc.SERVER_PORT_FOR_PLAYERS)))
+        for i, (k, v) in enumerate(rows):
+            self.L(card, k, self.f.h3, fg=C['soft'], anchor='w', width=13, bg=C['card']).grid(row=i, column=0, sticky='w', padx=(22, 8), pady=self.f.s(8))
             self.L(card, v, (self.f.mono[0], self.f.s(22), 'bold'), anchor='w', bg=C['card']).grid(row=i, column=1, sticky='w', padx=(0, 22), pady=self.f.s(8))
         self.L(box, 'The password is not shown again.', self.f.small, fg=C['faint']).pack(anchor='w', pady=(12, 0))
         RoundButton(box, 'OK', d.destroy, C['accent'], self.f.h3, height=self.f.s(42), width=self.f.s(120)).pack(anchor='e', pady=(14, 0))
@@ -1273,7 +2915,7 @@ class App:
         for r in roles:
             pm.add_command(label=r, command=lambda r=r: self._promote(name, r))
         if not roles:
-            pm.add_command(label='(no roles yet, see Roles)', state='disabled')
+            pm.add_command(label='(no roles yet, see Moderation)', state='disabled')
         m.add_cascade(label='Promote', menu=pm)
         cur = self.members.get(name.lower())
         if cur:
@@ -1308,6 +2950,16 @@ class App:
             line = template.format(v or '').strip()
             self.chat_add('event', '> ' + line)
             self.admin(line)
+
+    def open_player_actions(self):
+        sel = self.online.selection()
+        if not sel or not sel[0].startswith('p:'):
+            return
+        w = self.player_actions
+
+        class At:                                            # where the menu appears: just under the link
+            x_root, y_root = w.winfo_rootx(), w.winfo_rooty() + w.winfo_height()
+        self.player_menu(sel[0][2:], True, At)
 
     def online_menu(self, ev):
         iid = self.online.identify_row(ev.y)
@@ -1477,6 +3129,12 @@ class App:
 
 
 def main():
+    if WINDOWS:                                              # sharp text on high-resolution screens instead of a blurry enlarged window
+        try:
+            import ctypes
+            ctypes.windll.shcore.SetProcessDpiAwareness(1)
+        except Exception:                                    # noqa: BLE001
+            pass
     root = tk.Tk()
     if not MAC:
         try:
