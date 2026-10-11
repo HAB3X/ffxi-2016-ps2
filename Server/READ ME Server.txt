@@ -36,3 +36,21 @@ START ORDER (what Start Server does)
   database, then login (xi_connect), search, world, map, the PS2 login part and the friend list.
   The database is a private MariaDB that keeps its files in data/database; it never touches another
   MariaDB on the computer.
+
+GAME UPDATES (sent to the PS2 in game)
+  Your players do not need a new disc or patch for a small fix: the PS2 asks this server for updates when
+  the player presses OK on the sign in page (the same address and port the game signs in to).
+  Publish from this folder:
+    python3 update_tool.py publish --host host2016.elf          a new game program (the 6 MB host2016.elf)
+    python3 update_tool.py publish --data "ROM/12/34.DAT=new_file.dat"
+                                                                a game data file; the path is below image/ffxi/
+    python3 update_tool.py status                               what is published now
+    python3 update_tool.py clear                                stop offering the update
+  Every publish raises the version number by one. A player with an older version sees
+  "A new update is available. Update now?  Yes / Return to login". Yes downloads the files (a progress bar
+  shows), and the game restarts itself when a new game program came with it. Updates are only ever taken
+  from the server the player typed in.
+  Nothing on the disc or the original game files is changed: the files go to the hard drive as
+  U_* and UPD*.TXT beside SERVER.TXT, and deleting them gives the original game back.
+  A new game program that does not reach the sign in page is dropped on the next start and the program
+  on the disc runs again.
