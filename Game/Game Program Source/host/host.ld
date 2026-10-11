@@ -18,6 +18,7 @@ SECTIONS {
 	.sbss ALIGN(128) : { _fbss = . ; *(.sbss) *(.sbss.*) *(.gnu.linkonce.sb*) *(.scommon) }
 	.bss ALIGN(128) : { *(.bss) *(.bss.*) *(.gnu.linkonce.b*) *(COMMON) }
 	_end_bss = .; _end = . ; PROVIDE(end = .);
+	ASSERT(_end_bss <= 0x001D6000, "host program overlaps the lifted kernel")
 	.lift_k 0x001D6000 : { *(.lift_k) } :lift
 	/* NETDIAG builds: the debug link code (dbg.c, sections renamed .dbgk* by build.sh) */
 	.dbgk ALIGN(64) : { *(.dbgk*) } :lift

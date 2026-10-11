@@ -4,7 +4,8 @@ The game connects to the lobby port and sends its own binary packets. An update 
 first bytes of a connection tell the two apart: no extra port has to be opened.
 
   GET /update/manifest        the list of files of the current update (404 when there is no update)
-  GET /update/f/<name>        one file of it (a "Range: bytes=N-" header continues a download)
+  GET /update/f/<name>        one file of it; "Range: bytes=N-M" (or N-) returns that part.  The PS2 takes it in pieces of 32 KB:
+                              its network stack stops receiving after about 40 KB on one connection
   GET /info                   the server's info page (Server/data/info.html, written by the Server App)
 
 Server/updates/manifest.txt and Server/updates/files/ are written by Server/update_tool.py. Manifest, one item per line:
@@ -41,6 +42,7 @@ def _read_request(sock):
 
 def handle(sock, addr, root, log, info_file=None):
     """Answer one request on an accepted connection, then close it."""
+    sent = 0
     try:
         sock.settimeout(20)
         line, headers = _read_request(sock)
@@ -68,26 +70,31 @@ def handle(sock, addr, root, log, info_file=None):
             _send(sock, 404, 'Not Found')
             return
         size = os.path.getsize(fp)
-        start = 0
-        rg = re.match(r'^bytes=(\d+)-$', headers.get('range', ''))
+        start, end = 0, size - 1
+        rg = re.match(r'^bytes=(\d+)-(\d*)$', headers.get('range', ''))
         if rg:
             start = min(int(rg.group(1)), size)
-        sent = 0
+            if rg.group(2):
+                end = min(int(rg.group(2)), size - 1)
+        count = max(end - start + 1, 0)
         with open(fp, 'rb') as f:
             f.seek(start)
-            extra = 'Content-Range: bytes %d-%d/%d\r\n' % (start, size - 1, size) if start else ''
+            extra = 'Content-Range: bytes %d-%d/%d\r\n' % (start, end, size) if rg else ''
             head = 'HTTP/1.0 %d %s\r\nContent-Length: %d\r\nConnection: close\r\n%s\r\n' % (
-                206 if start else 200, 'Partial Content' if start else 'OK', size - start, extra)
+                206 if rg else 200, 'Partial Content' if rg else 'OK', count, extra)
             sock.sendall(head.encode('latin-1'))
-            while True:
-                chunk = f.read(CHUNK)
+            while sent < count:
+                chunk = f.read(min(CHUNK, count - sent))
                 if not chunk:
                     break
                 sock.sendall(chunk)
                 sent += len(chunk)
-        log('update', '%s downloaded %s (%d of %d B%s)' % (addr[0], m.group(1), sent, size, ', continued' if start else ''))
-    except (OSError, socket.timeout):
-        pass
+        log('update', '%s downloaded %s (%d B from %d%s)' % (addr[0], m.group(1), sent, start, ', range' if rg else ''))
+    except (OSError, socket.timeout) as e:
+        try:
+            log('update', '%s: connection ended early (%s) after %d B sent' % (addr[0], e.__class__.__name__, sent))
+        except NameError:
+            pass
     finally:
         try:
             sock.close()

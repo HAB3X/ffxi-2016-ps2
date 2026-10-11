@@ -268,9 +268,84 @@ static void net_overlay(void)                           /* NETDIAG: live network
 #else
 static void net_overlay(void) { }                      /* players see no network text on the sign-in page (the NETDIAG build shows it) */
 #endif
+extern volatile int g_upd_go, g_upd_state, g_upd_pct, g_upd_answer; extern char g_upd_msg[48]; extern void upd_start(void);
+extern volatile u32 g_pad_btn, g_pad_lx, g_pad_ly;      /* input.c: last pad word (active low) and left stick */
+static int g_upd_sel = 0;                               /* the highlighted choice on the question: 0 Yes, 1 Return to login */
+/* The update screens use the game's own "netwait" message window and "netbar" progress bar (the pair the lobby uses while it waits for the
+   server), opened and filled in the way the program does it (0x4BA930): the message text goes to netwait+20, the bar position (0..1, float)
+   to netbar+20.  States (update.c): 4 looking, 5 asking (Cross = update, Circle = back to the login page), 1 downloading, 3 restarting. */
+static void upd_screen(void)
+{
+    static int win = 0, bar = 0, armed = 0, blocked = 0;
+    static const char nw[17] = "menu    netwait ", nb[17] = "menu    netbar  ";
+    u32 mgr = 0x6AF320;
+    int st = g_upd_go ? g_upd_state : 0;
+    static int look = 0;                                 /* "Looking for updates..." only shows if the check takes a moment: with nothing new the next page follows at once */
+    int want_win, want_bar = st == 1 || st == 3;
+    look = st == 4 ? look + 1 : 0;
+    want_win = (st == 4 && look > 25) || st == 5 || st == 1 || st == 3;
+    if (want_win && !win) { ((void (*)(u32, const char *, int, int))0x365150)(mgr, nw, 1, 0); win = 1; }
+    if (want_bar && !bar) { ((void (*)(u32, const char *, int, int))0x365150)(mgr, nb, 1, 0); bar = 1; }
+    if (win) {
+        u32 w = *(volatile u32 *)0x7BB9C0; char t[64];
+        if (st == 5) snprintf(t, sizeof t, "A new update is available.  Update now?");
+        else if (st == 1) snprintf(t, sizeof t, "%s", g_upd_msg);
+        else snprintf(t, sizeof t, "%s", g_upd_msg);
+        if (w) { char *d = (char *)(w + 20); int i; for (i = 0; i < 62 && t[i]; i++) d[i] = t[i]; d[i] = 0; }
+    }
+    if (bar) { u32 b = *(volatile u32 *)0x7BB9C8; int n = g_upd_pct < 0 ? 0 : g_upd_pct > 100 ? 100 : g_upd_pct; if (b) *(volatile float *)(b + 20) = (float)n / 100.0f; }
+    if (!want_bar && bar) { ((void (*)(u32, const char *))0x365C40)(mgr, nb); bar = 0; }
+    if (!want_win && win) { ((void (*)(u32, const char *))0x365C40)(mgr, nw); win = 0; }
+    if (st == 5) {                                       /* the choice: Up/Down (D-pad or left stick) moves the cursor, Cross picks, Circle = return to login */
+        static u32 pprev = 0; static int dir_prev = 0;
+        u32 pr = ~g_pad_btn & 0xFFFFu, edge = pr & ~pprev; int dir = 0;
+        if (!blocked) { blocked = 1; g_input_block = 1; armed = 0; g_upd_sel = 0;
+        }
+        if (!pr) armed = 1;
+        if (g_pad_ly < 0x40 || (pr & 0x0010) || g_pad_lx < 0x40 || (pr & 0x0080)) dir = -1;
+        else if (g_pad_ly > 0xC0 || (pr & 0x0040) || g_pad_lx > 0xC0 || (pr & 0x0020)) dir = 1;
+        int kc = 0, kedge = 0; static int kprev = 0;                           /* keyboard (USB usage codes): arrows move, Enter picks, Esc = return to login */
+        if (g_real[104] && g_real[106]) { ((int (*)(int))g_real[104])(0); kc = ((int (*)(int))g_real[106])(0); }   /* the game's own polls are blocked meanwhile */
+        kedge = kc && kc != kprev; kprev = kc;
+        if (armed && !g_upd_answer) {
+            if (dir && dir != dir_prev) g_upd_sel = dir < 0 ? 0 : 1;
+            if (kedge) {
+                if (kc == 0x52 || kc == 0x50) g_upd_sel = 0;                   /* Up, Left */
+                else if (kc == 0x51 || kc == 0x4F) g_upd_sel = 1;              /* Down, Right */
+                else if (kc == 0x28 || kc == 0x58) g_upd_answer = g_upd_sel ? 2 : 1;   /* Enter */
+                else if (kc == 0x29) g_upd_answer = 2;                          /* Esc */
+            }
+            if (edge & 0x4000) g_upd_answer = g_upd_sel ? 2 : 1;              /* Cross */
+            else if (edge & 0x2000) g_upd_answer = 2;                          /* Circle */
+            else if (edge & 0x0008) g_upd_answer = g_upd_sel ? 2 : 1;          /* Start */
+        }
+        pprev = pr; dir_prev = dir;
+#ifdef TEST_CHOICE                                       /* emulator tests: answer by itself after a moment (TEST_CHOICE 1 = update, 2 = back, 3 = back once, then update) */
+        { static int tc = 0, round = 0; if (++tc > 150 && !g_upd_answer) { g_upd_answer = TEST_CHOICE == 3 ? (round++ ? 1 : 2) : TEST_CHOICE; tc = 0; } }
+#endif
+    } else if (blocked) { blocked = 0; g_input_block = 0; }
+}
+static void upd_prompt_text(void)                        /* the two choices with a cursor, and the percentage under the bar (draw step only) */
+{
+    void (*tx)(int, int, const char *, int, u32) = (void (*)(int, int, const char *, int, u32))0x35BCF0;
+    if (!g_upd_go) return;
+    if (g_upd_state == 5) {
+        static const char *opt[2] = { "Yes", "Return to login" };
+        for (int i = 0; i < 2; i++) {
+            int on = i == g_upd_sel;
+            if (on) tx(168, 204 + 26 * i, ">", 0, 0x8030a0e0);                                  /* the cursor */
+            tx(190, 204 + 26 * i, opt[i], 0, on ? 0x80808080 : 0x80505050);
+        }
+    } else if (g_upd_state == 1 || g_upd_state == 3) {
+        char t[16]; int n = g_upd_pct < 0 ? 0 : g_upd_pct > 100 ? 100 : g_upd_pct;
+        snprintf(t, sizeof t, "%d%%", n);
+        tx(n < 10 ? 246 : n < 100 ? 240 : 234, 245, t, 0, 0x80808080);
+    }
+}
 void sh_overlay(void)
 {
     char line[80];
+    upd_prompt_text();
     { extern volatile int g_net_state; static int shown_up = 0;
       (void)shown_up; if (sh_state == 1 || g_signin_pending) net_overlay(); }   /* PS2 fix: only on the sign-in page (and while a sign-in waits), never on the lobby screens */
 #ifndef DISC_BUILD                                                                 /* the saved-login hint is for builds that have saved logins; the install disc has none */
@@ -341,6 +416,13 @@ static void terms_release(void)                          /* the developer page i
         g_terms_vetoed = 0;
     }
 }
+static int upd_hold = 0, upd_frame0 = 0, g_close_wait = 0, g_reopen = 0, g_test_at = 0;
+static void dev_reopen_prep(void);
+static void signin_go(void)                              /* OK pressed and the network is up: look for an update first, then the terms page and the lobby */
+{
+    if (upd_hold) return;
+    upd_hold = 1; g_upd_go = 1; upd_frame0 = sh_frame;
+}
 static void nat_frame(void)
 {
 #if !defined(RELEASE) && defined(TC_PROBE)   /* 6 Oct 2026: debug RAM scan cost ~13% fps (W. Adoulin 21.5 -> 24.4); off unless -DTC_PROBE */
@@ -351,6 +433,7 @@ static void nat_frame(void)
     { extern void xf_flush(void); xf_flush(); }
     { extern void hlog_kick(void); hlog_kick(); }
     sh_frame++;
+    upd_screen();
     { extern volatile int g_restart_req; extern void host_soft_restart(void); static int wait = 0;
       if (g_restart_req && sh_state == 2 && ++wait > 90) host_soft_restart(); }                 /* ~3 s after the game began shutting down */
     if (sh_state >= 1) {                                   /* PS2 fix: network bring-up starts 2 s after the sign-in page opened (game idle by then), every frame checked */
@@ -360,7 +443,7 @@ static void nat_frame(void)
     if (sh_state != 1) { sh_type(); /* sh_randname(): the game's own random-name button works now */ }                                          /* every other text box (character name, chat, ...): the game gets no characters from the missing input-method layer */
     if (sh_state == 0) {
         sh_obj = *(volatile u32 *)DLG_OBJ_PTR;
-        if (sh_obj && ++sh_wait > 20) {
+        if ((sh_obj || g_reopen) && ++sh_wait > 20) {
             static const char nm2[17] = "menu    dbaccoun";
             u32 ctx = *(volatile u32 *)0x624FE0;
             *(volatile u32 *)0x624FE0 = 0;                                  /* the page's no-context branch creates all four edit boxes */
@@ -368,14 +451,30 @@ static void nat_frame(void)
             ((void (*)(u32, int))0x365A80)(0x6AF320, 0);
             *(volatile u32 *)0x624FE0 = ctx;
             printf("[host] devdlg: developer page opened (controls %08x %08x %08x %08x)\n", (unsigned)SH_CTRL(0), (unsigned)SH_CTRL(1), (unsigned)SH_CTRL(2), (unsigned)SH_CTRL(3));
-            sh_load(0); sh_state = 1;
+            g_reopen = 0; g_test_at = 0; sh_obj = *(volatile u32 *)DLG_OBJ_PTR;
+            sh_load(0); sh_state = 1; upd_start();
         }
     } else if (sh_state == 2) {
-        { static int rc = 0; if (++rc == 180) registry_restore(); }   /* a few seconds after the page closed */
-        if (g_signin_pending) { extern volatile int g_net_state; if (g_net_state == 2 || g_net_state < 0) { printf("[host] devdlg: network state %d - sign-in continues\n", (int)g_net_state); terms_release(); } }
+        { static int rc = 0; if (++rc >= 180) registry_restore(); }   /* a few seconds after the page closed */
+        if (g_close_wait) {                                  /* the page was closed: let its last frames go before anything else is drawn */
+            static int cw = 0;
+            if (++cw > 30) {
+                extern volatile int g_net_state; g_close_wait = 0; cw = 0; upd_frame0 = sh_frame;
+                if (g_net_state == 2) signin_go();
+                else { g_signin_pending = 1; printf("[host] devdlg: OK before the network is up (state %d) - sign-in held until it is\n", (int)g_net_state); }
+            }
+        }
+        else if (g_signin_pending) { extern volatile int g_net_state; if (g_net_state == 2 || g_net_state < 0) { printf("[host] devdlg: network state %d - sign-in continues\n", (int)g_net_state); g_signin_pending = 0; signin_go(); } }
+        if (upd_hold && g_upd_state == 6) { upd_hold = 0; g_upd_go = 0; g_reopen = 1; sh_state = 0; sh_wait = 21; sv_applied = 0; dev_reopen_prep(); }   /* "return to login" */
+        if (upd_hold && g_upd_state == 2 && sh_frame - upd_frame0 >= 60) { upd_hold = 0; g_upd_go = 0; terms_release(); }   /* never within 1.5 s of the developer page closing: the terms window would be drawn over its last frames */
     } else if (sh_state == 1) {
         static int lastk = 0;
         sh_type();
+#ifdef TEST_AUTOSIGN                                    /* emulator tests: fill the page and press OK by itself (-DTEST_IP="..." -DTEST_PORT="...") */
+        { int at = ++g_test_at;
+          if (at == 240) { sh_settext(0, "updtest"); sh_settext(1, "x"); sh_settext(2, TEST_IP); sh_settext(3, TEST_PORT); }
+          if (at == 330) *(volatile u8 *)(sh_obj + 0x14) = 1; }
+#endif
         if (sv_have && !sv_applied && sh_frame > 30) {                          /* the saved server, unless something was typed already */
             sv_applied = 1;
             if (SH_CTRL(2) && !((const char *(*)(u32, int))0x4804C0)(SH_CTRL(2), 0)[0]) { sh_settext(2, sv_ip); if (sv_port[0]) sh_settext(3, sv_port); if (sv_acct[0]) sh_settext(0, sv_acct); }
@@ -384,9 +483,8 @@ static void nat_frame(void)
         if (k != lastk) { if (k) printf("[host] devdlg: key code %d\n", k); lastk = k; if (k >= 0x3a && k <= 0x41) sh_load(k - 0x3a); }
         if (*(volatile u8 *)(sh_obj + 0x14)) {
             extern volatile int g_net_state;
-            sh_apply(); sh_state = 2;
-            if (g_net_state == 2) terms_release();
-            else { g_signin_pending = 1; printf("[host] devdlg: OK before the network is up (state %d) - sign-in held until it is\n", (int)g_net_state); }
+            (void)g_net_state; sh_apply(); sh_state = 2; g_close_wait = 1;
+            { static const char dn[17] = "menu    dbaccoun"; ((void (*)(u32, const char *))0x365C40)(0x6AF320, dn); }     /* the window manager's own close of the page */
         }
     }
 }
@@ -590,7 +688,11 @@ volatile char g_mlast[17]; volatile u32 g_mlast_n = 0;   /* 7 Oct 2026: newest m
 int menu_probe(u32 mgr, const char *name, int flag, int a3)
 {
     (void)mgr; (void)a3; (void)flag;
-    if (g_veto_terms && (u32)name >= 0x100000 && (u32)name < 0x2000000 && !memcmp(name, "menu    ptc8lice", 16)) { g_terms_vetoed = 1; return 1; }
+    if ((g_veto_terms
+#ifdef DEV_SHOW
+         || sh_state_now() == 1                                   /* never while the developer page is up, whatever else changed */
+#endif
+        ) && (u32)name >= 0x100000 && (u32)name < 0x2000000 && !memcmp(name, "menu    ptc8lice", 16)) { g_terms_vetoed = 1; return 1; }
     if ((u32)name >= 0x100000 && (u32)name < 0x2000000) { int i; for (i = 0; i < 16; i++) g_mlast[i] = (name[i] >= 0x20 && name[i] < 0x7f) ? name[i] : '.'; g_mlast[16] = 0; g_mlast_n++;
         { extern volatile int g_in_world;                 /* title / character screens vs. playing (LOGOUT_FIX in host.c uses it) */
           if (!memcmp(name + 8, "loby2", 5) || !memcmp(name + 8, "chf", 3) || !memcmp(name + 8, "chmk", 4) || !memcmp(name + 8, "race", 4)) g_in_world = 0;
@@ -660,6 +762,11 @@ static void registry_patch(void)
     memcpy(s_reg_orig, e, 44); s_reg_saved = 1;
     memcpy(e, "menu    dbaccoun", 16); *(u32 *)(e + 32) = 0x7B97E8; *(u32 *)(e + 36) = 0x1002e; *(u32 *)(e + 40) = 0x208;
     printf("[host] devdlg: registered menu    dbaccoun\n");
+}
+static void dev_reopen_prep(void)                        /* "return to login": the developer page is opened again, the terms window stays held back */
+{
+    if (!s_reg_saved) registry_patch();
+    g_veto_terms = 1; g_terms_vetoed = 0;
 }
 #endif
 /* ---- 6 Oct 2026: emote diagnostics (handler 0x30D5F0 / motion start 0x30DBB0), read over PINE ---- */

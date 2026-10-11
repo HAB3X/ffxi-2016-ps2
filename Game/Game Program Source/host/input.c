@@ -17,6 +17,7 @@ volatile u32 g_input_step = 0;              /* progress marker, readable over PI
 volatile int g_pad_rc[4];                   /* [0]=scePadInit, [1]=PortOpen(0,0), [2]=PortOpen(1,0) */
 volatile int g_pad_state = -1;              /* last scePadGetState(0,0), updated by the watcher thread */
 volatile u32 g_pad_btn = 0;                 /* last button word read (active low, as scePadRead returns it) */
+volatile u32 g_pad_lx = 0x80, g_pad_ly = 0x80;   /* left stick of the last game read, port 0 (devdlg.c update screens), before the input block */
 volatile u32 g_kbd_ready = 0, g_mouse_ready = 0;
 
 static u8 pad_buf[2][256] __attribute__((aligned(64)));   /* DMA buffers for scePadPortOpen */
@@ -173,6 +174,7 @@ u32 svc_scePadRead(int port, int slot, void *d)
         b->rjoy_h = b->rjoy_v = b->ljoy_h = b->ljoy_v = 0x80; b->mode = 0x73;   /* until then: digital pad presented as a centred DualShock */
     }
     { extern volatile u32 g_tri_edge; static u16 prev = 0xffff; if (!(b->btns & 0x1000) && (prev & 0x1000)) g_tri_edge++; prev = b->btns; }   /* triangle press: random-name request for the name box (devdlg.c) */
+    if (port == 0) { g_pad_btn = b->btns; g_pad_lx = b->ljoy_h; g_pad_ly = b->ljoy_v; }   /* what the player pressed, whether or not a host screen owns the input */
     { extern volatile int g_input_block; if (g_input_block) b->btns = 0xffff; }   /* the developer login screen owns the input */
     return 32;
 }

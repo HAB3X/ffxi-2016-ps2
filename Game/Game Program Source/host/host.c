@@ -144,7 +144,11 @@ volatile u32 g_ring[RINGN][2]; volatile u32 g_ringp = 0;   /* last calls: slot, 
    trap_common -> trap_c.  g_real[idx] holds the real implementation (0 = log-only slot).  Entry + return are recorded in
    g_tr (PINE readable; see pk.py tr).  Noisy slots are recorded only for their first TR_FIRST calls. */
 volatile u32 g_real[NSLOTS];
+#ifdef DISC_BUILD
+#define TRN 64                                         /* the install disc does not need the call tracer's history: room for the update client */
+#else
 #define TRN 512
+#endif
 typedef struct { u32 idx, ra, a0, a1, a2, a3, ret, seq; char s0[32]; char s1[64]; } TrEnt;
 volatile TrEnt g_tr[TRN]; volatile u32 g_trn = 0;
 #define TR_FIRST 6
@@ -232,6 +236,11 @@ u64 trap_c(u32 idx, u64 *r)
     }
     int oi = -1;
 #endif
+    if (idx == 938 || idx == 951) {                                                             /* files of a downloaded update (update.c) */
+        extern const char *ov_hook(const char *, char *);
+        static char ovb[4][120]; static u32 ovn = 0; char *b = ovb[ovn++ & 3];
+        const char *np = ov_hook((const char *)(u32)r[1], b); if (np != (const char *)(u32)r[1]) r[1] = (u64)(u32)np;
+    }
     if (idx == 938 || idx == 951) {                                                             /* bare file names (dictionaries, settings files) get a real path */
         extern const char *map_bare_path(const char *, char *);
         static char bp[4][100]; static u32 bpn = 0; char *b = bp[bpn++ & 3];
@@ -580,8 +589,16 @@ int main(int argc, char **argv)
 {
     hlog_start();
     if (argc > 0 && argv && argv[0] && argv[0][0] && strlen(argv[0]) < sizeof g_self_path) strcpy(g_self_path, argv[0]);
+    { extern volatile int g_chained; g_chained = argc > 1 && argv && argv[1] && !strcmp(argv[1], "chained"); }
     { extern int g_boot_disc; g_boot_disc = !(argc > 0 && argv && argv[0] && strncmp(argv[0], "cdrom", 5));    /* where were we started from? */
-      printf("[host] started as '%s' (%s)\n", argc > 0 && argv && argv[0] ? argv[0] : "?", g_boot_disc ? "disc" : "not the disc: embedded IOP modules"); }
+      printf("[host] started as '%s' (%s)\n", argc > 0 && argv && argv[0] ? argv[0] : "?", g_boot_disc ? "disc" : "not the disc: embedded IOP modules");
+      { extern volatile int g_chained; if (g_chained) printf("[host] this is the game program from the hard drive update%s\n",
+#ifdef UPD_MARK
+        " (test build B)"
+#else
+        ""
+#endif
+        ); } }
     /* no logger alarm: hlog_kick() is called from the frame hook and from the thread dump */
     { extern void alwd_start(void); alwd_start(); }          /* alarm watchdog (userfile.c) */
     g_stage = 1;
@@ -643,6 +660,10 @@ int main(int argc, char **argv)
     }
 #else
     iop_init();
+#endif
+#if defined(DISC_BUILD) && !defined(NO_CHAIN)
+    { extern int g_boot_disc; extern volatile int g_chained; extern void chain_boot(void);
+      if (g_boot_disc && !g_chained) chain_boot(); }  /* a game program downloaded by the in-game update runs instead of this one (chain.c); returns when there is none */
 #endif
 #if defined(SONY_IOP) && !defined(NO_NETBOOT)
     { extern int net_ensure(void); int nr = net_ensure(); printf("[host] network bring-up before the game: %d\n", nr); }   /* done once, before any game thread exists */

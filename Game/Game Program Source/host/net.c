@@ -849,6 +849,27 @@ static u32 resolve_server(const char *p)
     }
     L("hostname lookup timed out", 0, 0, 0); return 0;
 }
+/* update.c: a TCP connection of its own to the server typed on the sign-in page (the lobby port also answers the update requests).
+   op 0 open (the address is looked up once), 1 connect check (>0 connected, 0 pending, <0 failed), 2 send, 3 receive, 4 close */
+int net_tcp(int op, int h, void *p, int n)
+{
+    typedef int (*f2)(u32, void *); typedef int (*f1)(int); typedef int (*f3)(int, void *, int);
+    static SqAddr a; static u32 ip;
+    if (!g_orig[231] || !g_orig[232] || !g_orig[236] || !g_orig[237] || !g_orig[238]) return -1;
+    switch (op) {
+    case 0:
+        if (g_net_state != 2) return -1;
+        if (!ip) ip = resolve_server(g_dev_ip);
+        if (!ip) return -1;
+        memset(&a, 0, sizeof a); a.type = 1; a.addr = ip; a.port = (u16)atoi(g_dev_port);
+        return ((f2)g_orig[231])(0, &a);
+    case 1: return ((f1)g_orig[232])(h);
+    case 2: return ((f3)g_orig[237])(h, p, n);
+    case 3: return ((f3)g_orig[238])(h, p, n);
+    case 4: return ((f1)g_orig[236])(h);
+    }
+    return -1;
+}
 static u32 w_csock(u32 a0, u32 a1, u32 a2, u32 a3, u32 t0, u32 t1, u32 t2, u32 t3)
 {
     if (net_ensure() < 0) return (u32)-1;
