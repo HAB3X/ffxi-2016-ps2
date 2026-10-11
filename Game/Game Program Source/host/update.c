@@ -5,6 +5,15 @@
    Files in pfs1:/image/ffxi/: U_<name> the downloaded files, UPDVER.TXT the installed version, UPDOVR.TXT the data files
    (the game's opens of <path> are served from U_<name>, see ov_hook), UPDHOST.TXT the new game program (chain.c starts it at boot).
    Nothing on the original game files is changed: deleting the U_* and UPD*.TXT files undoes every update. */
+#ifdef NETDIAG
+/* the debug link builds (NETDIAG) have no room left in the host area for the update client: stand-ins only */
+#include <tamtypes.h>
+volatile int g_upd_state = 0, g_upd_answer = 0, g_upd_go = 0, g_upd_pct = 0;
+char g_upd_msg[48];
+void upd_start(void) { }
+const char *ov_hook(const char *p, char *buf) { (void)buf; return p; }
+void ov_reload(void) { }
+#else
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -36,13 +45,14 @@ volatile int g_upd_go = 0;         /* the sign-in page: OK pressed and the netwo
 volatile int g_upd_pct = 0;
 char g_upd_msg[48];
 
-#define MAXIT 24
+#define MAXIT 12
+#define XCMEM __attribute__((section(".xcmem"), aligned(64)))      /* the big buffers live in the NOLOAD gap between the lifted kernel and the game (host.ld): the host area itself is full */
 typedef struct { char kind; u32 size, crc; char name[56]; char target[88]; } Item;
-static Item it[MAXIT]; static int nit; static u32 mver;
-static u8 mf[4096];
-static u8 io[8192] __attribute__((aligned(64)));
+static Item it[MAXIT] XCMEM; static int nit; static u32 mver;
+static u8 mf[2560] XCMEM;
+static u8 io[4096] XCMEM;
 static char pa[160];
-static u8 stk[12288] __attribute__((aligned(16)));
+static u8 stk[8192] XCMEM;
 
 static void msg(const char *m) { strncpy(g_upd_msg, m, sizeof g_upd_msg - 1); g_upd_msg[sizeof g_upd_msg - 1] = 0; }
 
@@ -302,13 +312,13 @@ void upd_start(void)                                              /* sign-in pag
 }
 
 /* ---- the game's opens of updated data files are served from UPDATE/f ---- */
-#define NOV 24
+#define NOV 12
 static u32 ov_h[NOV]; static char ov_f[NOV][64]; static int ov_n, ov_state;
 static u32 hash(const char *p) { u32 h = 2166136261u; while (*p) h = (h ^ (u8)*p++) * 16777619u; return h; }
 void ov_reload(void) { ov_state = 0; }
 static void ov_load(void)
 {
-    static char b[4096]; int n, i;                       /* static: the game's file thread has a tiny stack */
+    static char b[2560]; int n, i;                       /* static: the game's file thread has a tiny stack */
     ov_n = 0; ov_state = -1;                             /* also stops ov_hook from calling itself through the read below */
     n = rd_small(UD "OVR.TXT", b, sizeof b);
     if (n <= 0) return;
@@ -334,3 +344,5 @@ const char *ov_hook(const char *p, char *buf)
       for (i = 0; i < ov_n; i++) if (ov_h[i] == h) { strcpy(buf, "pfs1:/image/ffxi/U_"); strcat(buf, ov_f[i]); return buf; } }
     return p;
 }
+
+#endif /* NETDIAG */

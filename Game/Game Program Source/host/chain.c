@@ -4,6 +4,10 @@
    their addresses and starts it with ExecPS2 (argv[1] = "chained"). Every start that is not confirmed (update.c confirm_host, on the sign-in
    page) counts; at the third the update is dropped (BAD.TXT remembers its CRC) and the disc program runs. Any problem on the way: return and
    carry on with the program on the disc. */
+#ifdef NETDIAG
+volatile int g_chained = 0, g_chain_dropped = 0;     /* debug link builds: no update client (see update.c) */
+void chain_boot(void) { }
+#else
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -157,3 +161,5 @@ void chain_boot(void)                       /* returns when there is nothing (va
 out:
     if (mounted) io_umount("pfs1:");
 }
+
+#endif /* NETDIAG */

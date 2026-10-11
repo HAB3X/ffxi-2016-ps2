@@ -9,6 +9,12 @@
      PC -> PS2   one command per line, numbers in C syntax (0x.. hex):
                  ping | rate MS | stream 0/1 | peek ADDR [LEN] | poke ADDR VALUE [1|2|4] | thr | sema | report | beat | log
                  watch ADDR [r|w|rw] [MASK] [COUNT] | iwatch ADDR [MASK] [COUNT] | unwatch | wtest
+                 prof 0/1 | ap N ADDR | patch ADDR NEW [OLD] | unpatch ADDR [force] | unpatch all | patches | hist 0/1
+                 samp 0/1 [RATE] | samp top [N] | samp clear   (sampling profiler, sprof.c)
+                 gsw 0/1 | gsw top | gsw clear | gsw nov 0/1   (graphics wait meter, gsw.c)
+                 crash   (crash report by hand - crash.c)
+     more PS2 -> PC: A profiler (once a second)  F frame times (once a second)  X patch list line  P samples (once a second)
+                     G graphics waits (once a second)  C crash report (C begin .. C end)
    The thread runs at priority 0 (with the report thread, above every game thread), so it keeps answering while the game is stuck,
    as long as the EE still takes interrupts and the IOP network stack answers.
 
@@ -388,16 +394,127 @@ static void prof_send(void)
         &g_hf ? (unsigned)g_hf[4] : 0u, &g_hf ? (unsigned)g_hf[5] : 0u);
 }
 
-/* ---- commands ---- */
+/* ---- command parsing ---- */
 static u32 num(char **s) { while (**s == ' ') (*s)++; char *e; u32 v = (u32)strtoul(*s, &e, 0); *s = e; return v; }
 static int word(char **s, const char *w) { while (**s == ' ') (*s)++; int n = strlen(w); if (strncmp(*s, w, n) || ((*s)[n] && (*s)[n] != ' ')) return 0; *s += n; return 1; }
+
+/* ---- checked code patches (NETDIAG50) ----
+   'patch ADDR NEW [OLD]' writes one word of main RAM and remembers what was there first; with OLD it refuses unless the word is OLD
+   now (a wrong address or a different build changes nothing).  'unpatch ADDR' puts the first value back if the word still holds
+   what 'patch' wrote ('unpatch ADDR force': whatever it holds), 'unpatch all' does that for every patch, newest first, and frees the
+   profiler slots too, so the game code is back as loaded.  'patches' lists them ("X n addr orig new now", "changed" when the word
+   no longer holds what was written).  A stub written into free memory needs no record: unpatching the jump into it is enough.
+   Writes to a profiler call site in use, or to the target of a slot in use, are refused (poke too): that is what crashed the game
+   earlier (a slot retargeted while frame code still called it).  'ap' is the way to move a slot. */
+#define PT_N 64
+static volatile u32 pt_a[PT_N], pt_old[PT_N], pt_new[PT_N];          /* normal .bss: .xcmem is full (it ends where the game starts) */
+static volatile int pt_n;
+static int ap_owned(u32 a, u32 n)                           /* 1 if [a, a+n) touches a live call site or the target word of a live slot */
+{
+    for (int i = 0; i < 5; i++) {
+        if (!ap_site[i]) continue;
+        u32 s = ap_site[i], t = (u32)&ap_tgt[i];
+        if ((a < s + 4 && a + n > s) || (a < t + 4 && a + n > t)) return 1;
+    }
+    return 0;
+}
+static int pt_find(u32 a) { for (int i = 0; i < pt_n; i++) if (pt_a[i] == a) return i; return -1; }
+static void pt_drop(int i) { for (int k = i; k < pt_n - 1; k++) { pt_a[k] = pt_a[k + 1]; pt_old[k] = pt_old[k + 1]; pt_new[k] = pt_new[k + 1]; } pt_n--; }
+static int more(char *s) { while (*s == ' ') s++; return *s != 0; }
+static void cmd_patch(u32 a, u32 v, int check, u32 want)
+{
+    if ((a & 3) || a < 0x00100000 || a >= 0x02000000) { out("> err patch %08x: main RAM only, word aligned", (unsigned)a); return; }
+    if (ap_owned(a, 4)) { out("> err patch %08x: in use by a profiler slot (use 'ap N 0' first)", (unsigned)a); return; }
+    volatile u32 *p = (volatile u32 *)a; u32 cur = *p;
+    if (check && cur != want) { out("> err patch %08x: holds %08x, expected %08x - nothing written", (unsigned)a, (unsigned)cur, (unsigned)want); return; }
+    int i = pt_find(a);
+    if (i < 0) {
+        if (pt_n >= PT_N) { out("> err patch: table full (%d), unpatch something first", PT_N); return; }
+        i = pt_n; pt_a[i] = a; pt_old[i] = cur; pt_n = i + 1;
+    }
+    pt_new[i] = v; *p = v;
+    FlushCache(0); FlushCache(2);
+    out("> ok patch %08x %08x -> %08x (#%d, first value %08x)", (unsigned)a, (unsigned)cur, (unsigned)v, i, (unsigned)pt_old[i]);
+}
+static int pt_undo(int i, int force)                         /* 1 restored, 0 left alone (changed since) */
+{
+    volatile u32 *p = (volatile u32 *)pt_a[i]; u32 cur = *p;
+    if (cur != pt_new[i] && !force) { out("> err unpatch %08x: holds %08x, not the patched %08x - left alone ('unpatch %08x force')", (unsigned)pt_a[i],
+                                          (unsigned)cur, (unsigned)pt_new[i], (unsigned)pt_a[i]); return 0; }
+    *p = pt_old[i];
+    out("> ok unpatch %08x %08x -> %08x", (unsigned)pt_a[i], (unsigned)cur, (unsigned)pt_old[i]);
+    pt_drop(i); return 1;
+}
+static void cmd_unpatch(char *s)
+{
+    if (word(&s, "all")) {
+        int n = 0, ap = 0, left = 0;
+        ap_on = 0; for (int i = 0; i < 5; i++) if (ap_site[i]) { ap_put(i); ap++; }
+        for (int i = pt_n - 1; i >= 0; i--) { if (pt_undo(i, 0)) n++; else left++; }
+        FlushCache(0); FlushCache(2);
+        out("> ok unpatch all: %d restored, %d profiler slots freed, %d left (changed since)", n, ap, left);
+        return;
+    }
+    u32 a = num(&s); int force = word(&s, "force");
+    int i = pt_find(a);
+    if (i < 0) { out("> err unpatch %08x: not patched", (unsigned)a); return; }
+    pt_undo(i, force); FlushCache(0); FlushCache(2);
+}
+static void cmd_patches(void)
+{
+    for (int i = 0; i < pt_n; i++) {
+        u32 now = *(volatile u32 *)pt_a[i];
+        out("X %d %08x orig %08x new %08x now %08x%s", i, (unsigned)pt_a[i], (unsigned)pt_old[i], (unsigned)pt_new[i], (unsigned)now, now == pt_new[i] ? "" : " changed");
+    }
+    for (int i = 0; i < 5; i++) if (ap_site[i]) out("X ap%d %08x orig %08x -> target %08x", i, (unsigned)ap_site[i], (unsigned)ap_save[i], (unsigned)ap_tgt[i]);
+    out("> ok patches %d", pt_n);
+}
+
+/* ---- frame times (NETDIAG50): one F line a second from perf.c's per-frame ring ----
+   "F vbl frames n v1 a v2 b v3 c v4 d v5 e v6 f max M.MMms": frames finished in the last second, how many took 1, 2, 3, 4, 5 and
+   6 or more vertical blanks (1 = 60 fps, 3 = 20 fps), and the longest one in ms (cycle counter).  Averages hide the hitches; this
+   shows them.  'hist 0' / 'hist 1' turns the line off / on. */
+extern volatile u32 g_pf_frames, g_pf_ftv[1024], g_pf_ftc[1024];
+static int hist_on = 1;
+static void hist_send(void)
+{
+    static u32 next_f, last_fr;
+    if ((int)(g_pf_vs - next_f) < 0) return;
+    next_f = g_pf_vs + 60;
+    u32 fr = g_pf_frames, n = fr - last_fr, h[6] = { 0 }, mx = 0;
+    if (n > 1000) n = 1000;                                  /* first call, or a long stall: the ring holds the last 1024 */
+    for (u32 k = fr - n; k != fr; k++) {
+        if (!k) continue;                                    /* frame 0 has no time */
+        u32 dv = g_pf_ftv[k & 1023], c = g_pf_ftc[k & 1023];
+        h[dv < 1 ? 0 : dv > 6 ? 5 : dv - 1]++;
+        if (c > mx) mx = c;
+    }
+    last_fr = fr;
+    if (!hist_on || !stream) return;
+    u32 us = mx / 295;                                       /* 294.912 MHz */
+    out("F %u frames %u v1 %u v2 %u v3 %u v4 %u v5 %u v6 %u max %u.%02ums", (unsigned)g_pf_vs, (unsigned)n, (unsigned)h[0], (unsigned)h[1], (unsigned)h[2],
+        (unsigned)h[3], (unsigned)h[4], (unsigned)h[5], (unsigned)(us / 1000), (unsigned)(us % 1000 / 10));
+}
+
+/* ---- commands ---- */
+extern void sp_cmd(char *s, void (*o)(const char *, ...)), sp_tick(void (*o)(const char *, ...), int show);   /* sprof.c */
+extern void gsw_cmd(char *s, void (*o)(const char *, ...)), gsw_tick(void (*o)(const char *, ...), int show);   /* gsw.c */
+extern void crash_tick(void (*o)(const char *, ...)), crash_cmd(void (*o)(const char *, ...));   /* crash.c */
 static void cmd(char *s)
 {
     if (word(&s, "ping")) out("> pong vbl %u", (unsigned)g_pf_vs);
     else if (word(&s, "rate")) { u32 v = num(&s); rate = v < 50 ? 50 : v > 5000 ? 5000 : (int)v; out("> ok rate %d", rate); }
     else if (word(&s, "stream")) { stream = num(&s) != 0; out("> ok stream %d", stream); }
     else if (word(&s, "peek")) { u32 a = num(&s), n = num(&s); cmd_peek(a, n); }
-    else if (word(&s, "poke")) { u32 a = num(&s), v = num(&s), z = num(&s); cmd_poke(a, v, z); }
+    else if (word(&s, "poke")) { u32 a = num(&s), v = num(&s), z = num(&s);
+        if (ap_owned(a, z == 1 || z == 2 ? z : 4)) out("> err poke %08x: in use by a profiler slot (use 'ap N 0' first)", (unsigned)a); else cmd_poke(a, v, z); }
+    else if (word(&s, "patches")) cmd_patches();
+    else if (word(&s, "patch")) { u32 a = num(&s), v = num(&s); int c = more(s); u32 w = c ? num(&s) : 0; cmd_patch(a, v, c, w); }
+    else if (word(&s, "unpatch")) cmd_unpatch(s);
+    else if (word(&s, "samp")) sp_cmd(s, out);
+    else if (word(&s, "gsw")) gsw_cmd(s, out);
+    else if (word(&s, "crash")) crash_cmd(out);
+    else if (word(&s, "hist")) { hist_on = num(&s) != 0; out("> ok hist %d", hist_on); }
     else if (word(&s, "thr")) cmd_thr();
     else if (word(&s, "sema")) cmd_sema();
     else if (word(&s, "report")) { g_dbg_req = 1; out("> ok report (from the report thread within ~1 s)"); }
@@ -417,6 +534,8 @@ static void cmd(char *s)
     else if (word(&s, "ap")) { int i = (int)num(&s); u32 a = num(&s); cmd_ap(i, a); }
     else out("> err unknown command: %s", s);
 }
+
+void dbg_run(const char *c) { char b[64]; strncpy(b, c, sizeof b - 1); b[sizeof b - 1] = 0; cmd(b); }   /* crash.c */
 
 /* the report thread hands its finished report lines over here before sending them to the proxy (1 = taken) */
 int dbg_mirror(char (*lines)[72], int n)
@@ -478,6 +597,10 @@ static void dbg_thread(void *arg)
                     (unsigned)g_calls, (unsigned)g_opn, (unsigned)g_exc_n, &g_pcn ? (unsigned)g_pcn : 0u, (unsigned)g_mon_insend, inb);
             }
             prof_send();
+            hist_send();
+            sp_tick(out, stream);
+            gsw_tick(out, stream);
+            crash_tick(out);
             if (tx_n && flush() < 0) break;
             if (g_pf_vs - last_rx > 60 * 10) { break; }       /* the console pings every second: 10 s of silence = gone */
             DelayThread(50 * 1000);
@@ -490,6 +613,7 @@ static void dbg_thread(void *arg)
 void dbg_start(void)
 {
     ap_on = 0; for (int i = 0; i < 5; i++) ap_site[i] = 0;   /* .xcmem is not cleared at load */
+    pt_n = 0;
     ee_thread_t t; memset(&t, 0, sizeof t);
     t.func = (void *)dbg_thread; t.stack = dbg_stack; t.stack_size = sizeof dbg_stack; t.initial_priority = 0; t.gp_reg = &_gp;
     int id = CreateThread(&t); if (id >= 0) StartThread(id, NULL);
