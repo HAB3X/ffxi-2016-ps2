@@ -105,7 +105,7 @@ void chain_boot(void)                       /* returns when there is nothing (va
     }
     if (!mounted) return;
     n = rd_small(UD "HOST.TXT", b, sizeof b);
-    printf("[host] chain: HOST.TXT %d\n", n);
+    printf("[host] chain: HOST.TXT %d bytes\n", n);
     if (n < 8) goto out;
     size = (u32)strtoul(b, &q, 10); crc = (u32)strtoul(q, &q, 16);
     while (*q == ' ') q++;
@@ -113,6 +113,7 @@ void chain_boot(void)                       /* returns when there is nothing (va
     name[i] = 0;
     if (*q == '\n') q++;
     tries = atoi(q);
+    printf("[host] chain: update %s, %d unconfirmed start(s)\n", name, tries);
     if (size < 4096 || size > STAGE_MAX || !name[0] || strchr(name, '/')) goto out;
     if (tries >= 1) {                                                  /* started once without reaching the sign-in page: give it up (the disc program runs) */
         put_small(UD "HOST.TXT", "", 0); g_chain_dropped = 1;
